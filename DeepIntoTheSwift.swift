@@ -32,7 +32,7 @@ to write multi-line comments. */
 "Hello!"
 
 // We can display this string by using the `print` function
-// from the Swift Standard Library.
+// from the Swift Standard Library.  We'll talk more about functions later.
 print("Hello world!")
 
 print("I")            // We can put single-line comments at the end of the line.
@@ -82,7 +82,7 @@ print("0o34__53       =>", 0o34__53)
 print("0xFEEDFACE     =>", 0xFEEDFACE)
 print("0xFEED_FACE___ =>", 0xFEED_FACE___)
 
-print("-11...12 =>", -11...12)        // An closed range.
+print("-11...12 =>", -11...12)        // A closed range.
 print("-11..<12 =>", -11..<12)        // A semi-open range.
 
 print("Double.infinity  =>", Double.infinity)
@@ -102,6 +102,8 @@ print("CInt.max =>", CInt.max)
 
 
 
+7.1e9
+
 
 10
 10.0
@@ -110,7 +112,17 @@ print("CInt.max =>", CInt.max)
 
 
 
-
+// All of these are equivalent:
+let a1: Array<Int> = Array<Int>.init(arrayLiteral: 0, 1, 2)
+let a2: Array<Int> = Array<Int>(arrayLiteral: 0, 1, 2)
+let a3: Array<Int> = Array(arrayLiteral: 0, 1, 2)
+let a4: [Int] = Array(arrayLiteral: 0, 1, 2)
+let a5: [Int] = [Int].init(arrayLiteral: 0, 1, 2)
+let a6: [Int] = [Int](arrayLiteral: 0, 1, 2)
+let a7 = [Int](arrayLiteral: 0, 1, 2)
+let a8 = [Int]([0, 1, 2])
+let a9 = [0, 1, 2]
+// [0, 1, 2]
 
 
 
@@ -263,6 +275,20 @@ repeat {
   j += 1
 } while j < 10
 
+
+
+// ----
+
+
+// The difference between
+var p: NSObject = NSObject()
+// and
+var p: NSObject
+p = NSObject()
+// is that Xcode will complain about the former if `p` doesn't get mutated.
+
+
+// ----
 
 
 
@@ -538,6 +564,8 @@ debugPrint("test")
 
 
 
+
+// `dump()` crashes when trying to use it an `UnsafeMutablePointer`
 
 
 
