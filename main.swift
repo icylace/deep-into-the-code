@@ -73,33 +73,34 @@ true                     // A boolean literal.
 
 print(true, 1, 2.2, "way", [2, 3, 4], (1.3, "is", false))
 
-print("1_000_000      =>", 1_000_000)
-print("2__3           =>", 2__3)
-print("0b101010101    =>", 0b101010101)
-print("0b1_010_10_101 =>", 0b1_010_10_101)
-print("0o3453         =>", 0o3453)
-print("0o34__53       =>", 0o34__53)
-print("0xFEEDFACE     =>", 0xFEEDFACE)
-print("0xFEED_FACE___ =>", 0xFEED_FACE___)
+1_000_000             // 1000000
+2__3                  // 23
+0b101010101           // 341
+0b1_010_10_101        // 341
+0o3453                // 1835
+0o34__53              // 1835
+0xFEEDFACE            // 4277009102
+0xFEED_FACE___        // 4277009102
 
-print("-11...12 =>", -11...12)        // A closed range.
-print("-11..<12 =>", -11..<12)        // A semi-open range.
+-11...12        // A closed range.
+// -11..<13
 
-print("Double.infinity  =>", Double.infinity)
-print("Float.infinity   =>", Float.infinity)
-print("Float32.infinity =>", Float32.infinity)
-print("Float64.infinity =>", Float64.infinity)
+-11..<12        // A semi-open range.
+// -11..<12
 
-print("Int.min   =>", Int.min)
-print("Int.max   =>", Int.max)
-print("Int8.max  =>", Int8.max)
-print("Int16.max =>", Int16.max)
-print("Int32.max =>", Int32.max)
-print("Int64.max =>", Int64.max)
+Double.infinity         // inf
+Float.infinity          // inf
+Float32.infinity        // inf
+Float64.infinity        // inf
+CDouble.infinity        // inf
 
-print("CDouble.infinity =>", CDouble.infinity)
-print("CInt.max =>", CInt.max)
-
+Int.min         // -9223372036854775808
+Int.max         // 9223372036854775807
+Int8.max        // 127
+Int16.max       // 32767
+Int32.max       // 2147483647
+Int64.max       // 9223372036854775807
+CInt.max        // 2147483647
 
 
 7.1e9
@@ -135,15 +136,16 @@ print(UnicodeScalar("A").value)
 // ----
 
 // https://www.drivenbycode.com/the-missing-apply-function-in-swift/
-func repea(str: String, _ n: Int) -> String {
+func repeatIt(str: String, _ n: Int) -> String {
   return [String](count: n, repeatedValue: str).joinWithSeparator("")
 }
 
-print(repea("ha", 3)) // -> "hahaha"
+print(repeatIt("ha", 3)) // -> "hahaha"
 
-// Now with a tuple
+// Now with a tuple.
+// Note this technique is deprecated as of Swift 2.2 (I believe).
 let params = ("ha", 3)
-print(repea(params)) // -> "hahaha"
+print(repeatIt(params)) // -> "hahaha"
 
 // ----
 
@@ -279,12 +281,13 @@ repeat {
 
 // ----
 
+import Foundation
 
 // The difference between
-var p: NSObject = NSObject()
+var p1: NSObject = NSObject()
 // and
-var p: NSObject
-p = NSObject()
+var p2: NSObject
+p2 = NSObject()
 // is that Xcode will complain about the former if `p` doesn't get mutated.
 
 
