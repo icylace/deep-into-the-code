@@ -32,6 +32,9 @@ func sayHi() -> String {
 let d = sayHi()
 assert(d == "hi")
 
+// Note that both functions have the same name but they don't conflict.
+// That's because they have different types.  More on that later.
+
 // -----------------------------------------------------------------------------
 
 // A function that takes a couple parameters.
@@ -80,42 +83,49 @@ sayFinalBye(name: "Dave")
 // -----------------------------------------------------------------------------
 
 // A function's return value can be ignored.
-func printAndCount(text: String) -> Int {
-  print(text)
+func countText(text: String) -> Int {
   return text.characters.count
 }
-func printWithoutCounting(text: String) {
-  printAndCount(text: text)
+func countTextWithoutReturn(text: String) {
+  // A warning will be flagged anytime a function's return value is ignored.
+  countText(text: text)
 }
-printAndCount(text: "hello, world")
-// Prints "hello, world" and returns a value of 12.
-printWithoutCounting(text: "hello, world")
-// Prints "hello, world" but does not return a value.
 
-// Return values can be ignored, but a function with a defined return type
-// must always return a value.
+// A warning will be flagged anytime a function's return value is ignored.
+countText(text: "hi")
+
+countTextWithoutReturn(text: "hi")
+
+// Return values can be ignored but a function with a defined return type
+// that's not `Void` must always return a value.
+
+// If you don't care about a function's return value when you call it, assign
+// the function call to an underscore.  This will discard the result without
+// triggering a warning.
+_ = countText(text: "hi")
+
+// STYLE:
+// Always assign a function call to an underscore when you don't
+// want its return value.
 
 // -----------------------------------------------------------------------------
 
 // A tuple can be used to emulate multiple simultaneous return values.
-func minMax(array: [Int]) -> (min: Int, max: Int) {
-  var curMin = array[0]
-  var curMax = array[0]
-  for value in array[1..<array.count] {
-    if value < curMin {
-      curMin = value
-    } else if value > curMax {
-      curMax = value
+func findMaxAndSize(xs: [Int]) -> (max: Int, size: Int) {
+  var curMax = xs[0]
+  for x in xs[1..<xs.count] {
+    if x > curMax {
+      curMax = x
     }
   }
-  return (curMin, curMax)
+  return (curMax, xs.count)
 }
 
 // Because the tuple's member values are named as part of the function's return
 // type, they can be accessed with dot syntax.
-let bounds = minMax(array: [8, -6, 2, 109, 3, 71])
-assert(bounds.min == -6)
-assert(bounds.max == 109)
+let info = findMaxAndSize(xs: [8, -6, 2, 109, 3, 71])
+assert(info.max == 109)
+assert(info.size == 6)
 
 // -----------------------------------------------------------------------------
 
@@ -124,23 +134,20 @@ assert(bounds.max == 109)
 // tuple type, the entire tuple is optional, not just each individual
 // value within the tuple.
 
-func minMax2(array: [Int]) -> (min: Int, max: Int)? {
-  if array.isEmpty { return nil }
-  var curMin = array[0]
-  var curMax = array[0]
-  for value in array[1..<array.count] {
-    if value < curMin {
-      curMin = value
-    } else if value > curMax {
-      curMax = value
+func findMaxAndSize2(xs: [Int]) -> (max: Int, size: Int)? {
+  guard !xs.isEmpty else { return nil }
+  var curMax = xs[0]
+  for x in xs[1..<xs.count] {
+    if x > curMax {
+      curMax = x
     }
   }
-  return (curMin, curMax)
+  return (curMax, xs.count)
 }
 
-if let bounds = minMax2(array: [8, -6, 2, 109, 3, 71]) {
-  assert(bounds.min == -6)
-  assert(bounds.max == 109)
+if let info = findMaxAndSize2(xs: [8, -6, 2, 109, 3, 71]) {
+  assert(info.max == 109)
+  assert(info.size == 6)
 }
 
 
@@ -192,40 +199,40 @@ func f4(parameter: Int = 2) {
 }
 
 f4(parameter: 4)        // `parameter` will be 4.
-f4()        // `parameter` will be 2.  Note the label is not needed here.
+f4()        // `parameter` will be 2.  Note the label is not used here.
 
 // STYLE:
 // Place parameters with default values at the end of a function's parameter
 // list.  This ensures that all calls to the function use the same order for
 // their nondefault arguments, and makes it clear that the same function is
 // being called in each case.
+// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-NoLink_92
 
 // -----------------------------------------------------------------------------
 
 // A variadic parameter accepts zero or more values of a specified type.
 // A function may have at most one variadic parameter.
-func f5(numbers: Double...) -> Double {
+func f5(xs: Double...) -> Double {
   var total: Double = 1
-  for number in numbers {
-    total *= number
+  for x in xs {
+    total *= x
   }
   return total
 }
 
-let r5 = f5(numbers: 2.35, 6.7, 55.0)
+let r5 = f5(xs: 2.35, 6.7, 55.0)
 assert(r5 == 865.975)
 
 // -----------------------------------------------------------------------------
 
 // Function parameters are constants by default.  Parameters that can be
 // modified are in-out parameters.
-
 func f6(x: inout Int) {
   x *= 2
 }
 
 var r6 = 4
-// The ampersand is needed because we're passing in a reference to `r6`.
+// Here an ampersand is needed because we're passing in a reference to `r6`.
 f6(x: &r6)
 assert(r6 == 8)
 
@@ -238,22 +245,13 @@ assert(r6 == 8)
 
 // -----------------------------------------------------------------------------
 
-// TODO
-
-// Multiple parameters are comma-separated.
-func f6(first: Int, second: Int) {
-  // Do stuff.
+// A function with a crazy set of parameters.  This is what not to do!
+func f7(_ first: Int, foo second: Int = 4, _ xs: Int..., bar third: Int) -> Int {
+  return first + second + third * xs.count
 }
 
-f6(first: 1, second: 2)
-
-// -----------------------------------------------------------------------------
-
-func f7(_ first: Int, foo second: Int = 4) {
-  // Do stuff.
-}
-
-f7(1, foo: 2)
+let r7 = f7(1, foo: 4, 1, 2, 3, 4, 5, 6, 7, bar: 3)
+assert(r7 == 26)
 
 
 // -----------------------------------------------------------------------------
@@ -263,12 +261,31 @@ f7(1, foo: 2)
 // Every function has a specific function type made up of the parameter
 // types and the return type of the function.
 
-// func addTwoInts(a: Int, _ b: Int) -> Int {
-//   return a + b
-// }
-// func multiplyTwoInts(a: Int, _ b: Int) -> Int {
-//   return a * b
-// }
+// Here, `f10` has the type `() -> Void`.
+func f8() {
+  // Stuff happens.
+}
+
+// -----------------------------------------------------------------------------
+
+// Here, `f8` and `f9` have the same type of `(Int, Int) -> Int`.
+func f9(_ a: Int, _ b: Int) -> Int {
+  return a + b
+}
+func f10(_ a: Int, _ b: Int) -> Int {
+  return a * b
+}
+
+// -----------------------------------------------------------------------------
+
+// Constants and variables can be assigned functions making them
+// act like functions.
+var f11: (Int, Int) -> Int = f9
+let f12 = f9
+let r11 = f11(2, 3)
+let r12 = f12(2, 3)
+assert(r11 == 5)
+assert(r12 == 5)
 
 
 // -----------------------------------------------------------------------------
@@ -285,35 +302,10 @@ var curValue = -4
 let stepToZero = chooseStepper(reversed: curValue > 0)
 // `stepToZero` now refers to the nested `increase()` function.
 
-while curValue != 0 {
-  print("\(curValue)... ")
-  // The label for the nested function is not allowed.
-  curValue = stepToZero(curValue)
-}
+// Parameter labels for the nested function are not allowed.
+curValue = stepToZero(curValue)
+curValue = stepToZero(curValue)
+curValue = stepToZero(curValue)
+curValue = stepToZero(curValue)
 
-print("zero!")
-
-// -4...
-// -3...
-// -2...
-// -1...
-// zero!
-
-
-// -----------------------------------------------------------------------------
-
-// // Swift 3 bug?
-//
-// func foo() -> (Int) -> Int {
-//   func bar(x: Int) -> Int { return x + 1 }
-//   return bar
-// }
-//
-// // The label for the nested function is not allowed to be used.
-//
-// print(foo()(1))
-// // 2
-//
-// let baz = foo()
-// print(baz(1))
-// // 2
+assert(curValue == 0)

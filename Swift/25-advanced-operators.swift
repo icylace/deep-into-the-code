@@ -19,25 +19,33 @@ assert(a ^ b == 0b10100011)       // Bitwise XOR.
 // -----------------------------------------------------------------------------
 
 // Shifting unsigned integers (logical shift).
+
 let c: UInt8 = 0b00000100
-assert(c << 1 == 0b00001000)        // Bitwise left shift operator.
+
+// Bitwise left shift operator.
+assert(c << 1 == 0b00001000)
 assert(c << 2 == 0b00010000)
 assert(c << 5 == 0b10000000)
 assert(c << 6 == 0b00000000)
 
-assert(c >> 1 == 0b00000010)        // Bitwise right shift operator.
+// Bitwise right shift operator.
+assert(c >> 1 == 0b00000010)
 assert(c >> 2 == 0b00000001)
 assert(c >> 3 == 0b00000000)
 
 // -----------------------------------------------------------------------------
 
 // Shifting signed integers (arithmetic shift).
+
 let d: Int8 = 0b01100110
 let e: Int8 = -0b01100110
-assert(d << 3 == 0b00110000)        // Bitwise left shift operator.
+
+// Bitwise left shift operator.
+assert(d << 3 == 0b00110000)
 assert(e << 3 == -0b00110000)
 
-assert(d >> 3 == 0b00001100)        // Bitwise right shift operator.
+// Bitwise right shift operator.
+assert(d >> 3 == 0b00001100)
 assert(e >> 1 == -0b00110011)
 assert(e >> 2 == -0b00011010)
 assert(e >> 3 == -0b00001101)
@@ -48,12 +56,12 @@ assert(e >> 5 == -0b00000100)
 
 // Getting the components of a color.
 let hotPink: UInt32 = 0xFF69B4
-let redComponent = (hotPink & 0xFF0000) >> 16
-let greenComponent = (hotPink & 0x00FF00) >> 8
-let blueComponent = hotPink & 0x0000FF
-assert(redComponent == 0xFF)
-assert(greenComponent == 0x69)
-assert(blueComponent == 0xB4)
+let redPart = (hotPink & 0xFF0000) >> 16
+let greenPart = (hotPink & 0x00FF00) >> 8
+let bluePart = hotPink & 0x0000FF
+assert(redPart == 0xFF)
+assert(greenPart == 0x69)
+assert(bluePart == 0xB4)
 
 
 // -----------------------------------------------------------------------------

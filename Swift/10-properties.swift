@@ -1,4 +1,6 @@
 // =============================================================================
+//  Properties
+//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html
 // =============================================================================
 
 
@@ -10,6 +12,16 @@
 // -----------------------------------------------------------------------------
 //  Computed Properties
 // -----------------------------------------------------------------------------
+
+
+
+// The type of `newValue` is the same as the return value of the computed
+// property.  You can choose not to specify the setter's `newValue`
+// parameter.  A default parameter called `newValue` is provided
+// to your setter if you do not provide one yourself.
+
+
+
 
 
 // -----------------------------------------------------------------------------

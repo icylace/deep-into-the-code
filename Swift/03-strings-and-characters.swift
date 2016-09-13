@@ -1,4 +1,6 @@
 // =============================================================================
+//  Strings and Characters
+//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html
 // =============================================================================
 
 
@@ -60,3 +62,31 @@
 // -----------------------------------------------------------------------------
 //  Unicode Representations of Strings
 // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+// This is a string which is basically just text.
+"Hello world!"
+
+
+
+// http://stackoverflow.com/a/34983398/1935675
+print(UnicodeScalar("A").value)
+
+
+
+// ----
+
+// https://www.drivenbycode.com/the-missing-apply-function-in-swift/
+func repeatIt(_ str: String, _ n: Int) -> String {
+  return [String](repeating: str, count: n).joined(separator: "")
+}
+
+print(repeatIt("ha", 3)) // -> "hahaha"
