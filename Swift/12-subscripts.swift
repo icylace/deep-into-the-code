@@ -1,12 +1,13 @@
 // =============================================================================
 //  Subscripts
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html
 // =============================================================================
 
-// Classes, structures, and enumerations can define subscripts, which are
-// shortcuts for accessing properties.  Subscripts can be used to set and
-// retrieve values by index without needing separate methods for setting
-// and retrieval.
+// Subscript - A shortcut for accessing properties in a class, structure,
+//             or enumeration.
+
+// Subscripts can be used to set and retrieve values by index without
+// needing separate methods for setting and retrieval.
 
 
 // -----------------------------------------------------------------------------
@@ -14,6 +15,7 @@
 // -----------------------------------------------------------------------------
 
 // Subscripts are defined similar to computed properties.
+
 class Foo {
   var x = 0
   subscript(index: Int) -> Int {
@@ -36,6 +38,7 @@ assert(foo[8] == 5)
 // -----------------------------------------------------------------------------
 
 // Read-only subscripts are defined similar to read-only computed properties.
+
 struct Bar {
   var x = 1
   subscript(index: Int) -> Int {
@@ -47,6 +50,15 @@ let bar = Bar()
 assert(bar[8] == 1)
 
 // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// TODO
 
 enum Baz {
   case x

@@ -1,6 +1,6 @@
 // =============================================================================
 //  Control Flow
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
 // =============================================================================
 
 
@@ -104,6 +104,75 @@ if let thing = maybeThing {
 if maybeThing != nil {
   print(maybeThing!)
 }
+
+
+
+
+
+
+
+
+
+
+if convertedNumber != nil {
+  print("convertedNumber contains some integer value.")
+}
+// Prints "convertedNumber contains some integer value."
+
+if convertedNumber != nil {
+  print("convertedNumber has an integer value of \(convertedNumber!).")
+}
+// Prints "convertedNumber has an integer value of 123."
+
+if let actualNumber = Int(possibleNumber) {
+    print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
+} else {
+    print("\"\(possibleNumber)\" could not be converted to an integer")
+}
+// Prints ""123" has an integer value of 123"
+
+if let firstNumber = Int("4"), secondNumber = Int("42") where firstNumber < secondNumber {
+  print("\(firstNumber) < \(secondNumber)")
+}
+// Prints "4 < 42"
+
+// Constants and variables created with optional binding in an if statement are
+// available only within the body of the if statement.  In contrast, the
+// constants and variables created with a guard statement are available
+// in the lines of code that follow the guard statement.
+
+let possibleString: String? = "An optional string."
+let forcedString: String = possibleString! // requires an exclamation mark
+
+let assumedString: String! = "An implicitly unwrapped optional string."
+let implicitString: String = assumedString // no need for an exclamation mark
+
+// If an implicitly unwrapped optional is `nil` and you try to access its
+// wrapped value, you’ll trigger a runtime error.  The result is exactly
+// the same as if you place an exclamation mark after a normal optional
+// that does not contain a value.
+
+if assumedString != nil {
+  print(assumedString)
+}
+// Prints "An implicitly unwrapped optional string."
+
+if let definiteString = assumedString {
+  print(definiteString)
+}
+// Prints "An implicitly unwrapped optional string."
+
+
+
+
+
+
+
+
+
+
+
+
 
 let tuple = (1.0, "hello")
 print(tuple.0)

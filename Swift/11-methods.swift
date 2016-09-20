@@ -1,6 +1,6 @@
 // =============================================================================
 //  Methods
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html
 // =============================================================================
 
 

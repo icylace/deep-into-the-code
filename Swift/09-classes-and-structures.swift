@@ -1,6 +1,6 @@
 // =============================================================================
 //  Classes and Structures
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html
 // =============================================================================
 
 
@@ -27,6 +27,13 @@
 // -----------------------------------------------------------------------------
 //  Assignment and Copy Behavior for Strings, Arrays, and Dictionaries
 // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
@@ -103,3 +110,13 @@ class C3 {
 
 
 struct B {}
+
+
+
+
+
+
+
+class AA {
+ var bb = self
+}

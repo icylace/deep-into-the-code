@@ -1,6 +1,6 @@
 // =============================================================================
 //  Basic Operators
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html
 // =============================================================================
 
 

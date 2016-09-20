@@ -1,6 +1,6 @@
 // =============================================================================
 //  Functions
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html
 // =============================================================================
 
 
@@ -104,13 +104,10 @@ countTextWithoutReturn(text: "hi")
 // triggering a warning.
 _ = countText(text: "hi")
 
-// STYLE:
-// Always assign a function call to an underscore when you don't
-// want its return value.
-
 // -----------------------------------------------------------------------------
 
 // A tuple can be used to emulate multiple simultaneous return values.
+
 func findMaxAndSize(xs: [Int]) -> (max: Int, size: Int) {
   var curMax = xs[0]
   for x in xs[1..<xs.count] {
@@ -123,9 +120,16 @@ func findMaxAndSize(xs: [Int]) -> (max: Int, size: Int) {
 
 // Because the tuple's member values are named as part of the function's return
 // type, they can be accessed with dot syntax.
+
 let info = findMaxAndSize(xs: [8, -6, 2, 109, 3, 71])
 assert(info.max == 109)
 assert(info.size == 6)
+
+// Tuples are particularly useful as the return values of functions.
+// By returning a tuple with multiple distinct values, each of a
+// different type, functions can provide more useful information
+// about their outcome than if they could only return a single
+// value of a single type.
 
 // -----------------------------------------------------------------------------
 
@@ -201,17 +205,11 @@ func f4(parameter: Int = 2) {
 f4(parameter: 4)        // `parameter` will be 4.
 f4()        // `parameter` will be 2.  Note the label is not used here.
 
-// STYLE:
-// Place parameters with default values at the end of a function's parameter
-// list.  This ensures that all calls to the function use the same order for
-// their nondefault arguments, and makes it clear that the same function is
-// being called in each case.
-// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-NoLink_92
-
 // -----------------------------------------------------------------------------
 
 // A variadic parameter accepts zero or more values of a specified type.
 // A function may have at most one variadic parameter.
+
 func f5(xs: Double...) -> Double {
   var total: Double = 1
   for x in xs {
@@ -227,6 +225,7 @@ assert(r5 == 865.975)
 
 // Function parameters are constants by default.  Parameters that can be
 // modified are in-out parameters.
+
 func f6(x: inout Int) {
   x *= 2
 }
@@ -268,7 +267,7 @@ func f8() {
 
 // -----------------------------------------------------------------------------
 
-// Here, `f8` and `f9` have the same type of `(Int, Int) -> Int`.
+// Here, `f9` and `f10` have the same type of `(Int, Int) -> Int`.
 func f9(_ a: Int, _ b: Int) -> Int {
   return a + b
 }
@@ -280,6 +279,7 @@ func f10(_ a: Int, _ b: Int) -> Int {
 
 // Constants and variables can be assigned functions making them
 // act like functions.
+
 var f11: (Int, Int) -> Int = f9
 let f12 = f9
 let r11 = f11(2, 3)

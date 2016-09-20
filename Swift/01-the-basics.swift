@@ -1,17 +1,18 @@
 // =============================================================================
 //  The Basics
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
 // =============================================================================
 
 
 // -----------------------------------------------------------------------------
-//  Constants and Variables
+//  Constant - A named immutable storage area for values of a specific type.
+//             Immutablility means it cannot be set to another value in
+//             the future.
+//  Variable - A named mutable storage area for values of a specific type.
+//             Mutablility means it can be set to another value in
+//             the future.
+//  Literal value (literal) - A value that isappears directly as is.
 // -----------------------------------------------------------------------------
-
-// Constants and variables associate a name with a value of a particular type.
-// A constant is immutable which means it cannot have its value changed once it
-// is set, whereas a variable is mutable which means it can be set to a
-// different value in the future.
 
 // Declare a constant named `answer` and assign it the literal value 42.
 let answer = 42
@@ -19,36 +20,33 @@ let answer = 42
 // Declare a variable named `myAnswer` and assign it the literal value 42.
 var myAnswer = 42
 
-// A literal value (or literal) is a value that appears directly in your source
-// code, such as 42.
+// -----------------------------------------------------------------------------
 
-// Multiple constants or multiple variables declared on a single line are
-// separated by commas.
+// Multiple constants or multiple variables declared on a single line
+// are separated by commas.
+
 let a = 0, b = 1, c = 2
 var x = 3, y = 4, z = 5
 
-// STYLE:
-// If a stored value in your code is not going to change, always declare it as
-// a constant with the let keyword. Use variables only for storing values that
-// need to be able to change.
-// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-NoLink_27
-
 // -----------------------------------------------------------------------------
 
-// A type annotation can be used when you declare a constant or variable to be
-// clear about the kind of values the constant or variable can store.
+// Type annotation - A label that describes the kind of value a constant
+//                   or variable can hold.
 
-// Define a constant named `theAnswer` that is of type `Int` (integer) and assign
-// it the value 42.
+// Define a constant named `theAnswer` that is of type `Int` (integer) and
+// assign it the value 42.
 let theAnswer: Int = 42
 
 // The type annotation is required if there's no initial assignment.
+
 let lateAnswer: Int
 
 // Constants can be assigned to only once.
+
 lateAnswer = 42
 
-// Trying to assign another value to a constant will cause a compilation error.
+// Trying to assign another value to `lateAnswer` will cause
+// a compile-time error.
 // lateAnswer = 1
 
 // Declare a variable named `message` that is of type `String`.
@@ -59,11 +57,12 @@ message = "hi"
 message = "hello"
 
 // Trying to assign a non-string value to `message` will cause
-// a compilation error.
+// a compile-time error.
 // message = 1
 
-// If no type annotation is provided the type of the constant or variable is
-// inferred from its initial assigned value.
+// If no type annotation is provided the type of the constant or variable
+// is inferred from its initial assigned value.
+
 var hello = "hello"
 
 // -----------------------------------------------------------------------------
@@ -71,6 +70,7 @@ var hello = "hello"
 // Multiple variables of the same type can be declared on a single line,
 // separated by commas, with a single type annotation after the final
 // variable name.
+
 var red, green, blue: Double
 
 // -----------------------------------------------------------------------------
@@ -82,9 +82,10 @@ let 你好 = "你好世界"
 let 🐶🐮 = "dogcow"
 
 // Constant and variable names cannot contain whitespace characters,
-// mathematical symbols, arrows, private-use (or invalid) Unicode code points,
-// or line-drawing and box-drawing characters.  Nor can they begin with a
-// number, although numbers may be included elsewhere within the name.
+// mathematical symbols, arrows, private-use (or invalid) Unicode
+// code points, or line-drawing and box-drawing characters.
+// Nor can they begin with a number, although numbers may
+// be included elsewhere within the name.
 
 // -----------------------------------------------------------------------------
 
@@ -92,32 +93,34 @@ let 🐶🐮 = "dogcow"
 // keyword, surround the keyword with backticks (`) when using it as a name.
 let `let` = "i'm a constant"
 
-// STYLE:
-// Avoid using keywords as constant or variable names unless you have
-// absolutely no choice.
-// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-NoLink_29
-
 // -----------------------------------------------------------------------------
 
-// You can print the current value of a constant or variable with the global
-// `print(_:separator:terminator:)` function from the Swift Standard Library.
+// You can print the current value of a constant or variable with the
+// global `print(_:separator:terminator:)` function from the Swift
+// Standard Library.
 print(answer)
 // Prints "42".
 
 
 // -----------------------------------------------------------------------------
-//  Comments
+//  Comment - Text meant to be read by developers and ignored by the compiler.
 // -----------------------------------------------------------------------------
 
 // As you've probably already noticed, single-line comments begin with double
-// forward slashes.  Comments are ignored by the compiler but serve to allow
-// you to have helpful text with your code.
+// forward slashes.  Comments serve to allow you to have helpful text with
+// your code.
 
 /* Here is a block comment.
 Block comments can span
 multiple lines. */
 
 /* Block comments can be used like single-line comments. */
+
+/* Block comments can be *//* placed next to each other. */
+
+/* Not that you
+would *//* want
+to do that. */
 
 /**
  * Block comments that span multiple lines
@@ -154,36 +157,31 @@ let r = 1; var s = 2
 
 
 // -----------------------------------------------------------------------------
-//  Integers
+//  Integer - A whole number with no fractional component and is either signed
+//            (positive, zero, or negative) or unsigned (positive or zero).
 // -----------------------------------------------------------------------------
 
-// Integers are whole numbers with no fractional component and are either
-// signed (positive, zero, or negative) or unsigned (positive or zero).
+// Integer types can be either signed or unsigned in 8, 16, 32, and 64 bit forms.
 
-// Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms.
-// These integers follow a naming convention similar to C, in that an 8-bit
-// unsigned integer is of type `UInt8`, and a 32-bit signed integer is of type
-// `Int32`. Like all types in Swift, these integer types have capitalized names.
+var i1: Int = 0         // A signed integer with default bit form.
+var i2: Int8 = 0        // An 8-bit signed integer.
+var i3: Int16 = 0       // A 16-bit signed integer.
+var i4: Int32 = 0       // A 32-bit signed integer.
+var i5: Int64 = 0       // A 64-bit signed integer.
 
-// In most cases, you don't need to pick a specific size of integer to use in
-// your code.  Swift's integer type, `Int`, has the same size as the current
-// platform's native word size:
-// - On a 32-bit platform, `Int` is the same size as `Int32`.
-// - On a 64-bit platform, `Int` is the same size as `Int64`.
+var i6: UInt = 0          // An unsigned integer with default bit form.
+var i7: UInt8 = 0         // An 8-bit unsigned integer.
+var i8: UInt16 = 0        // A 16-bit unsigned integer.
+var i9: UInt32 = 0        // A 32-bit unsigned integer.
+var i10: UInt64 = 0       // A 64-bit unsigned integer.
 
-// Swift's unsigned integer type, `UInt`, has the same size as the current
-// platform's native word size:
-// - On a 32-bit platform, `UInt` is the same size as `UInt32`.
-// - On a 64-bit platform, `UInt` is the same size as `UInt64`.
-
-// STYLE:
-// Use `UInt` only when you specifically need an unsigned integer type with the
-// same size as the platform's native word size.  If this is not the case, `Int`
-// is preferred, even when the values to be stored are known to be non-negative.
-// A consistent use of `Int` for integer values aids code interoperability,
-// avoids the need to convert between different number types, and matches
-// integer type inference
-// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-NoLink_31
+// In most cases you don't need to pick a specific size of integer to use.
+// `Int` and `UInt` has the same size as the current platform's native
+// word size:
+// - On a 32-bit platform, `Int` is the same size as `Int32` and
+//   `UInt` is the same size as `UInt32`.
+// - On a 64-bit platform, `Int` is the same size as `Int64` and
+//   `UInt` is the same size as `UInt64`.
 
 // -----------------------------------------------------------------------------
 
@@ -194,41 +192,39 @@ let maxValue = UInt8.max    // `maxValue` is set to 255, and is of type `UInt8`.
 
 
 // -----------------------------------------------------------------------------
-//  Floating-Point Numbers
+//  Floating-point number - A number with a fractional component.
 // -----------------------------------------------------------------------------
 
-// Floating-point numbers are numbers with a fractional component.
+// Floating-point types can represent a much wider range of values than
+// integer types and can store numbers that are much larger or smaller
+// than can be stored in an integer.
 
-// Floating-point types can represent a much wider range of values than integer
-// types, and can store numbers that are much larger or smaller than can be
-// stored in an integer.  Swift provides two signed floating-point number types:
-// - `Double` represents a 64-bit floating-point number and has a precision of
-//   at least 15 decimal digits.
-// - `Float` represents a 32-bit floating-point number and can have a precision
-//   as little as 6 decimal digits.
-
-// STYLE:
-// In situations where either `Double` or `Float` would be appropriate,
-// `Double` is preferred.
-// - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-NoLink_32
+// There are no unsigned floating-point types but there are three signed ones:
+// - `Float` (a.k.a. `Float32`) represents a 32-bit single-precision
+//   floating-point number and can have a precision as little as 6
+//   decimal digits.
+// - `Double` (a.k.a. `Float64`) represents a 64-bit double-precision
+//   floating-point number and has a precision of at least 15
+//   decimal digits.
+// - `Float80` represents an 80-bit extended-precision floating-point number.
 
 
 // -----------------------------------------------------------------------------
 //  Type Safety and Type Inference
 // -----------------------------------------------------------------------------
 
-// Swift is a type-safe language.  A type-safe language encourages you to be
-// clear about the types of values your code can work with.  If part of your
-// code expects a `String`, you can't use an `Int` with it by mistake.
+// Swift is a type-safe language.  Type safety encourages you to be clear about
+// the types of values your code can work with.  If part of your code expects
+// a `String`, you can't use an `Int` with it by mistake.
 
-// Type checks happen as part of the compilation process and any type mismatches
-// are flagged as compile-time errors.
+// Type checks happen as part of the compilation process and any type
+// mismatches are flagged as compile-time errors.
 
 // Swift uses type inference to determine the type of something if it isn't
 // specified explicitly.  It does this by examining the values you use.
 
-// Type inference is particularly useful when you declare a constant or
-// variable with an initial value.
+// Type inference is particularly useful when you declare a constant
+// or variable with an initial value.
 
 let meaningOfLife = 42
 // `meaningOfLife` is inferred to be of type `Int`.
@@ -278,8 +274,8 @@ let hexadecimalDouble = 0xC.3p0
 
 // Numeric literals can contain extra formatting to make them easier to read.
 // Both integers and floats can be padded with extra zeros and can contain
-// underscores to help with readability.  Neither type of formatting affects
-// the underlying value of the literal.
+// underscores to help with readability.  Neither type of formatting
+// affects the underlying value of the literal.
 let n5 = 000123.456
 let n6 = 1_000_000
 let n7 = 1_000_000.000_000_1
@@ -302,47 +298,168 @@ let n13 = 0xFEED.FACE___p1_
 //  Numeric Type Conversion
 // -----------------------------------------------------------------------------
 
-// TODO
+// The range of numbers that can be stored in an integer constant or variable
+// is different for each numeric type.  A number that will not fit into an
+// integer type is flagged as a compile-time error:
+
+// `UInt8` cannot store negative numbers, so this will report an error:
+// let cannotBeNegative: UInt8 = -1
+
+// `Int8` cannot store a number larger than its maximum value, so this
+// will also report an error:
+// let tooBig: Int8 = Int8.max + 1
+
+// Because each numeric type can store a different range of values, you must
+// opt in to numeric type conversion on a case-by-case basis.  This approach
+// prevents hidden conversion errors and helps make type conversion
+// intentions explicit.
+
+// To convert one specific number type to another, you initialize a new number
+// of the desired type with the existing value.
+
+let twoThousand: UInt16 = 2_000
+let one: UInt8 = 1
+
+// Conversion is necessary for us to work with values of different types.
+let twoThousandAndOne = twoThousand + UInt16(one)
+// `twoThousandAndOne` will be inferred to be of type `UInt`.
+
+// The conversion was possible because `UInt16` has an initializer that
+// accepts a `Uint8` value.
+
+// -----------------------------------------------------------------------------
+
+// Floating-point values are always truncated when used to initialize a new
+// integer value in this way.
+
+let three = 3
+let pointOneFourOneFiveNine = 0.14159
+let myPi = Double(three) + pointOneFourOneFiveNine
+// `myPi` equals 3.14159, and is inferred to be of type `Double`.
+let integerPi = Int(myPi)
+// `integerPi` equals 3, and is inferred to be of type `Int`.
+
+let floatAsInt1 = Int(4.75)       // `floatAsInt1` is set to 4.
+let floatAsInt2 = Int(-3.9)       // `floatAsInt2` is set to -3.
+
+// The rules for combining numeric constants and variables are different from
+// the rules for numeric literals.  The literal value 3 can be added directly
+// to the literal value 0.14159 because number literals do not have an
+// explicit type in and of themselves.  Their type is inferred only at
+// the point that they are evaluated by the compiler.
 
 
 // -----------------------------------------------------------------------------
-//  Type Aliases
+//  Type alias - An alternative name for an existing type.
 // -----------------------------------------------------------------------------
 
-// // Type aliases allow us to use different names for existing types.
-// // They are a tool to make our code more readable.
-// typealias Seconds = Double
-// typealias MyClassAlias = C1
-//
-// // Type aliases are particularly useful for simplifying
-// // more complex types like the ones for closures.
-// typealias MyClosureDefinition = (Int, String, (Double, Double)) -> [String]
+// Type aliases are useful when you want to refer to an existing type by a name
+// that is contextually more appropriate, such as when working with data of a
+// specific size from an external source.
+
+typealias AudioSample = UInt16
+
+// Once you define a type alias you can use the alias anywhere you might
+// use the original name.
+
+var maxAmplitudeFound = AudioSample.min
+// `maxAmplitudeFound` is now 0
 
 
 // -----------------------------------------------------------------------------
 //  Booleans
 // -----------------------------------------------------------------------------
 
+// Boolean values are referred to as logical because
+// they can only ever be true or false.
 
-// -----------------------------------------------------------------------------
-//  Tuples
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Optionals
-// -----------------------------------------------------------------------------
+let orangesAreOrang = true
+let todayIsYesterday = false
 
 
 // -----------------------------------------------------------------------------
-//  Error Handling
+//  Tuple - A compound value that groups together multiple values.
 // -----------------------------------------------------------------------------
 
+// The values within a tuple can be of any type and do not have to be of the
+// same type as each other.  For example, `(Int, Int, Int)` or `(String,
+// Bool)` or any other permutation you require.
+
+let http404Error = (404, "Not Found")
+// `http404Error` is of type `(Int, String)`, and equals `(404, "Not Found")`
 
 // -----------------------------------------------------------------------------
-//  Assertions
+
+// You can decompose a tuple's contents into separate constants or variables
+// which you then access as usual.
+
+let (code, message) = http404Error
+print("The status code is \(code)")
+// Prints "The status code is 404".
+print("The status message is \(message)")
+// Prints "The status message is Not Found".
+
 // -----------------------------------------------------------------------------
 
+// If you only need some of the tuple's values ignore the unwanted parts with
+// an underscore (_) during decomposition.
+
+let (code, _) = http404Error
+print("The status code is \(code)")
+
+// -----------------------------------------------------------------------------
+
+// Alternatively, access the individual element values in a tuple using index
+// numbers starting at zero.
+
+print("The status code is \(http404Error.0)")
+// Prints "The status code is 404"
+print("The status message is \(http404Error.1)")
+// Prints "The status message is Not Found"
+
+// -----------------------------------------------------------------------------
+
+// You can name the individual elements in a tuple when the tuple is defined which
+// you can use to access the values of those elements.
+
+let http200Status = (code: 200, description: "OK")
+print("The status code is \(http200Status.code)")
+// Prints "The status code is 200"
+print("The status message is \(http200Status.description)")
+// Prints "The status message is OK"
+
+
+// -----------------------------------------------------------------------------
+//  Optional - A type that says there is a value of a particular type and
+//             it equals x or there isn't a value at all.
+// -----------------------------------------------------------------------------
+
+// You use optionals in situations where a value might be absent.
+
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
+// `convertedNumber` is inferred to be of type `Int?`, or "optional `Int`",
+// because `Int` has an initializer that accepts a `String` that may or may
+// not represent a number.
+
+// You set an optional variable to a valueless state by assigning it the
+// special value `nil`.
+
+var serverResponseCode: Int? = 404
+// `serverResponseCode` contains an actual `Int` value of 404.
+serverResponseCode = nil
+// `serverResponseCode` now contains no value.
+
+// `nil` cannot be used with nonoptional constants and variables.  If a
+// constant or variable in your code needs to work with the absence of
+// a value under certain conditions, always declare it as an optional
+// value of the appropriate type.
+
+// An optional variable defined without an explicit default value will
+// be set to `nil`.
+
+var surveyAnswer: String?
+// `surveyAnswer` is automatically set to nil.
 
 
 
@@ -352,10 +469,33 @@ let n13 = 0xFEED.FACE___p1_
 
 
 
+// -----------------------------------------------------------------------------
+//  Assertion - A runtime check that a given condition evaluates to true.
+// -----------------------------------------------------------------------------
 
+// If an assertion evaluates to false, code execution ends and your
+// app is terminated.
 
+// You write an assertion by calling the Swift Standard Library global
+// `assert(_:_:file:line:)` function.
 
+let age = 3
+assert(age > 5)
+// This causes the assertion to trigger, because `age` is not greater than 5.
 
+// An assertion also lets you provide a suitable debug message that is
+// displayed if the result of the condition is false.
+
+assert(age > 5, "Age needs to be greater than 5.")
+
+// If an assertion is triggered while running in a debug environment,
+// such as within Xcode, you can see exactly where the invalid state
+// occurred and query the state of your app at the time that the
+// assertion was triggered.
+
+// Assertions are disabled when your code is compiled with optimizations,
+// such as when building with an app target's default Release
+// configuration in Xcode.
 
 
 
@@ -368,9 +508,6 @@ let n13 = 0xFEED.FACE___p1_
 
 
 /*
-
-
-
 
 
 
@@ -439,7 +576,6 @@ CDouble.infinity
 
 // Compound types.
 
-// Optional types.
 
 
 
@@ -458,34 +594,6 @@ p2 = NSObject()
 
 
 // ----
-
-
-
-
-//operators
-//Array
-//multi-dimensional array
-//Dictionary
-//tuple
-//optionals
-//functions
-//parameter names
-//default arguments
-//closures
-//generics
-//subscripts
-//error handling
-//testing
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -576,14 +684,9 @@ debugPrint("test")
 
 //
 //
-//class AA {
-//  var bb = self
-//}
 //
 //
 //
-
-
 
 
 
@@ -594,8 +697,6 @@ debugPrint("test")
 
 //@testable
 //import MyApp
-
-
 
 
 

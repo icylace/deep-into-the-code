@@ -1,6 +1,6 @@
 // =============================================================================
 //  Advanced Operators
-//  https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html
 // =============================================================================
 
 
@@ -91,6 +91,7 @@ assert(UInt8.max == 255)
 // Overflow operators don't let you know when an overflow happens
 // but methods like `addWithOverflow` do.
 // http://stackoverflow.com/a/35974079/1935675
+
 var o2: Int8 = 100
 o2 = o2 &+ o2
 assert(o2 == -56)
@@ -225,6 +226,7 @@ assert(v8.y == 6.0)
 
 // If both a prefix operator and postfix operator are applied to the same
 // operand then the postfix operator is applied first.
+
 var v9 = v8
 v9 = -v9+++
 assert(v9.x == -8.0)
