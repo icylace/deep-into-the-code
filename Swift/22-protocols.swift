@@ -3,37 +3,53 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html
 // =============================================================================
 
-// Protocol - A blueprint of methods, properties, and other requirements that
-//            suit a particular task or piece of functionality.  The protocol
-//            can then be adopted by a class, structure, or enumeration to
-//            provide an actual implementation of those requirements.
-//            Any type that satisfies the requirements of a protocol
-//            is said to conform to that protocol.
-
-
 // -----------------------------------------------------------------------------
-//  Protocol Syntax
+//  Protocol - A blueprint of methods, properties, and other requirements that
+//             suit a particular task or piece of functionality.
 // -----------------------------------------------------------------------------
 
-// A protocol named `SomeProtocol`.
-protocol SomeProtocol {
+// Protocols can be adopted by a class, structure, or enumeration to provide
+// an actual implementation of the protocol's requirements.  Any type that
+// satisfies the requirements of a protocol is said to conform to that
+// protocol.
+
+// A protocol named `P`.
+protocol P {
   // Protocol definition goes here.
 }
 
 // A custom type, in this case a struct, adopting a protocol.
-struct SomeStructure: SomeProtocol {
+struct S: P {
   // Structure definition goes here.
 }
 
+// -----------------------------------------------------------------------------
+
+// Multiple protocols can be adopted.
+
+protocol P2 {
+  // Protocol definition goes here.
+}
+
+protocol P3 {
+  // Protocol definition goes here.
+}
+
 // A custom type adopting multiple protocols.
-struct SomeStructure: SomeProtocol, SecondProtocol, ThirdProtocol {
+struct S2: P, P2, P3 {
   // Structure definition goes here.
 }
+
+// -----------------------------------------------------------------------------
 
 // If a class also has a superclass, the superclass gets listed before
 // any protocols.
 
-class SomeClass: SomeSuperclass, SomeProtocol, SecondProtocol {
+class BC {
+  // Class definition goes here.
+}
+
+class C: BC, P, P2 {
   // Class definition goes here.
 }
 
@@ -60,7 +76,7 @@ class SomeClass: SomeSuperclass, SomeProtocol, SecondProtocol {
 
 // Property requirements are always declared as variable properties.
 
-protocol SomeProtocol {
+protocol P {
   // A gettable and settable property.
   var mustBeSettable: Int { get set }
   // A gettable property.
@@ -126,7 +142,7 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 // are prefixed with the class or static keyword when
 // implemented by a class:
 
-protocol SomeProtocol {
+protocol P {
   static func someMethod()
 }
 
@@ -190,7 +206,7 @@ print("And another one: \(generator.random())")
 // The toggle() method is marked with the mutating keyword as part of the Togglable protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it is called:
 
 protocol Togglable {
-    mutating func toggle()
+  mutating func toggle()
 }
 
 // If you implement the Togglable protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the toggle() method that is also marked as mutating.

@@ -5,92 +5,82 @@
 
 
 // -----------------------------------------------------------------------------
-//  Constant - A named immutable storage area for values of a specific type.
-//             Immutablility means it cannot be set to another value in
-//             the future.
-//  Variable - A named mutable storage area for values of a specific type.
-//             Mutablility means it can be set to another value in
-//             the future.
-//  Literal value (literal) - A value that isappears directly as is.
+//  Constant - An association between a name and a value of a specific type that
+//             is immutable, meaning it can only be assigned a value once.
+//  Variable - An association between a name and a value of a specific type that
+//             is mutable, meaning it can be assigned another value anytime.
+//  Literal value (literal) - A value that appears directly in the code as is.
 // -----------------------------------------------------------------------------
 
 // Declare a constant named `answer` and assign it the literal value 42.
 let answer = 42
 
-// Declare a variable named `myAnswer` and assign it the literal value 42.
+// A variable named `myAnswer`.
 var myAnswer = 42
 
-// -----------------------------------------------------------------------------
-
-// Multiple constants or multiple variables declared on a single line
-// are separated by commas.
+// Multiple constants or multiple variables can be declared on a single line.
 
 let a = 0, b = 1, c = 2
 var x = 3, y = 4, z = 5
 
+
+// -----------------------------------------------------------------------------
+//  Type annotation - A label that describes the kind of value a constant
+//                    or variable can hold.
 // -----------------------------------------------------------------------------
 
-// Type annotation - A label that describes the kind of value a constant
-//                   or variable can hold.
+// TODO
 
 // Define a constant named `theAnswer` that is of type `Int` (integer) and
 // assign it the value 42.
 let theAnswer: Int = 42
 
-// The type annotation is required if there's no initial assignment.
-
-let lateAnswer: Int
-
-// Constants can be assigned to only once.
-
-lateAnswer = 42
-
-// Trying to assign another value to `lateAnswer` will cause
-// a compile-time error.
-// lateAnswer = 1
-
-// Declare a variable named `message` that is of type `String`.
-var message: String
-
-// `message` can now be assigned string values.
-message = "hi"
-message = "hello"
-
-// Trying to assign a non-string value to `message` will cause
-// a compile-time error.
-// message = 1
-
 // If no type annotation is provided the type of the constant or variable
 // is inferred from its initial assigned value.
 
 var hello = "hello"
+// `hello` is of type `String`.
 
-// -----------------------------------------------------------------------------
+// Type annotation is required if there's no initial assignment.
 
-// Multiple variables of the same type can be declared on a single line,
-// separated by commas, with a single type annotation after the final
-// variable name.
+let lateAnswer: Int
+lateAnswer = 42
 
+var greeting: String
+greeting = "hi"
+greeting = "hello"
+
+// Multiple constants or multiple variables of the same type can be
+// declared on a single line.
+
+let one, two, three: Int
 var red, green, blue: Double
 
 // -----------------------------------------------------------------------------
 
 // Constant and variable names can contain almost any character,
 // including Unicode characters.
+
 let π = 3.14159
 let 你好 = "你好世界"
 let 🐶🐮 = "dogcow"
 
-// Constant and variable names cannot contain whitespace characters,
-// mathematical symbols, arrows, private-use (or invalid) Unicode
-// code points, or line-drawing and box-drawing characters.
-// Nor can they begin with a number, although numbers may
+// Constant and variable names cannot contain:
+// - whitespace characters
+// - mathematical symbols
+// - arrows
+// - private-use (or invalid) Unicode code points
+// - line-drawing characters
+// - box-drawing characters
+
+// Constant and variable names cannot begin with a number, although numbers may
 // be included elsewhere within the name.
 
 // -----------------------------------------------------------------------------
 
 // If you need to give a constant or variable the same name as a reserved Swift
 // keyword, surround the keyword with backticks (`) when using it as a name.
+
 let `let` = "i'm a constant"
 
 // -----------------------------------------------------------------------------
@@ -98,6 +88,7 @@ let `let` = "i'm a constant"
 // You can print the current value of a constant or variable with the
 // global `print(_:separator:terminator:)` function from the Swift
 // Standard Library.
+
 print(answer)
 // Prints "42".
 
@@ -145,7 +136,7 @@ print(5/* but please don't do that! */)
 
 
 // -----------------------------------------------------------------------------
-//  Semicolons
+//  Semicolon - The special symbol that separates statements on a line.
 // -----------------------------------------------------------------------------
 
 // Semicolons are optional when only a single statement is on the line.
@@ -220,11 +211,8 @@ let maxValue = UInt8.max    // `maxValue` is set to 255, and is of type `UInt8`.
 // Type checks happen as part of the compilation process and any type
 // mismatches are flagged as compile-time errors.
 
-// Swift uses type inference to determine the type of something if it isn't
-// specified explicitly.  It does this by examining the values you use.
-
-// Type inference is particularly useful when you declare a constant
-// or variable with an initial value.
+// Type inference is used to determine the type of something if it isn't
+// specified explicitly.  This is done by examining the values in use.
 
 let meaningOfLife = 42
 // `meaningOfLife` is inferred to be of type `Int`.
@@ -239,7 +227,7 @@ let anotherPi = 3 + 0.14159
 
 
 // -----------------------------------------------------------------------------
-//  Numeric Literals
+//  Numeric literal - A literal value that represents a number.
 // -----------------------------------------------------------------------------
 
 let decimalInteger = 17
@@ -256,12 +244,14 @@ let hexadecimalInteger = 0x11     // 17 in hexadecimal notation.
 // must have an exponent, indicated by an uppercase or lowercase `p`.
 
 // For decimal numbers with an exponent of exp, the base number
-// is multiplied by 10^exp (10 raised to the exp power):
+// is multiplied by 10^exp (10 raised to the exp power).
+
 let n1 = 1.25e2         // This equals 1.25 x 10^2 which equals 125.0.
 let n2 = 1.25e-2        // This equals 1.25 x 10^-2 which equals 0.0125.
 
 // For hexadecimal numbers with an exponent of exp, the base number
-// is multiplied by 2^exp:
+// is multiplied by 2^exp.
+
 let n3 = 0xFp2        // This equals 15 x 2^2 which equals 60.0.
 let n4 = 0xFp-2       // This equals 15 x 2^-2 which equals 3.75.
 
@@ -276,6 +266,7 @@ let hexadecimalDouble = 0xC.3p0
 // Both integers and floats can be padded with extra zeros and can contain
 // underscores to help with readability.  Neither type of formatting
 // affects the underlying value of the literal.
+
 let n5 = 000123.456
 let n6 = 1_000_000
 let n7 = 1_000_000.000_000_1
@@ -404,8 +395,8 @@ print("The status message is \(message)")
 // If you only need some of the tuple's values ignore the unwanted parts with
 // an underscore (_) during decomposition.
 
-let (code, _) = http404Error
-print("The status code is \(code)")
+let (statusCode, _) = http404Error
+print("The status code is \(statusCode)")
 
 // -----------------------------------------------------------------------------
 
@@ -443,20 +434,20 @@ let convertedNumber = Int(possibleNumber)
 // not represent a number.
 
 // You set an optional variable to a valueless state by assigning it the
-// special value `nil`.
+// special value nil.
 
 var serverResponseCode: Int? = 404
 // `serverResponseCode` contains an actual `Int` value of 404.
 serverResponseCode = nil
 // `serverResponseCode` now contains no value.
 
-// `nil` cannot be used with nonoptional constants and variables.  If a
+// nil cannot be used with nonoptional constants and variables.  If a
 // constant or variable in your code needs to work with the absence of
 // a value under certain conditions, always declare it as an optional
 // value of the appropriate type.
 
 // An optional variable defined without an explicit default value will
-// be set to `nil`.
+// be set to nil.
 
 var surveyAnswer: String?
 // `surveyAnswer` is automatically set to nil.
@@ -476,17 +467,20 @@ var surveyAnswer: String?
 // If an assertion evaluates to false, code execution ends and your
 // app is terminated.
 
-// You write an assertion by calling the Swift Standard Library global
+// An assertion is written by calling the Swift Standard Library's global
 // `assert(_:_:file:line:)` function.
 
 let age = 3
-assert(age > 5)
+
 // This causes the assertion to trigger, because `age` is not greater than 5.
+// assert(age > 5)
 
 // An assertion also lets you provide a suitable debug message that is
 // displayed if the result of the condition is false.
 
-assert(age > 5, "Age needs to be greater than 5.")
+// assert(age > 5, "Age needs to be greater than 5.")
+
+// -----------------------------------------------------------------------------
 
 // If an assertion is triggered while running in a debug environment,
 // such as within Xcode, you can see exactly where the invalid state
@@ -496,228 +490,3 @@ assert(age > 5, "Age needs to be greater than 5.")
 // Assertions are disabled when your code is compiled with optimizations,
 // such as when building with an app target's default Release
 // configuration in Xcode.
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-// -----------------------------------------------------------------------------
-
-// Primitive types.
-
-true                     // A boolean literal.
-1                        // An integer literal.
-2.2                      // A double floating-point literal.
-"way"                    // A string literal.
-[2, 3, 4]                // An array of integers.
-(1.3, "is", false)       // A tuple of double, string, and boolean.
-
-
-// A closed range.
--11...12
-// -11..<13
-
-// A semi-open range.
--11..<12
-// -11..<12
-
-
-Double.infinity
-Float.infinity
-Float32.infinity
-Float64.infinity
-CDouble.infinity
-
-
-
-
-*/
-
-
-
-
-
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-// Compound types.
-
-
-
-
-
-
-// ----
-
-import Foundation
-
-// The difference between
-var p1: NSObject = NSObject()
-// and
-var p2: NSObject
-p2 = NSObject()
-// is that Xcode will complain about the former if `p` doesn't get mutated.
-
-
-// ----
-
-
-
-
-
-
-
-
-
-
-
-
-let tag: String? = nil
-let tagResult = tag ?? "<none>"
-
-// Alternate:
-//
-// let tagResult: String
-// if let tag = tag {
-//   tagResult = tag
-// } else {
-//   tagResult = "<none>"
-// }
-
-
-
-
-
-
-
-42.dynamicType
-answer.dynamicType
-
-2.2.dynamicType
-
-
-
-_ = print.self
-
-
-_ = Int()
-
-
-2.advancedBy(3)
-
-
-
-
-_ = 0
-_ = ""
-
-
-
-
-
-print(Int.self)
-
-
-let a = 0...3
-a.count
-a.self
-a.dynamicType
-print(a)
-
-for _ in 0...3 {
-  print("In a loop 4 times.")
-}
-
-for _ in a {
-  print("This will also loop 4 times.")
-}
-
-
-
-
-
-print("test")
-debugPrint("test")
-
-
-
-// import UIKit
-
-
-
-
-
-
-//
-//
-//
-//
-//
-
-
-
-//autoreleasepool {}
-
-
-
-
-//@testable
-//import MyApp
-
-
-
-
-
-// Further reading:
-// http://blog.krzyzanowskim.com/2015/03/09/swift-asserts-the-missing-manual/
-
-
-
-
-// `dump()` crashes when trying to use it an `UnsafeMutablePointer`
-
-
-
-
-
-
-
-// // http://stackoverflow.com/a/24102243/1935675
-// import Darwin
-// exit(0)
-
-*/

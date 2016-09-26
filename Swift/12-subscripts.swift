@@ -3,37 +3,32 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html
 // =============================================================================
 
-// Subscript - A shortcut for accessing properties in a class, structure,
-//             or enumeration.
+// -----------------------------------------------------------------------------
+//  Subscript - A shortcut for accessing properties in a class, structure,
+//              or enumeration.
+// -----------------------------------------------------------------------------
 
 // Subscripts can be used to set and retrieve values by index without
 // needing separate methods for setting and retrieval.
 
-
-// -----------------------------------------------------------------------------
-//  Subscript Syntax
-// -----------------------------------------------------------------------------
-
-// Subscripts are defined similar to computed properties.
-
 class Foo {
-  var x = 0
+  var xs = [0, 0, 0]
   subscript(index: Int) -> Int {
     get {
-      return x
+      return xs[index]
     }
     set(newValue) {
-      x = newValue
+      xs[index] = newValue
     }
   }
 }
 
 let foo = Foo()
-assert(foo[8] == 0)
-foo.x = 2
-assert(foo[8] == 2)
-foo[8] = 5
-assert(foo[8] == 5)
+assert(foo[1] == 0)
+foo.xs[1] = 2
+assert(foo[1] == 2)
+foo[1] = 5
+assert(foo[1] == 5)
 
 // -----------------------------------------------------------------------------
 
@@ -72,27 +67,25 @@ enum Baz {
 // you pass to the subscript.
 
 // class DailyMeal {
-//     enum MealTime {
-//         case Breakfast
-//         case Lunch
-//         case Dinner
+//   enum MealTime {
+//     case Breakfast, Lunch, Dinner
+//   }
+//
+//   var meals: [MealTime : String] = [:]
+//
+//   subscript(requestedMeal: MealTime) -> String {
+//     get {
+//       if let thisMeal = meals[requestedMeal] {
+//         return thisMeal
+//       } else {
+//         return "Ramen"
+//       }
 //     }
 //
-//     var meals: [MealTime : String] = [:]
-//
-//     subscript(requestedMeal: MealTime) -> String {
-//         get {
-//             if let thisMeal = meals[requestedMeal] {
-//                 return thisMeal
-//             } else {
-//                 return "Ramen"
-//             }
-//         }
-//
-//         set(newMealName) {
-//             meals[requestedMeal] = newMealName
-//         }
+//     set(newMealName) {
+//       meals[requestedMeal] = newMealName
 //     }
+//   }
 // }
 
 // enum Foobar {
