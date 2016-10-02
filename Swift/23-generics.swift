@@ -3,158 +3,100 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
 // =============================================================================
 
+// -----------------------------------------------------------------------------
+//  Generic code - Code that works with multiple types, subject to any
+//                 given requirements.
+// -----------------------------------------------------------------------------
+
+// TODO
+
+// Generic code enables you to write flexible, reusable functions and types.
+// You can write code that avoids duplication and expresses its intent in a
+// clear, abstracted manner.
+
+// Swift's array, set, and dictionary types are implemented as
+// generic collections.
+
 
 // -----------------------------------------------------------------------------
 //  The Problem That Generics Solve
 // -----------------------------------------------------------------------------
 
-// func swapTwoInts(a: inout Int, _ b: inout Int) {
-//   let temporaryA = a
-//   a = b
-//   b = temporaryA
-// }
-//
-// var someInt = 3
-// var anotherInt = 107
-// swapTwoInts(&someInt, &anotherInt)
-// print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
-// // Prints "someInt is now 107, and anotherInt is now 3"
-//
-// func swapTwoStrings(inout a: String, inout _ b: String) {
-//   let temporaryA = a
-//   a = b
-//   b = temporaryA
-// }
-//
-// func swapTwoDoubles(inout a: Double, inout _ b: Double) {
-//   let temporaryA = a
-//   a = b
-//   b = temporaryA
-// }
-
-
-// -----------------------------------------------------------------------------
-//  Generic Functions
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Type Parameters
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Naming Type Parameters
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Generic Types
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Extending a Generic Type
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Type Constraints
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Associated Types
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Where Clauses
-// -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Generic code enables you to write flexible, reusable functions and types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted manner.
-
-Generics are one of the most powerful features of Swift, and much of the Swift standard library is built with generic code. In fact, you’ve been using generics throughout the Language Guide, even if you didn’t realize it. For example, Swift’s Array and Dictionary types are both generic collections. You can create an array that holds Int values, or an array that holds String values, or indeed an array for any other type that can be created in Swift. Similarly, you can create a dictionary to store values of any specified type, and there are no limitations on what that type can be.
-
-The Problem That Generics Solve
-
-Here’s a standard, non-generic function called swapTwoInts(_:_:), which swaps two Int values:
-
 func swapTwoInts(_ a: inout Int, _ b: inout Int) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+  let temporaryA = a
+  a = b
+  b = temporaryA
 }
-This function makes use of in-out parameters to swap the values of a and b, as described in In-Out Parameters.
-
-The swapTwoInts(_:_:) function swaps the original value of b into a, and the original value of a into b. You can call this function to swap the values in two Int variables:
 
 var someInt = 3
 var anotherInt = 107
 swapTwoInts(&someInt, &anotherInt)
 print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
 // Prints "someInt is now 107, and anotherInt is now 3"
-The swapTwoInts(_:_:) function is useful, but it can only be used with Int values. If you want to swap two String values, or two Double values, you have to write more functions, such as the swapTwoStrings(_:_:) and swapTwoDoubles(_:_:) functions shown below:
+
+// The `swapTwoInts(_:_:)` function is useful, but it can only be used with
+// `Int` values.  If you want to swap two `String` values, or two `Double`
+// values, you have to write more functions, such as the
+// `swapTwoStrings(_:_:)` and `swapTwoDoubles(_:_:)`
+// functions shown below.
 
 func swapTwoStrings(_ a: inout String, _ b: inout String) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+  let temporaryA = a
+  a = b
+  b = temporaryA
 }
 
 func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+  let temporaryA = a
+  a = b
+  b = temporaryA
 }
-You may have noticed that the bodies of the swapTwoInts(_:_:), swapTwoStrings(_:_:), and swapTwoDoubles(_:_:) functions are identical. The only difference is the type of the values that they accept (Int, String, and Double).
 
-It would be much more useful, and considerably more flexible, to write a single function that could swap two values of any type. Generic code enables you to write such a function. (A generic version of these functions is defined below.)
+// You may have noticed that the bodies of the `swapTwoInts(_:_:)`,
+// `swapTwoStrings(_:_:)`, and `swapTwoDoubles(_:_:)` functions are
+// identical.  The only difference is the type of the values that
+// they accept.
 
-NOTE
+// It would be much more useful, and considerably more flexible, to write a
+// single function that could swap two values of any type.  Generic code
+// enables you to write such a function.
 
-In all three functions, it is important that the types of a and b are defined to be the same as each other. If a and b were not of the same type, it would not be possible to swap their values. Swift is a type-safe language, and does not allow (for example) a variable of type String and a variable of type Double to swap values with each other. Attempting to do so would be reported as a compile-time error.
+// In all three functions, it is important that the types of `a` and `b`
+// are defined to be the same as each other.  If `a` and `b` were not of
+// the same type, it would not be possible to swap their values.
 
-Generic Functions
 
-Generic functions can work with any type. Here’s a generic version of the swapTwoInts(_:_:) function from above, called swapTwoValues(_:_:):
+// -----------------------------------------------------------------------------
+//  Generic function - A function written with generic code.
+// -----------------------------------------------------------------------------
 
 func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+  let temporaryA = a
+  a = b
+  b = temporaryA
 }
-The body of the swapTwoValues(_:_:) function is identical to the body of the swapTwoInts(_:_:) function. However, the first line of swapTwoValues(_:_:) is slightly different from swapTwoInts(_:_:). Here’s how the first lines compare:
+
+// The body of `swapTwoValues(_:_:)` is identical to the body of
+// `swapTwoInts(_:_:)`.  However, the first line of
+// `swapTwoValues(_:_:)` is slightly different from
+// `swapTwoInts(_:_:)`.
 
 func swapTwoInts(_ a: inout Int, _ b: inout Int)
 func swapTwoValues<T>(_ a: inout T, _ b: inout T)
-The generic version of the function uses a placeholder type name (called T, in this case) instead of an actual type name (such as Int, String, or Double). The placeholder type name doesn’t say anything about what T must be, but it does say that both a and b must be of the same type T, whatever T represents. The actual type to use in place of T will be determined each time the swapTwoValues(_:_:) function is called.
 
-The other difference is that the generic function’s name (swapTwoValues(_:_:)) is followed by the placeholder type name (T) inside angle brackets (<T>). The brackets tell Swift that T is a placeholder type name within the swapTwoValues(_:_:) function definition. Because T is a placeholder, Swift does not look for an actual type called T.
+// The generic version of the function uses a placeholder type name (called T,
+// in this case) instead of an actual type name (such as Int, String, or
+// Double).  The placeholder type name doesn’t say anything about what T
+// must be, but it does say that both a and b must be of the same type
+// T, whatever T represents. The actual type to use in place of T will
+// be determined each time the swapTwoValues(_:_:) function is called.
+
+// The other difference is that the generic function’s name
+// (swapTwoValues(_:_:)) is followed by the placeholder
+// type name (T) inside angle brackets (<T>).  The brackets
+// tell Swift that T is a placeholder type name within the
+// swapTwoValues(_:_:) function definition.  Because T is a
+// placeholder, Swift does not look for an actual type called T.
 
 The swapTwoValues(_:_:) function can now be called in the same way as swapTwoInts, except that it can be passed two values of any type, as long as both of those values are of the same type as each other. Each time swapTwoValues(_:_:) is called, the type to use for T is inferred from the types of values passed to the function.
 
@@ -169,11 +111,11 @@ var someString = "hello"
 var anotherString = "world"
 swapTwoValues(&someString, &anotherString)
 // someString is now "world", and anotherString is now "hello"
-NOTE
 
-The swapTwoValues(_:_:) function defined above is inspired by a generic function called swap, which is part of the Swift standard library, and is automatically made available for you to use in your apps. If you need the behavior of the swapTwoValues(_:_:) function in your own code, you can use Swift’s existing swap(_:_:) function rather than providing your own implementation.
 
-Type Parameters
+// -----------------------------------------------------------------------------
+//  Type Parameters
+// -----------------------------------------------------------------------------
 
 In the swapTwoValues(_:_:) example above, the placeholder type T is an example of a type parameter. Type parameters specify and name a placeholder type, and are written immediately after the function’s name, between a pair of matching angle brackets (such as <T>).
 
@@ -181,7 +123,10 @@ Once you specify a type parameter, you can use it to define the type of a functi
 
 You can provide more than one type parameter by writing multiple type parameter names within the angle brackets, separated by commas.
 
-Naming Type Parameters
+
+// -----------------------------------------------------------------------------
+//  Naming Type Parameters
+// -----------------------------------------------------------------------------
 
 In most cases, type parameters have descriptive names, such as Key and Value in Dictionary<Key, Value> and Element in Array<Element>, which tells the reader about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as T, U, and V, such as T in the swapTwoValues(_:_:) function above.
 
@@ -189,7 +134,10 @@ NOTE
 
 Always give type parameters upper camel case names (such as T and MyTypeParameter) to indicate that they are a placeholder for a type, not a value.
 
-Generic Types
+
+// -----------------------------------------------------------------------------
+//  Generic Types
+// -----------------------------------------------------------------------------
 
 In addition to generic functions, Swift enables you to define your own generic types. These are custom classes, structures, and enumerations that can work with any type, in a similar way to Array and Dictionary.
 
@@ -202,6 +150,7 @@ The concept of a stack is used by the UINavigationController class to model the 
 The illustration below shows the push / pop behavior for a stack:
 
 image: ../Art/stackPushPop_2x.png
+
 There are currently three values on the stack.
 A fourth value is “pushed” on to the top of the stack.
 The stack now holds four values, with the most recent one at the top.
@@ -210,13 +159,13 @@ After popping a value, the stack once again holds three values.
 Here’s how to write a non-generic version of a stack, in this case for a stack of Int values:
 
 struct IntStack {
-    var items = [Int]()
-    mutating func push(_ item: Int) {
-        items.append(item)
-    }
-    mutating func pop() -> Int {
-        return items.removeLast()
-    }
+  var items = [Int]()
+  mutating func push(_ item: Int) {
+    items.append(item)
+  }
+  mutating func pop() -> Int {
+    return items.removeLast()
+  }
 }
 This structure uses an Array property called items to store the values in the stack. Stack provides two methods, push and pop, to push and pop values on and off the stack. These methods are marked as mutating, because they need to modify (or mutate) the structure’s items array.
 
@@ -225,13 +174,13 @@ The IntStack type shown above can only be used with Int values, however. It woul
 Here’s a generic version of the same code:
 
 struct Stack<Element> {
-    var items = [Element]()
-    mutating func push(_ item: Element) {
-        items.append(item)
-    }
-    mutating func pop() -> Element {
-        return items.removeLast()
-    }
+  var items = [Element]()
+  mutating func push(_ item: Element) {
+    items.append(item)
+  }
+  mutating func pop() -> Element {
+    return items.removeLast()
+  }
 }
 Note how the generic version of Stack is essentially the same as the non-generic version, but with a type parameter called Element instead of an actual type of Int. This type parameter is written within a pair of angle brackets (<Element>) immediately after the structure’s name.
 
@@ -260,17 +209,22 @@ let fromTheTop = stackOfStrings.pop()
 Here’s how the stack looks after popping its top value:
 
 image: ../Art/stackPoppedOneString_2x.png
-Extending a Generic Type
+
+
+// -----------------------------------------------------------------------------
+//  Extending a Generic Type
+// -----------------------------------------------------------------------------
 
 When you extend a generic type, you do not provide a type parameter list as part of the extension’s definition. Instead, the type parameter list from the original type definition is available within the body of the extension, and the original type parameter names are used to refer to the type parameters from the original definition.
 
 The following example extends the generic Stack type to add a read-only computed property called topItem, which returns the top item on the stack without popping it from the stack:
 
 extension Stack {
-    var topItem: Element? {
-        return items.isEmpty ? nil : items[items.count - 1]
-    }
+  var topItem: Element? {
+    return items.isEmpty ? nil : items[items.count - 1]
+  }
 }
+
 The topItem property returns an optional value of type Element. If the stack is empty, topItem returns nil; if the stack is not empty, topItem returns the final item in the items array.
 
 Note that this extension does not define a type parameter list. Instead, the Stack type’s existing type parameter name, Element, is used within the extension to indicate the optional type of the topItem computed property.
@@ -281,7 +235,11 @@ if let topItem = stackOfStrings.topItem {
     print("The top item on the stack is \(topItem).")
 }
 // Prints "The top item on the stack is tres."
-Type Constraints
+
+
+// -----------------------------------------------------------------------------
+//  Type Constraints
+// -----------------------------------------------------------------------------
 
 The swapTwoValues(_:_:) function and the Stack type can work with any type. However, it is sometimes useful to enforce certain type constraints on the types that can be used with generic functions and generic types. Type constraints specify that a type parameter must inherit from a specific class, or conform to a particular protocol or protocol composition.
 
@@ -305,32 +263,35 @@ Type Constraints in Action
 Here’s a non-generic function called findIndex(ofString:in:), which is given a String value to find and an array of String values within which to find it. The findIndex(ofString:in:) function returns an optional Int value, which will be the index of the first matching string in the array if it is found, or nil if the string cannot be found:
 
 func findIndex(ofString valueToFind: String, in array: [String]) -> Int? {
-    for (index, value) in array.enumerated() {
-        if value == valueToFind {
-            return index
-        }
+  for (index, value) in array.enumerated() {
+    if value == valueToFind {
+      return index
     }
-    return nil
+  }
+  return nil
 }
+
 The findIndex(ofString:in:) function can be used to find a string value in an array of strings:
 
 let strings = ["cat", "dog", "llama", "parakeet", "terrapin"]
 if let foundIndex = findIndex(ofString: "llama", in: strings) {
-    print("The index of llama is \(foundIndex)")
+  print("The index of llama is \(foundIndex)")
 }
 // Prints "The index of llama is 2"
+
 The principle of finding the index of a value in an array isn’t useful only for strings, however. You can write the same functionality as a generic function by replacing any mention of strings with values of some type T instead.
 
 Here’s how you might expect a generic version of findIndex(ofString:in:), called findIndex(of:in:), to be written. Note that the return type of this function is still Int?, because the function returns an optional index number, not an optional value from the array. Be warned, though—this function does not compile, for reasons explained after the example:
 
 func findIndex<T>(of valueToFind: T, in array:[T]) -> Int? {
-    for (index, value) in array.enumerated() {
-        if value == valueToFind {
-            return index
-        }
+  for (index, value) in array.enumerated() {
+    if value == valueToFind {
+      return index
     }
-    return nil
+  }
+  return nil
 }
+
 This function does not compile as written above. The problem lies with the equality check, “if value == valueToFind”. Not every type in Swift can be compared with the equal to operator (==). If you create your own class or structure to represent a complex data model, for example, then the meaning of “equal to” for that class or structure is not something that Swift can guess for you. Because of this, it is not possible to guarantee that this code will work for every possible type T, and an appropriate error is reported when you try to compile the code.
 
 All is not lost, however. The Swift standard library defines a protocol called Equatable, which requires any conforming type to implement the equal to operator (==) and the not equal to operator (!=) to compare any two values of that type. All of Swift’s standard types automatically support the Equatable protocol.
@@ -338,12 +299,12 @@ All is not lost, however. The Swift standard library defines a protocol called E
 Any type that is Equatable can be used safely with the findIndex(of:in:) function, because it is guaranteed to support the equal to operator. To express this fact, you write a type constraint of Equatable as part of the type parameter’s definition when you define the function:
 
 func findIndex<T: Equatable>(of valueToFind: T, in array:[T]) -> Int? {
-    for (index, value) in array.enumerated() {
-        if value == valueToFind {
-            return index
-        }
+  for (index, value) in array.enumerated() {
+    if value == valueToFind {
+      return index
     }
-    return nil
+  }
+  return nil
 }
 The single type parameter for findIndex(of:in:) is written as T: Equatable, which means “any type T that conforms to the Equatable protocol.”
 
@@ -353,7 +314,11 @@ let doubleIndex = findIndex(of: 9.3, in: [3.14159, 0.1, 0.25])
 // doubleIndex is an optional Int with no value, because 9.3 is not in the array
 let stringIndex = findIndex(of: "Andrea", in: ["Mike", "Malcolm", "Andrea"])
 // stringIndex is an optional Int containing a value of 2
-Associated Types
+
+
+// -----------------------------------------------------------------------------
+//  Associated Types
+// -----------------------------------------------------------------------------
 
 When defining a protocol, it is sometimes useful to declare one or more associated types as part of the protocol’s definition. An associated type gives a placeholder name to a type that is used as part of the protocol. The actual type to use for that associated type is not specified until the protocol is adopted. Associated types are specified with the associatedtype keyword.
 
@@ -383,25 +348,25 @@ To achieve this, the Container protocol declares an associated type called ItemT
 Here’s a version of the non-generic IntStack type from earlier, adapted to conform to the Container protocol:
 
 struct IntStack: Container {
-    // original IntStack implementation
-    var items = [Int]()
-    mutating func push(_ item: Int) {
-        items.append(item)
-    }
-    mutating func pop() -> Int {
-        return items.removeLast()
-    }
-    // conformance to the Container protocol
-    typealias ItemType = Int
-    mutating func append(_ item: Int) {
-        self.push(item)
-    }
-    var count: Int {
-        return items.count
-    }
-    subscript(i: Int) -> Int {
-        return items[i]
-    }
+  // original IntStack implementation
+  var items = [Int]()
+  mutating func push(_ item: Int) {
+    items.append(item)
+  }
+  mutating func pop() -> Int {
+    return items.removeLast()
+  }
+  // conformance to the Container protocol
+  typealias ItemType = Int
+  mutating func append(_ item: Int) {
+    self.push(item)
+  }
+  var count: Int {
+    return items.count
+  }
+  subscript(i: Int) -> Int {
+    return items[i]
+  }
 }
 The IntStack type implements all three of the Container protocol’s requirements, and in each case wraps part of the IntStack type’s existing functionality to satisfy these requirements.
 
@@ -412,24 +377,24 @@ Thanks to Swift’s type inference, you don’t actually need to declare a concr
 You can also make the generic Stack type conform to the Container protocol:
 
 struct Stack<Element>: Container {
-    // original Stack<Element> implementation
-    var items = [Element]()
-    mutating func push(_ item: Element) {
-        items.append(item)
-    }
-    mutating func pop() -> Element {
-        return items.removeLast()
-    }
-    // conformance to the Container protocol
-    mutating func append(_ item: Element) {
-        self.push(item)
-    }
-    var count: Int {
-        return items.count
-    }
-    subscript(i: Int) -> Element {
-        return items[i]
-    }
+  // original Stack<Element> implementation
+  var items = [Element]()
+  mutating func push(_ item: Element) {
+    items.append(item)
+  }
+  mutating func pop() -> Element {
+    return items.removeLast()
+  }
+  // conformance to the Container protocol
+  mutating func append(_ item: Element) {
+    self.push(item)
+  }
+  var count: Int {
+    return items.count
+  }
+  subscript(i: Int) -> Element {
+    return items[i]
+  }
 }
 This time, the type parameter Element is used as the type of the append(_:) method’s item parameter and the return type of the subscript. Swift can therefore infer that Element is the appropriate type to use as the ItemType for this particular container.
 
@@ -442,7 +407,10 @@ Swift’s Array type already provides an append(_:) method, a count property, an
 extension Array: Container {}
 Array’s existing append(_:) method and subscript enable Swift to infer the appropriate type to use for ItemType, just as for the generic Stack type above. After defining this extension, you can use any Array as a Container.
 
-Generic Where Clauses
+
+// -----------------------------------------------------------------------------
+//  Generic Where Clauses
+// -----------------------------------------------------------------------------
 
 Type constraints, as described in Type Constraints, enable you to define requirements on the type parameters associated with a generic function or type.
 
@@ -453,24 +421,25 @@ The example below defines a generic function called allItemsMatch, which checks 
 The two containers to be checked do not have to be the same type of container (although they can be), but they do have to hold the same type of items. This requirement is expressed through a combination of type constraints and a generic where clause:
 
 func allItemsMatch<C1: Container, C2: Container>
-    (_ someContainer: C1, _ anotherContainer: C2) -> Bool
-    where C1.ItemType == C2.ItemType, C1.ItemType: Equatable {
+(_ someContainer: C1, _ anotherContainer: C2) -> Bool
+where C1.ItemType == C2.ItemType, C1.ItemType: Equatable
+{
+  // Check that both containers contain the same number of items.
+  if someContainer.count != anotherContainer.count {
+    return false
+  }
 
-        // Check that both containers contain the same number of items.
-        if someContainer.count != anotherContainer.count {
-            return false
-        }
+  // Check each pair of items to see if they are equivalent.
+  for i in 0..<someContainer.count {
+    if someContainer[i] != anotherContainer[i] {
+      return false
+    }
+  }
 
-        // Check each pair of items to see if they are equivalent.
-        for i in 0..<someContainer.count {
-            if someContainer[i] != anotherContainer[i] {
-                return false
-            }
-        }
-
-        // All items match, so return true.
-        return true
+  // All items match, so return true.
+  return true
 }
+
 This function takes two arguments called someContainer and anotherContainer. The someContainer argument is of type C1, and the anotherContainer argument is of type C2. Both C1 and C2 are type parameters for two container types to be determined when the function is called.
 
 The following requirements are placed on the function’s two type parameters:
@@ -503,7 +472,7 @@ var stackOfStrings = Stack<String>()
 stackOfStrings.push("uno")
 stackOfStrings.push("dos")
 stackOfStrings.push("tres")
- 
+
 var arrayOfStrings = ["uno", "dos", "tres"]
 
 if allItemsMatch(stackOfStrings, arrayOfStrings) {
@@ -512,4 +481,5 @@ if allItemsMatch(stackOfStrings, arrayOfStrings) {
     print("Not all items match.")
 }
 // Prints "All items match."
+
 The example above creates a Stack instance to store String values, and pushes three strings onto the stack. The example also creates an Array instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the Container protocol, and both contain the same type of values. You can therefore call the allItemsMatch(_:_:) function with these two containers as its arguments. In the example above, the allItemsMatch(_:_:) function correctly reports that all of the items in the two containers match.

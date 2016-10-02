@@ -1,4 +1,4 @@
-This is loosely upon "The Swift Programming Language (Swift 3)" and other resources.
+This is primarily and loosely based "The Swift Programming Language (Swift 3)".
 
 
 

@@ -27,10 +27,6 @@
 
 
 // -----------------------------------------------------------------------------
-//  Defining a Base Class
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
 //  Base class - A class that doesn't inherit from another class.
 // -----------------------------------------------------------------------------
 
@@ -58,18 +54,13 @@ print("Vehicle: \(someVehicle.description)")
 // it to describe more specific kinds of vehicles.
 
 
-
-
-
-
-
-
 // -----------------------------------------------------------------------------
 //  Subclassing - The act of basing a new class on an existing class.
 // -----------------------------------------------------------------------------
 
 
-The subclass inherits characteristics from the existing class, which you can then refine. You can also add new characteristics to the subclass.
+The subclass inherits characteristics from the existing class, which you can then
+refine. You can also add new characteristics to the subclass.
 
 To indicate that a subclass has a superclass, write the subclass name before the superclass name, separated by a colon:
 
@@ -92,14 +83,17 @@ You can also modify the inherited currentSpeed property of a Bicycle instance, a
 bicycle.currentSpeed = 15.0
 print("Bicycle: \(bicycle.description)")
 // Bicycle: traveling at 15.0 miles per hour
-Subclasses can themselves be subclassed. The next example creates a subclass of Bicycle for a two-seater bicycle known as a “tandem”:
+
+Subclasses can themselves be subclassed. The next example creates a subclass of
+Bicycle for a two-seater bicycle known as a “tandem”:
 
 class Tandem: Bicycle {
-    var currentNumberOfPassengers = 0
+  var currentNumberOfPassengers = 0
 }
-Tandem inherits all of the properties and methods from Bicycle, which in turn inherits all of the properties and methods from Vehicle. The Tandem subclass also adds a new stored property called currentNumberOfPassengers, with a default value of 0.
 
-If you create an instance of Tandem, you can work with any of its new and inherited properties, and query the read-only description property it inherits from Vehicle:
+Tandem inherits all of the properties and methods from Bicycle, which in turn
+inherits all of the properties and methods from Vehicle. The Tandem subclass
+also adds a new stored property called currentNumberOfPassengers, with a default value of 0.
 
 let tandem = Tandem()
 tandem.hasBasket = true
@@ -113,9 +107,15 @@ print("Tandem: \(tandem.description)")
 //  Overriding
 // -----------------------------------------------------------------------------
 
-A subclass can provide its own custom implementation of an instance method, type method, instance property, type property, or subscript that it would otherwise inherit from a superclass. This is known as overriding.
+A subclass can provide its own custom implementation of an instance method, type
+method, instance property, type property, or subscript that it would otherwise
+inherit from a superclass. This is known as overriding.
 
-To override a characteristic that would otherwise be inherited, you prefix your overriding definition with the override keyword. Doing so clarifies that you intend to provide an override and have not provided a matching definition by mistake. Overriding by accident can cause unexpected behavior, and any overrides without the override keyword are diagnosed as an error when your code is compiled.
+To override a characteristic that would otherwise be inherited, you prefix your
+overriding definition with the override keyword. Doing so clarifies that you
+intend to provide an override and have not provided a matching definition by
+mistake. Overriding by accident can cause unexpected behavior, and any overrides
+without the override keyword are diagnosed as an error when your code is compiled.
 
 The override keyword also prompts the Swift compiler to check that your overriding class’s superclass (or one of its parents) has a declaration that matches the one you provided for the override. This check ensures that your overriding definition is correct.
 
@@ -140,11 +140,13 @@ class Train: Vehicle {
   }
 }
 
-If you create a new instance of Train and call its makeNoise() method, you can see that the Train subclass version of the method is called:
+If you create a new instance of Train and call its makeNoise() method, you can
+see that the Train subclass version of the method is called:
 
 let train = Train()
 train.makeNoise()
 // Prints "Choo Choo"
+
 Overriding Properties
 
 You can override an inherited instance or type property to provide your own custom getter and setter for that property, or to add property observers to enable the overriding property to observe when the underlying property value changes.
@@ -207,8 +209,16 @@ print("AutomaticCar: \(automatic.description)")
 //  Preventing Overrides
 // -----------------------------------------------------------------------------
 
-You can prevent a method, property, or subscript from being overridden by marking it as final. Do this by writing the final modifier before the method, property, or subscript’s introducer keyword (such as final var, final func, final class func, and final subscript).
+You can prevent a method, property, or subscript from being overridden by marking
+it as final.  Do this by writing the final modifier before the method, property,
+or subscript’s introducer keyword (such as final var, final func, final class
+func, and final subscript).
 
-Any attempt to override a final method, property, or subscript in a subclass is reported as a compile-time error. Methods, properties, or subscripts that you add to a class in an extension can also be marked as final within the extension’s definition.
+Any attempt to override a final method, property, or subscript in a subclass is
+reported as a compile-time error.  Methods, properties, or subscripts that you
+add to a class in an extension can also be marked as final within the
+extension’s definition.
 
-You can mark an entire class as final by writing the final modifier before the class keyword in its class definition (final class). Any attempt to subclass a final class is reported as a compile-time error.
+You can mark an entire class as final by writing the final modifier before the
+class keyword in its class definition (final class). Any attempt to subclass a
+final class is reported as a compile-time error.

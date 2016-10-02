@@ -3,15 +3,15 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html
 // =============================================================================
 
-// TODO
-
 // -----------------------------------------------------------------------------
 //  Initialization - The process of preparing an instance of a class,
 //                   structure, or enumeration for use.
 // -----------------------------------------------------------------------------
 
+// TODO
+
 // This process involves setting an initial value for each stored property on
-// that instance and performing any other setup or initialization that is
+// the new instance and performing any other setup or initialization that is
 // required before the new instance is ready for use.
 
 // You implement this initialization process by defining initializers.
@@ -104,7 +104,6 @@ struct Fahrenheit {
 // optional property types, or by assigning constant properties during
 // initialization.
 
-
 // -----------------------------------------------------------------------------
 //  Initialization parameter - A parameter that customizes
 //                             the initialization process.
@@ -181,20 +180,23 @@ If you do not want to use an argument label for an initializer parameter, write 
 Here’s an expanded version of the Celsius example from earlier, with an additional initializer to create a new Celsius instance from a Double value that is already in the Celsius scale:
 
 struct Celsius {
-    var temperatureInCelsius: Double
-    init(fromFahrenheit fahrenheit: Double) {
-        temperatureInCelsius = (fahrenheit - 32.0) / 1.8
-    }
-    init(fromKelvin kelvin: Double) {
-        temperatureInCelsius = kelvin - 273.15
-    }
-    init(_ celsius: Double) {
-        temperatureInCelsius = celsius
-    }
+  var temperatureInCelsius: Double
+  init(fromFahrenheit fahrenheit: Double) {
+    temperatureInCelsius = (fahrenheit - 32.0) / 1.8
+  }
+  init(fromKelvin kelvin: Double) {
+    temperatureInCelsius = kelvin - 273.15
+  }
+  init(_ celsius: Double) {
+    temperatureInCelsius = celsius
+  }
 }
 let bodyTemperature = Celsius(37.0)
 // bodyTemperature.temperatureInCelsius is 37.0
+
 The initializer call Celsius(37.0) is clear in its intent without the need for an argument label. It is therefore appropriate to write this initializer as init(_ celsius: Double) so that it can be called by providing an unnamed Double value.
+
+// -----------------------------------------------------------------------------
 
 Optional Property Types
 
@@ -203,19 +205,21 @@ If your custom type has a stored property that is logically allowed to have “n
 The following example defines a class called SurveyQuestion, with an optional String property called response:
 
 class SurveyQuestion {
-    var text: String
-    var response: String?
-    init(text: String) {
-        self.text = text
-    }
-    func ask() {
-        print(text)
-    }
+  var text: String
+  var response: String?
+  init(text: String) {
+    self.text = text
+  }
+  func ask() {
+    print(text)
+  }
 }
+
 let cheeseQuestion = SurveyQuestion(text: "Do you like cheese?")
 cheeseQuestion.ask()
 // Prints "Do you like cheese?"
 cheeseQuestion.response = "Yes, I do like cheese."
+
 The response to a survey question cannot be known until it is asked, and so the response property is declared with a type of String?, or “optional String”. It is automatically assigned a default value of nil, meaning “no string yet”, when a new instance of SurveyQuestion is initialized.
 
 Assigning Constant Properties During Initialization
@@ -229,15 +233,16 @@ For class instances, a constant property can be modified during initialization o
 You can revise the SurveyQuestion example from above to use a constant property rather than a variable property for the text property of the question, to indicate that the question does not change once an instance of SurveyQuestion is created. Even though the text property is now a constant, it can still be set within the class’s initializer:
 
 class SurveyQuestion {
-    let text: String
-    var response: String?
-    init(text: String) {
-        self.text = text
-    }
-    func ask() {
-        print(text)
-    }
+  let text: String
+  var response: String?
+  init(text: String) {
+    self.text = text
+  }
+  func ask() {
+    print(text)
+  }
 }
+
 let beetsQuestion = SurveyQuestion(text: "How about beets?")
 beetsQuestion.ask()
 // Prints "How about beets?"
@@ -340,12 +345,15 @@ Swift provides a default initializer for any structure or class that provides de
 This example defines a class called ShoppingListItem, which encapsulates the name, quantity, and purchase state of an item in a shopping list:
 
 class ShoppingListItem {
-    var name: String?
-    var quantity = 1
-    var purchased = false
+  var name: String?
+  var quantity = 1
+  var purchased = false
 }
 var item = ShoppingListItem()
+
 Because all properties of the ShoppingListItem class have default values, and because it is a base class with no superclass, ShoppingListItem automatically gains a default initializer implementation that creates a new instance with all of its properties set to their default values. (The name property is an optional String property, and so it automatically receives a default value of nil, even though this value is not written in the code.) The example above uses the default initializer for the ShoppingListItem class to create a new instance of the class with initializer syntax, written as ShoppingListItem(), and assigns this new instance to a variable called item.
+
+// -----------------------------------------------------------------------------
 
 Memberwise Initializers for Structure Types
 
@@ -358,9 +366,13 @@ The example below defines a structure called Size with two properties called wid
 The Size structure automatically receives an init(width:height:) memberwise initializer, which you can use to initialize a new Size instance:
 
 struct Size {
-    var width = 0.0, height = 0.0
+  var width = 0.0, height = 0.0
 }
+
 let twoByTwo = Size(width: 2.0, height: 2.0)
+
+// -----------------------------------------------------------------------------
+
 Initializer Delegation for Value Types
 
 Initializers can call other initializers to perform part of an instance’s initialization. This process, known as initializer delegation, avoids duplicating code across multiple initializers.
@@ -378,52 +390,61 @@ If you want your custom value type to be initializable with the default initiali
 The following example defines a custom Rect structure to represent a geometric rectangle. The example requires two supporting structures called Size and Point, both of which provide default values of 0.0 for all of their properties:
 
 struct Size {
-    var width = 0.0, height = 0.0
+  var width = 0.0, height = 0.0
 }
 struct Point {
-    var x = 0.0, y = 0.0
+  var x = 0.0, y = 0.0
 }
+
 You can initialize the Rect structure below in one of three ways—by using its default zero-initialized origin and size property values, by providing a specific origin point and size, or by providing a specific center point and size. These initialization options are represented by three custom initializers that are part of the Rect structure’s definition:
 
 struct Rect {
-    var origin = Point()
-    var size = Size()
-    init() {}
-    init(origin: Point, size: Size) {
-        self.origin = origin
-        self.size = size
-    }
-    init(center: Point, size: Size) {
-        let originX = center.x - (size.width / 2)
-        let originY = center.y - (size.height / 2)
-        self.init(origin: Point(x: originX, y: originY), size: size)
-    }
+  var origin = Point()
+  var size = Size()
+  init() {}
+  init(origin: Point, size: Size) {
+    self.origin = origin
+    self.size = size
+  }
+  init(center: Point, size: Size) {
+    let originX = center.x - (size.width / 2)
+    let originY = center.y - (size.height / 2)
+    self.init(origin: Point(x: originX, y: originY), size: size)
+  }
 }
+
 The first Rect initializer, init(), is functionally the same as the default initializer that the structure would have received if it did not have its own custom initializers. This initializer has an empty body, represented by an empty pair of curly braces {}. Calling this initializer returns a Rect instance whose origin and size properties are both initialized with the default values of Point(x: 0.0, y: 0.0) and Size(width: 0.0, height: 0.0) from their property definitions:
 
 let basicRect = Rect()
 // basicRect's origin is (0.0, 0.0) and its size is (0.0, 0.0)
+
 The second Rect initializer, init(origin:size:), is functionally the same as the memberwise initializer that the structure would have received if it did not have its own custom initializers. This initializer simply assigns the origin and size argument values to the appropriate stored properties:
 
 let originRect = Rect(origin: Point(x: 2.0, y: 2.0),
                       size: Size(width: 5.0, height: 5.0))
 // originRect's origin is (2.0, 2.0) and its size is (5.0, 5.0)
+
 The third Rect initializer, init(center:size:), is slightly more complex. It starts by calculating an appropriate origin point based on a center point and a size value. It then calls (or delegates) to the init(origin:size:) initializer, which stores the new origin and size values in the appropriate properties:
 
 let centerRect = Rect(center: Point(x: 4.0, y: 4.0),
                       size: Size(width: 3.0, height: 3.0))
 // centerRect's origin is (2.5, 2.5) and its size is (3.0, 3.0)
+
 The init(center:size:) initializer could have assigned the new values of origin and size to the appropriate properties itself. However, it is more convenient (and clearer in intent) for the init(center:size:) initializer to take advantage of an existing initializer that already provides exactly that functionality.
 
 NOTE
 
 For an alternative way to write this example without defining the init() and init(origin:size:) initializers yourself, see Extensions.
 
+// -----------------------------------------------------------------------------
+
 Class Inheritance and Initialization
 
 All of a class’s stored properties—including any properties the class inherits from its superclass—must be assigned an initial value during initialization.
 
 Swift defines two kinds of initializers for class types to help ensure all stored properties receive an initial value. These are known as designated initializers and convenience initializers.
+
+// -----------------------------------------------------------------------------
 
 Designated Initializers and Convenience Initializers
 
@@ -437,18 +458,24 @@ Convenience initializers are secondary, supporting initializers for a class. You
 
 You do not have to provide convenience initializers if your class does not require them. Create convenience initializers whenever a shortcut to a common initialization pattern will save time or make initialization of the class clearer in intent.
 
+// -----------------------------------------------------------------------------
+
 Syntax for Designated and Convenience Initializers
 
 Designated initializers for classes are written in the same way as simple initializers for value types:
 
 init(parameters) {
-    statements
+  statements
 }
+
 Convenience initializers are written in the same style, but with the convenience modifier placed before the init keyword, separated by a space:
 
 convenience init(parameters) {
-    statements
+  statements
 }
+
+// -----------------------------------------------------------------------------
+
 Initializer Delegation for Class Types
 
 To simplify the relationships between designated and convenience initializers, Swift applies the following three rules for delegation calls between initializers:
@@ -480,6 +507,7 @@ These rules don’t affect how users of your classes create instances of each cl
 The figure below shows a more complex class hierarchy for four classes. It illustrates how the designated initializers in this hierarchy act as “funnel” points for class initialization, simplifying the interrelationships among classes in the chain:
 
 image: ../Art/initializerDelegation02_2x.png
+
 Two-Phase Initialization
 
 Class initialization in Swift is a two-phase process. In the first phase, each stored property is assigned an initial value by the class that introduced it. Once the initial state for every stored property has been determined, the second phase begins, and each class is given the opportunity to customize its stored properties further before the new instance is considered ready for use.

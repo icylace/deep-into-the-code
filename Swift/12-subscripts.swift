@@ -4,8 +4,8 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Subscript - A shortcut for accessing properties in a class, structure,
-//              or enumeration.
+//  Subscript - A shortcut for accessing properties in a class,
+//              structure, or enumeration.
 // -----------------------------------------------------------------------------
 
 // Subscripts can be used to set and retrieve values by index without
@@ -129,7 +129,6 @@ enum Baz {
 // subscript brackets at the point that the subscript is used.
 // This is known as subscript overloading.
 
-
 // -----------------------------------------------------------------------------
 //  Subscript Usage
 // -----------------------------------------------------------------------------
@@ -139,7 +138,6 @@ enum Baz {
 // elements in a collection, list, or sequence.  You are free to implement
 // subscripts in the most appropriate way for your particular class or
 // structure's functionality.
-
 
 // -----------------------------------------------------------------------------
 //  Subscript Options
@@ -164,6 +162,9 @@ struct Matrix {
   }
   func indexIsValidFor(row: Int, column: Int) -> Bool {
     return row >= 0 && row < rows && column >= 0 && column < columns
+    // TODO
+    // - does the following work?
+    // return 0..<rows ~= row && 0..<columns ~= column
   }
   subscript(row: Int, column: Int) -> Double {
     get {

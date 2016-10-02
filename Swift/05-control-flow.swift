@@ -280,6 +280,29 @@ The loop’s condition (while square < finalSquare) is the same as before, but t
 //                          redirect code execution.
 // -----------------------------------------------------------------------------
 
+Conditional Statements
+
+It is often useful to execute different pieces of code based on certain conditions. You might want to run an extra piece of code when an error occurs, or to display a message when a value becomes too high or too low. To do this, you make parts of your code conditional.
+
+Swift provides two ways to add conditional branches to your code: the if statement and the switch statement. Typically, you use the if statement to evaluate simple conditions with only a few possible outcomes. The switch statement is better suited to more complex conditions with multiple possible permutations and is useful in situations where pattern matching can help select an appropriate code branch to execute.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // `if` statements can direct code execution through a detour.
 
 
@@ -417,131 +440,6 @@ if let definiteString = assumedString {
   print(definiteString)
 }
 // Prints "An implicitly unwrapped optional string."
-
-
-
-
-
-
-
-
-
-
-
-
-
-let tuple = (1.0, "hello")
-print(tuple.0)
-print(tuple.1)
-
-// if case {
-// }
-
-// -----------------------------------------------------------------------------
-
-// `switch`
-
-var s = 0
-switch s {
-case 0:
-  print(0)
-default:
-  print("non-zero")
-}
-
-// -----------------------------------------------------------------------------
-
-let approximateCount = 62
-let countedThings = "moons orbiting Saturn"
-var naturalCount: String
-switch approximateCount {
-case 0:
-  naturalCount = "no"
-case 1..<5:
-  naturalCount = "a few"
-case 5..<12:
-  naturalCount = "several"
-case 12..<100:
-  naturalCount = "dozens of"
-case 100..<1000:
-  naturalCount = "hundreds of"
-default:
-  naturalCount = "many"
-}
-print("There are \(naturalCount) \(countedThings).")
-// Prints "There are dozens of moons orbiting Saturn."
-
-
-// -----------------------------------------------------------------------------
-//  Control Transfer Statements
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Early Exit
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Checking API Availability
-// -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Conditional Statements
-
-It is often useful to execute different pieces of code based on certain conditions. You might want to run an extra piece of code when an error occurs, or to display a message when a value becomes too high or too low. To do this, you make parts of your code conditional.
-
-Swift provides two ways to add conditional branches to your code: the if statement and the switch statement. Typically, you use the if statement to evaluate simple conditions with only a few possible outcomes. The switch statement is better suited to more complex conditions with multiple possible permutations and is useful in situations where pattern matching can help select an appropriate code branch to execute.
 
 If
 
@@ -694,46 +592,71 @@ The example below takes an (x, y) point, expressed as a simple tuple of type (In
 let somePoint = (1, 1)
 switch somePoint {
 case (0, 0):
-    print("(0, 0) is at the origin")
+  print("(0, 0) is at the origin")
 case (_, 0):
-    print("(\(somePoint.0), 0) is on the x-axis")
+  print("(\(somePoint.0), 0) is on the x-axis")
 case (0, _):
-    print("(0, \(somePoint.1)) is on the y-axis")
+  print("(0, \(somePoint.1)) is on the y-axis")
 case (-2...2, -2...2):
-    print("(\(somePoint.0), \(somePoint.1)) is inside the box")
+  print("(\(somePoint.0), \(somePoint.1)) is inside the box")
 default:
-    print("(\(somePoint.0), \(somePoint.1)) is outside of the box")
+  print("(\(somePoint.0), \(somePoint.1)) is outside of the box")
 }
 // Prints "(1, 1) is inside the box"
-image: ../Art/coordinateGraphSimple_2x.png
-The switch statement determines whether the point is at the origin (0, 0), on the red x-axis, on the orange y-axis, inside the blue 4-by-4 box centered on the origin, or outside of the box.
 
-Unlike C, Swift allows multiple switch cases to consider the same value or values. In fact, the point (0, 0) could match all four of the cases in this example. However, if multiple matches are possible, the first matching case is always used. The point (0, 0) would match case (0, 0) first, and so all other matching cases would be ignored.
+image: ../Art/coordinateGraphSimple_2x.png
+
+The switch statement determines whether the point is at the origin (0, 0), on
+the red x-axis, on the orange y-axis, inside the blue 4-by-4 box centered on
+the origin, or outside of the box.
+
+Unlike C, Swift allows multiple switch cases to consider the same value or values.
+In fact, the point (0, 0) could match all four of the cases in this example.
+However, if multiple matches are possible, the first matching case is always
+used. The point (0, 0) would match case (0, 0) first, and so all other matching
+cases would be ignored.
 
 Value Bindings
 
-A switch case can bind the value or values it matches to temporary constants or variables, for use in the body of the case. This behavior is known as value binding, because the values are bound to temporary constants or variables within the case’s body.
+A switch case can bind the value or values it matches to temporary constants or
+variables, for use in the body of the case. This behavior is known as value binding,
+because the values are bound to temporary constants or variables within the case’s body.
 
-The example below takes an (x, y) point, expressed as a tuple of type (Int, Int), and categorizes it on the graph that follows:
+The example below takes an (x, y) point, expressed as a tuple of type (Int, Int),
+and categorizes it on the graph that follows:
 
 let anotherPoint = (2, 0)
 switch anotherPoint {
 case (let x, 0):
-    print("on the x-axis with an x value of \(x)")
+  print("on the x-axis with an x value of \(x)")
 case (0, let y):
-    print("on the y-axis with a y value of \(y)")
+  print("on the y-axis with a y value of \(y)")
 case let (x, y):
-    print("somewhere else at (\(x), \(y))")
+  print("somewhere else at (\(x), \(y))")
 }
 // Prints "on the x-axis with an x value of 2"
+
 image: ../Art/coordinateGraphMedium_2x.png
-The switch statement determines whether the point is on the red x-axis, on the orange y-axis, or elsewhere (on neither axis).
 
-The three switch cases declare placeholder constants x and y, which temporarily take on one or both tuple values from anotherPoint. The first case, case (let x, 0), matches any point with a y value of 0 and assigns the point’s x value to the temporary constant x. Similarly, the second case, case (0, let y), matches any point with an x value of 0 and assigns the point’s y value to the temporary constant y.
+The switch statement determines whether the point is on the red x-axis, on the
+orange y-axis, or elsewhere (on neither axis).
 
-After the temporary constants are declared, they can be used within the case’s code block. Here, they are used to print the categorization of the point.
+The three switch cases declare placeholder constants x and y, which temporarily
+take on one or both tuple values from anotherPoint. The first case, case (let x, 0),
+matches any point with a y value of 0 and assigns the point’s x value to the temporary
+constant x. Similarly, the second case, case (0, let y), matches any point with an x
+value of 0 and assigns the point’s y value to the temporary constant y.
 
-This switch statement does not have a default case. The final case, case let (x, y), declares a tuple of two placeholder constants that can match any value. Because anotherPoint is always a tuple of two values, this case matches all possible remaining values, and a default case is not needed to make the switch statement exhaustive.
+After the temporary constants are declared, they can be used within the case’s code
+block. Here, they are used to print the categorization of the point.
+
+This switch statement does not have a default case. The final case, case let (x, y),
+declares a tuple of two placeholder constants that can match any value. Because
+anotherPoint is always a tuple of two values, this case matches all possible
+remaining values, and a default case is not needed to make the switch statement
+exhaustive.
+
+// -----------------------------------------------------------------------------
 
 Where
 
@@ -744,38 +667,59 @@ The example below categorizes an (x, y) point on the following graph:
 let yetAnotherPoint = (1, -1)
 switch yetAnotherPoint {
 case let (x, y) where x == y:
-    print("(\(x), \(y)) is on the line x == y")
+  print("(\(x), \(y)) is on the line x == y")
 case let (x, y) where x == -y:
-    print("(\(x), \(y)) is on the line x == -y")
+  print("(\(x), \(y)) is on the line x == -y")
 case let (x, y):
-    print("(\(x), \(y)) is just some arbitrary point")
+  print("(\(x), \(y)) is just some arbitrary point")
 }
 // Prints "(1, -1) is on the line x == -y"
+
 image: ../Art/coordinateGraphComplex_2x.png
-The switch statement determines whether the point is on the green diagonal line where x == y, on the purple diagonal line where x == -y, or neither.
 
-The three switch cases declare placeholder constants x and y, which temporarily take on the two tuple values from yetAnotherPoint. These constants are used as part of a where clause, to create a dynamic filter. The switch case matches the current value of point only if the where clause’s condition evaluates to true for that value.
+The switch statement determines whether the point is on the green diagonal line
+where x == y, on the purple diagonal line where x == -y, or neither.
 
-As in the previous example, the final case matches all possible remaining values, and so a default case is not needed to make the switch statement exhaustive.
+The three switch cases declare placeholder constants x and y, which temporarily
+take on the two tuple values from yetAnotherPoint. These constants are used as
+part of a where clause, to create a dynamic filter. The switch case matches the
+current value of point only if the where clause’s condition evaluates to true
+for that value.
+
+As in the previous example, the final case matches all possible remaining values,
+and so a default case is not needed to make the switch statement exhaustive.
+
+// -----------------------------------------------------------------------------
 
 Compound Cases
 
-Multiple switch cases that share the same body can be combined by writing several patterns after case, with a comma between each of the patterns. If any of the patterns match, then the case is considered to match. The patterns can be written over multiple lines if the list is long. For example:
+Multiple switch cases that share the same body can be combined by writing several
+patterns after case, with a comma between each of the patterns. If any of the
+patterns match, then the case is considered to match. The patterns can be written
+over multiple lines if the list is long. For example:
 
 let someCharacter: Character = "e"
 switch someCharacter {
 case "a", "e", "i", "o", "u":
-    print("\(someCharacter) is a vowel")
+  print("\(someCharacter) is a vowel")
 case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
-     "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
-    print("\(someCharacter) is a consonant")
+   "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
+  print("\(someCharacter) is a consonant")
 default:
-    print("\(someCharacter) is not a vowel or a consonant")
+  print("\(someCharacter) is not a vowel or a consonant")
 }
 // Prints "e is a vowel"
-The switch statement’s first case matches all five lowercase vowels in the English language. Similarly, its second case matches all lowercase English consonants. Finally, the default case matches any other character.
 
-Compound cases can also include value bindings. All of the patterns of a compound case have to include the same set of value bindings, and each binding has to get a value of the same type from all of the patterns in the compound case. This ensures that, no matter which part of the compound case matched, the code in the body of the case can always access a value for the bindings and that the value always has the same type.
+The switch statement’s first case matches all five lowercase vowels in the English
+language. Similarly, its second case matches all lowercase English consonants.
+Finally, the default case matches any other character.
+
+Compound cases can also include value bindings. All of the patterns of a compound
+case have to include the same set of value bindings, and each binding has to get
+a value of the same type from all of the patterns in the compound case.  This
+ensures that, no matter which part of the compound case matched, the code in
+the body of the case can always access a value for the bindings and that the
+value always has the same type.
 
 let stillAnotherPoint = (9, 0)
 switch stillAnotherPoint {
@@ -785,38 +729,119 @@ default:
     print("Not on an axis")
 }
 // Prints "On an axis, 9 from the origin"
-The case above has two patterns: (let distance, 0) matches points on the x-axis and (0, let distance) matches points on the y-axis. Both patterns include a binding for distance and distance is an integer in both patterns—which means that the code in the body of the case can always access a value for distance.
+The case above has two patterns: (let distance, 0) matches points on the x-axis
+and (0, let distance) matches points on the y-axis. Both patterns include a
+binding for distance and distance is an integer in both patterns—which means
+that the code in the body of the case can always access a value for distance.
 
-Control Transfer Statements
 
-Control transfer statements change the order in which your code is executed, by transferring control from one piece of code to another. Swift has five control transfer statements:
+
+
+
+
+
+
+
+
+
+
+
+let tuple = (1.0, "hello")
+print(tuple.0)
+print(tuple.1)
+
+// if case {
+// }
+
+// -----------------------------------------------------------------------------
+
+// `switch`
+
+var s = 0
+switch s {
+case 0:
+  print(0)
+default:
+  print("non-zero")
+}
+
+// -----------------------------------------------------------------------------
+
+let approximateCount = 62
+let countedThings = "moons orbiting Saturn"
+var naturalCount: String
+switch approximateCount {
+case 0:
+  naturalCount = "no"
+case 1..<5:
+  naturalCount = "a few"
+case 5..<12:
+  naturalCount = "several"
+case 12..<100:
+  naturalCount = "dozens of"
+case 100..<1000:
+  naturalCount = "hundreds of"
+default:
+  naturalCount = "many"
+}
+print("There are \(naturalCount) \(countedThings).")
+// Prints "There are dozens of moons orbiting Saturn."
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//  Control Transfer Statements
+// -----------------------------------------------------------------------------
+
+// Control transfer statements change the order in which your code is executed,
+// by transferring control from one piece of code to another.  Swift has five
+// control transfer statements:
 
 continue
 break
 fallthrough
 return
 throw
-The continue, break, and fallthrough statements are described below. The return statement is described in Functions, and the throw statement is described in Propagating Errors Using Throwing Functions.
+
+The continue, break, and fallthrough statements are described below.  The return
+statement is described in Functions, and the throw statement is described in
+Propagating Errors Using Throwing Functions.
+
+// -----------------------------------------------------------------------------
 
 Continue
 
-The continue statement tells a loop to stop what it is doing and start again at the beginning of the next iteration through the loop. It says “I am done with the current loop iteration” without leaving the loop altogether.
+The continue statement tells a loop to stop what it is doing and start again at
+the beginning of the next iteration through the loop.  It says “I am done with
+the current loop iteration” without leaving the loop altogether.
 
 The following example removes all vowels and spaces from a lowercase string to create a cryptic puzzle phrase:
 
 let puzzleInput = "great minds think alike"
 var puzzleOutput = ""
 for character in puzzleInput.characters {
-    switch character {
-    case "a", "e", "i", "o", "u", " ":
-        continue
-    default:
-        puzzleOutput.append(character)
-    }
+  switch character {
+  case "a", "e", "i", "o", "u", " ":
+    continue
+  default:
+    puzzleOutput.append(character)
+  }
 }
+
 print(puzzleOutput)
 // Prints "grtmndsthnklk"
+
 The code above calls the continue keyword whenever it matches a vowel or a space, causing the current iteration of the loop to end immediately and to jump straight to the start of the next iteration. This behavior enables the switch block to match (and ignore) only the vowel and space characters, rather than requiring the block to match every character that should get printed.
+
+// -----------------------------------------------------------------------------
 
 Break
 
@@ -840,77 +865,142 @@ The following example switches on a Character value and determines whether it re
 
 let numberSymbol: Character = "三"  // Chinese symbol for the number 3
 var possibleIntegerValue: Int?
+
 switch numberSymbol {
 case "1", "١", "一", "๑":
-    possibleIntegerValue = 1
+  possibleIntegerValue = 1
 case "2", "٢", "二", "๒":
-    possibleIntegerValue = 2
+  possibleIntegerValue = 2
 case "3", "٣", "三", "๓":
-    possibleIntegerValue = 3
+  possibleIntegerValue = 3
 case "4", "٤", "四", "๔":
-    possibleIntegerValue = 4
+  possibleIntegerValue = 4
 default:
-    break
+  break
 }
+
 if let integerValue = possibleIntegerValue {
-    print("The integer value of \(numberSymbol) is \(integerValue).")
+  print("The integer value of \(numberSymbol) is \(integerValue).")
 } else {
-    print("An integer value could not be found for \(numberSymbol).")
+  print("An integer value could not be found for \(numberSymbol).")
 }
 // Prints "The integer value of 三 is 3."
-This example checks numberSymbol to determine whether it is a Latin, Arabic, Chinese, or Thai symbol for the numbers 1 to 4. If a match is found, one of the switch statement’s cases sets an optional Int? variable called possibleIntegerValue to an appropriate integer value.
 
-After the switch statement completes its execution, the example uses optional binding to determine whether a value was found. The possibleIntegerValue variable has an implicit initial value of nil by virtue of being an optional type, and so the optional binding will succeed only if possibleIntegerValue was set to an actual value by one of the switch statement’s first four cases.
+This example checks numberSymbol to determine whether it is a Latin, Arabic,
+Chinese, or Thai symbol for the numbers 1 to 4. If a match is found, one of
+the switch statement’s cases sets an optional Int? variable called
+possibleIntegerValue to an appropriate integer value.
 
-Because it’s not practical to list every possible Character value in the example above, a default case handles any characters that are not matched. This default case does not need to perform any action, and so it is written with a single break statement as its body. As soon as the default case is matched, the break statement ends the switch statement’s execution, and code execution continues from the if let statement.
+After the switch statement completes its execution, the example uses optional
+binding to determine whether a value was found. The possibleIntegerValue
+variable has an implicit initial value of nil by virtue of being an
+optional type, and so the optional binding will succeed only if
+possibleIntegerValue was set to an actual value by one of the
+switch statement’s first four cases.
+
+Because it’s not practical to list every possible Character value in the example
+above, a default case handles any characters that are not matched.  This default
+case does not need to perform any action, and so it is written with a single
+break statement as its body. As soon as the default case is matched, the
+break statement ends the switch statement’s execution, and code
+execution continues from the if let statement.
+
+// -----------------------------------------------------------------------------
 
 Fallthrough
 
-Switch statements in Swift don’t fall through the bottom of each case and into the next one. Instead, the entire switch statement completes its execution as soon as the first matching case is completed. By contrast, C requires you to insert an explicit break statement at the end of every switch case to prevent fallthrough. Avoiding default fallthrough means that Swift switch statements are much more concise and predictable than their counterparts in C, and thus they avoid executing multiple switch cases by mistake.
+Switch statements in Swift don’t fall through the bottom of each case and into
+the next one.  Instead, the entire switch statement completes its execution as
+soon as the first matching case is completed.  By contrast, C requires you to
+insert an explicit break statement at the end of every switch case to prevent
+fallthrough.  Avoiding default fallthrough means that Swift switch statements
+are much more concise and predictable than their counterparts in C, and thus
+they avoid executing multiple switch cases by mistake.
 
-If you need C-style fallthrough behavior, you can opt in to this behavior on a case-by-case basis with the fallthrough keyword. The example below uses fallthrough to create a textual description of a number.
+If you need C-style fallthrough behavior, you can opt in to this behavior on
+a case-by-case basis with the fallthrough keyword.  The example below uses
+fallthrough to create a textual description of a number.
 
 let integerToDescribe = 5
 var description = "The number \(integerToDescribe) is"
+
 switch integerToDescribe {
 case 2, 3, 5, 7, 11, 13, 17, 19:
-    description += " a prime number, and also"
-    fallthrough
+  description += " a prime number, and also"
+  fallthrough
 default:
-    description += " an integer."
+  description += " an integer."
 }
+
 print(description)
 // Prints "The number 5 is a prime number, and also an integer."
-This example declares a new String variable called description and assigns it an initial value. The function then considers the value of integerToDescribe using a switch statement. If the value of integerToDescribe is one of the prime numbers in the list, the function appends text to the end of description, to note that the number is prime. It then uses the fallthrough keyword to “fall into” the default case as well. The default case adds some extra text to the end of the description, and the switch statement is complete.
 
-Unless the value of integerToDescribe is in the list of known prime numbers, it is not matched by the first switch case at all. Because there are no other specific cases, integerToDescribe is matched by the default case.
+This example declares a new String variable called description and assigns it an
+initial value. The function then considers the value of integerToDescribe using
+a switch statement. If the value of integerToDescribe is one of the prime numbers
+in the list, the function appends text to the end of description, to note that
+the number is prime. It then uses the fallthrough keyword to “fall into” the
+default case as well. The default case adds some extra text to the end of
+the description, and the switch statement is complete.
 
-After the switch statement has finished executing, the number’s description is printed using the print(_:separator:terminator:) function. In this example, the number 5 is correctly identified as a prime number.
+Unless the value of integerToDescribe is in the list of known prime numbers, it
+is not matched by the first switch case at all. Because there are no other
+specific cases, integerToDescribe is matched by the default case.
+
+After the switch statement has finished executing, the number’s description is
+printed using the print(_:separator:terminator:) function.  In this example,
+the number 5 is correctly identified as a prime number.
 
 NOTE
 
-The fallthrough keyword does not check the case conditions for the switch case that it causes execution to fall into. The fallthrough keyword simply causes code execution to move directly to the statements inside the next case (or default case) block, as in C’s standard switch statement behavior.
+The fallthrough keyword does not check the case conditions for the switch case
+that it causes execution to fall into. The fallthrough keyword simply causes
+code execution to move directly to the statements inside the next case (or
+  default case) block, as in C’s standard switch statement behavior.
+
+// -----------------------------------------------------------------------------
 
 Labeled Statements
 
-In Swift, you can nest loops and conditional statements inside other loops and conditional statements to create complex control flow structures. However, loops and conditional statements can both use the break statement to end their execution prematurely. Therefore, it is sometimes useful to be explicit about which loop or conditional statement you want a break statement to terminate. Similarly, if you have multiple nested loops, it can be useful to be explicit about which loop the continue statement should affect.
+In Swift, you can nest loops and conditional statements inside other loops and
+conditional statements to create complex control flow structures.  However,
+loops and conditional statements can both use the break statement to end
+their execution prematurely.  Therefore, it is sometimes useful to be
+explicit about which loop or conditional statement you want a break
+statement to terminate. Similarly, if you have multiple nested
+loops, it can be useful to be explicit about which loop the
+continue statement should affect.
 
-To achieve these aims, you can mark a loop statement or conditional statement with a statement label. With a conditional statement, you can use a statement label with the break statement to end the execution of the labeled statement. With a loop statement, you can use a statement label with the break or continue statement to end or continue the execution of the labeled statement.
+To achieve these aims, you can mark a loop statement or conditional statement
+with a statement label.  With a conditional statement, you can use a statement
+label with the break statement to end the execution of the labeled statement.
+With a loop statement, you can use a statement label with the break or continue
+statement to end or continue the execution of the labeled statement.
 
-A labeled statement is indicated by placing a label on the same line as the statement’s introducer keyword, followed by a colon. Here’s an example of this syntax for a while loop, although the principle is the same for all loops and switch statements:
+A labeled statement is indicated by placing a label on the same line as the
+statement’s introducer keyword, followed by a colon.  Here’s an example of
+this syntax for a while loop, although the principle is the same for all
+loops and switch statements:
 
 label name: while condition {
-    statements
+  statements
 }
-The following example uses the break and continue statements with a labeled while loop for an adapted version of the Snakes and Ladders game that you saw earlier in this chapter. This time around, the game has an extra rule:
 
-To win, you must land exactly on square 25.
-If a particular dice roll would take you beyond square 25, you must roll again until you roll the exact number needed to land on square 25.
+The following example uses the break and continue statements with a labeled
+while loop for an adapted version of the Snakes and Ladders game that you
+saw earlier in this chapter.  This time around, the game has an extra rule:
+
+- To win, you must land exactly on square 25.
+
+If a particular dice roll would take you beyond square 25, you must roll again
+until you roll the exact number needed to land on square 25.
 
 The game board is the same as before.
 
 image: ../Art/snakesAndLadders_2x.png
-The values of finalSquare, board, square, and diceRoll are initialized in the same way as before:
+
+The values of finalSquare, board, square, and diceRoll are initialized in the
+same way as before:
 
 let finalSquare = 25
 var board = [Int](repeating: 0, count: finalSquare + 1)
@@ -918,55 +1008,93 @@ board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
 board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
 var square = 0
 var diceRoll = 0
-This version of the game uses a while loop and a switch statement to implement the game’s logic. The while loop has a statement label called gameLoop to indicate that it is the main game loop for the Snakes and Ladders game.
 
-The while loop’s condition is while square != finalSquare, to reflect that you must land exactly on square 25.
+This version of the game uses a while loop and a switch statement to implement
+the game’s logic.  The while loop has a statement label called gameLoop to
+indicate that it is the main game loop for the Snakes and Ladders game.
+
+The while loop’s condition is while square != finalSquare, to reflect that you
+must land exactly on square 25.
 
 gameLoop: while square != finalSquare {
-    diceRoll += 1
-    if diceRoll == 7 { diceRoll = 1 }
-    switch square + diceRoll {
-    case finalSquare:
-        // diceRoll will move us to the final square, so the game is over
-        break gameLoop
-    case let newSquare where newSquare > finalSquare:
-        // diceRoll will move us beyond the final square, so roll again
-        continue gameLoop
-    default:
-        // this is a valid move, so find out its effect
-        square += diceRoll
-        square += board[square]
-    }
+  diceRoll += 1
+  if diceRoll == 7 {
+    diceRoll = 1
+  }
+  switch square + diceRoll {
+  case finalSquare:
+    // diceRoll will move us to the final square, so the game is over
+    break gameLoop
+  case let newSquare where newSquare > finalSquare:
+    // diceRoll will move us beyond the final square, so roll again
+    continue gameLoop
+  default:
+    // this is a valid move, so find out its effect
+    square += diceRoll
+    square += board[square]
+  }
 }
 print("Game over!")
-The dice is rolled at the start of each loop. Rather than moving the player immediately, the loop uses a switch statement to consider the result of the move and to determine whether the move is allowed:
 
-If the dice roll will move the player onto the final square, the game is over. The break gameLoop statement transfers control to the first line of code outside of the while loop, which ends the game.
-If the dice roll will move the player beyond the final square, the move is invalid and the player needs to roll again. The continue gameLoop statement ends the current while loop iteration and begins the next iteration of the loop.
-In all other cases, the dice roll is a valid move. The player moves forward by diceRoll squares, and the game logic checks for any snakes and ladders. The loop then ends, and control returns to the while condition to decide whether another turn is required.
-NOTE
+The dice is rolled at the start of each loop. Rather than moving the player
+immediately, the loop uses a switch statement to consider the result of the
+move and to determine whether the move is allowed:
 
-If the break statement above did not use the gameLoop label, it would break out of the switch statement, not the while statement. Using the gameLoop label makes it clear which control statement should be terminated.
+- If the dice roll will move the player onto the final square, the game is over.
+  The break gameLoop statement transfers control to the first line of code
+  outside of the while loop, which ends the game.
 
-It is not strictly necessary to use the gameLoop label when calling continue gameLoop to jump to the next iteration of the loop. There is only one loop in the game, and therefore no ambiguity as to which loop the continue statement will affect. However, there is no harm in using the gameLoop label with the continue statement. Doing so is consistent with the label’s use alongside the break statement and helps make the game’s logic clearer to read and understand.
+- If the dice roll will move the player beyond the final square, the move is
+  invalid and the player needs to roll again. The continue gameLoop statement
+  ends the current while loop iteration and begins the next iteration of the loop.
 
-Early Exit
+- In all other cases, the dice roll is a valid move.  The player moves forward
+  by diceRoll squares, and the game logic checks for any snakes and ladders.
+  The loop then ends, and control returns to the while condition to decide
+  whether another turn is required.
 
-A guard statement, like an if statement, executes statements depending on the Boolean value of an expression. You use a guard statement to require that a condition must be true in order for the code after the guard statement to be executed. Unlike an if statement, a guard statement always has an else clause—the code inside the else clause is executed if the condition is not true.
+If the break statement above did not use the gameLoop label, it would break out
+of the switch statement, not the while statement. Using the gameLoop label makes
+it clear which control statement should be terminated.
+
+It is not strictly necessary to use the gameLoop label when calling continue
+gameLoop to jump to the next iteration of the loop. There is only one loop in
+the game, and therefore no ambiguity as to which loop the continue statement
+will affect. However, there is no harm in using the gameLoop label with the
+continue statement. Doing so is consistent with the label’s use alongside the
+break statement and helps make the game’s logic clearer to read and understand.
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//  Early Exit
+// -----------------------------------------------------------------------------
+
+A guard statement, like an if statement, executes statements depending on the
+Boolean value of an expression. You use a guard statement to require that a
+condition must be true in order for the code after the guard statement to be
+executed. Unlike an if statement, a guard statement always has an else clause-
+the code inside the else clause is executed if the condition is not true.
 
 func greet(person: [String: String]) {
-    guard let name = person["name"] else {
-        return
-    }
+  guard let name = person["name"] else {
+    return
+  }
 
-    print("Hello \(name)!")
+  print("Hello \(name)!")
 
-    guard let location = person["location"] else {
-        print("I hope the weather is nice near you.")
-        return
-    }
+  guard let location = person["location"] else {
+    print("I hope the weather is nice near you.")
+    return
+  }
 
-    print("I hope the weather is nice in \(location).")
+  print("I hope the weather is nice in \(location).")
 }
 
 greet(person: ["name": "John"])
@@ -975,31 +1103,69 @@ greet(person: ["name": "John"])
 greet(person: ["name": "Jane", "location": "Cupertino"])
 // Prints "Hello Jane!"
 // Prints "I hope the weather is nice in Cupertino."
-If the guard statement’s condition is met, code execution continues after the guard statement’s closing brace. Any variables or constants that were assigned values using an optional binding as part of the condition are available for the rest of the code block that the guard statement appears in.
 
-If that condition is not met, the code inside the else branch is executed. That branch must transfer control to exit the code block in which the guard statement appears. It can do this with a control transfer statement such as return, break, continue, or throw, or it can call a function or method that doesn’t return, such as fatalError(_:file:line:).
+If the guard statement’s condition is met, code execution continues after the
+guard statement’s closing brace. Any variables or constants that were assigned
+values using an optional binding as part of the condition are available for the
+rest of the code block that the guard statement appears in.
 
-Using a guard statement for requirements improves the readability of your code, compared to doing the same check with an if statement. It lets you write the code that’s typically executed without wrapping it in an else block, and it lets you keep the code that handles a violated requirement next to the requirement.
+If that condition is not met, the code inside the else branch is executed.
+That branch must transfer control to exit the code block in which the guard
+statement appears. It can do this with a control transfer statement such as
+return, break, continue, or throw, or it can call a function or method that
+doesn’t return, such as fatalError(_:file:line:).
 
-Checking API Availability
+Using a guard statement for requirements improves the readability of your code,
+compared to doing the same check with an if statement. It lets you write the
+code that’s typically executed without wrapping it in an else block, and it
+lets you keep the code that handles a violated requirement next to the requirement.
 
-Swift has built-in support for checking API availability, which ensures that you don’t accidentally use APIs that are unavailable on a given deployment target.
 
-The compiler uses availability information in the SDK to verify that all of the APIs used in your code are available on the deployment target specified by your project. Swift reports an error at compile time if you try to use an API that isn’t available.
 
-You use an availability condition in an if or guard statement to conditionally execute a block of code, depending on whether the APIs you want to use are available at runtime. The compiler uses the information from the availability condition when it verifies that the APIs in that block of code are available.
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//  Checking API Availability
+// -----------------------------------------------------------------------------
+
+Swift has built-in support for checking API availability, which ensures that
+you don’t accidentally use APIs that are unavailable on a given deployment
+target.
+
+The compiler uses availability information in the SDK to verify that all of
+the APIs used in your code are available on the deployment target specified
+by your project. Swift reports an error at compile time if you try to use
+an API that isn’t available.
+
+You use an availability condition in an if or guard statement to conditionally
+execute a block of code, depending on whether the APIs you want to use are
+available at runtime. The compiler uses the information from the availability
+condition when it verifies that the APIs in that block of code are available.
 
 if #available(iOS 10, macOS 10.12, *) {
-    // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
+  // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
 } else {
-    // Fall back to earlier iOS and macOS APIs
+  // Fall back to earlier iOS and macOS APIs
 }
-The availability condition above specifies that on iOS, the body of the if executes only on iOS 10 and later; on macOS, only on macOS 10.12 and later. The last argument, *, is required and specifies that on any other platform, the body of the if executes on the minimum deployment target specified by your target.
 
-In its general form, the availability condition takes a list of platform names and versions. You use platform names such as iOS, macOS, watchOS, and tvOS—for the full list, see Declaration Attributes. In addition to specifying major version numbers like iOS 8, you can specify minor versions numbers like iOS 8.3 and macOS 10.10.3.
+The availability condition above specifies that on iOS, the body of the if
+executes only on iOS 10 and later; on macOS, only on macOS 10.12 and later.
+The last argument, *, is required and specifies that on any other platform,
+the body of the if executes on the minimum deployment target specified by
+your target.
+
+In its general form, the availability condition takes a list of platform
+names and versions. You use platform names such as iOS, macOS, watchOS, and
+tvOS—for the full list, see Declaration Attributes. In addition to specifying
+major version numbers like iOS 8, you can specify minor versions numbers like
+iOS 8.3 and macOS 10.10.3.
 
 if #available(platform name version, ..., *) {
-    statements to execute if the APIs are available
+  statements to execute if the APIs are available
 } else {
-    fallback statements to execute if the APIs are unavailable
+  fallback statements to execute if the APIs are unavailable
 }

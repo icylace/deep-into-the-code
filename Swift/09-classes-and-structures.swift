@@ -446,3 +446,18 @@ struct B {}
 class AA {
  var bb = self
 }
+
+
+
+
+
+
+
+class Baz {
+  deinit {
+    print("Deinitializing instance of `Baz`...")
+  }
+}
+
+var baz = Baz()
+var baz = Baz.self

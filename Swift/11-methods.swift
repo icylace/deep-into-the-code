@@ -59,7 +59,7 @@ assert(c.count == 0)
 // The main exception to this rule occurs when a parameter name for an instance
 // method has the same name as a property of that instance.  In this situation,
 // the parameter name takes precedence, and it becomes necessary to refer to
-// the property in a more qualified way.  You use the self property to
+// the property in a more qualified way.  You use the `self` property to
 // distinguish between the parameter name and the property name.
 
 struct Point {
@@ -86,10 +86,10 @@ if somePoint.isToTheRightOf(x: 1.0) {
 
 // However, if you need to modify the properties of your structure or
 // enumeration within a particular method, you can opt in to mutating
-// behavior for that method. The method can then mutate (that is,
+// behavior for that method.  The method can then mutate (that is,
 // change) its properties from within the method, and any changes
 // that it makes are written back to the original structure when
-// the method ends. The method can also assign a completely new
+// the method ends.  The method can also assign a completely new
 // instance to its implicit self property, and this new
 // instance will replace the existing one when the
 // method ends.
@@ -110,19 +110,14 @@ somePoint.moveBy(x: 2.0, y: 3.0)
 assert(somePoint.x == 3.0)
 assert(somePoint.y == 4.0)
 
-// The Point structure above defines a mutating moveBy(x:y:) method, which
-// moves a Point instance by a certain amount. Instead of returning a new
-// point, this method actually modifies the point on which it is called.
-// The mutating keyword is added to its definition to enable it to
-// modify its properties.
-
 // Note that you cannot call a mutating method on a constant of structure type,
 // because its properties cannot be changed, even if they are variable
 // properties.
 
 let fixedPoint = Point(x: 3.0, y: 3.0)
+// This will report an error:
 fixedPoint.moveBy(x: 2.0, y: 3.0)
-// this will report an error
+// fixedPoint.moveBy(x: 2.0, y: 3.0)
 
 // -----------------------------------------------------------------------------
 
@@ -165,10 +160,6 @@ ovenLight.next()
 assert(ovenLight == .high)
 ovenLight.next()
 assert(ovenLight == .off)
-
-// This example defines an enumeration for a three-state switch.  The switch
-// cycles between three different power states (off, low and high) every
-// time its next() method is called.
 
 
 // -----------------------------------------------------------------------------

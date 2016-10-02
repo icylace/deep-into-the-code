@@ -3,10 +3,53 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html
 // =============================================================================
 
+// TODO
+
+// -----------------------------------------------------------------------------
+//  Access control -
+// -----------------------------------------------------------------------------
+
+// Access control restricts access to parts of your code from code in other
+// source files and modules.  This feature enables you to hide the
+// implementation details of your code, and to specify a preferred
+// interface through which that code can be accessed and used.
+
+// You can assign specific access levels to individual types (classes,
+// structures, and enumerations), as well as to properties, methods,
+// initializers, and subscripts belonging to those types.  Protocols
+// can be restricted to a certain context, as can global constants,
+// variables, and functions.
+
+// In addition to offering various levels of access control, Swift reduces the
+// need to specify explicit access control levels by providing default access
+// levels for typical scenarios.
+
+// The various aspects of your code that can have access control applied to them
+// (properties, types, functions, and so on) are referred to as "entities" in
+// the sections below, for brevity.
+
 
 // -----------------------------------------------------------------------------
 //  Modules and Source Files
 // -----------------------------------------------------------------------------
+
+// The access control model is based on the concept of modules and source files.
+
+// A module is a single unit of code distribution—a framework or application
+// that is built and shipped as a single unit and that can be imported by
+// another module with Swift’s import keyword.
+
+// Each build target (such as an app bundle or framework) in Xcode is treated as
+// a separate module in Swift.  If you group together aspects of your app's code
+// as a stand-alone framework—perhaps to encapsulate and reuse that code across
+// multiple applications-then everything you define within that framework will
+// be part of a separate module when it is imported and used within an app, or
+// when it is used within another framework.
+
+// A source file is a single Swift source code file within a module (in effect,
+// a single file within an app or framework). Although it is common to define
+// individual types in separate source files, a single source file can
+// contain definitions for multiple types, functions, and so on.
 
 
 // -----------------------------------------------------------------------------
@@ -87,25 +130,9 @@
 
 
 
-Access control restricts access to parts of your code from code in other source files and modules. This feature enables you to hide the implementation details of your code, and to specify a preferred interface through which that code can be accessed and used.
 
-You can assign specific access levels to individual types (classes, structures, and enumerations), as well as to properties, methods, initializers, and subscripts belonging to those types. Protocols can be restricted to a certain context, as can global constants, variables, and functions.
 
-In addition to offering various levels of access control, Swift reduces the need to specify explicit access control levels by providing default access levels for typical scenarios. Indeed, if you are writing a single-target app, you may not need to specify explicit access control levels at all.
 
-NOTE
-
-The various aspects of your code that can have access control applied to them (properties, types, functions, and so on) are referred to as “entities” in the sections below, for brevity.
-
-Modules and Source Files
-
-Swift’s access control model is based on the concept of modules and source files.
-
-A module is a single unit of code distribution—a framework or application that is built and shipped as a single unit and that can be imported by another module with Swift’s import keyword.
-
-Each build target (such as an app bundle or framework) in Xcode is treated as a separate module in Swift. If you group together aspects of your app’s code as a stand-alone framework—perhaps to encapsulate and reuse that code across multiple applications—then everything you define within that framework will be part of a separate module when it is imported and used within an app, or when it is used within another framework.
-
-A source file is a single Swift source code file within a module (in effect, a single file within an app or framework). Although it is common to define individual types in separate source files, a single source file can contain definitions for multiple types, functions, and so on.
 
 Access Levels
 

@@ -18,9 +18,6 @@
 // can be confident about the type of values you will retrieve from
 // a collection.
 
-// Swift's array, set, and dictionary types are implemented as generic collections.
-// For more on generic types and collections, see "Generics".
-
 
 // -----------------------------------------------------------------------------
 //  Mutability of Collections
@@ -98,10 +95,9 @@ assert(a5 == a6)
 
 [value 1, value 2, value 3]
 
-The example below creates an array called shoppingList to store String values:
-
 var shoppingList: [String] = ["Eggs", "Milk"]
 // shoppingList has been initialized with two initial items
+
 The shoppingList variable is declared as “an array of string values”, written as [String]. Because this particular array has specified a value type of String, it is allowed to store String values only. Here, the shoppingList array is initialized with two String values ("Eggs" and "Milk"), written within an array literal.
 
 NOTE
@@ -113,6 +109,7 @@ In this case, the array literal contains two String values and nothing else. Thi
 Thanks to Swift’s type inference, you don’t have to write the type of the array if you’re initializing it with an array literal containing values of the same type. The initialization of shoppingList could have been written in a shorter form instead:
 
 var shoppingList = ["Eggs", "Milk"]
+
 Because all values in the array literal are of the same type, Swift can infer that [String] is the correct type to use for the shoppingList variable.
 
 Accessing and Modifying an Array
@@ -131,6 +128,7 @@ if shoppingList.isEmpty {
    print("The shopping list is not empty.")
 }
 // Prints "The shopping list is not empty."
+
 You can add a new item to the end of an array by calling the array’s append(_:) method:
 
 shoppingList.append("Flour")
@@ -145,6 +143,7 @@ Retrieve a value from the array by using subscript syntax, passing the index of 
 
 var firstItem = shoppingList[0]
 // firstItem is equal to "Eggs"
+
 NOTE
 
 The first item in the array has an index of 0, not 1. Arrays in Swift are always zero-indexed.

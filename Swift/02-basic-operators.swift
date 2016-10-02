@@ -4,7 +4,7 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Operator - A symbol or phrase that checks, changes, or combines values.
+//  Operator - A symbol or phrase that processes one or more values.
 //  Operand - A value targeted by an operator.
 //  Unary operator - An operator that works on a single operand.
 //  Unary prefix operator - A unary operator that appears immediately
@@ -18,8 +18,8 @@
 
 
 // -----------------------------------------------------------------------------
-//  Assignment operator (`=`) - The binary operator that either initializes a
-//                              constant or variable, or updates a variable.
+//  Assignment operator (`=`) - The operator that either initializes a constant
+//                              or variable, or updates a variable.
 // -----------------------------------------------------------------------------
 
 let a = 10
@@ -45,25 +45,28 @@ assert(e == 3)
 
 
 // -----------------------------------------------------------------------------
-//  Arithmetic Operators
+//  Arithmetic operator - A operator that manipulates numbers.
 // -----------------------------------------------------------------------------
 
 // The four standard arithmetic operators are available for all number types.
 
-assert(1 + 2 == 3)
-assert(5 - 3 == 2)
-assert(2 * 3 == 6)
-assert(10.0 / 2.5 == 4.0)
+assert(1 + 2 == 3)              // Addition.
+assert(5 - 3 == 2)              // Subtraction.
+assert(2 * 3 == 6)              // Multiplication.
+assert(10.0 / 2.5 == 4.0)       // Division.
 
-// These operators do not allow values to overflow by default.  You can opt in
-// to value overflow behavior by using overflow operators.  They are explained
+// These operators do not allow values to overflow.  Overflow behavior is
+// trapped and reported as an error.  However, you can opt in to value
+// overflow behavior by using overflow operators.  They are explained
 // in "Advanced Operators".
 
-// -----------------------------------------------------------------------------
 
-// Remainder operator (`%`) - The binary operator that figures how many times
-//                            one number will fit inside another and returns
-//                            the value left over (known as the remainder).
+// -----------------------------------------------------------------------------
+//  Remainder operator (`%`) - The operator that figures how many times a
+//                             number will fit inside another number and
+//                             then it returns the value left over
+//                             (known as the remainder).
+// -----------------------------------------------------------------------------
 
 // The remainder operator is also known as a modulo operator in other languages.
 // However, its behavior in Swift for negative numbers means that it is,
@@ -77,10 +80,10 @@ assert(-9 % 4 == -1)
 assert(9 % 4 == 1)
 assert(9 % -4 == 1)
 
-// -----------------------------------------------------------------------------
 
-// Unary minus operator (`-`) - The unary operator that toggles
-//                              the sign of a number.
+// -----------------------------------------------------------------------------
+//  Unary minus operator (`-`) - The operator that toggles the sign of a number.
+// -----------------------------------------------------------------------------
 
 let three = 3
 let minusThree = -three
@@ -88,10 +91,10 @@ assert(minusThree == -3)
 let plusThree = -minusThree
 assert(plusThree == 3)
 
-// -----------------------------------------------------------------------------
 
-// Unary plus operator (`+`) - The unary operator that returns its operand
-//                             without any change.
+// -----------------------------------------------------------------------------
+//  Unary plus operator (`+`) - The operator that returns its operand as is.
+// -----------------------------------------------------------------------------
 
 let minusSix = -6
 let alsoMinusSix = +minusSix
@@ -99,7 +102,7 @@ assert(alsoMinusSix == -6)
 
 
 // -----------------------------------------------------------------------------
-//  Compound assignment operator - A binary operator that combines assignment
+//  Compound assignment operator - An operator combining assignment
 //                                 with another operation.
 // -----------------------------------------------------------------------------
 
@@ -109,8 +112,8 @@ a += 2
 assert(a == 3)
 
 // For a complete list of the compound assignment operators provided by the
-// Swift Standard Library, see the [Swift Standard Library Operators](https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators)
-// reference.
+// Swift Standard Library, see:
+// [Swift Standard Library Operators](https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators)
 
 
 // -----------------------------------------------------------------------------
@@ -118,7 +121,7 @@ assert(a == 3)
 //                        relationship between its operands.
 // -----------------------------------------------------------------------------
 
-// Each of the comparison operators returns a boolean value to indicate whether
+// Each of the comparison operators returns a Boolean value to indicate whether
 // or not the statement is true.
 
 assert(1 == 1)        // Equal to.
@@ -129,7 +132,16 @@ assert(1 >= 1)        // Greater than or equal to.
 assert(1 <= 2)        // Less than or equal to.
 
 // This one is false and is commented out so it doesn't trigger the assertion.
-// assert(2 <= 1)
+/*
+assert(2 <= 1)
+*/
+
+
+
+
+
+
+
 
 
 
@@ -166,9 +178,9 @@ assert(1 <= 2)        // Less than or equal to.
 
 
 // -----------------------------------------------------------------------------
-//  Ternary conditional operator (`?:`) - The ternary operator that checks a
-//                                        condition and evaluates one of two
-//                                        expressions based on its result.
+//  Ternary conditional operator (`?:`) - The operator that checks a condition
+//                                        and evaluates one of two expressions
+//                                        based on its result.
 // -----------------------------------------------------------------------------
 
 let contentHeight = 40
@@ -178,8 +190,8 @@ assert(rowHeight == 90)
 
 
 // -----------------------------------------------------------------------------
-//  Nil-coalescing operator (`??`) - The binary operator that will return either
-//                                   the value of an optional if it isn't `nil`
+//  Nil-coalescing operator (`??`) - The operator that will return either the
+//                                   value of an optional if it isn't `nil`
 //                                   or a given default value.
 // -----------------------------------------------------------------------------
 
@@ -193,11 +205,14 @@ a != nil ? a! : b
 
 
 The code above uses the ternary conditional operator and forced unwrapping (a!)
-to access the value wrapped inside a when a is not nil, and to return b otherwise. The nil-coalescing operator provides a more elegant way to encapsulate this conditional checking and unwrapping in a concise and readable form.
+to access the value wrapped inside a when a is not nil, and to return b
+otherwise. The nil-coalescing operator provides a more elegant way to
+encapsulate this conditional checking and unwrapping in a concise and
+readable form.
 
 NOTE
 
-If the value of a is non-nil, the value of b is not evaluated. This is known as
+If the value of a is non-nil, the value of b is not evaluated. This is an example of
 short-circuit evaluation.
 
 let defaultColorName = "red"
@@ -218,20 +233,24 @@ colorNameToUse = userDefinedColorName ?? defaultColorName
 //  Range operator - An operator that expresses a range of values.
 // -----------------------------------------------------------------------------
 
-// Closed range operator (`...`) - The binary operator that expresses a range of
-//                                 values including the value that defines the
-//                                 range's upper-limit.
+
+// -----------------------------------------------------------------------------
+//  Closed range operator (`...`) - The operator that expresses a range of
+//                                  values including the one that defines
+//                                  the range's upper-limit.
+// -----------------------------------------------------------------------------
 
 let r1 = -11...12
 assert(r1 == -11..<13)
 
 // A closed range's lower-limit must not be greater than its upper-limit.
 
-// -----------------------------------------------------------------------------
 
-// Half-open range operator (`..<`) - The binary operator that expresses a range
-//                                    of values not including the value that
-//                                    defines the range's upper-limit.
+// -----------------------------------------------------------------------------
+//  Half-open range operator (`..<`) - The operator that expresses a range of
+//                                     values not including the one that
+//                                     defines the range's upper-limit.
+// -----------------------------------------------------------------------------
 
 let r2 = -11..<13
 assert(r1 == -11...12)
@@ -245,8 +264,10 @@ assert(r1 == -11...12)
 //                     Boolean logic values true and false.
 // -----------------------------------------------------------------------------
 
-// Logical NOT operator (`!`) - The unary prefix operator that turns a true
-//                              value into a false one and vice versa.
+// -----------------------------------------------------------------------------
+//  Logical NOT operator (`!`) - The operator that turns a true value into
+//                               a false one and vice versa.
+// -----------------------------------------------------------------------------
 
 let allowedEntry = false
 assert(!allowedEntry == true)
@@ -255,10 +276,10 @@ assert(!allowedEntry == true)
 // "not allowed entry".
 
 // -----------------------------------------------------------------------------
-
-// Logical NOT operator (`&&`) - The binary operator that evaluates to true
-//                               if both its operands evaluate to true,
-//                               otherwise it evaluates to false.
+//  Logical NOT operator (`&&`) - The operator that evaluates to true if both
+//                                its operands evaluate to true, otherwise it
+//                                evaluates to false.
+// -----------------------------------------------------------------------------
 
 let enteredDoorCode = true
 let passedRetinaScan = false
@@ -269,10 +290,10 @@ assert(enteredDoorCode && passedRetinaScan == false)
 // as short-circuit evaluation.
 
 // -----------------------------------------------------------------------------
-
-// Logical OR operator (`||`) - The binary operator that evaluates to true
-//                              if either its operands evaluate to true,
-//                              otherwise it evaluates to false.
+//  Logical OR operator (`||`) - The operator that evaluates to true if either
+//                               its operands evaluate to true, otherwise it
+//                               evaluates to false.
+// -----------------------------------------------------------------------------
 
 // If the first operand is true the second won't be evaluated because it's
 // unnecessary since the overall expression will be true.  This is also an
@@ -307,17 +328,19 @@ compound expressions with multiple logical operators evaluate the leftmost subex
 
 
 
+// -----------------------------------------------------------------------------
 
 Explicit Parentheses
 
 It is sometimes useful to include parentheses when they are not strictly needed, to make the intention of a complex expression easier to read. In the door access example above, it is useful to add parentheses around the first part of the compound expression to make its intent explicit:
 
 if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
-    print("Welcome!")
+  print("Welcome!")
 } else {
-    print("ACCESS DENIED")
+  print("ACCESS DENIED")
 }
 // Prints "Welcome!"
+
 
 // The parentheses make it clear that the first two values are considered as
 // part of a separate possible state in the overall logic. The output of the

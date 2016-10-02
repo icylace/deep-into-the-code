@@ -5,7 +5,7 @@
 
 // -----------------------------------------------------------------------------
 //  Error handling - The process of responding to and recovering from
-//                   error conditions in your program.
+//                   error conditions.
 // -----------------------------------------------------------------------------
 
 // Some operations aren't guaranteed to always complete execution or produce a
@@ -16,9 +16,8 @@
 // As an example, consider the task of reading and processing data from a file
 // on disk.  There are a number of ways this task can fail, including the file
 // not existing at the specified path, the file not having read permissions,
-// the file not being encoded in a compatible format, etc.  Distinguishing
-// among these different situations allows a program to resolve some
-// errors and to communicate any errors it can't resolve.
+// etc.  Distinguishing among these different situations allows a program
+// to resolve some errors and to communicate any errors it can't resolve.
 
 
 // -----------------------------------------------------------------------------
@@ -26,26 +25,20 @@
 // -----------------------------------------------------------------------------
 
 // Errors are represented by values of types that conform to the `Error`
-// protocol.  This empty protocol indicates that a type can be used for
-// error handling.
+// protocol.
 
 // Enumerations are particularly well suited to modeling a group of related
 // error conditions, with associated values allowing for additional
 // information about the nature of an error to be communicated.
 
-// Here's how you might represent the error conditions of
-// operating a vending machine inside a game:
-
 enum VendingMachineError: Error {
-    case invalidSelection
-    case insufficientFunds(coinsNeeded: Int)
-    case outOfStock
+  case invalidSelection
+  case insufficientFunds(coinsNeeded: Int)
+  case outOfStock
 }
 
 // Throwing an error lets you indicate that something unexpected happened and
-// the normal flow of execution can't continue.  You use a `throw` statement
-// to throw an error. For example, the following code throws an error to
-// indicate that five additional coins are needed by the vending machine:
+// the normal flow of execution can't continue.
 
 throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
 
@@ -398,12 +391,12 @@ func makeASandwich() throws {
 }
 
 do {
-    try makeASandwich()
-    eatASandwich()
+  try makeASandwich()
+  eatASandwich()
 } catch SandwichError.outOfCleanDishes {
-    washDishes()
+  washDishes()
 } catch SandwichError.missingIngredients(let ingredients) {
-    buyGroceries(ingredients)
+  buyGroceries(ingredients)
 }
 
 // In this example, the makeASandwich() function will throw an error if no clean dishes are available or if any ingredients are missing. Because makeASandwich() can throw an error, the function call is wrapped in a try expression. By wrapping the function call in a do statement, any errors that are thrown will be propagated to the provided catch clauses.

@@ -3,156 +3,57 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html
 // =============================================================================
 
-
 // -----------------------------------------------------------------------------
-//  String Literals
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Initializing an Empty String
+//  Character - A symbol representing a grapheme or control code.
+//  String - A series of characters.
 // -----------------------------------------------------------------------------
 
+// TODO
+
+// The contents of a string can be accessed in various ways, including as a
+// collection of `Character` values.
+
+// The `String` and `Character` types provide a fast, Unicode-compliant way
+// to work with text in your code.
+
+// Every string is composed of encoding-independent Unicode characters
+// and provides support for accessing those characters in various
+// Unicode representations.
+
+// Swift's `String` type is bridged with Foundation's `NSString` class.
+// Foundation also extends `String` to expose methods defined by
+// `NSString`.  This means if you import Foundation you can
+// access those `NSString` methods on `String`
+// without casting.
+
+// -----------------------------------------------------------------------------
+//  String literal - A literal value that represents a predefined string.
+// -----------------------------------------------------------------------------
+
+let someString = "some string literal value"
+// `someString` is inferred to be of type `String`.
+
+// -----------------------------------------------------------------------------
+
+// An empty string created with a string literal.
+let empty1 = ""
+
+// An empty string created with a `String` initializer.
+let empty2 = String()
+
+assert(empty1 == empty2)
+
+// Find out whether a string is empty by checking its `isEmpty` property.
+
+assert(empty1.isEmpty == true)
 
 // -----------------------------------------------------------------------------
 //  String Mutability
 // -----------------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------------
-//  Strings Are Value Types
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Working with Characters
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Concatenating Strings and Characters
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  String Interpolation
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Unicode
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Counting Characters
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Accessing and Modifying a String
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Comparing Strings
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-//  Unicode Representations of Strings
-// -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-// This is a string which is basically just text.
-"Hello world!"
-
-
-
-// http://stackoverflow.com/a/34983398/1935675
-print(UnicodeScalar("A").value)
-
-
-
-// ----
-
-// https://www.drivenbycode.com/the-missing-apply-function-in-swift/
-func repeatIt(_ str: String, _ n: Int) -> String {
-  return [String](repeating: str, count: n).joined(separator: "")
-}
-
-print(repeatIt("ha", 3)) // -> "hahaha"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-A string is a series of characters, such as "hello, world" or "albatross". Swift strings are represented by the String type. The contents of a String can be accessed in various ways, including as a collection of Character values.
-
-Swift’s String and Character types provide a fast, Unicode-compliant way to work with text in your code. The syntax for string creation and manipulation is lightweight and readable, with a string literal syntax that is similar to C. String concatenation is as simple as combining two strings with the + operator, and string mutability is managed by choosing between a constant or a variable, just like any other value in Swift. You can also use strings to insert constants, variables, literals, and expressions into longer strings, in a process known as string interpolation. This makes it easy to create custom string values for display, storage, and printing.
-
-Despite this simplicity of syntax, Swift’s String type is a fast, modern string implementation. Every string is composed of encoding-independent Unicode characters, and provides support for accessing those characters in various Unicode representations.
-
-NOTE
-
-Swift’s String type is bridged with Foundation’s NSString class. Foundation also extends String to expose methods defined by NSString. This means, if you import Foundation, you can access those NSString methods on String without casting.
-
-For more information about using String with Foundation and Cocoa, see Working with Cocoa Data Types in Using Swift with Cocoa and Objective-C (Swift 3).
-
-String Literals
-
-You can include predefined String values within your code as string literals. A string literal is a fixed sequence of textual characters surrounded by a pair of double quotes ("").
-
-Use a string literal as an initial value for a constant or variable:
-
-let someString = "Some string literal value"
-Note that Swift infers a type of String for the someString constant, because it is initialized with a string literal value.
-
-NOTE
-
-For information about using special characters in string literals, see Special Characters in String Literals.
-
-Initializing an Empty String
-
-To create an empty String value as the starting point for building a longer string, either assign an empty string literal to a variable, or initialize a new String instance with initializer syntax:
-
-var emptyString = ""               // empty string literal
-var anotherEmptyString = String()  // initializer syntax
-// these two strings are both empty, and are equivalent to each other
-Find out whether a String value is empty by checking its Boolean isEmpty property:
-
-if emptyString.isEmpty {
-    print("Nothing to see here")
-}
-// Prints "Nothing to see here"
-String Mutability
-
-You indicate whether a particular String can be modified (or mutated) by assigning it to a variable (in which case it can be modified), or to a constant (in which case it cannot be modified):
+// You indicate whether a particular String can be modified (or mutated) by
+// assigning it to a variable (in which case it can be modified), or to a
+// constant (in which case it cannot be modified):
 
 var variableString = "Horse"
 variableString += " and carriage"
@@ -161,70 +62,99 @@ variableString += " and carriage"
 let constantString = "Highlander"
 constantString += " and another Highlander"
 // this reports a compile-time error - a constant string cannot be modified
-NOTE
 
-This approach is different from string mutation in Objective-C and Cocoa, where you choose between two classes (NSString and NSMutableString) to indicate whether a string can be mutated.
+// -----------------------------------------------------------------------------
+//  Strings Are Value Types
+// -----------------------------------------------------------------------------
 
-Strings Are Value Types
+Swift’s String type is a value type. If you create a new String value, that
+String value is copied when it is passed to a function or method, or when it
+is assigned to a constant or variable. In each case, a new copy of the existing
+String value is created, and the new copy is passed or assigned, not the original
+version. Value types are described in Structures and Enumerations Are Value Types.
 
-Swift’s String type is a value type. If you create a new String value, that String value is copied when it is passed to a function or method, or when it is assigned to a constant or variable. In each case, a new copy of the existing String value is created, and the new copy is passed or assigned, not the original version. Value types are described in Structures and Enumerations Are Value Types.
+Swift’s copy-by-default String behavior ensures that when a function or method
+passes you a String value, it is clear that you own that exact String value,
+regardless of where it came from. You can be confident that the string you
+are passed will not be modified unless you modify it yourself.
 
-Swift’s copy-by-default String behavior ensures that when a function or method passes you a String value, it is clear that you own that exact String value, regardless of where it came from. You can be confident that the string you are passed will not be modified unless you modify it yourself.
+Behind the scenes, Swift’s compiler optimizes string usage so that actual copying
+takes place only when absolutely necessary. This means you always get great
+performance when working with strings as value types.
 
-Behind the scenes, Swift’s compiler optimizes string usage so that actual copying takes place only when absolutely necessary. This means you always get great performance when working with strings as value types.
+// -----------------------------------------------------------------------------
+//  Working with Characters
+// -----------------------------------------------------------------------------
 
-Working with Characters
-
-You can access the individual Character values for a String by iterating over its characters property with a for-in loop:
+// You can access a string's individual `Character` values by iterating
+// over its `characters` property.
 
 for character in "Dog!🐶".characters {
-    print(character)
+  print(character)
 }
+// Output:
 // D
 // o
 // g
 // !
 // 🐶
+
 The for-in loop is described in For-In Loops.
 
-Alternatively, you can create a stand-alone Character constant or variable from a single-character string literal by providing a Character type annotation:
+Alternatively, you can create a stand-alone Character constant or variable from
+a single-character string literal by providing a Character type annotation:
 
 let exclamationMark: Character = "!"
-String values can be constructed by passing an array of Character values as an argument to its initializer:
+
+// `String` values can be constructed by passing an array of `Character` values
+// as an argument to the `String` initializer.
 
 let catCharacters: [Character] = ["C", "a", "t", "!", "🐱"]
 let catString = String(catCharacters)
-print(catString)
-// Prints "Cat!🐱"
-Concatenating Strings and Characters
+assert(catString == "Cat!🐱")
 
-String values can be added together (or concatenated) with the addition operator (+) to create a new String value:
+// -----------------------------------------------------------------------------
+//  Concatenation - The act of adding strings together.
+// -----------------------------------------------------------------------------
+
+// Strings can be concatenated with the addition operator (`+`).
 
 let string1 = "hello"
 let string2 = " there"
 var welcome = string1 + string2
-// welcome now equals "hello there"
-You can also append a String value to an existing String variable with the addition assignment operator (+=):
+assert(welcome == "hello there")
+
+// Strings can be concatenated with the addition assignment operator (`+=`).
 
 var instruction = "look over"
 instruction += string2
-// instruction now equals "look over there"
-You can append a Character value to a String variable with the String type’s append() method:
+assert(instruction == "look over there")
+
+// You can append a `Character` value to a `String` variable with the `String`
+// type's append() method.
 
 let exclamationMark: Character = "!"
 welcome.append(exclamationMark)
-// welcome now equals "hello there!"
-NOTE
+assert(welcome == "hello there!")
 
-You can’t append a String or Character to an existing Character variable, because a Character value must contain a single character only.
+// You can't append a `String` or `Character` to an existing `Character`
+// variable, because a `Character` value must contain a single
+// character only.
 
-String Interpolation
+// -----------------------------------------------------------------------------
+//  String interpolation - A way of constructing a new `String` value
 
-String interpolation is a way to construct a new String value from a mix of constants, variables, literals, and expressions by including their values inside a string literal. Each item that you insert into the string literal is wrapped in a pair of parentheses, prefixed by a backslash:
+// -----------------------------------------------------------------------------
+
+String interpolation is a way to construct a new String value from a mix of
+constants, variables, literals, and expressions by including their values
+inside a string literal.  Each item that you insert into the string literal
+is wrapped in a pair of parentheses, prefixed by a backslash:
 
 let multiplier = 3
 let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 // message is "3 times 2.5 is 7.5"
+
 In the example above, the value of multiplier is inserted into a string literal as \(multiplier). This placeholder is replaced with the actual value of multiplier when the string interpolation is evaluated to create an actual string.
 
 The value of multiplier is also part of a larger expression later in the string. This expression calculates the value of Double(multiplier) * 2.5 and inserts the result (7.5) into the string. In this case, the expression is written as \(Double(multiplier) * 2.5) when it is included inside the string literal.
@@ -233,7 +163,9 @@ NOTE
 
 The expressions you write inside parentheses within an interpolated string cannot contain an unescaped backslash (\), a carriage return, or a line feed. However, they can contain other string literals.
 
-Unicode
+// -----------------------------------------------------------------------------
+//  Unicode
+// -----------------------------------------------------------------------------
 
 Unicode is an international standard for encoding, representing, and processing text in different writing systems. It enables you to represent almost any character from any language in a standardized form, and to read and write those characters to and from an external source such as a text file or web page. Swift’s String and Character types are fully Unicode-compliant, as described in this section.
 
@@ -284,7 +216,10 @@ Unicode scalars for regional indicator symbols can be combined in pairs to make 
 
 let regionalIndicatorForUS: Character = "\u{1F1FA}\u{1F1F8}"
 // regionalIndicatorForUS is 🇺🇸
-Counting Characters
+
+// -----------------------------------------------------------------------------
+//  Counting Characters
+// -----------------------------------------------------------------------------
 
 To retrieve a count of the Character values in a string, use the count property of the string’s characters property:
 
@@ -309,7 +244,9 @@ Extended grapheme clusters can be composed of one or more Unicode scalars. This 
 
 The count of the characters returned by the characters property is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
 
-Accessing and Modifying a String
+// -----------------------------------------------------------------------------
+//  Accessing and Modifying a String
+// -----------------------------------------------------------------------------
 
 You access and modify a string through its methods and properties, or by using subscript syntax.
 
@@ -371,7 +308,9 @@ NOTE
 
 You can use the the insert(_:at:), insert(contentsOf:at:), remove(at:), and removeSubrange(_:) methods on any type that conforms to the RangeReplaceableCollection protocol. This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.
 
-Comparing Strings
+// -----------------------------------------------------------------------------
+//  Comparing Strings
+// -----------------------------------------------------------------------------
 
 Swift provides three ways to compare textual values: string and character equality, prefix equality, and suffix equality.
 
@@ -459,6 +398,10 @@ NOTE
 
 The hasPrefix(_:) and hasSuffix(_:) methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string, as described in String and Character Equality.
 
+// -----------------------------------------------------------------------------
+//  Unicode Representations of Strings
+// -----------------------------------------------------------------------------
+
 Unicode Representations of Strings
 
 When a Unicode string is written to a text file or some other storage, the Unicode scalars in that string are encoded in one of several Unicode-defined encoding forms. Each form encodes the string in small chunks known as code units. These include the UTF-8 encoding form (which encodes a string as 8-bit code units), the UTF-16 encoding form (which encodes a string as 16-bit code units), and the UTF-32 encoding form (which encodes a string as 32-bit code units).
@@ -529,3 +472,54 @@ for scalar in dogString.unicodeScalars {
 // g
 // ‼
 // 🐶
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This is a string which is basically just text.
+"Hello world!"
+
+
+
+// http://stackoverflow.com/a/34983398/1935675
+print(UnicodeScalar("A").value)
+
+
+
+// ----
+
+// https://www.drivenbycode.com/the-missing-apply-function-in-swift/
+func repeatIt(_ str: String, _ n: Int) -> String {
+  return [String](repeating: str, count: n).joined(separator: "")
+}
+
+print(repeatIt("ha", 3)) // -> "hahaha"

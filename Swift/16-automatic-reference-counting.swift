@@ -13,7 +13,7 @@
 
 // TODO
 
-// However, in a few cases ARC requires more information about the relationships
+// In a few cases ARC requires more information about the relationships
 // between parts of your code in order to manage memory for you.
 
 // Reference counting only applies to instances of classes.  Structures and

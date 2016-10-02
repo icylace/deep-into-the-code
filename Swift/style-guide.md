@@ -1,3 +1,33 @@
+// If a constant or variable needs to work with the absence of a value under
+// certain conditions, always declare it as an optional value of the
+// appropriate type.
+
+// See also:
+// - https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-NoLink_36
+
+
+
+
+
+
+
+
+
+
+
+
+
+Leave out the type where possible when assigning enumeration values.
+reason: readability
+
+
+
+
+
+
+
+
+
 Use shorthand array notation instead of full array notation.
 
 See also:
