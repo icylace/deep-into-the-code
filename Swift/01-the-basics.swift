@@ -36,6 +36,11 @@ to do that. */
 
       /* Block comments don't need to start at the beginning of the line. */
 
+// -----------------------------------------------------------------------------
+//  Statement - The smallest standalone element of a language that
+//              expresses some task to execute.
+// -----------------------------------------------------------------------------
+
 assert(true)        // Single-line comments can be placed after statements.
 
 assert(true)        /* Block comments can be placed after statements. */
@@ -585,6 +590,7 @@ var x: String?
 
 // -----------------------------------------------------------------------------
 //  Forced unwrapping - An attempt at accessing an optional's underlying value.
+//  Forced unwrap operator (`!`) - The operator that force-unwraps an optional.
 // -----------------------------------------------------------------------------
 
 let possibleString: String? = "An optional string."

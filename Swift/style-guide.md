@@ -1,3 +1,20 @@
+Typically, you use the if statement to evaluate simple
+conditions with only a few possible outcomes.
+The switch statement is better
+suited to more complex conditions with multiple possible permutations and is
+useful in situations where pattern matching can help select an appropriate
+code branch to execute.
+
+See also:
+- https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID127
+
+
+
+
+
+
+
+
 // If a constant or variable needs to work with the absence of a value under
 // certain conditions, always declare it as an optional value of the
 // appropriate type.

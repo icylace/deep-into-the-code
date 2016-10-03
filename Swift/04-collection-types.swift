@@ -3,8 +3,6 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
 // =============================================================================
 
-// TODO
-
 // -----------------------------------------------------------------------------
 //  Collection type - A type for storing groups of values.
 //  Array - A collection type with ordered values.
@@ -12,29 +10,28 @@
 //  Dictionary - A collection type with unordered key-value associations.
 // -----------------------------------------------------------------------------
 
-// Arrays, sets, and dictionaries in Swift are always clear about the types of
-// values and keys that they can store.  This means that you cannot insert a
-// value of the wrong type into a collection by mistake.  It also means you
-// can be confident about the type of values you will retrieve from
-// a collection.
+// TODO
 
+// Collection types are always clear about the types of values and keys they
+// can store.  This means you cannot insert a value of the wrong type into
+// a collection by mistake.  It also means you can be confident about the
+// type of values you will retrieve from a collection.
 
 // -----------------------------------------------------------------------------
 //  Mutability of Collections
 // -----------------------------------------------------------------------------
 
-// If you create an array, a set, or a dictionary, and assign it to a variable,
-// the collection that is created will be mutable.  This means that you can
-// change (or mutate) the collection after it is created by adding, removing,
-// or changing items in the collection.
+// If you create a collection and assign it to a variable, the collection that
+// is created will be mutable.  This means you can change (or mutate) the
+// collection after it is created by adding, removing, or changing items
+// in the collection.
 
 // If you assign an array, a set, or a dictionary to a constant, that collection
 // is immutable, and its size and contents cannot be changed.
 
-
 // -----------------------------------------------------------------------------
-//  Array - A collection type that stores values of similar
-//          type in an ordered list.
+//  Array - A collection type that stores values of similar type
+//          in an ordered list.
 // -----------------------------------------------------------------------------
 
 // The same value can appear in an array multiple times at different positions.
@@ -45,12 +42,9 @@
 
 // -----------------------------------------------------------------------------
 
-// An empty array can be created by a certain type using initializer syntax.
+// An empty array can be created with a certain type using initializer syntax.
 
 var a0 = [Int]()
-print("a0 is of type [Int] with \(a0.count) items.")
-// Prints "a0 is of type [Int] with 0 items."
-
 assert(a0.count == 0)
 
 // Note that the type of the `a0` variable is inferred to be `[Int]`
@@ -58,15 +52,14 @@ assert(a0.count == 0)
 
 // -----------------------------------------------------------------------------
 
-// Alternatively, if the context already provides type information, such as a
-// function argument or an already typed variable or constant, you can create
-// an empty array with an empty array literal, which is written as `[]`
-// (an empty pair of square brackets).
+// If the context already provides type information, such as a function argument
+// or an already typed variable or constant, you can create an empty array with
+// an empty array literal (`[]`).
 
-someInts.append(3)
-assert(someInts == [3])
-someInts = []
-assert(someInts == [])
+a0.append(3)
+assert(a0 == [3])
+a0 = []
+assert(a0 == [])
 
 // -----------------------------------------------------------------------------
 
@@ -79,6 +72,8 @@ assert(a1 == a2)
 
 // -----------------------------------------------------------------------------
 
+// TODO
+
 // An array can be created by adding together two existing arrays with
 // compatible types with the addition operator (`+`).
 
@@ -90,27 +85,57 @@ assert(a5 == a6)
 
 // -----------------------------------------------------------------------------
 
-// You can also initialize an array with an array literal, which is a shorthand
-// way to write one or more values as an array collection. An array literal is written as a list of values, separated by commas, surrounded by a pair of square brackets:
+
+
+
+
+
+// You can initialize an array with an array literal, which is a shorthand way
+// to write one or more values as an array collection.  An array literal is
+// written as a list of values, separated by commas, surrounded by a pair
+// of square brackets.
+
+
+
+
+
+/*
+
+
 
 [value 1, value 2, value 3]
 
 var shoppingList: [String] = ["Eggs", "Milk"]
 // shoppingList has been initialized with two initial items
 
-The shoppingList variable is declared as “an array of string values”, written as [String]. Because this particular array has specified a value type of String, it is allowed to store String values only. Here, the shoppingList array is initialized with two String values ("Eggs" and "Milk"), written within an array literal.
+The shoppingList variable is declared as “an array of string values”, written as
+[String]. Because this particular array has specified a value type of String, it
+is allowed to store String values only. Here, the shoppingList array is
+initialized with two String values ("Eggs" and "Milk"), written within
+an array literal.
 
 NOTE
 
-The shoppingList array is declared as a variable (with the var introducer) and not a constant (with the let introducer) because more items are added to the shopping list in the examples below.
+The shoppingList array is declared as a variable (with the var introducer) and
+not a constant (with the let introducer) because more items are added to the
+shopping list in the examples below.
 
-In this case, the array literal contains two String values and nothing else. This matches the type of the shoppingList variable’s declaration (an array that can only contain String values), and so the assignment of the array literal is permitted as a way to initialize shoppingList with two initial items.
+In this case, the array literal contains two String values and nothing else.
+This matches the type of the shoppingList variable’s declaration (an array
+that can only contain String values), and so the assignment of the array
+literal is permitted as a way to initialize shoppingList with two
+initial items.
 
-Thanks to Swift’s type inference, you don’t have to write the type of the array if you’re initializing it with an array literal containing values of the same type. The initialization of shoppingList could have been written in a shorter form instead:
+Thanks to Swift’s type inference, you don’t have to write the type of the array
+if you’re initializing it with an array literal containing values of the same
+type.  The initialization of shoppingList could have been written in a
+shorter form instead:
 
 var shoppingList = ["Eggs", "Milk"]
 
 Because all values in the array literal are of the same type, Swift can infer that [String] is the correct type to use for the shoppingList variable.
+
+// -----------------------------------------------------------------------------
 
 Accessing and Modifying an Array
 
@@ -173,6 +198,7 @@ let mapleSyrup = shoppingList.remove(at: 0)
 // the item that was at index 0 has just been removed
 // shoppingList now contains 6 items, and no Maple Syrup
 // the mapleSyrup constant is now equal to the removed "Maple Syrup" string
+
 NOTE
 
 If you try to access or modify a value for an index that is outside of an array’s existing bounds, you will trigger a runtime error. You can check that an index is valid before using it by comparing it to the array’s count property. Except when count is 0 (meaning the array is empty), the largest valid index in an array will always be count - 1, because arrays are indexed from zero.
@@ -673,3 +699,5 @@ let airportCodes = [String](airports.keys)
 let airportNames = [String](airports.values)
 // airportNames is ["Toronto Pearson", "London Heathrow"]
 Swift’s Dictionary type does not have a defined ordering. To iterate over the keys or values of a dictionary in a specific order, use the sorted() method on its keys or values property.
+
+*/

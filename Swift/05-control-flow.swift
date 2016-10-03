@@ -3,259 +3,263 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
 // =============================================================================
 
-// Swift provides a variety of control flow statements.  These include `while`
-// loops to perform a task multiple times; `if`, `guard`, and `switch`
-// statements to execute different branches of code based on certain
-// conditions; and statements such as `break` and `continue` to
-// transfer the flow of execution to another point in
-// your code.
+// -----------------------------------------------------------------------------
+//  Loop statement - A statement that can execute a block of code repeatedly.
+//  `for-in` loop - A loop statement that iterates over a sequence.
+//  Loop variable - A variable that controls the iterations of a `for-in` loop.
+// -----------------------------------------------------------------------------
 
-Swift also provides a for-in loop that makes it easy to iterate over arrays,
-dictionaries, ranges, strings, and other sequences.
+// The loop variable is, ironically, a constant by default whose value is
+// automatically set at the start of each loop iteration.  It doesn't
+// have to be declared before it's used.  It's implicitly declared by
+// its inclusion in the loop declaration, without the need for a
+// `let` keyword.  In fact, attempting to use `let` will trigger
+// a compile-time error.
 
-Swift’s switch statement is also considerably more powerful than its counterpart
-in many C-like languages. Because the cases of a switch statement do not fall
-through to the next case in Swift, it avoids common C errors caused by missing
-break statements. Cases can match many different patterns, including interval
-matches, tuples, and casts to a specific type. Matched values in a switch case
-can be bound to temporary constants or variables for use within the case's body,
-and complex matching conditions can be expressed with a where clause for each case.
-
+// Use a `for-in` loop to calculate a sum.  The loop variable is `index`.
+var answer = 0
+for index in 1...5 {
+  answer += index * 5
+}
+assert(answer == 75)
 
 // -----------------------------------------------------------------------------
-//  For-In Loops
+
+// The loop variable can be declared a variable allowing it to be modified
+// within the code block being looped over.
+
+answer = 0
+for var index in 1...5 {
+  index -= 1
+  answer += index * 5
+}
+assert(answer == 50)
+
+// -----------------------------------------------------------------------------
+
+// If you don't need each value from a sequence, you can ignore them by using
+// an underscore in place of a loop variable name.
+
+answer = 1
+for _ in 1...10 {
+  answer *= 3
+}
+assert(answer == 59_049)
+
+// -----------------------------------------------------------------------------
+
+// The sequence a `for-in` loop iterates over can be abstracted away.
+
+answer = 1
+var range = 1...10
+for _ in range {
+  answer *= 3
+}
+assert(answer == 59_049)
+
+// -----------------------------------------------------------------------------
+
+// A `for-in` loop can iterate over an array's items.
+
+var allText = ""
+let array = ["Foo", "Bar", "Baz"]
+for item in array {
+  allText += item
+}
+assert(allText == "FooBarBaz")
+
+// -----------------------------------------------------------------------------
+
+// A `for-in` loop can iterate over a dictionary's key-value pairs.
+
+var result = ""
+let dictionary = ["spider": 8, "ant": 6, "cat": 4]
+for (key, value) in dictionary {
+  result += "\(key) \(String(value)) "
+}
+assert(result.characters.count == 21)
+
+// The contents of a dictionary are inherently unordered, and iterating over
+// them does not guarantee the order in which they will be retrieved.
+
+// -----------------------------------------------------------------------------
+//  `while` loop - The loop statement that checks a condition before executing a
+//                 block of code, repeating until the condition becomes false.
+// -----------------------------------------------------------------------------
+
+var i = 0
+var condition = true
+while condition {
+  i += 1
+  condition = i < 10
+}
+assert(i == 10)
+
+// -----------------------------------------------------------------------------
+//  `repeat-while` loop - The loop statement that checks a condition after
+//                        executing a block of code, repeating until the
+//                        condition becomes false.
+// -----------------------------------------------------------------------------
+
+i = 0
+condition = true
+repeat {
+  i += 1
+  condition = i < 10
+} while condition
+assert(i == 10)
+
+// -----------------------------------------------------------------------------
+
+// `while` and `repeat-while` loops are best used when the number of iterations
+// is not known before the first iteration begins.
+
+// -----------------------------------------------------------------------------
+//  Branch - A set of statements that may be conditionally executed.
+//  Conditional statement - A non-looping statement that conditionally redirects
+//                          execution through one of a given set of branches.
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+//  `if` statement - The conditional statement that has one or two branches.
+// -----------------------------------------------------------------------------
+
+// In its simplest form, an `if` statement checks a single condition and
+// executes a set of statements only if that condition is true.
+
+var feelsLike = "warm"
+var temperatureInFahrenheit = 30
+condition = temperatureInFahrenheit <= 32
+if condition {
+  feelsLike = "cold"
+}
+assert(feelsLike == "cold")
+
+// -----------------------------------------------------------------------------
+//  Else clause - An alternate branch provided by an `if` statement.
+// -----------------------------------------------------------------------------
+
+feelsLike = "warm"
+temperatureInFahrenheit = 40
+if temperatureInFahrenheit <= 32 {
+  feelsLike = "cold"
+} else {
+  feelsLike = "chilly"
+}
+assert(feelsLike == "chilly")
+
+// -----------------------------------------------------------------------------
+
+// Multiple `if` statements can be chained together to consider more clauses.
+
+feelsLike = "warm"
+temperatureInFahrenheit = 90
+if temperatureInFahrenheit <= 32 {
+  feelsLike = "cold"
+} else if temperatureInFahrenheit >= 86 {
+  feelsLike = "hot"
+} else {
+  feelsLike = "chilly"
+}
+assert(feelsLike == "hot")
+
+// -----------------------------------------------------------------------------
+
+// The final else clause is optional and can be excluded if the set of
+// conditions does not need to be complete.
+
+feelsLike = "warm"
+temperatureInFahrenheit = 72
+if temperatureInFahrenheit <= 32 {
+  feelsLike = "cold"
+} else if temperatureInFahrenheit >= 86 {
+  feelsLike = "hot"
+}
+assert(feelsLike == "warm")
+
+// -----------------------------------------------------------------------------
+
+// The ternary conditional operator (`?:`) is shorthand for the
+// `if` statement with its else clause.
+
+var foo = ""
+condition = true
+
+// The ternary statement...
+foo = condition ? "bar" : "baz"
+assert(foo == "bar")
+
+// ...is equivalent to this `if` statement.
+if condition {
+  foo = "bar"
+} else {
+  foo = "baz"
+}
+assert(foo == "bar")
+
+// -----------------------------------------------------------------------------
+
+// A slightly more involved example.
+let coins = 10
+let foundCoins = true
+let totalCoins1 = coins + (foundCoins ? 80 : 0)
+let totalCoins2: Int
+if foundCoins {
+  totalCoins2 = coins + 80
+} else {
+  totalCoins2 = coins + 0
+}
+assert(totalCoins1 == 90)
+assert(totalCoins1 == totalCoins2)
+
 // -----------------------------------------------------------------------------
 
 // TODO
 
-// A `for-in` loop iterates over a sequence, such as ranges of numbers,
-// items in an array, or characters in a string.
+// An `if` statement can find out whether an optional contains a value by
+// comparing the optional against nil.  If an optional has a value, it is
+// considered to be not equal to nil.
 
-for i in 0..<3 {
-  print(i)
+
+
+
+if convertedNumber != nil {
+  print("convertedNumber contains some integer value.")
 }
+// Output:
+// convertedNumber contains some integer value.
 
-let range = 0..<3
-for _ in range {
-  print("a")
+
+// Once you're sure that the optional does contain a value, you can access its
+// underlying value by adding an exclamation mark (`!`) to the end of the
+// optional's name.  The exclamation mark effectively says, "I know that
+// this optional definitely has a value; please use it.”
+
+
+This is known as forced unwrapping of the optional’s value:
+
+if convertedNumber != nil {
+    print("convertedNumber has an integer value of \(convertedNumber!).")
 }
-
-// -----------------------------------------------------------------------------
-
-(1...10).forEach {
-  print($0)
-}
-
-// -----------------------------------------------------------------------------
-
-
-This example prints the first few entries in the five-times table:
-
-for index in 1...5 {
-  print("\(index) times 5 is \(index * 5)")
-}
-// 1 times 5 is 5
-// 2 times 5 is 10
-// 3 times 5 is 15
-// 4 times 5 is 20
-// 5 times 5 is 25
-
-In the example above, index is a constant whose value is automatically set at
-the start of each iteration of the loop. As such, index does not have to be
-declared before it is used. It is implicitly declared simply by its inclusion
-in the loop declaration, without the need for a let declaration keyword.
-
-If you don’t need each value from a sequence, you can ignore the values by
-using an underscore in place of a variable name.
-
-let base = 3
-let power = 10
-var answer = 1
-for _ in 1...power {
-  answer *= base
-}
-print("\(base) to the power of \(power) is \(answer)")
-// Prints "3 to the power of 10 is 59049"
-
-The example above calculates the value of one number to the power of another
-(in this case, 3 to the power of 10). It multiplies a starting value of 1
-(that is, 3 to the power of 0) by 3, ten times, using a closed range that
-starts with 1 and ends with 10. For this calculation, the individual
-counter values each time through the loop are unnecessary—the code
-simply executes the loop the correct number of times. The underscore
-character (_) used in place of a loop variable causes the individual
-values to be ignored and does not provide access to the current value
-during each iteration of the loop.
-
-let names = ["Anna", "Alex", "Brian", "Jack"]
-for name in names {
-  print("Hello, \(name)!")
-}
-// Hello, Anna!
-// Hello, Alex!
-// Hello, Brian!
-// Hello, Jack!
-
-You can also iterate over a dictionary to access its key-value pairs. Each item
-in the dictionary is returned as a (key, value) tuple when the dictionary is
-iterated, and you can decompose the (key, value) tuple’s members as explicitly
-named constants for use within the body of the for-in loop. Here, the dictionary's
-keys are decomposed into a constant called animalName, and the dictionary's
-values are decomposed into a constant called legCount.
-
-let numberOfLegs = ["spider": 8, "ant": 6, "cat": 4]
-for (animalName, legCount) in numberOfLegs {
-  print("\(animalName)s have \(legCount) legs")
-}
-// ants have 6 legs
-// spiders have 8 legs
-// cats have 4 legs
-
-Items in a Dictionary may not necessarily be iterated in the same order in which
-they were inserted. The contents of a Dictionary are inherently unordered, and
-iterating over them does not guarantee the order in which they will be retrieved.
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------------------------
-//  While Loops
-// -----------------------------------------------------------------------------
-
-// `while` loops repeat a nonpredetermined number of times.
-
-import Foundation
-
-while 0.5 < drand48() {
-  print("still going...")
-}
-
-var i = 0
-while i < 10 {
-  i += 1
-}
-
-// -----------------------------------------------------------------------------
-
-// `repeat-while` loops are like `while` loops except they their condition
-// check at the end of the loop.
-
-var j = 0
-repeat {
-  j += 1
-} while j < 10
-
-
-
-While Loops
-
-A while loop performs a set of statements until a condition becomes false. These kinds of loops are best used when the number of iterations is not known before the first iteration begins. Swift provides two kinds of while loops:
-
-while evaluates its condition at the start of each pass through the loop.
-repeat-while evaluates its condition at the end of each pass through the loop.
-While
-
-A while loop starts by evaluating a single condition. If the condition is true, a set of statements is repeated until the condition becomes false.
-
-Here’s the general form of a while loop:
-
-while condition {
-    statements
-}
-This example plays a simple game of Snakes and Ladders (also known as Chutes and Ladders):
-
-image: ../Art/snakesAndLadders_2x.png
-The rules of the game are as follows:
-
-The board has 25 squares, and the aim is to land on or beyond square 25.
-Each turn, you roll a six-sided dice and move by that number of squares, following the horizontal path indicated by the dotted arrow above.
-If your turn ends at the bottom of a ladder, you move up that ladder.
-If your turn ends at the head of a snake, you move down that snake.
-The game board is represented by an array of Int values. Its size is based on a constant called finalSquare, which is used to initialize the array and also to check for a win condition later in the example. The board is initialized with 26 zero Int values, not 25 (one each at indexes 0 through 25).
-
-let finalSquare = 25
-var board = [Int](repeating: 0, count: finalSquare + 1)
-Some squares are then set to have more specific values for the snakes and ladders. Squares with a ladder base have a positive number to move you up the board, whereas squares with a snake head have a negative number to move you back down the board.
-
-board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
-board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
-Square 3 contains the bottom of a ladder that moves you up to square 11. To represent this, board[03] is equal to +08, which is equivalent to an integer value of 8 (the difference between 3 and 11). The unary plus operator (+i) balances with the unary minus operator (-i), and numbers lower than 10 are padded with zeros so that all board definitions align. (Neither stylistic tweak is strictly necessary, but they lead to neater code.)
-
-The player’s starting square is “square zero”, which is just off the bottom-left corner of the board. The first dice roll always moves the player onto the board.
-
-var square = 0
-var diceRoll = 0
-while square < finalSquare {
-    // roll the dice
-    diceRoll += 1
-    if diceRoll == 7 { diceRoll = 1 }
-    // move by the rolled amount
-    square += diceRoll
-    if square < board.count {
-        // if we're still on the board, move up or down for a snake or a ladder
-        square += board[square]
-    }
-}
-print("Game over!")
-The example above uses a very simple approach to dice rolling. Instead of generating a random number, it starts with a diceRoll value of 0. Each time through the while loop, diceRoll is incremented by one and is then checked to see whether it has become too large. Whenever this return value equals 7, the dice roll has become too large and is reset to a value of 1. The result is a sequence of diceRoll values that is always 1, 2, 3, 4, 5, 6, 1, 2 and so on.
-
-After rolling the dice, the player moves forward by diceRoll squares. It’s possible that the dice roll may have moved the player beyond square 25, in which case the game is over. To cope with this scenario, the code checks that square is less than the board array’s count property before adding the value stored in board[square] onto the current square value to move the player up or down any ladders or snakes.
+// Prints "convertedNumber has an integer value of 123."
+For more on the if statement, see Control Flow.
 
 NOTE
 
-Had this check not been performed, board[square] might try to access a value outside the bounds of the board array, which would trigger an error. If square were equal to 26, the code would try to check the value of board[26], which is larger than the size of the array.
+Trying to use ! to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-nil value before using ! to force-unwrap its value.
 
-The current while loop execution then ends, and the loop’s condition is checked to see if the loop should be executed again. If the player has moved on or beyond square number 25, the loop’s condition evaluates to false and the game ends.
 
-A while loop is appropriate in this case, because the length of the game is not clear at the start of the while loop. Instead, the loop is executed until a particular condition is satisfied.
 
-Repeat-While
 
-The other variation of the while loop, known as the repeat-while loop, performs a single pass through the loop block first, before considering the loop’s condition. It then continues to repeat the loop until the condition is false.
 
-NOTE
 
-The repeat-while loop in Swift is analogous to a do-while loop in other languages.
 
-Here’s the general form of a repeat-while loop:
 
-repeat {
-    statements
-} while condition
-Here’s the Snakes and Ladders example again, written as a repeat-while loop rather than a while loop. The values of finalSquare, board, square, and diceRoll are initialized in exactly the same way as with a while loop.
 
-let finalSquare = 25
-var board = [Int](repeating: 0, count: finalSquare + 1)
-board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
-board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
-var square = 0
-var diceRoll = 0
-In this version of the game, the first action in the loop is to check for a ladder or a snake. No ladder on the board takes the player straight to square 25, and so it isn’t possible to win the game by moving up a ladder. Therefore, it’s safe to check for a snake or a ladder as the first action in the loop.
+/*
 
-At the start of the game, the player is on “square zero”. board[0] always equals 0 and has no effect.
 
-repeat {
-    // move up or down for a snake or ladder
-    square += board[square]
-    // roll the dice
-    diceRoll += 1
-    if diceRoll == 7 { diceRoll = 1 }
-    // move by the rolled amount
-    square += diceRoll
-} while square < finalSquare
-print("Game over!")
-After the code checks for snakes and ladders, the dice is rolled and the player is moved forward by diceRoll squares. The current loop execution then ends.
 
-The loop’s condition (while square < finalSquare) is the same as before, but this time it’s not evaluated until the end of the first run through the loop. The structure of the repeat-while loop is better suited to this game than the while loop in the previous example. In the repeat-while loop above, square += board[square] is always executed immediately after the loop’s while condition confirms that square is still on the board. This behavior removes the need for the array bounds check seen in the earlier version of the game.
 
 
 
@@ -275,16 +279,9 @@ The loop’s condition (while square < finalSquare) is the same as before, but t
 
 
 
-// -----------------------------------------------------------------------------
-//  Conditional statement - A non-looping statement that can conditionally
-//                          redirect code execution.
-// -----------------------------------------------------------------------------
 
-Conditional Statements
 
-It is often useful to execute different pieces of code based on certain conditions. You might want to run an extra piece of code when an error occurs, or to display a message when a value becomes too high or too low. To do this, you make parts of your code conditional.
 
-Swift provides two ways to add conditional branches to your code: the if statement and the switch statement. Typically, you use the if statement to evaluate simple conditions with only a few possible outcomes. The switch statement is better suited to more complex conditions with multiple possible permutations and is useful in situations where pattern matching can help select an appropriate code branch to execute.
 
 
 
@@ -295,83 +292,6 @@ Swift provides two ways to add conditional branches to your code: the if stateme
 
 
 
-
-
-
-
-
-
-
-
-// `if` statements can direct code execution through a detour.
-
-
-
-let name = "world"
-if name == "world" {
-    print("hello, world")
-} else {
-    print("I'm sorry \(name), but I don't recognize you")
-}
-
-
-
-
-
-
-let contentHeight = 40
-let hasHeader = true
-let rowHeight = contentHeight + (hasHeader ? 50 : 20)
-// rowHeight is equal to 90
-
-// The preceding example is shorthand for the code below:
-
-let contentHeight = 40
-let hasHeader = true
-let rowHeight: Int
-if hasHeader {
-    rowHeight = contentHeight + 50
-} else {
-    rowHeight = contentHeight + 20
-}
-
-
-
-
-
-
-
-var x = true, y = true, z = false
-
-if x {
-  assert(x == true)
-}
-
-if x {
-  assert(x == true)
-} else {
-  assert(x == false)
-}
-
-if x {
-  assert(x == true)
-} else if y {
-  assert(x == false && y == true)
-} else {
-  assert(x == false && y == false)
-}
-
-if x {
-  assert(x == true)
-} else if y {
-  assert(x == false && y == true)
-} else if z {
-  assert(x == false && y == false && z == true)
-} else {
-  assert(x == false && y == false && z == false)
-}
-
-// `if` supports optional unwrapping.
 
 var maybeThing: Optional<Int> = 3
 var maybeThing: Int? = 3
@@ -388,11 +308,6 @@ if maybeThing != nil {
 
 
 
-
-
-
-
-
 if convertedNumber != nil {
   print("convertedNumber contains some integer value.")
 }
@@ -404,9 +319,9 @@ if convertedNumber != nil {
 // Prints "convertedNumber has an integer value of 123."
 
 if let actualNumber = Int(possibleNumber) {
-    print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
+  print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
 } else {
-    print("\"\(possibleNumber)\" could not be converted to an integer")
+  print("\"\(possibleNumber)\" could not be converted to an integer")
 }
 // Prints ""123" has an integer value of 123"
 
@@ -415,10 +330,10 @@ if let firstNumber = Int("4"), secondNumber = Int("42") where firstNumber < seco
 }
 // Prints "4 < 42"
 
-// Constants and variables created with optional binding in an if statement are
-// available only within the body of the if statement.  In contrast, the
-// constants and variables created with a guard statement are available
-// in the lines of code that follow the guard statement.
+// Constants and variables created with optional binding in an `if` statement are
+// available only within the body of the `if` statement.  In contrast, the
+// constants and variables created with a `guard` statement are available
+// in the lines of code that follow the `guard` statement.
 
 let possibleString: String? = "An optional string."
 let forcedString: String = possibleString! // requires an exclamation mark
@@ -441,50 +356,30 @@ if let definiteString = assumedString {
 }
 // Prints "An implicitly unwrapped optional string."
 
-If
 
-In its simplest form, the if statement has a single if condition. It executes a set of statements only if that condition is true.
 
-var temperatureInFahrenheit = 30
-if temperatureInFahrenheit <= 32 {
-    print("It's very cold. Consider wearing a scarf.")
+
+
+if case ... {
+
 }
-// Prints "It's very cold. Consider wearing a scarf."
-The example above checks whether the temperature is less than or equal to 32 degrees Fahrenheit (the freezing point of water). If it is, a message is printed. Otherwise, no message is printed, and code execution continues after the if statement’s closing brace.
 
-The if statement can provide an alternative set of statements, known as an else clause, for situations when the if condition is false. These statements are indicated by the else keyword.
 
-temperatureInFahrenheit = 40
-if temperatureInFahrenheit <= 32 {
-    print("It's very cold. Consider wearing a scarf.")
-} else {
-    print("It's not that cold. Wear a t-shirt.")
-}
-// Prints "It's not that cold. Wear a t-shirt."
-One of these two branches is always executed. Because the temperature has increased to 40 degrees Fahrenheit, it is no longer cold enough to advise wearing a scarf and so the else branch is triggered instead.
 
-You can chain multiple if statements together to consider additional clauses.
 
-temperatureInFahrenheit = 90
-if temperatureInFahrenheit <= 32 {
-    print("It's very cold. Consider wearing a scarf.")
-} else if temperatureInFahrenheit >= 86 {
-    print("It's really warm. Don't forget to wear sunscreen.")
-} else {
-    print("It's not that cold. Wear a t-shirt.")
-}
-// Prints "It's really warm. Don't forget to wear sunscreen."
-Here, an additional if statement was added to respond to particularly warm temperatures. The final else clause remains, and it prints a response for any temperatures that are neither too warm nor too cold.
 
-The final else clause is optional, however, and can be excluded if the set of conditions does not need to be complete.
 
-temperatureInFahrenheit = 72
-if temperatureInFahrenheit <= 32 {
-    print("It's very cold. Consider wearing a scarf.")
-} else if temperatureInFahrenheit >= 86 {
-    print("It's really warm. Don't forget to wear sunscreen.")
-}
-Because the temperature is neither too cold nor too warm to trigger the if or else if conditions, no message is printed.
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
 
 Switch
 
@@ -494,13 +389,14 @@ In its simplest form, a switch statement compares a value against one or more va
 
 switch some value to consider {
 case value 1:
-    respond to value 1
+  respond to value 1
 case value 2,
-     value 3:
-    respond to value 2 or 3
+   value 3:
+  respond to value 2 or 3
 default:
-    otherwise, do something else
+  otherwise, do something else
 }
+
 Every switch statement consists of multiple possible cases, each of which begins with the case keyword. In addition to comparing against specific values, Swift provides several ways for each case to specify more complex matching patterns. These options are described later in this chapter.
 
 Like the body of an if statement, each case is a separate branch of code execution. The switch statement determines which branch should be selected. This procedure is known as switching on the value that is being considered.
@@ -512,14 +408,17 @@ This example uses a switch statement to consider a single lowercase character ca
 let someCharacter: Character = "z"
 switch someCharacter {
 case "a":
-    print("The first letter of the alphabet")
+  print("The first letter of the alphabet")
 case "z":
-    print("The last letter of the alphabet")
+  print("The last letter of the alphabet")
 default:
-    print("Some other character")
+  print("Some other character")
 }
 // Prints "The last letter of the alphabet"
+
 The switch statement’s first case matches the first letter of the English alphabet, a, and its second case matches the last letter, z. Because the switch must have a case for every possible character, not just every alphabetic character, this switch statement uses a default case to match all characters other than a and z. This provision ensures that the switch statement is exhaustive.
+
+// -----------------------------------------------------------------------------
 
 No Implicit Fallthrough
 
@@ -823,7 +722,8 @@ The continue statement tells a loop to stop what it is doing and start again at
 the beginning of the next iteration through the loop.  It says “I am done with
 the current loop iteration” without leaving the loop altogether.
 
-The following example removes all vowels and spaces from a lowercase string to create a cryptic puzzle phrase:
+The following example removes all vowels and spaces from a lowercase string to
+create a cryptic puzzle phrase:
 
 let puzzleInput = "great minds think alike"
 var puzzleOutput = ""
@@ -839,29 +739,54 @@ for character in puzzleInput.characters {
 print(puzzleOutput)
 // Prints "grtmndsthnklk"
 
-The code above calls the continue keyword whenever it matches a vowel or a space, causing the current iteration of the loop to end immediately and to jump straight to the start of the next iteration. This behavior enables the switch block to match (and ignore) only the vowel and space characters, rather than requiring the block to match every character that should get printed.
+The code above calls the continue keyword whenever it matches a vowel or a space,
+causing the current iteration of the loop to end immediately and to jump straight
+to the start of the next iteration. This behavior enables the switch block to match
+(and ignore) only the vowel and space characters, rather than requiring the block
+to match every character that should get printed.
 
 // -----------------------------------------------------------------------------
 
 Break
 
-The break statement ends execution of an entire control flow statement immediately. The break statement can be used inside a switch statement or loop statement when you want to terminate the execution of the switch or loop statement earlier than would otherwise be the case.
+The break statement ends execution of an entire control flow statement immediately
+ The break statement can be used inside a switch statement or loop statement when
+ you want to terminate the execution of the switch or loop statement earlier than would otherwise be the case.
+
+// -----------------------------------------------------------------------------
 
 Break in a Loop Statement
 
-When used inside a loop statement, break ends the loop’s execution immediately and transfers control to the first line of code after the loop’s closing brace (}). No further code from the current iteration of the loop is executed, and no further iterations of the loop are started.
+When used inside a loop statement, break ends the loop’s execution immediately
+and transfers control to the first line of code after the loop’s closing brace
+(`}`). No further code from the current iteration of the loop is executed, and
+no further iterations of the loop are started.
+
+// -----------------------------------------------------------------------------
 
 Break in a Switch Statement
 
-When used inside a switch statement, break causes the switch statement to end its execution immediately and to transfer control to the first line of code after the switch statement’s closing brace (}).
+When used inside a switch statement, break causes the switch statement to end
+its execution immediately and to transfer control to the first line of code
+after the switch statement’s closing brace (}).
 
-This behavior can be used to match and ignore one or more cases in a switch statement. Because Swift’s switch statement is exhaustive and does not allow empty cases, it is sometimes necessary to deliberately match and ignore a case in order to make your intentions explicit. You do this by writing the break statement as the entire body of the case you want to ignore. When that case is matched by the switch statement, the break statement inside the case ends the switch statement’s execution immediately.
+This behavior can be used to match and ignore one or more cases in a switch
+statement. Because Swift’s switch statement is exhaustive and does not allow
+empty cases, it is sometimes necessary to deliberately match and ignore a case
+in order to make your intentions explicit. You do this by writing the break
+statement as the entire body of the case you want to ignore. When that case
+is matched by the switch statement, the break statement inside the case ends
+the switch statement’s execution immediately.
 
 NOTE
 
-A switch case that contains only a comment is reported as a compile-time error. Comments are not statements and do not cause a switch case to be ignored. Always use a break statement to ignore a switch case.
+A switch case that contains only a comment is reported as a compile-time error.
+Comments are not statements and do not cause a switch case to be ignored. Always
+use a break statement to ignore a switch case.
 
-The following example switches on a Character value and determines whether it represents a number symbol in one of four languages. For brevity, multiple values are covered in a single switch case.
+The following example switches on a Character value and determines whether it
+represents a number symbol in one of four languages. For brevity, multiple
+values are covered in a single switch case.
 
 let numberSymbol: Character = "三"  // Chinese symbol for the number 3
 var possibleIntegerValue: Int?
@@ -956,7 +881,7 @@ NOTE
 The fallthrough keyword does not check the case conditions for the switch case
 that it causes execution to fall into. The fallthrough keyword simply causes
 code execution to move directly to the statements inside the next case (or
-  default case) block, as in C’s standard switch statement behavior.
+default case) block, as in C’s standard switch statement behavior.
 
 // -----------------------------------------------------------------------------
 
@@ -1132,25 +1057,29 @@ lets you keep the code that handles a violated requirement next to the requireme
 //  Checking API Availability
 // -----------------------------------------------------------------------------
 
-Swift has built-in support for checking API availability, which ensures that
-you don’t accidentally use APIs that are unavailable on a given deployment
-target.
+// Swift has built-in support for checking API availability, which lets you
+// ensure that you don't accidentally use APIs that are unavailable on a
+// given deployment target.
 
-The compiler uses availability information in the SDK to verify that all of
-the APIs used in your code are available on the deployment target specified
-by your project. Swift reports an error at compile time if you try to use
-an API that isn’t available.
+// The compiler uses availability information in the SDK to verify that all of
+// the APIs used in your code are available on the deployment target specified
+// by your project.  A compile-time error is flagged if you try to use an API
+// that isn’t available.
 
-You use an availability condition in an if or guard statement to conditionally
-execute a block of code, depending on whether the APIs you want to use are
-available at runtime. The compiler uses the information from the availability
-condition when it verifies that the APIs in that block of code are available.
+// You use an availability condition in an `if` or `guard` statement to
+// conditionally
+// execute a block of code, depending on whether the APIs you want to use are
+// available at runtime. The compiler uses the information from the availability
+// condition when it verifies that the APIs in that block of code are available.
 
 if #available(iOS 10, macOS 10.12, *) {
   // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
 } else {
   // Fall back to earlier iOS and macOS APIs
 }
+
+// TODO
+// - is `#available` able to be used in `switch` ?
 
 The availability condition above specifies that on iOS, the body of the if
 executes only on iOS 10 and later; on macOS, only on macOS 10.12 and later.
@@ -1169,3 +1098,7 @@ if #available(platform name version, ..., *) {
 } else {
   fallback statements to execute if the APIs are unavailable
 }
+
+
+
+*/

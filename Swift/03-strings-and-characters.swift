@@ -47,6 +47,12 @@ assert(empty1 == empty2)
 
 assert(empty1.isEmpty == true)
 
+
+
+
+
+/*
+
 // -----------------------------------------------------------------------------
 //  String Mutability
 // -----------------------------------------------------------------------------
@@ -523,3 +529,10 @@ func repeatIt(_ str: String, _ n: Int) -> String {
 }
 
 print(repeatIt("ha", 3)) // -> "hahaha"
+
+
+
+
+
+
+*/

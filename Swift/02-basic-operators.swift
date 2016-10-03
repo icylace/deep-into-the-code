@@ -16,7 +16,6 @@
 //  Ternary operator - An operator that works on three operands.
 // -----------------------------------------------------------------------------
 
-
 // -----------------------------------------------------------------------------
 //  Assignment operator (`=`) - The operator that either initializes a constant
 //                              or variable, or updates a variable.
@@ -43,7 +42,6 @@ assert(d == 2)
 let (e) = (3)
 assert(e == 3)
 
-
 // -----------------------------------------------------------------------------
 //  Arithmetic operator - A operator that manipulates numbers.
 // -----------------------------------------------------------------------------
@@ -57,14 +55,14 @@ assert(10.0 / 2.5 == 4.0)       // Division.
 
 // These operators do not allow values to overflow.  Overflow behavior is
 // trapped and reported as an error.  However, you can opt in to value
-// overflow behavior by using overflow operators.  They are explained
-// in "Advanced Operators".
-
+// overflow behavior by using overflow operators.
+//
+// See "Advanced Operators".
 
 // -----------------------------------------------------------------------------
-//  Remainder operator (`%`) - The operator that figures how many times a
-//                             number will fit inside another number and
-//                             then it returns the value left over
+//  Remainder operator (`%`) - The operator that figures how many times
+//                             a number will fit inside another number
+//                             and then it returns the value left over
 //                             (known as the remainder).
 // -----------------------------------------------------------------------------
 
@@ -80,7 +78,6 @@ assert(-9 % 4 == -1)
 assert(9 % 4 == 1)
 assert(9 % -4 == 1)
 
-
 // -----------------------------------------------------------------------------
 //  Unary minus operator (`-`) - The operator that toggles the sign of a number.
 // -----------------------------------------------------------------------------
@@ -91,7 +88,6 @@ assert(minusThree == -3)
 let plusThree = -minusThree
 assert(plusThree == 3)
 
-
 // -----------------------------------------------------------------------------
 //  Unary plus operator (`+`) - The operator that returns its operand as is.
 // -----------------------------------------------------------------------------
@@ -100,21 +96,19 @@ let minusSix = -6
 let alsoMinusSix = +minusSix
 assert(alsoMinusSix == -6)
 
-
 // -----------------------------------------------------------------------------
 //  Compound assignment operator - An operator combining assignment
 //                                 with another operation.
 // -----------------------------------------------------------------------------
 
 // Example use of the addition assignment operator (`+=`).
-var a = 1
-a += 2
-assert(a == 3)
+var f = 1
+f += 2
+assert(f == 3)
 
 // For a complete list of the compound assignment operators provided by the
 // Swift Standard Library, see:
 // [Swift Standard Library Operators](https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators)
-
 
 // -----------------------------------------------------------------------------
 //  Comparison operator - A binary operator that figures out the
@@ -148,6 +142,12 @@ assert(2 <= 1)
 
 // TODO
 
+
+
+
+/*
+
+
 // There are also two identity operators (`===` and `!==`) which you use to
 // test whether two object references both refer to the same object
 // instance.  For more information, see "Classes and Structures".
@@ -176,7 +176,6 @@ assert(2 <= 1)
 // To compare tuples with seven or more elements, you must implement the
 // comparison operators yourself.
 
-
 // -----------------------------------------------------------------------------
 //  Ternary conditional operator (`?:`) - The operator that checks a condition
 //                                        and evaluates one of two expressions
@@ -187,7 +186,6 @@ let contentHeight = 40
 let hasHeader = true
 let rowHeight = contentHeight + (hasHeader ? 50 : 20)
 assert(rowHeight == 90)
-
 
 // -----------------------------------------------------------------------------
 //  Nil-coalescing operator (`??`) - The operator that will return either the
@@ -233,7 +231,6 @@ colorNameToUse = userDefinedColorName ?? defaultColorName
 //  Range operator - An operator that expresses a range of values.
 // -----------------------------------------------------------------------------
 
-
 // -----------------------------------------------------------------------------
 //  Closed range operator (`...`) - The operator that expresses a range of
 //                                  values including the one that defines
@@ -244,7 +241,6 @@ let r1 = -11...12
 assert(r1 == -11..<13)
 
 // A closed range's lower-limit must not be greater than its upper-limit.
-
 
 // -----------------------------------------------------------------------------
 //  Half-open range operator (`..<`) - The operator that expresses a range of
@@ -257,7 +253,6 @@ assert(r1 == -11...12)
 
 // A half-open range's lower-limit must not be greater than its upper-limit.
 // However, if they are equal the resulting range is empty.
-
 
 // -----------------------------------------------------------------------------
 //  Logical operator - An operator that modifies or combines the
@@ -303,7 +298,6 @@ let hasDoorKey = false
 let knowsOverridePassword = true
 assert(hasDoorKey || knowsOverridePassword == true)
 
-
 // -----------------------------------------------------------------------------
 //  Combining Logical Operators
 // -----------------------------------------------------------------------------
@@ -345,3 +339,6 @@ if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword 
 // The parentheses make it clear that the first two values are considered as
 // part of a separate possible state in the overall logic. The output of the
 // compound expression doesn’t change, but the overall intention is clearer to the reader. Readability is always preferred over brevity; use parentheses where they help to make your intentions clear.
+
+
+*/

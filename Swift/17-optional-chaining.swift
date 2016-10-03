@@ -4,8 +4,9 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Optional chaining - The process for querying and calling properties,
-//                      methods, and subscripts on an optional.
+//  Optional chaining - The act of querying and calling properties, methods,
+//                      and subscripts on an optional.
+//  Optional chaining operator (`?`) - The operator that does optional chaining.
 // -----------------------------------------------------------------------------
 
 // If the optional contains a value, the property, method, or subscript call

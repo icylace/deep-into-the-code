@@ -28,11 +28,20 @@ useful functionality within a nested function scope.
 
 
 
-When you define a function, you can optionally define one or more named, typed values that the function takes as input, known as parameters. You can also optionally define a type of value that the function will pass back as output when it is done, known as its return type.
+When you define a function, you can optionally define one or more named, typed
+values that the function takes as input, known as parameters. You can also
+optionally define a type of value that the function will pass back as output
+when it is done, known as its return type.
 
-Every function has a function name, which describes the task that the function performs. To use a function, you “call” that function with its name and pass it input values (known as arguments) that match the types of the function’s parameters. A function’s arguments must always be provided in the same order as the function’s parameter list.
+Every function has a function name, which describes the task that the function
+performs. To use a function, you “call” that function with its name and pass it
+input values (known as arguments) that match the types of the function’s parameters.
+A function’s arguments must always be provided in the same order as the function’s
+parameter list.
 
-The function in the example below is called greet(person:), because that’s what it does—it takes a person’s name as input and returns a greeting for that person. To accomplish this, you define one input parameter—a String value called person—and a return type of String, which will contain a greeting for that person:
+The function in the example below is called greet(person:), because that’s what
+it does—it takes a person’s name as input and returns a greeting for that person.
+To accomplish this, you define one input parameter—a String value called person—and a return type of String, which will contain a greeting for that person:
 
 func greet(person: String) -> String {
     let greeting = "Hello, " + person + "!"

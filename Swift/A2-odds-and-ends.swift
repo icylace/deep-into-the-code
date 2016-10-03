@@ -23,11 +23,16 @@ CDouble.infinity
 
 
 
+(1...10).forEach {
+  print($0)
+}
 
 
+import Foundation
 
-// Compound types.
-
+while 0.5 < drand48() {
+  print("still going...")
+}
 
 
 
