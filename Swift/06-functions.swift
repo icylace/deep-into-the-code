@@ -10,45 +10,53 @@
 
 // TODO
 
-You give a function a name that identifies what it does, and this name is used
-to “call” the function to perform its task when needed.
+// You give a function a name that identifies what it does, and this name is used
+// to "call" the function to perform its task when needed.
 
-Swift’s unified function syntax is flexible enough to express anything from a
-simple C-style function with no parameter names to a complex Objective-C-style
-method with names and argument labels for each parameter. Parameters can provide
-default values to simplify function calls and can be passed as in-out parameters,
-which modify a passed variable once the function has completed its execution.
-
-Every function in Swift has a type, consisting of the function’s parameter types
-and return type. You can use this type like any other type in Swift, which makes
-it easy to pass functions as parameters to other functions, and to return functions
-from functions. Functions can also be written within other functions to encapsulate
-useful functionality within a nested function scope.
+// Every function has a type consisting of the function's parameter types and
+// return type.  You can use this type like any other,which makes it easy to
+// pass functions as parameters to other functions, and to return functions
+// from functions.  Functions can also be written within other functions
+// to encapsulate useful functionality within a nested function scope.
 
 
 
+// -----------------------------------------------------------------------------
+//  Parameter - A named value that a function accepts as input.
+//  Return type - The type of a function's output value.
+//  Function name - A name given to a function.
+//  Argument - A value given as input to a function when it is called.
+//  Call - The act of using a function with any arguments as needed.
+// -----------------------------------------------------------------------------
 
-When you define a function, you can optionally define one or more named, typed
-values that the function takes as input, known as parameters. You can also
-optionally define a type of value that the function will pass back as output
-when it is done, known as its return type.
+// When you define a function, you can optionally define one or more parameters.
+// You can also optionally define a return type.
 
-Every function has a function name, which describes the task that the function
-performs. To use a function, you “call” that function with its name and pass it
-input values (known as arguments) that match the types of the function’s parameters.
-A function’s arguments must always be provided in the same order as the function’s
-parameter list.
+// Every function has a function name, which describes the task that the function
+// performs.  To use a function, you “call” that function with its name and pass it
+// arguments that match the types of the function's parameters.
+
+// TODO
+// - is this strictly true?  mainly thinking of named arguments...
+// A function's arguments must always be provided in the same order as the function’s
+// parameter list.
 
 The function in the example below is called greet(person:), because that’s what
 it does—it takes a person’s name as input and returns a greeting for that person.
 To accomplish this, you define one input parameter—a String value called person—and a return type of String, which will contain a greeting for that person:
 
 func greet(person: String) -> String {
-    let greeting = "Hello, " + person + "!"
-    return greeting
+  let greeting = "Hello, " + person + "!"
+  return greeting
 }
 
-All of this information is rolled up into the function’s definition, which is prefixed with the func keyword. You indicate the function’s return type with the return arrow -> (a hyphen followed by a right angle bracket), which is followed by the name of the type to return.
+// -----------------------------------------------------------------------------
+//  Return arrow (`->`) - The symbol that indicates a function's return type.
+// -----------------------------------------------------------------------------
+
+All of this information is rolled up into the function’s definition, which is
+prefixed with the func keyword. You indicate the function’s return type with
+the return arrow, which is followed by the name of the type to return.
 
 The definition describes what the function does, what it expects to receive, and what it returns when it is done. The definition makes it easy for the function to be called unambiguously from elsewhere in your code:
 

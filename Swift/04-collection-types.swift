@@ -286,98 +286,6 @@ For more about the for-in loop, see For-In Loops.
 
 
 
-// All of these are equivalent:
-let a01: Array<Int> = Array<Int>.init(arrayLiteral: 0, 1, 2)
-let a02: Array<Int> = Array<Int>.init([0, 1, 2])
-let a03: Array<Int> = Array<Int>(arrayLiteral: 0, 1, 2)
-let a04: Array<Int> = Array<Int>([0, 1, 2])
-let a05: Array<Int> = Array.init(arrayLiteral: 0, 1, 2)
-let a06: Array<Int> = Array.init([0, 1, 2])
-let a07: Array<Int> = Array(arrayLiteral: 0, 1, 2)
-let a08: Array<Int> = Array([0, 1, 2])
-let a09: Array<Int> = [Int].init(arrayLiteral: 0, 1, 2)
-let a10: Array<Int> = [Int].init([0, 1, 2])
-let a11: Array<Int> = [Int](arrayLiteral: 0, 1, 2)
-let a12: Array<Int> = [Int]([0, 1, 2])
-let a13: Array<Int> = [].dynamicType.init(arrayLiteral: 0, 1, 2)
-let a14: Array<Int> = [].dynamicType.init([0, 1, 2])
-let a15: Array<Int> = [0, 1, 2]
-let a16: [Int] = Array<Int>.init(arrayLiteral: 0, 1, 2)
-let a17: [Int] = Array<Int>.init([0, 1, 2])
-let a18: [Int] = Array<Int>(arrayLiteral: 0, 1, 2)
-let a19: [Int] = Array<Int>([0, 1, 2])
-let a20: [Int] = Array.init(arrayLiteral: 0, 1, 2)
-let a21: [Int] = Array.init([0, 1, 2])
-let a22: [Int] = Array(arrayLiteral: 0, 1, 2)
-let a23: [Int] = Array([0, 1, 2])
-let a24: [Int] = [Int].init(arrayLiteral: 0, 1, 2)
-let a25: [Int] = [Int].init([0, 1, 2])
-let a26: [Int] = [Int](arrayLiteral: 0, 1, 2)
-let a27: [Int] = [Int]([0, 1, 2])
-let a28: [Int] = [].dynamicType.init(arrayLiteral: 0, 1, 2)
-let a29: [Int] = [].dynamicType.init([0, 1, 2])
-let a30: [Int] = [0, 1, 2]
-let a31 = Array<Int>.init(arrayLiteral: 0, 1, 2)
-let a32 = Array<Int>.init([0, 1, 2])
-let a33 = Array<Int>(arrayLiteral: 0, 1, 2)
-let a34 = Array<Int>([0, 1, 2])
-let a35 = Array.init(arrayLiteral: 0, 1, 2)
-let a36 = Array.init([0, 1, 2])
-let a37 = Array(arrayLiteral: 0, 1, 2)
-let a38 = Array([0, 1, 2])
-let a39 = [Int].init(arrayLiteral: 0, 1, 2)
-let a40 = [Int].init([0, 1, 2])
-let a41 = [Int](arrayLiteral: 0, 1, 2)
-let a42 = [Int]([0, 1, 2])
-let a45 = [0, 1, 2]
-
-// Interestingly, these lines would cause the program to crash which is why
-// they're commented out.
-// let a43 = [].dynamicType.init(arrayLiteral: 0, 1, 2)
-// let a44 = [].dynamicType.init([0, 1, 2])
-
-assert(a01 == a02 && a02 == a03 && a03 == a04 && a04 == a05 && a05 == a06 &&
-       a06 == a07 && a07 == a08 && a08 == a09 && a09 == a10 && a10 == a11 &&
-       a11 == a12 && a12 == a13 && a13 == a14 && a14 == a15 && a15 == a16 &&
-       a16 == a17 && a17 == a18 && a18 == a19 && a19 == a20 && a20 == a21 &&
-       a21 == a22 && a22 == a23 && a23 == a24 && a24 == a25 && a25 == a26 &&
-       a26 == a27 && a27 == a28 && a28 == a29 && a29 == a30 && a30 == a31 &&
-       a31 == a32 && a32 == a33 && a33 == a34 && a34 == a35 && a35 == a36 &&
-       a36 == a37 && a37 == a38 && a38 == a39 && a39 == a40 && a40 == a41 &&
-       a41 == a42 && a42 == a45 && a45 == [0, 1, 2])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -464,9 +372,9 @@ print("I have \(favoriteGenres.count) favorite music genres.")
 Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
 
 if favoriteGenres.isEmpty {
-   print("As far as music goes, I'm not picky.")
+  print("As far as music goes, I'm not picky.")
 } else {
-   print("I have particular music preferences.")
+  print("I have particular music preferences.")
 }
 // Prints "I have particular music preferences."
 You can add a new item into a set by calling the set’s insert(_:) method:
@@ -476,17 +384,17 @@ favoriteGenres.insert("Jazz")
 You can remove an item from a set by calling the set’s remove(_:) method, which removes the item if it’s a member of the set, and returns the removed value, or returns nil if the set did not contain it. Alternatively, all items in a set can be removed with its removeAll() method.
 
 if let removedGenre = favoriteGenres.remove("Rock") {
-   print("\(removedGenre)? I'm over it.")
+  print("\(removedGenre)? I'm over it.")
 } else {
-   print("I never much cared for that.")
+  print("I never much cared for that.")
 }
 // Prints "Rock? I'm over it."
 To check whether a set contains a particular item, use the contains(_:) method.
 
 if favoriteGenres.contains("Funk") {
-   print("I get up on the good foot.")
+  print("I get up on the good foot.")
 } else {
-   print("It's too funky in here.")
+  print("It's too funky in here.")
 }
 // Prints "It's too funky in here."
 Iterating Over a Set
@@ -494,7 +402,7 @@ Iterating Over a Set
 You can iterate over the values in a set with a for-in loop.
 
 for genre in favoriteGenres {
-   print("\(genre)")
+  print("\(genre)")
 }
 // Jazz
 // Hip hop
@@ -504,20 +412,26 @@ For more about the for-in loop, see For-In Loops.
 Swift’s Set type does not have a defined ordering. To iterate over the values of a set in a specific order, use the sorted() method, which returns the set’s elements as an array sorted using the < operator.
 
 for genre in favoriteGenres.sorted() {
-   print("\(genre)")
+  print("\(genre)")
 }
 // Classical
 // Hip hop
 // Jazz
+
+// -----------------------------------------------------------------------------
+
 Performing Set Operations
 
 You can efficiently perform fundamental set operations, such as combining two sets together, determining which values two sets have in common, or determining whether two sets contain all, some, or none of the same values.
+
+// -----------------------------------------------------------------------------
 
 Fundamental Set Operations
 
 The illustration below depicts two sets—a and b—with the results of various set operations represented by the shaded regions.
 
 image: ../Art/setVennDiagram_2x.png
+
 Use the intersection(_:) method to create a new set with only the values common to both sets.
 Use the symmetricDifference(_:) method to create a new set with values in either set, but not both.
 Use the union(_:) method to create a new set with all of the values in both sets.
@@ -554,6 +468,9 @@ farmAnimals.isSuperset(of: houseAnimals)
 // true
 farmAnimals.isDisjoint(with: cityAnimals)
 // true
+
+// -----------------------------------------------------------------------------
+
 Dictionaries
 
 A dictionary stores associations between keys of the same type and values of the same type in a collection with no defined ordering. Each value is associated with a unique key, which acts as an identifier for that value within the dictionary. Unlike items in an array, items in a dictionary do not have a specified order. You use a dictionary when you need to look up values based on their identifier, in much the same way that a real-world dictionary is used to look up the definition for a particular word.
@@ -564,6 +481,8 @@ Swift’s Dictionary type is bridged to Foundation’s NSDictionary class.
 
 For more information about using Dictionary with Foundation and Cocoa, see Working with Cocoa Data Types in Using Swift with Cocoa and Objective-C (Swift 3).
 
+// -----------------------------------------------------------------------------
+
 Dictionary Type Shorthand Syntax
 
 The type of a Swift dictionary is written in full as Dictionary<Key, Value>, where Key is the type of value that can be used as a dictionary key, and Value is the type of value that the dictionary stores for those keys.
@@ -573,6 +492,8 @@ NOTE
 A dictionary Key type must conform to the Hashable protocol, like a set’s value type.
 
 You can also write the type of a dictionary in shorthand form as [Key: Value]. Although the two forms are functionally identical, the shorthand form is preferred and is used throughout this guide when referring to the type of a dictionary.
+
+// -----------------------------------------------------------------------------
 
 Creating an Empty Dictionary
 
@@ -588,6 +509,9 @@ namesOfIntegers[16] = "sixteen"
 // namesOfIntegers now contains 1 key-value pair
 namesOfIntegers = [:]
 // namesOfIntegers is once again an empty dictionary of type [Int: String]
+
+// -----------------------------------------------------------------------------
+
 Creating a Dictionary with a Dictionary Literal
 
 You can also initialize a dictionary with a dictionary literal, which has a similar syntax to the array literal seen earlier. A dictionary literal is a shorthand way to write one or more key-value pairs as a Dictionary collection.
@@ -613,6 +537,8 @@ As with arrays, you don’t have to write the type of the dictionary if you’re
 var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 Because all keys in the literal are of the same type as each other, and likewise all values are of the same type as each other, Swift can infer that [String: String] is the correct type to use for the airports dictionary.
 
+// -----------------------------------------------------------------------------
+
 Accessing and Modifying a Dictionary
 
 You access and modify a dictionary through its methods and properties, or by using subscript syntax.
@@ -621,6 +547,7 @@ As with an array, you find out the number of items in a Dictionary by checking i
 
 print("The airports dictionary contains \(airports.count) items.")
 // Prints "The airports dictionary contains 2 items."
+
 Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
 
 if airports.isEmpty {
@@ -629,14 +556,17 @@ if airports.isEmpty {
    print("The airports dictionary is not empty.")
 }
 // Prints "The airports dictionary is not empty."
+
 You can add a new item to a dictionary with subscript syntax. Use a new key of the appropriate type as the subscript index, and assign a new value of the appropriate type:
 
 airports["LHR"] = "London"
 // the airports dictionary now contains 3 items
+
 You can also use subscript syntax to change the value associated with a particular key:
 
 airports["LHR"] = "London Heathrow"
 // the value for "LHR" has been changed to "London Heathrow"
+
 As an alternative to subscripting, use a dictionary’s updateValue(_:forKey:) method to set or update the value for a particular key. Like the subscript examples above, the updateValue(_:forKey:) method sets a value for a key if none exists, or updates the value if that key already exists. Unlike a subscript, however, the updateValue(_:forKey:) method returns the old value after performing an update. This enables you to check whether or not an update took place.
 
 The updateValue(_:forKey:) method returns an optional value of the dictionary’s value type. For a dictionary that stores String values, for example, the method returns a value of type String?, or “optional String”. This optional value contains the old value for that key if one existed before the update, or nil if no value existed:
@@ -645,6 +575,7 @@ if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
    print("The old value for DUB was \(oldValue).")
 }
 // Prints "The old value for DUB was Dublin."
+
 You can also use subscript syntax to retrieve a value from the dictionary for a particular key. Because it is possible to request a key for which no value exists, a dictionary’s subscript returns an optional value of the dictionary’s value type. If the dictionary contains a value for the requested key, the subscript returns an optional value containing the existing value for that key. Otherwise, the subscript returns nil:
 
 if let airportName = airports["DUB"] {
@@ -653,12 +584,14 @@ if let airportName = airports["DUB"] {
    print("That airport is not in the airports dictionary.")
 }
 // Prints "The name of the airport is Dublin Airport."
+
 You can use subscript syntax to remove a key-value pair from a dictionary by assigning a value of nil for that key:
 
 airports["APL"] = "Apple International"
 // "Apple International" is not the real airport for APL, so delete it
 airports["APL"] = nil
 // APL has now been removed from the dictionary
+
 Alternatively, remove a key-value pair from a dictionary with the removeValue(forKey:) method. This method removes the key-value pair if it exists and returns the removed value, or returns nil if no value existed:
 
 if let removedValue = airports.removeValue(forKey: "DUB") {
@@ -691,6 +624,7 @@ for airportName in airports.values {
 }
 // Airport name: Toronto Pearson
 // Airport name: London Heathrow
+
 If you need to use a dictionary’s keys or values with an API that takes an Array instance, initialize a new array with the keys or values property:
 
 let airportCodes = [String](airports.keys)
@@ -698,6 +632,7 @@ let airportCodes = [String](airports.keys)
 
 let airportNames = [String](airports.values)
 // airportNames is ["Toronto Pearson", "London Heathrow"]
+
 Swift’s Dictionary type does not have a defined ordering. To iterate over the keys or values of a dictionary in a specific order, use the sorted() method on its keys or values property.
 
 */

@@ -236,18 +236,12 @@ if convertedNumber != nil {
 // this optional definitely has a value; please use it.”
 
 
-This is known as forced unwrapping of the optional’s value:
+// This is known as forced unwrapping of the optional's value:
 
 if convertedNumber != nil {
     print("convertedNumber has an integer value of \(convertedNumber!).")
 }
 // Prints "convertedNumber has an integer value of 123."
-For more on the if statement, see Control Flow.
-
-NOTE
-
-Trying to use ! to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-nil value before using ! to force-unwrap its value.
-
 
 
 
@@ -257,30 +251,6 @@ Trying to use ! to access a nonexistent optional value triggers a runtime error.
 
 
 /*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -380,12 +350,16 @@ if case ... {
 
 
 // -----------------------------------------------------------------------------
+//  `switch` statement - The conditional statement that has at least one branch.
+// -----------------------------------------------------------------------------
 
-Switch
+A switch statement considers a value and compares it against several possible matching
+patterns. It then executes an appropriate block of code, based on the first pattern
+that matches successfully. A switch statement provides an alternative to the if
+statement for responding to multiple potential states.
 
-A switch statement considers a value and compares it against several possible matching patterns. It then executes an appropriate block of code, based on the first pattern that matches successfully. A switch statement provides an alternative to the if statement for responding to multiple potential states.
-
-In its simplest form, a switch statement compares a value against one or more values of the same type.
+In its simplest form, a switch statement compares a value against one or more
+values of the same type.
 
 switch some value to consider {
 case value 1:
@@ -397,13 +371,23 @@ default:
   otherwise, do something else
 }
 
-Every switch statement consists of multiple possible cases, each of which begins with the case keyword. In addition to comparing against specific values, Swift provides several ways for each case to specify more complex matching patterns. These options are described later in this chapter.
+Every switch statement consists of multiple possible cases, each of which begins
+with the case keyword. In addition to comparing against specific values, Swift
+provides several ways for each case to specify more complex matching patterns.
+These options are described later in this chapter.
 
-Like the body of an if statement, each case is a separate branch of code execution. The switch statement determines which branch should be selected. This procedure is known as switching on the value that is being considered.
+Like the body of an if statement, each case is a separate branch of code execution.
+The switch statement determines which branch should be selected. This procedure is
+known as switching on the value that is being considered.
 
-Every switch statement must be exhaustive. That is, every possible value of the type being considered must be matched by one of the switch cases. If it’s not appropriate to provide a case for every possible value, you can define a default case to cover any values that are not addressed explicitly. This default case is indicated by the default keyword, and must always appear last.
+Every switch statement must be exhaustive. That is, every possible value of the
+type being considered must be matched by one of the switch cases. If it’s not
+appropriate to provide a case for every possible value, you can define a default
+case to cover any values that are not addressed explicitly. This default case is
+indicated by the default keyword, and must always appear last.
 
-This example uses a switch statement to consider a single lowercase character called someCharacter:
+This example uses a switch statement to consider a single lowercase character
+called someCharacter:
 
 let someCharacter: Character = "z"
 switch someCharacter {
@@ -416,19 +400,31 @@ default:
 }
 // Prints "The last letter of the alphabet"
 
-The switch statement’s first case matches the first letter of the English alphabet, a, and its second case matches the last letter, z. Because the switch must have a case for every possible character, not just every alphabetic character, this switch statement uses a default case to match all characters other than a and z. This provision ensures that the switch statement is exhaustive.
+The switch statement’s first case matches the first letter of the English alphabet,
+a, and its second case matches the last letter, z. Because the switch must have a
+case for every possible character, not just every alphabetic character, this switch
+statement uses a default case to match all characters other than a and z. This
+provision ensures that the switch statement is exhaustive.
 
 // -----------------------------------------------------------------------------
 
 No Implicit Fallthrough
 
-In contrast with switch statements in C and Objective-C, switch statements in Swift do not fall through the bottom of each case and into the next one by default. Instead, the entire switch statement finishes its execution as soon as the first matching switch case is completed, without requiring an explicit break statement. This makes the switch statement safer and easier to use than the one in C and avoids executing more than one switch case by mistake.
+In contrast with switch statements in C and Objective-C, switch statements in Swift
+do not fall through the bottom of each case and into the next one by default. Instead,
+the entire switch statement finishes its execution as soon as the first matching switch
+case is completed, without requiring an explicit break statement. This makes the switch
+statement safer and easier to use than the one in C and avoids executing more than one
+switch case by mistake.
 
 NOTE
 
-Although break is not required in Swift, you can use a break statement to match and ignore a particular case or to break out of a matched case before that case has completed its execution. For details, see Break in a Switch Statement.
+Although break is not required in Swift, you can use a break statement to match and
+ignore a particular case or to break out of a matched case before that case has
+completed its execution. For details, see Break in a Switch Statement.
 
-The body of each case must contain at least one executable statement. It is not valid to write the following code, because the first case is empty:
+The body of each case must contain at least one executable statement. It is not
+valid to write the following code, because the first case is empty:
 
 let anotherCharacter: Character = "a"
 switch anotherCharacter {
@@ -439,54 +435,72 @@ default:
     print("Not the letter A")
 }
 // This will report a compile-time error.
-Unlike a switch statement in C, this switch statement does not match both "a" and "A". Rather, it reports a compile-time error that case "a": does not contain any executable statements. This approach avoids accidental fallthrough from one case to another and makes for safer code that is clearer in its intent.
+Unlike a switch statement in C, this switch statement does not match both "a"
+and "A". Rather, it reports a compile-time error that case "a": does not contain
+any executable statements. This approach avoids accidental fallthrough from one
+case to another and makes for safer code that is clearer in its intent.
 
-To make a switch with a single case that matches both "a" and "A", combine the two values into a compound case, separating the values with commas.
+To make a switch with a single case that matches both "a" and "A", combine the
+two values into a compound case, separating the values with commas.
 
 let anotherCharacter: Character = "a"
 switch anotherCharacter {
 case "a", "A":
-    print("The letter A")
+  print("The letter A")
 default:
-    print("Not the letter A")
+  print("Not the letter A")
 }
 // Prints "The letter A"
-For readability, a compound case can also be written over multiple lines. For more information about compound cases, see Compound Cases.
+For readability, a compound case can also be written over multiple lines.
+For more information about compound cases, see Compound Cases.
 
 NOTE
 
-To explicitly fall through at the end of a particular switch case, use the fallthrough keyword, as described in Fallthrough.
+To explicitly fall through at the end of a particular switch case, use the
+fallthrough keyword, as described in Fallthrough.
 
 Interval Matching
 
-Values in switch cases can be checked for their inclusion in an interval. This example uses number intervals to provide a natural-language count for numbers of any size:
+Values in switch cases can be checked for their inclusion in an interval.
+This example uses number intervals to provide a natural-language count
+for numbers of any size:
 
 let approximateCount = 62
 let countedThings = "moons orbiting Saturn"
 var naturalCount: String
 switch approximateCount {
 case 0:
-    naturalCount = "no"
+  naturalCount = "no"
 case 1..<5:
-    naturalCount = "a few"
+  naturalCount = "a few"
 case 5..<12:
-    naturalCount = "several"
+  naturalCount = "several"
 case 12..<100:
-    naturalCount = "dozens of"
+  naturalCount = "dozens of"
 case 100..<1000:
-    naturalCount = "hundreds of"
+  naturalCount = "hundreds of"
 default:
-    naturalCount = "many"
+  naturalCount = "many"
 }
 print("There are \(naturalCount) \(countedThings).")
 // Prints "There are dozens of moons orbiting Saturn."
-In the above example, approximateCount is evaluated in a switch statement. Each case compares that value to a number or interval. Because the value of approximateCount falls between 12 and 100, naturalCount is assigned the value "dozens of", and execution is transferred out of the switch statement.
+
+In the above example, approximateCount is evaluated in a switch statement.
+Each case compares that value to a number or interval. Because the value
+of approximateCount falls between 12 and 100, naturalCount is assigned
+the value "dozens of", and execution is transferred out of the switch
+statement.
 
 Tuples
 
-You can use tuples to test multiple values in the same switch statement. Each element of the tuple can be tested against a different value or interval of values. Alternatively, use the underscore character (_), also known as the wildcard pattern, to match any possible value.
+You can use tuples to test multiple values in the same switch statement.
+Each element of the tuple can be tested against a different value or
+interval of values. Alternatively, use the underscore character (_),
+also known as the wildcard pattern, to match any possible value.
 
-The example below takes an (x, y) point, expressed as a simple tuple of type (Int, Int), and categorizes it on the graph that follows the example.
+The example below takes an (x, y) point, expressed as a simple tuple
+of type (Int, Int), and categorizes it on the graph that follows the
+example.
 
 let somePoint = (1, 1)
 switch somePoint {

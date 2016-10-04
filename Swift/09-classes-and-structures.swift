@@ -75,6 +75,19 @@ class VideoMode {
 
 
 
+// TODO
+// - explain class instance mutability even if the instance is assigned to a constant
+
+
+
+
+
+
+
+
+
+
+
 
 
 

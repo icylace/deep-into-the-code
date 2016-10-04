@@ -7,10 +7,10 @@
 //  Operator - A symbol or phrase that processes one or more values.
 //  Operand - A value targeted by an operator.
 //  Unary operator - An operator that works on a single operand.
-//  Unary prefix operator - A unary operator that appears immediately
-//                          before its operand.
-//  Unary postfix operator - A unary operator that appears immediately
-//                           after its operand.
+//  Unary prefix operator - An operator that appears immediately before
+//                          its only operand.
+//  Unary postfix operator - A operator that appears immediately after
+//                           its only operand.
 //  Binary operator - An operator that works on two operands and is infix
 //                    because it appears in between the operands.
 //  Ternary operator - An operator that works on three operands.
@@ -146,6 +146,13 @@ assert(2 <= 1)
 
 
 /*
+
+
+
+optional != nil
+
+
+
 
 
 // There are also two identity operators (`===` and `!==`) which you use to
