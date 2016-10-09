@@ -52,7 +52,6 @@ assert(true/* but please don't do that! */)
 
 // Note: `assert(_:_:file:line:)` is covered in a later section.
 
-
 // =============================================================================
 //  The Basics
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
@@ -75,16 +74,16 @@ assert(true/* but please don't do that! */)
 */
 
 // -----------------------------------------------------------------------------
-//  Immutability - The quality of a value staying unchanged once it is set.
-//  Constant - An association between a name and an immutable value.
+//  Constant - An association between a name and a value that is immutable,
+//             meaning it can only be assigned a value once.
 // -----------------------------------------------------------------------------
 
 // Declare a constant named `answer` and assign it the literal value 42.
 let answer = 42
 
 // -----------------------------------------------------------------------------
-//  Mutability - The quality of a value staying changeable once it is set.
-//  Variable - An association between a name and a mutable value.
+//  Variable - An association between a name and a value that is mutable,
+//             meaning it always can be assigned another value anytime.
 // -----------------------------------------------------------------------------
 
 // A variable named `myAnswer`.
@@ -109,15 +108,27 @@ var k = "hello"
 // `k` is inferred to be of type `String`.
 
 // -----------------------------------------------------------------------------
+
+// You can use the semi-documented `type(of:)` global function to get the type
+// of an expression.
+//
+// See also:
+// https://github.com/apple/swift-evolution/blob/master/proposals/0136-memory-layout-of-values.md#making-use-of-typeof
+
+// A type's `self` property can be used to refer to the type itself.
+
+// Verify that `k` is of type `String`.
+assert(type(of: k) == String.self)
+
+// -----------------------------------------------------------------------------
 //  Type safety - The behavior that enforces consistent use of types.
 // -----------------------------------------------------------------------------
 
-// Swift is a type-safe language.  Type safety encourages you to be clear about
-// the types of values your code can work with.  Type checks happen as part of
-// the compilation process and any type mismatches are flagged as
-// compile-time errors.
+// Type checks happen as part of the compilation process and any type mismatches
+// are flagged as compile-time errors.
 
-// Since `k` is of type `String` we can only `String` values to it from now on.
+// Since `k` is of type `String` we can only assign `String` values
+// to it from now on.
 k = "bonjour"
 
 // If the following is uncommented it will produce an error:
@@ -156,14 +167,50 @@ var un: Double, deux: Int, trois: Double
 
 // -----------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO
+
+
+
+// -----------------------------------------------------------------------------
+//  Identifier - A name given to a constant, variable, function, type, or label.
+// -----------------------------------------------------------------------------
+
+
+
+
 // Constant and variable names can contain almost any character,
 // including Unicode characters.
 
 let π = 3.14159
 let 你好 = "你好世界"
-let 🐶🐮 = "dogcow"
+var 🐶🐮 = "dogcow"
 
-// Constant and variable names cannot contain:
+func 😃😄😆😊() {}
+
+😃😄😆😊()
+
+assert(type(of: 😃😄😆😊) == (() -> ()).self)
+assert(type(of: 😃😄😆😊) == (() -> Void).self)
+assert(type(of: 😃😄😆😊) == (() -> (Void)).self)
+assert(type(of: 😃😄😆😊) == ((Void) -> Void).self)
+assert(type(of: 😃😄😆😊) == (((Void)) -> (Void)).self)
+
+
+
+// Identifiers cannot contain:
 // - whitespace characters
 // - mathematical symbols
 // - arrows
@@ -171,10 +218,13 @@ let 🐶🐮 = "dogcow"
 // - line-drawing characters
 // - box-drawing characters
 
-// Constant and variable names cannot begin with a number, although numbers may
+// Identifiers cannot begin with a number, although numbers may
 // be included elsewhere within the name.
 
 // -----------------------------------------------------------------------------
+
+
+
 
 // If you need to give a constant or variable the same name as a reserved Swift
 // keyword, surround the keyword with backticks (`) when using it as a name.
@@ -205,8 +255,10 @@ class `var` {}
 // -----------------------------------------------------------------------------
 
 // You can print the current value of a constant or variable with the
-// global `print(_:separator:terminator:)` function:
-// - https://developer.apple.com/reference/swift/1541053-print
+// `print(_:separator:terminator:)` global function:
+//
+// See also:
+// https://developer.apple.com/reference/swift/1541053-print
 
 print(answer)
 // Output:
@@ -233,8 +285,10 @@ var h = 2;
 // If an assertion is triggered (its condition evaluates to false), code
 // execution ends and your app is terminated.
 
-// An assertion is checked with the global `assert(_:_:file:line:)` function:
-// - https://developer.apple.com/reference/swift/1541112-assert
+// An assertion is checked with the `assert(_:_:file:line:)` global function:
+//
+// See also:
+// https://developer.apple.com/reference/swift/1541112-assert
 
 let age = 3
 // This assertion is not triggered because `age` equals 3.
@@ -251,7 +305,7 @@ assert(age > 5)
 
 // If the following is uncommented it will produce an error:
 /*
-// assert(age > 5, "Age needs to be greater than 5.")
+assert(age > 5, "Age needs to be greater than 5.")
 */
 
 // -----------------------------------------------------------------------------

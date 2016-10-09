@@ -4,117 +4,6 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Loop statement - A statement that can execute a block of code repeatedly.
-//  `for-in` loop - A loop statement that iterates over a sequence.
-//  Loop variable - A variable that controls the iterations of a `for-in` loop.
-// -----------------------------------------------------------------------------
-
-// The loop variable is, ironically, a constant by default whose value is
-// automatically set at the start of each loop iteration.  It doesn't
-// have to be declared before it's used.  It's implicitly declared by
-// its inclusion in the loop declaration, without the need for a
-// `let` keyword.  In fact, attempting to use `let` will trigger
-// a compile-time error.
-
-// Use a `for-in` loop to calculate a sum.  The loop variable is `index`.
-var answer = 0
-for index in 1...5 {
-  answer += index * 5
-}
-assert(answer == 75)
-
-// -----------------------------------------------------------------------------
-
-// The loop variable can be declared a variable allowing it to be modified
-// within the code block being looped over.
-
-answer = 0
-for var index in 1...5 {
-  index -= 1
-  answer += index * 5
-}
-assert(answer == 50)
-
-// -----------------------------------------------------------------------------
-
-// If you don't need each value from a sequence, you can ignore them by using
-// an underscore in place of a loop variable name.
-
-answer = 1
-for _ in 1...10 {
-  answer *= 3
-}
-assert(answer == 59_049)
-
-// -----------------------------------------------------------------------------
-
-// The sequence a `for-in` loop iterates over can be abstracted away.
-
-answer = 1
-var range = 1...10
-for _ in range {
-  answer *= 3
-}
-assert(answer == 59_049)
-
-// -----------------------------------------------------------------------------
-
-// A `for-in` loop can iterate over an array's items.
-
-var allText = ""
-let array = ["Foo", "Bar", "Baz"]
-for item in array {
-  allText += item
-}
-assert(allText == "FooBarBaz")
-
-// -----------------------------------------------------------------------------
-
-// A `for-in` loop can iterate over a dictionary's key-value pairs.
-
-var result = ""
-let dictionary = ["spider": 8, "ant": 6, "cat": 4]
-for (key, value) in dictionary {
-  result += "\(key) \(String(value)) "
-}
-assert(result.characters.count == 21)
-
-// The contents of a dictionary are inherently unordered, and iterating over
-// them does not guarantee the order in which they will be retrieved.
-
-// -----------------------------------------------------------------------------
-//  `while` loop - The loop statement that checks a condition before executing a
-//                 block of code, repeating until the condition becomes false.
-// -----------------------------------------------------------------------------
-
-var i = 0
-var condition = true
-while condition {
-  i += 1
-  condition = i < 10
-}
-assert(i == 10)
-
-// -----------------------------------------------------------------------------
-//  `repeat-while` loop - The loop statement that checks a condition after
-//                        executing a block of code, repeating until the
-//                        condition becomes false.
-// -----------------------------------------------------------------------------
-
-i = 0
-condition = true
-repeat {
-  i += 1
-  condition = i < 10
-} while condition
-assert(i == 10)
-
-// -----------------------------------------------------------------------------
-
-// `while` and `repeat-while` loops are best used when the number of iterations
-// is not known before the first iteration begins.
-
-// -----------------------------------------------------------------------------
 //  Branch - A set of statements that may be conditionally executed.
 //  Conditional statement - A non-looping statement that conditionally redirects
 //                          execution through one of a given set of branches.
@@ -214,41 +103,101 @@ assert(totalCoins1 == totalCoins2)
 
 // -----------------------------------------------------------------------------
 
-// TODO
-
 // An `if` statement can find out whether an optional contains a value by
 // comparing the optional against nil.  If an optional has a value, it is
-// considered to be not equal to nil.
+// considered to be not equal to nil, and may be force-unwrapped safely.
 
+var maybeNumber: Int? = 2
 
-
-
-if convertedNumber != nil {
-  print("convertedNumber contains some integer value.")
+if maybeNumber != nil {
+  assert(maybeNumber! == 2)
 }
-// Output:
-// convertedNumber contains some integer value.
 
-
-// Once you're sure that the optional does contain a value, you can access its
-// underlying value by adding an exclamation mark (`!`) to the end of the
-// optional's name.  The exclamation mark effectively says, "I know that
-// this optional definitely has a value; please use it.”
-
-
-// This is known as forced unwrapping of the optional's value:
-
-if convertedNumber != nil {
-    print("convertedNumber has an integer value of \(convertedNumber!).")
+if maybeNumber != nil {
+  assert(maybeNumber! == 2)
+} else {
+  assert(maybeNumber == nil)
 }
-// Prints "convertedNumber has an integer value of 123."
+
+// -----------------------------------------------------------------------------
+//  Optional binding - The act of checking whether an optional contains a value,
+//                     and if so, making the value available as a temporary
+//                     constant or variable.
+// -----------------------------------------------------------------------------
+
+// An `if` statement can use optional binding.  Constants and variables created
+// in this way are available only within the `if` statement's branch.
+
+if let number = maybeNumber {
+  assert(number == 2)
+}
+
+// An optionally bound constant or variable is not available in an else clause.
+
+if let number = maybeNumber {
+  assert(number == 2)
+} else {
+  assert(maybeNumber == nil)
+  // If the following is uncommented it will produce an error:
+  /*
+  assert(number == nil)
+  */
+}
+
+// -----------------------------------------------------------------------------
+
+// An optionally bound variable can be manipulated within an `if`
+// statement's branch.
+
+if var number = maybeNumber {
+  assert(number == 2)
+  number = 4
+  assert(number == 4)
+}
+
+// -----------------------------------------------------------------------------
+//  Scope - The area of a program where usage of a named code element is valid.
+// -----------------------------------------------------------------------------
+
+// An optionally bound constant or variable is in a different scope than
+// another constant or variable having the same name in a parent scope.
+
+var actualNumber = 50
+if let actualNumber = maybeNumber {
+  assert(actualNumber == 2)
+}
+assert(actualNumber == 50)
+
+// -----------------------------------------------------------------------------
+
+// An `if` statement can include multiple optional bindings and Boolean
+// conditions.  If any of the values in the optional bindings are
+// nil or any Boolean condition evaluates to false, the whole `if`
+// statement's condition is considered to be false.
+
+if let a = Int("4"), var b = Int("42"), let c = Int("100"), a < b && b < c {
+  b += 2
+  assert(a + b + c == 148)
+}
+
+// This `if` statement is equivalent to the previous one.
+if let a = Int("4") {
+  if var b = Int("42") {
+    if let c = Int("100") {
+      if a < b && b < c {
+        b += 2
+        assert(a + b + c == 148)
+      }
+    }
+  }
+}
 
 
 
 
 
 
-
+// TODO
 
 /*
 
@@ -259,49 +208,22 @@ if convertedNumber != nil {
 
 
 
-
-
-
-
-var maybeThing: Optional<Int> = 3
-var maybeThing: Int? = 3
-
-if let thing = maybeThing {
-  print(thing)
-}
-
-if maybeThing != nil {
-  print(maybeThing!)
-}
+In contrast, the constants
+and variables created with a guard statement are available in the lines of code
+that follow the guard statement, as described in Early Exit.
 
 
 
 
 
-if convertedNumber != nil {
-  print("convertedNumber contains some integer value.")
-}
-// Prints "convertedNumber contains some integer value."
 
-if convertedNumber != nil {
-  print("convertedNumber has an integer value of \(convertedNumber!).")
-}
-// Prints "convertedNumber has an integer value of 123."
 
-if let actualNumber = Int(possibleNumber) {
-  print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
-} else {
-  print("\"\(possibleNumber)\" could not be converted to an integer")
-}
-// Prints ""123" has an integer value of 123"
 
-if let firstNumber = Int("4"), secondNumber = Int("42") where firstNumber < secondNumber {
-  print("\(firstNumber) < \(secondNumber)")
-}
-// Prints "4 < 42"
 
 // Constants and variables created with optional binding in an `if` statement are
-// available only within the body of the `if` statement.  In contrast, the
+// available only within the body of the `if` statement.  In contrast,
+
+the
 // constants and variables created with a `guard` statement are available
 // in the lines of code that follow the `guard` statement.
 
@@ -339,55 +261,43 @@ if case ... {
 
 
 
-
-
-
-
-
-
-
-
-
-
 // -----------------------------------------------------------------------------
 //  `switch` statement - The conditional statement that has at least one branch.
 // -----------------------------------------------------------------------------
 
-A switch statement considers a value and compares it against several possible matching
-patterns. It then executes an appropriate block of code, based on the first pattern
-that matches successfully. A switch statement provides an alternative to the if
-statement for responding to multiple potential states.
+// A `switch` statement considers a value and compares it against several
+// possible matching patterns.  It then executes an appropriate block
+// of code, based on the first pattern that matches successfully.
+// A `switch` statement provides an alternative to the `if`
+// statement for responding to multiple potential states.
 
-In its simplest form, a switch statement compares a value against one or more
-values of the same type.
+// In its simplest form, a `switch` statement compares a value against one or
+// more values of the same type.
 
 switch some value to consider {
 case value 1:
   respond to value 1
-case value 2,
-   value 3:
+case value 2, value 3:
   respond to value 2 or 3
 default:
   otherwise, do something else
 }
 
 Every switch statement consists of multiple possible cases, each of which begins
-with the case keyword. In addition to comparing against specific values, Swift
+with the case keyword.  In addition to comparing against specific values, Swift
 provides several ways for each case to specify more complex matching patterns.
 These options are described later in this chapter.
 
-Like the body of an if statement, each case is a separate branch of code execution.
-The switch statement determines which branch should be selected. This procedure is
-known as switching on the value that is being considered.
+Like the body of an if statement, each case is a separate branch of code
+execution.  The switch statement determines which branch should be
+selected.  This procedure is known as switching on the value that
+is being considered.
 
-Every switch statement must be exhaustive. That is, every possible value of the
-type being considered must be matched by one of the switch cases. If it’s not
+Every switch statement must be exhaustive.  That is, every possible value of the
+type being considered must be matched by one of the switch cases.  If it's not
 appropriate to provide a case for every possible value, you can define a default
-case to cover any values that are not addressed explicitly. This default case is
-indicated by the default keyword, and must always appear last.
-
-This example uses a switch statement to consider a single lowercase character
-called someCharacter:
+case to cover any values that are not addressed explicitly.  This default case
+is indicated by the default keyword, and must always appear last.
 
 let someCharacter: Character = "z"
 switch someCharacter {
@@ -410,18 +320,16 @@ provision ensures that the switch statement is exhaustive.
 
 No Implicit Fallthrough
 
-In contrast with switch statements in C and Objective-C, switch statements in Swift
-do not fall through the bottom of each case and into the next one by default. Instead,
-the entire switch statement finishes its execution as soon as the first matching switch
-case is completed, without requiring an explicit break statement. This makes the switch
-statement safer and easier to use than the one in C and avoids executing more than one
-switch case by mistake.
+`switch` statements in Swift do not fall through the bottom of each case and
+into the next one by default.  Instead, the entire `switch` statement
+finishes its execution as soon as the first matching `switch` case is
+completed, without requiring an explicit `break` statement.
 
 NOTE
 
-Although break is not required in Swift, you can use a break statement to match and
-ignore a particular case or to break out of a matched case before that case has
-completed its execution. For details, see Break in a Switch Statement.
+Although `break` is not required in Swift, you can use a `break` statement to
+match and ignore a particular case or to break out of a matched case before
+that case has completed its execution.
 
 The body of each case must contain at least one executable statement. It is not
 valid to write the following code, because the first case is empty:
@@ -430,11 +338,12 @@ let anotherCharacter: Character = "a"
 switch anotherCharacter {
 case "a": // Invalid, the case has an empty body
 case "A":
-    print("The letter A")
+  print("The letter A")
 default:
-    print("Not the letter A")
+  print("Not the letter A")
 }
 // This will report a compile-time error.
+
 Unlike a switch statement in C, this switch statement does not match both "a"
 and "A". Rather, it reports a compile-time error that case "a": does not contain
 any executable statements. This approach avoids accidental fallthrough from one
@@ -451,6 +360,7 @@ default:
   print("Not the letter A")
 }
 // Prints "The letter A"
+
 For readability, a compound case can also be written over multiple lines.
 For more information about compound cases, see Compound Cases.
 
@@ -458,6 +368,8 @@ NOTE
 
 To explicitly fall through at the end of a particular switch case, use the
 fallthrough keyword, as described in Fallthrough.
+
+// -----------------------------------------------------------------------------
 
 Interval Matching
 
@@ -485,11 +397,7 @@ default:
 print("There are \(naturalCount) \(countedThings).")
 // Prints "There are dozens of moons orbiting Saturn."
 
-In the above example, approximateCount is evaluated in a switch statement.
-Each case compares that value to a number or interval. Because the value
-of approximateCount falls between 12 and 100, naturalCount is assigned
-the value "dozens of", and execution is transferred out of the switch
-statement.
+// -----------------------------------------------------------------------------
 
 Tuples
 
@@ -497,10 +405,6 @@ You can use tuples to test multiple values in the same switch statement.
 Each element of the tuple can be tested against a different value or
 interval of values. Alternatively, use the underscore character (_),
 also known as the wildcard pattern, to match any possible value.
-
-The example below takes an (x, y) point, expressed as a simple tuple
-of type (Int, Int), and categorizes it on the graph that follows the
-example.
 
 let somePoint = (1, 1)
 switch somePoint {
@@ -529,14 +433,13 @@ However, if multiple matches are possible, the first matching case is always
 used. The point (0, 0) would match case (0, 0) first, and so all other matching
 cases would be ignored.
 
+// -----------------------------------------------------------------------------
+
 Value Bindings
 
 A switch case can bind the value or values it matches to temporary constants or
 variables, for use in the body of the case. This behavior is known as value binding,
 because the values are bound to temporary constants or variables within the case’s body.
-
-The example below takes an (x, y) point, expressed as a tuple of type (Int, Int),
-and categorizes it on the graph that follows:
 
 let anotherPoint = (2, 0)
 switch anotherPoint {
@@ -575,8 +478,6 @@ Where
 
 A switch case can use a where clause to check for additional conditions.
 
-The example below categorizes an (x, y) point on the following graph:
-
 let yetAnotherPoint = (1, -1)
 switch yetAnotherPoint {
 case let (x, y) where x == y:
@@ -606,51 +507,44 @@ and so a default case is not needed to make the switch statement exhaustive.
 
 Compound Cases
 
-Multiple switch cases that share the same body can be combined by writing several
-patterns after case, with a comma between each of the patterns. If any of the
-patterns match, then the case is considered to match. The patterns can be written
-over multiple lines if the list is long. For example:
+// Multiple switch cases that share the same body can be combined by writing
+// several patterns after case, with a comma between each of the patterns.
+// If any of the patterns match, then the case is considered to match.
+// The patterns can be written over multiple lines if the list is
+// long.  For example:
 
 let someCharacter: Character = "e"
 switch someCharacter {
 case "a", "e", "i", "o", "u":
   print("\(someCharacter) is a vowel")
-case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
-   "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
+case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
   print("\(someCharacter) is a consonant")
 default:
   print("\(someCharacter) is not a vowel or a consonant")
 }
 // Prints "e is a vowel"
 
-The switch statement’s first case matches all five lowercase vowels in the English
-language. Similarly, its second case matches all lowercase English consonants.
-Finally, the default case matches any other character.
-
-Compound cases can also include value bindings. All of the patterns of a compound
-case have to include the same set of value bindings, and each binding has to get
-a value of the same type from all of the patterns in the compound case.  This
-ensures that, no matter which part of the compound case matched, the code in
-the body of the case can always access a value for the bindings and that the
-value always has the same type.
+Compound cases can also include value bindings.  All of the patterns of a
+compound case have to include the same set of value bindings, and each
+binding has to get a value of the same type from all of the patterns
+in the compound case.  This ensures that, no matter which part of
+the compound case matched, the code in the body of the case can
+always access a value for the bindings and that the value
+always has the same type.
 
 let stillAnotherPoint = (9, 0)
 switch stillAnotherPoint {
 case (let distance, 0), (0, let distance):
-    print("On an axis, \(distance) from the origin")
+  print("On an axis, \(distance) from the origin")
 default:
-    print("Not on an axis")
+  print("Not on an axis")
 }
 // Prints "On an axis, 9 from the origin"
+
 The case above has two patterns: (let distance, 0) matches points on the x-axis
 and (0, let distance) matches points on the y-axis. Both patterns include a
 binding for distance and distance is an integer in both patterns—which means
 that the code in the body of the case can always access a value for distance.
-
-
-
-
-
 
 
 
@@ -733,11 +627,8 @@ Propagating Errors Using Throwing Functions.
 Continue
 
 The continue statement tells a loop to stop what it is doing and start again at
-the beginning of the next iteration through the loop.  It says “I am done with
-the current loop iteration” without leaving the loop altogether.
-
-The following example removes all vowels and spaces from a lowercase string to
-create a cryptic puzzle phrase:
+the beginning of the next iteration through the loop.  It says "I am done with
+the current loop iteration" without leaving the loop altogether.
 
 let puzzleInput = "great minds think alike"
 var puzzleOutput = ""
@@ -753,19 +644,14 @@ for character in puzzleInput.characters {
 print(puzzleOutput)
 // Prints "grtmndsthnklk"
 
-The code above calls the continue keyword whenever it matches a vowel or a space,
-causing the current iteration of the loop to end immediately and to jump straight
-to the start of the next iteration. This behavior enables the switch block to match
-(and ignore) only the vowel and space characters, rather than requiring the block
-to match every character that should get printed.
-
+// -----------------------------------------------------------------------------
+//  `break` statement - The statement that ends execution of an entire
+//                      control flow statement immediately.
 // -----------------------------------------------------------------------------
 
-Break
-
-The break statement ends execution of an entire control flow statement immediately
- The break statement can be used inside a switch statement or loop statement when
- you want to terminate the execution of the switch or loop statement earlier than would otherwise be the case.
+// The `break` statement can be used inside a switch statement or loop statement
+// when you want to terminate the execution of the switch or loop statement
+// earlier than would otherwise be the case.
 
 // -----------------------------------------------------------------------------
 
@@ -825,40 +711,17 @@ if let integerValue = possibleIntegerValue {
 }
 // Prints "The integer value of 三 is 3."
 
-This example checks numberSymbol to determine whether it is a Latin, Arabic,
-Chinese, or Thai symbol for the numbers 1 to 4. If a match is found, one of
-the switch statement’s cases sets an optional Int? variable called
-possibleIntegerValue to an appropriate integer value.
-
-After the switch statement completes its execution, the example uses optional
-binding to determine whether a value was found. The possibleIntegerValue
-variable has an implicit initial value of nil by virtue of being an
-optional type, and so the optional binding will succeed only if
-possibleIntegerValue was set to an actual value by one of the
-switch statement’s first four cases.
-
-Because it’s not practical to list every possible Character value in the example
-above, a default case handles any characters that are not matched.  This default
-case does not need to perform any action, and so it is written with a single
-break statement as its body. As soon as the default case is matched, the
-break statement ends the switch statement’s execution, and code
-execution continues from the if let statement.
-
 // -----------------------------------------------------------------------------
 
 Fallthrough
 
-Switch statements in Swift don’t fall through the bottom of each case and into
-the next one.  Instead, the entire switch statement completes its execution as
-soon as the first matching case is completed.  By contrast, C requires you to
-insert an explicit break statement at the end of every switch case to prevent
-fallthrough.  Avoiding default fallthrough means that Swift switch statements
-are much more concise and predictable than their counterparts in C, and thus
-they avoid executing multiple switch cases by mistake.
+`switch` statements in Swift don’t fall through the bottom of each case and into
+the next one.  Instead, the entire `switch` statement completes its execution as
+soon as the first matching case is completed.  This avoids executing multiple
+`switch` cases by mistake.
 
-If you need C-style fallthrough behavior, you can opt in to this behavior on
-a case-by-case basis with the fallthrough keyword.  The example below uses
-fallthrough to create a textual description of a number.
+You can opt in to fallthrough behavior on a case-by-case basis with the
+`fallthrough` keyword.
 
 let integerToDescribe = 5
 var description = "The number \(integerToDescribe) is"
@@ -874,18 +737,6 @@ default:
 print(description)
 // Prints "The number 5 is a prime number, and also an integer."
 
-This example declares a new String variable called description and assigns it an
-initial value. The function then considers the value of integerToDescribe using
-a switch statement. If the value of integerToDescribe is one of the prime numbers
-in the list, the function appends text to the end of description, to note that
-the number is prime. It then uses the fallthrough keyword to “fall into” the
-default case as well. The default case adds some extra text to the end of
-the description, and the switch statement is complete.
-
-Unless the value of integerToDescribe is in the list of known prime numbers, it
-is not matched by the first switch case at all. Because there are no other
-specific cases, integerToDescribe is matched by the default case.
-
 After the switch statement has finished executing, the number’s description is
 printed using the print(_:separator:terminator:) function.  In this example,
 the number 5 is correctly identified as a prime number.
@@ -893,9 +744,21 @@ the number 5 is correctly identified as a prime number.
 NOTE
 
 The fallthrough keyword does not check the case conditions for the switch case
-that it causes execution to fall into. The fallthrough keyword simply causes
+that it causes execution to fall into.  The fallthrough keyword simply causes
 code execution to move directly to the statements inside the next case (or
 default case) block, as in C’s standard switch statement behavior.
+
+
+
+
+
+
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -917,7 +780,7 @@ With a loop statement, you can use a statement label with the break or continue
 statement to end or continue the execution of the labeled statement.
 
 A labeled statement is indicated by placing a label on the same line as the
-statement’s introducer keyword, followed by a colon.  Here’s an example of
+statement’s introducer keyword, followed by a colon.  Here's an example of
 this syntax for a while loop, although the principle is the same for all
 loops and switch statements:
 
@@ -1016,10 +879,10 @@ break statement and helps make the game’s logic clearer to read and understand
 // -----------------------------------------------------------------------------
 
 A guard statement, like an if statement, executes statements depending on the
-Boolean value of an expression. You use a guard statement to require that a
+Boolean value of an expression.  You use a guard statement to require that a
 condition must be true in order for the code after the guard statement to be
-executed. Unlike an if statement, a guard statement always has an else clause-
-the code inside the else clause is executed if the condition is not true.
+executed.  Unlike an if statement, a guard statement always has an else
+clause-the code inside the else clause is executed if the condition is not true.
 
 func greet(person: [String: String]) {
   guard let name = person["name"] else {
@@ -1043,20 +906,20 @@ greet(person: ["name": "Jane", "location": "Cupertino"])
 // Prints "Hello Jane!"
 // Prints "I hope the weather is nice in Cupertino."
 
-If the guard statement’s condition is met, code execution continues after the
-guard statement’s closing brace. Any variables or constants that were assigned
+If the guard statement's condition is met, code execution continues after the
+guard statement’s closing brace.  Any variables or constants that were assigned
 values using an optional binding as part of the condition are available for the
 rest of the code block that the guard statement appears in.
 
 If that condition is not met, the code inside the else branch is executed.
 That branch must transfer control to exit the code block in which the guard
-statement appears. It can do this with a control transfer statement such as
-return, break, continue, or throw, or it can call a function or method that
-doesn’t return, such as fatalError(_:file:line:).
+statement appears.  It can do this with a control transfer statement such
+as return, break, continue, or throw, or it can call a function or method
+that doesn't return, such as fatalError(_:file:line:).
 
 Using a guard statement for requirements improves the readability of your code,
-compared to doing the same check with an if statement. It lets you write the
-code that’s typically executed without wrapping it in an else block, and it
+compared to doing the same check with an if statement.  It lets you write the
+code that's typically executed without wrapping it in an else block, and it
 lets you keep the code that handles a violated requirement next to the requirement.
 
 
@@ -1081,10 +944,10 @@ lets you keep the code that handles a violated requirement next to the requireme
 // that isn’t available.
 
 // You use an availability condition in an `if` or `guard` statement to
-// conditionally
-// execute a block of code, depending on whether the APIs you want to use are
-// available at runtime. The compiler uses the information from the availability
-// condition when it verifies that the APIs in that block of code are available.
+// conditionally execute a block of code, depending on whether the APIs
+// you want to use are available at runtime.  The compiler uses the
+// information from the availability condition when it verifies
+// that the APIs in that block of code are available.
 
 if #available(iOS 10, macOS 10.12, *) {
   // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
@@ -1095,16 +958,16 @@ if #available(iOS 10, macOS 10.12, *) {
 // TODO
 // - is `#available` able to be used in `switch` ?
 
-The availability condition above specifies that on iOS, the body of the if
-executes only on iOS 10 and later; on macOS, only on macOS 10.12 and later.
-The last argument, *, is required and specifies that on any other platform,
-the body of the if executes on the minimum deployment target specified by
-your target.
+// The availability condition above specifies that on iOS, the body of the
+// if executes only on iOS 10 and later; on macOS, only on macOS 10.12 and
+// later.  The last argument, *, is required and specifies that on
+// and other platform, the body of the if executes on the minimum
+// deployment target specified by your target.
 
-In its general form, the availability condition takes a list of platform
-names and versions. You use platform names such as iOS, macOS, watchOS, and
-tvOS—for the full list, see Declaration Attributes. In addition to specifying
-major version numbers like iOS 8, you can specify minor versions numbers like
+In its general form, the availability condition takes a list of platform names
+and versions. You use platform names such as iOS, macOS, watchOS, and tvOS—for
+the full list, see Declaration Attributes.  In addition to specifying major
+version numbers like iOS 8, you can specify minor versions numbers like
 iOS 8.3 and macOS 10.10.3.
 
 if #available(platform name version, ..., *) {

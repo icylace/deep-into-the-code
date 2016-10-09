@@ -1,4 +1,17 @@
+// TODO
+// - investigate why this works
+var kk = ""
+assert(type(of: kk) == String.self.self.self.self.self.self.self.self.self.self)
+
+
+
+
+
+
+
+
 // All of these are equivalent:
+let a00: Array<Int> = Array<Int>.self.self.self.self.init(arrayLiteral: 0, 1, 2)
 let a01: Array<Int> = Array<Int>.init(arrayLiteral: 0, 1, 2)
 let a02: Array<Int> = Array<Int>.init([0, 1, 2])
 let a03: Array<Int> = Array<Int>(arrayLiteral: 0, 1, 2)
@@ -59,19 +72,12 @@ assert([a01, a02, a03, a04, a05, a06, a07, a08, a09, a10, a11, a12, a13,
 
 
 
-
-
-
-// -----------------------------------------------------------------------------
-
-// Primitive types.
-
-_ = true                     // A boolean literal.
-_ = 1                        // An integer literal.
-_ = 2.2                      // A double floating-point literal.
-_ = "way"                    // A string literal.
-_ = [2, 3, 4]                // An array of integers.
-_ = (1.3, "is", false)       // A tuple of double, string, and boolean.
+_ = true                      // A boolean literal.
+_ = 1                         // An integer literal.
+_ = 2.2                       // A double floating-point literal.
+_ = "way"                     // A string literal.
+_ = [2, 3, 4]                 // An array of integers.
+_ = (1.3, "is", false)        // A tuple of double, string, and boolean.
 
 
 
@@ -85,11 +91,11 @@ _ = CDouble.infinity
 
 
 
-
-
 (1...10).forEach {
   print($0)
 }
+
+
 
 
 import Foundation
@@ -97,8 +103,6 @@ import Foundation
 while 0.5 < drand48() {
   print("still going...")
 }
-
-
 
 
 
@@ -122,8 +126,6 @@ switch aa {
 
 
 
-// ----
-
 import Foundation
 
 // The difference between
@@ -132,17 +134,6 @@ var p1: NSObject = NSObject()
 var p2: NSObject
 p2 = NSObject()
 // is that Xcode will complain about the former if `p` doesn't get mutated.
-
-
-// ----
-
-
-
-
-
-
-
-
 
 
 
@@ -162,34 +153,19 @@ let tagResult = tag ?? "<none>"
 
 
 
-
-
-
 var answer = "42"
 _ = type(of: 42)
 _ = type(of: answer)
 _ = type(of: 2.2)
 
-// `type(of:)` is currently undocumented in the language guide.
-// Original proposal:
-// - https://github.com/apple/swift-evolution/blob/master/proposals/0136-memory-layout-of-values.md
 
 
 
 _ = print.self
-
-
 _ = Int()
-
-
 _ = 2.advanced(by: 3)
-
-
-
-
 _ = 0
 _ = ""
-
 
 
 
@@ -197,20 +173,12 @@ _ = ""
 print(Int.self)
 
 
+
+
 let a = 0...3
 _ = a.count
 _ = a.self
 _ = type(of: a)
-print(a)
-
-for _ in 0...3 {
-  print("In a loop 4 times.")
-}
-
-for _ in a {
-  print("This will also loop 4 times.")
-}
-
 
 
 
@@ -220,41 +188,24 @@ debugPrint("test")
 
 
 
+
 // import UIKit
 
 
 
 
-
-
-//
-//
-//
-//
-//
-
-
-
-//autoreleasepool {}
+// autoreleasepool {}
 
 
 
 
-//@testable
-//import MyApp
-
-
-
-
-
+// @testable
+// import MyApp
 
 
 
 
 // `dump()` crashes when trying to use it an `UnsafeMutablePointer`
-
-
-
 
 
 

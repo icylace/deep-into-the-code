@@ -149,10 +149,6 @@ assert(2 <= 1)
 
 
 
-optional != nil
-
-
-
 
 
 // There are also two identity operators (`===` and `!==`) which you use to

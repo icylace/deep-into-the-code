@@ -3,7 +3,6 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
 // =============================================================================
 
-
 // -----------------------------------------------------------------------------
 //  Integer - A whole number with no fractional component that is either signed
 //            (positive, zero, or negative) or unsigned (positive or zero).
@@ -38,11 +37,11 @@ let i10: UInt64       // A 64-bit unsigned integer.
 // through their `min` and `max` properties.
 
 let minValue = UInt8.min
-// `minValue` is inferred to be of type `UInt8`.
+assert(type(of: minValue) == UInt8.self)
 assert(minValue == 0)
 
 let maxValue = UInt8.max
-// `maxValue` is inferred to be of type `UInt8`.
+assert(type(of: maxValue) == UInt8.self)
 assert(maxValue == 255)
 
 // -----------------------------------------------------------------------------
@@ -63,13 +62,13 @@ assert(maxValue == 255)
 // - `Float80` represents an 80-bit extended-precision floating-point number.
 
 let pi = 3.14159
-// `pi` is inferred to be of type `Double`.
+assert(type(of: pi) == Double.self)
 
 // If you combine integer and floating-point literals in an expression,
 // a type of `Double` will be inferred from the context.
 
 let myPi = 3 + 0.14159
-// `myPi` is inferred to be of type `Double`.
+assert(type(of: myPi) == Double.self)
 
 assert(pi == myPi)
 
@@ -159,7 +158,7 @@ n = 0x_FEED.FACE___p1_
 // The range of numbers that can be stored in an integer constant or
 // variable is different for each numeric type.  A number that will
 // not fit into a constant or variable of a sized integer type is
-// flagged as a compile-time error:
+// flagged as a compile-time error.
 
 // `UInt8` cannot store negative numbers.
 
@@ -193,21 +192,16 @@ let one: UInt8 = 1
 // The conversion here is possible because `UInt16` has an initializer that
 // accepts a `Uint8` value.
 let twoThousandAndOne = twoThousand + UInt16(one)
+assert(type(of: twoThousandAndOne) == UInt16.self)
 assert(twoThousandAndOne == 2001)
-
-
-
-
-
-// TODO
-
-// -----------------------------------------------------------------------------
 
 let three = 3
 let pointOneFourOneFiveNine = 0.14159
 let myPi2 = Double(three) + pointOneFourOneFiveNine
-// `myPi2` is inferred to be of type `Double`.
+assert(type(of: myPi2) == Double.self)
 assert(myPi2 == 3.14159)
+
+// -----------------------------------------------------------------------------
 
 // Floating-point values are always truncated when used to initialize
 // a new integer value.
@@ -228,6 +222,25 @@ assert(floatAsInt2 == -3)
 // the point that they are evaluated by the compiler.
 
 // -----------------------------------------------------------------------------
+//  Type alias - An alternative name for an existing type.
+// -----------------------------------------------------------------------------
+
+// Type aliases are useful when you want to refer to an existing type by a name
+// that is contextually more appropriate, such as when working with data of a
+// specific size from an external source.
+
+typealias AudioSample = UInt16
+
+// Once you define a type alias you can use the alias anywhere you might
+// use the original name.
+
+var sample = AudioSample.min
+assert(type(of: sample) == AudioSample.self)
+assert(type(of: sample) == UInt16.self)
+assert(AudioSample.self == UInt16.self)
+assert(sample == 0)
+
+// -----------------------------------------------------------------------------
 //  Boolean - A value that can only ever be true or false.
 // -----------------------------------------------------------------------------
 
@@ -243,16 +256,22 @@ let todayIsYesterday = false
 // Bool)` or any other permutation you require.
 
 var httpStatus = (404, "Not Found")
-// `httpStatus` is of type `(Int, String)`, and equals `(404, "Not Found")`
+assert(type(of: httpStatus) == (Int, String).self)
 
 // -----------------------------------------------------------------------------
-
-// You can decompose a tuple's contents into separate constants or variables
-// which you then access as usual.
+//  Decomposition - The separation of a tuple's contents into separate constants
+//                  or variables which can then be accessed as usual.
+// -----------------------------------------------------------------------------
 
 let (code, message) = httpStatus
 assert(code == 404)
 assert(message == "Not Found")
+
+var (code2, message2) = httpStatus
+code2 = 200
+assert(code2 == 200)
+message2 = "Okay"
+assert(message2 == "Okay")
 
 // -----------------------------------------------------------------------------
 
@@ -272,12 +291,80 @@ assert(httpStatus.1 == "Not Found")
 
 // -----------------------------------------------------------------------------
 
-// You can name the individual elements in a tuple when the tuple is defined which
-// you can use to access the values of those elements.
+// A tuple's individual elements can be named when the tuple is defined allowing
+// their values to be accessed with those names.
 
 let httpOkay = (code: 200, description: "OK")
 assert(httpOkay.code == 200)
 assert(httpOkay.description == "OK")
+
+// Tuple indexing for named elements still works.
+
+assert(httpOkay.0 == 200)
+assert(httpOkay.1 == "OK")
+
+// You don't have to name all of a tuple's elements.
+
+let httpRedirect = (301, description: "Moved Permanently")
+assert(httpRedirect.0 == 301)
+assert(httpRedirect.1 == "Moved Permanently")
+assert(httpRedirect.description == "Moved Permanently")
+
+// -----------------------------------------------------------------------------
+
+// A tuple can have zero elements.
+
+var empty1: () = ()
+
+// `().self` cannot be used with the equality comparison operator (`==`).
+
+// If the following is uncommented it will produce an error:
+/*
+assert(type(of: empty1) == ().self)
+*/
+
+// `Void` is a type alias for the zero element tuple (`()`).
+
+var empty2: Void = ()
+
+assert(type(of: empty1) == Void.self)
+assert(type(of: empty2) == Void.self)
+
+// Since `Void` is a type alias it can't be assigned like `()` can.
+
+// If the following is uncommented it will produce an error:
+/*
+empty1 = Void
+empty2 = Void
+*/
+
+// -----------------------------------------------------------------------------
+
+
+
+// TODO
+
+// A single-element tuple doesn't truly exist.
+
+var a: (Int)
+a = (2)
+assert(type(of: a) == Int.self)
+assert(a == 2)
+
+var b: (Int)
+b = (two: 2)
+// If the following is uncommented it will produce an error:
+/*
+assert(b.two == 2)
+*/
+assert(type(of: b) == Int.self)
+assert(b == 2)
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 //  Optional - A value having either an underlying value of a particular type
@@ -288,9 +375,17 @@ assert(httpOkay.description == "OK")
 
 let possibleNumber = "123"
 let convertedNumber = Int(possibleNumber)
+assert(type(of: convertedNumber) == Int?.self)
 // `convertedNumber` is inferred to be of type `Int?`, or "optional `Int`",
 // because `Int` can accept a `String` that may or may not represent
 // a number.
+
+// -----------------------------------------------------------------------------
+
+// Another way to write an optional using generator syntax.
+
+var thisAnswer: Optional<String>
+assert(thisAnswer == nil)
 
 // -----------------------------------------------------------------------------
 
@@ -298,6 +393,8 @@ let convertedNumber = Int(possibleNumber)
 // special value nil.
 
 var responseCode: Int? = 404
+assert(type(of: responseCode) == Int?.self)
+assert(responseCode! == 404)
 // `responseCode` contains an actual `Int` value of 404.
 responseCode = nil
 // `responseCode` now contains no value.
@@ -308,12 +405,20 @@ responseCode = nil
 var surveyAnswer: String?
 assert(surveyAnswer == nil)
 
-// Another way to write an optional using generator syntax.
-
-var thisAnswer: Optional<String>
-assert(thisAnswer == nil)
-
 // nil cannot be used with nonoptional constants and variables.
+
+
+
+
+
+// var maybeThing: Optional<Int> = 3
+// var maybeThing: Optional<Optional<Int>> = Int?(3)
+// Int??
+
+
+
+
+
 
 
 
@@ -324,16 +429,17 @@ var x: String?
 
 
 
+
 // -----------------------------------------------------------------------------
 //  Forced unwrapping - An attempt at accessing an optional's underlying value.
 //  Forced unwrap operator (`!`) - The operator that force-unwraps an optional.
 // -----------------------------------------------------------------------------
 
-let maybeString: String? = "An optional string."
+let maybeText: String? = "An optional string."
 
-// We know that `maybeString` has a string, so it's safe to force-unwrap it.
-let forcedString: String = maybeString!
-assert(forcedString == "An optional string.")
+// We know that `maybeText` has a string, so it's safe to force-unwrap it.
+let forcedText: String = maybeText!
+assert(forcedText == "An optional string.")
 
 // Trying to use `!` to access a nonexistent optional value triggers a runtime
 // error.
@@ -366,38 +472,6 @@ let implicitString: String = assumedString
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------------------------
-//  Type alias - An alternative name for an existing type.
-// -----------------------------------------------------------------------------
-
-// Type aliases are useful when you want to refer to an existing type by a name
-// that is contextually more appropriate, such as when working with data of a
-// specific size from an external source.
-
-typealias AudioSample = UInt16
-
-// Once you define a type alias you can use the alias anywhere you might
-// use the original name.
-
-var maxAmplitudeFound = AudioSample.min
-assert(maxAmplitudeFound == 0)
+// if maybeNumber != nil {
+//   print("maybeNumber contains \(maybeNumber!).")
+// }
