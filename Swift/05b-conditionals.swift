@@ -18,7 +18,7 @@
 
 var feelsLike = "warm"
 var temperatureInFahrenheit = 30
-condition = temperatureInFahrenheit <= 32
+var condition = temperatureInFahrenheit <= 32
 if condition {
   feelsLike = "cold"
 }
@@ -203,6 +203,7 @@ if let a = Int("4") {
 
 
 
+
 // TODO
 
 /*
@@ -305,6 +306,23 @@ default:
 // alphabetic character, this `switch` statement uses a default case to
 // match all characters other than a and z.  This provision ensures
 // that the `switch` statement is exhaustive.
+
+
+
+
+
+
+
+
+// `case _` and `default` are practically similar but semantically they're
+// different.  Semantically, `default` implies a standard course of action
+// whereas `case _` implies all courses of action.
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 //  No Implicit Fallthrough

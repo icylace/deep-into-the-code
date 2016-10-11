@@ -4,8 +4,7 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Subscript - A shortcut for accessing properties in a class,
-//              structure, or enumeration.
+//  Subscript - A shortcut for accessing properties in a type.
 // -----------------------------------------------------------------------------
 
 // Subscripts can be used to set and retrieve values by index without

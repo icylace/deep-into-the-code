@@ -4,8 +4,8 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-//  Automatic Reference Counting (ARC) - A memory management technique
-//                                       used by Swift.
+//  Automatic Reference Counting (ARC) - A memory management technique to
+//                                       keep track of class instances.
 // -----------------------------------------------------------------------------
 
 // Usually memory management "just works".  Memory used by class instances is

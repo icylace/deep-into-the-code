@@ -3,12 +3,12 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html
 // =============================================================================
 
+// TODO
 
 // -----------------------------------------------------------------------------
 //  Class - A general-purpose construct.
 //  Structure - A general-purpose construct.
 // -----------------------------------------------------------------------------
-
 
 You define properties and methods to add
 functionality to your classes and structures by using exactly the same syntax as
@@ -23,28 +23,25 @@ for constants, variables, and functions.
 //  Comparing Classes and Structures
 // -----------------------------------------------------------------------------
 
-// Classes and structures can both:
-//
-// - Define properties to store values
-// - Define methods to provide functionality
-// - Define subscripts to provide access to their values using subscript syntax
-// - Define initializers to set up their initial state
-// - Be extended to expand their functionality beyond a default implementation
-// - Conform to protocols to provide standard functionality of a certain kind
+// Classes and structures can...
+// ...define properties to store values.
+// ...define methods to provide functionality.
+// ...define subscripts to allow access to their values using subscript syntax.
+// ...define initializers to set up their initial state.
+// ...be extended to expand their functionality beyond a default implementation.
+// ...conform to protocols to provide standard functionality of a certain kind.
 
-For more information, see Properties, Methods, Subscripts, Initialization, Extensions, and Protocols.
+// Only classes can...
+// ...inherit the characteristics of another class.
+// ...have their instances type casted to be checked and interpreted at runtime.
+// ...define deinitializers to let a class instance free up assigned resources.
+// ...have their instances have multiple references to them.
 
-Classes have additional capabilities that structures do not:
+// Structures are always copied when they are passed around in your code, and do
+// not use reference counting.
 
-- Inheritance enables one class to inherit the characteristics of another.
-- Type casting enables you to check and interpret the type of a class instance at runtime.
-- Deinitializers enable an instance of a class to free up any resources it has assigned.
-- Reference counting allows more than one reference to a class instance.
-
-For more information, see Inheritance, Type Casting, Deinitialization, and Automatic Reference Counting.
-
-// Structures are always copied when they are passed around in your code, and do not use reference counting.
-
+// Whenever you define a new class or structure, you effectively define a brand
+// new type.
 
 class SomeClass {
   // Class definition goes here.
@@ -52,11 +49,6 @@ class SomeClass {
 struct SomeStructure {
   // Structure definition goes here.
 }
-
-// Whenever you define a new class or structure, you effectively define a brand
-// new type.
-
-
 
 struct Resolution {
   var width = 0
@@ -90,6 +82,7 @@ class VideoMode {
 
 
 
+// -----------------------------------------------------------------------------
 
 
 Class and Structure Instances
@@ -109,6 +102,7 @@ Structures and classes both use initializer syntax for new instances. The simple
 
 
 
+// -----------------------------------------------------------------------------
 
 Accessing Properties
 
@@ -141,6 +135,7 @@ Unlike Objective-C, Swift enables you to set sub-properties of a structure prope
 
 
 
+// -----------------------------------------------------------------------------
 
 
 Memberwise Initializers for Structure Types
@@ -172,6 +167,7 @@ Consider this example, which uses the Resolution structure from the previous exa
 
 let hd = Resolution(width: 1920, height: 1080)
 var cinema = hd
+
 This example declares a constant called hd and sets it to a Resolution instance initialized with the width and height of full HD video (1920 pixels wide by 1080 pixels high).
 
 It then declares a variable called cinema and sets it to the current value of hd. Because Resolution is a structure, a copy of the existing instance is made, and this new copy is assigned to cinema. Even though hd and cinema now have the same width and height, they are two completely different instances behind the scenes.
@@ -179,10 +175,12 @@ It then declares a variable called cinema and sets it to the current value of hd
 Next, the width property of cinema is amended to be the width of the slightly-wider 2K standard used for digital cinema projection (2048 pixels wide and 1080 pixels high):
 
 cinema.width = 2048
+
 Checking the width property of cinema shows that it has indeed changed to be 2048:
 
 print("cinema is now \(cinema.width) pixels wide")
 // Prints "cinema is now 2048 pixels wide"
+
 However, the width property of the original hd instance still has the old value of 1920:
 
 print("hd is still \(hd.width) pixels wide")
@@ -192,7 +190,7 @@ When cinema was given the current value of hd, the values stored in hd were copi
 The same behavior applies to enumerations:
 
 enum CompassPoint {
-    case north, south, east, west
+  case north, south, east, west
 }
 var currentDirection = CompassPoint.west
 let rememberedDirection = currentDirection
@@ -201,6 +199,7 @@ if rememberedDirection == .west {
     print("The remembered direction is still .west")
 }
 // Prints "The remembered direction is still .west"
+
 When rememberedDirection is assigned the value of currentDirection, it is actually set to a copy of that value. Changing the value of currentDirection thereafter does not affect the copy of the original value that was stored in rememberedDirection.
 
 
@@ -219,7 +218,7 @@ When rememberedDirection is assigned the value of currentDirection, it is actual
 
 Unlike value types, reference types are not copied when they are assigned to a variable or constant, or when they are passed to a function. Rather than a copy, a reference to the same existing instance is used instead.
 
-Here’s an example, using the VideoMode class defined above:
+Here's an example, using the VideoMode class defined above:
 
 let tenEighty = VideoMode()
 tenEighty.resolution = hd
@@ -240,6 +239,7 @@ Checking the frameRate property of tenEighty shows that it correctly reports the
 
 print("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 // Prints "The frameRate property of tenEighty is now 30.0"
+
 Note that tenEighty and alsoTenEighty are declared as constants, rather than variables. However, you can still change tenEighty.frameRate and alsoTenEighty.frameRate because the values of the tenEighty and alsoTenEighty constants themselves do not actually change. tenEighty and alsoTenEighty themselves do not “store” the VideoMode instance—instead, they both refer to a VideoMode instance behind the scenes. It is the frameRate property of the underlying VideoMode that is changed, not the values of the constant references to that VideoMode.
 
 
@@ -250,10 +250,14 @@ Note that tenEighty and alsoTenEighty are declared as constants, rather than var
 
 
 
+// -----------------------------------------------------------------------------
 
 Identity Operators
 
-Because classes are reference types, it is possible for multiple constants and variables to refer to the same single instance of a class behind the scenes. (The same is not true for structures and enumerations, because they are always copied when they are assigned to a constant or variable, or passed to a function.)
+Because classes are reference types, it is possible for multiple constants and
+variables to refer to the same single instance of a class behind the scenes.
+(The same is not true for structures and enumerations, because they are always
+copied when they are assigned to a constant or variable, or passed to a function.)
 
 It can sometimes be useful to find out if two constants or variables refer to exactly the same instance of a class. To enable this, Swift provides two identity operators:
 
@@ -262,10 +266,12 @@ Not identical to (!==)
 Use these operators to check whether two constants or variables refer to the same single instance:
 
 if tenEighty === alsoTenEighty {
-    print("tenEighty and alsoTenEighty refer to the same VideoMode instance.")
+  print("tenEighty and alsoTenEighty refer to the same VideoMode instance.")
 }
 // Prints "tenEighty and alsoTenEighty refer to the same VideoMode instance."
-Note that “identical to” (represented by three equals signs, or ===) does not mean the same thing as “equal to” (represented by two equals signs, or ==):
+
+Note that “identical to” (represented by three equals signs, or ===) does not
+mean the same thing as “equal to” (represented by two equals signs, or ==):
 
 “Identical to” means that two constants or variables of class type refer to exactly the same class instance.
 “Equal to” means that two instances are considered “equal” or “equivalent” in value, for some appropriate meaning of “equal”, as defined by the type’s designer.
@@ -284,7 +290,13 @@ When you define your own custom classes and structures, it is your responsibilit
 
 Pointers
 
-If you have experience with C, C++, or Objective-C, you may know that these languages use pointers to refer to addresses in memory. A Swift constant or variable that refers to an instance of some reference type is similar to a pointer in C, but is not a direct pointer to an address in memory, and does not require you to write an asterisk (*) to indicate that you are creating a reference. Instead, these references are defined like any other constant or variable in Swift.
+If you have experience with C, C++, or Objective-C, you may know that these
+languages use pointers to refer to addresses in memory.  A Swift constant or
+variable that refers to an instance of some reference type is similar to a
+pointer in C, but is not a direct pointer to an address in memory, and does
+not require you to write an asterisk (*) to indicate that you are creating
+a reference. Instead, these references are defined like any other constant
+or variable in Swift.
 
 
 

@@ -303,8 +303,8 @@ For more information about conforming to protocols, see Protocols.
 Set Type Syntax
 
 The type of a Swift set is written as Set<Element>, where Element is the type
-that the set is allowed to store.  Unlike arrays, sets do not have an
-equivalent shorthand form.
+that the set is allowed to store.  Unlike arrays and dictionaries, sets do
+not have an equivalent shorthand form.
 
 // -----------------------------------------------------------------------------
 

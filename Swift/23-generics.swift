@@ -114,38 +114,30 @@ swapTwoValues(&someString, &anotherString)
 
 
 // -----------------------------------------------------------------------------
-//  Type Parameters
+//  Type parameter - A placeholder for the actual type that will be used.
 // -----------------------------------------------------------------------------
 
-In the swapTwoValues(_:_:) example above, the placeholder type T is an example of a type parameter. Type parameters specify and name a placeholder type, and are written immediately after the function’s name, between a pair of matching angle brackets (such as <T>).
+In the swapTwoValues(_:_:) example above, the placeholder type T is an example
+of a type parameter. Type parameters specify and name a placeholder type, and
+are written immediately after the function’s name, between a pair of matching
+angle brackets (such as <T>).
 
 Once you specify a type parameter, you can use it to define the type of a function’s parameters (such as the a and b parameters of the swapTwoValues(_:_:) function), or as the function’s return type, or as a type annotation within the body of the function. In each case, the type parameter is replaced with an actual type whenever the function is called. (In the swapTwoValues(_:_:) example above, T was replaced with Int the first time the function was called, and was replaced with String the second time it was called.)
 
 You can provide more than one type parameter by writing multiple type parameter names within the angle brackets, separated by commas.
 
-
 // -----------------------------------------------------------------------------
-//  Naming Type Parameters
-// -----------------------------------------------------------------------------
-
-In most cases, type parameters have descriptive names, such as Key and Value in Dictionary<Key, Value> and Element in Array<Element>, which tells the reader about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as T, U, and V, such as T in the swapTwoValues(_:_:) function above.
-
-NOTE
-
-Always give type parameters upper camel case names (such as T and MyTypeParameter) to indicate that they are a placeholder for a type, not a value.
-
-
-// -----------------------------------------------------------------------------
-//  Generic Types
+//  Generic type - A type that can work with any other type.
 // -----------------------------------------------------------------------------
 
-In addition to generic functions, Swift enables you to define your own generic types. These are custom classes, structures, and enumerations that can work with any type, in a similar way to Array and Dictionary.
-
-This section shows you how to write a generic collection type called Stack. A stack is an ordered set of values, similar to an array, but with a more restricted set of operations than Swift’s Array type. An array allows new items to be inserted and removed at any location in the array. A stack, however, allows new items to be appended only to the end of the collection (known as pushing a new value on to the stack). Similarly, a stack allows items to be removed only from the end of the collection (known as popping a value off the stack).
-
-NOTE
-
-The concept of a stack is used by the UINavigationController class to model the view controllers in its navigation hierarchy. You call the UINavigationController class pushViewController(_:animated:) method to add (or push) a view controller on to the navigation stack, and its popViewControllerAnimated(_:) method to remove (or pop) a view controller from the navigation stack. A stack is a useful collection model whenever you need a strict “last in, first out” approach to managing a collection.
+This section shows you how to write a generic collection type called Stack.
+A stack is an ordered set of values, similar to an array, but with a more
+restricted set of operations than Swift’s Array type. An array allows new
+items to be inserted and removed at any location in the array. A stack,
+however, allows new items to be appended only to the end of the collection
+(known as pushing a new value on to the stack). Similarly, a stack allows
+items to be removed only from the end of the collection (known as popping
+a value off the stack).
 
 The illustration below shows the push / pop behavior for a stack:
 
@@ -167,6 +159,7 @@ struct IntStack {
     return items.removeLast()
   }
 }
+
 This structure uses an Array property called items to store the values in the stack. Stack provides two methods, push and pop, to push and pop values on and off the stack. These methods are marked as mutating, because they need to modify (or mutate) the structure’s items array.
 
 The IntStack type shown above can only be used with Int values, however. It would be much more useful to define a generic Stack class, that can manage a stack of any type of value.
@@ -182,6 +175,7 @@ struct Stack<Element> {
     return items.removeLast()
   }
 }
+
 Note how the generic version of Stack is essentially the same as the non-generic version, but with a type parameter called Element instead of an actual type of Int. This type parameter is written within a pair of angle brackets (<Element>) immediately after the structure’s name.
 
 Element defines a placeholder name for “some type Element” to be provided later on. This future type can be referred to as “Element” anywhere within the structure’s definition. In this case, Element is used as a placeholder in three places:
@@ -199,17 +193,19 @@ stackOfStrings.push("dos")
 stackOfStrings.push("tres")
 stackOfStrings.push("cuatro")
 // the stack now contains 4 strings
+
 Here’s how stackOfStrings looks after pushing these four values on to the stack:
 
 image: ../Art/stackPushedFourStrings_2x.png
+
 Popping a value from the stack removes and returns the top value, "cuatro":
 
 let fromTheTop = stackOfStrings.pop()
 // fromTheTop is equal to "cuatro", and the stack now contains 3 strings
+
 Here’s how the stack looks after popping its top value:
 
 image: ../Art/stackPoppedOneString_2x.png
-
 
 // -----------------------------------------------------------------------------
 //  Extending a Generic Type
@@ -236,7 +232,6 @@ if let topItem = stackOfStrings.topItem {
 }
 // Prints "The top item on the stack is tres."
 
-
 // -----------------------------------------------------------------------------
 //  Type Constraints
 // -----------------------------------------------------------------------------
@@ -249,6 +244,8 @@ This requirement is enforced by a type constraint on the key type for Dictionary
 
 You can define your own type constraints when creating custom generic types, and these constraints provide much of the power of generic programming. Abstract concepts like Hashable characterize types in terms of their conceptual characteristics, rather than their explicit type.
 
+// -----------------------------------------------------------------------------
+
 Type Constraint Syntax
 
 You write type constraints by placing a single class or protocol constraint after a type parameter’s name, separated by a colon, as part of the type parameter list. The basic syntax for type constraints on a generic function is shown below (although the syntax is the same for generic types):
@@ -257,6 +254,8 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
     // function body goes here
 }
 The hypothetical function above has two type parameters. The first type parameter, T, has a type constraint that requires T to be a subclass of SomeClass. The second type parameter, U, has a type constraint that requires U to conform to the protocol SomeProtocol.
+
+// -----------------------------------------------------------------------------
 
 Type Constraints in Action
 
@@ -306,6 +305,7 @@ func findIndex<T: Equatable>(of valueToFind: T, in array:[T]) -> Int? {
   }
   return nil
 }
+
 The single type parameter for findIndex(of:in:) is written as T: Equatable, which means “any type T that conforms to the Equatable protocol.”
 
 The findIndex(of:in:) function now compiles successfully and can be used with any type that is Equatable, such as Double or String:
@@ -314,7 +314,6 @@ let doubleIndex = findIndex(of: 9.3, in: [3.14159, 0.1, 0.25])
 // doubleIndex is an optional Int with no value, because 9.3 is not in the array
 let stringIndex = findIndex(of: "Andrea", in: ["Mike", "Malcolm", "Andrea"])
 // stringIndex is an optional Int containing a value of 2
-
 
 // -----------------------------------------------------------------------------
 //  Associated Types
@@ -327,11 +326,12 @@ Associated Types in Action
 Here’s an example of a protocol called Container, which declares an associated type called ItemType:
 
 protocol Container {
-    associatedtype ItemType
-    mutating func append(_ item: ItemType)
-    var count: Int { get }
-    subscript(i: Int) -> ItemType { get }
+  associatedtype ItemType
+  mutating func append(_ item: ItemType)
+  var count: Int { get }
+  subscript(i: Int) -> ItemType { get }
 }
+
 The Container protocol defines three required capabilities that any container must provide:
 
 It must be possible to add a new item to the container with an append(_:) method.
@@ -368,6 +368,7 @@ struct IntStack: Container {
     return items[i]
   }
 }
+
 The IntStack type implements all three of the Container protocol’s requirements, and in each case wraps part of the IntStack type’s existing functionality to satisfy these requirements.
 
 Moreover, IntStack specifies that for this implementation of Container, the appropriate ItemType to use is a type of Int. The definition of typealias ItemType = Int turns the abstract type of ItemType into a concrete type of Int for this implementation of the Container protocol.
@@ -396,7 +397,10 @@ struct Stack<Element>: Container {
     return items[i]
   }
 }
+
 This time, the type parameter Element is used as the type of the append(_:) method’s item parameter and the return type of the subscript. Swift can therefore infer that Element is the appropriate type to use as the ItemType for this particular container.
+
+// -----------------------------------------------------------------------------
 
 Extending an Existing Type to Specify an Associated Type
 
@@ -405,8 +409,8 @@ You can extend an existing type to add conformance to a protocol, as described i
 Swift’s Array type already provides an append(_:) method, a count property, and a subscript with an Int index to retrieve its elements. These three capabilities match the requirements of the Container protocol. This means that you can extend Array to conform to the Container protocol simply by declaring that Array adopts the protocol. You do this with an empty extension, as described in Declaring Protocol Adoption with an Extension:
 
 extension Array: Container {}
-Array’s existing append(_:) method and subscript enable Swift to infer the appropriate type to use for ItemType, just as for the generic Stack type above. After defining this extension, you can use any Array as a Container.
 
+Array’s existing append(_:) method and subscript enable Swift to infer the appropriate type to use for ItemType, just as for the generic Stack type above. After defining this extension, you can use any Array as a Container.
 
 // -----------------------------------------------------------------------------
 //  Generic Where Clauses
@@ -421,8 +425,8 @@ The example below defines a generic function called allItemsMatch, which checks 
 The two containers to be checked do not have to be the same type of container (although they can be), but they do have to hold the same type of items. This requirement is expressed through a combination of type constraints and a generic where clause:
 
 func allItemsMatch<C1: Container, C2: Container>
-(_ someContainer: C1, _ anotherContainer: C2) -> Bool
-where C1.ItemType == C2.ItemType, C1.ItemType: Equatable
+     (_ someContainer: C1, _ anotherContainer: C2) -> Bool
+     where C1.ItemType == C2.ItemType, C1.ItemType: Equatable
 {
   // Check that both containers contain the same number of items.
   if someContainer.count != anotherContainer.count {
@@ -476,9 +480,9 @@ stackOfStrings.push("tres")
 var arrayOfStrings = ["uno", "dos", "tres"]
 
 if allItemsMatch(stackOfStrings, arrayOfStrings) {
-    print("All items match.")
+  print("All items match.")
 } else {
-    print("Not all items match.")
+  print("Not all items match.")
 }
 // Prints "All items match."
 

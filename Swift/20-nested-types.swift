@@ -3,17 +3,12 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/NestedTypes.html
 // =============================================================================
 
-
-// Enumerations are often created to support a specific class or structure's
-// functionality. Similarly, it can be convenient to define utility classes
-// and structures purely for use within the context of a more complex type.
-// To accomplish this, Swift enables you to define nested types, whereby
-// you nest supporting enumerations, classes, and structures within the
-// definition of the type they support.
-
-// To nest a type within another type, write its definition within the outer
-// braces of the type it supports.  Types can be nested to as many levels as
-// are required.
+// Enumerations can be used to support a specific class or structure's
+// functionality.  Similarly, it can be convenient to define utility
+// classes and structures purely for use within the context of a
+// more complex type.  To accomplish this, types can be nested
+// inside other types.  Types can be nested to as many levels
+// as are required.
 
 // -----------------------------------------------------------------------------
 //  Nested Types in Action
@@ -94,7 +89,6 @@ inferred from context, and so the initialization of this instance is able to
 refer to the enumeration cases by their case names (.ace and .spades) alone.
 In the example above, the description property correctly reports that the
 Ace of Spades has a value of 1 or 11.
-
 
 // -----------------------------------------------------------------------------
 //  Referring to Nested Types

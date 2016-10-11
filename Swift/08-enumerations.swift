@@ -3,7 +3,6 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html
 // =============================================================================
 
-
 // -----------------------------------------------------------------------------
 //  Enumeration - A common type for a particular group of related values.
 //  Enumeration case - A value of an enumeration.
@@ -277,10 +276,8 @@ Not all possible Int values will find a matching planet, however. Because of thi
 the raw value initializer always returns an optional enumeration case. In the example
 above, possiblePlanet is of type Planet?, or “optional Planet.”
 
-NOTE
-
 The raw value initializer is a failable initializer, because not every raw value
-will return an enumeration case. For more information, see Failable Initializers.
+will return an enumeration case.
 
 If you try to find a planet with a position of 11, the optional Planet value
 returned by the raw value initializer will be nil:

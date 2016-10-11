@@ -97,6 +97,21 @@ let a = sayHi(name: "Anna")
 assert(a == "Hello, Anna!")
 
 
+
+func sayHi2(let name: String) -> String {
+  let greeting = "Hello, \(name)!"
+  return greeting
+}
+
+let b = sayHi2(name: "Anna")
+assert(b == "Hello, Anna!")
+
+
+
+
+
+
+
 // -----------------------------------------------------------------------------
 //  Function Parameters and Return Values
 // -----------------------------------------------------------------------------
@@ -224,7 +239,9 @@ assert(info.size == 6)
 // value within the tuple.
 
 func findMaxAndSize2(xs: [Int]) -> (max: Int, size: Int)? {
-  guard !xs.isEmpty else { return nil }
+  guard !xs.isEmpty else {
+    return nil
+  }
   var curMax = xs[0]
   for x in xs[1..<xs.count] {
     if x > curMax {

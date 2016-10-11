@@ -152,6 +152,8 @@ Open classes can be subclassed within the module where they’re defined, and wi
 Open class members can be overridden by subclasses within the module where they’re defined, and within any module that imports the module where they’re defined.
 Marking a class as open explicitly indicates that you’ve considered the impact of code from other modules using that class as a superclass, and that you’ve designed your class’s code accordingly.
 
+// -----------------------------------------------------------------------------
+
 Guiding Principle of Access Levels
 
 Access levels in Swift follow an overall guiding principle: No entity can be defined in terms of another entity that has a lower (more restrictive) access level.
@@ -162,13 +164,19 @@ A public variable cannot be defined as having an internal, file-private, or priv
 A function cannot have a higher access level than its parameter types and return type, because the function could be used in situations where its constituent types are not available to the surrounding code.
 The specific implications of this guiding principle for different aspects of the language are covered in detail below.
 
+// -----------------------------------------------------------------------------
+
 Default Access Levels
 
 All entities in your code (with a few specific exceptions, as described later in this chapter) have a default access level of internal if you do not specify an explicit access level yourself. As a result, in many cases you do not need to specify an explicit access level in your code.
 
+// -----------------------------------------------------------------------------
+
 Access Levels for Single-Target Apps
 
 When you write a simple single-target app, the code in your app is typically self-contained within the app and does not need to be made available outside of the app’s module. The default access level of internal already matches this requirement. Therefore, you do not need to specify a custom access level. You may, however, want to mark some parts of your code as file private or private in order to hide their implementation details from other code within the app’s module.
+
+// -----------------------------------------------------------------------------
 
 Access Levels for Frameworks
 
@@ -178,9 +186,13 @@ NOTE
 
 Any internal implementation details of your framework can still use the default access level of internal, or can be marked as private or file private if you want to hide them from other parts of the framework’s internal code. You need to mark an entity as open or public only if you want it to become part of your framework’s API.
 
+// -----------------------------------------------------------------------------
+
 Access Levels for Unit Test Targets
 
 When you write an app with a unit test target, the code in your app needs to be made available to that module in order to be tested. By default, only entities marked as open or public are accessible to other modules. However, a unit test target can access any internal entity, if you mark the import declaration for a product module with the @testable attribute and compile that product module with testing enabled.
+
+// -----------------------------------------------------------------------------
 
 Access Control Syntax
 
@@ -210,26 +222,29 @@ IMPORTANT
 A public type defaults to having internal members, not public members. If you want a type member to be public, you must explicitly mark it as such. This requirement ensures that the public-facing API for a type is something you opt in to publishing, and avoids presenting the internal workings of a type as public API by mistake.
 
 public class SomePublicClass {                  // explicitly public class
-    public var somePublicProperty = 0            // explicitly public class member
-    var someInternalProperty = 0                 // implicitly internal class member
-    fileprivate func someFilePrivateMethod() {}  // explicitly file-private class member
-    private func somePrivateMethod() {}          // explicitly private class member
+  public var somePublicProperty = 0            // explicitly public class member
+  var someInternalProperty = 0                 // implicitly internal class member
+  fileprivate func someFilePrivateMethod() {}  // explicitly file-private class member
+  private func somePrivateMethod() {}          // explicitly private class member
 }
 
 class SomeInternalClass {                       // implicitly internal class
-    var someInternalProperty = 0                 // implicitly internal class member
-    fileprivate func someFilePrivateMethod() {}  // explicitly file-private class member
-    private func somePrivateMethod() {}          // explicitly private class member
+  var someInternalProperty = 0                 // implicitly internal class member
+  fileprivate func someFilePrivateMethod() {}  // explicitly file-private class member
+  private func somePrivateMethod() {}          // explicitly private class member
 }
 
 fileprivate class SomeFilePrivateClass {        // explicitly file-private class
-    func someFilePrivateMethod() {}              // implicitly file-private class member
-    private func somePrivateMethod() {}          // explicitly private class member
+  func someFilePrivateMethod() {}              // implicitly file-private class member
+  private func somePrivateMethod() {}          // explicitly private class member
 }
 
 private class SomePrivateClass {                // explicitly private class
-    func somePrivateMethod() {}                  // implicitly private class member
+  func somePrivateMethod() {}                  // implicitly private class member
 }
+
+// -----------------------------------------------------------------------------
+
 Tuple Types
 
 The access level for a tuple type is the most restrictive access level of all types used in that tuple. For example, if you compose a tuple from two different types, one with internal access and one with private access, the access level for that compound tuple type will be private.
@@ -237,6 +252,8 @@ The access level for a tuple type is the most restrictive access level of all ty
 NOTE
 
 Tuple types do not have a standalone definition in the way that classes, structures, enumerations, and functions do. A tuple type’s access level is deduced automatically when the tuple type is used, and cannot be specified explicitly.
+
+// -----------------------------------------------------------------------------
 
 Function Types
 
