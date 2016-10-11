@@ -15,7 +15,6 @@
 
 // Global and nested functions are actually special cases of closures.
 
-
 // -----------------------------------------------------------------------------
 //  Closure expression - An unnamed closure that can capture values from
 //                       its surrounding context.

@@ -129,21 +129,23 @@ assert(n == 0xC.3p0)
 // underscores.  Neither type of formatting affects the underlying value
 // of the literal.
 
-n = 000123.456
-l = 1_000_000
-n = 1_000_000.000_000_1
-n = 10_.0
-l = 2___3
-l = 0b1_010_10_101
-l = 0o34__53
-l = 0xFEED_FACE___
-n = 0xFEED.FACE___p1_
-n = 0x0000000FEED.FACE___p1_
+n = 10_.0                    ; assert(n == 10.0)
+n = 000123.456               ; assert(n == 123.456)
+n = 1_000_000.000_000_1      ; assert(n == 1000000.0000001)
+n = 0001__000.000_000_1      ; assert(n == 1000.0000001)
+l = 1_000_000                ; assert(l == 1000000)
+l = 2___3__                  ; assert(l == 23)
+l = 00000000004___5          ; assert(l == 45)
+l = 0b1_010_10_101           ; assert(l == 0b101010101)
+l = 0o34__53                 ; assert(l == 0o3453)
+l = 0xFEED_FACE___           ; assert(l == 0xFEEDFACE)
+n = 0xFEED.FACE___p1_        ; assert(n == 0xFEED.FACEp1)
+n = 0x0000000FEED.FACE___p1_ ; assert(n == 0xFEED.FACEp1)
 
 // Underscores cannot be put directly after the prefix for binary, octal, and
 // hexadecimal numbers.  Attempting to do so results in a compile-time error.
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 l = 0b_01_010_10_101
 l = 0o_34__53
@@ -162,14 +164,14 @@ n = 0x_FEED.FACE___p1_
 
 // `UInt8` cannot store negative numbers.
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 let cannotBeNegative: UInt8 = -1
 */
 
 // `Int8` cannot store a number larger than its maximum value.
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 let tooBig: Int8 = Int8.max + 1
 */
@@ -248,12 +250,13 @@ let orangesAreOrange = true
 let todayIsYesterday = false
 
 // -----------------------------------------------------------------------------
-//  Tuple - A compound value that groups together multiple values.
+//  Tuple type - A type that groups together multiple types.
+//  Tuple value (tuple) - A value that groups together multiple values.
 // -----------------------------------------------------------------------------
 
 // The values within a tuple can be of any type and do not have to be of the
-// same type as each other.  For example, `(Int, Int, Int)` or `(String,
-// Bool)` or any other permutation you require.
+// same type as each other.  The tuple's type is a combination of the types
+// of the values of the tuple.
 
 var httpStatus = (404, "Not Found")
 assert(type(of: httpStatus) == (Int, String).self)
@@ -291,24 +294,115 @@ assert(httpStatus.1 == "Not Found")
 
 // -----------------------------------------------------------------------------
 
-// A tuple's individual elements can be named when the tuple is defined allowing
-// their values to be accessed with those names.
+// A tuple's individual elements can be labeled when the tuple is defined
+// allowing their values to be accessed with those labels.
 
-let httpOkay = (code: 200, description: "OK")
+// If the tuple constant's or variable's type is not explicitly defined then the
+// inferred tuple type uses the same element labels as the ones for the initial
+// tuple value assignment.
+
+var httpOkay = (code: 200, description: "OK")
 assert(httpOkay.code == 200)
 assert(httpOkay.description == "OK")
 
-// Tuple indexing for named elements still works.
+// If the following is uncommented it will produce a compile-time error:
+/*
+httpOkay = (c: 200, d: "OK")
+*/
+
+// Tuple indexing for labeled elements still works.
 
 assert(httpOkay.0 == 200)
 assert(httpOkay.1 == "OK")
 
-// You don't have to name all of a tuple's elements.
+// You don't have to label all of a tuple's elements.
 
 let httpRedirect = (301, description: "Moved Permanently")
 assert(httpRedirect.0 == 301)
 assert(httpRedirect.1 == "Moved Permanently")
 assert(httpRedirect.description == "Moved Permanently")
+
+// -----------------------------------------------------------------------------
+
+// If a tuple constant's or variable's type is explicitly defined then the way
+// its element labels are defined takes precedence over the way element labels
+// are defined for tuple values used with that constant or variable.
+
+let t1: (Int, Int, String) = (foo: 2, bar: 3, baz: "6")
+// If the following is uncommented it will produce a compile-time error:
+/*
+assert(t1.foo == 2)
+assert(t1.bar == 3)
+assert(t1.baz == "6")
+*/
+
+let t2: (foo: Int, bar: Int, baz: String) = (foo: 2, bar: 3, baz: "6")
+assert(t2.foo == 2)
+assert(t2.bar == 3)
+assert(t2.baz == "6")
+
+let t3: (foo: Int, bar: Int, baz: String) = (2, 3, "6")
+assert(t3.foo == 2)
+assert(t3.bar == 3)
+assert(t3.baz == "6")
+
+let t4: (foo: Int, Int, String) = (foo: 2, bar: 3, baz: "6")
+assert(t4.foo == 2)
+// If the following is uncommented it will produce a compile-time error:
+/*
+assert(t4.bar == 3)
+assert(t4.baz == "6")
+*/
+
+// -----------------------------------------------------------------------------
+
+// Tuple element labels only matter when accessing individual tuple elements.
+// Otherwise, they're meaningless.
+
+assert(t1 == (2, 3, "6"))
+assert(t1 == (aaaaaaaaaaaaa: 2, 3, "6"))
+assert(t1 == (2, bbbbbbbbbbbbb: 3, "6"))
+assert(t1 == (2, 3, ccccccccccccc: "6"))
+assert(t1 == (aaa: 2, bbb: 3, ccc: "6"))
+
+assert(t2 == (2, 3, "6"))
+assert(t2 == (aaaaaaaaaaaaa: 2, 3, "6"))
+assert(t2 == (2, bbbbbbbbbbbbb: 3, "6"))
+assert(t2 == (2, 3, ccccccccccccc: "6"))
+assert(t2 == (aaa: 2, bbb: 3, ccc: "6"))
+
+assert(t1 == t2)
+
+// -----------------------------------------------------------------------------
+
+// Since tuple element labels have limited usefulness, the order in which a
+// tuple's elements are used is significant.
+
+assert(t2 == (foo: 2, bar: 3, baz: "6"))
+// If the following is uncommented it will produce a compile-time error:
+/*
+assert(t2 == (baz: "6", foo: 2, bar: 3))
+*/
+
+
+// TODO
+
+// var c: (Int) = (two: 2)
+// // If the following is uncommented it will produce a compile-time error:
+// /*
+// assert(c.two == 2)
+// */
+// assert(type(of: c) == Int.self)
+// assert(c == 2)
+//
+// var foo: (Int, Int) = (x: 42, y: 43)
+// print(foo)
+// // print(foo.x)
+// // print(foo.0)
+
+// TODO
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -318,12 +412,12 @@ var empty1: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 assert(type(of: empty1) == ().self)
 */
 
-// `Void` is a type alias for the zero element tuple (`()`).
+// `Void` is a type alias for the zero-element tuple (`()`).
 
 var empty2: Void = ()
 
@@ -332,7 +426,7 @@ assert(type(of: empty2) == Void.self)
 
 // Since `Void` is a type alias it can't be assigned like `()` can.
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 empty1 = Void
 empty2 = Void
@@ -340,35 +434,43 @@ empty2 = Void
 
 // -----------------------------------------------------------------------------
 
-
-
-// TODO
-
 // A single-element tuple doesn't truly exist.
 
-var a: (Int)
-a = (2)
+let a: Int = 2
+let b: (Int) = (2)
+let c: (((Int))) = (((2)))
+assert(type(of: a) == type(of: b))
+assert(type(of: a) == type(of: c))
 assert(type(of: a) == Int.self)
+assert(a == b)
+assert(a == c)
 assert(a == 2)
 
-var b: (Int)
-b = (two: 2)
-// If the following is uncommented it will produce an error:
+// Single-element tuples aren't really a thing, so it can't affect type safety.
+
+let d: ((((((Int)))))) = ((2))
+let e: ((Int)) = ((((((2))))))
+assert(d == 2)
+assert(e == 2)
+
+// If the following is uncommented it will produce a compile-time error:
 /*
-assert(b.two == 2)
+let f: ((((((Int)))))) = ((""))
 */
-assert(type(of: b) == Int.self)
-assert(b == 2)
 
+// Attempting to declare a constant or variable as a single-element tuple with
+// an element label will result in a compile-time error.
 
-
-
-
-
+// If the following is uncommented it will produce a compile-time error:
+/*
+let f: (number: Int) = 2
+*/
 
 // -----------------------------------------------------------------------------
-//  Optional - A value having either an underlying value of a particular type
-//             or the lack of any value at all.
+//  Optional type - A type having a specific underlying type and whose values
+//                  may be of that underlying type or nil otherwise.
+//  Optional value (optional) - A value having either an underlying value or
+//                              the lack of any value at all.
 // -----------------------------------------------------------------------------
 
 // You use optionals in situations where a value might be absent.
@@ -376,6 +478,7 @@ assert(b == 2)
 let possibleNumber = "123"
 let convertedNumber = Int(possibleNumber)
 assert(type(of: convertedNumber) == Int?.self)
+assert(convertedNumber! == 123)
 // `convertedNumber` is inferred to be of type `Int?`, or "optional `Int`",
 // because `Int` can accept a `String` that may or may not represent
 // a number.
@@ -411,6 +514,9 @@ assert(surveyAnswer == nil)
 
 
 
+
+
+
 // var maybeThing: Optional<Int> = 3
 // var maybeThing: Optional<Optional<Int>> = Int?(3)
 // Int??
@@ -418,13 +524,6 @@ assert(surveyAnswer == nil)
 
 
 
-
-
-
-
-
-// TODO
-// Does this work?
 var x: String?
 
 
@@ -438,7 +537,8 @@ var x: String?
 let maybeText: String? = "An optional string."
 
 // We know that `maybeText` has a string, so it's safe to force-unwrap it.
-let forcedText: String = maybeText!
+let forcedText = maybeText!
+assert(type(of: forcedText) == String.self)
 assert(forcedText == "An optional string.")
 
 // Trying to use `!` to access a nonexistent optional value triggers a runtime
@@ -449,14 +549,13 @@ assert(forcedText == "An optional string.")
 // -----------------------------------------------------------------------------
 
 // Implicitly unwrapped optionals are useful when an optional's value is
-// confirmed to exist immediately after the optional is first defined
-// and can definitely be assumed to exist at every point thereafter.
-// The primary use of implicitly unwrapped optionals in Swift is
-// during class initialization.
+// in confirmed to exist after the optional is first defined and can be
+// assumed stay existing.  The primary use of implicitly unwrapped
+// optionals in Swift is during class initialization.
 
 // An implicitly unwrapped optional is a normal optional behind the scenes, but
-// can also be used like a nonoptional value, without the need to unwrap the
-// optional each time it is accessed.
+// can also be used like a nonoptional value, without the need for it to be
+// unwrapped each time it is accessed.
 
 let assumedString: String! = "An implicitly unwrapped optional string."
 let implicitString: String = assumedString
@@ -467,11 +566,3 @@ let implicitString: String = assumedString
 // If an implicitly unwrapped optional is nil and you try to access its wrapped
 // value, you'll trigger a runtime error.  The result is exactly the same as if
 // you force-unwrap a normal optional that doesn't contain a value.
-
-
-
-
-
-// if maybeNumber != nil {
-//   print("maybeNumber contains \(maybeNumber!).")
-// }

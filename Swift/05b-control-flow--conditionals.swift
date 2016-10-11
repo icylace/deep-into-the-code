@@ -138,7 +138,7 @@ if let number = maybeNumber {
   assert(number == 2)
 } else {
   assert(maybeNumber == nil)
-  // If the following is uncommented it will produce an error:
+  // If the following is uncommented it will produce a compile-time error:
   /*
   assert(number == nil)
   */
@@ -197,12 +197,15 @@ if let a = Int("4") {
 
 
 
+
+
+
+
+
+
 // TODO
 
 /*
-
-
-
 
 
 
@@ -216,16 +219,10 @@ that follow the guard statement, as described in Early Exit.
 
 
 
-
-
-
-
-// Constants and variables created with optional binding in an `if` statement are
-// available only within the body of the `if` statement.  In contrast,
-
-the
-// constants and variables created with a `guard` statement are available
-// in the lines of code that follow the `guard` statement.
+// Constants and variables created with optional binding in an `if` statement
+// are available only within the body of the `if` statement.  In contrast,
+// the constants and variables created with a `guard` statement are
+// available in the lines of code that follow the `guard` statement.
 
 let possibleString: String? = "An optional string."
 let forcedString: String = possibleString! // requires an exclamation mark
@@ -238,15 +235,6 @@ let implicitString: String = assumedString // no need for an exclamation mark
 // the same as if you place an exclamation mark after a normal optional
 // that does not contain a value.
 
-if assumedString != nil {
-  print(assumedString)
-}
-// Prints "An implicitly unwrapped optional string."
-
-if let definiteString = assumedString {
-  print(definiteString)
-}
-// Prints "An implicitly unwrapped optional string."
 
 
 
@@ -261,6 +249,8 @@ if case ... {
 
 
 
+
+
 // -----------------------------------------------------------------------------
 //  `switch` statement - The conditional statement that has at least one branch.
 // -----------------------------------------------------------------------------
@@ -268,11 +258,11 @@ if case ... {
 // A `switch` statement considers a value and compares it against several
 // possible matching patterns.  It then executes an appropriate block
 // of code, based on the first pattern that matches successfully.
-// A `switch` statement provides an alternative to the `if`
-// statement for responding to multiple potential states.
+// A `switch` statement is an alternative to multiple `if`
+// statements for responding to multiple potential states.
 
-// In its simplest form, a `switch` statement compares a value against one or
-// more values of the same type.
+// In its simplest form, a `switch` statement compares a value against one
+// or more values of the same type.
 
 switch some value to consider {
 case value 1:
@@ -283,18 +273,17 @@ default:
   otherwise, do something else
 }
 
-Every switch statement consists of multiple possible cases, each of which begins
+Every `switch` statement consists of multiple possible cases, each of which begins
 with the case keyword.  In addition to comparing against specific values, Swift
 provides several ways for each case to specify more complex matching patterns.
 These options are described later in this chapter.
 
-Like the body of an if statement, each case is a separate branch of code
-execution.  The switch statement determines which branch should be
-selected.  This procedure is known as switching on the value that
-is being considered.
+Each case is a separate branch of code execution.  The `switch` statement
+determines which branch should be selected.  This procedure is known
+as switching on the value that is being considered.
 
-Every switch statement must be exhaustive.  That is, every possible value of the
-type being considered must be matched by one of the switch cases.  If it's not
+Every `switch` statement must be exhaustive.  That is, every possible value of the
+type being considered must be matched by one of the `switch` cases.  If it's not
 appropriate to provide a case for every possible value, you can define a default
 case to cover any values that are not addressed explicitly.  This default case
 is indicated by the default keyword, and must always appear last.
@@ -310,20 +299,21 @@ default:
 }
 // Prints "The last letter of the alphabet"
 
-The switch statement’s first case matches the first letter of the English alphabet,
-a, and its second case matches the last letter, z. Because the switch must have a
-case for every possible character, not just every alphabetic character, this switch
-statement uses a default case to match all characters other than a and z. This
-provision ensures that the switch statement is exhaustive.
+// The `switch` statement's first case matches the first letter of the English
+// alphabet, a, and its second case matches the last letter, z.  Because the
+// `switch` must have a case for every possible character, not just every
+// alphabetic character, this `switch` statement uses a default case to
+// match all characters other than a and z.  This provision ensures
+// that the `switch` statement is exhaustive.
 
 // -----------------------------------------------------------------------------
+//  No Implicit Fallthrough
+// -----------------------------------------------------------------------------
 
-No Implicit Fallthrough
-
-`switch` statements in Swift do not fall through the bottom of each case and
-into the next one by default.  Instead, the entire `switch` statement
-finishes its execution as soon as the first matching `switch` case is
-completed, without requiring an explicit `break` statement.
+// `switch` statements in Swift do not fall through the bottom of each case and
+// into the next one by default.  Instead, the entire `switch` statement
+// finishes its execution as soon as the first matching `switch` case is
+// completed, without requiring an explicit `break` statement.
 
 NOTE
 
@@ -344,13 +334,14 @@ default:
 }
 // This will report a compile-time error.
 
-Unlike a switch statement in C, this switch statement does not match both "a"
-and "A". Rather, it reports a compile-time error that case "a": does not contain
-any executable statements. This approach avoids accidental fallthrough from one
-case to another and makes for safer code that is clearer in its intent.
+// Unlike a `switch` statement in C, this `switch` statement does not match both
+// "a" and "A".  Rather, it reports a compile-time error that case "a": does
+// not contain any executable statements. This approach avoids accidental
+// fallthrough from one case to another and makes for safer code that
+// is clearer in its intent.
 
-To make a switch with a single case that matches both "a" and "A", combine the
-two values into a compound case, separating the values with commas.
+// To make a switch with a single case that matches both "a" and "A", combine
+// the two values into a compound case, separating the values with commas.
 
 let anotherCharacter: Character = "a"
 switch anotherCharacter {
@@ -423,9 +414,9 @@ default:
 
 image: ../Art/coordinateGraphSimple_2x.png
 
-The switch statement determines whether the point is at the origin (0, 0), on
-the red x-axis, on the orange y-axis, inside the blue 4-by-4 box centered on
-the origin, or outside of the box.
+The `switch` statement determines whether the point is at the origin (0, 0),
+on the red x-axis, on the orange y-axis, inside the blue 4-by-4 box centered
+on the origin, or outside of the box.
 
 Unlike C, Swift allows multiple switch cases to consider the same value or values.
 In fact, the point (0, 0) could match all four of the cases in this example.
@@ -553,6 +544,13 @@ that the code in the body of the case can always access a value for distance.
 
 
 
+
+
+
+
+
+
+
 let tuple = (1.0, "hello")
 print(tuple.0)
 print(tuple.1)
@@ -593,6 +591,49 @@ default:
 }
 print("There are \(naturalCount) \(countedThings).")
 // Prints "There are dozens of moons orbiting Saturn."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -754,24 +795,16 @@ default case) block, as in C’s standard switch statement behavior.
 
 
 
-
-
-
-
-
-
 // -----------------------------------------------------------------------------
 
 Labeled Statements
 
-In Swift, you can nest loops and conditional statements inside other loops and
-conditional statements to create complex control flow structures.  However,
-loops and conditional statements can both use the break statement to end
-their execution prematurely.  Therefore, it is sometimes useful to be
-explicit about which loop or conditional statement you want a break
-statement to terminate. Similarly, if you have multiple nested
-loops, it can be useful to be explicit about which loop the
-continue statement should affect.
+Loop statements and conditional statements can be nestd inside other loops and
+conditionals.  However, both use the `break` statement to end their execution
+prematurely.  Therefore, it is sometimes useful to be explicit about which
+loop or conditional you want a `break` statement to terminate.  Similarly,
+if you have multiple nested loops, it can be useful to be explicit about
+which loop the continue statement should affect.
 
 To achieve these aims, you can mark a loop statement or conditional statement
 with a statement label.  With a conditional statement, you can use a statement

@@ -3,9 +3,8 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html
 // =============================================================================
 
-
 // -----------------------------------------------------------------------------
-//  Parameter - A named value that represents an input to a function.
+//  Parameter - A constant that represents an input to a function.
 //  Return type - The type of a function's output value.
 //  Function name - A name given to a function.
 //  Argument - A value given as input to a function when it is called.
@@ -126,6 +125,13 @@ func sayHi(name: String, alreadyGreeted: Bool) -> String {
 
 let e = sayHi(name: "Tim", alreadyGreeted: true)
 assert(e == "Hello again, Tim!")
+
+// A function's parameters must be used in the order in which they're declared.
+
+// If the following is uncommented it will produce a compile-time error:
+/*
+let f = sayHi(alreadyGreeted: true, name: "Tim")
+*/
 
 // -----------------------------------------------------------------------------
 
@@ -433,7 +439,7 @@ assert(n == 0)
 
 
 
-
+/*
 
 
 
@@ -888,3 +894,5 @@ print("zero!")
 // -2...
 // -1...
 // zero!
+
+*/

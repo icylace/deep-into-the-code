@@ -25,7 +25,7 @@ assert(answer == 75)
 // Attempting to declare the loop variable with `let` will trigger
 // a compile-time error.
 
-// If the following is uncommented it will produce an error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 answer = 0
 for let index in 1...5 {
@@ -157,6 +157,28 @@ let arrayOfOptionalInts: [Int?] = [nil, 2, 3, nil, 5]
 for case let number? in arrayOfOptionalInts {
   print("Found a \(number)")
 }
+
+
+
+
+
+
+
+
+
+
+
+let optionalInt:[Int]? = [1, 2, 3]
+
+for i in optionalInt! { print(i) }
+
+for i in optionalInt ?? [] { print(i) }
+
+for i in optionalInt as [Int]! {  print(i) }
+
+
+
+
 
 
 
