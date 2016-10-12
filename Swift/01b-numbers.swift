@@ -145,7 +145,7 @@ n = 0x0000000FEED.FACE___p1_ ; assert(n == 0xFEED.FACEp1)
 // Underscores cannot be put directly after the prefix for binary, octal, and
 // hexadecimal numbers.  Attempting to do so results in a compile-time error.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 l = 0b_01_010_10_101
 l = 0o_34__53
@@ -164,14 +164,14 @@ n = 0x_FEED.FACE___p1_
 
 // `UInt8` cannot store negative numbers.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 let cannotBeNegative: UInt8 = -1
 */
 
 // `Int8` cannot store a number larger than its maximum value.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 let tooBig: Int8 = Int8.max + 1
 */

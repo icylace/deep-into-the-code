@@ -42,12 +42,6 @@
 // var c: [[[[[[Int]]]]]] = [[2]]
 
 
-
-
-
-
-
-
 // You can initialize an array with an array literal.
 
 var a8: [String] = ["Eggs", "Milk"]

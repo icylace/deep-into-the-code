@@ -219,7 +219,10 @@ The access control level of a type also affects the default access level of that
 
 IMPORTANT
 
-A public type defaults to having internal members, not public members. If you want a type member to be public, you must explicitly mark it as such. This requirement ensures that the public-facing API for a type is something you opt in to publishing, and avoids presenting the internal workings of a type as public API by mistake.
+A public type defaults to having internal members, not public members. If you want
+a type member to be public, you must explicitly mark it as such. This requirement
+ensures that the public-facing API for a type is something you opt in to publishing,
+and avoids presenting the internal workings of a type as public API by mistake.
 
 public class SomePublicClass {                  // explicitly public class
   public var somePublicProperty = 0            // explicitly public class member
@@ -247,30 +250,45 @@ private class SomePrivateClass {                // explicitly private class
 
 Tuple Types
 
-The access level for a tuple type is the most restrictive access level of all types used in that tuple. For example, if you compose a tuple from two different types, one with internal access and one with private access, the access level for that compound tuple type will be private.
+The access level for a tuple type is the most restrictive access level of all types
+used in that tuple. For example, if you compose a tuple from two different types,
+one with internal access and one with private access, the access level for that
+compound tuple type will be private.
 
 NOTE
 
-Tuple types do not have a standalone definition in the way that classes, structures, enumerations, and functions do. A tuple type’s access level is deduced automatically when the tuple type is used, and cannot be specified explicitly.
+Tuple types do not have a standalone definition in the way that classes, structures,
+enumerations, and functions do. A tuple type’s access level is deduced automatically
+when the tuple type is used, and cannot be specified explicitly.
 
 // -----------------------------------------------------------------------------
 
 Function Types
 
-The access level for a function type is calculated as the most restrictive access level of the function’s parameter types and return type. You must specify the access level explicitly as part of the function’s definition if the function’s calculated access level does not match the contextual default.
+The access level for a function type is calculated as the most restrictive access
+level of the function’s parameter types and return type. You must specify the access
+level explicitly as part of the function’s definition if the function’s calculated
+access level does not match the contextual default.
 
-The example below defines a global function called someFunction(), without providing a specific access-level modifier for the function itself. You might expect this function to have the default access level of “internal”, but this is not the case. In fact, someFunction() will not compile as written below:
+The example below defines a global function called someFunction(), without providing
+a specific access-level modifier for the function itself. You might expect this
+function to have the default access level of “internal”, but this is not the case.
+In fact, someFunction() will not compile as written below:
 
 func someFunction() -> (SomeInternalClass, SomePrivateClass) {
-    // function implementation goes here
+  // function implementation goes here
 }
-The function’s return type is a tuple type composed from two of the custom classes defined above in Custom Types. One of these classes was defined as “internal”, and the other was defined as “private”. Therefore, the overall access level of the compound tuple type is “private” (the minimum access level of the tuple’s constituent types).
+The function’s return type is a tuple type composed from two of the custom classes
+defined above in Custom Types. One of these classes was defined as “internal”, and
+the other was defined as “private”. Therefore, the overall access level of the compound tuple type is “private” (the minimum access level of the tuple’s constituent types).
 
-Because the function’s return type is private, you must mark the function’s overall access level with the private modifier for the function declaration to be valid:
+Because the function’s return type is private, you must mark the function’s overall
+access level with the private modifier for the function declaration to be valid:
 
 private func someFunction() -> (SomeInternalClass, SomePrivateClass) {
-    // function implementation goes here
+  // function implementation goes here
 }
+
 It is not valid to mark the definition of someFunction() with the public or internal modifiers, or to use the default setting of internal, because public or internal users of the function might not have appropriate access to the private class used in the function’s return type.
 
 Enumeration Types
@@ -280,18 +298,25 @@ The individual cases of an enumeration automatically receive the same access lev
 In the example below, the CompassPoint enumeration has an explicit access level of “public”. The enumeration cases north, south, east, and west therefore also have an access level of “public”:
 
 public enum CompassPoint {
-    case north
-    case south
-    case east
-    case west
+  case north
+  case south
+  case east
+  case west
 }
+
+// -----------------------------------------------------------------------------
+
 Raw Values and Associated Values
 
 The types used for any raw values or associated values in an enumeration definition must have an access level at least as high as the enumeration’s access level. You cannot use a private type as the raw-value type of an enumeration with an internal access level, for example.
 
+// -----------------------------------------------------------------------------
+
 Nested Types
 
 Nested types defined within a private type have an automatic access level of private. Nested types defined within a file-private type have an automatic access level of file private. Nested types defined within a public type or an internal type have an automatic access level of internal. If you want a nested type within a public type to be publicly available, you must explicitly declare the nested type as public.
+
+// -----------------------------------------------------------------------------
 
 Subclassing
 
@@ -302,24 +327,27 @@ In addition, you can override any class member (method, property, initializer, o
 An override can make an inherited class member more accessible than its superclass version. In the example below, class A is a public class with a private method called someMethod(). Class B is a subclass of A, with a reduced access level of “internal”. Nonetheless, class B provides an override of someMethod() with an access level of “internal”, which is higher than the original implementation of someMethod():
 
 public class A {
-    private func someMethod() {}
+  private func someMethod() {}
 }
 
 internal class B: A {
-    override internal func someMethod() {}
+  override internal func someMethod() {}
 }
 It is even valid for a subclass member to call a superclass member that has lower access permissions than the subclass member, as long as the call to the superclass’s member takes place within an allowed access level context (that is, within the same source file as the superclass for a private member call, or within the same module as the superclass for an internal member call):
 
 public class A {
-    private func someMethod() {}
+  private func someMethod() {}
 }
 
 internal class B: A {
-    override internal func someMethod() {
-        super.someMethod()
-    }
+  override internal func someMethod() {
+    super.someMethod()
+  }
 }
+
 Because superclass A and subclass B are defined in the same source file, it is valid for the B implementation of someMethod() to call super.someMethod().
+
+// -----------------------------------------------------------------------------
 
 Constants, Variables, Properties, and Subscripts
 
@@ -328,6 +356,9 @@ A constant, variable, or property cannot be more public than its type. It is not
 If a constant, variable, property, or subscript makes use of a private type, the constant, variable, property, or subscript must also be marked as private:
 
 private var privateInstance = SomePrivateClass()
+
+// -----------------------------------------------------------------------------
+
 Getters and Setters
 
 Getters and setters for constants, variables, properties, and subscripts automatically receive the same access level as the constant, variable, property, or subscript they belong to.
@@ -348,6 +379,7 @@ struct TrackedString {
         }
     }
 }
+
 The TrackedString structure defines a stored string property called value, with an initial value of "" (an empty string). The structure also defines a stored integer property called numberOfEdits, which is used to track the number of times that value is modified. This modification tracking is implemented with a didSet property observer on the value property, which increments numberOfEdits every time the value property is set to a new value.
 
 The TrackedString structure and the value property do not provide an explicit access-level modifier, and so they both receive the default access level of internal. However, the access level for the numberOfEdits property is marked with a private(set) modifier to indicate that the property’s getter still has the default access level of internal, but the property is settable only from within code that’s part of the TrackedString structure. This enables TrackedString to modify the numberOfEdits property internally, but to present the property as a read-only property when it is used outside the structure’s definition—including any extensions to TrackedString.
@@ -373,11 +405,16 @@ public struct TrackedString {
     }
     public init() {}
 }
+
+// -----------------------------------------------------------------------------
+
 Initializers
 
 Custom initializers can be assigned an access level less than or equal to the type that they initialize. The only exception is for required initializers (as defined in Required Initializers). A required initializer must have the same access level as the class it belongs to.
 
 As with function and method parameters, the types of an initializer’s parameters cannot be more private than the initializer’s own access level.
+
+// -----------------------------------------------------------------------------
 
 Default Initializers
 
@@ -385,11 +422,15 @@ As described in Default Initializers, Swift automatically provides a default ini
 
 A default initializer has the same access level as the type it initializes, unless that type is defined as public. For a type that is defined as public, the default initializer is considered internal. If you want a public type to be initializable with a no-argument initializer when used in another module, you must explicitly provide a public no-argument initializer yourself as part of the type’s definition.
 
+// -----------------------------------------------------------------------------
+
 Default Memberwise Initializers for Structure Types
 
 The default memberwise initializer for a structure type is considered private if any of the structure’s stored properties are private. Likewise, if any of the structure’s stored properties are file private, the initializer is file private. Otherwise, the initializer has an access level of internal.
 
 As with the default initializer above, if you want a public structure type to be initializable with a memberwise initializer when used in another module, you must provide a public memberwise initializer yourself as part of the type’s definition.
+
+// -----------------------------------------------------------------------------
 
 Protocols
 

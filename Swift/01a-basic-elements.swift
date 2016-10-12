@@ -131,7 +131,7 @@ assert(type(of: k) == String.self)
 // to it from now on.
 k = "bonjour"
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 k = 2
 */
@@ -294,7 +294,7 @@ let age = 3
 // This assertion is not triggered because `age` equals 3.
 assert(age == 3)
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 // This causes the assertion to trigger, because `age` is not greater than 5.
 assert(age > 5)
@@ -303,7 +303,7 @@ assert(age > 5)
 // `assert(_:_:file:line:)` also lets you provide a suitable debug message that
 // is displayed if the assertion is triggered.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(age > 5, "Age needs to be greater than 5.")
 */

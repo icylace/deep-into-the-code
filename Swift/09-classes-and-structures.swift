@@ -216,7 +216,9 @@ When rememberedDirection is assigned the value of currentDirection, it is actual
 //  Classes Are Reference Types
 // -----------------------------------------------------------------------------
 
-Unlike value types, reference types are not copied when they are assigned to a variable or constant, or when they are passed to a function. Rather than a copy, a reference to the same existing instance is used instead.
+Unlike value types, reference types are not copied when they are assigned to a
+variable or constant, or when they are passed to a function. Rather than a copy,
+a reference to the same existing instance is used instead.
 
 Here's an example, using the VideoMode class defined above:
 
@@ -226,21 +228,30 @@ tenEighty.interlaced = true
 tenEighty.name = "1080i"
 tenEighty.frameRate = 25.0
 
-This example declares a new constant called tenEighty and sets it to refer to a new instance of the VideoMode class. The video mode is assigned a copy of the HD resolution of 1920 by 1080 from before. It is set to be interlaced, and is given a name of "1080i". Finally, it is set to a frame rate of 25.0 frames per second.
-
-Next, tenEighty is assigned to a new constant, called alsoTenEighty, and the frame rate of alsoTenEighty is modified:
+Next, tenEighty is assigned to a new constant, called alsoTenEighty, and the
+frame rate of alsoTenEighty is modified:
 
 let alsoTenEighty = tenEighty
 alsoTenEighty.frameRate = 30.0
 
-Because classes are reference types, tenEighty and alsoTenEighty actually both refer to the same VideoMode instance. Effectively, they are just two different names for the same single instance.
+Because classes are reference types, tenEighty and alsoTenEighty actually both
+refer to the same VideoMode instance. Effectively, they are just two different
+names for the same single instance.
 
-Checking the frameRate property of tenEighty shows that it correctly reports the new frame rate of 30.0 from the underlying VideoMode instance:
+Checking the frameRate property of tenEighty shows that it correctly reports
+the new frame rate of 30.0 from the underlying VideoMode instance:
 
 print("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 // Prints "The frameRate property of tenEighty is now 30.0"
 
-Note that tenEighty and alsoTenEighty are declared as constants, rather than variables. However, you can still change tenEighty.frameRate and alsoTenEighty.frameRate because the values of the tenEighty and alsoTenEighty constants themselves do not actually change. tenEighty and alsoTenEighty themselves do not “store” the VideoMode instance—instead, they both refer to a VideoMode instance behind the scenes. It is the frameRate property of the underlying VideoMode that is changed, not the values of the constant references to that VideoMode.
+Note that tenEighty and alsoTenEighty are declared as constants, rather
+than variables. However, you can still change tenEighty.frameRate and
+alsoTenEighty.frameRate because the values of the tenEighty and
+alsoTenEighty constants themselves do not actually change. tenEighty
+and alsoTenEighty themselves do not “store” the VideoMode instance—instead,
+they both refer to a VideoMode instance behind the scenes. It is the frameRate
+property of the underlying VideoMode that is changed, not the values of the
+constant references to that VideoMode.
 
 
 

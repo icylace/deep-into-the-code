@@ -59,7 +59,7 @@ var httpOkay = (code: 200, description: "OK")
 assert(httpOkay.code == 200)
 assert(httpOkay.description == "OK")
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 httpOkay = (c: 200, d: "OK")
 */
@@ -83,7 +83,7 @@ assert(httpRedirect.description == "Moved Permanently")
 // are defined for tuple values used with that constant or variable.
 
 let t1: (Int, Int, String) = (foo: 2, bar: 3, baz: "6")
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(t1.foo == 2)
 assert(t1.bar == 3)
@@ -102,7 +102,7 @@ assert(t3.baz == "6")
 
 let t4: (foo: Int, Int, String) = (foo: 2, bar: 3, baz: "6")
 assert(t4.foo == 2)
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(t4.bar == 3)
 assert(t4.baz == "6")
@@ -133,7 +133,7 @@ assert(t1 == t2)
 // tuple's elements are used is significant.
 
 assert(t2 == (foo: 2, bar: 3, baz: "6"))
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(t2 == (baz: "6", foo: 2, bar: 3))
 */
@@ -146,7 +146,7 @@ var empty1: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(type(of: empty1) == ().self)
 */
@@ -160,7 +160,7 @@ assert(type(of: empty2) == Void.self)
 
 // Since `Void` is a type alias it can't be assigned like `()` can.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 empty1 = Void
 empty2 = Void
@@ -189,7 +189,7 @@ assert(type(of: e) == Int.self)
 assert(d == 2)
 assert(e == 2)
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 let f: ((((((Int)))))) = ((""))
 */
@@ -197,7 +197,7 @@ let f: ((((((Int)))))) = ((""))
 // Attempting to declare a constant or variable as a single-element tuple with
 // an element label will result in a compile-time error.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 let f: (number: Int) = 2
 var g: (number: Int) = (number: 2)

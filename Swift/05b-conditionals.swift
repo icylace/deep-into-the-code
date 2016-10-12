@@ -138,7 +138,7 @@ if let number = maybeNumber {
   assert(number == 2)
 } else {
   assert(maybeNumber == nil)
-  // If the following is uncommented it will produce a compile-time error:
+  // If the following is uncommented it will produce a runtime error:
   /*
   assert(number == nil)
   */

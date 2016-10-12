@@ -143,7 +143,7 @@ assert(e == "Hello again, Tim!")
 
 // A function's parameters must be used in the order in which they're declared.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 let f = sayHi(alreadyGreeted: true, name: "Tim")
 */

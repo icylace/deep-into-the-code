@@ -25,7 +25,7 @@ assert(answer == 75)
 // Attempting to declare the loop variable with `let` will trigger
 // a compile-time error.
 
-// If the following is uncommented it will produce a compile-time error:
+// If the following is uncommented it will produce a runtime error:
 /*
 answer = 0
 for let index in 1...5 {
