@@ -15,8 +15,7 @@
 // two operators provide a simple and expressive way to check the type of a value
 // or cast a value to a different type.
 
-You can also use type casting to check whether a type conforms to a protocol, as
-described in Checking for Protocol Conformance.
+// You can also use type casting to check whether a type conforms to a protocol.
 
 
 // -----------------------------------------------------------------------------

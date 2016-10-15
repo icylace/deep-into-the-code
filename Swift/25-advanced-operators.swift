@@ -149,20 +149,39 @@ means 2 to the power of 7, or 128.
 Here’s how the bits inside an Int8 look for the number -4:
 
 image: ../Art/bitshiftSignedMinusFour_2x.png
-This time, the sign bit is 1 (meaning “negative”), and the seven value bits have a binary value of 124 (which is 128 - 4):
+
+This time, the sign bit is 1 (meaning “negative”), and the seven value bits have
+a binary value of 124 (which is 128 - 4):
 
 image: ../Art/bitshiftSignedMinusFourValue_2x.png
-This encoding for negative numbers is known as a two’s complement representation. It may seem an unusual way to represent negative numbers, but it has several advantages.
 
-First, you can add -1 to -4, simply by performing a standard binary addition of all eight bits (including the sign bit), and discarding anything that doesn’t fit in the eight bits once you’re done:
+This encoding for negative numbers is known as a two’s complement representation.
+It may seem an unusual way to represent negative numbers, but it has several advantages.
+
+First, you can add -1 to -4, simply by performing a standard binary addition of
+all eight bits (including the sign bit), and discarding anything that doesn’t fit
+in the eight bits once you’re done:
 
 image: ../Art/bitshiftSignedAddition_2x.png
-Second, the two’s complement representation also lets you shift the bits of negative numbers to the left and right like positive numbers, and still end up doubling them for every shift you make to the left, or halving them for every shift you make to the right. To achieve this, an extra rule is used when signed integers are shifted to the right: When you shift signed integers to the right, apply the same rules as for unsigned integers, but fill any empty bits on the left with the sign bit, rather than with a zero.
+
+Second, the two’s complement representation also lets you shift the bits of
+negative numbers to the left and right like positive numbers, and still end
+up doubling them for every shift you make to the left, or halving them for
+every shift you make to the right. To achieve this, an extra rule is used
+when signed integers are shifted to the right: When you shift signed
+integers to the right, apply the same rules as for unsigned integers,
+but fill any empty bits on the left with the sign bit, rather than
+with a zero.
 
 image: ../Art/bitshiftSigned_2x.png
-This action ensures that signed integers have the same sign after they are shifted to the right, and is known as an arithmetic shift.
 
-Because of the special way that positive and negative numbers are stored, shifting either of them to the right moves them closer to zero. Keeping the sign bit the same during this shift means that negative integers remain negative as their value moves closer to zero.
+This action ensures that signed integers have the same sign after they are
+shifted to the right, and is known as an arithmetic shift.
+
+Because of the special way that positive and negative numbers are stored,
+shifting either of them to the right moves them closer to zero. Keeping
+the sign bit the same during this shift means that negative integers
+remain negative as their value moves closer to zero.
 
 
 

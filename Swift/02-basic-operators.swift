@@ -150,11 +150,8 @@ assert(2 <= 1)
 
 
 
-
-// There are also two identity operators (`===` and `!==`) which you use to
-// test whether two object references both refer to the same object
-// instance.  For more information, see "Classes and Structures".
-
+// TODO
+// - can tuples be added together?
 
 
 

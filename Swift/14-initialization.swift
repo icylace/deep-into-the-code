@@ -85,7 +85,7 @@ initial value to the property when it is defined.
 
 
 struct Fahrenheit {
-    var temperature = 32.0
+  var temperature = 32.0
 }
 
 
@@ -130,7 +130,6 @@ assert(freezingPointOfWater.temperatureInCelsius == 0.0)
 
 // -----------------------------------------------------------------------------
 
-
 Parameter Names and Argument Labels
 
 As with function and method parameters, initialization parameters can have both
@@ -158,26 +157,30 @@ struct Color {
   }
 }
 
-Both initializers can be used to create a new Color instance, by providing named values for each initializer parameter:
+Both initializers can be used to create a new Color instance, by providing named
+values for each initializer parameter:
 
 let magenta = Color(red: 1.0, green: 0.0, blue: 1.0)
 let halfGray = Color(white: 0.5)
-Note that it is not possible to call these initializers without using argument labels. Argument labels must always be used in an initializer if they are defined, and omitting them is a compile-time error:
+
+Note that it is not possible to call these initializers without using argument
+labels. Argument labels must always be used in an initializer if they are defined,
+and omitting them is a compile-time error:
 
 let veryGreen = Color(0.0, 1.0, 0.0)
 // this reports a compile-time error - argument labels are required
 
 // -----------------------------------------------------------------------------
 
-
-
-
-
 Initializer Parameters Without Argument Labels
 
-If you do not want to use an argument label for an initializer parameter, write an underscore (_) instead of an explicit argument label for that parameter to override the default behavior.
+If you do not want to use an argument label for an initializer parameter, write
+an underscore (_) instead of an explicit argument label for that parameter to
+override the default behavior.
 
-Here’s an expanded version of the Celsius example from earlier, with an additional initializer to create a new Celsius instance from a Double value that is already in the Celsius scale:
+Here’s an expanded version of the Celsius example from earlier, with an
+additional initializer to create a new Celsius instance from a Double
+value that is already in the Celsius scale:
 
 struct Celsius {
   var temperatureInCelsius: Double
@@ -194,15 +197,24 @@ struct Celsius {
 let bodyTemperature = Celsius(37.0)
 // bodyTemperature.temperatureInCelsius is 37.0
 
-The initializer call Celsius(37.0) is clear in its intent without the need for an argument label. It is therefore appropriate to write this initializer as init(_ celsius: Double) so that it can be called by providing an unnamed Double value.
+The initializer call Celsius(37.0) is clear in its intent without the need for
+an argument label. It is therefore appropriate to write this initializer as
+init(_ celsius: Double) so that it can be called by providing an unnamed
+Double value.
 
 // -----------------------------------------------------------------------------
 
 Optional Property Types
 
-If your custom type has a stored property that is logically allowed to have “no value”—perhaps because its value cannot be set during initialization, or because it is allowed to have “no value” at some later point—declare the property with an optional type. Properties of optional type are automatically initialized with a value of nil, indicating that the property is deliberately intended to have “no value yet” during initialization.
+If your custom type has a stored property that is logically allowed to have “no
+value”—perhaps because its value cannot be set during initialization, or because
+it is allowed to have “no value” at some later point—declare the property with
+an optional type. Properties of optional type are automatically initialized
+with a value of nil, indicating that the property is deliberately intended
+to have “no value yet” during initialization.
 
-The following example defines a class called SurveyQuestion, with an optional String property called response:
+The following example defines a class called SurveyQuestion, with an optional
+String property called response:
 
 class SurveyQuestion {
   var text: String
@@ -220,17 +232,29 @@ cheeseQuestion.ask()
 // Prints "Do you like cheese?"
 cheeseQuestion.response = "Yes, I do like cheese."
 
-The response to a survey question cannot be known until it is asked, and so the response property is declared with a type of String?, or “optional String”. It is automatically assigned a default value of nil, meaning “no string yet”, when a new instance of SurveyQuestion is initialized.
+The response to a survey question cannot be known until it is asked, and so the
+response property is declared with a type of String?, or “optional String”.  It
+is automatically assigned a default value of nil, meaning “no string yet”, when
+a new instance of SurveyQuestion is initialized.
+
+// -----------------------------------------------------------------------------
 
 Assigning Constant Properties During Initialization
 
-You can assign a value to a constant property at any point during initialization, as long as it is set to a definite value by the time initialization finishes. Once a constant property is assigned a value, it can’t be further modified.
+You can assign a value to a constant property at any point during initialization,
+as long as it is set to a definite value by the time initialization finishes.
+Once a constant property is assigned a value, it can’t be further modified.
 
 NOTE
 
-For class instances, a constant property can be modified during initialization only by the class that introduces it. It cannot be modified by a subclass.
+For class instances, a constant property can be modified during initialization
+only by the class that introduces it. It cannot be modified by a subclass.
 
-You can revise the SurveyQuestion example from above to use a constant property rather than a variable property for the text property of the question, to indicate that the question does not change once an instance of SurveyQuestion is created. Even though the text property is now a constant, it can still be set within the class’s initializer:
+You can revise the SurveyQuestion example from above to use a constant property
+rather than a variable property for the text property of the question, to
+indicate that the question does not change once an instance of SurveyQuestion
+is created. Even though the text property is now a constant, it can still be
+set within the class’s initializer:
 
 class SurveyQuestion {
   let text: String
@@ -247,17 +271,6 @@ let beetsQuestion = SurveyQuestion(text: "How about beets?")
 beetsQuestion.ask()
 // Prints "How about beets?"
 beetsQuestion.response = "I also like beets. (But not with cheese.)"
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -295,16 +308,6 @@ beetsQuestion.response = "I also like beets. (But not with cheese.)"
 // -----------------------------------------------------------------------------
 //  Setting a Default Property Value with a Closure or Function
 // -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
 
 
 

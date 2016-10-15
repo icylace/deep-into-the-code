@@ -6,7 +6,7 @@
 // TODO
 
 // -----------------------------------------------------------------------------
-//  Access control -
+//  Access control - The behavior which determines what part of the code
 // -----------------------------------------------------------------------------
 
 // Access control restricts access to parts of your code from code in other

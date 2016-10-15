@@ -9,7 +9,6 @@
 //  Method - A function belonging to a particular type.
 // -----------------------------------------------------------------------------
 
-
 // -----------------------------------------------------------------------------
 //  Instance method - A method that works with an instance of the
 //                    type it belongs to.
@@ -120,10 +119,9 @@ fixedPoint.moveBy(x: 2.0, y: 3.0)
 // fixedPoint.moveBy(x: 2.0, y: 3.0)
 
 // -----------------------------------------------------------------------------
-
-// Mutating methods can assign an entirely new instance to the implicit `self`
-// property.  The Point example shown above could have been written in the
-// following way instead:
+//  `self` property - A special property that every type implicitly has.
+//  Mutating method - A method that can assign a new instance to `self`.
+// -----------------------------------------------------------------------------
 
 struct Point {
   var x = 0.0, y = 0.0
@@ -198,7 +196,9 @@ struct LevelTracker {
   var currentLevel = 1
 
   static func unlock(_ level: Int) {
-    if level > highestUnlockedLevel { highestUnlockedLevel = level }
+    if level > highestUnlockedLevel {
+      highestUnlockedLevel = level
+    }
   }
 
   static func isUnlocked(_ level: Int) -> Bool {
@@ -221,10 +221,10 @@ struct LevelTracker {
 // property called currentLevel to track the level that a player is
 // currently playing.
 
-// To help manage the currentLevel property, LevelTracker defines an instance
-// method called advance(to:).  Before updating currentLevel, this method
-// checks whether the requested new level is already unlocked.  The
-// advance(to:) method returns a Boolean value to indicate whether
+// To help manage the `currentLevel` property, `LevelTracker` defines an
+// instance method called `advance(to:)`.  Before updating `currentLevel`,
+// this method checks whether the requested new level is already unlocked.
+// The advance(to:) method returns a Boolean value to indicate whether
 // or not it was actually able to set currentLevel.  Because it's
 // not necessarily a mistake for code that calls the advance(to:)
 // method to ignore the return value, this function is marked

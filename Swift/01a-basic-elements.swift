@@ -50,7 +50,33 @@ assert/* block comments can */(true)
 assert(/* be placed in weird places */true)
 assert(true/* but please don't do that! */)
 
-// Note: `assert(_:_:file:line:)` is covered in a later section.
+// -----------------------------------------------------------------------------
+//  Assertion - A runtime check verifying that a given condition evaluates to
+//              true and if it evaluates to false (i.e. gets triggererd),
+//              code execution ends and your app is terminated.
+// -----------------------------------------------------------------------------
+
+// An assertion is checked with the `assert(_:_:file:line:)` global function:
+//
+// See also:
+// https://developer.apple.com/reference/swift/1541112-assert
+
+// This assertion is not triggered because `age` equals 3.
+assert(3 < 5)
+
+// If the following is uncommented it will produce a runtime error:
+/*
+assert(3 > 5)
+*/
+
+// -----------------------------------------------------------------------------
+
+// If an assertion is triggered while running in a debug environment, such
+// as within Xcode, you can see exactly where the invalid state occurred
+// and query the state of your app at the time of the triggering.
+
+// Assertions are disabled when your code is compiled with optimizations, such
+// as when building with an app target's default Xcode Release configuration.
 
 // =============================================================================
 //  The Basics
@@ -74,28 +100,36 @@ assert(true/* but please don't do that! */)
 */
 
 // -----------------------------------------------------------------------------
-//  Constant - An association between a name and a value that is immutable,
-//             meaning it can only be assigned a value once.
-// -----------------------------------------------------------------------------
-
-// Declare a constant named `answer` and assign it the literal value 42.
-let answer = 42
-
-// -----------------------------------------------------------------------------
 //  Variable - An association between a name and a value that is mutable,
 //             meaning it always can be assigned another value anytime.
 // -----------------------------------------------------------------------------
 
-// A variable named `myAnswer`.
-var myAnswer = 42
+// Declare a variable named `answer1` and assign it the literal value 42.
+var answer1 = 42
+
+// Reassign `answer1` with the value 123.
+answer1 = 123
+
+// -----------------------------------------------------------------------------
+//  Constant - An association between a name and a value that is immutable,
+//             meaning it can only be assigned a value once.
+// -----------------------------------------------------------------------------
+
+// Declare a constant named `answer2` and assign it the literal value 42.
+let answer2 = 42
+
+// If the following is uncommented it will produce a compile-time error:
+/*
+answer2 = 0
+*/
 
 // -----------------------------------------------------------------------------
 //  Type annotation - A label for type of value a constant or variable can hold.
 // -----------------------------------------------------------------------------
 
-// Declare a constant named `theAnswer` that is of type `Int` (integer) and
+// Declare a constant named `answer3` that is of type `Int` (integer) and
 // assign it the literal value 42.
-let theAnswer: Int = 42
+let answer3: Int = 42
 
 // -----------------------------------------------------------------------------
 //  Type inference - The behavior that determines type given the values in use.
@@ -104,8 +138,8 @@ let theAnswer: Int = 42
 // If there's no explicit type annotation the type of the constant or variable
 // is inferred from its initial assigned value.
 
-var k = "hello"
-// `k` is inferred to be of type `String`.
+var answer4 = 42
+// `answer4` is inferred to be of type `Int`.
 
 // -----------------------------------------------------------------------------
 
@@ -117,8 +151,17 @@ var k = "hello"
 
 // A type's `self` property can be used to refer to the type itself.
 
-// Verify that `k` is of type `String`.
-assert(type(of: k) == String.self)
+// Verify that `answer4` is of type `Int`.
+assert(type(of: answer4) == Int.self)
+
+// -----------------------------------------------------------------------------
+
+// You can use initializer syntax to create a new value of a certain type.
+
+answer4 = Int()
+assert(answer4 == 0)
+answer4 = Int(42)
+assert(answer4 == 42)
 
 // -----------------------------------------------------------------------------
 //  Type safety - The behavior that enforces consistent use of types.
@@ -127,13 +170,14 @@ assert(type(of: k) == String.self)
 // Type checks happen as part of the compilation process and any type mismatches
 // are flagged as compile-time errors.
 
-// Since `k` is of type `String` we can only assign `String` values
+// Since `answer4` is of type `Int` we can only assign `Int` values
 // to it from now on.
-k = "bonjour"
+answer4 = 16
 
-// If the following is uncommented it will produce a runtime error:
+// If the following is uncommented it will produce a compile-time error:
 /*
-k = 2
+// Attempt to assign a `String` value to `answer4`.
+answer4 = "hello"
 */
 
 // -----------------------------------------------------------------------------
@@ -141,8 +185,8 @@ k = 2
 // Type annotation is required if there's no initial assignment because
 // there's no value to infer the type from.
 
-let lateAnswer: Int
-lateAnswer = 42
+let myAnswer: Int
+myAnswer = 42
 
 var hello: String
 hello = "hi"
@@ -161,11 +205,43 @@ let first, second, third: Int
 var red, green, blue: Double
 
 // ...with different explicit types.
-let uno: String, dos, tres: Int
+let uno: String, dos, tres: Bool
 var quatro, cinco: Double, seis: Int
 var un: Double, deux: Int, trois: Double
 
 // -----------------------------------------------------------------------------
+
+// You can print the current value of a constant or variable with the
+// `print(_:separator:terminator:)` global function:
+//
+// See also:
+// https://developer.apple.com/reference/swift/1541053-print
+
+print(answer2)
+// Output:
+// 42
+
+// -----------------------------------------------------------------------------
+//  Semicolon - The symbol that separates statements on a line.
+// -----------------------------------------------------------------------------
+
+// Semicolons are...
+// ...required when multiple statements are on the same line.
+
+let i = 1; var j = 2
+
+// ...optional when only a single statement is on the line.
+
+let g = 1
+var h = 2;
+
+
+
+
+
+
+
+
 
 
 
@@ -242,79 +318,6 @@ assert(x2 == 112)
 
 
 
-
-
-
-
-
 // TODO
 // - backticks are for all identifiers, correct ?
 class `var` {}
-
-
-// -----------------------------------------------------------------------------
-
-// You can print the current value of a constant or variable with the
-// `print(_:separator:terminator:)` global function:
-//
-// See also:
-// https://developer.apple.com/reference/swift/1541053-print
-
-print(answer)
-// Output:
-// 42
-
-// -----------------------------------------------------------------------------
-//  Semicolon - The symbol that separates statements on a line.
-// -----------------------------------------------------------------------------
-
-// Semicolons are...
-// ...required when multiple statements are on the same line.
-
-let i = 1; var j = 2
-
-// ...optional when only a single statement is on the line.
-
-let g = 1
-var h = 2;
-
-// -----------------------------------------------------------------------------
-//  Assertion - A runtime check that a given condition evaluates to true.
-// -----------------------------------------------------------------------------
-
-// If an assertion is triggered (its condition evaluates to false), code
-// execution ends and your app is terminated.
-
-// An assertion is checked with the `assert(_:_:file:line:)` global function:
-//
-// See also:
-// https://developer.apple.com/reference/swift/1541112-assert
-
-let age = 3
-// This assertion is not triggered because `age` equals 3.
-assert(age == 3)
-
-// If the following is uncommented it will produce a runtime error:
-/*
-// This causes the assertion to trigger, because `age` is not greater than 5.
-assert(age > 5)
-*/
-
-// `assert(_:_:file:line:)` also lets you provide a suitable debug message that
-// is displayed if the assertion is triggered.
-
-// If the following is uncommented it will produce a runtime error:
-/*
-assert(age > 5, "Age needs to be greater than 5.")
-*/
-
-// -----------------------------------------------------------------------------
-
-// If an assertion is triggered while running in a debug environment, such as
-// within Xcode, you can see exactly where the invalid state occurred and
-// query the state of your app at the time that the assertion
-// was triggered.
-
-// Assertions are disabled when your code is compiled with optimizations,
-// such as when building with an app target's default Release
-// configuration in Xcode.

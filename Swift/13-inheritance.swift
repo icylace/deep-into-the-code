@@ -63,7 +63,8 @@ print("Vehicle: \(someVehicle.description)")
 The subclass inherits characteristics from the existing class, which you can then
 refine. You can also add new characteristics to the subclass.
 
-To indicate that a subclass has a superclass, write the subclass name before the superclass name, separated by a colon:
+To indicate that a subclass has a superclass, write the subclass name before the
+superclass name, separated by a colon:
 
 class SomeSubclass: SomeSuperclass {
   // Subclass definition goes here.
@@ -73,14 +74,19 @@ class Bicycle: Vehicle {
   var hasBasket = false
 }
 
-In addition to the characteristics it inherits, the Bicycle class defines a new stored property, hasBasket, with a default value of false (inferring a type of Bool for the property).
+In addition to the characteristics it inherits, the Bicycle class defines a new
+stored property, hasBasket, with a default value of false (inferring a type of
+  Bool for the property).
 
-By default, any new Bicycle instance you create will not have a basket. You can set the hasBasket property to true for a particular Bicycle instance after that instance is created:
+By default, any new Bicycle instance you create will not have a basket. You can
+set the hasBasket property to true for a particular Bicycle instance after that
+instance is created:
 
 let bicycle = Bicycle()
 bicycle.hasBasket = true
 
-You can also modify the inherited currentSpeed property of a Bicycle instance, and query the instance’s inherited description property:
+You can also modify the inherited currentSpeed property of a Bicycle instance,
+and query the instance’s inherited description property:
 
 bicycle.currentSpeed = 15.0
 print("Bicycle: \(bicycle.description)")
@@ -95,7 +101,8 @@ class Tandem: Bicycle {
 
 Tandem inherits all of the properties and methods from Bicycle, which in turn
 inherits all of the properties and methods from Vehicle. The Tandem subclass
-also adds a new stored property called currentNumberOfPassengers, with a default value of 0.
+also adds a new stored property called currentNumberOfPassengers, with a
+default value of 0.
 
 let tandem = Tandem()
 tandem.hasBasket = true
@@ -127,21 +134,32 @@ is correct.
 
 Accessing Superclass Methods, Properties, and Subscripts
 
-When you provide a method, property, or subscript override for a subclass, it is sometimes useful to use the existing superclass implementation as part of your override. For example, you can refine the behavior of that existing implementation, or store a modified value in an existing inherited variable.
+When you provide a method, property, or subscript override for a subclass, it is
+sometimes useful to use the existing superclass implementation as part of your
+override. For example, you can refine the behavior of that existing implementation,
+or store a modified value in an existing inherited variable.
 
-Where this is appropriate, you access the superclass version of a method, property, or subscript by using the super prefix:
+Where this is appropriate, you access the superclass version of a method, property,
+or subscript by using the super prefix:
 
-An overridden method named someMethod() can call the superclass version of someMethod() by calling super.someMethod() within the overriding method implementation.
-An overridden property called someProperty can access the superclass version of someProperty as super.someProperty within the overriding getter or setter implementation.
-An overridden subscript for someIndex can access the superclass version of the same subscript as super[someIndex] from within the overriding subscript implementation.
+An overridden method named someMethod() can call the superclass version of
+someMethod() by calling super.someMethod() within the overriding method implementation.
+
+An overridden property called someProperty can access the superclass version of
+someProperty as super.someProperty within the overriding getter or setter implementation.
+
+An overridden subscript for someIndex can access the superclass version of the
+same subscript as super[someIndex] from within the overriding subscript implementation.
 
 // -----------------------------------------------------------------------------
 
 Overriding Methods
 
-You can override an inherited instance or type method to provide a tailored or alternative implementation of the method within your subclass.
+You can override an inherited instance or type method to provide a tailored or
+alternative implementation of the method within your subclass.
 
-The following example defines a new subclass of Vehicle called Train, which overrides the makeNoise() method that Train inherits from Vehicle:
+The following example defines a new subclass of Vehicle called Train, which
+overrides the makeNoise() method that Train inherits from Vehicle:
 
 class Train: Vehicle {
   override func makeNoise() {
@@ -187,9 +205,17 @@ read-only property.
 
 NOTE
 
-If you provide a setter as part of a property override, you must also provide a getter for that override. If you don’t want to modify the inherited property’s value within the overriding getter, you can simply pass through the inherited value by returning super.someProperty from the getter, where someProperty is the name of the property you are overriding.
+If you provide a setter as part of a property override, you must also provide a
+getter for that override. If you don’t want to modify the inherited property’s
+value within the overriding getter, you can simply pass through the inherited
+value by returning super.someProperty from the getter, where someProperty is
+the name of the property you are overriding.
 
-The following example defines a new class called Car, which is a subclass of Vehicle.  The Car class introduces a new stored property called gear, with a default integer value of 1. The Car class also overrides the description property it inherits from Vehicle, to provide a custom description that includes the current gear:
+The following example defines a new class called Car, which is a subclass of
+Vehicle.  The Car class introduces a new stored property called gear, with a
+default integer value of 1. The Car class also overrides the description
+property it inherits from Vehicle, to provide a custom description that
+includes the current gear:
 
 class Car: Vehicle {
   var gear = 1
@@ -198,9 +224,14 @@ class Car: Vehicle {
   }
 }
 
-The override of the description property starts by calling super.description, which returns the Vehicle class’s description property. The Car class’s version of description then adds some extra text onto the end of this description to provide information about the current gear.
+The override of the description property starts by calling super.description,
+which returns the Vehicle class’s description property. The Car class’s version
+of description then adds some extra text onto the end of this description to
+provide information about the current gear.
 
-If you create an instance of the Car class and set its gear and currentSpeed properties, you can see that its description property returns the tailored description defined within the Car class:
+If you create an instance of the Car class and set its gear and currentSpeed
+properties, you can see that its description property returns the tailored
+description defined within the Car class:
 
 let car = Car()
 car.currentSpeed = 25.0
@@ -212,15 +243,26 @@ print("Car: \(car.description)")
 
 Overriding Property Observers
 
-You can use property overriding to add property observers to an inherited property.  This enables you to be notified when the value of an inherited property changes, regardless of how that property was originally implemented. For more information on property observers, see Property Observers.
+You can use property overriding to add property observers to an inherited property.
+This enables you to be notified when the value of an inherited property changes,
+regardless of how that property was originally implemented. For more information
+on property observers, see Property Observers.
 
 NOTE
 
-You cannot add property observers to inherited constant stored properties or inherited read-only computed properties.  The value of these properties cannot be set, and so it is not appropriate to provide a willSet or didSet implementation as part of an override.
+You cannot add property observers to inherited constant stored properties or
+inherited read-only computed properties.  The value of these properties cannot
+be set, and so it is not appropriate to provide a willSet or didSet implementation
+as part of an override.
 
-Note also that you cannot provide both an overriding setter and an overriding property observer for the same property.  If you want to observe changes to a property’s value, and you are already providing a custom setter for that property, you can simply observe any value changes from within the custom setter.
+Note also that you cannot provide both an overriding setter and an overriding
+property observer for the same property.  If you want to observe changes to a
+property’s value, and you are already providing a custom setter for that property,
+you can simply observe any value changes from within the custom setter.
 
-The following example defines a new class called AutomaticCar, which is a subclass of Car.  The AutomaticCar class represents a car with an automatic gearbox, which automatically selects an appropriate gear to use based on the current speed:
+The following example defines a new class called AutomaticCar, which is a subclass
+of Car.  The AutomaticCar class represents a car with an automatic gearbox, which
+automatically selects an appropriate gear to use based on the current speed:
 
 class AutomaticCar: Car {
   override var currentSpeed: Double {
@@ -230,7 +272,11 @@ class AutomaticCar: Car {
   }
 }
 
-Whenever you set the currentSpeed property of an AutomaticCar instance, the property’s didSet observer sets the instance’s gear property to an appropriate choice of gear for the new speed. Specifically, the property observer chooses a gear that is the new currentSpeed value divided by 10, rounded down to the nearest integer, plus 1. A speed of 35.0 produces a gear of 4:
+Whenever you set the currentSpeed property of an AutomaticCar instance, the
+property’s didSet observer sets the instance’s gear property to an appropriate
+choice of gear for the new speed. Specifically, the property observer chooses
+a gear that is the new currentSpeed value divided by 10, rounded down to the
+nearest integer, plus 1. A speed of 35.0 produces a gear of 4:
 
 let automatic = AutomaticCar()
 automatic.currentSpeed = 35.0

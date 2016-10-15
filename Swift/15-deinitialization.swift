@@ -9,7 +9,6 @@
 // cleanup is needed, like when working with your own resources such
 // as files.  A deinitializer can be used for this.
 
-
 // -----------------------------------------------------------------------------
 //  Deinitializer - A special code block that is automatically called
 //                  right before a class instance is deallocated.

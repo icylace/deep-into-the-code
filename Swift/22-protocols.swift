@@ -366,23 +366,29 @@ A protocol defines a blueprint of methods, properties, and other requirements th
 
 In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
 
+// -----------------------------------------------------------------------------
+
 Protocol Syntax
 
 You define protocols in a very similar way to classes, structures, and enumerations:
 
 protocol SomeProtocol {
-    // protocol definition goes here
+  // protocol definition goes here
 }
+
 Custom types state that they adopt a particular protocol by placing the protocol’s name after the type’s name, separated by a colon, as part of their definition. Multiple protocols can be listed, and are separated by commas:
 
 struct SomeStructure: FirstProtocol, AnotherProtocol {
-    // structure definition goes here
+  // structure definition goes here
 }
 If a class has a superclass, list the superclass name before any protocols it adopts, followed by a comma:
 
 class SomeClass: SomeSuperclass, FirstProtocol, AnotherProtocol {
-    // class definition goes here
+  // class definition goes here
 }
+
+// -----------------------------------------------------------------------------
+
 Property Requirements
 
 A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol doesn’t specify whether the property should be a stored property or a computed property—it only specifies the required property name and type. The protocol also specifies whether each property must be gettable or gettable and settable.
@@ -392,28 +398,32 @@ If a protocol requires a property to be gettable and settable, that property req
 Property requirements are always declared as variable properties, prefixed with the var keyword. Gettable and settable properties are indicated by writing { get set } after their type declaration, and gettable properties are indicated by writing { get }.
 
 protocol SomeProtocol {
-    var mustBeSettable: Int { get set }
-    var doesNotNeedToBeSettable: Int { get }
+  var mustBeSettable: Int { get set }
+  var doesNotNeedToBeSettable: Int { get }
 }
+
 Always prefix type property requirements with the static keyword when you define them in a protocol. This rule pertains even though type property requirements can be prefixed with the class or static keyword when implemented by a class:
 
 protocol AnotherProtocol {
-    static var someTypeProperty: Int { get set }
+  static var someTypeProperty: Int { get set }
 }
+
 Here’s an example of a protocol with a single instance property requirement:
 
 protocol FullyNamed {
-    var fullName: String { get }
+  var fullName: String { get }
 }
+
 The FullyNamed protocol requires a conforming type to provide a fully-qualified name. The protocol doesn’t specify anything else about the nature of the conforming type—it only specifies that the type must be able to provide a full name for itself. The protocol states that any FullyNamed type must have a gettable instance property called fullName, which is of type String.
 
 Here’s an example of a simple structure that adopts and conforms to the FullyNamed protocol:
 
 struct Person: FullyNamed {
-    var fullName: String
+  var fullName: String
 }
 let john = Person(fullName: "John Appleseed")
 // john.fullName is "John Appleseed"
+
 This example defines a structure called Person, which represents a specific named person. It states that it adopts the FullyNamed protocol as part of the first line of its definition.
 
 Each instance of Person has a single stored property called fullName, which is of type String. This matches the single requirement of the FullyNamed protocol, and means that Person has correctly conformed to the protocol. (Swift reports an error at compile-time if a protocol requirement is not fulfilled.)
@@ -421,19 +431,22 @@ Each instance of Person has a single stored property called fullName, which is o
 Here’s a more complex class, which also adopts and conforms to the FullyNamed protocol:
 
 class Starship: FullyNamed {
-    var prefix: String?
-    var name: String
-    init(name: String, prefix: String? = nil) {
-        self.name = name
-        self.prefix = prefix
-    }
-    var fullName: String {
-        return (prefix != nil ? prefix! + " " : "") + name
-    }
+  var prefix: String?
+  var name: String
+  init(name: String, prefix: String? = nil) {
+    self.name = name
+    self.prefix = prefix
+  }
+  var fullName: String {
+    return (prefix != nil ? prefix! + " " : "") + name
+  }
 }
 var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 // ncc1701.fullName is "USS Enterprise"
+
 This class implements the fullName property requirement as a computed read-only property for a starship. Each Starship class instance stores a mandatory name and an optional prefix. The fullName property uses the prefix value if it exists, and prepends it to the beginning of name to create a full name for the starship.
+
+// -----------------------------------------------------------------------------
 
 Method Requirements
 
@@ -512,6 +525,9 @@ Protocols can require specific initializers to be implemented by conforming type
 protocol SomeProtocol {
     init(someParameter: Int)
 }
+
+// -----------------------------------------------------------------------------
+
 Class Implementations of Protocol Initializer Requirements
 
 You can implement a protocol initializer requirement on a conforming class as either a designated initializer or a convenience initializer. In both cases, you must mark the initializer implementation with the required modifier:
@@ -547,11 +563,16 @@ class SomeSubClass: SomeSuperClass, SomeProtocol {
         // initializer implementation goes here
     }
 }
+
+// -----------------------------------------------------------------------------
+
 Failable Initializer Requirements
 
 Protocols can define failable initializer requirements for conforming types, as defined in Failable Initializers.
 
 A failable initializer requirement can be satisfied by a failable or nonfailable initializer on a conforming type. A nonfailable initializer requirement can be satisfied by a nonfailable initializer or an implicitly unwrapped failable initializer.
+
+// -----------------------------------------------------------------------------
 
 Protocols as Types
 
@@ -647,6 +668,7 @@ class SnakesAndLadders: DiceGame {
         delegate?.gameDidEnd(self)
     }
 }
+
 For a description of the Snakes and Ladders gameplay, see Break section of the Control Flow.
 
 This version of the game is wrapped up as a class called SnakesAndLadders, which adopts the DiceGame protocol. It provides a gettable dice property and a play() method in order to conform to the protocol. (The dice property is declared as a constant property because it does not need to change after initialization, and the protocol only requires that it is gettable.)
@@ -733,6 +755,9 @@ extension SnakesAndLadders: TextRepresentable {
 }
 print(game.textualDescription)
 // Prints "A game of Snakes and Ladders with 25 squares"
+
+// -----------------------------------------------------------------------------
+
 Declaring Protocol Adoption with an Extension
 
 If a type already conforms to all of the requirements of a protocol, but has not yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:
@@ -753,6 +778,8 @@ print(somethingTextRepresentable.textualDescription)
 NOTE
 
 Types do not automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
+
+// -----------------------------------------------------------------------------
 
 Collections of Protocol Types
 

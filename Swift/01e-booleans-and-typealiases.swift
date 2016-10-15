@@ -9,7 +9,7 @@
 
 let orangesAreOrange = true
 let todayIsYesterday = false
-let skyIsBlue: Boolean = true
+let skyIsBlue: Bool = true
 
 // -----------------------------------------------------------------------------
 //  Type alias - An alternative name for an existing type.

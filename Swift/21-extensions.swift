@@ -3,7 +3,6 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html
 // =============================================================================
 
-
 // -----------------------------------------------------------------------------
 //  Extension - A construct that adds new functionality to an existing class,
 //              structure, enumeration, or protocol.
@@ -37,7 +36,6 @@ extension SomeType: SomeProtocol, AnotherProtocol {
 // If you define an extension to add new functionality to an existing type, the
 // new functionality will be available on all existing instances of that type,
 // even if they were created before the extension was defined.
-
 
 // -----------------------------------------------------------------------------
 //  Computed Properties
@@ -88,7 +86,6 @@ print("A marathon is \(aMarathon) meters long")
 
 // Extensions can add new computed properties, but they cannot add stored
 // properties, or add property observers to existing properties.
-
 
 // -----------------------------------------------------------------------------
 //  Initializers
@@ -162,7 +159,6 @@ let centerRect = Rect(center: Point(x: 4.0, y: 4.0),
 // for making sure that each instance is fully initialized once the initializer
 // completes.
 
-
 // -----------------------------------------------------------------------------
 //  Methods
 // -----------------------------------------------------------------------------
@@ -212,7 +208,6 @@ var someInt = 3
 someInt.square()
 // someInt is now 9
 
-
 // -----------------------------------------------------------------------------
 //  Subscripts
 // -----------------------------------------------------------------------------
@@ -242,7 +237,6 @@ assert(746381295[8] == 7)
 
 assert(746381295[9] == 0)
 assert(0746381295[9] == 0)
-
 
 // -----------------------------------------------------------------------------
 //  Nested Types

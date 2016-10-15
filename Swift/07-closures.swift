@@ -103,6 +103,7 @@ The start of the closure’s body is introduced by the in keyword. This keyword 
 Because the body of the closure is so short, it can even be written on a single line:
 
 reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in return s1 > s2 } )
+
 This illustrates that the overall call to the sorted(by:) method has remained the same. A pair of parentheses still wrap the entire argument for the method. However, that argument is now an inline closure.
 
 // -----------------------------------------------------------------------------
@@ -116,20 +117,29 @@ It is always possible to infer the parameter types and return type when passing 
 
 Nonetheless, you can still make the types explicit if you wish, and doing so is encouraged if it avoids ambiguity for readers of your code. In the case of the sorted(by:) method, the purpose of the closure is clear from the fact that sorting is taking place, and it is safe for a reader to assume that the closure is likely to be working with String values, because it is assisting with the sorting of an array of strings.
 
+// -----------------------------------------------------------------------------
+
 Implicit Returns from Single-Expression Closures
 
 Single-expression closures can implicitly return the result of their single expression by omitting the return keyword from their declaration, as in this version of the previous example:
 
 reversedNames = names.sorted(by: { s1, s2 in s1 > s2 } )
+
 Here, the function type of the sorted(by:) method’s argument makes it clear that a Bool value must be returned by the closure. Because the closure’s body contains a single expression (s1 > s2) that returns a Bool value, there is no ambiguity, and the return keyword can be omitted.
 
 // -----------------------------------------------------------------------------
 
 Shorthand Argument Names
 
-Swift automatically provides shorthand argument names to inline closures, which can be used to refer to the values of the closure’s arguments by the names $0, $1, $2, and so on.
+Swift automatically provides shorthand argument names to inline closures, which
+can be used to refer to the values of the closure’s arguments by the names $0,
+$1, $2, and so on.
 
-If you use these shorthand argument names within your closure expression, you can omit the closure’s argument list from its definition, and the number and type of the shorthand argument names will be inferred from the expected function type. The in keyword can also be omitted, because the closure expression is made up entirely of its body:
+If you use these shorthand argument names within your closure expression, you
+can omit the closure’s argument list from its definition, and the number and
+type of the shorthand argument names will be inferred from the expected
+function type. The in keyword can also be omitted, because the closure
+expression is made up entirely of its body:
 
 reversedNames = names.sorted(by: { $0 > $1 } )
 Here, $0 and $1 refer to the closure’s first and second String arguments.
@@ -138,7 +148,13 @@ Here, $0 and $1 refer to the closure’s first and second String arguments.
 
 Operator Methods
 
-There’s actually an even shorter way to write the closure expression above. Swift’s String type defines its string-specific implementation of the greater-than operator (>) as a method that has two parameters of type String, and returns a value of type Bool. This exactly matches the method type needed by the sorted(by:) method. Therefore, you can simply pass in the greater-than operator, and Swift will infer that you want to use its string-specific implementation:
+There’s actually an even shorter way to write the closure expression above.
+Swift’s String type defines its string-specific implementation of the
+greater-than operator (>) as a method that has two parameters of type
+String, and returns a value of type Bool. This exactly matches the
+method type needed by the sorted(by:) method. Therefore, you can
+simply pass in the greater-than operator, and Swift will infer
+that you want to use its string-specific implementation:
 
 reversedNames = names.sorted(by: >)
 For more about operator method, see Operator Methods.

@@ -10,13 +10,15 @@
 //  String - A series of characters.
 // -----------------------------------------------------------------------------
 
+// Strings represent text and usually contain letters, numbers, or punctuation.
+
 // TODO
 
 // The contents of a string can be accessed in various ways, including as a
 // collection of `Character` values.
 
-// The `String` and `Character` types provide a fast, Unicode-compliant way
-// to work with text in your code.
+// The `String` and `Character` types provide a Unicode-compliant way to work
+// with text in your code.
 
 // Every string is composed of encoding-independent Unicode characters
 // and provides support for accessing those characters in various
@@ -32,7 +34,7 @@
 //  String literal - A literal value that represents a predefined string.
 // -----------------------------------------------------------------------------
 
-let someString = "some string literal value"
+let someString = "hello"
 // `someString` is inferred to be of type `String`.
 
 // -----------------------------------------------------------------------------
@@ -48,6 +50,8 @@ assert(empty1 == empty2)
 // Find out whether a string is empty by checking its `isEmpty` property.
 
 assert(empty1.isEmpty == true)
+
+
 
 
 

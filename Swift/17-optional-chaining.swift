@@ -63,11 +63,12 @@ if let roomCount = john.residence?.numberOfRooms {
 // Prints "Unable to retrieve the number of rooms."
 
 Because the attempt to access numberOfRooms has the potential to fail, the
-optional chaining attempt returns a value of type Int?, or “optional Int”. When
-residence is nil, as in the example above, this optional Int will also be nil,
-to reflect the fact that it was not possible to access numberOfRooms.
-The optional Int is accessed through optional binding to unwrap the
-integer and assign the nonoptional value to the roomCount variable.
+optional chaining attempt returns a value of type Int?, or “optional Int”.
+When residence is nil, as in the example above, this optional Int will
+also be nil, to reflect the fact that it was not possible to access
+numberOfRooms.  The optional Int is accessed through optional binding
+to unwrap the integer and assign the nonoptional value to the roomCount
+variable.
 
 Note that this is true even though numberOfRooms is a nonoptional Int.
 The fact that it is queried through an optional chain means that the
@@ -131,11 +132,6 @@ class Residence {
   }
   var address: Address?
 }
-
-Because this version of Residence stores an array of Room instances, its
-numberOfRooms property is implemented as a computed property, not a stored
-property. The computed numberOfRooms property simply returns the value of
-the count property from the rooms array.
 
 As a shortcut to accessing its rooms array, this version of Residence provides
 a read-write subscript that provides access to the room at the requested index
@@ -231,29 +227,48 @@ john.residence?.address = createAddress()
 //  Calling Methods Through Optional Chaining
 // -----------------------------------------------------------------------------
 
-You can use optional chaining to call a method on an optional value, and to check whether that method call is successful. You can do this even if that method does not define a return value.
+You can use optional chaining to call a method on an optional value, and to check
+whether that method call is successful. You can do this even if that method does
+not define a return value.
 
-The printNumberOfRooms() method on the Residence class prints the current value of numberOfRooms. Here’s how the method looks:
+The printNumberOfRooms() method on the Residence class prints the current value
+of numberOfRooms. Here’s how the method looks:
 
 func printNumberOfRooms() {
-    print("The number of rooms is \(numberOfRooms)")
+  print("The number of rooms is \(numberOfRooms)")
 }
-This method does not specify a return type. However, functions and methods with no return type have an implicit return type of Void, as described in Functions Without Return Values. This means that they return a value of (), or an empty tuple.
 
-If you call this method on an optional value with optional chaining, the method’s return type will be Void?, not Void, because return values are always of an optional type when called through optional chaining. This enables you to use an if statement to check whether it was possible to call the printNumberOfRooms() method, even though the method does not itself define a return value. Compare the return value from the printNumberOfRooms call against nil to see if the method call was successful:
+This method does not specify a return type. However, functions and methods with
+no return type have an implicit return type of Void, as described in Functions
+Without Return Values. This means that they return a value of (), or an empty
+tuple.
+
+If you call this method on an optional value with optional chaining, the method’s
+return type will be Void?, not Void, because return values are always of an optional
+type when called through optional chaining. This enables you to use an if statement
+to check whether it was possible to call the printNumberOfRooms() method, even
+though the method does not itself define a return value. Compare the return
+value from the printNumberOfRooms call against nil to see if the method
+call was successful:
 
 if john.residence?.printNumberOfRooms() != nil {
-    print("It was possible to print the number of rooms.")
+  print("It was possible to print the number of rooms.")
 } else {
-    print("It was not possible to print the number of rooms.")
+  print("It was not possible to print the number of rooms.")
 }
 // Prints "It was not possible to print the number of rooms."
-The same is true if you attempt to set a property through optional chaining. The example above in Accessing Properties Through Optional Chaining attempts to set an address value for john.residence, even though the residence property is nil. Any attempt to set a property through optional chaining returns a value of type Void?, which enables you to compare against nil to see if the property was set successfully:
+
+The same is true if you attempt to set a property through optional chaining.
+The example above in Accessing Properties Through Optional Chaining attempts
+to set an address value for john.residence, even though the residence property
+is nil. Any attempt to set a property through optional chaining returns a value
+of type Void?, which enables you to compare against nil to see if the property
+was set successfully:
 
 if (john.residence?.address = someAddress) != nil {
-    print("It was possible to set the address.")
+  print("It was possible to set the address.")
 } else {
-    print("It was not possible to set the address.")
+  print("It was not possible to set the address.")
 }
 // Prints "It was not possible to set the address."
 
@@ -269,13 +284,19 @@ if (john.residence?.address = someAddress) != nil {
 //  Accessing Subscripts Through Optional Chaining
 // -----------------------------------------------------------------------------
 
-You can use optional chaining to try to retrieve and set a value from a subscript on an optional value, and to check whether that subscript call is successful.
+You can use optional chaining to try to retrieve and set a value from a subscript
+on an optional value, and to check whether that subscript call is successful.
 
 NOTE
 
-When you access a subscript on an optional value through optional chaining, you place the question mark before the subscript’s brackets, not after. The optional chaining question mark always follows immediately after the part of the expression that is optional.
+When you access a subscript on an optional value through optional chaining, you
+place the question mark before the subscript’s brackets, not after. The optional
+chaining question mark always follows immediately after the part of the expression
+that is optional.
 
-The example below tries to retrieve the name of the first room in the rooms array of the john.residence property using the subscript defined on the Residence class. Because john.residence is currently nil, the subscript call fails:
+The example below tries to retrieve the name of the first room in the rooms array
+of the john.residence property using the subscript defined on the Residence class.
+Because john.residence is currently nil, the subscript call fails:
 
 if let firstRoomName = john.residence?[0].name {
   print("The first room name is \(firstRoomName).")
@@ -284,15 +305,21 @@ if let firstRoomName = john.residence?[0].name {
 }
 // Prints "Unable to retrieve the first room name."
 
-The optional chaining question mark in this subscript call is placed immediately after john.residence, before the subscript brackets, because john.residence is the optional value on which optional chaining is being attempted.
+The optional chaining question mark in this subscript call is placed immediately
+after john.residence, before the subscript brackets, because john.residence is
+the optional value on which optional chaining is being attempted.
 
-Similarly, you can try to set a new value through a subscript with optional chaining:
+Similarly, you can try to set a new value through a subscript with optional
+chaining:
 
 john.residence?[0] = Room(name: "Bathroom")
 
 This subscript setting attempt also fails, because residence is currently nil.
 
-If you create and assign an actual Residence instance to john.residence, with one or more Room instances in its rooms array, you can use the Residence subscript to access the actual items in the rooms array through optional chaining:
+If you create and assign an actual Residence instance to john.residence, with
+one or more Room instances in its rooms array, you can use the Residence
+subscript to access the actual items in the rooms array through optional
+chaining:
 
 let johnsHouse = Residence()
 johnsHouse.rooms.append(Room(name: "Living Room"))
@@ -305,9 +332,14 @@ if let firstRoomName = john.residence?[0].name {
   print("Unable to retrieve the first room name.")
 }
 // Prints "The first room name is Living Room."
+
+// -----------------------------------------------------------------------------
+
 Accessing Subscripts of Optional Type
 
-If a subscript returns a value of optional type—such as the key subscript of Swift’s Dictionary type—place a question mark after the subscript’s closing bracket to chain on its optional return value:
+If a subscript returns a value of optional type—such as the key subscript of
+Swift’s Dictionary type—place a question mark after the subscript’s closing
+bracket to chain on its optional return value:
 
 var testScores = ["Dave": [86, 82, 84], "Bev": [79, 94, 81]]
 testScores["Dave"]?[0] = 91
@@ -315,7 +347,14 @@ testScores["Bev"]?[0] += 1
 testScores["Brian"]?[0] = 72
 // the "Dave" array is now [91, 82, 84] and the "Bev" array is now [80, 94, 81]
 
-The example above defines a dictionary called testScores, which contains two key-value pairs that map a String key to an array of Int values. The example uses optional chaining to set the first item in the "Dave" array to 91; to increment the first item in the "Bev" array by 1; and to try to set the first item in an array for a key of "Brian". The first two calls succeed, because the testScores dictionary contains keys for "Dave" and "Bev". The third call fails, because the testScores dictionary does not contain a key for "Brian".
+The example above defines a dictionary called testScores, which contains two
+key-value pairs that map a String key to an array of Int values. The example
+uses optional chaining to set the first item in the "Dave" array to 91; to
+increment the first item in the "Bev" array by 1; and to try to set the
+first item in an array for a key of "Brian". The first two calls succeed,
+because the testScores dictionary contains keys for "Dave" and "Bev".
+The third call fails, because the testScores dictionary does not
+contain a key for "Brian".
 
 
 

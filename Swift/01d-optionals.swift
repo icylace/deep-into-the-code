@@ -39,102 +39,67 @@ let o4 = o3!
 assert(type(of: o4) == String.self)
 assert(o4 == "An optional string.")
 
-// Force-unwrapping a nonexistent optional value triggers a runtime error.
+// -----------------------------------------------------------------------------
+//  nil - The special value that represents a valueless state.
+// -----------------------------------------------------------------------------
 
-let o5: String? = nil
+var o5 = Int?(8)
+assert(o5! == 8)
+o5 = nil
+assert(o5 == nil)
+
+// An optional in a valueless state cannot be force-unwrapped.
+
 // If the following is uncommented it will produce a runtime error:
 /*
 let o6 = o5!
 */
 
+// nil cannot be used with non-optional constants and variables.
 
-
-
-
-// TODO
-
-
-
-
+// If the following is uncommented it will produce a runtime error:
 /*
-
-
-
-
-
-
-// An optional variable can be in a valueless state by assigning it the
-// special value nil.
-
-var oo: Int? = 8
-assert(oo! == 8)
-oo = nil
-assert(oo! == nil)
-
-
-
-
-
-assert(responseCode! == 404)
-// `responseCode` contains an actual `Int` value of 404.
-responseCode = nil
-// `responseCode` now contains no value.
-
-// An optional variable defined without an explicit default value will
-// be set to nil.
-
-var surveyAnswer: String?
-assert(surveyAnswer == nil)
-
-// nil cannot be used with nonoptional constants and variables.
-
-
-
-
-
-
-
-
-
-
-
+let o7: Int = nil
+*/
 
 // -----------------------------------------------------------------------------
 
 // An optional variable declared without an explicit default value will be nil.
 
-var o3: String?
-assert(o3 == nil)
+var o8: String?
+assert(o8 == nil)
 
 // An optional constant must be explicitly initialized before being used.
 
-let o4: String?
+let o9: String?
 // If the following is uncommented it will produce a runtime error:
 /*
-assert(o4 == nil)
+assert(o9 == nil)
 */
 
-let o5: String?
-o5 = nil
-assert(o5 == nil)
+let o10: String?
+o10 = nil
+assert(o10 == nil)
 
 // -----------------------------------------------------------------------------
 
 // Another way to write an optional is by using generator syntax.
 
-var o6: Optional<String>
+var o11: Optional<String>
 assert(String?.self == Optional<String>.self)
-assert(type(of: o6) == String?.self)
-assert(type(of: o6) == Optional<String>.self)
-assert(o6 == nil)
+assert(type(of: o11) == String?.self)
+assert(type(of: o11) == Optional<String>.self)
+assert(o11 == nil)
 
-
+// -----------------------------------------------------------------------------
 
 
 
 
 // TODO
 
+
+/*
 
 // You use optionals in situations where a value might be absent.
 
@@ -146,14 +111,11 @@ assert(convertedNumber! == 123)
 // can accept a `String` that may or may not represent a number.
 
 
-// -----------------------------------------------------------------------------
-
-
 
 
 // -----------------------------------------------------------------------------
 
-// Nested
+// Nested optionals
 
 var maybeThing1: Int? = 3
 var maybeThing2: Int?? = Int?(3)
@@ -166,20 +128,8 @@ var maybeThing333: Int??? = Optional<Int?>(3)
 var maybeThing4: Optional<Int> = 3
 var maybeThing5: Optional<Optional<Int>> = Int?(3)
 
-// TODO
-// - is `Int??` notation possible?
 
-
-
-
-var x: String?
-
-
-
-
-
-
-
+*/
 
 
 
@@ -194,9 +144,7 @@ var x: String?
 // assumed stay existing.  The primary use of implicitly unwrapped
 // optionals in Swift is during class initialization.
 
-// An implicitly unwrapped optional is a normal optional behind the scenes, but
-// can also be used like a nonoptional value, without the need for it to be
-// unwrapped each time it is accessed.
+// An implicitly unwrapped optional can be used like a non-optional value.
 
 let assumedString: String! = "An implicitly unwrapped optional string."
 let implicitString: String = assumedString
@@ -204,5 +152,3 @@ let implicitString: String = assumedString
 // If an implicitly unwrapped optional is nil and you try to access its wrapped
 // value, you'll trigger a runtime error.  The result is exactly the same as if
 // you force-unwrap a normal optional that doesn't contain a value.
-
-*/

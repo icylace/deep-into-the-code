@@ -165,7 +165,10 @@ location as part of the type’s definition.
 
 Computed Properties
 
-In addition to stored properties, classes, structures, and enumerations can define computed properties, which do not actually store a value. Instead, they provide a getter and an optional setter to retrieve and set other properties and values indirectly.
+In addition to stored properties, classes, structures, and enumerations can define
+computed properties, which do not actually store a value. Instead, they provide a
+getter and an optional setter to retrieve and set other properties and values
+indirectly.
 
 struct Point {
   var x = 0.0, y = 0.0
@@ -203,7 +206,9 @@ This example defines three structures for working with geometric shapes:
 Point encapsulates an (x, y) coordinate.
 Size encapsulates a width and a height.
 Rect defines a rectangle by an origin point and a size.
-The Rect structure also provides a computed property called center. The current center position of a Rect can always be determined from its origin and size, and so you don’t need to store the center point as an explicit Point value. Instead, Rect defines a custom getter and setter for a computed variable called center, to enable you to work with the rectangle’s center as if it were a real stored property.
+The Rect structure also provides a computed property called center.
+The current center position of a Rect can always be determined from
+its origin and size, and so you don’t need to store the center point as an explicit Point value. Instead, Rect defines a custom getter and setter for a computed variable called center, to enable you to work with the rectangle’s center as if it were a real stored property.
 
 The preceding example creates a new Rect variable called square. The square variable is initialized with an origin point of (0, 0), and a width and height of 10. This square is represented by the blue square in the diagram below.
 
@@ -282,9 +287,6 @@ This example defines a new structure called Cuboid, which represents a 3D rectan
 // yourself, and also to properties that a subclass inherits from
 // its superclass.
 
-
-Property Observers
-
 Property observers observe and respond to changes in a property’s value. Property observers are called every time a property’s value is set, even if the new value is the same as the property’s current value.
 
 You can add property observers to any stored properties you define, except for lazy stored properties. You can also add property observers to any inherited property (whether stored or computed) by overriding the property within a subclass. You don’t need to define property observers for nonoverridden computed properties, because you can observe and respond to changes to their value in the computed property’s setter. Property overriding is described in Overriding.
@@ -347,15 +349,26 @@ If you pass a property that has observers to a function as an in-out parameter, 
 //  Global and Local Variables
 // -----------------------------------------------------------------------------
 
-The capabilities described above for computing and observing properties are also available to global variables and local variables. Global variables are variables that are defined outside of any function, method, closure, or type context. Local variables are variables that are defined within a function, method, or closure context.
+The capabilities described above for computing and observing properties are also
+available to global variables and local variables. Global variables are variables
+that are defined outside of any function, method, closure, or type context. Local
+variables are variables that are defined within a function, method, or closure
+context.
 
-The global and local variables you have encountered in previous chapters have all been stored variables. Stored variables, like stored properties, provide storage for a value of a certain type and allow that value to be set and retrieved.
+The global and local variables you have encountered in previous chapters have all
+been stored variables. Stored variables, like stored properties, provide storage
+for a value of a certain type and allow that value to be set and retrieved.
 
-However, you can also define computed variables and define observers for stored variables, in either a global or local scope. Computed variables calculate their value, rather than storing it, and they are written in the same way as computed properties.
+However, you can also define computed variables and define observers for stored
+variables, in either a global or local scope. Computed variables calculate their
+value, rather than storing it, and they are written in the same way as computed
+properties.
 
 NOTE
 
-Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be marked with the lazy modifier.
+Global constants and variables are always computed lazily, in a similar manner
+to Lazy Stored Properties. Unlike lazy stored properties, global constants and
+variables do not need to be marked with the lazy modifier.
 
 Local constants and variables are never computed lazily.
 

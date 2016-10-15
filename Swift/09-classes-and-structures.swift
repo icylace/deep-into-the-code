@@ -263,6 +263,12 @@ constant references to that VideoMode.
 
 // -----------------------------------------------------------------------------
 
+
+// There are also two identity operators (`===` and `!==`) which you use to
+// test whether two object references both refer to the same object
+// instance.  For more information, see "Classes and Structures".
+
+
 Identity Operators
 
 Because classes are reference types, it is possible for multiple constants and
