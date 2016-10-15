@@ -3,22 +3,17 @@
 //  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html
 // =============================================================================
 
-// TODO
-
 // -----------------------------------------------------------------------------
 //  Method - A function belonging to a particular type.
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-//  Instance method - A method that works with an instance of the
-//                    type it belongs to.
+//  Instance method - A method that works on instances of the type it belongs to.
 // -----------------------------------------------------------------------------
 
 // An instance method...
-// ...has implicit access to all other instance methods and properties of
-//    the type it belongs to.
+// ...has can use all methods and properties of the type it belongs to.
 // ...can be called only on a specific instance of the type it belongs to.
 // ...cannot be called in isolation without an existing instance.
+
+// TODO
 
 class Counter {
   var count = 0
@@ -129,7 +124,6 @@ struct Point {
     self = Point(x: x + deltaX, y: y + deltaY)
   }
 }
-
 // This version of the mutating moveBy(x:y:) method creates a brand new
 // structure whose x and y values are set to the target location.
 // The end result of calling this alternative version of the

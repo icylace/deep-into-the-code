@@ -7,12 +7,9 @@
 //  Operator - A symbol or phrase that processes one or more values.
 //  Operand - A value targeted by an operator.
 //  Unary operator - An operator that works on a single operand.
-//  Unary prefix operator - An operator that appears immediately before
-//                          its only operand.
-//  Unary postfix operator - A operator that appears immediately after
-//                           its only operand.
-//  Binary operator - An operator that works on two operands and is infix
-//                    because it appears in between the operands.
+//  Unary prefix operator - An operator that appears just before its operand.
+//  Unary postfix operator - An operator that appears just after its operand.
+//  Binary operator - An operator that works on two operands.
 //  Ternary operator - An operator that works on three operands.
 // -----------------------------------------------------------------------------
 
@@ -25,22 +22,6 @@ let a = 10
 var b = 5
 b = a
 assert(b == 10)
-
-// -----------------------------------------------------------------------------
-
-// If the right side of the assignment is a tuple with multiple values, its
-// elements can be decomposed into multiple constants or variables at once.
-
-let (c, d) = (1, 2)
-assert(c == 1)
-assert(d == 2)
-
-// -----------------------------------------------------------------------------
-
-// Decomposing a single-element tuple works but is pointless.
-
-let (e) = (3)
-assert(e == 3)
 
 // -----------------------------------------------------------------------------
 //  Arithmetic operator - A operator that manipulates numbers.

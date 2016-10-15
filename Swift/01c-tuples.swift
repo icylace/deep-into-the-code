@@ -16,6 +16,13 @@ var httpStatus = (404, "Not Found")
 assert(type(of: httpStatus) == (Int, String).self)
 
 // -----------------------------------------------------------------------------
+
+// The element values in a tuple can be accessed using zero-based index numbers.
+
+assert(httpStatus.0 == 404)
+assert(httpStatus.1 == "Not Found")
+
+// -----------------------------------------------------------------------------
 //  Decomposition - The separation of a tuple's contents into separate constants
 //                  or variables which can then be accessed as usual.
 // -----------------------------------------------------------------------------
@@ -37,14 +44,6 @@ assert(message2 == "Okay")
 
 let (statusCode, _) = httpStatus
 assert(statusCode == 404)
-
-// -----------------------------------------------------------------------------
-
-// Alternatively, access the individual element values in a tuple using index
-// numbers starting at zero.
-
-assert(httpStatus.0 == 404)
-assert(httpStatus.1 == "Not Found")
 
 // -----------------------------------------------------------------------------
 
@@ -180,25 +179,36 @@ assert(a == b)
 assert(a == c)
 assert(a == 2)
 
-// Single-element tuples aren't really a thing, so it can't affect type safety.
+// -----------------------------------------------------------------------------
 
-let d: ((((((Int)))))) = ((2))
-let e: ((Int)) = ((((((2))))))
-assert(type(of: d) == Int.self)
+// Decomposing a "single-element tuple" is pointless.
+
+let (d) = (3)
+assert(d == 3)
+
+// -----------------------------------------------------------------------------
+
+// A "single-element tuple" doesn't affect type safety.
+
+let e: ((((((Int)))))) = ((2))
+let f: ((Int)) = ((((((2))))))
 assert(type(of: e) == Int.self)
-assert(d == 2)
+assert(type(of: f) == Int.self)
 assert(e == 2)
+assert(f == 2)
 
 // If the following is uncommented it will produce a runtime error:
 /*
-let f: ((((((Int)))))) = ((""))
+let g: ((((((Int)))))) = ((""))
 */
 
-// Attempting to declare a constant or variable as a single-element tuple with
-// an element label will result in a compile-time error.
+// -----------------------------------------------------------------------------
 
-// If the following is uncommented it will produce a runtime error:
+// It's not possible to declare a constant or variable as a single-element
+// tuple with an element label.
+
+// If the following is uncommented it will produce a compile-time error:
 /*
-let f: (number: Int) = 2
-var g: (number: Int) = (number: 2)
+let h: (number: Int) = 2
+var i: (number: Int) = (number: 2)
 */

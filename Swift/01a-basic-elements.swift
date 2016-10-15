@@ -34,7 +34,7 @@ to do that. */
 
       // Single-line comments don't need to start at the beginning of the line.
 
-      /* Block comments don't need to start at the beginning of the line. */
+      /* Neither do block comments. */
 
 // -----------------------------------------------------------------------------
 //  Statement - The smallest standalone element of a language that
@@ -43,7 +43,7 @@ to do that. */
 
 assert(true)        // Single-line comments can be placed after statements.
 
-assert(true)        /* Block comments can be placed after statements. */
+assert(true)        /* So can block comments. */
 
 /* Unlike single-line comments, */assert(true)
 assert/* block comments can */(true)
@@ -57,8 +57,6 @@ assert(true/* but please don't do that! */)
 // -----------------------------------------------------------------------------
 
 // An assertion is checked with the `assert(_:_:file:line:)` global function:
-//
-// See also:
 // https://developer.apple.com/reference/swift/1541112-assert
 
 // This assertion is not triggered because `age` equals 3.
@@ -143,11 +141,8 @@ var answer4 = 42
 
 // -----------------------------------------------------------------------------
 
-// You can use the semi-documented `type(of:)` global function to get the type
-// of an expression.
-//
-// See also:
-// https://github.com/apple/swift-evolution/blob/master/proposals/0136-memory-layout-of-values.md#making-use-of-typeof
+// You can use the `type(of:)` global function to get the type of an expression:
+// https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID455
 
 // A type's `self` property can be used to refer to the type itself.
 
@@ -210,11 +205,52 @@ var quatro, cinco: Double, seis: Int
 var un: Double, deux: Int, trois: Double
 
 // -----------------------------------------------------------------------------
+//  Identifier - A name given to a constant, variable, function, type, protocol,
+//               custom operator, or label.
+// -----------------------------------------------------------------------------
+
+// Identifiers can contain almost any character including Unicode characters.
+
+let π = 3.14159
+let 你好 = "你好世界"
+var 🐶🐮 = "dogcow"
+
+// Identifiers cannot contain:
+// - whitespace characters
+// - mathematical symbols
+// - arrows
+// - private-use (or invalid) Unicode code points
+// - line-drawing characters
+// - box-drawing characters
+// - numbers at the beginning but numbers may be included elsewhere.
+
+// -----------------------------------------------------------------------------
+
+// Any Swift keyword can be an identifier by surrounding it with backticks (`).
+
+let `let` = "i'm a constant"
+assert(`let` == "i'm a constant")
+
+// Backticks can be used with normal identifiers but it's pointless.
+
+var `x1` = 112
+assert(x1 == 112)
+
+// Backticks used in this way can't be nested.
+
+// If the following is uncommented it will produce a runtime error:
+/*
+var ``x2`` = 212
+assert(x2 == 212)
+
+var ```x3``` = 143
+assert(x3 == 143)
+*/
+
+// -----------------------------------------------------------------------------
 
 // You can print the current value of a constant or variable with the
 // `print(_:separator:terminator:)` global function:
-//
-// See also:
 // https://developer.apple.com/reference/swift/1541053-print
 
 print(answer2)
@@ -234,90 +270,3 @@ let i = 1; var j = 2
 
 let g = 1
 var h = 2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO
-
-
-
-// -----------------------------------------------------------------------------
-//  Identifier - A name given to a constant, variable, function, type, or label.
-// -----------------------------------------------------------------------------
-
-
-
-
-// Constant and variable names can contain almost any character,
-// including Unicode characters.
-
-let π = 3.14159
-let 你好 = "你好世界"
-var 🐶🐮 = "dogcow"
-
-func 😃😄😆😊() {}
-
-😃😄😆😊()
-
-assert(type(of: 😃😄😆😊) == (() -> ()).self)
-assert(type(of: 😃😄😆😊) == (() -> Void).self)
-assert(type(of: 😃😄😆😊) == (() -> (Void)).self)
-assert(type(of: 😃😄😆😊) == ((Void) -> Void).self)
-assert(type(of: 😃😄😆😊) == (((Void)) -> (Void)).self)
-
-
-
-// Identifiers cannot contain:
-// - whitespace characters
-// - mathematical symbols
-// - arrows
-// - private-use (or invalid) Unicode code points
-// - line-drawing characters
-// - box-drawing characters
-
-// Identifiers cannot begin with a number, although numbers may
-// be included elsewhere within the name.
-
-// -----------------------------------------------------------------------------
-
-
-
-
-// If you need to give a constant or variable the same name as a reserved Swift
-// keyword, surround the keyword with backticks (`) when using it as a name.
-
-let `let` = "i'm a constant"
-assert(`let` == "i'm a constant")
-
-// Backticks can also be used with constant or variable names that would
-// otherwise be valid but it's pointless.
-
-var `x2` = 112
-assert(x2 == 112)
-
-
-
-
-
-// TODO
-// - backticks are for all identifiers, correct ?
-class `var` {}

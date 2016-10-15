@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------------
 //  Class - A general-purpose construct.
 //  Structure - A general-purpose construct.
+//  Instance - A distinct occurence of a type.
 // -----------------------------------------------------------------------------
 
 You define properties and methods to add
@@ -87,13 +88,21 @@ class VideoMode {
 
 Class and Structure Instances
 
-The Resolution structure definition and the VideoMode class definition only describe what a Resolution or VideoMode will look like. They themselves do not describe a specific resolution or video mode. To do that, you need to create an instance of the structure or class.
+The Resolution structure definition and the VideoMode class definition only
+describe what a Resolution or VideoMode will look like. They themselves do not
+describe a specific resolution or video mode. To do that, you need to create an
+instance of the structure or class.
 
 The syntax for creating instances is very similar for both structures and classes:
 
 let someResolution = Resolution()
 let someVideoMode = VideoMode()
-Structures and classes both use initializer syntax for new instances. The simplest form of initializer syntax uses the type name of the class or structure followed by empty parentheses, such as Resolution() or VideoMode(). This creates a new instance of the class or structure, with any properties initialized to their default values. Class and structure initialization is described in more detail in Initialization.
+
+Structures and classes both use initializer syntax for new instances. The simplest
+form of initializer syntax uses the type name of the class or structure followed
+by empty parentheses, such as Resolution() or VideoMode(). This creates a new
+instance of the class or structure, with any properties initialized to their
+default values. Class and structure initialization is described in more detail in Initialization.
 
 
 
@@ -290,9 +299,16 @@ if tenEighty === alsoTenEighty {
 Note that “identical to” (represented by three equals signs, or ===) does not
 mean the same thing as “equal to” (represented by two equals signs, or ==):
 
-“Identical to” means that two constants or variables of class type refer to exactly the same class instance.
-“Equal to” means that two instances are considered “equal” or “equivalent” in value, for some appropriate meaning of “equal”, as defined by the type’s designer.
-When you define your own custom classes and structures, it is your responsibility to decide what qualifies as two instances being “equal”. The process of defining your own implementations of the “equal to” and “not equal to” operators is described in Equivalence Operators.
+“Identical to” means that two constants or variables of class type refer to
+exactly the same class instance.
+
+“Equal to” means that two instances are considered “equal” or “equivalent” in
+value, for some appropriate meaning of “equal”, as defined by the type’s designer.
+
+When you define your own custom classes and structures, it is your responsibility
+o decide what qualifies as two instances being “equal”. The process of defining
+your own implementations of the “equal to” and “not equal to” operators is
+described in Equivalence Operators.
 
 
 
@@ -331,16 +347,27 @@ or variable in Swift.
 //  Choosing Between Classes and Structures
 // -----------------------------------------------------------------------------
 
-You can use both classes and structures to define custom data types to use as the building blocks of your program’s code.
+You can use both classes and structures to define custom data types to use as
+the building blocks of your program’s code.
 
-However, structure instances are always passed by value, and class instances are always passed by reference. This means that they are suited to different kinds of tasks. As you consider the data constructs and functionality that you need for a project, decide whether each data construct should be defined as a class or as a structure.
+However, structure instances are always passed by value, and class instances are
+always passed by reference. This means that they are suited to different kinds
+of tasks. As you consider the data constructs and functionality that you need
+for a project, decide whether each data construct should be defined as a
+class or as a structure.
 
-As a general guideline, consider creating a structure when one or more of these conditions apply:
+As a general guideline, consider creating a structure when one or more of these
+conditions apply:
 
-The structure’s primary purpose is to encapsulate a few relatively simple data values.
-It is reasonable to expect that the encapsulated values will be copied rather than referenced when you assign or pass around an instance of that structure.
-Any properties stored by the structure are themselves value types, which would also be expected to be copied rather than referenced.
-The structure does not need to inherit properties or behavior from another existing type.
+- The structure's primary purpose is to encapsulate a few relatively simple
+  data values.
+- It is reasonable to expect that the encapsulated values will be copied rather
+  than referenced when you assign or pass around an instance of that structure.
+- Any properties stored by the structure are themselves value types, which would
+  also be expected to be copied rather than referenced.
+- The structure does not need to inherit properties or behavior from another
+  existing type.
+
 Examples of good candidates for structures include:
 
 The size of a geometric shape, perhaps encapsulating a width property and a height property, both of type Double.
