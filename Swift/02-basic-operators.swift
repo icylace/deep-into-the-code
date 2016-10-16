@@ -87,9 +87,8 @@ var f = 1
 f += 2
 assert(f == 3)
 
-// For a complete list of the compound assignment operators provided by the
-// Swift Standard Library, see:
-// [Swift Standard Library Operators](https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators)
+// For more compound assignment operators from the Swift Standard Library, see:
+// https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators
 
 // -----------------------------------------------------------------------------
 //  Comparison operator - A binary operator that figures out the
@@ -106,7 +105,7 @@ assert(1 < 2)         // Less than.
 assert(1 >= 1)        // Greater than or equal to.
 assert(1 <= 2)        // Less than or equal to.
 
-// This one is false and is commented out so it doesn't trigger the assertion.
+// If the following is uncommented it will produce a runtime error:
 /*
 assert(2 <= 1)
 */
@@ -117,10 +116,6 @@ assert(2 <= 1)
 
 
 
-
-
-
-
 // TODO
 
 
@@ -129,12 +124,8 @@ assert(2 <= 1)
 /*
 
 
-
-
 // TODO
 // - can tuples be added together?
-
-
 
 
 
@@ -168,10 +159,15 @@ let hasHeader = true
 let rowHeight = contentHeight + (hasHeader ? 50 : 20)
 assert(rowHeight == 90)
 
+
+
+
+
+
+
 // -----------------------------------------------------------------------------
-//  Nil-coalescing operator (`??`) - The operator that will return either the
-//                                   value of an optional if it isn't `nil`
-//                                   or a given default value.
+//  Nil-coalescing operator (`??`) - The operator that returns either the value
+//                                   of a non-nil optional or a default value.
 // -----------------------------------------------------------------------------
 
 // `(a ?? b)`
@@ -208,14 +204,23 @@ colorNameToUse = userDefinedColorName ?? defaultColorName
 // userDefinedColorName is not nil, so colorNameToUse is set to "green"
 
 
+
+
+
+
+
+
+
+
+
+
 // -----------------------------------------------------------------------------
 //  Range operator - An operator that expresses a range of values.
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-//  Closed range operator (`...`) - The operator that expresses a range of
-//                                  values including the one that defines
-//                                  the range's upper-limit.
+//  Closed range operator (`...`) - The range operator whose range includes the
+//                                  value defining the range's upper-limit.
 // -----------------------------------------------------------------------------
 
 let r1 = -11...12
@@ -224,9 +229,8 @@ assert(r1 == -11..<13)
 // A closed range's lower-limit must not be greater than its upper-limit.
 
 // -----------------------------------------------------------------------------
-//  Half-open range operator (`..<`) - The operator that expresses a range of
-//                                     values not including the one that
-//                                     defines the range's upper-limit.
+//  Half-open range operator (`..<`) - The range operator whose range omits the
+//                                     value defining the range's upper-limit.
 // -----------------------------------------------------------------------------
 
 let r2 = -11..<13

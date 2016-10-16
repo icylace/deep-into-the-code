@@ -98,17 +98,6 @@ assert(3 > 5)
 */
 
 // -----------------------------------------------------------------------------
-//  Variable - An association between a name and a value that is mutable,
-//             meaning it always can be assigned another value anytime.
-// -----------------------------------------------------------------------------
-
-// Declare a variable named `answer1` and assign it the literal value 42.
-var answer1 = 42
-
-// Reassign `answer1` with the value 123.
-answer1 = 123
-
-// -----------------------------------------------------------------------------
 //  Constant - An association between a name and a value that is immutable,
 //             meaning it can only be assigned a value once.
 // -----------------------------------------------------------------------------
@@ -120,6 +109,17 @@ let answer2 = 42
 /*
 answer2 = 0
 */
+
+// -----------------------------------------------------------------------------
+//  Variable - An association between a name and a value that is mutable,
+//             meaning it always can be assigned another value anytime.
+// -----------------------------------------------------------------------------
+
+// Declare a variable named `answer1` and assign it the literal value 42.
+var answer1 = 42
+
+// Reassign `answer1` with the value 123.
+answer1 = 123
 
 // -----------------------------------------------------------------------------
 //  Type annotation - A label for type of value a constant or variable can hold.
@@ -238,13 +238,10 @@ assert(x1 == 112)
 
 // Backticks used in this way can't be nested.
 
-// If the following is uncommented it will produce a runtime error:
+// If the following is uncommented it will produce a compile-time error:
 /*
 var ``x2`` = 212
-assert(x2 == 212)
-
 var ```x3``` = 143
-assert(x3 == 143)
 */
 
 // -----------------------------------------------------------------------------

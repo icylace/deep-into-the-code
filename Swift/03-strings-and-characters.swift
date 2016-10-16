@@ -8,17 +8,23 @@
 //  Character - A unit of data usually representing a grapheme.
 //  Control character - A character not representing a visual symbol.
 //  String - A series of characters.
+//  Unicode - An international standard for encoding, representing, and
+//            processing text in different writing systems.
 // -----------------------------------------------------------------------------
 
-// Strings represent text and usually contain letters, numbers, or punctuation.
+// The `String` and `Character` types provide a fully Unicode-compliant way to
+// work with text in your code.
+
+// Unicode enables you to represent almost any character from any language in
+// a standardized form, and to read and write those characters to and from an
+// external source such as a text file or web page.
+
 
 // TODO
 
 // The contents of a string can be accessed in various ways, including as a
 // collection of `Character` values.
 
-// The `String` and `Character` types provide a Unicode-compliant way to work
-// with text in your code.
 
 // Every string is composed of encoding-independent Unicode characters
 // and provides support for accessing those characters in various
@@ -87,7 +93,7 @@ version.  Value types are described in Structures and Enumerations Are Value Typ
 
 Swift’s copy-by-default String behavior ensures that when a function or method
 passes you a String value, it is clear that you own that exact String value,
-regardless of where it came from. You can be confident that the string you
+regardless of where it came from.  You can be confident that the string you
 are passed will not be modified unless you modify it yourself.
 
 Behind the scenes the compiler optimizes string usage so that actual copying
@@ -173,16 +179,6 @@ literal.
 The expressions you write inside parentheses within an interpolated string
 cannot contain an unescaped backslash (\), a carriage return, or a line
 feed.  However, they can contain other string literals.
-
-// -----------------------------------------------------------------------------
-//  Unicode - An international standard for encoding, representing, and
-//            processing text in different writing systems.
-// -----------------------------------------------------------------------------
-
-Unicode enables you to represent almost any character from any language in
-a standardized form, and to read and write those characters to and from an
-external source such as a text file or web page.  The `String` and
-`Character` types are fully Unicode-compliant.
 
 // -----------------------------------------------------------------------------
 
