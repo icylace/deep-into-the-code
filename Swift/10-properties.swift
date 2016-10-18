@@ -16,6 +16,8 @@
 //                    class or structure.
 // -----------------------------------------------------------------------------
 
+/*
+
 You can provide a default value for a stored property as part of its definition,
 as described in Default Property Values. You can also set and modify the initial
 value for a stored property during initialization. This is true even for constant
@@ -549,3 +551,5 @@ print(rightChannel.currentLevel)
 // Prints "10"
 print(AudioChannel.maxInputLevelForAllChannels)
 // Prints "10"
+
+*/

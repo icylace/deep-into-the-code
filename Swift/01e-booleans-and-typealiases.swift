@@ -9,6 +9,7 @@
 
 let orangesAreOrange = true
 let todayIsYesterday = false
+let skyIsPurple = Bool(false)
 let skyIsBlue: Bool = true
 
 // -----------------------------------------------------------------------------

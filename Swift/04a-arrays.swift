@@ -5,11 +5,6 @@
 
 // -----------------------------------------------------------------------------
 //  Collection type - A type for storing groups of values.
-//  Array - A collection type having ordered values.
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-//  Mutability of Collections
 // -----------------------------------------------------------------------------
 
 // If you assign a collection to a variable it will be mutable, meaning it can
@@ -19,8 +14,7 @@
 // size and contents cannot be changed.
 
 // -----------------------------------------------------------------------------
-//  Array - A collection type that stores values of similar type
-//          in an ordered list.
+//  Array - A collection type having ordered values of similar type.
 // -----------------------------------------------------------------------------
 
 // The same value can appear in an array multiple times at different positions.
@@ -106,31 +100,18 @@ assert(a6 == a7)
 
 
 
-NOTE
-
-The shoppingList array is declared as a variable (with the var introducer) and
-not a constant (with the let introducer) because more items are added to the
-shopping list in the examples below.
-
-// -----------------------------------------------------------------------------
-
 // You access and modify an array through its methods and properties,
 // or by using subscript syntax.
 
+// Use the Boolean `isEmpty` property as a shortcut for checking whether the
+// `count` property is equal to 0.
 
-Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
+assert(shoppingList.isEmpty == false)
 
-if shoppingList.isEmpty {
-  print("The shopping list is empty.")
-} else {
-  print("The shopping list is not empty.")
-}
-// Prints "The shopping list is not empty."
-
-You can add a new item to the end of an array by calling the array’s append(_:) method:
+// You can add a new item to the end of an array by using `append(_:)`.
 
 shoppingList.append("Flour")
-// shoppingList now contains 3 items, and someone is making pancakes
+// shoppingList now contains 3 items, and someone is making pancakes.
 
 Alternatively, append an array of one or more compatible items with the addition
 assignment operator (`+=`):
@@ -219,12 +200,12 @@ for item in shoppingList {
 // Bananas
 
 If you need the integer index of each item as well as its value, use the
-`enumerated()` method to iterate over the array instead.  For each item in
-the array, the enumerated() method returns a tuple composed of an integer
-and the item.  The integers start at zero and count up by one for each
-item; if you enumerate over a whole array, these integers match the
-items’ indices.  You can decompose the tuple into temporary constants
-or variables as part of the iteration:
+`enumerated()` method to iterate over the array instead.  For each item
+in the array, `enumerated()` returns a tuple composed of an integer and
+the item.  The integers start at zero and count up by one for each
+item; if you enumerate over a whole array, these integers match
+the items' indices.  You can decompose the tuple into temporary
+constants or variables as part of the iteration.
 
 for (index, value) in shoppingList.enumerated() {
   print("Item \(index + 1): \(value)")

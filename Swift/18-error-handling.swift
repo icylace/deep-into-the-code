@@ -133,6 +133,8 @@ class VendingMachine {
   }
 }
 
+/*
+
 Because the vend(itemNamed:) method propagates any errors it throws, any code that
 calls this method must either handle the errors—using a do-catch statement, try?,
 or try!—or continue to propagate them. For example, the
@@ -443,3 +445,5 @@ do {
 // the SandwichError.missingIngredients case, then the buyGroceries(_:)
 // function is called with the associated [String] value captured by
 // the catch pattern.
+
+*/

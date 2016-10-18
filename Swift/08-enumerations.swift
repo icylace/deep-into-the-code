@@ -29,6 +29,8 @@ enum CompassPoint {
   case west
 }
 
+/*
+
 Swift enumeration cases are not assigned a default integer value when they are
 created.  In the CompassPoint example above,
 north, south, east and west do not implicitly equal 0, 1, 2 and 3.
@@ -362,3 +364,5 @@ This function evaluates a plain number by simply returning the associated value.
 It evaluates an addition or multiplication by evaluating the expression on the
 left hand side, evaluating the expression on the right hand side, and then adding
 them or multiplying them.
+
+*/

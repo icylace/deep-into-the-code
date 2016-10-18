@@ -22,6 +22,8 @@
 //  Defining a Class Hierarchy for Type Casting
 // -----------------------------------------------------------------------------
 
+/*
+
 You can use type casting with a hierarchy of classes and subclasses to check the
 type of a particular class instance and to cast that instance to another class
 within the same hierarchy. The three code snippets below define a hierarchy of
@@ -240,3 +242,5 @@ for thing in things {
 // an (x, y) point at 3.0, 5.0
 // a movie called Ghostbusters, dir. Ivan Reitman
 // Hello, Michael
+
+*/

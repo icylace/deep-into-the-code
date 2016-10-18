@@ -6,14 +6,13 @@
 // -----------------------------------------------------------------------------
 //  Parameter - A constant that represents an input to a function.
 //  Return type - The type of a function's output value.
-//  Function name - A name given to a function.
+//  Function name - An identifier given to a function.
 //  Argument - A value given as input to a function when it is called.
 //  Function - A self-contained chunk of code that performs a specific task.
 //  Call - The act of executing a function with any arguments needed.
 // -----------------------------------------------------------------------------
 
-// A function has a name that identifies what it does and this name is used to
-// "call" the function to perform its task when needed.
+// Function's name is used to "call" the function to perform its task.
 
 // A function in its simplest form is pretty useless.
 
@@ -23,6 +22,11 @@ assert(type(of: f) == (() -> ()).self)
 assert(type(of: f) == (() -> Void).self)
 assert(type(of: f) == ((Void) -> ()).self)
 assert(type(of: f) == ((Void) -> Void).self)
+
+f()
+
+assert(type(of: f()) == Void.self)
+
 
 // TODO
 
@@ -73,12 +77,8 @@ assert(greetAgain(person: "Brian") == "Hello again, Brian!")
 func sayHelloWorld() -> String {
   return "hello, world"
 }
+// Call `sayHelloWorld()` and use its return value.
 assert(sayHelloWorld() == "hello, world")
-
-
-
-
-
 
 
 
@@ -98,13 +98,13 @@ assert(a == "Hello, Anna!")
 
 
 
-func sayHi2(let name: String) -> String {
-  let greeting = "Hello, \(name)!"
-  return greeting
-}
-
-let b = sayHi2(name: "Anna")
-assert(b == "Hello, Anna!")
+// func sayHi2(let name: String) -> String {
+//   let greeting = "Hello, \(name)!"
+//   return greeting
+// }
+//
+// let b = sayHi2(name: "Anna")
+// assert(b == "Hello, Anna!")
 
 
 
@@ -182,6 +182,7 @@ sayFinalBye(name: "Dave")
 // -----------------------------------------------------------------------------
 
 // A function's return value can be ignored.
+
 func countText(text: String) -> Int {
   return text.characters.count
 }

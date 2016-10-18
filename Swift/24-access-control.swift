@@ -101,6 +101,8 @@
 
 // -----------------------------------------------------------------------------
 
+/*
+
 Guiding Principle of Access Levels
 
 Access levels in Swift follow an overall guiding principle: No entity can be defined in terms of another entity that has a lower (more restrictive) access level.
@@ -138,6 +140,9 @@ Any internal implementation details of your framework can still use the default 
 Access Levels for Unit Test Targets
 
 When you write an app with a unit test target, the code in your app needs to be made available to that module in order to be tested. By default, only entities marked as open or public are accessible to other modules. However, a unit test target can access any internal entity, if you mark the import declaration for a product module with the @testable attribute and compile that product module with testing enabled.
+
+
+*/
 
 
 
@@ -216,7 +221,7 @@ When you write an app with a unit test target, the code in your app needs to be 
 
 
 
-
+/*
 
 
 // -----------------------------------------------------------------------------
@@ -527,3 +532,5 @@ Any type aliases you define are treated as distinct types for the purposes of ac
 NOTE
 
 This rule also applies to type aliases for associated types used to satisfy protocol conformances.
+
+*/

@@ -135,6 +135,8 @@ class Apartment {
   }
 }
 
+/*
+
 Both of these classes also define a deinitializer, which prints the fact that
 an instance of that class is being deinitialized.  This enables you to see
 whether instances of Person and Apartment are being deallocated as expected.
@@ -751,3 +753,5 @@ paragraph = nil
 // Prints "p is being deinitialized"
 
 For more information about capture lists, see Capture Lists.
+
+*/

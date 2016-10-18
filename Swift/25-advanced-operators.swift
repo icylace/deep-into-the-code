@@ -141,6 +141,8 @@ assert(c >> 6 == 0b00000000)
 //               stores the absolute value of the signed integer.
 // -----------------------------------------------------------------------------
 
+
+/*
 Negative numbers, however, are stored differently. They are stored by
 subtracting their absolute value from 2 to the power of n, where n is the
 number of value bits. An eight-bit number has seven value bits, so this
@@ -182,7 +184,7 @@ Because of the special way that positive and negative numbers are stored,
 shifting either of them to the right moves them closer to zero. Keeping
 the sign bit the same during this shift means that negative integers
 remain negative as their value moves closer to zero.
-
+*/
 
 
 

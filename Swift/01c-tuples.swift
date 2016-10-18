@@ -165,6 +165,16 @@ empty1 = Void
 empty2 = Void
 */
 
+// If the following is uncommented it will produce a compile-time warning:
+/*
+var empty3 = ()
+assert(type(of: empty3) == Void.self)
+// If the following is uncommented it will produce a compile-time error:
+/*
+empty3 = Void
+*/
+*/
+
 // -----------------------------------------------------------------------------
 
 // A single-element tuple doesn't truly exist.

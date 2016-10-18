@@ -60,6 +60,8 @@ print("Vehicle: \(someVehicle.description)")
 // -----------------------------------------------------------------------------
 
 
+/*
+
 The subclass inherits characteristics from the existing class, which you can then
 refine. You can also add new characteristics to the subclass.
 
@@ -300,3 +302,5 @@ extension's definition.
 You can mark an entire class as final by writing the final modifier before the
 class keyword in its class definition (final class).  Any attempt to subclass a
 final class is reported as a compile-time error.
+
+*/

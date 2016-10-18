@@ -55,6 +55,8 @@ struct BlackjackCard {
   }
 }
 
+/*
+
 The Rank enumeration describes the thirteen possible playing card ranks, together
 with a raw Int value to represent their face value. (This raw Int value is not
 used for the Jack, Queen, King, and Ace cards.)
@@ -103,3 +105,5 @@ let heartsSymbol = BlackjackCard.Suit.hearts.rawValue
 For the example above, this enables the names of Suit, Rank, and Values to be
 kept deliberately short, because their names are naturally qualified by the
 context in which they are defined.
+
+*/

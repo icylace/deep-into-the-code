@@ -76,6 +76,8 @@ assert(f.temperature == 32.0)
 
 // -----------------------------------------------------------------------------
 
+/*
+
 You can set the initial value of a stored property from within an initializer,
 as shown above. Alternatively, specify a default property value as part of the
 property’s declaration. You specify a default property value by assigning an
@@ -1022,3 +1024,5 @@ print(board.squareIsBlackAt(row: 0, column: 1))
 // Prints "true"
 print(board.squareIsBlackAt(row: 7, column: 7))
 // Prints "false"
+
+*/

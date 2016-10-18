@@ -62,6 +62,8 @@ if let roomCount = john.residence?.numberOfRooms {
 }
 // Prints "Unable to retrieve the number of rooms."
 
+/*
+
 Because the attempt to access numberOfRooms has the potential to fail, the
 optional chaining attempt returns a value of type Int?, or “optional Int”.
 When residence is nil, as in the example above, this optional Int will
@@ -449,3 +451,5 @@ if let beginsWithThe =
 NOTE
 
 In the example above, you place the optional chaining question mark after the parentheses, because the optional value you are chaining on is the buildingIdentifier() method’s return value, and not the buildingIdentifier() method itself.
+
+*/

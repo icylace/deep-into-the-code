@@ -85,14 +85,15 @@ constantString += " and another Highlander"
 //  Strings Are Value Types
 // -----------------------------------------------------------------------------
 
-Swift’s String type is a value type.  If you create a new String value, that
-String value is copied when it is passed to a function or method, or when it
-is assigned to a constant or variable.  In each case, a new copy of the existing
-String value is created, and the new copy is passed or assigned, not the original
-version.  Value types are described in Structures and Enumerations Are Value Types.
+// If you create a new `String` value, it's copied when it's passed to a
+// function or method, or when it's assigned to a constant or variable.
+// In each case, a new copy of the existing `String` value is created,
+// and the new copy is passed or assigned, not the original version.
 
-Swift’s copy-by-default String behavior ensures that when a function or method
-passes you a String value, it is clear that you own that exact String value,
+Value types are described in Structures and Enumerations Are Value Types.
+
+Swift's copy-by-default `String` behavior ensures that when a function or method
+passes you a `String` value, it is clear that you own that exact `String` value,
 regardless of where it came from.  You can be confident that the string you
 are passed will not be modified unless you modify it yourself.
 
@@ -148,7 +149,7 @@ instruction += string2
 assert(instruction == "look over there")
 
 // You can append a `Character` value to a `String` variable with the `String`
-// type's append() method.
+// type's `append()` method.
 
 let exclamationMark: Character = "!"
 welcome.append(exclamationMark)

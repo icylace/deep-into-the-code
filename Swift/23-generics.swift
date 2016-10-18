@@ -120,6 +120,9 @@ swapTwoValues(&someString, &anotherString)
 //  Type parameter - A placeholder for the actual type that will be used.
 // -----------------------------------------------------------------------------
 
+/*
+
+
 In the swapTwoValues(_:_:) example above, the placeholder type T is an example
 of a type parameter. Type parameters specify and name a placeholder type, and
 are written immediately after the function’s name, between a pair of matching
@@ -551,3 +554,5 @@ if allItemsMatch(stackOfStrings, arrayOfStrings) {
 // Prints "All items match."
 
 The example above creates a Stack instance to store String values, and pushes three strings onto the stack. The example also creates an Array instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the Container protocol, and both contain the same type of values. You can therefore call the allItemsMatch(_:_:) function with these two containers as its arguments. In the example above, the allItemsMatch(_:_:) function correctly reports that all of the items in the two containers match.
+
+*/

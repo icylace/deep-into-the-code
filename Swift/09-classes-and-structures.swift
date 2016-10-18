@@ -11,6 +11,8 @@
 //  Instance - A distinct occurence of a type.
 // -----------------------------------------------------------------------------
 
+/*
+
 You define properties and methods to add
 functionality to your classes and structures by using exactly the same syntax as
 for constants, variables, and functions.
@@ -530,3 +532,5 @@ class Baz {
 
 var baz = Baz()
 var baz = Baz.self
+
+*/
