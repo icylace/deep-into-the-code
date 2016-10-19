@@ -192,17 +192,17 @@ hello = "hello"
 // Multiple constants or multiple variables can be declared on a single line...
 
 // ...with inferred types.
-let a = 0, b = 1, c = true
-var d = 3, e = 4, f = ""
+let c1 = 0, c2 = 1, c3 = true
+var v1 = 3, v2 = 4, v3 = ""
 
 // ...with the same explicit type.
-let first, second, third: Int
-var red, green, blue: Double
+let c4, c5, c6: Int
+var v4, v5, v6: Double
 
 // ...with different explicit types.
-let uno: String, dos, tres: Bool
-var quatro, cinco: Double, seis: Int
-var un: Double, deux: Int, trois: Double
+let c7: String, c8, c9: Bool
+var v7, v8: Double, v9: Int
+var v10: Double, v11: Int, v12: Double
 
 // -----------------------------------------------------------------------------
 //  Identifier - A name given to a constant, variable, function, type, protocol,
@@ -210,10 +210,6 @@ var un: Double, deux: Int, trois: Double
 // -----------------------------------------------------------------------------
 
 // Identifiers can contain almost any character including Unicode characters.
-
-let π = 3.14159
-let 你好 = "你好世界"
-var 🐶🐮 = "dogcow"
 
 // Identifiers cannot contain:
 // - whitespace characters
@@ -224,6 +220,10 @@ var 🐶🐮 = "dogcow"
 // - box-drawing characters
 // - numbers at the beginning but numbers may be included elsewhere.
 
+let π = 3.14159
+let 你好 = "你好世界"
+var 🐶🐮 = "dogcow"
+
 // -----------------------------------------------------------------------------
 
 // Any Swift keyword can be an identifier by surrounding it with backticks (`).
@@ -233,15 +233,15 @@ assert(`let` == "i'm a constant")
 
 // Backticks can be used with normal identifiers but it's pointless.
 
-var `x1` = 112
-assert(x1 == 112)
+var `v13` = 112
+assert(v13 == 112)
 
 // Backticks used in this way can't be nested.
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-var ``x2`` = 212
-var ```x3``` = 143
+var ``v14`` = 212
+var ```v15``` = 143
 */
 
 // -----------------------------------------------------------------------------
@@ -261,9 +261,9 @@ print(answer2)
 // Semicolons are...
 // ...required when multiple statements are on the same line.
 
-let i = 1; var j = 2
+let c10 = 1; var v16 = 2
 
 // ...optional when only a single statement is on the line.
 
-let g = 1
-var h = 2;
+let c11 = 1
+var v17 = 2;

@@ -8,6 +8,10 @@
 //             suit a particular task or piece of functionality.
 // -----------------------------------------------------------------------------
 
+// TODO
+
+/*
+
 // Protocols can be adopted by a class, structure, or enumeration to provide
 // an actual implementation of the protocol's requirements.  Any type that
 // satisfies the requirements of a protocol is said to conform to that
@@ -1092,5 +1096,7 @@ print(hamsters.textualDescription)
 NOTE
 
 If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift will use the implementation corresponding to the most specialized constraints.
+
+*/
 
 */

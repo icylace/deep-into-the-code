@@ -8,6 +8,10 @@
 //                   error conditions.
 // -----------------------------------------------------------------------------
 
+// TODO
+
+/*
+
 // Some operations aren't guaranteed to always complete execution or produce a
 // useful output.  Optionals are used to represent the absence of a value, but
 // when an operation fails, it's often useful to understand what caused the
@@ -133,7 +137,6 @@ class VendingMachine {
   }
 }
 
-/*
 
 Because the vend(itemNamed:) method propagates any errors it throws, any code that
 calls this method must either handle the errors—using a do-catch statement, try?,

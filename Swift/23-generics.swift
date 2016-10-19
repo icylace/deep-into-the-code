@@ -10,6 +10,8 @@
 
 // TODO
 
+/*
+
 // Generic code enables you to write flexible, reusable functions and types.
 // You can write code that avoids duplication and expresses its intent in a
 // clear, abstracted manner.
@@ -120,7 +122,6 @@ swapTwoValues(&someString, &anotherString)
 //  Type parameter - A placeholder for the actual type that will be used.
 // -----------------------------------------------------------------------------
 
-/*
 
 
 In the swapTwoValues(_:_:) example above, the placeholder type T is an example

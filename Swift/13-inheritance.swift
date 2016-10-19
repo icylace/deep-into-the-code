@@ -5,6 +5,8 @@
 
 // TODO
 
+/*
+
 // -----------------------------------------------------------------------------
 //  Inheritance - The behavior through which a class can take on the methods,
 //                properties, and other characteristics from another class.
@@ -302,5 +304,7 @@ extension's definition.
 You can mark an entire class as final by writing the final modifier before the
 class keyword in its class definition (final class).  Any attempt to subclass a
 final class is reported as a compile-time error.
+
+*/
 
 */

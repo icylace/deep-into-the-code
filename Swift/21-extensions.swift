@@ -22,6 +22,10 @@
 
 // An extension cannot override existing functionality.
 
+// TODO
+
+/*
+
 extension SomeType {
   // New functionality to add to `SomeType` goes here.
 }
@@ -296,3 +300,5 @@ printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
 // number.kind is already known to be of type Int.Kind. Because of this, all of
 // the Int.Kind case values can be written in shorthand form inside the switch
 // statement, such as .negative rather than Int.Kind.negative.
+
+*/

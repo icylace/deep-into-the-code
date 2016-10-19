@@ -31,16 +31,13 @@ extend existing types to support the custom operators you define.
 
 // -----------------------------------------------------------------------------
 //  Bitwise operator - An operator that manipulates data on a bit-by-bit basis.
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
 //  Bitwise NOT operator (`~`) - The bitwise operator that inverts all bits.
 // -----------------------------------------------------------------------------
 
-let a: UInt8 = 0b01101101       // Equals 109 in decimal.
-let b: UInt8 = 0b11001110       // Equals 206 in decimal.
+let b1: UInt8 = 0b01101101       // Equals 109 in decimal.
+let b2: UInt8 = 0b11001110       // Equals 206 in decimal.
 
-assert(~a == 0b10010010)        // Equals 146 in decimal.
+assert(~b1 == 0b10010010)        // Equals 146 in decimal.
 
 // -----------------------------------------------------------------------------
 //  Bitwise AND operator (`&`) - The bitwise operator that returns a number
@@ -48,7 +45,7 @@ assert(~a == 0b10010010)        // Equals 146 in decimal.
 //                               are equal to 1 in both operands.
 // -----------------------------------------------------------------------------
 
-assert(a & b == 0b01001100)       // Equals 76 in decimal.
+assert(b1 & b2 == 0b01001100)       // Equals 76 in decimal.
 
 // -----------------------------------------------------------------------------
 //  Bitwise OR operator (`|`) - The bitwise operator that returns a number
@@ -56,7 +53,7 @@ assert(a & b == 0b01001100)       // Equals 76 in decimal.
 //                              are equal to 1 in either operand.
 // -----------------------------------------------------------------------------
 
-assert(a | b == 0b11101111)       // Equals 239 in decimal.
+assert(b1 | b2 == 0b11101111)       // Equals 239 in decimal.
 
 // -----------------------------------------------------------------------------
 //  Bitwise XOR operator (`^`) - The bitwise operator that returns a number
@@ -65,7 +62,7 @@ assert(a | b == 0b11101111)       // Equals 239 in decimal.
 //                               each other.
 // -----------------------------------------------------------------------------
 
-assert(a ^ b == 0b10100011)       // Equals 163 in decimal.
+assert(b1 ^ b2 == 0b10100011)       // Equals 163 in decimal.
 
 // -----------------------------------------------------------------------------
 //  Bit-shifting - The behavior of moving all the bits in a number to either
@@ -101,31 +98,31 @@ assert(a ^ b == 0b10100011)       // Equals 163 in decimal.
 // - Zeros are inserted in the spaces left behind after the original bits
 //   are moved to the left or right.
 
-var c: UInt8 = 0b11111111
+var b3: UInt8 = 0b11111111
 
 // Left shifting unsigned integers (logical shift).
-assert(c << 1 == 0b11111110)
-assert(c << 2 == 0b11111100)
-assert(c << 5 == 0b11100000)
-assert(c << 6 == 0b11000000)
+assert(b3 << 1 == 0b11111110)
+assert(b3 << 2 == 0b11111100)
+assert(b3 << 5 == 0b11100000)
+assert(b3 << 6 == 0b11000000)
 
 // Right shifting unsigned integers (logical shift).
-assert(c >> 1 == 0b01111111)
-assert(c >> 2 == 0b00111111)
-assert(c >> 5 == 0b00000111)
-assert(c >> 6 == 0b00000011)
+assert(b3 >> 1 == 0b01111111)
+assert(b3 >> 2 == 0b00111111)
+assert(b3 >> 5 == 0b00000111)
+assert(b3 >> 6 == 0b00000011)
 
-c = 0b00000100
+b3 = 0b00000100
 
-assert(c << 1 == 0b00001000)
-assert(c << 2 == 0b00010000)
-assert(c << 5 == 0b10000000)
-assert(c << 6 == 0b00000000)
+assert(b3 << 1 == 0b00001000)
+assert(b3 << 2 == 0b00010000)
+assert(b3 << 5 == 0b10000000)
+assert(b3 << 6 == 0b00000000)
 
-assert(c >> 1 == 0b00000010)
-assert(c >> 2 == 0b00000001)
-assert(c >> 5 == 0b00000000)
-assert(c >> 6 == 0b00000000)
+assert(b3 >> 1 == 0b00000010)
+assert(b3 >> 2 == 0b00000001)
+assert(b3 >> 5 == 0b00000000)
+assert(b3 >> 6 == 0b00000000)
 
 // -----------------------------------------------------------------------------
 //  Arithmetic shift - The bit-shifting behavior for signed integers.

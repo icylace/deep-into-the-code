@@ -10,6 +10,10 @@
 // Subscripts can be used to set and retrieve values by index without
 // needing separate methods for setting and retrieval.
 
+// TODO
+
+/*
+
 class Foo {
   var xs = [0, 0, 0]
   subscript(index: Int) -> Int {
@@ -181,3 +185,5 @@ var matrix = Matrix(rows: 2, columns: 2)
 
 matrix[0, 1] = 1.5
 matrix[1, 0] = 3.2
+
+*/

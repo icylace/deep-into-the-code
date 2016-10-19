@@ -6,8 +6,8 @@
 // TODO
 
 // -----------------------------------------------------------------------------
-//  Class - A general-purpose construct.
-//  Structure - A general-purpose construct.
+//  Class - A general-purpose construct that defines a new type.
+//  Structure - A general-purpose construct that defines a new type.
 //  Instance - A distinct occurence of a type.
 // -----------------------------------------------------------------------------
 
@@ -20,7 +20,6 @@ for constants, variables, and functions.
 // An instance of a class is traditionally known as an object.  However, Swift
 // classes and structures are much closer in functionality than in other
 // languages.  Because of this, the more general term instance is used.
-
 
 // -----------------------------------------------------------------------------
 //  Comparing Classes and Structures

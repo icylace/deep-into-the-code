@@ -18,10 +18,10 @@
 //                              or variable, or updates a variable.
 // -----------------------------------------------------------------------------
 
-let a = 10
-var b = 5
-b = a
-assert(b == 10)
+let b1 = 10
+var b2 = 5
+b2 = b1
+assert(b2 == 10)
 
 // -----------------------------------------------------------------------------
 //  Arithmetic operator - A operator that manipulates numbers.
@@ -63,19 +63,19 @@ assert(9 % -4 == 1)
 //  Unary minus operator (`-`) - The operator that toggles the sign of a number.
 // -----------------------------------------------------------------------------
 
-let three = 3
-let minusThree = -three
-assert(minusThree == -3)
-let plusThree = -minusThree
-assert(plusThree == 3)
+let b3 = 3
+let b4 = -b3
+assert(b4 == -3)
+let b5 = -b4
+assert(b5 == 3)
 
 // -----------------------------------------------------------------------------
 //  Unary plus operator (`+`) - The operator that returns its operand as is.
 // -----------------------------------------------------------------------------
 
-let minusSix = -6
-let alsoMinusSix = +minusSix
-assert(alsoMinusSix == -6)
+let b6 = -6
+let b7 = +b6
+assert(b7 == -6)
 
 // -----------------------------------------------------------------------------
 //  Compound assignment operator - An operator combining assignment
@@ -83,9 +83,9 @@ assert(alsoMinusSix == -6)
 // -----------------------------------------------------------------------------
 
 // Example use of the addition assignment operator (`+=`).
-var f = 1
-f += 2
-assert(f == 3)
+var b8 = 1
+b8 += 2
+assert(b8 == 3)
 
 // For more compound assignment operators from the Swift Standard Library, see:
 // https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators
@@ -109,6 +109,13 @@ assert(1 <= 2)        // Less than or equal to.
 /*
 assert(2 <= 1)
 */
+
+
+
+
+
+
+
 
 
 

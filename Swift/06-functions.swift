@@ -12,7 +12,11 @@
 //  Call - The act of executing a function with any arguments needed.
 // -----------------------------------------------------------------------------
 
-// Function's name is used to "call" the function to perform its task.
+// A function's name is used to "call" the function to perform its task.
+
+// TODO
+
+/*
 
 // A function in its simplest form is pretty useless.
 
@@ -909,5 +913,7 @@ print("zero!")
 // -2...
 // -1...
 // zero!
+
+*/
 
 */

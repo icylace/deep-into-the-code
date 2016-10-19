@@ -10,6 +10,8 @@
 
 // TODO
 
+/*
+
 // This process involves setting an initial value for each stored property on
 // the new instance and performing any other setup or initialization that is
 // required before the new instance is ready for use.
@@ -1024,5 +1026,7 @@ print(board.squareIsBlackAt(row: 0, column: 1))
 // Prints "true"
 print(board.squareIsBlackAt(row: 7, column: 7))
 // Prints "false"
+
+*/
 
 */

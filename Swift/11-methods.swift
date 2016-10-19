@@ -15,6 +15,8 @@
 
 // TODO
 
+/*
+
 class Counter {
   var count = 0
   func increment(by amount: Int = 1) {
@@ -248,3 +250,5 @@ if player.tracker.advance(to: 6) {
   print("level 6 has not yet been unlocked")
 }
 // Prints "level 6 has not yet been unlocked"
+
+*/

@@ -179,37 +179,37 @@ empty3 = Void
 
 // A single-element tuple doesn't truly exist.
 
-let a: Int = 2
-let b: (Int) = (2)
-let c: (((Int))) = (((2)))
-assert(type(of: a) == type(of: b))
-assert(type(of: a) == type(of: c))
-assert(type(of: a) == Int.self)
-assert(a == b)
-assert(a == c)
-assert(a == 2)
+let t5: Int = 2
+let t6: (Int) = (2)
+let t7: (((Int))) = (((2)))
+assert(type(of: t5) == type(of: t6))
+assert(type(of: t5) == type(of: t7))
+assert(type(of: t5) == Int.self)
+assert(t5 == t6)
+assert(t5 == t7)
+assert(t5 == 2)
 
 // -----------------------------------------------------------------------------
 
 // Decomposing a "single-element tuple" is pointless.
 
-let (d) = (3)
-assert(d == 3)
+let (t8) = (3)
+assert(t8 == 3)
 
 // -----------------------------------------------------------------------------
 
 // A "single-element tuple" doesn't affect type safety.
 
-let e: ((((((Int)))))) = ((2))
-let f: ((Int)) = ((((((2))))))
-assert(type(of: e) == Int.self)
-assert(type(of: f) == Int.self)
-assert(e == 2)
-assert(f == 2)
+let t9: ((((((Int)))))) = ((2))
+let t10: ((Int)) = ((((((2))))))
+assert(type(of: t9) == Int.self)
+assert(type(of: t10) == Int.self)
+assert(t9 == 2)
+assert(t10 == 2)
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-let g: ((((((Int)))))) = ((""))
+let t11: ((((((Int)))))) = ((""))
 */
 
 // -----------------------------------------------------------------------------
@@ -219,6 +219,6 @@ let g: ((((((Int)))))) = ((""))
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-let h: (number: Int) = 2
-var i: (number: Int) = (number: 2)
+let t12: (number: Int) = 2
+var t13: (number: Int) = (number: 2)
 */

@@ -8,10 +8,12 @@
 //                                       keep track of class instances.
 // -----------------------------------------------------------------------------
 
+// TODO
+
+/*
+
 // Usually memory management "just works".  Memory used by class instances is
 // freed when those instances are no longer needed.
-
-// TODO
 
 // In a few cases ARC requires more information about the relationships
 // between parts of your code in order to manage memory for you.
@@ -753,5 +755,7 @@ paragraph = nil
 // Prints "p is being deinitialized"
 
 For more information about capture lists, see Capture Lists.
+
+*/
 
 */

@@ -19,140 +19,140 @@ assert(type(of: maybeNumber) == Int?.self)
 
 // Any type can be made into an optional type.
 
-let o1 = Bool?(false)
-assert(type(of: o1) == Bool?.self)
+let p1 = Bool?(false)
+assert(type(of: p1) == Bool?.self)
 
 // An optional having a value equals a non-optional that has a similar value.
 
-assert(o1 == Bool?(false))
-assert(o1 == Bool(false))
-assert(o1 == false)
+assert(p1 == Bool?(false))
+assert(p1 == Bool(false))
+assert(p1 == false)
 
-let o2: Int? = 8
-assert(type(of: o2) == Int?.self)
-assert(o2 == Int?(8))
-assert(o2 == Int(8))
-assert(o2 == 8)
+let p2: Int? = 8
+assert(type(of: p2) == Int?.self)
+assert(p2 == Int?(8))
+assert(p2 == Int(8))
+assert(p2 == 8)
 
 // -----------------------------------------------------------------------------
 
 // Another way to write an optional is by using the longhand form.
 
-var o3: Optional<Int>
+var p3: Optional<Int>
 assert(Int?.self == Optional<Int>.self)
-assert(type(of: o3) == Int?.self)
-assert(type(of: o3) == Optional<Int>.self)
-assert(o3 == nil)
+assert(type(of: p3) == Int?.self)
+assert(type(of: p3) == Optional<Int>.self)
+assert(p3 == nil)
 
 // -----------------------------------------------------------------------------
 
 // Nested optionals may be declared and assigned with any combination of
 // shorthand and longhand forms.
 
-let o4: Int?? = 8
-let o5: Int?? = Int?(8)
-let o6: Int?? = Optional<Int>(8)
-let o7: Int?? = Int??(8)
-let o8: Int?? = Optional<Int>?(8)
-let o9: Int?? = Optional<Int?>(8)
-let o10: Int?? = Optional<Optional<Int>>(8)
-let o11: Optional<Optional<Int>> = Int??(8)
-let o12: Optional<Optional<Int>> = Optional<Optional<Int>>(8)
+let p4: Int?? = 8
+let p5: Int?? = Int?(8)
+let p6: Int?? = Optional<Int>(8)
+let p7: Int?? = Int??(8)
+let p8: Int?? = Optional<Int>?(8)
+let p9: Int?? = Optional<Int?>(8)
+let p10: Int?? = Optional<Optional<Int>>(8)
+let p11: Optional<Optional<Int>> = Int??(8)
+let p12: Optional<Optional<Int>> = Optional<Optional<Int>>(8)
 
-let o13: Int??? = 8
-let o14: Int??? = Optional<Int?>(8)
-let o15: Optional<Int?>? = Optional<Int>??(8)
-let o16: Optional<Optional<Int?>> = Optional<Optional<Int>?>(8)
-let o17: Optional<Optional<Int>>? = Optional<Optional<Optional<Int>>>(8)
-let o18: Optional<Optional<Optional<Int>>> = Optional<Optional<Optional<Int>>>(8)
+let p13: Int??? = 8
+let p14: Int??? = Optional<Int?>(8)
+let p15: Optional<Int?>? = Optional<Int>??(8)
+let p16: Optional<Optional<Int?>> = Optional<Optional<Int>?>(8)
+let p17: Optional<Optional<Int>>? = Optional<Optional<Optional<Int>>>(8)
+let p18: Optional<Optional<Optional<Int>>> = Optional<Optional<Optional<Int>>>(8)
 
-let o19: Int???????????????????????????????????????????????????????????????? = 8
+let p19: Int???????????????????????????????????????????????????????????????? = 8
 
 // -----------------------------------------------------------------------------
 //  Forced unwrapping - An attempt at accessing an optional's underlying value.
 //  Forced unwrap operator (`!`) - The operator that force-unwraps an optional.
 // -----------------------------------------------------------------------------
 
-let o20 = Int?(123)
-assert(type(of: o20) == Int?.self)
-assert(o20! == 123)
-assert(o20 == 123)
+let p20 = Int?(123)
+assert(type(of: p20) == Int?.self)
+assert(p20! == 123)
+assert(p20 == 123)
 
-// We know that `o20` has an integer, so it's safe to force-unwrap it.
-let o21 = o20!
-assert(type(of: o21) == Int.self)
+// We know that `p20` has an integer, so it's safe to force-unwrap it.
+let p21 = p20!
+assert(type(of: p21) == Int.self)
 // If the following is uncommented it will produce a compile-time error:
 /*
-assert(o21! == 123)
+assert(p21! == 123)
 */
-assert(o21 == 123)
+assert(p21 == 123)
 
 // If we assign it without force-unwrapping it we're simply passing
 // the optional around.
-let o22 = o20
-assert(type(of: o22) == Int?.self)
-assert(o22! == 123)
-assert(o22 == 123)
+let p22 = p20
+assert(type(of: p22) == Int?.self)
+assert(p22! == 123)
+assert(p22 == 123)
 
 // -----------------------------------------------------------------------------
 
 // Nested optionals may be force-unwrapped as many levels as necessary.
 
-assert(o4!! == 8)
-assert(o4! == 8)
+assert(p4!! == 8)
+assert(p4! == 8)
 
-assert(o13!!! == 8)
-assert(o13!! == 8)
+assert(p13!!! == 8)
+assert(p13!! == 8)
 
-assert(o19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
-assert(o19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
+assert(p19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
+assert(p19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
 
 // -----------------------------------------------------------------------------
 //  nil - The special value that represents a valueless state.
 // -----------------------------------------------------------------------------
 
-var o23 = Int?(8)
-assert(o23! == 8)
-o23 = nil
-assert(o23 == nil)
+var p23 = Int?(8)
+assert(p23! == 8)
+p23 = nil
+assert(p23 == nil)
 
 // An optional in a valueless state cannot be force-unwrapped.
 
 // If the following is uncommented it will produce a runtime error:
 /*
-let o24 = o23!
+let p24 = p23!
 */
 
 // nil cannot be used with non-optional constants and variables.
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-let o25: Int = nil
+let p25: Int = nil
 */
 
 // -----------------------------------------------------------------------------
 
 // An optional variable declared without an explicit default value will be nil.
 
-var o26: Int?
-assert(o26 == nil)
+var p26: Int?
+assert(p26 == nil)
 
 // Printing an optional variable will work unlike printing an implicitly
 // unwrapped optional variable, which is explained later.
 
-print(o26)
+print(p26)
 
 // An optional constant must be explicitly initialized before being used.
 
-let o27: Int?
+let p27: Int?
 // If the following is uncommented it will produce a compile-time error:
 /*
-assert(o27 == nil)
+assert(p27 == nil)
 */
 
-let o28: Int?
-o28 = nil
-assert(o28 == nil)
+let p28: Int?
+p28 = nil
+assert(p28 == nil)
 
 // -----------------------------------------------------------------------------
 //  Implicitly unwrapped optional - An optional treated as if it has a value.
@@ -164,46 +164,46 @@ assert(o28 == nil)
 
 // An implicitly unwrapped optional can be used like a non-optional value.
 
-let assumedInt1: Int! = 411
+let p29: Int! = 411
 
-let number1 = assumedInt1
-assert(type(of: number1) == Int?.self)
-assert(number1 == 411)
-assert(number1! == 411)
+let n1 = p29
+assert(type(of: n1) == Int?.self)
+assert(n1 == 411)
+assert(n1! == 411)
 
-let number2: Int = assumedInt1
-assert(type(of: number2) == Int.self)
-assert(number2 == 411)
+let n2: Int = p29
+assert(type(of: n2) == Int.self)
+assert(n2 == 411)
 
 // -----------------------------------------------------------------------------
 
 // An implicitly unwrapped optional variable set to nil will crash if printed.
 
-var assumedInt2: Int!
-assert(assumedInt2 == nil)
+var p30: Int!
+assert(p30 == nil)
 // If the following is uncommented it will produce a runtime error:
 /*
-assert(assumedInt2! == nil)
+assert(p30! == nil)
 */
 // If the following is uncommented it will produce a runtime error:
 /*
-print(assumedInt2)
+print(p30)
 */
-assumedInt2 = 345
-assert(assumedInt2 == 345)
+p30 = 345
+assert(p30 == 345)
 
 // -----------------------------------------------------------------------------
 
 // An implicitly unwrapped optional constant set to nil will crash if printed.
 // It's also pointless since it can't be assigned a different value.
 
-let assumedInt3: Int! = nil
-assert(assumedInt3 == nil)
+let p31: Int! = nil
+assert(p31 == nil)
 // If the following is uncommented it will produce a runtime error:
 /*
-assert(assumedInt3! == nil)
+assert(p31! == nil)
 */
 // If the following is uncommented it will produce a runtime error:
 /*
-print(assumedInt3)
+print(p31)
 */

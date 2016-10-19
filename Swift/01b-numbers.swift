@@ -67,10 +67,10 @@ assert(type(of: pi) == Double.self)
 // If you combine integer and floating-point literals in an expression,
 // a type of `Double` will be inferred from the context.
 
-let myPi = 3 + 0.14159
-assert(type(of: myPi) == Double.self)
+let pi2 = 3 + 0.14159
+assert(type(of: pi2) == Double.self)
 
-assert(pi == myPi)
+assert(pi == pi2)
 
 // -----------------------------------------------------------------------------
 //  Numeric literal - A literal value that represents a number.
@@ -181,7 +181,7 @@ let tooBig: Int8 = Int8.max + 1
 // prevents hidden conversion errors and helps make type conversion
 // intentions explicit.
 
-let twoThousand: UInt16 = 2_000
+let twoK: UInt16 = 2_000
 let one: UInt8 = 1
 
 // To convert one specific number type to another, you initialize a new number
@@ -189,22 +189,21 @@ let one: UInt8 = 1
 
 // The conversion here is possible because `UInt16` has an initializer that
 // accepts a `Uint8` value.
-let twoThousandAndOne = twoThousand + UInt16(one)
-assert(type(of: twoThousandAndOne) == UInt16.self)
-assert(twoThousandAndOne == 2001)
+let twoKAndOne = twoK + UInt16(one)
+assert(type(of: twoKAndOne) == UInt16.self)
+assert(twoKAndOne == 2001)
 
 let three = 3
 let pointOneFourOneFiveNine = 0.14159
-let myPi2 = Double(three) + pointOneFourOneFiveNine
-assert(type(of: myPi2) == Double.self)
-assert(myPi2 == 3.14159)
+let pi3 = Double(three) + pointOneFourOneFiveNine
+assert(type(of: pi3) == Double.self)
+assert(pi3 == 3.14159)
 
 // -----------------------------------------------------------------------------
 
-// Floating-point values are always truncated when used to initialize
-// a new integer value.
+// Floating-point values are truncated when used to initialize an `Int` value.
 
-let integerPi = Int(myPi2)
+let integerPi = Int(pi3)
 assert(integerPi == 3)
 
 let floatAsInt1 = Int(4.75)
