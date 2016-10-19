@@ -1,8 +1,3 @@
-// =============================================================================
-//  Optional Chaining
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Optional chaining - The act of querying and calling properties, methods,
 //                      and subscripts on an optional.
@@ -457,3 +452,11 @@ In the example above, you place the optional chaining question mark after the pa
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Optional Chaining
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html
+// =============================================================================

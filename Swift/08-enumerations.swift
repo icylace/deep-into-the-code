@@ -1,8 +1,3 @@
-// =============================================================================
-//  Enumerations
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Enumeration - A common type for a particular group of related values.
 //  Enumeration case - A value of an enumeration.
@@ -366,3 +361,11 @@ left hand side, evaluating the expression on the right hand side, and then addin
 them or multiplying them.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Enumerations
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html
+// =============================================================================

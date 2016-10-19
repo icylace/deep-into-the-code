@@ -1,8 +1,3 @@
-// =============================================================================
-//  Properties
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html
-// =============================================================================
-
 // TODO
 
 // - are there stored type properties?
@@ -550,3 +545,11 @@ print(AudioChannel.maxInputLevelForAllChannels)
 // Prints "10"
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Properties
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html
+// =============================================================================

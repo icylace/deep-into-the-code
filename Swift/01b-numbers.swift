@@ -1,8 +1,3 @@
-// =============================================================================
-//  The Basics
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Integer - A whole number with no fractional component that is either signed
 //            (positive, zero, or negative) or unsigned (positive or zero).
@@ -217,3 +212,11 @@ assert(floatAsInt2 == -3)
 // to the literal value 0.14159 because number literals do not have an
 // explicit type in and of themselves.  Their type is inferred only at
 // the point that they are evaluated by the compiler.
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - The Basics
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+// =============================================================================

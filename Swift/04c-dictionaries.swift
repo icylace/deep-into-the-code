@@ -1,8 +1,3 @@
-// =============================================================================
-//  Collection Types
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Dictionary - A collection type having unordered key-value associations.
 // -----------------------------------------------------------------------------
@@ -214,3 +209,11 @@ let airportNames = [String](airports.values)
 Swift’s Dictionary type does not have a defined ordering. To iterate over the keys or values of a dictionary in a specific order, use the sorted() method on its keys or values property.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Collection Types
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
+// =============================================================================

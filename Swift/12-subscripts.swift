@@ -1,8 +1,3 @@
-// =============================================================================
-//  Subscripts
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Subscript - A shortcut for accessing properties in a type.
 // -----------------------------------------------------------------------------
@@ -187,3 +182,11 @@ matrix[0, 1] = 1.5
 matrix[1, 0] = 3.2
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Subscripts
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html
+// =============================================================================

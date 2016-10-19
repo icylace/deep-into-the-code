@@ -1,8 +1,3 @@
-// =============================================================================
-//  Classes and Structures
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html
-// =============================================================================
-
 // TODO
 
 // -----------------------------------------------------------------------------
@@ -533,3 +528,11 @@ var baz = Baz()
 var baz = Baz.self
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Classes and Structures
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html
+// =============================================================================

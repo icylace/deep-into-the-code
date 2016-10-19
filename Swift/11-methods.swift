@@ -1,8 +1,3 @@
-// =============================================================================
-//  Methods
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Method - A function belonging to a particular type.
 //  Instance method - A method that works on instances of the type it belongs to.
@@ -252,3 +247,11 @@ if player.tracker.advance(to: 6) {
 // Prints "level 6 has not yet been unlocked"
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Methods
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html
+// =============================================================================

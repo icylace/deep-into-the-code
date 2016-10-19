@@ -1,8 +1,3 @@
-// =============================================================================
-//  Strings and Characters
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Grapheme - The smallest meaningful contrastive unit in a writing system.
 //  Character - A unit of data usually representing a grapheme.
@@ -37,11 +32,20 @@
 // without casting.
 
 // -----------------------------------------------------------------------------
-//  String literal - A literal value that represents a predefined string.
+//  String literal - A literal value representing a predefined string.
 // -----------------------------------------------------------------------------
 
-let someString = "hello"
-// `someString` is inferred to be of type `String`.
+let s1 = "hello"
+assert(type(of: s1) == String.self)
+
+
+
+
+// TODO
+
+
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -704,3 +708,11 @@ print(repeatIt("ha", 3)) // -> "hahaha"
 
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Strings and Characters
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html
+// =============================================================================

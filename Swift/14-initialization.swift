@@ -1,8 +1,3 @@
-// =============================================================================
-//  Initialization
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Initialization - The process of preparing an instance of a class,
 //                   structure, or enumeration for use.
@@ -1003,22 +998,23 @@ To represent this game board, the Chessboard structure has a single property cal
 The boardColors array is initialized with a closure to set up its color values:
 
 struct Chessboard {
-    let boardColors: [Bool] = {
-        var temporaryBoard = [Bool]()
-        var isBlack = false
-        for i in 1...8 {
-            for j in 1...8 {
-                temporaryBoard.append(isBlack)
-                isBlack = !isBlack
-            }
-            isBlack = !isBlack
-        }
-        return temporaryBoard
-    }()
-    func squareIsBlackAt(row: Int, column: Int) -> Bool {
-        return boardColors[(row * 8) + column]
+  let boardColors: [Bool] = {
+    var temporaryBoard = [Bool]()
+    var isBlack = false
+    for i in 1...8 {
+      for j in 1...8 {
+        temporaryBoard.append(isBlack)
+        isBlack = !isBlack
+      }
+      isBlack = !isBlack
     }
+    return temporaryBoard
+  }()
+  func squareIsBlackAt(row: Int, column: Int) -> Bool {
+    return boardColors[(row * 8) + column]
+  }
 }
+
 Whenever a new Chessboard instance is created, the closure is executed, and the default value of boardColors is calculated and returned. The closure in the example above calculates and sets the appropriate color for each square on the board in a temporary array called temporaryBoard, and returns this temporary array as the closure’s return value once its setup is complete. The returned array value is stored in boardColors and can be queried with the squareIsBlackAtRow utility function:
 
 let board = Chessboard()
@@ -1030,3 +1026,11 @@ print(board.squareIsBlackAt(row: 7, column: 7))
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Initialization
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html
+// =============================================================================

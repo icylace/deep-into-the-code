@@ -1,8 +1,3 @@
-// =============================================================================
-//  Control Flow
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Loop statement - A statement that can execute a block of code repeatedly.
 //  `for-in` loop - A loop statement that iterates over a sequence.
@@ -83,8 +78,8 @@ assert(answer == 31)
 // to do with the loop variable.
 
 answer = 1
-var condition = 3 < 5
-for i in 1...10 where condition {
+var loopCondition = 3 < 5
+for i in 1...10 where loopCondition {
   answer += i
 }
 assert(answer == 56)
@@ -203,10 +198,10 @@ for i in optionalInt as [Int]! {  print(i) }
 // -----------------------------------------------------------------------------
 
 var i = 0
-condition = true
-while condition {
+loopCondition = true
+while loopCondition {
   i += 1
-  condition = i < 10
+  loopCondition = i < 10
 }
 assert(i == 10)
 
@@ -232,14 +227,22 @@ assert(i == 10)
 // -----------------------------------------------------------------------------
 
 i = 0
-condition = true
+loopCondition = true
 repeat {
   i += 1
-  condition = i < 10
-} while condition
+  loopCondition = i < 10
+} while loopCondition
 assert(i == 10)
 
 // -----------------------------------------------------------------------------
 
 // `while` and `repeat-while` loops are best used when the number of iterations
 // is not known before the first iteration begins.
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Control Flow
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
+// =============================================================================

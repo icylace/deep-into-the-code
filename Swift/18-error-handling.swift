@@ -1,8 +1,3 @@
-// =============================================================================
-//  Error Handling
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Error handling - The process of responding to and recovering from
 //                   error conditions.
@@ -450,3 +445,11 @@ do {
 // the catch pattern.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Error Handling
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html
+// =============================================================================

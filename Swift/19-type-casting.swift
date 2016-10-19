@@ -1,8 +1,3 @@
-// =============================================================================
-//  Type Casting
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html
-// =============================================================================
-
 // TODO
 
 // -----------------------------------------------------------------------------
@@ -244,3 +239,11 @@ for thing in things {
 // Hello, Michael
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Type Casting
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html
+// =============================================================================

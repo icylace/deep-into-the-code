@@ -1,8 +1,3 @@
-// =============================================================================
-//  Nested Types
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/NestedTypes.html
-// =============================================================================
-
 // Enumerations can be used to support a specific class or structure's
 // functionality.  Similarly, it can be convenient to define utility
 // classes and structures purely for use within the context of a
@@ -107,3 +102,11 @@ kept deliberately short, because their names are naturally qualified by the
 context in which they are defined.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Nested Types
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/NestedTypes.html
+// =============================================================================

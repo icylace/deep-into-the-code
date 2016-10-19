@@ -1,8 +1,3 @@
-// =============================================================================
-//  Generics
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Generic code - Code that works with multiple types, subject to any
 //                 given requirements.
@@ -557,3 +552,11 @@ if allItemsMatch(stackOfStrings, arrayOfStrings) {
 The example above creates a Stack instance to store String values, and pushes three strings onto the stack. The example also creates an Array instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the Container protocol, and both contain the same type of values. You can therefore call the allItemsMatch(_:_:) function with these two containers as its arguments. In the example above, the allItemsMatch(_:_:) function correctly reports that all of the items in the two containers match.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Generics
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
+// =============================================================================

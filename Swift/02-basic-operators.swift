@@ -1,8 +1,3 @@
-// =============================================================================
-//  Basic Operators
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Operator - A symbol or phrase that processes one or more values.
 //  Operand - A value targeted by an operator.
@@ -18,10 +13,10 @@
 //                              or variable, or updates a variable.
 // -----------------------------------------------------------------------------
 
-let b1 = 10
-var b2 = 5
-b2 = b1
-assert(b2 == 10)
+let p1 = 10
+var p2 = 5
+p2 = p1
+assert(p2 == 10)
 
 // -----------------------------------------------------------------------------
 //  Arithmetic operator - A operator that manipulates numbers.
@@ -63,19 +58,19 @@ assert(9 % -4 == 1)
 //  Unary minus operator (`-`) - The operator that toggles the sign of a number.
 // -----------------------------------------------------------------------------
 
-let b3 = 3
-let b4 = -b3
-assert(b4 == -3)
-let b5 = -b4
-assert(b5 == 3)
+let p3 = 3
+let p4 = -p3
+assert(p4 == -3)
+let p5 = -p4
+assert(p5 == 3)
 
 // -----------------------------------------------------------------------------
 //  Unary plus operator (`+`) - The operator that returns its operand as is.
 // -----------------------------------------------------------------------------
 
-let b6 = -6
-let b7 = +b6
-assert(b7 == -6)
+let p6 = -6
+let p7 = +p6
+assert(p7 == -6)
 
 // -----------------------------------------------------------------------------
 //  Compound assignment operator - An operator combining assignment
@@ -83,9 +78,9 @@ assert(b7 == -6)
 // -----------------------------------------------------------------------------
 
 // Example use of the addition assignment operator (`+=`).
-var b8 = 1
-b8 += 2
-assert(b8 == 3)
+var p8 = 1
+p8 += 2
+assert(p8 == 3)
 
 // For more compound assignment operators from the Swift Standard Library, see:
 // https://developer.apple.com/reference/swift/1851035-swift_standard_library_operators
@@ -334,3 +329,11 @@ if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword 
 
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Basic Operators
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html
+// =============================================================================

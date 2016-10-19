@@ -1,8 +1,3 @@
-// =============================================================================
-//  Deinitialization
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Deinitialization.html
-// =============================================================================
-
 // When instances are no longer needed they get automatically deallocated to
 // free up resources like memory.  This typically renders manual cleanup
 // unnecessary.  However, there might be times when additional manual
@@ -99,3 +94,11 @@ assert(Bank.coins == 7700)
 // The player has left and the bank gets back the coins the player borrowed.
 player = nil
 assert(Bank.coins == 10_000)
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Deinitialization
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Deinitialization.html
+// =============================================================================

@@ -1,8 +1,3 @@
-// =============================================================================
-//  Protocols
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Protocol - A blueprint of methods, properties, and other requirements that
 //             suit a particular task or piece of functionality.
@@ -1100,3 +1095,11 @@ If a conforming type satisfies the requirements for multiple constrained extensi
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Protocols
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html
+// =============================================================================

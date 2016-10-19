@@ -1,8 +1,3 @@
-// =============================================================================
-//  Extensions
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Extension - A construct that adds new functionality to an existing class,
 //              structure, enumeration, or protocol.
@@ -302,3 +297,11 @@ printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
 // statement, such as .negative rather than Int.Kind.negative.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Extensions
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html
+// =============================================================================

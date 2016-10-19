@@ -1,8 +1,3 @@
-// =============================================================================
-//  Automatic Reference Counting
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Automatic Reference Counting (ARC) - A memory management technique to
 //                                       keep track of class instances.
@@ -759,3 +754,11 @@ For more information about capture lists, see Capture Lists.
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Automatic Reference Counting
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html
+// =============================================================================

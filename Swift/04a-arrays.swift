@@ -1,8 +1,3 @@
-// =============================================================================
-//  Collection Types
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Collection type - A type for storing groups of values.
 // -----------------------------------------------------------------------------
@@ -217,3 +212,11 @@ for (index, value) in shoppingList.enumerated() {
 // Item 5: Bananas
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Collection Types
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
+// =============================================================================

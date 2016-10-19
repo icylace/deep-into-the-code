@@ -1,8 +1,3 @@
-// =============================================================================
-//  The Basics
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Boolean - A value that can only ever be true or false.
 // -----------------------------------------------------------------------------
@@ -30,3 +25,11 @@ assert(type(of: sample) == AudioSample.self)
 assert(type(of: sample) == UInt16.self)
 assert(AudioSample.self == UInt16.self)
 assert(sample == 0)
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - The Basics
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+// =============================================================================

@@ -1,8 +1,3 @@
-// =============================================================================
-//  Access Control
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html
-// =============================================================================
-
 // TODO
 
 // -----------------------------------------------------------------------------
@@ -534,3 +529,11 @@ NOTE
 This rule also applies to type aliases for associated types used to satisfy protocol conformances.
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Access Control
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html
+// =============================================================================

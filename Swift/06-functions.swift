@@ -1,8 +1,3 @@
-// =============================================================================
-//  Functions
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Parameter - A constant that represents an input to a function.
 //  Return type - The type of a function's output value.
@@ -917,3 +912,11 @@ print("zero!")
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Functions
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html
+// =============================================================================

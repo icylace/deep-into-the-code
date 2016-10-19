@@ -76,11 +76,6 @@ assert(3 > 5)
 // Assertions are disabled when your code is compiled with optimizations, such
 // as when building with an app target's default Xcode Release configuration.
 
-// =============================================================================
-//  The Basics
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Expression - A group of one or more language elements that gets evaluated.
 //  Evaluation - The process by which an expression is computed.
@@ -267,3 +262,11 @@ let c10 = 1; var v16 = 2
 
 let c11 = 1
 var v17 = 2;
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - The Basics
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+// =============================================================================

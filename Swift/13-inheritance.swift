@@ -1,8 +1,3 @@
-// =============================================================================
-//  Inheritance
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html
-// =============================================================================
-
 // TODO
 
 /*
@@ -308,3 +303,11 @@ final class is reported as a compile-time error.
 */
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Inheritance
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html
+// =============================================================================

@@ -1,8 +1,3 @@
-// =============================================================================
-//  The Basics
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Tuple type - A type that groups together multiple types.
 //  Tuple value (tuple) - A value that groups together multiple values.
@@ -141,37 +136,37 @@ assert(t2 == (baz: "6", foo: 2, bar: 3))
 
 // A tuple can have zero elements.
 
-var empty1: () = ()
+var t5: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-assert(type(of: empty1) == ().self)
+assert(type(of: t5) == ().self)
 */
 
 // `Void` is a type alias for the zero-element tuple (`()`).
 
-var empty2: Void = ()
+var t6: Void = ()
 
-assert(type(of: empty1) == Void.self)
-assert(type(of: empty2) == Void.self)
+assert(type(of: t5) == Void.self)
+assert(type(of: t6) == Void.self)
 
 // Since `Void` is a type alias it can't be assigned like `()` can.
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-empty1 = Void
-empty2 = Void
+t5 = Void
+t6 = Void
 */
 
 // If the following is uncommented it will produce a compile-time warning:
 /*
-var empty3 = ()
-assert(type(of: empty3) == Void.self)
+var t7 = ()
+assert(type(of: t7) == Void.self)
 // If the following is uncommented it will produce a compile-time error:
 /*
-empty3 = Void
+t7 = Void
 */
 */
 
@@ -179,37 +174,37 @@ empty3 = Void
 
 // A single-element tuple doesn't truly exist.
 
-let t5: Int = 2
-let t6: (Int) = (2)
-let t7: (((Int))) = (((2)))
-assert(type(of: t5) == type(of: t6))
-assert(type(of: t5) == type(of: t7))
-assert(type(of: t5) == Int.self)
-assert(t5 == t6)
-assert(t5 == t7)
-assert(t5 == 2)
+let t8: Int = 2
+let t9: (Int) = (2)
+let t10: (((Int))) = (((2)))
+assert(type(of: t8) == type(of: t9))
+assert(type(of: t8) == type(of: t10))
+assert(type(of: t8) == Int.self)
+assert(t8 == t9)
+assert(t8 == t10)
+assert(t8 == 2)
 
 // -----------------------------------------------------------------------------
 
 // Decomposing a "single-element tuple" is pointless.
 
-let (t8) = (3)
-assert(t8 == 3)
+let (t11) = (3)
+assert(t11 == 3)
 
 // -----------------------------------------------------------------------------
 
 // A "single-element tuple" doesn't affect type safety.
 
-let t9: ((((((Int)))))) = ((2))
-let t10: ((Int)) = ((((((2))))))
-assert(type(of: t9) == Int.self)
-assert(type(of: t10) == Int.self)
-assert(t9 == 2)
-assert(t10 == 2)
+let t12: ((((((Int)))))) = ((2))
+let t13: ((Int)) = ((((((2))))))
+assert(type(of: t12) == Int.self)
+assert(type(of: t13) == Int.self)
+assert(t12 == 2)
+assert(t13 == 2)
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-let t11: ((((((Int)))))) = ((""))
+let t14: ((((((Int)))))) = ((""))
 */
 
 // -----------------------------------------------------------------------------
@@ -219,6 +214,14 @@ let t11: ((((((Int)))))) = ((""))
 
 // If the following is uncommented it will produce a compile-time error:
 /*
-let t12: (number: Int) = 2
-var t13: (number: Int) = (number: 2)
+let t15: (number: Int) = 2
+var t16: (number: Int) = (number: 2)
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - The Basics
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+// =============================================================================

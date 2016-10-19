@@ -1,8 +1,3 @@
-// =============================================================================
-//  Control Flow
-//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
-// =============================================================================
-
 // -----------------------------------------------------------------------------
 //  Branch - A set of statements that may be conditionally executed.
 //  Conditional statement - A non-looping statement that conditionally redirects
@@ -71,20 +66,20 @@ assert(feelsLike == "warm")
 // The ternary conditional operator (`?:`) is shorthand for the
 // `if` statement with its else clause.
 
-var foo = ""
+var barOrBaz = ""
 condition = true
 
 // The ternary statement...
-foo = condition ? "bar" : "baz"
-assert(foo == "bar")
+barOrBaz = condition ? "bar" : "baz"
+assert(barOrBaz == "bar")
 
 // ...is equivalent to this `if` statement.
 if condition {
-  foo = "bar"
+  barOrBaz = "bar"
 } else {
-  foo = "baz"
+  barOrBaz = "baz"
 }
-assert(foo == "bar")
+assert(barOrBaz == "bar")
 
 // -----------------------------------------------------------------------------
 
@@ -107,16 +102,16 @@ assert(totalCoins1 == totalCoins2)
 // comparing the optional against nil.  If an optional has a value, it is
 // considered to be not equal to nil, and may be force-unwrapped safely.
 
-var maybeNumber: Int? = 2
+var maybeTwo: Int? = 2
 
-if maybeNumber != nil {
-  assert(maybeNumber! == 2)
+if maybeTwo != nil {
+  assert(maybeTwo! == 2)
 }
 
-if maybeNumber != nil {
-  assert(maybeNumber! == 2)
+if maybeTwo != nil {
+  assert(maybeTwo! == 2)
 } else {
-  assert(maybeNumber == nil)
+  assert(maybeTwo == nil)
 }
 
 // -----------------------------------------------------------------------------
@@ -128,16 +123,16 @@ if maybeNumber != nil {
 // An `if` statement can use optional binding.  Constants and variables created
 // in this way are available only within the `if` statement's branch.
 
-if let number = maybeNumber {
+if let number = maybeTwo {
   assert(number == 2)
 }
 
 // An optionally bound constant or variable is not available in an else clause.
 
-if let number = maybeNumber {
+if let number = maybeTwo {
   assert(number == 2)
 } else {
-  assert(maybeNumber == nil)
+  assert(maybeTwo == nil)
   // If the following is uncommented it will produce a runtime error:
   /*
   assert(number == nil)
@@ -149,7 +144,7 @@ if let number = maybeNumber {
 // An optionally bound variable can be manipulated within an `if`
 // statement's branch.
 
-if var number = maybeNumber {
+if var number = maybeTwo {
   assert(number == 2)
   number = 4
   assert(number == 4)
@@ -163,7 +158,7 @@ if var number = maybeNumber {
 // another constant or variable having the same name in a parent scope.
 
 var actualNumber = 50
-if let actualNumber = maybeNumber {
+if let actualNumber = maybeTwo {
   assert(actualNumber == 2)
 }
 assert(actualNumber == 50)
@@ -1030,3 +1025,11 @@ if #available(platform name version, ..., *) {
 
 
 */
+
+
+// =============================================================================
+//  References:
+//
+//  The Swift Programming Language (Swift 3) - Control Flow
+//  https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html
+// =============================================================================
