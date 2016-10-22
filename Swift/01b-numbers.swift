@@ -3,8 +3,7 @@
 //            (positive, zero, or negative) or unsigned (positive or zero).
 // -----------------------------------------------------------------------------
 
-// Integer types can be either signed or unsigned in 8, 16, 32,
-// and 64-bit forms.
+// Integers can be either signed or unsigned in 8, 16, 32, and 64-bit forms.
 
 let i1: Int         // A signed integer with default bit form.
 let i2: Int8        // An 8-bit signed integer.
@@ -18,18 +17,16 @@ let i8: UInt16        // A 16-bit unsigned integer.
 let i9: UInt32        // A 32-bit unsigned integer.
 let i10: UInt64       // A 64-bit unsigned integer.
 
-// In most cases you don't need to pick a specific size of integer to use.
-// `Int` and `UInt` has the same size as the current platform's native
-// word size:
-// - On a 32-bit platform, `Int` is the same size as `Int32` and
-//   `UInt` is the same size as `UInt32`.
-// - On a 64-bit platform, `Int` is the same size as `Int64` and
-//   `UInt` is the same size as `UInt64`.
+// Usually you don't need to pick a specific size of integer to use.  `Int` and
+// `UInt` have the same size as the current platform's native word size.  For
+// platforms that are...
+// ...32-bit, `Int` is as big as `Int32` and `UInt` is as big as `UInt32`.
+// ...64-bit, `Int` is as big as `Int64` and `UInt` is as big as `UInt64`.
 
 // -----------------------------------------------------------------------------
 
 // The minimum and maximum values of each integer type are accessed
-// through their `min` and `max` properties.
+// through their `min` and `max` properties, respectively.
 
 let minValue = UInt8.min
 assert(type(of: minValue) == UInt8.self)
@@ -43,17 +40,26 @@ assert(maxValue == 255)
 //  Floating-point number - A number with a fractional component.
 // -----------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+// TODO
+
 // Floating-point types can represent a much wider range of values than
 // integer types and can store numbers that are much larger or smaller
 // than can be stored in an integer.
 
 // There are no unsigned floating-point types but there are three signed ones:
-// - `Float` (a.k.a. `Float32`) represents a 32-bit single-precision
-//   floating-point number and can have a precision as little as 6
-//   decimal digits.
-// - `Double` (a.k.a. `Float64`) represents a 64-bit double-precision
-//   floating-point number and has a precision of at least 15
-//   decimal digits.
+// - `Float` (or `Float32`) represents a 32-bit single-precision floating-point
+//   number and can have a precision as little as 6 decimal digits.
+// - `Double` (or `Float64`) represents a 64-bit double-precision floating-point
+//   number and has a precision of at least 15 decimal digits.
 // - `Float80` represents an 80-bit extended-precision floating-point number.
 
 let pi = 3.14159
@@ -66,6 +72,14 @@ let pi2 = 3 + 0.14159
 assert(type(of: pi2) == Double.self)
 
 assert(pi == pi2)
+
+
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 //  Numeric literal - A literal value that represents a number.

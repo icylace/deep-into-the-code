@@ -10,8 +10,6 @@
 
 // TODO
 
-/*
-
 class Counter {
   var count = 0
   func increment(by amount: Int = 1) {
@@ -20,26 +18,34 @@ class Counter {
   func reset() {
     count = 0
   }
-  // Instances come with a special `self` property which references
-  // the instance itself.
   func restart() {
+    // Instances come with a special `self` property which references
+    // the instance itself.
     self.count = 0
   }
 }
 
-let c = Counter()
-assert(c.count == 0)
-c.increment()
-assert(c.count == 1)
-c.increment(by: 5)
-assert(c.count == 6)
-c.reset()
-assert(c.count == 0)
-c.increment()
-c.increment()
-assert(c.count == 2)
-c.restart()
-assert(c.count == 0)
+let counter = Counter()
+assert(counter.count == 0)
+
+counter.increment()
+assert(counter.count == 1)
+
+counter.increment(by: 5)
+assert(counter.count == 6)
+
+counter.reset()
+assert(counter.count == 0)
+
+counter.increment()
+counter.increment()
+assert(counter.count == 2)
+
+counter.restart()
+assert(counter.count == 0)
+
+
+/*
 
 // -----------------------------------------------------------------------------
 

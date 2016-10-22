@@ -1,44 +1,382 @@
 // -----------------------------------------------------------------------------
-//  Parameter - A constant that represents an input to a function.
-//  Return type - The type of a function's output value.
 //  Function name - An identifier given to a function.
-//  Argument - A value given as input to a function when it is called.
 //  Function - A self-contained chunk of code that performs a specific task.
 //  Call - The act of executing a function with any arguments needed.
 // -----------------------------------------------------------------------------
 
+// A function in its simplest form is pretty useless.
+
+func f0() {}
+
 // A function's name is used to "call" the function to perform its task.
 
+// This function call ends up doing nothing.
+f0()
+
+assert(type(of: f0()) == Void.self)
+
+// -----------------------------------------------------------------------------
+
+// A function isn't required to define input parameters.
+
+func f1() {
+  print("help!")
+}
+
+f1()
+// Output:
+// help!
+
+// -----------------------------------------------------------------------------
+//  Parameter - A constant that represents an input to a function.
+//  Parameter name - An identifier referring to a parameter within a function.
+//  Argument label - An identifier referring to a parameter in a function call.
+//  Argument - A value given as input to a function when it is called.
+// -----------------------------------------------------------------------------
+
+// A function can optionally have a parameter.
+
+func f2(parameterName: Int) {
+  // In the function, `parameterName` is used to refer to the parameter value.
+  assert(parameterName == 1)
+}
+
+// An argument label is used in place of a parameter name in function calls.
+
+// A parameter's argument label is named after its parameter name by default.
+
+// Call `f2(parameterName:)` with the argument 1.
+f2(parameterName: 1)
+
+// -----------------------------------------------------------------------------
+
+// A parameter can have a custom argument label.
+
+func f3(argumentLabel parameterName: Int) {
+  // Within the function, `parameterName` is used instead of `argumentLabel`
+  // to refer to the parameter's argument value.
+  assert(parameterName == 1)
+}
+
+f3(argumentLabel: 1)
+
+// -----------------------------------------------------------------------------
+
+// An argument label defined as an underscore is omitted from function calls.
+
+func f4(_ parameter: Int) {
+  assert(parameter == 1)
+}
+
+f4(1)
+
+// If the following is uncommented it will produce a compile-time error:
+/*
+f4(parameter: 1)
+*/
+
+// -----------------------------------------------------------------------------
+
+// A parameter can be assigned a default value.
+
+func f5(parameter: Int = 2) {
+  // If no valid arguments are passed to the function call then
+  // the value of `parameter` will be 2.
+  assert(parameter % 2 == 0)
+}
+
+// Call `f5(parameter:)` with an argument of 4.
+f5(parameter: 4)
+
+// Call `f5(parameter:)` with an argument of 2.
+f5(parameter: 2)
+
+// Call `f5(parameter:)` and use its default argument which is 2.
+f5()
+
+// If the following is uncommented it will produce a runtime error:
+/*
+f5(parameter: 3)
+*/
+
+// -----------------------------------------------------------------------------
+//  Variadic parameter - A parameter that accepts zero or more values.
+// -----------------------------------------------------------------------------
+
+func f6(xs: Double...) {
+  var total: Double = 1
+  for x in xs {
+    total *= x
+  }
+  assert(total == 865.975)
+}
+
+f6(xs: 2.35, 6.7, 55.0)
+
+// A function may have at most one variadic parameter.
+
+// If the following is uncommented it will produce a compile-time error:
+/*
+func f7(xs: Double..., ys: Double...) {}
+*/
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 // TODO
+
+// Function parameters are constants by default.  Parameters that can be
+// modified are in-out parameters.
+
+func f8(x: inout Int) {
+  x *= 2
+}
+
+var r8 = 4
+// Here an ampersand is needed because we're passing in a reference to `r6`.
+f8(x: &r8)
+assert(r8 == 8)
+
+// In-out parameters can't have default values, and variadic parameters
+// can't be in-out.
+
+// In-out parameters are not the same as returning a value from a function.
+// In-out parameters are an alternative way for a function to have an effect
+// outside of the scope of its function body.
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO
+
+// no parameters, no return
+
+// 1 parameter
+// 1 parameter: external names
+// 1 parameter: default value
+// 1 parameter: variadic
+// 1 parameter: in-out
+
+// no parameters, with return
+
+// function name: functions with similar names
+// function calls within functions
+// nested functions
+// higher-order functions
+
+
+
+
+
+
+
 
 /*
 
-// A function in its simplest form is pretty useless.
+// -----------------------------------------------------------------------------
+//  Return type - The type of a function's output value.
+//  Return arrow (`->`) - The symbol that indicates a function's return type.
+// -----------------------------------------------------------------------------
 
-func f() {}
+func f3() -> String {
+  let greeting = "hello"
+  return greeting
+}
 
-assert(type(of: f) == (() -> ()).self)
-assert(type(of: f) == (() -> Void).self)
-assert(type(of: f) == ((Void) -> ()).self)
-assert(type(of: f) == ((Void) -> Void).self)
+let result3 = f3()
+assert(type(of: result3) == String.self)
+assert(result3 == "hello")
 
-f()
+// -----------------------------------------------------------------------------
 
-assert(type(of: f()) == Void.self)
+func f4() -> String {
+  return "hello"
+}
+
+let result4 = f4()
+assert(type(of: result4) == String.self)
+assert(result4 == "hello")
+
+// -----------------------------------------------------------------------------
+
+// A function can optionally have one or more parameters, and also
+// optionally define a return type.
+
+func f5(name: String) -> String {
+  return "Suplex City, \(name) !!!"
+}
+
+let result5 = f5(name: "Bill")
+assert(type(of: result5) == String.self)
+assert(result5 == "Suplex City, Bill !!!")
+
+// -----------------------------------------------------------------------------
+
+// A function's type is made up of its parameter types and its return type.
+
+assert(type(of: f0) == (() -> ()).self)
+assert(type(of: f0) == (() -> ()).self)
+assert(type(of: f0) == (() -> Void).self)
+assert(type(of: f0) == (() -> (Void)).self)
+assert(type(of: f0) == (() -> ((Void))).self)
+assert(type(of: f0) == ((Void) -> ()).self)
+assert(type(of: f0) == (((Void)) -> ()).self)
+assert(type(of: f0) == ((Void) -> Void).self)
+assert(type(of: f0) == ((Void) -> (Void)).self)
+assert(type(of: f0) == ((Void) -> ((Void))).self)
+assert(type(of: f0) == ((((Void))) -> (((Void)))).self)
+
+assert(type(of: f1) == (() -> ()).self)
+
+assert(type(of: f2) == ((String) -> ()).self)
+
+assert(type(of: f4) == (() -> String).self)
+
+assert(type(of: f5) == ((String) -> String).self)
+
+
+*/
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+
+// A function can have multiple parameters
+
+
+
+
+
+
+
+/*
+
+
+// TODO
+
+func f6(n: Int, s: String) -> String {
+  var output = ""
+  for _ in 0..<n {
+    output += s
+  }
+  return output
+}
+assert(type(of: f6) == ((Int, String) -> String).self)
+
+let result6 = f6(n: 2, s: "text")
+assert(result6 == "texttext")
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+// A function with a crazy set of parameters.  This is what not to do!
+func f7(_ first: Int, foo second: Int = 4, _ xs: Int..., bar third: Int) -> Int {
+  return first + second + third * xs.count
+}
+
+let r7 = f7(1, foo: 4, 1, 2, 3, 4, 5, 6, 7, bar: 3)
+assert(r7 == 26)
+
+// -----------------------------------------------------------------------------
+//  Function Types
+// -----------------------------------------------------------------------------
+
+// Every function has a specific function type made up of the parameter
+// types and the return type of the function.
+
+// Here, `f10` has the type `() -> Void`.
+func f8() {
+  // Stuff happens.
+}
+
+// -----------------------------------------------------------------------------
+
+// Here, `f9` and `f10` have the same type of `(Int, Int) -> Int`.
+func f9(_ a: Int, _ b: Int) -> Int {
+  return a + b
+}
+func f10(_ a: Int, _ b: Int) -> Int {
+  return a * b
+}
+
+// -----------------------------------------------------------------------------
+
+// Constants and variables can be assigned functions making them
+// act like functions.
+
+var f11: (Int, Int) -> Int = f9
+let f12 = f9
+let r11 = f11(2, 3)
+let r12 = f12(2, 3)
+assert(r11 == 5)
+assert(r12 == 5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // TODO
 
 
 
+/*
 
 
-
-
-
-
-// When you define a function, you can optionally define one or more parameters,
-// and also optionally define a return type.
 
 
 
@@ -52,9 +390,6 @@ assert(type(of: f()) == Void.self)
 
 
 
-// -----------------------------------------------------------------------------
-//  Return arrow (`->`) - The symbol that indicates a function's return type.
-// -----------------------------------------------------------------------------
 
 func greet(person: String) -> String {
   let greeting = "Hello, " + person + "!"
@@ -256,136 +591,14 @@ if let info = findMaxAndSize2(xs: [8, -6, 2, 109, 3, 71]) {
   assert(info.size == 6)
 }
 
-// -----------------------------------------------------------------------------
-//  Function Parameter Names
-// -----------------------------------------------------------------------------
 
-// A function that takes a single parameter.
-func f1(parameter: Int) {
-  // Within the function, `parameter` is used to refer to the parameter value.
-  assert(parameter == 1)
-}
 
-// By default the parameter name must be used as a label for
-// the argument passed to the function.
-f1(parameter: 1)
 
-// -----------------------------------------------------------------------------
 
-// Parameters can have custom external parameter names.
-func f2(externalParameterName parameter: Int) {
-  // Within the function, `parameter` is used
-  // instead of `externalParameterName`.
-  assert(parameter == 1)
-}
 
-// The external parameter name must be used as a label for
-// the argument passed to the function.
-f2(externalParameterName: 1)
 
-// -----------------------------------------------------------------------------
 
-// If a parameter's external name is an underscore then
-// it's not labelled in calls to the function.
-func f3(_ parameter: Int) {
-  assert(parameter == 1)
-}
 
-// The parameter label is prohibited.
-f3(1)
-
-// -----------------------------------------------------------------------------
-
-// Parameters can be assigned a default value.
-func f4(parameter: Int = 2) {
-  // If no valid arguments are passed to the function call then
-  // the value of `parameter` will be 2.
-  assert(parameter % 2 == 0)
-}
-
-f4(parameter: 4)        // `parameter` will be 4.
-f4()        // `parameter` will be 2.  Note the label is not used here.
-
-// -----------------------------------------------------------------------------
-
-// A variadic parameter accepts zero or more values of a specified type.
-// A function may have at most one variadic parameter.
-
-func f5(xs: Double...) -> Double {
-  var total: Double = 1
-  for x in xs {
-    total *= x
-  }
-  return total
-}
-
-let r5 = f5(xs: 2.35, 6.7, 55.0)
-assert(r5 == 865.975)
-
-// -----------------------------------------------------------------------------
-
-// Function parameters are constants by default.  Parameters that can be
-// modified are in-out parameters.
-
-func f6(x: inout Int) {
-  x *= 2
-}
-
-var r6 = 4
-// Here an ampersand is needed because we're passing in a reference to `r6`.
-f6(x: &r6)
-assert(r6 == 8)
-
-// In-out parameters can't have default values, and variadic parameters
-// can't be in-out.
-
-// In-out parameters are not the same as returning a value from a function.
-// In-out parameters are an alternative way for a function to have an effect
-// outside of the scope of its function body.
-
-// -----------------------------------------------------------------------------
-
-// A function with a crazy set of parameters.  This is what not to do!
-func f7(_ first: Int, foo second: Int = 4, _ xs: Int..., bar third: Int) -> Int {
-  return first + second + third * xs.count
-}
-
-let r7 = f7(1, foo: 4, 1, 2, 3, 4, 5, 6, 7, bar: 3)
-assert(r7 == 26)
-
-// -----------------------------------------------------------------------------
-//  Function Types
-// -----------------------------------------------------------------------------
-
-// Every function has a specific function type made up of the parameter
-// types and the return type of the function.
-
-// Here, `f10` has the type `() -> Void`.
-func f8() {
-  // Stuff happens.
-}
-
-// -----------------------------------------------------------------------------
-
-// Here, `f9` and `f10` have the same type of `(Int, Int) -> Int`.
-func f9(_ a: Int, _ b: Int) -> Int {
-  return a + b
-}
-func f10(_ a: Int, _ b: Int) -> Int {
-  return a * b
-}
-
-// -----------------------------------------------------------------------------
-
-// Constants and variables can be assigned functions making them
-// act like functions.
-
-var f11: (Int, Int) -> Int = f9
-let f12 = f9
-let r11 = f11(2, 3)
-let r12 = f12(2, 3)
-assert(r11 == 5)
-assert(r12 == 5)
 
 // -----------------------------------------------------------------------------
 //  Nested Functions
@@ -633,11 +846,6 @@ if let bounds = minMax(array: [8, -6, 2, 109, 3, 71]) {
 
 Function Argument Labels and Parameter Names
 
-Each function parameter has both an argument label and a parameter name.
-The argument label is used when calling the function; each argument is
-written in the function call with its argument label before it. The
-parameter name is used in the implementation of the function. By
-default, parameters use their parameter name as their argument label.
 
 func someFunction(firstParameterName: Int, secondParameterName: Int) {
   // In the function body, firstParameterName and secondParameterName

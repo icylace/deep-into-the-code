@@ -1,7 +1,6 @@
 // -----------------------------------------------------------------------------
-//  Grapheme - The smallest meaningful contrastive unit in a writing system.
-//  Character - A unit of data usually representing a grapheme.
-//  Control character - A character not representing a visual symbol.
+//  Character - A unit of data representing either text or a control code.
+//  Control code - A non-visual character representing a special action to take.
 //  String - A series of characters.
 //  Unicode - An international standard for encoding, representing, and
 //            processing text in different writing systems.
@@ -73,10 +72,6 @@ assert(empty1.isEmpty == true)
 //  String Mutability
 // -----------------------------------------------------------------------------
 
-// You indicate whether a particular String can be modified (or mutated) by
-// assigning it to a variable (in which case it can be modified), or to a
-// constant (in which case it cannot be modified):
-
 var variableString = "Horse"
 variableString += " and carriage"
 // variableString is now "Horse and carriage"
@@ -84,6 +79,14 @@ variableString += " and carriage"
 let constantString = "Highlander"
 constantString += " and another Highlander"
 // this reports a compile-time error - a constant string cannot be modified
+
+
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 //  Strings Are Value Types
@@ -100,9 +103,6 @@ Swift's copy-by-default `String` behavior ensures that when a function or method
 passes you a `String` value, it is clear that you own that exact `String` value,
 regardless of where it came from.  You can be confident that the string you
 are passed will not be modified unless you modify it yourself.
-
-Behind the scenes the compiler optimizes string usage so that actual copying
-takes place only when absolutely necessary, thereby improving performance.
 
 // -----------------------------------------------------------------------------
 //  Working with Characters
@@ -617,13 +617,17 @@ value of U+DC36 (decimal value 56374).
 
 Unicode Scalar Representation
 
-You can access a Unicode scalar representation of a String value by iterating over its unicodeScalars property. This property is of type UnicodeScalarView, which is a collection of values of type UnicodeScalar.
+You can access a Unicode scalar representation of a String value by iterating
+over its unicodeScalars property. This property is of type UnicodeScalarView,
+which is a collection of values of type UnicodeScalar.
 
-Each UnicodeScalar has a value property that returns the scalar’s 21-bit value, represented within a UInt32 value:
+Each UnicodeScalar has a value property that returns the scalar’s 21-bit value,
+represented within a UInt32 value:
 
 image: ../Art/UnicodeScalar_2x.png
+
 for scalar in dogString.unicodeScalars {
-    print("\(scalar.value) ", terminator: "")
+  print("\(scalar.value) ", terminator: "")
 }
 print("")
 // Prints "68 111 103 8252 128054 "
@@ -640,7 +644,8 @@ equivalent of the hexadecimal value 1F436, which represents the Unicode
 scalar U+1F436 for the DOG FACE character.
 
 As an alternative to querying their value properties, each UnicodeScalar value
-can also be used to construct a new String value, such as with string interpolation:
+can also be used to construct a new String value, such as with string
+interpolation:
 
 for scalar in dogString.unicodeScalars {
   print("\(scalar) ")
@@ -650,22 +655,6 @@ for scalar in dogString.unicodeScalars {
 // g
 // ‼
 // 🐶
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

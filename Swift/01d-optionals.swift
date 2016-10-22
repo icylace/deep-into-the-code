@@ -96,6 +96,8 @@ assert(o22 == 123)
 
 // Nested optionals may be force-unwrapped as many levels as necessary.
 
+// TODO
+
 assert(o4!! == 8)
 assert(o4! == 8)
 
@@ -105,7 +107,38 @@ assert(o13!! == 8)
 assert(o19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
 assert(o19!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! == 8)
 
-// Nested optionals
+// -----------------------------------------------------------------------------
+
+assert(o2! == Int?(8))
+
+assert(o4!! == Int?(8))
+assert(o4! == Int?(8))
+// If the following is uncommented it will produce a compile-time error:
+/*
+assert(o4 == Int??(8))
+*/
+
+assert(o13!!! == Int?(8))
+assert(o13!! == Int?(8))
+// assert(o13 == Int???(8))
+assert(o13 == Optional<Optional<Optional<Int>>>(8))
+
+
+
+print(o13)
+
+
+
+
+// TODO
+
+// Nested optionals cannot be forced-unwrapped
+
+// assert(o13! == Int???(8))
+// assert(o13! == Int??(8))
+// assert(o13! == Int?(8))
+// assert(o13! == 8)
+
 
 
 

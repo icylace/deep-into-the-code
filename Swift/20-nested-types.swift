@@ -1,9 +1,6 @@
-// Enumerations can be used to support a specific class or structure's
-// functionality.  Similarly, it can be convenient to define utility
-// classes and structures purely for use within the context of a
-// more complex type.  To accomplish this, types can be nested
-// inside other types.  Types can be nested to as many levels
-// as are required.
+// It can be convenient to define utility types purely for use within the
+// context of a more complex type.  To achieve this, types can be nested
+// inside other types.  Types can be nested to any level required.
 
 // -----------------------------------------------------------------------------
 //  Nested Types in Action
@@ -52,12 +49,9 @@ struct BlackjackCard {
 
 /*
 
-The Rank enumeration describes the thirteen possible playing card ranks, together
-with a raw Int value to represent their face value. (This raw Int value is not
-used for the Jack, Queen, King, and Ace cards.)
 
 As mentioned above, the Rank enumeration defines a further nested structure of
-its own, called Values. This structure encapsulates the fact that most cards
+its own, called Values.  This structure encapsulates the fact that most cards
 have one value, but the Ace card has two values. The Values structure defines
 two properties to represent this:
 
