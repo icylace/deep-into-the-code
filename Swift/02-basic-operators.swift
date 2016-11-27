@@ -64,6 +64,8 @@ assert(p4 == -3)
 let p5 = -p4
 assert(p5 == 3)
 
+assert(-(-(-(-2.0))) == 2.0)
+
 // -----------------------------------------------------------------------------
 //  Unary plus operator (`+`) - The operator that returns its operand as is.
 // -----------------------------------------------------------------------------
@@ -71,6 +73,8 @@ assert(p5 == 3)
 let p6 = -6
 let p7 = +p6
 assert(p7 == -6)
+
+assert(+(+(+(+2.0))) == 2.0)
 
 // -----------------------------------------------------------------------------
 //  Compound assignment operator - An operator combining assignment
@@ -100,66 +104,80 @@ assert(1 < 2)         // Less than.
 assert(1 >= 1)        // Greater than or equal to.
 assert(1 <= 2)        // Less than or equal to.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this will produce a runtime error:
 /*
 assert(2 <= 1)
 */
 
 // -----------------------------------------------------------------------------
 
-// You can also compare tuples that have the same number of values, as long
-// as each of the values in the tuple can be compared.
-
-
-
-// TODO
-
-// scenarios:
-// - same types same number of values
-// - same types different number of values
-// - different types same number of values
-
-
-
-// For example, both Int
-// and String can be compared, which means tuples of the type (Int, String)
-
-assert((1, "zebra") < (2, "apple"))
-
-
+// Boolean values can only be compared for equality or inequality.
+assert(true == true)
+assert(true != false)
+assert(false == false)
+assert(false != true)
 
 // Uncommenting this will produce a compile-time error:
 /*
+assert(true < false)
 */
 
+// -----------------------------------------------------------------------------
 
+// Tuples can be compared if the following are true:
+// - They have the same number of values.
+// - Each value in them can be compared.
 
+// Tuples are compared from left to right, one value at a time, until two values
+// are found that aren't equal.
 
+assert((1, "zebra") < (2, "apple"))
+// Works because 1 is less than 2.
 
+assert((3, "apple") < (3, "bird"))
+// Works because 3 is equal to 3 and "apple" is less than "bird".
 
+// If all the elements are equal then the tuples themselves are equal.
+
+assert((4, "dog") == (4, "dog"))
+// Works because 4 is equal to 4 and "dog" is equal to "dog".
+
+// -----------------------------------------------------------------------------
+
+// Tuples with Boolean values can only be compared for equality or inequality.
+
+assert((true, false) == (true, false))
+assert((true, false) != (false, true))
+assert((true, 1) == (true, 1))
+assert((true, 2) != (true, 3))
+
+// Uncommenting this will produce a compile-time error:
 /*
+assert((2, true) < (3, true))
+*/
 
+// -----------------------------------------------------------------------------
 
-// can be compared. In contrast, Bool can’t be compared, which means tuples
-// that contain a Boolean value can’t be compared.
+// Tuples that have a different number of values cannot be compared.
 
-// Tuples are compared from left to right, one value at a time, until the
-// comparison finds two values that aren’t equal. If all the elements are
-// equal, then the tuples themselves are equal. For example:
+// Uncommenting this will produce a compile-time error:
+/*
+assert((1, 2) < (3, 4, 5))
+*/
 
-(1, "zebra") < (2, "apple")   // true because 1 is less than 2
-(3, "apple") < (3, "bird")    // true because 3 is equal to 3, and "apple" is less than "bird"
-(4, "dog") == (4, "dog")      // true because 4 is equal to 4, and "dog" is equal to "dog"
+// -----------------------------------------------------------------------------
+
+// Tuples having similar element types in a different order cannot be compared.
+
+// Uncommenting this will produce a compile-time error:
+/*
+assert((4, "dog") == ("dog", 4))
+*/
+
+// -----------------------------------------------------------------------------
 
 // To compare tuples with seven or more elements, you must implement the
 // comparison operators yourself.
-
-*/
-
-
-
-
-
 
 // -----------------------------------------------------------------------------
 //  Ternary conditional operator (`?:`) - The operator that checks a condition
@@ -167,11 +185,11 @@ assert((1, "zebra") < (2, "apple"))
 //                                        based on its result.
 // -----------------------------------------------------------------------------
 
-let ptt1 = false ? 5 : 2
-assert(ptt1 == 2)
+let p9 = false ? 5 : 2
+assert(p9 == 2)
 
-let ptt2 = 4 + (true ? 5 : 2)
-assert(ptt2 == 9)
+let p10 = 4 + (true ? 5 : 2)
+assert(p10 == 9)
 
 // -----------------------------------------------------------------------------
 //  Nil-coalescing operator (`??`) - The operator that returns either the value
@@ -185,74 +203,94 @@ assert(ptt2 == 9)
 // If the first operand is non-nil the second operand is not evaluated.
 // This is an example of short-circuit evaluation.
 
-var pn1 = Int?(2)
-let pn2 = 4
-let pn3 = pn1 ?? pn2
-assert(pn3 == 2)
+var p11 = Int?(2)
+let p12 = 4
+let p13 = p11 ?? p12
+assert(p13 == 2)
 
 // -----------------------------------------------------------------------------
 
 // If the first operand of a nil-coalescing operator is nil then the second operand.
 
-pn1 = nil
-let pn4 = pn1 ?? pn2
-assert(pn4 == pn2)
-assert(pn4 == 4)
+p11 = nil
+let p14 = p11 ?? p12
+assert(p14 == p12)
+assert(p14 == 4)
 
 // -----------------------------------------------------------------------------
 
 // This ternary conditional acts the same as the nil-coalescing operator.
-let pn5 = pn1 != nil ? pn1! : pn2
-assert(pn4 == pn5)
-
-
-
-
-// TODO
+let p15 = p11 != nil ? p11! : p12
+assert(p14 == p15)
 
 // -----------------------------------------------------------------------------
 //  Range operator - An operator that expresses a range of values.
 //  Closed range operator (`...`) - The range operator whose range includes the
-//                                  value defining the range's upper-limit.
+//                                  value defining the range's upper limit.
 // -----------------------------------------------------------------------------
 
-let r1 = -11...12
-assert(r1 == CountableClosedRange(-11...12))
-assert(type(of: r1) == CountableClosedRange<Int>.self)
-assert(r1.count == 24)
-assert(r1.lowerBound == -11)
-assert(r1.upperBound == 12)
-assert(r1.contains(6) == true)
+let p16 = -11...12
+assert(p16 == CountableClosedRange(-11...12))
+assert(type(of: p16) == CountableClosedRange<Int>.self)
+assert(p16.isEmpty == false)
+assert(p16.count == 24)
+assert(p16.lowerBound == -11)
+assert(p16.upperBound == 12)
+assert(p16.contains(6) == true)
 
-// A closed range's lower-limit must not be greater than its upper-limit.
+// -----------------------------------------------------------------------------
+
+// If a closed range's lower limit equals the upper limit the resulting range
+// has only one element.
+
+let p17 = 12...12
+assert(p17.isEmpty == false)
+assert(p17.count == 1)
+assert(p17.contains(12) == true)
+assert(p17.contains(6) == false)
+
+// -----------------------------------------------------------------------------
+
+// A closed range's lower limit must not be greater than its upper limit.
 
 // Uncommenting this will produce a compile-time error:
 /*
-let r2 = 12...-11
+let p18 = 12...-11
 */
-
-
-
-
-// TODO
 
 // -----------------------------------------------------------------------------
 //  Half-open range operator (`..<`) - The range operator whose range omits the
-//                                     value defining the range's upper-limit.
+//                                     value defining the range's upper limit.
 // -----------------------------------------------------------------------------
 
-// let r2 = -11..<13
-// assert(r2 == -11...12)
+let p19 = -11..<12
+assert(p19 == CountableRange(-11..<12))
+assert(type(of: p19) == CountableRange<Int>.self)
+assert(p19.isEmpty == false)
+assert(p19.count == 23)
+assert(p19.lowerBound == -11)
+assert(p19.upperBound == 12)
+assert(p19.contains(6) == true)
 
-// A half-open range's lower-limit must not be greater than its upper-limit.
-// However, if they are equal the resulting range is empty.
+// -----------------------------------------------------------------------------
 
+// If a half-open range's lower limit equals the upper limit the resulting range
+// is empty.
 
+let p20 = 12..<12
+assert(p20.isEmpty == true)
+assert(p20.count == 0)
+assert(p20.contains(12) == false)
+assert(p20.contains(6) == false)
 
+// -----------------------------------------------------------------------------
 
-// TODO
+// A half-open range's lower limit must not be greater than its upper limit.
 
+// Uncommenting this will produce a compile-time error:
 /*
+let p21 = 12..<(-11)
+*/
 
 // -----------------------------------------------------------------------------
 //  Logical operator - An operator that works with Boolean values.
@@ -260,10 +298,19 @@ let r2 = 12...-11
 //                               a false one and vice versa.
 // -----------------------------------------------------------------------------
 
-let allowedEntry = false
-assert(!allowedEntry == true)
+assert(!false == true)
+assert(!true == false)
 
-// `!x` is read as "not x".  So, `!allowedEntry` is read as "not allowed entry".
+let p22 = false
+assert(!p22 == true)
+// `!p22` is read as "not p22".
+
+let p23 = true
+assert(!p23 == false)
+
+// TODO
+
+/*
 
 // -----------------------------------------------------------------------------
 //  Logical NOT operator (`&&`) - The operator that evaluates to true if both
@@ -271,13 +318,24 @@ assert(!allowedEntry == true)
 //                                evaluates to false.
 // -----------------------------------------------------------------------------
 
+assert(false && false == false)
+assert(false && true == false)
+assert(true && false == false)
+assert(true && true == true)
+
+
+
 let enteredDoorCode = true
 let passedRetinaScan = false
+assert(enteredDoorCode && enteredDoorCode == true)
+assert(passedRetinaScan && passedRetinaScan == false)
 assert(enteredDoorCode && passedRetinaScan == false)
 
 // If the first operand is false the second won't be evaluated because it's
-// unnecessary since the overall expression will be false.  This behavior
-// is known as short-circuit evaluation.
+// unnecessary since the overall expression will be false.  This is an
+// example of short-circuit evaluation.
+
+assert(passedRetinaScan && enteredDoorCode == false)
 
 // -----------------------------------------------------------------------------
 //  Logical OR operator (`||`) - The operator that evaluates to true if either
@@ -285,13 +343,18 @@ assert(enteredDoorCode && passedRetinaScan == false)
 //                               evaluates to false.
 // -----------------------------------------------------------------------------
 
-// If the first operand is true the second won't be evaluated because it's
-// unnecessary since the overall expression will be true.  This is also an
-// example of short-circuit evaluation.
-
 let hasDoorKey = false
 let knowsOverridePassword = true
 assert(hasDoorKey || knowsOverridePassword == true)
+
+
+
+
+
+// If the first operand is true the second won't be evaluated because it's
+// unnecessary since the overall expression will be true.  This is an
+// example of short-circuit evaluation.
+
 
 // -----------------------------------------------------------------------------
 //  Combining Logical Operators
