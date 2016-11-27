@@ -30,9 +30,10 @@
 
 // The access control model is based on the concept of modules and source files.
 
-// A module is a single unit of code distribution—a framework or application
-// that is built and shipped as a single unit and that can be imported by
-// another module with Swift’s import keyword.
+// -----------------------------------------------------------------------------
+//  Module - A framework or application that is built and shipped as a single
+//           unit and that can be imported by another module.
+// -----------------------------------------------------------------------------
 
 // Each build target (such as an app bundle or framework) in Xcode is treated as
 // a separate module in Swift.  If you group together aspects of your app's code
@@ -41,10 +42,13 @@
 // be part of a separate module when it is imported and used within an app, or
 // when it is used within another framework.
 
-// A source file is a single Swift source code file within a module (in effect,
-// a single file within an app or framework). Although it is common to define
-// individual types in separate source files, a single source file can
-// contain definitions for multiple types, functions, and so on.
+// -----------------------------------------------------------------------------
+//  Source file - A single Swift source code file within a module
+// -----------------------------------------------------------------------------
+
+// Although it is common to define individual types in separate source files, a
+// single source file can contain definitions for multiple types, functions,
+// and so on.
 
 
 // -----------------------------------------------------------------------------
@@ -52,24 +56,27 @@
 // -----------------------------------------------------------------------------
 
 // Swift provides five different access levels for entities within your code.
+
 // These access levels are relative to the source file in which an entity is
 // defined, and also relative to the module that source file belongs to.
 
-// - Open access and public access enable entities to be used within any source
+// - Open access and public access - enable entities to be used within any source
 //   file from their defining module, and also in a source file from another
-//   module that imports the defining module. You typically use open or
+//   module that imports the defining module.  You typically use open or
 //   public access when specifying the public interface to a framework.
 //   The difference between open and public access is described below.
 
-// - Internal access enables entities to be used within any source file from
+// - Internal access - enables entities to be used within any source file from
 //   their defining module, but not in any source file outside of that
 //   module.  You typically use internal access when defining an app's
 //   or a framework’s internal structure.
-// - File-private access restricts the use of an entity to its own defining
+
+// - File-private access - restricts the use of an entity to its own defining
 //   source file.  Use file-private access to hide the implementation
 //   details of a specific piece of functionality when those details
 //   are used within an entire file.
-// - Private access restricts the use of an entity to the enclosing declaration.
+
+// - Private access - restricts the use of an entity to the enclosing declaration.
 //   Use private access to hide the implementation details of a specific piece
 //   of functionality when those details are used only within a single
 //   declaration.
@@ -82,10 +89,13 @@
 
 // - Classes with public access, or any more restrictive access level, can be
 //   subclassed only within the module where they're defined.
+
 // - Class members with public access, or any more restrictive access level, can
 //   be overridden by subclasses only within the module where they're defined.
+
 // - Open classes can be subclassed within the module where they're defined,
 //   and within any module that imports the module where they’re defined.
+
 // - Open class members can be overridden by subclasses within the module where
 //   they're defined, and within any module that imports the module where
 //   they're defined.
@@ -118,23 +128,41 @@ All entities in your code (with a few specific exceptions, as described later in
 
 Access Levels for Single-Target Apps
 
-When you write a simple single-target app, the code in your app is typically self-contained within the app and does not need to be made available outside of the app’s module. The default access level of internal already matches this requirement. Therefore, you do not need to specify a custom access level. You may, however, want to mark some parts of your code as file private or private in order to hide their implementation details from other code within the app’s module.
+When you write a simple single-target app, the code in your app is typically
+self-contained within the app and does not need to be made available outside
+of the app’s module. The default access level of internal already matches
+this requirement. Therefore, you do not need to specify a custom access
+level. You may, however, want to mark some parts of your code as file
+private or private in order to hide their implementation details from
+other code within the app’s module.
 
 // -----------------------------------------------------------------------------
 
 Access Levels for Frameworks
 
-When you develop a framework, mark the public-facing interface to that framework as open or public so that it can be viewed and accessed by other modules, such as an app that imports the framework. This public-facing interface is the application programming interface (or API) for the framework.
+When you develop a framework, mark the public-facing interface to that framework
+as open or public so that it can be viewed and accessed by other modules, such
+as an app that imports the framework. This public-facing interface is the
+application programming interface (or API) for the framework.
 
 NOTE
 
-Any internal implementation details of your framework can still use the default access level of internal, or can be marked as private or file private if you want to hide them from other parts of the framework’s internal code. You need to mark an entity as open or public only if you want it to become part of your framework’s API.
+Any internal implementation details of your framework can still use the default
+access level of internal, or can be marked as private or file private if you
+want to hide them from other parts of the framework’s internal code.  You
+need to mark an entity as open or public only if you want it to become
+part of your framework’s API.
 
 // -----------------------------------------------------------------------------
 
 Access Levels for Unit Test Targets
 
-When you write an app with a unit test target, the code in your app needs to be made available to that module in order to be tested. By default, only entities marked as open or public are accessible to other modules. However, a unit test target can access any internal entity, if you mark the import declaration for a product module with the @testable attribute and compile that product module with testing enabled.
+When you write an app with a unit test target, the code in your app needs to be
+made available to that module in order to be tested.  By default, only entities
+marked as open or public are accessible to other modules.  However, a unit test
+target can access any internal entity, if you mark the import declaration for
+a product module with the @testable attribute and compile that product module
+with testing enabled.
 
 
 */
@@ -200,22 +228,6 @@ When you write an app with a unit test target, the code in your app needs to be 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 
 
@@ -238,6 +250,9 @@ Unless otherwise specified, the default access level is internal, as described i
 
 class SomeInternalClass {}              // implicitly internal
 let someInternalConstant = 0            // implicitly internal
+
+// -----------------------------------------------------------------------------
+
 Custom Types
 
 If you want to specify an explicit access level for a custom type, do so at the point that you define the type. The new type can then be used wherever its access level permits. For example, if you define a file-private class, that class can only be used as the type of a property, or as a function parameter or return type, in the source file in which the file-private class is defined.

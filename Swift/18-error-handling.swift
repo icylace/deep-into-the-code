@@ -69,6 +69,17 @@ throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
 
 // TODO
 // - verify that subscripts aren't currently throwable
+// - test the valid locations for `try.  e.g.:
+//   try ws.send(x.makeBytes())
+//   try ws.send(try x.makeBytes())
+//   ws.send(try x.makeBytes())
+//   let c = try x.makeBytes()
+//   try ws.send(c)
+// - ``'try' must be placed on the initial value expression`
+//   - test out:
+//     - try let x = thowableThingy()
+//     - let x = try thowableThingy()
+
 
 // Error handling in Swift resembles exception handling in other languages, with
 // the use of the try, catch and throw keywords. Unlike exception handling in

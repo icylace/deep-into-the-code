@@ -1,3 +1,12 @@
+Use the nil-coalescing operator instead of its equivalent ternary expression.
+- reason: readability
+
+
+
+
+
+
+
 In most cases, type parameters have descriptive names, such as Key and Value in
 Dictionary<Key, Value> and Element in Array<Element>, which tells the reader
 about the relationship between the type parameter and the generic type or

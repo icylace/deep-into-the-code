@@ -62,7 +62,7 @@ assert(true/* but please don't do that! */)
 // This assertion is not triggered because `age` equals 3.
 assert(3 < 5)
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 assert(3 > 5)
 */
@@ -100,7 +100,7 @@ assert(3 > 5)
 // Declare a constant named `answer2` and assign it the literal value 42.
 let answer2 = 42
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 answer2 = 0
 */
@@ -164,7 +164,7 @@ assert(answer4 == 42)
 // to it from now on.
 answer4 = 16
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 // Attempt to assign a `String` value to `answer4`.
 answer4 = "hello"
@@ -233,7 +233,7 @@ assert(v13 == 112)
 
 // Backticks used in this way can't be nested.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 var ``v14`` = 212
 var ```v15``` = 143

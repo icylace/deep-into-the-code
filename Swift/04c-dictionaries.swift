@@ -5,19 +5,12 @@
 /*
 
 A dictionary stores associations between keys of the same type and values of the
-same type in a collection with no defined ordering. Each value is associated with
-a unique key, which acts as an identifier for that value within the dictionary.
-Unlike items in an array, items in a dictionary do not have a specified order.
-You use a dictionary when you need to look up values based on their identifier,
-in much the same way that a real-world dictionary is used to look up the definition
-for a particular word.
+same type in a collection with no defined ordering.  Each value is associated with
+a unique key that acts as an identifier for that value within the dictionary.
 
 NOTE
 
 Swift’s Dictionary type is bridged to Foundation’s NSDictionary class.
-
-For more information about using Dictionary with Foundation and Cocoa, see Working
-with Cocoa Data Types in Using Swift with Cocoa and Objective-C (Swift 3).
 
 // -----------------------------------------------------------------------------
 
@@ -38,17 +31,11 @@ of a dictionary.
 
 // -----------------------------------------------------------------------------
 
-Creating an Empty Dictionary
+// An empty dictionary can be created with initializer syntax.
 
-As with arrays, you can create an empty Dictionary of a certain type by using
-initializer syntax:
-
+// This dictionary's keys are of type `Int` and its values are of type `String`.
 var namesOfIntegers = [Int: String]()
-// namesOfIntegers is an empty [Int: String] dictionary
-
-This example creates an empty dictionary of type [Int: String] to store
-human-readable names of integer values. Its keys are of type Int, and
-its values are of type String.
+assert(type(of: namesOfIntegers) == [Int: String].self)
 
 If the context already provides type information, you can create an empty
 dictionary with an empty dictionary literal, which is written as [:]
@@ -67,7 +54,9 @@ You can also initialize a dictionary with a dictionary literal, which has a
 similar syntax to the array literal seen earlier. A dictionary literal is a
 shorthand way to write one or more key-value pairs as a Dictionary collection.
 
-A key-value pair is a combination of a key and a value. In a dictionary literal,
+A key-value pair is a combination of a key and a value.
+
+In a dictionary literal,
 the key and value in each key-value pair are separated by a colon. The key-value
 pairs are written as a list, separated by commas, surrounded by a pair of square
 brackets:

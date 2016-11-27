@@ -4,28 +4,28 @@
 //  Call - The act of executing a function with any arguments needed.
 // -----------------------------------------------------------------------------
 
-// A function in its simplest form is pretty useless.
+// A function isn't required to define input parameters.
 
-func f0() {}
+func f0() {
+  print("Captain Falcon")
+}
 
 // A function's name is used to "call" the function to perform its task.
 
-// This function call ends up doing nothing.
 f0()
-
-assert(type(of: f0()) == Void.self)
+// Output:
+// Captain Falcon
 
 // -----------------------------------------------------------------------------
 
-// A function isn't required to define input parameters.
+// A function in its simplest form is pretty useless.
 
-func f1() {
-  print("help!")
-}
+func f1() {}
 
+// This function call ends up doing nothing.
 f1()
-// Output:
-// help!
+
+assert(type(of: f1()) == Void.self)
 
 // -----------------------------------------------------------------------------
 //  Parameter - A constant that represents an input to a function.
@@ -50,60 +50,85 @@ f2(parameterName: 1)
 
 // -----------------------------------------------------------------------------
 
+// A function can optionally have multiple parameters.
+
+func f3(parameter1: Int, parameter2: String) {
+  assert(parameter1 == 8)
+  assert(parameter2 == "8")
+}
+
+f3(parameter1: 8, parameter2: "8")
+
+
+
+
+// TODO
+
+
+
+
+
+
+
+// TODO
+
+
+// -----------------------------------------------------------------------------
+
 // A parameter can have a custom argument label.
 
-func f3(argumentLabel parameterName: Int) {
+func f4(argumentLabel parameterName: Int) {
   // Within the function, `parameterName` is used instead of `argumentLabel`
   // to refer to the parameter's argument value.
   assert(parameterName == 1)
 }
 
-f3(argumentLabel: 1)
+f4(argumentLabel: 1)
 
 // -----------------------------------------------------------------------------
 
 // An argument label defined as an underscore is omitted from function calls.
 
-func f4(_ parameter: Int) {
+func f5(_ parameter: Int) {
   assert(parameter == 1)
 }
 
-f4(1)
+f5(1)
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
-f4(parameter: 1)
+f5(parameter: 1)
 */
 
 // -----------------------------------------------------------------------------
 
 // A parameter can be assigned a default value.
 
-func f5(parameter: Int = 2) {
+func f6(parameter: Int = 2) {
   // If no valid arguments are passed to the function call then
   // the value of `parameter` will be 2.
   assert(parameter % 2 == 0)
 }
 
-// Call `f5(parameter:)` with an argument of 4.
-f5(parameter: 4)
+// Call `f6(parameter:)` with an argument of 4.
+f6(parameter: 4)
 
-// Call `f5(parameter:)` with an argument of 2.
-f5(parameter: 2)
+// Call `f6(parameter:)` with an argument of 2.
+f6(parameter: 2)
 
-// Call `f5(parameter:)` and use its default argument which is 2.
-f5()
+// Call `f6(parameter:)` and use its default argument which is 2.
+f6()
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
-f5(parameter: 3)
+f6(parameter: 3)
 */
 
 // -----------------------------------------------------------------------------
 //  Variadic parameter - A parameter that accepts zero or more values.
 // -----------------------------------------------------------------------------
 
-func f6(xs: Double...) {
+func f7(xs: Double...) {
   var total: Double = 1
   for x in xs {
     total *= x
@@ -111,13 +136,13 @@ func f6(xs: Double...) {
   assert(total == 865.975)
 }
 
-f6(xs: 2.35, 6.7, 55.0)
+f7(xs: 2.35, 6.7, 55.0)
 
 // A function may have at most one variadic parameter.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
-func f7(xs: Double..., ys: Double...) {}
+func f8(xs: Double..., ys: Double...) {}
 */
 
 // -----------------------------------------------------------------------------
@@ -134,14 +159,14 @@ func f7(xs: Double..., ys: Double...) {}
 // Function parameters are constants by default.  Parameters that can be
 // modified are in-out parameters.
 
-func f8(x: inout Int) {
+func f9(x: inout Int) {
   x *= 2
 }
 
-var r8 = 4
+var result9 = 4
 // Here an ampersand is needed because we're passing in a reference to `r6`.
-f8(x: &r8)
-assert(r8 == 8)
+f9(x: &result9)
+assert(result9 == 8)
 
 // In-out parameters can't have default values, and variadic parameters
 // can't be in-out.
@@ -477,7 +502,7 @@ assert(e == "Hello again, Tim!")
 
 // A function's parameters must be used in the order in which they're declared.
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 let f = sayHi(alreadyGreeted: true, name: "Tim")
 */
@@ -653,49 +678,11 @@ assert(n == 0)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 
 
 
 
-Functions With Multiple Parameters
-
-Functions can have multiple input parameters, which are written within the
-function’s parentheses, separated by commas.
-
-This function takes a person’s name and whether they have already been greeted
-as input, and returns an appropriate greeting for that person:
-
-func greet(person: String, alreadyGreeted: Bool) -> String {
-  if alreadyGreeted {
-    return greetAgain(person: person)
-  } else {
-    return greet(person: person)
-  }
-}
-print(greet(person: "Tim", alreadyGreeted: true))
-// Prints "Hello again, Tim!"
-
-You call the greet(person:alreadyGreeted:) function by passing it both a
-String argument value labeled person and a Bool argument value labeled
-alreadyGreeted in parentheses, separated by commas. Note that this
-function is distinct from the greet(person:) function shown in an
-earlier section. Although both functions have names that begin
-with greet, the greet(person:alreadyGreeted:) function takes
-two arguments but the greet(person:) function takes only one.
 
 // -----------------------------------------------------------------------------
 

@@ -3,9 +3,8 @@
 //  Tuple value (tuple) - A value that groups together multiple values.
 // -----------------------------------------------------------------------------
 
-// The values within a tuple can be of any type and do not have to be of the
-// same type as each other.  The tuple's type is a combination of the types
-// of the values of the tuple.
+// Each individual value within a tuple can be of any type.  The tuple's type is
+// a combination of the types of its contained values.
 
 var httpStatus = (404, "Not Found")
 assert(type(of: httpStatus) == (Int, String).self)
@@ -45,15 +44,14 @@ assert(statusCode == 404)
 // A tuple's individual elements can be labeled when the tuple is defined
 // allowing their values to be accessed with those labels.
 
-// If the tuple constant's or variable's type is not explicitly defined then the
-// inferred tuple type uses the same element labels as the ones for the initial
-// tuple value assignment.
+// If the tuple's type is not explicitly defined then the inferred tuple type
+// takes on the labels of the initial tuple value assignment.
 
 var httpOkay = (code: 200, description: "OK")
 assert(httpOkay.code == 200)
 assert(httpOkay.description == "OK")
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 httpOkay = (c: 200, d: "OK")
 */
@@ -72,12 +70,11 @@ assert(httpRedirect.description == "Moved Permanently")
 
 // -----------------------------------------------------------------------------
 
-// If a tuple constant's or variable's type is explicitly defined then the way
-// its element labels are defined takes precedence over the way element labels
-// are defined for tuple values used with that constant or variable.
+// A tuple defined with an explicit type has its element labels take precedence
+// over the element labels for tuple values used with it.
 
 let t1: (Int, Int, String) = (foo: 2, bar: 3, baz: "6")
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(t1.foo == 2)
 assert(t1.bar == 3)
@@ -96,7 +93,7 @@ assert(t3.baz == "6")
 
 let t4: (foo: Int, Int, String) = (foo: 2, bar: 3, baz: "6")
 assert(t4.foo == 2)
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(t4.bar == 3)
 assert(t4.baz == "6")
@@ -104,8 +101,8 @@ assert(t4.baz == "6")
 
 // -----------------------------------------------------------------------------
 
-// Tuple element labels only matter when accessing individual tuple elements.
-// Otherwise, they're meaningless.
+// Tuple element labels matter when accessing individual tuple elements but
+// otherwise are meaningless.
 
 assert(t1 == (2, 3, "6"))
 assert(t1 == (aaaaaaaaaaaaa: 2, 3, "6"))
@@ -127,7 +124,7 @@ assert(t1 == t2)
 // tuple's elements are used is significant.
 
 assert(t2 == (foo: 2, bar: 3, baz: "6"))
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(t2 == (baz: "6", foo: 2, bar: 3))
 */
@@ -140,7 +137,7 @@ var t5: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(type(of: t5) == ().self)
 */
@@ -154,17 +151,17 @@ assert(type(of: t6) == Void.self)
 
 // Since `Void` is a type alias it can't be assigned like `()` can.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 t5 = Void
 t6 = Void
 */
 
-// If the following is uncommented it will produce a compile-time warning:
+// Uncommenting this will produce a compile-time error:
 /*
 var t7 = ()
 assert(type(of: t7) == Void.self)
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 t7 = Void
 */
@@ -202,7 +199,7 @@ assert(type(of: t13) == Int.self)
 assert(t12 == 2)
 assert(t13 == 2)
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 let t14: ((((((Int)))))) = ((""))
 */
@@ -212,7 +209,7 @@ let t14: ((((((Int)))))) = ((""))
 // It's not possible to declare a constant or variable as a single-element
 // tuple with an element label.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 let t15: (number: Int) = 2
 var t16: (number: Int) = (number: 2)

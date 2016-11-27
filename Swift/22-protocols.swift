@@ -7,6 +7,11 @@
 
 /*
 
+A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
+
+In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
+
+
 // Protocols can be adopted by a class, structure, or enumeration to provide
 // an actual implementation of the protocol's requirements.  Any type that
 // satisfies the requirements of a protocol is said to conform to that
@@ -51,7 +56,6 @@ class BC {
 class C: BC, P, P2 {
   // Class definition goes here.
 }
-
 
 // -----------------------------------------------------------------------------
 //  Property Requirements
@@ -258,15 +262,15 @@ protocol Conformable {
 // Here's an example of a protocol used as a type:
 
 class Dice {
-    let sides: Int
-    let generator: RandomNumberGenerator
-    init(sides: Int, generator: RandomNumberGenerator) {
-        self.sides = sides
-        self.generator = generator
-    }
-    func roll() -> Int {
-        return Int(generator.random() * Double(sides)) + 1
-    }
+  let sides: Int
+  let generator: RandomNumberGenerator
+  init(sides: Int, generator: RandomNumberGenerator) {
+    self.sides = sides
+    self.generator = generator
+  }
+  func roll() -> Int {
+    return Int(generator.random() * Double(sides)) + 1
+  }
 }
 
 // This example defines a new class called Dice, which represents an n-sided dice for use in a board game. Dice instances have an integer property called sides, which represents how many sides they have, and a property called generator, which provides a random number generator from which to create dice roll values.
@@ -281,7 +285,7 @@ class Dice {
 
 var d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
 for _ in 1...5 {
-    print("Random dice roll is \(d6.roll())")
+  print("Random dice roll is \(d6.roll())")
 }
 // Random dice roll is 3
 // Random dice roll is 5
@@ -361,9 +365,6 @@ for _ in 1...5 {
 
 
 
-A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
-
-In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
 
 // -----------------------------------------------------------------------------
 
@@ -454,13 +455,15 @@ Protocols can require specific instance methods and type methods to be implement
 As with type property requirements, you always prefix type method requirements with the static keyword when they are defined in a protocol. This is true even though type method requirements are prefixed with the class or static keyword when implemented by a class:
 
 protocol SomeProtocol {
-    static func someTypeMethod()
+  static func someTypeMethod()
 }
+
 The following example defines a protocol with a single instance method requirement:
 
 protocol RandomNumberGenerator {
-    func random() -> Double
+  func random() -> Double
 }
+
 This protocol, RandomNumberGenerator, requires any conforming type to have an instance method called random, which returns a Double value whenever it is called. Although it is not specified as part of the protocol, it is assumed that this value will be a number from 0.0 up to (but not including) 1.0.
 
 The RandomNumberGenerator protocol does not make any assumptions about how each random number will be generated—it simply requires the generator to provide a standard way to generate a new random number.
@@ -468,14 +471,14 @@ The RandomNumberGenerator protocol does not make any assumptions about how each 
 Here’s an implementation of a class that adopts and conforms to the RandomNumberGenerator protocol. This class implements a pseudorandom number generator algorithm known as a linear congruential generator:
 
 class LinearCongruentialGenerator: RandomNumberGenerator {
-    var lastRandom = 42.0
-    let m = 139968.0
-    let a = 3877.0
-    let c = 29573.0
-    func random() -> Double {
-        lastRandom = ((lastRandom * a + c).truncatingRemainder(dividingBy:m))
-        return lastRandom / m
-    }
+  var lastRandom = 42.0
+  let m = 139968.0
+  let a = 3877.0
+  let c = 29573.0
+  func random() -> Double {
+    lastRandom = ((lastRandom * a + c).truncatingRemainder(dividingBy:m))
+    return lastRandom / m
+  }
 }
 let generator = LinearCongruentialGenerator()
 print("Here's a random number: \(generator.random())")
@@ -497,23 +500,25 @@ The example below defines a protocol called Togglable, which defines a single in
 The toggle() method is marked with the mutating keyword as part of the Togglable protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it is called:
 
 protocol Togglable {
-    mutating func toggle()
+  mutating func toggle()
 }
+
 If you implement the Togglable protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the toggle() method that is also marked as mutating.
 
 The example below defines an enumeration called OnOffSwitch. This enumeration toggles between two states, indicated by the enumeration cases on and off. The enumeration’s toggle implementation is marked as mutating, to match the Togglable protocol’s requirements:
 
 enum OnOffSwitch: Togglable {
-    case off, on
-    mutating func toggle() {
-        switch self {
-        case .off:
-            self = .on
-        case .on:
-            self = .off
-        }
+  case off, on
+  mutating func toggle() {
+    switch self {
+    case .off:
+      self = .on
+    case .on:
+      self = .off
     }
+  }
 }
+
 var lightSwitch = OnOffSwitch.off
 lightSwitch.toggle()
 // lightSwitch is now equal to .on
@@ -522,7 +527,7 @@ Initializer Requirements
 Protocols can require specific initializers to be implemented by conforming types. You write these initializers as part of the protocol’s definition in exactly the same way as for normal initializers, but without curly braces or an initializer body:
 
 protocol SomeProtocol {
-    init(someParameter: Int)
+  init(someParameter: Int)
 }
 
 // -----------------------------------------------------------------------------
@@ -532,10 +537,11 @@ Class Implementations of Protocol Initializer Requirements
 You can implement a protocol initializer requirement on a conforming class as either a designated initializer or a convenience initializer. In both cases, you must mark the initializer implementation with the required modifier:
 
 class SomeClass: SomeProtocol {
-    required init(someParameter: Int) {
-        // initializer implementation goes here
-    }
+  required init(someParameter: Int) {
+    // initializer implementation goes here
+  }
 }
+
 The use of the required modifier ensures that you provide an explicit or inherited implementation of the initializer requirement on all subclasses of the conforming class, such that they also conform to the protocol.
 
 For more information on required initializers, see Required Initializers.
@@ -547,20 +553,20 @@ You do not need to mark protocol initializer implementations with the required m
 If a subclass overrides a designated initializer from a superclass, and also implements a matching initializer requirement from a protocol, mark the initializer implementation with both the required and override modifiers:
 
 protocol SomeProtocol {
-    init()
+  init()
 }
 
 class SomeSuperClass {
-    init() {
-        // initializer implementation goes here
-    }
+  init() {
+    // initializer implementation goes here
+  }
 }
 
 class SomeSubClass: SomeSuperClass, SomeProtocol {
-    // "required" from SomeProtocol conformance; "override" from SomeSuperClass
-    required override init() {
-        // initializer implementation goes here
-    }
+  // "required" from SomeProtocol conformance; "override" from SomeSuperClass
+  required override init() {
+    // initializer implementation goes here
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -589,16 +595,17 @@ Because protocols are types, begin their names with a capital letter (such as Fu
 Here’s an example of a protocol used as a type:
 
 class Dice {
-    let sides: Int
-    let generator: RandomNumberGenerator
-    init(sides: Int, generator: RandomNumberGenerator) {
-        self.sides = sides
-        self.generator = generator
-    }
-    func roll() -> Int {
-        return Int(generator.random() * Double(sides)) + 1
-    }
+  let sides: Int
+  let generator: RandomNumberGenerator
+  init(sides: Int, generator: RandomNumberGenerator) {
+    self.sides = sides
+    self.generator = generator
+  }
+  func roll() -> Int {
+    return Int(generator.random() * Double(sides)) + 1
+  }
 }
+
 This example defines a new class called Dice, which represents an n-sided dice for use in a board game. Dice instances have an integer property called sides, which represents how many sides they have, and a property called generator, which provides a random number generator from which to create dice roll values.
 
 The generator property is of type RandomNumberGenerator. Therefore, you can set it to an instance of any type that adopts the RandomNumberGenerator protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the RandomNumberGenerator protocol.
@@ -611,13 +618,16 @@ Here’s how the Dice class can be used to create a six-sided dice with a Linear
 
 var d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
 for _ in 1...5 {
-    print("Random dice roll is \(d6.roll())")
+  print("Random dice roll is \(d6.roll())")
 }
 // Random dice roll is 3
 // Random dice roll is 5
 // Random dice roll is 4
 // Random dice roll is 5
 // Random dice roll is 4
+
+// -----------------------------------------------------------------------------
+
 Delegation
 
 Delegation is a design pattern that enables a class or structure to hand off (or delegate) some of its responsibilities to an instance of another type. This design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities, such that a conforming type (known as a delegate) is guaranteed to provide the functionality that has been delegated. Delegation can be used to respond to a particular action, or to retrieve data from an external source without needing to know the underlying type of that source.
@@ -625,47 +635,48 @@ Delegation is a design pattern that enables a class or structure to hand off (or
 The example below defines two protocols for use with dice-based board games:
 
 protocol DiceGame {
-    var dice: Dice { get }
-    func play()
+  var dice: Dice { get }
+  func play()
 }
 protocol DiceGameDelegate {
-    func gameDidStart(_ game: DiceGame)
-    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
-    func gameDidEnd(_ game: DiceGame)
+  func gameDidStart(_ game: DiceGame)
+  func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
+  func gameDidEnd(_ game: DiceGame)
 }
+
 The DiceGame protocol is a protocol that can be adopted by any game that involves dice. The DiceGameDelegate protocol can be adopted by any type to track the progress of a DiceGame.
 
 Here’s a version of the Snakes and Ladders game originally introduced in Control Flow. This version is adapted to use a Dice instance for its dice-rolls; to adopt the DiceGame protocol; and to notify a DiceGameDelegate about its progress:
 
 class SnakesAndLadders: DiceGame {
-    let finalSquare = 25
-    let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
-    var square = 0
-    var board: [Int]
-    init() {
-        board = Array(repeating: 0, count: finalSquare + 1)
-        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
-        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+  let finalSquare = 25
+  let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
+  var square = 0
+  var board: [Int]
+  init() {
+    board = Array(repeating: 0, count: finalSquare + 1)
+    board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+    board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+  }
+  var delegate: DiceGameDelegate?
+  func play() {
+    square = 0
+    delegate?.gameDidStart(self)
+    gameLoop: while square != finalSquare {
+      let diceRoll = dice.roll()
+      delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
+      switch square + diceRoll {
+      case finalSquare:
+        break gameLoop
+      case let newSquare where newSquare > finalSquare:
+        continue gameLoop
+      default:
+        square += diceRoll
+        square += board[square]
+      }
     }
-    var delegate: DiceGameDelegate?
-    func play() {
-        square = 0
-        delegate?.gameDidStart(self)
-        gameLoop: while square != finalSquare {
-            let diceRoll = dice.roll()
-            delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
-            switch square + diceRoll {
-            case finalSquare:
-                break gameLoop
-            case let newSquare where newSquare > finalSquare:
-                continue gameLoop
-            default:
-                square += diceRoll
-                square += board[square]
-            }
-        }
-        delegate?.gameDidEnd(self)
-    }
+    delegate?.gameDidEnd(self)
+  }
 }
 
 For a description of the Snakes and Ladders gameplay, see Break section of the Control Flow.
@@ -683,22 +694,23 @@ Because the delegate property is an optional DiceGameDelegate, the play() method
 This next example shows a class called DiceGameTracker, which adopts the DiceGameDelegate protocol:
 
 class DiceGameTracker: DiceGameDelegate {
-    var numberOfTurns = 0
-    func gameDidStart(_ game: DiceGame) {
-        numberOfTurns = 0
-        if game is SnakesAndLadders {
-            print("Started a new game of Snakes and Ladders")
-        }
-        print("The game is using a \(game.dice.sides)-sided dice")
+  var numberOfTurns = 0
+  func gameDidStart(_ game: DiceGame) {
+    numberOfTurns = 0
+    if game is SnakesAndLadders {
+      print("Started a new game of Snakes and Ladders")
     }
-    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
-        numberOfTurns += 1
-        print("Rolled a \(diceRoll)")
-    }
-    func gameDidEnd(_ game: DiceGame) {
-        print("The game lasted for \(numberOfTurns) turns")
-    }
+    print("The game is using a \(game.dice.sides)-sided dice")
+  }
+  func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
+    numberOfTurns += 1
+    print("Rolled a \(diceRoll)")
+  }
+  func gameDidEnd(_ game: DiceGame) {
+    print("The game lasted for \(numberOfTurns) turns")
+  }
 }
+
 DiceGameTracker implements all three methods required by DiceGameDelegate. It uses these methods to keep track of the number of turns a game has taken. It resets a numberOfTurns property to zero when the game starts, increments it each time a new turn begins, and prints out the total number of turns once the game has ended.
 
 The implementation of gameDidStart(_:) shown above uses the game parameter to print some introductory information about the game that is about to be played. The game parameter has a type of DiceGame, not SnakesAndLadders, and so gameDidStart(_:) can access and use only methods and properties that are implemented as part of the DiceGame protocol. However, the method is still able to use type casting to query the type of the underlying instance. In this example, it checks whether game is actually an instance of SnakesAndLadders behind the scenes, and prints an appropriate message if so.
@@ -718,6 +730,9 @@ game.play()
 // Rolled a 4
 // Rolled a 5
 // The game lasted for 4 turns
+
+// -----------------------------------------------------------------------------
+
 Adding Protocol Conformance with an Extension
 
 You can extend an existing type to adopt and conform to a new protocol, even if you do not have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand. For more about extensions, see Extensions.
@@ -729,14 +744,15 @@ Existing instances of a type automatically adopt and conform to a protocol when 
 For example, this protocol, called TextRepresentable, can be implemented by any type that has a way to be represented as text. This might be a description of itself, or a text version of its current state:
 
 protocol TextRepresentable {
-    var textualDescription: String { get }
+  var textualDescription: String { get }
 }
+
 The Dice class from earlier can be extended to adopt and conform to TextRepresentable:
 
 extension Dice: TextRepresentable {
-    var textualDescription: String {
-        return "A \(sides)-sided dice"
-    }
+  var textualDescription: String {
+    return "A \(sides)-sided dice"
+  }
 }
 This extension adopts the new protocol in exactly the same way as if Dice had provided it in its original implementation. The protocol name is provided after the type name, separated by a colon, and an implementation of all requirements of the protocol is provided within the extension’s curly braces.
 
@@ -748,9 +764,9 @@ print(d12.textualDescription)
 Similarly, the SnakesAndLadders game class can be extended to adopt and conform to the TextRepresentable protocol:
 
 extension SnakesAndLadders: TextRepresentable {
-    var textualDescription: String {
-        return "A game of Snakes and Ladders with \(finalSquare) squares"
-    }
+  var textualDescription: String {
+    return "A game of Snakes and Ladders with \(finalSquare) squares"
+  }
 }
 print(game.textualDescription)
 // Prints "A game of Snakes and Ladders with 25 squares"
@@ -762,18 +778,20 @@ Declaring Protocol Adoption with an Extension
 If a type already conforms to all of the requirements of a protocol, but has not yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:
 
 struct Hamster {
-    var name: String
-    var textualDescription: String {
-        return "A hamster named \(name)"
-    }
+  var name: String
+  var textualDescription: String {
+    return "A hamster named \(name)"
+  }
 }
 extension Hamster: TextRepresentable {}
+
 Instances of Hamster can now be used wherever TextRepresentable is the required type:
 
 let simonTheHamster = Hamster(name: "Simon")
 let somethingTextRepresentable: TextRepresentable = simonTheHamster
 print(somethingTextRepresentable.textualDescription)
 // Prints "A hamster named Simon"
+
 NOTE
 
 Types do not automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
@@ -788,45 +806,51 @@ let things: [TextRepresentable] = [game, d12, simonTheHamster]
 It is now possible to iterate over the items in the array, and print each item’s textual description:
 
 for thing in things {
-    print(thing.textualDescription)
+  print(thing.textualDescription)
 }
 // A game of Snakes and Ladders with 25 squares
 // A 12-sided dice
 // A hamster named Simon
+
 Note that the thing constant is of type TextRepresentable. It is not of type Dice, or DiceGame, or Hamster, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it is of type TextRepresentable, and anything that is TextRepresentable is known to have a textualDescription property, it is safe to access thing.textualDescription each time through the loop.
+
+// -----------------------------------------------------------------------------
 
 Protocol Inheritance
 
 A protocol can inherit one or more other protocols and can add further requirements on top of the requirements it inherits. The syntax for protocol inheritance is similar to the syntax for class inheritance, but with the option to list multiple inherited protocols, separated by commas:
 
 protocol InheritingProtocol: SomeProtocol, AnotherProtocol {
-    // protocol definition goes here
+  // protocol definition goes here
 }
+
 Here’s an example of a protocol that inherits the TextRepresentable protocol from above:
 
 protocol PrettyTextRepresentable: TextRepresentable {
-    var prettyTextualDescription: String { get }
+  var prettyTextualDescription: String { get }
 }
+
 This example defines a new protocol, PrettyTextRepresentable, which inherits from TextRepresentable. Anything that adopts PrettyTextRepresentable must satisfy all of the requirements enforced by TextRepresentable, plus the additional requirements enforced by PrettyTextRepresentable. In this example, PrettyTextRepresentable adds a single requirement to provide a gettable property called prettyTextualDescription that returns a String.
 
 The SnakesAndLadders class can be extended to adopt and conform to PrettyTextRepresentable:
 
 extension SnakesAndLadders: PrettyTextRepresentable {
-    var prettyTextualDescription: String {
-        var output = textualDescription + ":\n"
-        for index in 1...finalSquare {
-            switch board[index] {
-            case let ladder where ladder > 0:
-                output += "▲ "
-            case let snake where snake < 0:
-                output += "▼ "
-            default:
-                output += "○ "
-            }
-        }
-        return output
+  var prettyTextualDescription: String {
+    var output = textualDescription + ":\n"
+    for index in 1...finalSquare {
+      switch board[index] {
+      case let ladder where ladder > 0:
+        output += "▲ "
+      case let snake where snake < 0:
+        output += "▼ "
+      default:
+        output += "○ "
+      }
     }
+    return output
+  }
 }
+
 This extension states that it adopts the PrettyTextRepresentable protocol and provides an implementation of the prettyTextualDescription property for the SnakesAndLadders type. Anything that is PrettyTextRepresentable must also be TextRepresentable, and so the implementation of prettyTextualDescription starts by accessing the textualDescription property from the TextRepresentable protocol to begin an output string. It appends a colon and a line break, and uses this as the start of its pretty text representation. It then iterates through the array of board squares, and appends a geometric shape to represent the contents of each square:
 
 If the square’s value is greater than 0, it is the base of a ladder, and is represented by ▲.
@@ -837,6 +861,9 @@ The prettyTextualDescription property can now be used to print a pretty text des
 print(game.prettyTextualDescription)
 // A game of Snakes and Ladders with 25 squares:
 // ○ ○ ▲ ○ ○ ▲ ○ ○ ▲ ▲ ○ ○ ○ ▼ ○ ○ ○ ○ ▼ ○ ○ ▼ ○ ▼ ○
+
+// -----------------------------------------------------------------------------
+
 Class-Only Protocols
 
 You can limit protocol adoption to class types (and not structures or enumerations) by adding the class keyword to a protocol’s inheritance list. The class keyword must always appear first in a protocol’s inheritance list, before any inherited protocols:
@@ -850,6 +877,8 @@ NOTE
 
 Use a class-only protocol when the behavior defined by that protocol’s requirements assumes or requires that a conforming type has reference semantics rather than value semantics. For more on reference and value semantics, see Structures and Enumerations Are Value Types and Classes Are Reference Types.
 
+// -----------------------------------------------------------------------------
+
 Protocol Composition
 
 It can be useful to require a type to conform to multiple protocols at once. You can combine multiple protocols into a single requirement with a protocol composition. Protocol compositions have the form SomeProtocol & AnotherProtocol. You can list as many protocols as you need to, separating them by ampersands (&).
@@ -857,21 +886,22 @@ It can be useful to require a type to conform to multiple protocols at once. You
 Here’s an example that combines two protocols called Named and Aged into a single protocol composition requirement on a function parameter:
 
 protocol Named {
-    var name: String { get }
+  var name: String { get }
 }
 protocol Aged {
-    var age: Int { get }
+  var age: Int { get }
 }
 struct Person: Named, Aged {
-    var name: String
-    var age: Int
+  var name: String
+  var age: Int
 }
 func wishHappyBirthday(to celebrator: Named & Aged) {
-    print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
+  print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
 }
 let birthdayPerson = Person(name: "Malcolm", age: 21)
 wishHappyBirthday(to: birthdayPerson)
 // Prints "Happy birthday, Malcolm, you're 21!"
+
 This example defines a protocol called Named, with a single requirement for a gettable String property called name. It also defines a protocol called Aged, with a single requirement for a gettable Int property called age. Both of these protocols are adopted by a structure called Person.
 
 The example also defines a wishHappyBirthday(to:) function, The type of the celebrator parameter is Named & Aged, which means “any type that conforms to both the Named and Aged protocols.” It doesn’t matter what specific type is passed to the function, as long as it conforms to both of the required protocols.
@@ -881,6 +911,8 @@ The example then creates a new Person instance called birthdayPerson and passes 
 NOTE
 
 Protocol compositions do not define a new, permanent protocol type. Rather, they define a temporary local protocol that has the combined requirements of all protocols in the composition.
+
+// -----------------------------------------------------------------------------
 
 Checking for Protocol Conformance
 
@@ -892,52 +924,59 @@ The as! version of the downcast operator forces the downcast to the protocol typ
 This example defines a protocol called HasArea, with a single property requirement of a gettable Double property called area:
 
 protocol HasArea {
-    var area: Double { get }
+  var area: Double { get }
 }
+
 Here are two classes, Circle and Country, both of which conform to the HasArea protocol:
 
 class Circle: HasArea {
-    let pi = 3.1415927
-    var radius: Double
-    var area: Double { return pi * radius * radius }
-    init(radius: Double) { self.radius = radius }
+  let pi = 3.1415927
+  var radius: Double
+  var area: Double { return pi * radius * radius }
+  init(radius: Double) { self.radius = radius }
 }
 class Country: HasArea {
-    var area: Double
-    init(area: Double) { self.area = area }
+  var area: Double
+  init(area: Double) { self.area = area }
 }
+
 The Circle class implements the area property requirement as a computed property, based on a stored radius property. The Country class implements the area requirement directly as a stored property. Both classes correctly conform to the HasArea protocol.
 
 Here’s a class called Animal, which does not conform to the HasArea protocol:
 
 class Animal {
-    var legs: Int
-    init(legs: Int) { self.legs = legs }
+  var legs: Int
+  init(legs: Int) { self.legs = legs }
 }
+
 The Circle, Country and Animal classes do not have a shared base class. Nonetheless, they are all classes, and so instances of all three types can be used to initialize an array that stores values of type AnyObject:
 
 let objects: [AnyObject] = [
-    Circle(radius: 2.0),
-    Country(area: 243_610),
-    Animal(legs: 4)
+  Circle(radius: 2.0),
+  Country(area: 243_610),
+  Animal(legs: 4)
 ]
+
 The objects array is initialized with an array literal containing a Circle instance with a radius of 2 units; a Country instance initialized with the surface area of the United Kingdom in square kilometers; and an Animal instance with four legs.
 
 The objects array can now be iterated, and each object in the array can be checked to see if it conforms to the HasArea protocol:
 
 for object in objects {
-    if let objectWithArea = object as? HasArea {
-        print("Area is \(objectWithArea.area)")
-    } else {
-        print("Something that doesn't have an area")
-    }
+  if let objectWithArea = object as? HasArea {
+    print("Area is \(objectWithArea.area)")
+  } else {
+    print("Something that doesn't have an area")
+  }
 }
 // Area is 12.5663708
 // Area is 243610.0
 // Something that doesn't have an area
+
 Whenever an object in the array conforms to the HasArea protocol, the optional value returned by the as? operator is unwrapped with optional binding into a constant called objectWithArea. The objectWithArea constant is known to be of type HasArea, and so its area property can be accessed and printed in a type-safe way.
 
 Note that the underlying objects are not changed by the casting process. They continue to be a Circle, a Country and an Animal. However, at the point that they are stored in the objectWithArea constant, they are only known to be of type HasArea, and so only their area property can be accessed.
+
+// -----------------------------------------------------------------------------
 
 Optional Protocol Requirements
 
@@ -950,9 +989,10 @@ An optional protocol requirement can be called with optional chaining, to accoun
 The following example defines an integer-counting class called Counter, which uses an external data source to provide its increment amount. This data source is defined by the CounterDataSource protocol, which has two optional requirements:
 
 @objc protocol CounterDataSource {
-    @objc optional func increment(forCount count: Int) -> Int
-    @objc optional var fixedIncrement: Int { get }
+  @objc optional func increment(forCount count: Int) -> Int
+  @objc optional var fixedIncrement: Int { get }
 }
+
 The CounterDataSource protocol defines an optional method requirement called increment(forCount:) and an optional property requirement called fixedIncrement. These requirements define two different ways for data sources to provide an appropriate increment amount for a Counter instance.
 
 NOTE
@@ -962,16 +1002,17 @@ Strictly speaking, you can write a custom class that conforms to CounterDataSour
 The Counter class, defined below, has an optional dataSource property of type CounterDataSource?:
 
 class Counter {
-    var count = 0
-    var dataSource: CounterDataSource?
-    func increment() {
-        if let amount = dataSource?.increment?(forCount: count) {
-            count += amount
-        } else if let amount = dataSource?.fixedIncrement {
-            count += amount
-        }
+  var count = 0
+  var dataSource: CounterDataSource?
+  func increment() {
+    if let amount = dataSource?.increment?(forCount: count) {
+      count += amount
+    } else if let amount = dataSource?.fixedIncrement {
+      count += amount
     }
+  }
 }
+
 The Counter class stores its current value in a variable property called count. The Counter class also defines a method called increment, which increments the count property every time the method is called.
 
 The increment() method first tries to retrieve an increment amount by looking for an implementation of the increment(forCount:) method on its data source. The increment() method uses optional chaining to try to call increment(forCount:), and passes the current count value as the method’s single argument.
@@ -987,35 +1028,38 @@ If it is not possible to retrieve a value from the increment(forCount:) method�
 Here’s a simple CounterDataSource implementation where the data source returns a constant value of 3 every time it is queried. It does this by implementing the optional fixedIncrement property requirement:
 
 class ThreeSource: NSObject, CounterDataSource {
-    let fixedIncrement = 3
+  let fixedIncrement = 3
 }
+
 You can use an instance of ThreeSource as the data source for a new Counter instance:
 
 var counter = Counter()
 counter.dataSource = ThreeSource()
 for _ in 1...4 {
-    counter.increment()
-    print(counter.count)
+  counter.increment()
+  print(counter.count)
 }
 // 3
 // 6
 // 9
 // 12
+
 The code above creates a new Counter instance; sets its data source to be a new ThreeSource instance; and calls the counter’s increment() method four times. As expected, the counter’s count property increases by three each time increment() is called.
 
 Here’s a more complex data source called TowardsZeroSource, which makes a Counter instance count up or down towards zero from its current count value:
 
 @objc class TowardsZeroSource: NSObject, CounterDataSource {
-    func increment(forCount count: Int) -> Int {
-        if count == 0 {
-            return 0
-        } else if count < 0 {
-            return 1
-        } else {
-            return -1
-        }
+  func increment(forCount count: Int) -> Int {
+    if count == 0 {
+      return 0
+    } else if count < 0 {
+      return 1
+    } else {
+      return -1
     }
+  }
 }
+
 The TowardsZeroSource class implements the optional increment(forCount:) method from the CounterDataSource protocol and uses the count argument value to work out which direction to count in. If count is already zero, the method returns 0 to indicate that no further counting should take place.
 
 You can use an instance of TowardsZeroSource with the existing Counter instance to count from -4 to zero. Once the counter reaches zero, no more counting takes place:
@@ -1023,14 +1067,17 @@ You can use an instance of TowardsZeroSource with the existing Counter instance 
 counter.count = -4
 counter.dataSource = TowardsZeroSource()
 for _ in 1...5 {
-    counter.increment()
-    print(counter.count)
+  counter.increment()
+  print(counter.count)
 }
 // -3
 // -2
 // -1
 // 0
 // 0
+
+// -----------------------------------------------------------------------------
+
 Protocol Extensions
 
 Protocols can be extended to provide method and property implementations to conforming types. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
@@ -1038,10 +1085,11 @@ Protocols can be extended to provide method and property implementations to conf
 For example, the RandomNumberGenerator protocol can be extended to provide a randomBool() method, which uses the result of the required random() method to return a random Bool value:
 
 extension RandomNumberGenerator {
-    func randomBool() -> Bool {
-        return random() > 0.5
-    }
+  func randomBool() -> Bool {
+    return random() > 0.5
+  }
 }
+
 By creating an extension on the protocol, all conforming types automatically gain this method implementation without any additional modification.
 
 let generator = LinearCongruentialGenerator()
@@ -1060,10 +1108,13 @@ Protocol requirements with default implementations provided by extensions are di
 For example, the PrettyTextRepresentable protocol, which inherits the TextRepresentable protocol can provide a default implementation of its required prettyTextualDescription property to simply return the result of accessing the textualDescription property:
 
 extension PrettyTextRepresentable  {
-    var prettyTextualDescription: String {
-        return textualDescription
-    }
+  var prettyTextualDescription: String {
+    return textualDescription
+  }
 }
+
+// -----------------------------------------------------------------------------
+
 Adding Constraints to Protocol Extensions
 
 When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available. You write these constraints after the name of the protocol you’re extending using a generic where clause, as described in Generic Where Clauses.
@@ -1071,11 +1122,12 @@ When you define a protocol extension, you can specify constraints that conformin
 For instance, you can define an extension to the Collection protocol that applies to any collection whose elements conform to the TextRepresentable protocol from the example above.
 
 extension Collection where Iterator.Element: TextRepresentable {
-    var textualDescription: String {
-        let itemsAsText = self.map { $0.textualDescription }
-        return "[" + itemsAsText.joined(separator: ", ") + "]"
-    }
+  var textualDescription: String {
+    let itemsAsText = self.map { $0.textualDescription }
+    return "[" + itemsAsText.joined(separator: ", ") + "]"
+  }
 }
+
 The textualDescription property returns the textual description of the entire collection by concatenating the textual representation of each element in the collection into a comma-separated list, enclosed in brackets.
 
 Consider the Hamster structure from before, which conforms to the TextRepresentable protocol, and an array of Hamster values:
@@ -1084,10 +1136,12 @@ let murrayTheHamster = Hamster(name: "Murray")
 let morganTheHamster = Hamster(name: "Morgan")
 let mauriceTheHamster = Hamster(name: "Maurice")
 let hamsters = [murrayTheHamster, morganTheHamster, mauriceTheHamster]
+
 Because Array conforms to Collection and the array’s elements conform to the TextRepresentable protocol, the array can use the textualDescription property to get a textual representation of its contents:
 
 print(hamsters.textualDescription)
 // Prints "[A hamster named Murray, A hamster named Morgan, A hamster named Maurice]"
+
 NOTE
 
 If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift will use the implementation corresponding to the most specialized constraints.

@@ -100,9 +100,36 @@ assert(1 < 2)         // Less than.
 assert(1 >= 1)        // Greater than or equal to.
 assert(1 <= 2)        // Less than or equal to.
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(2 <= 1)
+*/
+
+// -----------------------------------------------------------------------------
+
+// You can also compare tuples that have the same number of values, as long
+// as each of the values in the tuple can be compared.
+
+
+
+// TODO
+
+// scenarios:
+// - same types same number of values
+// - same types different number of values
+// - different types same number of values
+
+
+
+// For example, both Int
+// and String can be compared, which means tuples of the type (Int, String)
+
+assert((1, "zebra") < (2, "apple"))
+
+
+
+// Uncommenting this will produce a compile-time error:
+/*
 */
 
 
@@ -110,32 +137,9 @@ assert(2 <= 1)
 
 
 
-
-
-
-
-
-
-
-
-// TODO
-
-
-
-
 /*
 
 
-// TODO
-// - can tuples be added together?
-
-
-
-// You can also compare tuples that have the same number of values, as long
-// as each of the values in the tuple can be compared.
-
-// For example, both Int
-// and String can be compared, which means tuples of the type (Int, String)
 // can be compared. In contrast, Bool can’t be compared, which means tuples
 // that contain a Boolean value can’t be compared.
 
@@ -150,103 +154,108 @@ assert(2 <= 1)
 // To compare tuples with seven or more elements, you must implement the
 // comparison operators yourself.
 
+*/
+
+
+
+
+
+
 // -----------------------------------------------------------------------------
 //  Ternary conditional operator (`?:`) - The operator that checks a condition
 //                                        and evaluates one of two expressions
 //                                        based on its result.
 // -----------------------------------------------------------------------------
 
-let contentHeight = 40
-let hasHeader = true
-let rowHeight = contentHeight + (hasHeader ? 50 : 20)
-assert(rowHeight == 90)
+let ptt1 = false ? 5 : 2
+assert(ptt1 == 2)
 
-
-
-
-
-
+let ptt2 = 4 + (true ? 5 : 2)
+assert(ptt2 == 9)
 
 // -----------------------------------------------------------------------------
 //  Nil-coalescing operator (`??`) - The operator that returns either the value
 //                                   of a non-nil optional or a default value.
 // -----------------------------------------------------------------------------
 
-// `(a ?? b)`
-// The expression a is always of an optional type.
-// The expression b must match the type that is stored inside a.
+// The nil-coalescing operator requires its first operand be an optional and its
+// second operand to be of the same type as the type that could be stored in the
+// first operand.
 
-// The nil-coalescing operator is shorthand for the code below:
+// If the first operand is non-nil the second operand is not evaluated.
+// This is an example of short-circuit evaluation.
 
-a != nil ? a! : b
+var pn1 = Int?(2)
+let pn2 = 4
+let pn3 = pn1 ?? pn2
+assert(pn3 == 2)
 
+// -----------------------------------------------------------------------------
 
-The code above uses the ternary conditional operator and forced unwrapping (a!)
-to access the value wrapped inside a when a is not nil, and to return b
-otherwise. The nil-coalescing operator provides a more elegant way to
-encapsulate this conditional checking and unwrapping in a concise and
-readable form.
+// If the first operand of a nil-coalescing operator is nil then the second operand.
 
-NOTE
+pn1 = nil
+let pn4 = pn1 ?? pn2
+assert(pn4 == pn2)
+assert(pn4 == 4)
 
-If the value of a is non-nil, the value of b is not evaluated. This is an example of
-short-circuit evaluation.
+// -----------------------------------------------------------------------------
 
-let defaultColorName = "red"
-var userDefinedColorName: String?   // defaults to nil
-
-var colorNameToUse = userDefinedColorName ?? defaultColorName
-// userDefinedColorName is nil, so colorNameToUse is set to the default of "red"
-
-If you assign a non-nil value to userDefinedColorName and perform the nil-coalescing
-operator check again, the value wrapped inside userDefinedColorName is used instead of the default:
-
-userDefinedColorName = "green"
-colorNameToUse = userDefinedColorName ?? defaultColorName
-// userDefinedColorName is not nil, so colorNameToUse is set to "green"
+// This ternary conditional acts the same as the nil-coalescing operator.
+let pn5 = pn1 != nil ? pn1! : pn2
+assert(pn4 == pn5)
 
 
 
 
-
-
-
-
-
-
-
+// TODO
 
 // -----------------------------------------------------------------------------
 //  Range operator - An operator that expresses a range of values.
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
 //  Closed range operator (`...`) - The range operator whose range includes the
 //                                  value defining the range's upper-limit.
 // -----------------------------------------------------------------------------
 
 let r1 = -11...12
-assert(r1 == -11..<13)
+assert(r1 == CountableClosedRange(-11...12))
+assert(type(of: r1) == CountableClosedRange<Int>.self)
+assert(r1.count == 24)
+assert(r1.lowerBound == -11)
+assert(r1.upperBound == 12)
+assert(r1.contains(6) == true)
 
 // A closed range's lower-limit must not be greater than its upper-limit.
+
+// Uncommenting this will produce a compile-time error:
+/*
+let r2 = 12...-11
+*/
+
+
+
+
+// TODO
 
 // -----------------------------------------------------------------------------
 //  Half-open range operator (`..<`) - The range operator whose range omits the
 //                                     value defining the range's upper-limit.
 // -----------------------------------------------------------------------------
 
-let r2 = -11..<13
-assert(r1 == -11...12)
+// let r2 = -11..<13
+// assert(r2 == -11...12)
 
 // A half-open range's lower-limit must not be greater than its upper-limit.
 // However, if they are equal the resulting range is empty.
 
-// -----------------------------------------------------------------------------
-//  Logical operator - An operator that modifies or combines the
-//                     Boolean logic values true and false.
-// -----------------------------------------------------------------------------
+
+
+
+// TODO
+
+/*
 
 // -----------------------------------------------------------------------------
+//  Logical operator - An operator that works with Boolean values.
 //  Logical NOT operator (`!`) - The operator that turns a true value into
 //                               a false one and vice versa.
 // -----------------------------------------------------------------------------
@@ -254,8 +263,7 @@ assert(r1 == -11...12)
 let allowedEntry = false
 assert(!allowedEntry == true)
 
-// `!x` is read as "not x".  So, `!allowedEntry` can be read as
-// "not allowed entry".
+// `!x` is read as "not x".  So, `!allowedEntry` is read as "not allowed entry".
 
 // -----------------------------------------------------------------------------
 //  Logical NOT operator (`&&`) - The operator that evaluates to true if both
@@ -268,8 +276,8 @@ let passedRetinaScan = false
 assert(enteredDoorCode && passedRetinaScan == false)
 
 // If the first operand is false the second won't be evaluated because it's
-// unnecessary since the overall expression will be false.  This is known
-// as short-circuit evaluation.
+// unnecessary since the overall expression will be false.  This behavior
+// is known as short-circuit evaluation.
 
 // -----------------------------------------------------------------------------
 //  Logical OR operator (`||`) - The operator that evaluates to true if either
@@ -313,7 +321,10 @@ compound expressions with multiple logical operators evaluate the leftmost subex
 
 Explicit Parentheses
 
-It is sometimes useful to include parentheses when they are not strictly needed, to make the intention of a complex expression easier to read. In the door access example above, it is useful to add parentheses around the first part of the compound expression to make its intent explicit:
+It is sometimes useful to include parentheses when they are not strictly needed,
+to make the intention of a complex expression easier to read.  In the door
+access example above, it is useful to add parentheses around the first
+part of the compound expression to make its intent explicit:
 
 if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
   print("Welcome!")
@@ -325,10 +336,19 @@ if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword 
 
 // The parentheses make it clear that the first two values are considered as
 // part of a separate possible state in the overall logic. The output of the
-// compound expression doesn’t change, but the overall intention is clearer to the reader. Readability is always preferred over brevity; use parentheses where they help to make your intentions clear.
+// compound expression doesn’t change, but the overall intention is clearer
+// to the reader.  Readability is always preferred over brevity; use
+// parentheses where they help to make your intentions clear.
+
 
 
 */
+
+
+
+
+
+
 
 
 // =============================================================================

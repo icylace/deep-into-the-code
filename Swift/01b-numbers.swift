@@ -51,9 +51,9 @@ assert(maxValue == 255)
 
 // TODO
 
-// Floating-point types can represent a much wider range of values than
-// integer types and can store numbers that are much larger or smaller
-// than can be stored in an integer.
+// Floating-point types represent a much wider range of values than integer
+// types and can store numbers that are much larger or smaller than can be
+// stored in an integer.
 
 // There are no unsigned floating-point types but there are three signed ones:
 // - `Float` (or `Float32`) represents a 32-bit single-precision floating-point
@@ -154,7 +154,7 @@ n = 0x0000000FEED.FACE___p1_ ; assert(n == 0xFEED.FACEp1)
 // Underscores cannot be put directly after the prefix for binary, octal, and
 // hexadecimal numbers.  Attempting to do so results in a compile-time error.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 l = 0b_01_010_10_101
 l = 0o_34__53
@@ -175,7 +175,7 @@ n = 0x_FEED.FACE___p1_
 
 // `Int8` cannot store a number larger than its maximum value.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 let cannotBeNegative: UInt8 = -1
 let tooBig: Int8 = Int8.max + 1

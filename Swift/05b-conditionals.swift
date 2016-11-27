@@ -133,7 +133,7 @@ if let number = maybeTwo {
   assert(number == 2)
 } else {
   assert(maybeTwo == nil)
-  // If the following is uncommented it will produce a runtime error:
+  // Uncommenting this will produce a runtime error:
   /*
   assert(number == nil)
   */
@@ -170,12 +170,7 @@ assert(actualNumber == 50)
 // nil or any Boolean condition evaluates to false, the whole `if`
 // statement's condition is considered to be false.
 
-if let a = Int("4"), var b = Int("42"), let c = Int("100"), a < b && b < c {
-  b += 2
-  assert(a + b + c == 148)
-}
-
-// This `if` statement is equivalent to the previous one.
+// This `if` statement "pyramid of doom"...
 if let a = Int("4") {
   if var b = Int("42") {
     if let c = Int("100") {
@@ -185,6 +180,12 @@ if let a = Int("4") {
       }
     }
   }
+}
+
+// ...is equivalent to this simplified `if` statement.
+if let a = Int("4"), var b = Int("42"), let c = Int("100"), a < b && b < c {
+  b += 2
+  assert(a + b + c == 148)
 }
 
 
@@ -251,14 +252,14 @@ if case ... {
 //  `switch` statement - The conditional statement that has at least one branch.
 // -----------------------------------------------------------------------------
 
-// A `switch` statement considers a value and compares it against several
-// possible matching patterns.  It then executes an appropriate block
-// of code, based on the first pattern that matches successfully.
-// A `switch` statement is an alternative to multiple `if`
-// statements for responding to multiple potential states.
-
-// In its simplest form, a `switch` statement compares a value against one
-// or more values of the same type.
+// A `switch` statement...
+// ...compares a value against several possible matching patterns.  It then
+//    executes an appropriate block of code based on the first pattern that
+//    matches successfully.
+// ...is an alternative to multiple `if` statements for responding to
+//    multiple potential states.
+// ...in its simplest form compares a value against one or more values
+//    of similar type.
 
 switch some value to consider {
 case value 1:
@@ -270,7 +271,9 @@ default:
 }
 
 Every `switch` statement consists of multiple possible cases, each of which begins
-with the case keyword.  In addition to comparing against specific values, Swift
+with the case keyword.
+
+In addition to comparing against specific values, Swift
 provides several ways for each case to specify more complex matching patterns.
 These options are described later in this chapter.
 
@@ -278,11 +281,12 @@ Each case is a separate branch of code execution.  The `switch` statement
 determines which branch should be selected.  This procedure is known
 as switching on the value that is being considered.
 
-Every `switch` statement must be exhaustive.  That is, every possible value of the
-type being considered must be matched by one of the `switch` cases.  If it's not
-appropriate to provide a case for every possible value, you can define a default
-case to cover any values that are not addressed explicitly.  This default case
-is indicated by the default keyword, and must always appear last.
+Every `switch` statement...
+...must be exhaustive.  That is, every possible value of the type being
+   considered must be matched by one of the cases.  If it's not
+   appropriate to provide a case for every possible value, you
+   can define a default case to cover any values that are not
+   addressed explicitly.  The default case must always be last.
 
 let someCharacter: Character = "z"
 switch someCharacter {

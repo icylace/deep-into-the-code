@@ -1,8 +1,8 @@
 // TODO
 
 // -----------------------------------------------------------------------------
-//  Class - A general-purpose construct that defines a new type.
-//  Structure - A general-purpose construct that defines a new type.
+//  Class - A general-purpose construct that defines a new reference type.
+//  Structure - A general-purpose construct that defines a new value type.
 //  Instance - A distinct occurence of a type.
 // -----------------------------------------------------------------------------
 

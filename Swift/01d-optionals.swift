@@ -1,8 +1,7 @@
 // -----------------------------------------------------------------------------
-//  Optional type - A type having a specific underlying type and whose values
-//                  may be of that underlying type or nil otherwise.
-//  Optional value (optional) - A value having either an underlying value or
-//                              the lack of any value at all.
+//  Optional type - A type having an underlying type and whose values may be of
+//                  that underlying type or nothing.
+//  Optional value (optional) - A value having an underlying value or nothing.
 // -----------------------------------------------------------------------------
 
 // Optionals are used in situations where a value might be absent.
@@ -17,6 +16,30 @@ assert(type(of: maybeZero) == Int?.self)
 assert(maybeZero == Int?(0))
 assert(maybeZero == Int(0))
 assert(maybeZero == 0)
+
+
+
+/*
+
+// TODO
+// - refine this
+
+let o90: Int? = 0
+let o91 = Int?(0)
+let o92: Int? = nil
+// Nil values cannot be used in initializer syntax.
+// Uncommenting this will produce a compile-time error:
+/*
+let o93 = Int?(nil)
+*/
+
+*/
+
+
+
+
+
+
 
 // Any type can be made into an optional type.
 
@@ -40,6 +63,8 @@ var o3: Optional<Int>
 assert(Int?.self == Optional<Int>.self)
 assert(type(of: o3) == Int?.self)
 assert(type(of: o3) == Optional<Int>.self)
+// TODO
+// - move the definition for nil to here?
 assert(o3 == nil)
 
 // -----------------------------------------------------------------------------
@@ -79,7 +104,7 @@ assert(o20 == 123)
 // We know that `o20` has an integer, so it's safe to force-unwrap it.
 let o21 = o20!
 assert(type(of: o21) == Int.self)
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(o21! == 123)
 */
@@ -113,7 +138,7 @@ assert(o2! == Int?(8))
 
 assert(o4!! == Int?(8))
 assert(o4! == Int?(8))
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(o4 == Int??(8))
 */
@@ -156,14 +181,14 @@ assert(o23 == nil)
 
 // An optional in a valueless state cannot be force-unwrapped.
 
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 let o24 = o23!
 */
 
 // nil cannot be used with non-optional constants and variables.
 
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 let o25: Int = nil
 */
@@ -183,7 +208,7 @@ print(o26)
 // An optional constant must be explicitly initialized before being used.
 
 let o27: Int?
-// If the following is uncommented it will produce a compile-time error:
+// Uncommenting this will produce a compile-time error:
 /*
 assert(o27 == nil)
 */
@@ -219,11 +244,11 @@ assert(n2 == 411)
 
 var o30: Int!
 assert(o30 == nil)
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 assert(o30! == nil)
 */
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 print(o30)
 */
@@ -237,11 +262,11 @@ assert(o30 == 345)
 
 let o31: Int! = nil
 assert(o31 == nil)
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 assert(o31! == nil)
 */
-// If the following is uncommented it will produce a runtime error:
+// Uncommenting this will produce a runtime error:
 /*
 print(o31)
 */

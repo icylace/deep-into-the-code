@@ -269,8 +269,8 @@ This example identifies Uranus from its raw value of 7:
 let possiblePlanet = Planet(rawValue: 7)
 // possiblePlanet is of type Planet? and equals Planet.uranus
 
-Not all possible Int values will find a matching planet, however. Because of this,
-the raw value initializer always returns an optional enumeration case. In the example
+Not all possible Int values will find a matching planet, however.  Because of this,
+the raw value initializer always returns an optional enumeration case.  In the example
 above, possiblePlanet is of type Planet?, or “optional Planet.”
 
 The raw value initializer is a failable initializer, because not every raw value

@@ -2,11 +2,11 @@
 //  Collection type - A type for storing groups of values.
 // -----------------------------------------------------------------------------
 
-// If you assign a collection to a variable it will be mutable, meaning it can
-// change (or mutate) by having items added, removed, or changed.
+// A collection assigned to a variable will be mutable, meaning it can change
+// (mutate) by having items added, removed, or changed.
 
-// If you assign a collection to a constant it will be immutable, meaning its
-// size and contents cannot be changed.
+// A collection assigned to a constant will be immutable, meaning its size and
+// contents cannot change.
 
 // -----------------------------------------------------------------------------
 //  Array - A collection type having ordered values of similar type.
@@ -56,18 +56,19 @@ assert(a1 == [3])
 a1 = []
 assert(a1 == [])
 
-// An array's `isEmpty` method is a shortcut for checking whether the `count`
-// property is equal to 0.
+// -----------------------------------------------------------------------------
+
+// An array's `isEmpty` method is a shortcut for checking if `count` equals 0.
 
 assert(a1.isEmpty == true)
 
 // -----------------------------------------------------------------------------
 
-// An array that initially has a specific value at all of its indexes can be
-// created with the `init(repeating:count:)` initializer.
+// An array having a specific value at every index can be created with the
+// `init(repeating:count:)` initializer.
 
-let a2 = Array(repeating: 0.0, count: 12)
-let a3: [Double] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+let a2 = Array(repeating: 0.0, count: 6)
+let a3 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 assert(a2 == a3)
 
 // -----------------------------------------------------------------------------
@@ -78,7 +79,7 @@ assert(a2 == a3)
 let a4 = [1.2, 3.4, 4.5]
 let a5 = Array(repeating: 2.5, count: 3)
 let a6 = a4 + a5
-let a7: [Double] = [1.2, 3.4, 4.5, 2.5, 2.5, 2.5]
+let a7 = [1.2, 3.4, 4.5, 2.5, 2.5, 2.5]
 assert(a6 == a7)
 
 // -----------------------------------------------------------------------------
@@ -98,10 +99,7 @@ assert(a6 == a7)
 // You access and modify an array through its methods and properties,
 // or by using subscript syntax.
 
-// Use the Boolean `isEmpty` property as a shortcut for checking whether the
-// `count` property is equal to 0.
 
-assert(shoppingList.isEmpty == false)
 
 // You can add a new item to the end of an array by using `append(_:)`.
 
@@ -172,7 +170,7 @@ firstItem = shoppingList[0]
 
 If you want to remove the final item from an array, use the removeLast() method
 rather than the remove(at:) method to avoid the need to query the array’s count
-property. Like the remove(at:) method, removeLast() returns the removed item:
+property.  Like the remove(at:) method, removeLast() returns the removed item:
 
 let apples = shoppingList.removeLast()
 // the last item in the array has just been removed
