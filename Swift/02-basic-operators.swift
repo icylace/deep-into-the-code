@@ -7,8 +7,6 @@
 //  Binary operator - An operator that works on two operands.
 //  Ternary operator - An operator that works on three operands.
 // -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
 //  Assignment operator (`=`) - The operator that either initializes a constant
 //                              or variable, or updates a variable.
 // -----------------------------------------------------------------------------
@@ -104,7 +102,7 @@ assert(1 < 2)         // Less than.
 assert(1 >= 1)        // Greater than or equal to.
 assert(1 <= 2)        // Less than or equal to.
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 assert(2 <= 1)
 */
@@ -117,7 +115,7 @@ assert(true != false)
 assert(false == false)
 assert(false != true)
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(true < false)
 */
@@ -151,7 +149,7 @@ assert((true, false) != (false, true))
 assert((true, 1) == (true, 1))
 assert((true, 2) != (true, 3))
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert((2, true) < (3, true))
 */
@@ -160,7 +158,7 @@ assert((2, true) < (3, true))
 
 // Tuples that have a different number of values cannot be compared.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert((1, 2) < (3, 4, 5))
 */
@@ -169,7 +167,7 @@ assert((1, 2) < (3, 4, 5))
 
 // Tuples having similar element types in a different order cannot be compared.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert((4, "dog") == ("dog", 4))
 */
@@ -253,7 +251,7 @@ assert(p17.contains(6) == false)
 
 // A closed range's lower limit must not be greater than its upper limit.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let p18 = 12...-11
 */
@@ -287,13 +285,14 @@ assert(p20.contains(6) == false)
 
 // A half-open range's lower limit must not be greater than its upper limit.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let p21 = 12..<(-11)
 */
 
 // -----------------------------------------------------------------------------
 //  Logical operator - An operator that works with Boolean values.
+// -----------------------------------------------------------------------------
 //  Logical NOT operator (`!`) - The operator that turns a true value into
 //                               a false one and vice versa.
 // -----------------------------------------------------------------------------
@@ -308,34 +307,27 @@ assert(!p22 == true)
 let p23 = true
 assert(!p23 == false)
 
-// TODO
-
-/*
-
 // -----------------------------------------------------------------------------
-//  Logical NOT operator (`&&`) - The operator that evaluates to true if both
+//  Logical AND operator (`&&`) - The operator that evaluates to true if both
 //                                its operands evaluate to true, otherwise it
 //                                evaluates to false.
 // -----------------------------------------------------------------------------
 
-assert(false && false == false)
-assert(false && true == false)
-assert(true && false == false)
-assert(true && true == true)
+assert((false && false) == false)
+assert((false && true) == false)
+assert((true && false) == false)
+assert((true && true) == true)
 
-
-
-let enteredDoorCode = true
-let passedRetinaScan = false
-assert(enteredDoorCode && enteredDoorCode == true)
-assert(passedRetinaScan && passedRetinaScan == false)
-assert(enteredDoorCode && passedRetinaScan == false)
+// -----------------------------------------------------------------------------
 
 // If the first operand is false the second won't be evaluated because it's
 // unnecessary since the overall expression will be false.  This is an
 // example of short-circuit evaluation.
 
-assert(passedRetinaScan && enteredDoorCode == false)
+let hasDoorCode = false
+let passesEyeScan = true
+assert((hasDoorCode && passesEyeScan) == false)
+// `passesEyeScan` was not evaluated.
 
 // -----------------------------------------------------------------------------
 //  Logical OR operator (`||`) - The operator that evaluates to true if either
@@ -343,75 +335,45 @@ assert(passedRetinaScan && enteredDoorCode == false)
 //                               evaluates to false.
 // -----------------------------------------------------------------------------
 
-let hasDoorKey = false
-let knowsOverridePassword = true
-assert(hasDoorKey || knowsOverridePassword == true)
+assert((false || false) == false)
+assert((false || true) == true)
+assert((true || false) == true)
+assert((true || true) == true)
 
-
-
-
+// -----------------------------------------------------------------------------
 
 // If the first operand is true the second won't be evaluated because it's
 // unnecessary since the overall expression will be true.  This is an
 // example of short-circuit evaluation.
 
+let hasDoorKey = true
+let knowsOverride = false
+assert(hasDoorKey || knowsOverride == true)
+// `knowsOverride` was not evaluated.
 
 // -----------------------------------------------------------------------------
-//  Combining Logical Operators
+//  Compound Expressions
 // -----------------------------------------------------------------------------
 
-// You can combine multiple logical operators to create longer
-// compound expressions.
+// Multiple logical operators can be combined to create compound expressions.
 
-assert(enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword == true)
+assert((hasDoorCode && passesEyeScan || hasDoorKey || knowsOverride) == true)
 
-
-
-NOTE
-
-The Swift logical operators && and || are left-associative, meaning that
-compound expressions with multiple logical operators evaluate the leftmost subexpression first.
-
-
-
-
-
-
-
-
+// The Swift logical operators `&&` and `||` are left-associative, meaning that
+// compound expressions with multiple logical operators evaluate the leftmost
+// subexpression first.
 
 // -----------------------------------------------------------------------------
+//  Explicit Parentheses
+// -----------------------------------------------------------------------------
 
-Explicit Parentheses
+// Sometimes it's helpful to use parentheses when they're not strictly needed,
+// to make the intention of a complex expression easier to understand.
 
-It is sometimes useful to include parentheses when they are not strictly needed,
-to make the intention of a complex expression easier to read.  In the door
-access example above, it is useful to add parentheses around the first
-part of the compound expression to make its intent explicit:
-
-if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
-  print("Welcome!")
-} else {
-  print("ACCESS DENIED")
-}
-// Prints "Welcome!"
-
-
-// The parentheses make it clear that the first two values are considered as
-// part of a separate possible state in the overall logic. The output of the
-// compound expression doesn’t change, but the overall intention is clearer
-// to the reader.  Readability is always preferred over brevity; use
-// parentheses where they help to make your intentions clear.
-
-
-
-*/
-
-
-
-
-
-
+assert(((hasDoorCode && passesEyeScan) || hasDoorKey || knowsOverride) == true)
+// The parentheses surrounding `hasDoorCode && passesEyeScan` make it clear that
+// those values are considered as part of a separate possible state in the
+// overall logic.  The output of the compound expression is unaffected.
 
 
 // =============================================================================

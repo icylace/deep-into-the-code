@@ -1,3 +1,30 @@
+Readability is always preferred over brevity.
+
+See also:
+https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID81
+
+
+
+
+
+Use parentheses when they're not strictly needed if it helps make a complex expression easier to understand.
+
+See also:
+https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID81
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Use the nil-coalescing operator instead of its equivalent ternary expression.
 - reason: readability
 

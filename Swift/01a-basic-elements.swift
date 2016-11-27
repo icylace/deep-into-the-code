@@ -62,7 +62,7 @@ assert(true/* but please don't do that! */)
 // This assertion is not triggered because `age` equals 3.
 assert(3 < 5)
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 assert(3 > 5)
 */
@@ -100,7 +100,7 @@ assert(3 > 5)
 // Declare a constant named `answer2` and assign it the literal value 42.
 let answer2 = 42
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 answer2 = 0
 */
@@ -164,7 +164,7 @@ assert(answer4 == 42)
 // to it from now on.
 answer4 = 16
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 // Attempt to assign a `String` value to `answer4`.
 answer4 = "hello"
@@ -233,7 +233,7 @@ assert(v13 == 112)
 
 // Backticks used in this way can't be nested.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 var ``v14`` = 212
 var ```v15``` = 143
@@ -250,7 +250,7 @@ print(answer2)
 // 42
 
 // -----------------------------------------------------------------------------
-//  Semicolon - The symbol that separates statements on a line.
+//  Semicolon (`;`) - The symbol that separates statements on a line.
 // -----------------------------------------------------------------------------
 
 // Semicolons are...
@@ -262,6 +262,30 @@ let c10 = 1; var v16 = 2
 
 let c11 = 1
 var v17 = 2;
+
+// -----------------------------------------------------------------------------
+//  Parentheses (`()`) - Symbols that can influence the order of operations.
+// -----------------------------------------------------------------------------
+
+
+
+// TODO
+// - elaborate on the following:
+
+// none
+assert(1 + 2 * 3 == 7)
+
+// explicit intention
+assert(1 + (2 * 3) == 7)
+
+// necessary for operation order change
+assert((1 + 2) * 3 == 9)
+
+// required for certain expressions
+assert(-(1 + 2 * 3) == -7)
+
+
+
 
 
 // =============================================================================

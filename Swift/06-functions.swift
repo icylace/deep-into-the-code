@@ -95,7 +95,7 @@ func f5(_ parameter: Int) {
 
 f5(1)
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 f5(parameter: 1)
 */
@@ -119,7 +119,7 @@ f6(parameter: 2)
 // Call `f6(parameter:)` and use its default argument which is 2.
 f6()
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 f6(parameter: 3)
 */
@@ -140,7 +140,7 @@ f7(xs: 2.35, 6.7, 55.0)
 
 // A function may have at most one variadic parameter.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 func f8(xs: Double..., ys: Double...) {}
 */
@@ -502,7 +502,7 @@ assert(e == "Hello again, Tim!")
 
 // A function's parameters must be used in the order in which they're declared.
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 let f = sayHi(alreadyGreeted: true, name: "Tim")
 */

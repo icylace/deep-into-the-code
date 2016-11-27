@@ -51,7 +51,7 @@ var httpOkay = (code: 200, description: "OK")
 assert(httpOkay.code == 200)
 assert(httpOkay.description == "OK")
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 httpOkay = (c: 200, d: "OK")
 */
@@ -74,7 +74,7 @@ assert(httpRedirect.description == "Moved Permanently")
 // over the element labels for tuple values used with it.
 
 let t1: (Int, Int, String) = (foo: 2, bar: 3, baz: "6")
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(t1.foo == 2)
 assert(t1.bar == 3)
@@ -93,7 +93,7 @@ assert(t3.baz == "6")
 
 let t4: (foo: Int, Int, String) = (foo: 2, bar: 3, baz: "6")
 assert(t4.foo == 2)
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(t4.bar == 3)
 assert(t4.baz == "6")
@@ -124,7 +124,7 @@ assert(t1 == t2)
 // tuple's elements are used is significant.
 
 assert(t2 == (foo: 2, bar: 3, baz: "6"))
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(t2 == (baz: "6", foo: 2, bar: 3))
 */
@@ -137,7 +137,7 @@ var t5: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(type(of: t5) == ().self)
 */
@@ -151,17 +151,17 @@ assert(type(of: t6) == Void.self)
 
 // Since `Void` is a type alias it can't be assigned like `()` can.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 t5 = Void
 t6 = Void
 */
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 var t7 = ()
 assert(type(of: t7) == Void.self)
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 t7 = Void
 */
@@ -199,7 +199,7 @@ assert(type(of: t13) == Int.self)
 assert(t12 == 2)
 assert(t13 == 2)
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let t14: ((((((Int)))))) = ((""))
 */
@@ -209,7 +209,7 @@ let t14: ((((((Int)))))) = ((""))
 // It's not possible to declare a constant or variable as a single-element
 // tuple with an element label.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let t15: (number: Int) = 2
 var t16: (number: Int) = (number: 2)

@@ -42,13 +42,6 @@ assert(maxValue == 255)
 
 
 
-
-
-
-
-
-
-
 // TODO
 
 // Floating-point types represent a much wider range of values than integer
@@ -138,23 +131,23 @@ assert(n == 0xC.3p0)
 // underscores.  Neither type of formatting affects the underlying value
 // of the literal.
 
-n = 10_.0                    ; assert(n == 10.0)
-n = 000123.456               ; assert(n == 123.456)
-n = 1_000_000.000_000_1      ; assert(n == 1000000.0000001)
-n = 0001__000.000_000_1      ; assert(n == 1000.0000001)
-l = 1_000_000                ; assert(l == 1000000)
-l = 2___3__                  ; assert(l == 23)
-l = 00000000004___5          ; assert(l == 45)
-l = 0b1_010_10_101           ; assert(l == 0b101010101)
-l = 0o34__53                 ; assert(l == 0o3453)
-l = 0xFEED_FACE___           ; assert(l == 0xFEEDFACE)
-n = 0xFEED.FACE___p1_        ; assert(n == 0xFEED.FACEp1)
-n = 0x0000000FEED.FACE___p1_ ; assert(n == 0xFEED.FACEp1)
+assert(10_.0                    == 10.0)
+assert(000123.456               == 123.456)
+assert(1_000_000.000_000_1      == 1000000.0000001)
+assert(0001__000.000_000_1      == 1000.0000001)
+assert(1_000_000                == 1000000)
+assert(2___3__                  == 23)
+assert(00000000004___5          == 45)
+assert(0b1_010_10_101           == 0b101010101)
+assert(0o34__53                 == 0o3453)
+assert(0xFEED_FACE___           == 0xFEEDFACE)
+assert(0xFEED.FACE___p1_        == 0xFEED.FACEp1)
+assert(0x0000000FEED.FACE___p1_ == 0xFEED.FACEp1)
 
 // Underscores cannot be put directly after the prefix for binary, octal, and
-// hexadecimal numbers.  Attempting to do so results in a compile-time error.
+// hexadecimal numbers.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 l = 0b_01_010_10_101
 l = 0o_34__53
@@ -163,7 +156,8 @@ n = 0x_FEED.FACE___p1_
 */
 
 // -----------------------------------------------------------------------------
-//  Numeric Type Conversion
+//  Numeric type conversion - The behavior of changing the type of a numeric
+//                            value into another numeric type.
 // -----------------------------------------------------------------------------
 
 // The range of numbers that can be stored in an integer constant or
@@ -175,7 +169,7 @@ n = 0x_FEED.FACE___p1_
 
 // `Int8` cannot store a number larger than its maximum value.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let cannotBeNegative: UInt8 = -1
 let tooBig: Int8 = Int8.max + 1

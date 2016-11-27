@@ -28,7 +28,7 @@ let o90: Int? = 0
 let o91 = Int?(0)
 let o92: Int? = nil
 // Nil values cannot be used in initializer syntax.
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let o93 = Int?(nil)
 */
@@ -104,7 +104,7 @@ assert(o20 == 123)
 // We know that `o20` has an integer, so it's safe to force-unwrap it.
 let o21 = o20!
 assert(type(of: o21) == Int.self)
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(o21! == 123)
 */
@@ -138,7 +138,7 @@ assert(o2! == Int?(8))
 
 assert(o4!! == Int?(8))
 assert(o4! == Int?(8))
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(o4 == Int??(8))
 */
@@ -181,14 +181,14 @@ assert(o23 == nil)
 
 // An optional in a valueless state cannot be force-unwrapped.
 
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 let o24 = o23!
 */
 
 // nil cannot be used with non-optional constants and variables.
 
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 let o25: Int = nil
 */
@@ -208,7 +208,7 @@ print(o26)
 // An optional constant must be explicitly initialized before being used.
 
 let o27: Int?
-// Uncommenting this will produce a compile-time error:
+// Uncommenting this leads to a compile-time error:
 /*
 assert(o27 == nil)
 */
@@ -244,11 +244,11 @@ assert(n2 == 411)
 
 var o30: Int!
 assert(o30 == nil)
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 assert(o30! == nil)
 */
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 print(o30)
 */
@@ -262,11 +262,11 @@ assert(o30 == 345)
 
 let o31: Int! = nil
 assert(o31 == nil)
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 assert(o31! == nil)
 */
-// Uncommenting this will produce a runtime error:
+// Uncommenting this leads to a runtime error:
 /*
 print(o31)
 */

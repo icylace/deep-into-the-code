@@ -133,7 +133,7 @@ if let number = maybeTwo {
   assert(number == 2)
 } else {
   assert(maybeTwo == nil)
-  // Uncommenting this will produce a runtime error:
+  // Uncommenting this leads to a runtime error:
   /*
   assert(number == nil)
   */
