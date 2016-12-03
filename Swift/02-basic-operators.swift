@@ -34,10 +34,9 @@ assert(10.0 / 2.5 == 4.0)       // Division.
 // See "Advanced Operators".
 
 // -----------------------------------------------------------------------------
-//  Remainder operator (`%`) - The operator that figures how many times
-//                             a number will fit inside another number
-//                             and then it returns the value left over
-//                             (known as the remainder).
+//  Remainder operator (`%`) - The operator that figures how many times a number
+//                             fits inside another number and then it returns
+//                             the value left over (the remainder).
 // -----------------------------------------------------------------------------
 
 // The remainder operator is also known as a modulo operator in other languages.

@@ -63,6 +63,14 @@ assert(b1 ^ b2 == 0b10100011)       // Equals 163 in decimal.
 //  Bit-shifting - The behavior of moving all the bits in a number to either
 //                 the left or right by a given number of places.
 // -----------------------------------------------------------------------------
+//  Logical shift - The bit-shifting behavior for unsigned integers.
+// -----------------------------------------------------------------------------
+
+// The rules for logical shifting:
+// - Existing bits are moved to the left or right by the given number of places.
+// - Any bits moved beyond the bounds of the integer's storage are discarded.
+// - Zeros are inserted in the spaces left behind after the original bits
+//   are moved to the left or right.
 
 // -----------------------------------------------------------------------------
 //  Bitwise left shift operator (`<<`) - The bitwise operator that bit-shifts
@@ -72,6 +80,21 @@ assert(b1 ^ b2 == 0b10100011)       // Equals 163 in decimal.
 // A bitwise left shift multiplies an integer by a factor of two.  For example,
 // shifting an integer's bits to the left by one position doubles its value.
 
+let b3: UInt8 = 0b11111111
+
+// Left shifting unsigned integers (logical shift).
+assert(b3 << 1 == 0b11111110)
+assert(b3 << 2 == 0b11111100)
+assert(b3 << 5 == 0b11100000)
+assert(b3 << 6 == 0b11000000)
+
+let b4: UInt8 = 0b11111111
+
+assert(b4 << 1 == 0b00001000)
+assert(b4 << 2 == 0b00010000)
+assert(b4 << 5 == 0b10000000)
+assert(b4 << 6 == 0b00000000)
+
 // -----------------------------------------------------------------------------
 //  Bitwise right shift operator (`>>`) - The bitwise operator that bit-shifts
 //                                        a number to the right.
@@ -80,44 +103,16 @@ assert(b1 ^ b2 == 0b10100011)       // Equals 163 in decimal.
 // A bitwise right shift divides an integer by a factor of two.  For example,
 // shifting an integer's bits to the right by one position halves its value.
 
-// -----------------------------------------------------------------------------
-//  Logical shift - The bit-shifting behavior for unsigned integers.
-// -----------------------------------------------------------------------------
-
-// The rules for logical shifting:
-//
-// - Existing bits are moved to the left or right by the requested number
-//   of places.
-// - Any bits that are moved beyond the bounds of the integer's storage
-//   are discarded.
-// - Zeros are inserted in the spaces left behind after the original bits
-//   are moved to the left or right.
-
-var b3: UInt8 = 0b11111111
-
-// Left shifting unsigned integers (logical shift).
-assert(b3 << 1 == 0b11111110)
-assert(b3 << 2 == 0b11111100)
-assert(b3 << 5 == 0b11100000)
-assert(b3 << 6 == 0b11000000)
-
 // Right shifting unsigned integers (logical shift).
 assert(b3 >> 1 == 0b01111111)
 assert(b3 >> 2 == 0b00111111)
 assert(b3 >> 5 == 0b00000111)
 assert(b3 >> 6 == 0b00000011)
 
-b3 = 0b00000100
-
-assert(b3 << 1 == 0b00001000)
-assert(b3 << 2 == 0b00010000)
-assert(b3 << 5 == 0b10000000)
-assert(b3 << 6 == 0b00000000)
-
-assert(b3 >> 1 == 0b00000010)
-assert(b3 >> 2 == 0b00000001)
-assert(b3 >> 5 == 0b00000000)
-assert(b3 >> 6 == 0b00000000)
+assert(b4 >> 1 == 0b00000010)
+assert(b4 >> 2 == 0b00000001)
+assert(b4 >> 5 == 0b00000000)
+assert(b4 >> 6 == 0b00000000)
 
 // -----------------------------------------------------------------------------
 //  Arithmetic shift - The bit-shifting behavior for signed integers.
@@ -182,20 +177,20 @@ remain negative as their value moves closer to zero.
 
 
 
-let b4: Int8 = 0b01100110
-let b5: Int8 = -0b01100110
+let b5: Int8 = 0b01100110
+let b6: Int8 = -0b01100110
 
 // Left shifting signed integers (arithmetic shift).
-assert(b4 << 3 == 0b00110000)
-assert(b5 << 3 == -0b00110000)
+assert(b5 << 3 == 0b00110000)
+assert(b6 << 3 == -0b00110000)
 
 // Right shifting signed integers (arithmetic shift).
-assert(b4 >> 3 == 0b00001100)
-assert(b5 >> 1 == -0b00110011)
-assert(b5 >> 2 == -0b00011010)
-assert(b5 >> 3 == -0b00001101)
-assert(b5 >> 4 == -0b00000111)
-assert(b5 >> 5 == -0b00000100)
+assert(b5 >> 3 == 0b00001100)
+assert(b6 >> 1 == -0b00110011)
+assert(b6 >> 2 == -0b00011010)
+assert(b6 >> 3 == -0b00001101)
+assert(b6 >> 4 == -0b00000111)
+assert(b6 >> 5 == -0b00000100)
 
 
 

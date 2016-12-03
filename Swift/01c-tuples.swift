@@ -133,7 +133,7 @@ assert(t2 == (baz: "6", foo: 2, bar: 3))
 
 // A tuple can have zero elements.
 
-var t5: () = ()
+let t5: () = ()
 
 // `().self` cannot be used with the equality comparison operator (`==`).
 
@@ -144,7 +144,7 @@ assert(type(of: t5) == ().self)
 
 // `Void` is a type alias for the zero-element tuple (`()`).
 
-var t6: Void = ()
+let t6: Void = ()
 
 assert(type(of: t5) == Void.self)
 assert(type(of: t6) == Void.self)
@@ -157,14 +157,19 @@ t5 = Void
 t6 = Void
 */
 
-// Uncommenting this leads to a compile-time error:
-/*
-var t7 = ()
+// -----------------------------------------------------------------------------
+
+// Assigning a zero-element tuple to a constant/variable without a type
+// annotation will cause a compile-time warning.
+
+// This assignment causes a warning.
+let t7 = ()
+
 assert(type(of: t7) == Void.self)
+
 // Uncommenting this leads to a compile-time error:
 /*
 t7 = Void
-*/
 */
 
 // -----------------------------------------------------------------------------

@@ -4,8 +4,7 @@
 
 // -----------------------------------------------------------------------------
 //  Property - A constant or variable associated with a particular type.
-//  Stored property - A property that is stored within an instance of a
-//                    class or structure.
+//  Stored property - A property stored within a class/structure instance.
 // -----------------------------------------------------------------------------
 
 /*
@@ -58,7 +57,7 @@ variable properties.
 
 // -----------------------------------------------------------------------------
 //  Lazy stored property - A stored property whose initial value is not
-//                         calculated until the first it's used.
+//                         calculated until the first time it's used.
 // -----------------------------------------------------------------------------
 
 // You must always declare a lazy property as a variable because
@@ -254,10 +253,20 @@ struct Cuboid {
 }
 
 let fourByFiveByTwo = Cuboid(width: 4.0, height: 5.0, depth: 2.0)
-print("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
-// Prints "the volume of fourByFiveByTwo is 40.0"
+assert(fourByFiveByTwo.volume == 40.0)
 
-This example defines a new structure called Cuboid, which represents a 3D rectangular box with width, height, and depth properties. This structure also has a read-only computed property called volume, which calculates and returns the current volume of the cuboid. It doesn’t make sense for volume to be settable, because it would be ambiguous as to which values of width, height, and depth should be used for a particular volume value. Nonetheless, it is useful for a Cuboid to provide a read-only computed property to enable external users to discover its current calculated volume.
+This example defines a new structure called Cuboid, which represents
+a 3D rectangular box with width, height, and depth properties.
+This structure also has a read-only computed property called
+volume, which calculates and returns the current volume of
+the cuboid.
+
+It doesn’t make sense for volume to be settable,
+because it would be ambiguous as to which values of width,
+height, and depth should be used for a particular volume
+value. Nonetheless, it is useful for a Cuboid to provide
+a read-only computed property to enable external users
+to discover its current calculated volume.
 
 
 
@@ -403,7 +412,7 @@ simultaneously, and they do not need to be marked with the lazy modifier.
 Type Property Syntax
 
 In C and Objective-C, you define static constants and variables associated with
-a type as global static variables. In Swift, however, type properties are written
+a type as global static variables.  In Swift, however, type properties are written
 as part of the type’s definition, within the type’s outer curly braces, and each
 type property is explicitly scoped to the type it supports.
 
@@ -448,17 +457,13 @@ Querying and Setting Type Properties
 
 Type properties are queried and set with dot syntax, just like instance properties.
 However, type properties are queried and set on the type, not on an instance of that
-type. For example:
+type.
 
-print(SomeStructure.storedTypeProperty)
-// Prints "Some value."
+assert(SomeStructure.storedTypeProperty == "Some value.")
 SomeStructure.storedTypeProperty = "Another value."
-print(SomeStructure.storedTypeProperty)
-// Prints "Another value."
-print(SomeEnumeration.computedTypeProperty)
-// Prints "6"
-print(SomeClass.computedTypeProperty)
-// Prints "27"
+assert(SomeStructure.storedTypeProperty == "Another value.")
+assert(SomeEnumeration.computedTypeProperty == "6")
+assert(SomeClass.computedTypeProperty == "27")
 
 The examples that follow use two stored type properties as part of a structure that
 models an audio level meter for a number of audio channels. Each channel has an
@@ -491,20 +496,6 @@ struct AudioChannel {
   }
 }
 
-The AudioChannel structure defines two stored type properties to support its
-functionality. The first, thresholdLevel, defines the maximum threshold value
-an audio level can take. This is a constant value of 10 for all AudioChannel
-instances. If an audio signal comes in with a higher value than 10, it will
-be capped to this threshold value (as described below).
-
-The second type property is a variable stored property called maxInputLevelForAllChannels.
-This keeps track of the maximum input value that has been received by any AudioChannel
-instance. It starts with an initial value of 0.
-
-The AudioChannel structure also defines a stored instance property called
-currentLevel, which represents the channel’s current audio level on a scale
-of 0 to 10.
-
 The currentLevel property has a didSet property observer to check the value of
 currentLevel whenever it is set. This observer performs two checks:
 
@@ -529,20 +520,16 @@ If you set the currentLevel of the left channel to 7, you can see that the
 maxInputLevelForAllChannels type property is updated to equal 7:
 
 leftChannel.currentLevel = 7
-print(leftChannel.currentLevel)
-// Prints "7"
-print(AudioChannel.maxInputLevelForAllChannels)
-// Prints "7"
+assert(leftChannel.currentLevel == 7)
+assert(AudioChannel.maxInputLevelForAllChannels == 7)
 
 If you try to set the currentLevel of the right channel to 11, you can see that
-the right channel’s currentLevel property is capped to the maximum value of 10,
+the right channel's currentLevel property is capped to the maximum value of 10,
 and the maxInputLevelForAllChannels type property is updated to equal 10:
 
 rightChannel.currentLevel = 11
-print(rightChannel.currentLevel)
-// Prints "10"
-print(AudioChannel.maxInputLevelForAllChannels)
-// Prints "10"
+assert(rightChannel.currentLevel == 10)
+assert(AudioChannel.maxInputLevelForAllChannels == 10)
 
 */
 

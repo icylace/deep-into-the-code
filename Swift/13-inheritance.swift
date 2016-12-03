@@ -1,122 +1,78 @@
+// -----------------------------------------------------------------------------
+//  Inheritance - The behavior through which a class can take on the methods,
+//                properties, and other characteristics of another class.
+//  Subclass - A class that inherits from another class.
+//  Superclass - A class that is inherited from by another class.
+//  Base class - A class that doesn't inherit from another class.
+// -----------------------------------------------------------------------------
+
 // TODO
 
 /*
 
-// -----------------------------------------------------------------------------
-//  Inheritance - The behavior through which a class can take on the methods,
-//                properties, and other characteristics from another class.
-//  Subclass - A class that inherits from another class.
-//  Superclass - A class that is inherited from by another class.
-// -----------------------------------------------------------------------------
-
-// Inheritance differentiates classes from other types in Swift.
-
-// Classes in Swift can call and access methods, properties, and subscripts
-// belonging to their superclass and can provide their own overriding
-// versions of those methods, properties, and subscripts to refine or
-// modify their behavior.  Swift helps to ensure your overrides are
-// correct by checking that the override definition has a matching
-// superclass definition.
-
-// Classes can also add property observers to inherited properties in order
-// to be notified when the value of a property changes.  Property observers
-// can be added to any property, regardless of whether it was originally
-// defined as a stored or computed property.
-
-
-// -----------------------------------------------------------------------------
-//  Base class - A class that doesn't inherit from another class.
-// -----------------------------------------------------------------------------
-
-// Swift classes do not inherit from a universal base class.  Classes you define
-// without specifying a superclass automatically become base classes for you
-// to build upon.
+// A Swift class...
+// ...unlike other types, can inherit from another class.
+// ...can use methods, properties, and subscripts belonging to its superclasses
+//    and can provide its own overriding versions of them to refine or modify
+//    their behavior.
+// ...can add property observers to inherited properties, regardless of whether
+//    they were originally defined as stored or computed properties.
+// ...doesn't inherit from a universal base class but it can
+//    itself be a base class which can be built upon.
 
 class Vehicle {
   var currentSpeed = 0.0
   var description: String {
-    return "traveling at \(currentSpeed) miles per hour"
+    return "Traveling at \(currentSpeed) miles per hour."
   }
-  func makeNoise() {
-    // do nothing - an arbitrary vehicle doesn't necessarily make a noise
+  func makeNoise() -> String {
+    // An arbitrary vehicle doesn't necessarily make a noise.
+    return ""
   }
 }
 
 let someVehicle = Vehicle()
-
-print("Vehicle: \(someVehicle.description)")
-// Vehicle: traveling at 0.0 miles per hour
+assert(someVehicle.description == "Traveling at 0.0 miles per hour.")
 
 // The Vehicle class defines common characteristics for an arbitrary vehicle,
 // but is not much use in itself. To make it more useful, you need to refine
 // it to describe more specific kinds of vehicles.
 
-
 // -----------------------------------------------------------------------------
 //  Subclassing - The act of basing a new class on an existing class.
 // -----------------------------------------------------------------------------
 
+// A subclass...
+// ...inherits characteristics from an existing class which can then be refined.
+// ...can have new characteristics added to it.
 
-/*
-
-The subclass inherits characteristics from the existing class, which you can then
-refine. You can also add new characteristics to the subclass.
-
-To indicate that a subclass has a superclass, write the subclass name before the
-superclass name, separated by a colon:
-
-class SomeSubclass: SomeSuperclass {
-  // Subclass definition goes here.
-}
-
+// `Bicycle` inherits from `Vehicle`.
 class Bicycle: Vehicle {
   var hasBasket = false
 }
 
-In addition to the characteristics it inherits, the Bicycle class defines a new
-stored property, hasBasket, with a default value of false (inferring a type of
-  Bool for the property).
-
-By default, any new Bicycle instance you create will not have a basket. You can
-set the hasBasket property to true for a particular Bicycle instance after that
-instance is created:
-
 let bicycle = Bicycle()
 bicycle.hasBasket = true
-
-You can also modify the inherited currentSpeed property of a Bicycle instance,
-and query the instance’s inherited description property:
-
 bicycle.currentSpeed = 15.0
-print("Bicycle: \(bicycle.description)")
-// Bicycle: traveling at 15.0 miles per hour
+assert(bicycle.description == "traveling at 15.0 miles per hour")
 
-Subclasses can themselves be subclassed. The next example creates a subclass of
-Bicycle for a two-seater bicycle known as a “tandem”:
+// Subclasses can themselves be subclassed.
 
 class Tandem: Bicycle {
   var currentNumberOfPassengers = 0
 }
 
-Tandem inherits all of the properties and methods from Bicycle, which in turn
-inherits all of the properties and methods from Vehicle. The Tandem subclass
-also adds a new stored property called currentNumberOfPassengers, with a
-default value of 0.
-
 let tandem = Tandem()
 tandem.hasBasket = true
 tandem.currentNumberOfPassengers = 2
 tandem.currentSpeed = 22.0
-print("Tandem: \(tandem.description)")
-// Tandem: traveling at 22.0 miles per hour
+assert(tandem.description == "Traveling at 22.0 miles per hour.")
 
 // -----------------------------------------------------------------------------
-//  Overriding
+//  Overriding - The act of a subclass providing its own custom implementation
+//               of an instance/type method, instance/type property, or
+//               subscript that would otherwise be inherited.
 // -----------------------------------------------------------------------------
-
-A subclass can provide its own custom implementation of an instance method, type
-method, instance property, type property, or subscript that it would otherwise
-inherit from a superclass.  This is known as overriding.
 
 To override a characteristic that would otherwise be inherited, you prefix your
 overriding definition with the override keyword.  Doing so clarifies that you
@@ -133,10 +89,11 @@ is correct.
 
 Accessing Superclass Methods, Properties, and Subscripts
 
-When you provide a method, property, or subscript override for a subclass, it is
-sometimes useful to use the existing superclass implementation as part of your
-override. For example, you can refine the behavior of that existing implementation,
-or store a modified value in an existing inherited variable.
+In a method, property, or subscript override it can be useful to use
+the existing superclass implementation as part of the override.
+For example, you can refine the behavior of that existing
+implementation, or store a modified value in an existing
+inherited variable.
 
 Where this is appropriate, you access the superclass version of a method, property,
 or subscript by using the super prefix:
@@ -152,35 +109,23 @@ same subscript as super[someIndex] from within the overriding subscript implemen
 
 // -----------------------------------------------------------------------------
 
-Overriding Methods
-
-You can override an inherited instance or type method to provide a tailored or
-alternative implementation of the method within your subclass.
-
-The following example defines a new subclass of Vehicle called Train, which
-overrides the makeNoise() method that Train inherits from Vehicle:
+// An inherited instance or type method can be overridden.
 
 class Train: Vehicle {
-  override func makeNoise() {
-    print("Choo Choo")
+  override func makeNoise() -> String {
+    return "Choo Choo"
   }
 }
 
-If you create a new instance of Train and call its makeNoise() method, you can
-see that the Train subclass version of the method is called:
-
 let train = Train()
-train.makeNoise()
-// Prints "Choo Choo"
+assert(train.makeNoise() == "Choo Choo")
 
 // -----------------------------------------------------------------------------
 
 Overriding Properties
 
 You can override an inherited instance or type property to provide your own
-custom getter and setter for that property, or to add property observers to
-enable the overriding property to observe when the underlying property
-value changes.
+custom getter and setter for that property, or to add property observers.
 
 // -----------------------------------------------------------------------------
 
@@ -188,55 +133,39 @@ Overriding Property Getters and Setters
 
 You can provide a custom getter (and setter, if appropriate) to override
 any inherited property, regardless of whether the inherited property is
-implemented as a stored or computed property at source.  The stored
-or computed nature of an inherited property is not known by a
-subclass-it only knows that the inherited property has a
-certain name and type. You must always state both the
-name and the type of the property you are overriding,
-to enable the compiler to check that your override
-matches a superclass property with the same name
-and type.
+originally implemented as a stored or computed property.  The stored or
+computed nature of an inherited property is not known by a subclass
+The subclass only knows that the inherited property has a certain
+name and type.  You must always state both the name and the type
+of the property you are overriding, so the compiler can check
+that your override matches a superclass property with the
+same name and type.
 
 You can present an inherited read-only property as a read-write property by
 providing both a getter and a setter in your subclass property override.
+
 You cannot, however, present an inherited read-write property as a
 read-only property.
 
 NOTE
 
 If you provide a setter as part of a property override, you must also provide a
-getter for that override. If you don’t want to modify the inherited property’s
+getter for that override.  If you don't want to modify the inherited property's
 value within the overriding getter, you can simply pass through the inherited
 value by returning super.someProperty from the getter, where someProperty is
 the name of the property you are overriding.
 
-The following example defines a new class called Car, which is a subclass of
-Vehicle.  The Car class introduces a new stored property called gear, with a
-default integer value of 1. The Car class also overrides the description
-property it inherits from Vehicle, to provide a custom description that
-includes the current gear:
-
 class Car: Vehicle {
   var gear = 1
   override var description: String {
-    return super.description + " in gear \(gear)"
+    return super.description + ".. in gear \(gear)."
   }
 }
-
-The override of the description property starts by calling super.description,
-which returns the Vehicle class’s description property. The Car class’s version
-of description then adds some extra text onto the end of this description to
-provide information about the current gear.
-
-If you create an instance of the Car class and set its gear and currentSpeed
-properties, you can see that its description property returns the tailored
-description defined within the Car class:
 
 let car = Car()
 car.currentSpeed = 25.0
 car.gear = 3
-print("Car: \(car.description)")
-// Car: traveling at 25.0 miles per hour in gear 3
+assert(car.description == "Traveling at 25.0 miles per hour... in gear 3.")
 
 // -----------------------------------------------------------------------------
 
@@ -251,8 +180,8 @@ NOTE
 
 You cannot add property observers to inherited constant stored properties or
 inherited read-only computed properties.  The value of these properties cannot
-be set, and so it is not appropriate to provide a willSet or didSet implementation
-as part of an override.
+be set, and so it is not appropriate to provide a `willSet` or `didSet`
+implementation as part of an override.
 
 Note also that you cannot provide both an overriding setter and an overriding
 property observer for the same property.  If you want to observe changes to a
@@ -271,25 +200,20 @@ class AutomaticCar: Car {
   }
 }
 
-Whenever you set the currentSpeed property of an AutomaticCar instance, the
-property’s didSet observer sets the instance’s gear property to an appropriate
-choice of gear for the new speed. Specifically, the property observer chooses
-a gear that is the new currentSpeed value divided by 10, rounded down to the
-nearest integer, plus 1. A speed of 35.0 produces a gear of 4:
-
 let automatic = AutomaticCar()
 automatic.currentSpeed = 35.0
-print("AutomaticCar: \(automatic.description)")
-// AutomaticCar: traveling at 35.0 miles per hour in gear 4
+assert(automatic.description == "Traveling at 35.0 miles per hour... in gear 4.")
 
 // -----------------------------------------------------------------------------
 //  Preventing Overrides
 // -----------------------------------------------------------------------------
 
-You can prevent a method, property, or subscript from being overridden by marking
-it as final.  Do this by writing the final modifier before the method, property,
-or subscript's introducer keyword (such as final var, final func, final class
-func, and final subscript).
+You can prevent a method, property, or subscript from being overridden by
+marking it as final.
+
+Do this by writing the final modifier before the method, property, or
+subscript's introducer keyword (such as final var, final func, final
+class func, and final subscript).
 
 Any attempt to override a final method, property, or subscript in a subclass is
 reported as a compile-time error.  Methods, properties, or subscripts that you
@@ -299,8 +223,6 @@ extension's definition.
 You can mark an entire class as final by writing the final modifier before the
 class keyword in its class definition (final class).  Any attempt to subclass a
 final class is reported as a compile-time error.
-
-*/
 
 */
 

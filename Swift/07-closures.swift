@@ -1,8 +1,7 @@
 // -----------------------------------------------------------------------------
-//  Closure - A self-contained block of functionality that can capture and store
-//            references to any constants and variables from the context in
-//            which they are defined.  This is known as closing over those
-//            constants and variables.
+//  Closure - A self-contained code block that can capture and store references
+//            to any constants/variables from the context in which they are
+//            defined (i.e. closing over those constants/variables).
 //  Global function - A named closure that does not capture any values.
 //  Nested function - A named closure that can capture values from its
 //                    enclosing function.

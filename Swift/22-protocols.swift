@@ -1,15 +1,21 @@
 // -----------------------------------------------------------------------------
 //  Protocol - A blueprint of methods, properties, and other requirements that
 //             suit a particular task or piece of functionality.
+//
 // -----------------------------------------------------------------------------
 
 // TODO
 
 /*
 
-A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
+The protocol can then
+be adopted by a class, structure, or enumeration to provide an actual
+implementation of those requirements. Any type that satisfies the
+requirements of a protocol is said to conform to that protocol.
 
-In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
+In addition to specifying requirements that conforming types must implement, you
+can extend a protocol to implement some of these requirements or to implement
+additional functionality that conforming types can take advantage of.
 
 
 // Protocols can be adopted by a class, structure, or enumeration to provide
@@ -86,9 +92,9 @@ protocol P {
   var doesNotNeedToBeSettable: Int { get }
 }
 
-// In a protocol, type property requirements are always prefixed with `static`.
-// This rule pertains even though type property requirements can be prefixed
-// with the class or static keyword when implemented by a class.
+// In a protocol, type property requirements are always static.  This rule
+// pertains even though type property requirements can be prefixed with
+// the class or static keyword when implemented by a class.
 
 protocol AnotherProtocol {
   // A gettable and settable type property.
@@ -131,13 +137,13 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 //  Method Requirements
 // -----------------------------------------------------------------------------
 
-// Protocols can require specific instance methods and/or type methods to be
-// implemented by conforming types.  These methods are written as part of
-// the protocol's definition in the same way as for normal instance and
-// type methods but without curly braces or a method body.  Variadic
-// parameters are allowed, subject to the same rules as for normal
-// methods.  Default values, however, cannot be specified for
-// method parameters within a protocol's definition.
+// Protocols can require specific instance/type methods to be implemented by
+// conforming types.  These methods are written as part of the protocol's
+// definition in the same way as for normal instance/type methods but
+// without a method body or curly braces.  Variadic parameters are
+// allowed, subject to the same rules as for normal methods.
+// Default values, however, cannot be specified for method
+// parameters within a protocol's definition.
 
 // As with type property requirements, you always prefix type method
 // requirements with the static keyword when they are defined in a
@@ -189,8 +195,7 @@ print("And another one: \(generator.random())")
 // belongs to.  For instance methods on value types (that is, structures and
 // enumerations) you place the `mutating` keyword before a method's `func`
 // keyword to indicate that the method is allowed to modify the instance
-// it belongs to and any properties of that instance. This process is
-// described in Modifying Value Types from Within Instance Methods.
+// it belongs to and any properties of that instance.
 
 // If you define a protocol instance method requirement that is intended to
 // mutate instances of any type that adopts the protocol, mark the method
@@ -204,17 +209,13 @@ print("And another one: \(generator.random())")
 // method for a class.  The mutating keyword is only used by structures
 // and enumerations.
 
-// The example below defines a protocol called Togglable, which defines a single instance method requirement called toggle. As its name suggests, the toggle() method is intended to toggle or invert the state of any conforming type, typically by modifying a property of that type.
-
-// The toggle() method is marked with the mutating keyword as part of the Togglable protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it is called:
-
 protocol Togglable {
   mutating func toggle()
 }
 
-// If you implement the Togglable protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the toggle() method that is also marked as mutating.
-
-// The example below defines an enumeration called OnOffSwitch. This enumeration toggles between two states, indicated by the enumeration cases on and off. The enumeration’s toggle implementation is marked as mutating, to match the Togglable protocol’s requirements:
+// If you implement the Togglable protocol for a structure or enumeration,
+// that structure or enumeration can conform to the protocol by providing an
+// implementation of the toggle() method that is also marked as mutating.
 
 enum OnOffSwitch: Togglable {
   case off, on
@@ -229,8 +230,7 @@ enum OnOffSwitch: Togglable {
 }
 var lightSwitch = OnOffSwitch.off
 lightSwitch.toggle()
-// lightSwitch is now equal to .on
-
+assert(lightSwitch == .on)
 
 // -----------------------------------------------------------------------------
 //  Initializer Requirements

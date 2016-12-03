@@ -2,9 +2,8 @@
 // context of a more complex type.  To achieve this, types can be nested
 // inside other types.  Types can be nested to any level required.
 
-// In Blackjack, the Ace cards have a value of either one or eleven.  This
-// feature is represented by a structure called Values, which is nested
-// within the Rank enumeration.
+// In Blackjack, the Ace cards have a value of either one or eleven.
+// This is represented by `Values` which is nested within `Rank`.
 struct BlackjackCard {
 
   enum Suit: Character {
