@@ -7,7 +7,6 @@
 
 // TODO
 
-/*
 
 class Foo {
   var xs = [0, 0, 0]
@@ -51,75 +50,90 @@ assert(bar[8] == 1)
 
 
 
+/*
+
+
+
 // TODO
 
 enum Baz {
   case x
   subscript(index: Int) -> Baz {
-    return x
+    return .x
   }
 }
+
+*/
+
+
 
 // You can define multiple subscripts for a single type, and the appropriate
 // subscript overload to use is selected based on the type of index value
 // you pass to the subscript.
 
-// class DailyMeal {
-//   enum MealTime {
-//     case Breakfast, Lunch, Dinner
-//   }
-//
-//   var meals: [MealTime : String] = [:]
-//
-//   subscript(requestedMeal: MealTime) -> String {
-//     get {
-//       if let thisMeal = meals[requestedMeal] {
-//         return thisMeal
-//       } else {
-//         return "Ramen"
-//       }
-//     }
-//
-//     set(newMealName) {
-//       meals[requestedMeal] = newMealName
-//     }
-//   }
-// }
+class DailyMeal {
+  enum MealTime {
+    case Breakfast, Lunch, Dinner
+  }
 
-// enum Foobar {
-//   case values([Int])
-//   case singleThing(Double)
-//
-//   subscript(index:Int) -> Int? {
-//     get {
-//       switch self {
-//       case .values (let numbers):
-//         return numbers[index]
-//       default:
-//         return nil
-//       }
-//     }
-//     set {
-//       switch self {
-//       case .values (let numbers):
-//         numbers[index] = newValue!
-//         self = .values(numbers)
-//       default:
-//         break
-//       }
-//     }
-//   }
-// }
+  var meals: [MealTime : String] = [:]
 
-// enum Baz {
-//   case x
-//   subscript(index: Baz) -> Int {
-//     return 0
-//   }
-// }
-//
-// let baz = Baz[.x]
-// // assert()
+  subscript(requestedMeal: MealTime) -> String {
+    get {
+      if let thisMeal = meals[requestedMeal] {
+        return thisMeal
+      } else {
+        return "Ramen"
+      }
+    }
+
+    set(newMealName) {
+      meals[requestedMeal] = newMealName
+    }
+  }
+}
+
+
+enum Foobar {
+  case values([Int])
+  case singleThing(Double)
+
+  subscript(index:Int) -> Int? {
+    get {
+      switch self {
+      case .values(var numbers):
+        return numbers[index]
+      default:
+        return nil
+      }
+    }
+    set {
+      switch self {
+      case .values(var numbers):
+        numbers[index] = newValue!
+        self = .values(numbers)
+      default:
+        break
+      }
+    }
+  }
+}
+
+
+
+
+
+enum Baz {
+  case x
+  subscript(index: Baz) -> Int {
+    return 0
+  }
+}
+
+let baz = Baz.x
+let qux = baz[.x]
+
+
 
 // A class or structure can provide as many subscript implementations as it
 // needs, and the appropriate subscript to be used will be inferred based
@@ -181,7 +195,6 @@ var matrix = Matrix(rows: 2, columns: 2)
 matrix[0, 1] = 1.5
 matrix[1, 0] = 3.2
 
-*/
 
 
 // =============================================================================

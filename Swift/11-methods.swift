@@ -4,11 +4,9 @@
 // -----------------------------------------------------------------------------
 
 // An instance method...
-// ...has can use all methods and properties of the type it belongs to.
+// ...can use all methods and properties of the type it belongs to.
 // ...can be called only on a specific instance of the type it belongs to.
 // ...cannot be called in isolation without an existing instance.
-
-// TODO
 
 class Counter {
   var count = 0
@@ -25,27 +23,26 @@ class Counter {
   }
 }
 
-let counter = Counter()
-assert(counter.count == 0)
-
-counter.increment()
-assert(counter.count == 1)
-
-counter.increment(by: 5)
-assert(counter.count == 6)
-
-counter.reset()
-assert(counter.count == 0)
-
-counter.increment()
-counter.increment()
-assert(counter.count == 2)
-
-counter.restart()
-assert(counter.count == 0)
+let c = Counter()
+assert(c.count == 0)
+c.increment()
+assert(c.count == 1)
+c.increment(by: 5)
+assert(c.count == 6)
+c.reset()
+assert(c.count == 0)
+c.increment()
+c.increment()
+assert(c.count == 2)
+c.restart()
+assert(c.count == 0)
 
 
-/*
+
+
+// TODO
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -67,14 +64,14 @@ struct Point {
 }
 
 let somePoint = Point(x: 4.0, y: 5.0)
-
-if somePoint.isToTheRightOf(x: 1.0) {
-  print("This point is to the right of the line where x == 1.0")
-}
-// Prints "This point is to the right of the line where x == 1.0"
+assert(somePoint.isToTheRightOf(x: 1.0) == true)
 
 // Without the self prefix, Swift would assume that both uses of x referred to
 // the method parameter called x.
+
+
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -94,7 +91,7 @@ if somePoint.isToTheRightOf(x: 1.0) {
 // You can opt in to this behavior by placing the `mutating` keyword before the
 // `func` keyword for that method:
 
-struct Point {
+struct Point2 {
   var x = 0.0, y = 0.0
   mutating func moveBy(x deltaX: Double, y deltaY: Double) {
     x += deltaX
@@ -102,29 +99,38 @@ struct Point {
   }
 }
 
-var somePoint = Point(x: 1.0, y: 1.0)
-somePoint.moveBy(x: 2.0, y: 3.0)
-assert(somePoint.x == 3.0)
-assert(somePoint.y == 4.0)
+var somePoint2 = Point2(x: 1.0, y: 1.0)
+somePoint2.moveBy(x: 2.0, y: 3.0)
+assert(somePoint2.x == 3.0)
+assert(somePoint2.y == 4.0)
 
 // Note that you cannot call a mutating method on a constant of structure type,
 // because its properties cannot be changed, even if they are variable
 // properties.
 
-let fixedPoint = Point(x: 3.0, y: 3.0)
+var fixedPoint2 = Point2(x: 3.0, y: 3.0)
 // This will report an error:
-fixedPoint.moveBy(x: 2.0, y: 3.0)
-// fixedPoint.moveBy(x: 2.0, y: 3.0)
+fixedPoint2.moveBy(x: 2.0, y: 3.0)
+// fixedPoint2.moveBy(x: 2.0, y: 3.0)
+
+
+
+
+
+
+
+
+
 
 // -----------------------------------------------------------------------------
 //  `self` property - A special property that every type implicitly has.
 //  Mutating method - A method that can assign a new instance to `self`.
 // -----------------------------------------------------------------------------
 
-struct Point {
+struct Point3 {
   var x = 0.0, y = 0.0
   mutating func moveBy(x deltaX: Double, y deltaY: Double) {
-    self = Point(x: x + deltaX, y: y + deltaY)
+    self = Point3(x: x + deltaX, y: y + deltaY)
   }
 }
 // This version of the mutating moveBy(x:y:) method creates a brand new
@@ -151,10 +157,19 @@ enum TriStateSwitch {
 }
 
 var ovenLight = TriStateSwitch.low
+
 ovenLight.next()
 assert(ovenLight == .high)
+
 ovenLight.next()
 assert(ovenLight == .off)
+
+
+
+
+
+
+
 
 
 // -----------------------------------------------------------------------------
@@ -227,6 +242,10 @@ struct LevelTracker {
 // method to ignore the return value, this function is marked
 // with the @discardableResult attribute.
 
+
+
+
+
 class Player {
   var tracker = LevelTracker()
   let playerName: String
@@ -241,18 +260,13 @@ class Player {
 
 var player = Player(name: "Argyrios")
 player.complete(level: 1)
-print("highest unlocked level is now \(LevelTracker.highestUnlockedLevel)")
-// Prints "highest unlocked level is now 2"
+assert(LevelTracker.highestUnlockedLevel == 2)
 
 player = Player(name: "Beto")
-if player.tracker.advance(to: 6) {
-  print("player is now on level 6")
-} else {
-  print("level 6 has not yet been unlocked")
-}
-// Prints "level 6 has not yet been unlocked"
+assert(player.tracker.advance(to: 6) == false)
 
-*/
+
+
 
 
 // =============================================================================
