@@ -24,52 +24,53 @@
 // Enumeration case values without associated values are also hashable
 // by default.
 
-/*
 
-NOTE
+// NOTE
+//
+// You can use your own custom types as set value types or dictionary key types by
+// making them conform to the Hashable protocol from Swift's standard library.
+// Types that conform to the Hashable protocol must provide a gettable Int property
+// called hashValue.  The value returned by a type's hashValue property is not
+// required to be the same across different executions of the same program,
+// or in different programs.
+//
+// Because the Hashable protocol conforms to Equatable, conforming types must also
+// provide an implementation of the equals operator (==).  The Equatable protocol
+// requires any conforming implementation of == to be an equivalence relation.
+// That is, an implementation of == must satisfy the following three conditions,
+// for all values a, b, and c:
+//
+// a == a (Reflexivity)
+//
+// a == b implies b == a (Symmetry)
+//
+// a == b && b == c implies a == c (Transitivity)
 
-You can use your own custom types as set value types or dictionary key types by
-making them conform to the Hashable protocol from Swift's standard library.
-Types that conform to the Hashable protocol must provide a gettable Int property
-called hashValue.  The value returned by a type's hashValue property is not
-required to be the same across different executions of the same program,
-or in different programs.
-
-Because the Hashable protocol conforms to Equatable, conforming types must also
-provide an implementation of the equals operator (==).  The Equatable protocol
-requires any conforming implementation of == to be an equivalence relation.
-That is, an implementation of == must satisfy the following three conditions,
-for all values a, b, and c:
-
-a == a (Reflexivity)
-
-a == b implies b == a (Symmetry)
-
-a == b && b == c implies a == c (Transitivity)
-
-For more information about conforming to protocols, see Protocols.
-
-// -----------------------------------------------------------------------------
-
-Set Type Syntax
-
-The type of a Swift set is written as Set<Element>, where Element is the type
-that the set is allowed to store.  Unlike arrays and dictionaries, sets do
-not have an equivalent shorthand form.
+// For more information about conforming to protocols, see Protocols.
 
 // -----------------------------------------------------------------------------
 
-Creating and Initializing an Empty Set
+// Set Type Syntax
+//
+// The type of a Swift set is written as Set<Element>, where Element is the type
+// that the set is allowed to store.  Unlike arrays and dictionaries, sets do
+// not have an equivalent shorthand form.
 
-You can create an empty set of a certain type using initializer syntax:
+
+
+// -----------------------------------------------------------------------------
+
+// Creating and Initializing an Empty Set
+//
+// You can create an empty set of a certain type using initializer syntax:
 
 var letters = Set<Character>()
 assert(type(of: letters) == Set<Character>.self)
 assert(letters.count == 0)
 
-Alternatively, if the context already provides type information, such as a function
-argument or an already typed variable or constant, you can create an empty set with
-an empty array literal:
+// Alternatively, if the context already provides type information, such as a function
+// argument or an already typed variable or constant, you can create an empty set with
+// an empty array literal:
 
 letters.insert("a")
 // letters now contains 1 value of type Character
@@ -78,52 +79,56 @@ letters = []
 
 // -----------------------------------------------------------------------------
 
-Creating a Set with an Array Literal
-
-You can also initialize a set with an array literal, as a shorthand way to write
-one or more values as a set collection.
-
-The example below creates a set called favoriteGenres to store String values:
+// Creating a Set with an Array Literal
+//
+// You can also initialize a set with an array literal, as a shorthand way to write
+// one or more values as a set collection.
+//
+// The example below creates a set called favoriteGenres to store String values:
 
 var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 // favoriteGenres has been initialized with three initial items
 
-The favoriteGenres variable is declared as “a set of String values”,
-written as Set<String>. Because this particular set has specified a
-value type of String, it is only allowed to store String values.
-Here, the favoriteGenres set is initialized with three String
-values ("Rock", "Classical", and "Hip hop"), written within
-an array literal.
+// The favoriteGenres variable is declared as “a set of String values”,
+// written as Set<String>. Because this particular set has specified a
+// value type of String, it is only allowed to store String values.
+// Here, the favoriteGenres set is initialized with three String
+// values ("Rock", "Classical", and "Hip hop"), written within
+// an array literal.
+//
+// NOTE
+//
+// The favoriteGenres set is declared as a variable (with the var introducer) and
+// not a constant (with the let introducer) because items are added and removed
+// in the examples below.
+//
+// A set type cannot be inferred from an array literal alone, so the type Set must
+// be explicitly declared. However, because of Swift’s type inference, you don’t
+// have to write the type of the set if you’re initializing it with an array
+// literal containing values of the same type. The initialization of
+// favoriteGenres could have been written in a shorter form instead:
 
-NOTE
+var favoriteGenres2: Set = ["Rock", "Classical", "Hip hop"]
 
-The favoriteGenres set is declared as a variable (with the var introducer) and
-not a constant (with the let introducer) because items are added and removed
-in the examples below.
+// Because all values in the array literal are of the same type, Swift can infer
+// that Set<String> is the correct type to use for the favoriteGenres variable.
 
-A set type cannot be inferred from an array literal alone, so the type Set must
-be explicitly declared. However, because of Swift’s type inference, you don’t
-have to write the type of the set if you’re initializing it with an array
-literal containing values of the same type. The initialization of
-favoriteGenres could have been written in a shorter form instead:
 
-var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
 
-Because all values in the array literal are of the same type, Swift can infer
-that Set<String> is the correct type to use for the favoriteGenres variable.
+
 
 // -----------------------------------------------------------------------------
 
-Accessing and Modifying a Set
-
-You access and modify a set through its methods and properties.
-
-To find out the number of items in a set, check its read-only count property:
+// Accessing and Modifying a Set
+//
+// You access and modify a set through its methods and properties.
+//
+// To find out the number of items in a set, check its read-only count property:
 
 print("I have \(favoriteGenres.count) favorite music genres.")
 // Prints "I have 3 favorite music genres."
 
-Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
+// Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
 
 if favoriteGenres.isEmpty {
   print("As far as music goes, I'm not picky.")
@@ -132,15 +137,16 @@ if favoriteGenres.isEmpty {
 }
 // Prints "I have particular music preferences."
 
-You can add a new item into a set by calling the set’s insert(_:) method:
+// You can add a new item into a set by calling the set’s insert(_:) method:
 
 favoriteGenres.insert("Jazz")
 // favoriteGenres now contains 4 items
 
-You can remove an item from a set by calling the set’s remove(_:) method, which
-removes the item if it’s a member of the set, and returns the removed value,
-or returns nil if the set did not contain it. Alternatively, all items in a
-set can be removed with its removeAll() method.
+
+// You can remove an item from a set by calling the set’s remove(_:) method, which
+// removes the item if it’s a member of the set, and returns the removed value,
+// or returns nil if the set did not contain it. Alternatively, all items in a
+// set can be removed with its removeAll() method.
 
 if let removedGenre = favoriteGenres.remove("Rock") {
   print("\(removedGenre)? I'm over it.")
@@ -149,7 +155,7 @@ if let removedGenre = favoriteGenres.remove("Rock") {
 }
 // Prints "Rock? I'm over it."
 
-To check whether a set contains a particular item, use the contains(_:) method.
+// To check whether a set contains a particular item, use the contains(_:) method.
 
 if favoriteGenres.contains("Funk") {
   print("I get up on the good foot.")
@@ -158,11 +164,12 @@ if favoriteGenres.contains("Funk") {
 }
 // Prints "It's too funky in here."
 
+
 // -----------------------------------------------------------------------------
 
-Iterating Over a Set
+// Iterating Over a Set
 
-You can iterate over the values in a set with a for-in loop.
+// You can iterate over the values in a set with a for-in loop.
 
 for genre in favoriteGenres {
   print("\(genre)")
@@ -171,13 +178,14 @@ for genre in favoriteGenres {
 // Hip hop
 // Classical
 
+
 // -----------------------------------------------------------------------------
 
-For more about the for-in loop, see For-In Loops.
+// For more about the for-in loop, see For-In Loops.
 
-Swift’s Set type does not have a defined ordering. To iterate over the values
-of a set in a specific order, use the sorted() method, which returns the set’s
-elements as an array sorted using the < operator.
+// Swift’s Set type does not have a defined ordering. To iterate over the values
+// of a set in a specific order, use the sorted() method, which returns the set’s
+// elements as an array sorted using the < operator.
 
 for genre in favoriteGenres.sorted() {
   print("\(genre)")
@@ -186,28 +194,30 @@ for genre in favoriteGenres.sorted() {
 // Hip hop
 // Jazz
 
+
+
 // -----------------------------------------------------------------------------
 //  Performing Set Operations
 // -----------------------------------------------------------------------------
 
-Performing Set Operations
-
-You can efficiently perform fundamental set operations, such as combining two
-sets together, determining which values two sets have in common, or determining
-whether two sets contain all, some, or none of the same values.
+// Performing Set Operations
+//
+// You can efficiently perform fundamental set operations, such as combining two
+// sets together, determining which values two sets have in common, or determining
+// whether two sets contain all, some, or none of the same values.
 
 // -----------------------------------------------------------------------------
 
-Fundamental Set Operations
-
-The illustration below depicts two sets—a and b—with the results of various set operations represented by the shaded regions.
-
-image: ../Art/setVennDiagram_2x.png
-
-Use the intersection(_:) method to create a new set with only the values common to both sets.
-Use the symmetricDifference(_:) method to create a new set with values in either set, but not both.
-Use the union(_:) method to create a new set with all of the values in both sets.
-Use the subtracting(_:) method to create a new set with values not in the specified set.
+// Fundamental Set Operations
+//
+// The illustration below depicts two sets—a and b—with the results of various set operations represented by the shaded regions.
+//
+// image: ../Art/setVennDiagram_2x.png
+//
+// Use the intersection(_:) method to create a new set with only the values common to both sets.
+// Use the symmetricDifference(_:) method to create a new set with values in either set, but not both.
+// Use the union(_:) method to create a new set with all of the values in both sets.
+// Use the subtracting(_:) method to create a new set with values not in the specified set.
 
 let oddDigits: Set = [1, 3, 5, 7, 9]
 let evenDigits: Set = [0, 2, 4, 6, 8]
@@ -222,23 +232,25 @@ oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
 oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
 // [1, 2, 9]
 
+
+
 // -----------------------------------------------------------------------------
 
-Set Membership and Equality
-
-The illustration below depicts three sets—a, b and c—with overlapping regions
-representing elements shared among sets. Set a is a superset of set b, because
-a contains all elements in b. Conversely, set b is a subset of set a, because
-all elements in b are also contained by a. Set b and set c are disjoint with
-one another, because they share no elements in common.
-
-image: ../Art/setEulerDiagram_2x.png
-
-Use the “is equal” operator (==) to determine whether two sets contain all of the same values.
-Use the isSubset(of:) method to determine whether all of the values of a set are contained in the specified set.
-Use the isSuperset(of:) method to determine whether a set contains all of the values in a specified set.
-Use the isStrictSubset(of:) or isStrictSuperset(of:) methods to determine whether a set is a subset or superset, but not equal to, a specified set.
-Use the isDisjoint(with:) method to determine whether two sets have any values in common.
+// Set Membership and Equality
+//
+// The illustration below depicts three sets—a, b and c—with overlapping regions
+// representing elements shared among sets. Set a is a superset of set b, because
+// a contains all elements in b. Conversely, set b is a subset of set a, because
+// all elements in b are also contained by a. Set b and set c are disjoint with
+// one another, because they share no elements in common.
+//
+// image: ../Art/setEulerDiagram_2x.png
+//
+// Use the “is equal” operator (==) to determine whether two sets contain all of the same values.
+// Use the isSubset(of:) method to determine whether all of the values of a set are contained in the specified set.
+// Use the isSuperset(of:) method to determine whether a set contains all of the values in a specified set.
+// Use the isStrictSubset(of:) or isStrictSuperset(of:) methods to determine whether a set is a subset or superset, but not equal to, a specified set.
+// Use the isDisjoint(with:) method to determine whether two sets have any values in common.
 
 let houseAnimals: Set = ["🐶", "🐱"]
 let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
@@ -250,6 +262,7 @@ farmAnimals.isSuperset(of: houseAnimals)
 // true
 farmAnimals.isDisjoint(with: cityAnimals)
 // true
+
 
 
 // =============================================================================

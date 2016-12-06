@@ -350,10 +350,10 @@ func f8() {
 // -----------------------------------------------------------------------------
 
 // Here, `f9` and `f10` have the same type of `(Int, Int) -> Int`.
-func f9(_ a: Int, _ b: Int) -> Int {
+func f10(_ a: Int, _ b: Int) -> Int {
   return a + b
 }
-func f10(_ a: Int, _ b: Int) -> Int {
+func f11(_ a: Int, _ b: Int) -> Int {
   return a * b
 }
 
@@ -362,12 +362,12 @@ func f10(_ a: Int, _ b: Int) -> Int {
 // Constants and variables can be assigned functions making them
 // act like functions.
 
-var f11: (Int, Int) -> Int = f9
-let f12 = f9
-let r11 = f11(2, 3)
+var f12: (Int, Int) -> Int = f10
+let f13 = f10
 let r12 = f12(2, 3)
-assert(r11 == 5)
+let r13 = f13(2, 3)
 assert(r12 == 5)
+assert(r13 == 5)
 
 
 
@@ -399,7 +399,6 @@ assert(r12 == 5)
 
 
 
-/*
 
 
 
@@ -444,6 +443,9 @@ assert(sayHelloWorld() == "hello, world")
 
 
 
+
+
+
 // Define a function called `sayHi` which accepts a string as its sole input
 // and that also returns a string.
 func sayHi(name: String) -> String {
@@ -464,6 +466,7 @@ assert(a == "Hello, Anna!")
 //
 // let b = sayHi2(name: "Anna")
 // assert(b == "Hello, Anna!")
+
 
 
 
@@ -507,6 +510,11 @@ assert(e == "Hello again, Tim!")
 let f = sayHi(alreadyGreeted: true, name: "Tim")
 */
 
+
+
+
+
+
 // -----------------------------------------------------------------------------
 
 // A function that doesn't return anything.
@@ -538,6 +546,9 @@ func sayFinalBye(name: String) -> () {
 sayFinalBye(name: "Dave")
 // Prints "Final goodbye, Dave!"
 
+
+
+
 // -----------------------------------------------------------------------------
 
 // A function's return value can be ignored.
@@ -563,6 +574,10 @@ countTextWithoutReturn(text: "hi")
 // the function call to an underscore.  This will discard the result without
 // triggering a warning.
 _ = countText(text: "hi")
+
+
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -591,6 +606,9 @@ assert(info.size == 6)
 // about their outcome than if they could only return a single
 // value of a single type.
 
+
+
+
 // -----------------------------------------------------------------------------
 
 // An optional tuple type such as `(Int, Int)?` is different from a tuple
@@ -615,6 +633,10 @@ if let info = findMaxAndSize2(xs: [8, -6, 2, 109, 3, 71]) {
   assert(info.max == 109)
   assert(info.size == 6)
 }
+
+
+
+
 
 
 
@@ -665,50 +687,31 @@ assert(n == 0)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-
-
 // -----------------------------------------------------------------------------
 
-Functions Without Return Values
+// Functions Without Return Values
+//
+// Functions are not required to define a return type. Here’s a version of the
+// greet(person:) function, which prints its own String value rather than
+// returning it:
 
-Functions are not required to define a return type. Here’s a version of the
-greet(person:) function, which prints its own String value rather than
-returning it:
-
-func greet(person: String) {
+func greet2(person: String) {
   print("Hello, \(person)!")
 }
-greet(person: "Dave")
+greet2(person: "Dave")
 // Prints "Hello, Dave!"
 
-Because it does not need to return a value, the function’s definition does
-not include the return arrow (->) or a return type.
-
-NOTE
-
-Strictly speaking, this version of the greet(person:) function does still
-return a value, even though no return value is defined.  Functions
-without a defined return type return a special value of type Void.
-This is simply an empty tuple, which is written as ().
-
-The return value of a function can be ignored when it is called:
+// Because it does not need to return a value, the function’s definition does
+// not include the return arrow (->) or a return type.
+//
+// NOTE
+//
+// Strictly speaking, this version of the greet(person:) function does still
+// return a value, even though no return value is defined.  Functions
+// without a defined return type return a special value of type Void.
+// This is simply an empty tuple, which is written as ().
+//
+// The return value of a function can be ignored when it is called:
 
 func printAndCount(string: String) -> Int {
   print(string)
@@ -724,28 +727,32 @@ printAndCount(string: "hello, world")
 printWithoutCounting(string: "hello, world")
 // prints "hello, world" but does not return a value
 
-The first function, printAndCount(string:), prints a string, and then returns
-its character count as an Int. The second function, printWithoutCounting(string:),
-calls the first function, but ignores its return value. When the second function
-is called, the message is still printed by the first function, but the returned
-value is not used.
+// The first function, printAndCount(string:), prints a string, and then returns
+// its character count as an Int. The second function, printWithoutCounting(string:),
+// calls the first function, but ignores its return value. When the second function
+// is called, the message is still printed by the first function, but the returned
+// value is not used.
+//
+// NOTE
+//
+// Return values can be ignored, but a function that says it will return a value
+// must always do so. A function with a defined return type cannot allow control
+// to fall out of the bottom of the function without returning a value, and
+// attempting to do so will result in a compile-time error.
 
-NOTE
 
-Return values can be ignored, but a function that says it will return a value
-must always do so. A function with a defined return type cannot allow control
-to fall out of the bottom of the function without returning a value, and
-attempting to do so will result in a compile-time error.
+
+
 
 // -----------------------------------------------------------------------------
 
-Functions with Multiple Return Values
+// Functions with Multiple Return Values
 
-You can use a tuple type as the return type for a function to return multiple
-values as part of one compound return value.
+// You can use a tuple type as the return type for a function to return multiple
+// values as part of one compound return value.
 
-The example below defines a function called minMax(array:), which finds the
-smallest and largest numbers in an array of Int values:
+// The example below defines a function called minMax(array:), which finds the
+// smallest and largest numbers in an array of Int values:
 
 func minMax(array: [Int]) -> (min: Int, max: Int) {
   var currentMin = array[0]
@@ -760,54 +767,57 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
   return (currentMin, currentMax)
 }
 
-The minMax(array:) function returns a tuple containing two Int values. These
-values are labeled min and max so that they can be accessed by name when
-querying the function’s return value.
+// The minMax(array:) function returns a tuple containing two Int values. These
+// values are labeled min and max so that they can be accessed by name when
+// querying the function’s return value.
 
-The body of the minMax(array:) function starts by setting two working variables
-called currentMin and currentMax to the value of the first integer in the array.
-The function then iterates over the remaining values in the array and checks each
-value to see if it is smaller or larger than the values of currentMin and currentMax
-respectively. Finally, the overall minimum and maximum values are returned as a
-tuple of two Int values.
+// The body of the minMax(array:) function starts by setting two working variables
+// called currentMin and currentMax to the value of the first integer in the array.
+// The function then iterates over the remaining values in the array and checks each
+// value to see if it is smaller or larger than the values of currentMin and currentMax
+// respectively. Finally, the overall minimum and maximum values are returned as a
+// tuple of two Int values.
 
-Because the tuple’s member values are named as part of the function’s return type,
-they can be accessed with dot syntax to retrieve the minimum and maximum found values:
+// Because the tuple’s member values are named as part of the function’s return type,
+// they can be accessed with dot syntax to retrieve the minimum and maximum found values:
 
 let bounds = minMax(array: [8, -6, 2, 109, 3, 71])
 print("min is \(bounds.min) and max is \(bounds.max)")
 // Prints "min is -6 and max is 109"
 
-Note that the tuple’s members do not need to be named at the point that the tuple
-is returned from the function, because their names are already specified as part
-of the function’s return type.
+// Note that the tuple’s members do not need to be named at the point that the tuple
+// is returned from the function, because their names are already specified as part
+// of the function’s return type.
+
+
+
 
 // -----------------------------------------------------------------------------
 
-Optional Tuple Return Types
+// Optional Tuple Return Types
 
-If the tuple type to be returned from a function has the potential to have “no value”
-for the entire tuple, you can use an optional tuple return type to reflect the fact
-that the entire tuple can be nil. You write an optional tuple return type by placing
-a question mark after the tuple type’s closing parenthesis, such as (Int, Int)? or
-(String, Int, Bool)?.
+// If the tuple type to be returned from a function has the potential to have “no value”
+// for the entire tuple, you can use an optional tuple return type to reflect the fact
+// that the entire tuple can be nil. You write an optional tuple return type by placing
+// a question mark after the tuple type’s closing parenthesis, such as (Int, Int)? or
+// (String, Int, Bool)?.
 
-NOTE
+// NOTE
 
-An optional tuple type such as (Int, Int)? is different from a tuple that contains
-optional types such as (Int?, Int?). With an optional tuple type, the entire tuple
-is optional, not just each individual value within the tuple.
+// An optional tuple type such as (Int, Int)? is different from a tuple that contains
+// optional types such as (Int?, Int?). With an optional tuple type, the entire tuple
+// is optional, not just each individual value within the tuple.
 
-The minMax(array:) function above returns a tuple containing two Int values.
-However, the function does not perform any safety checks on the array it is
-passed. If the array argument contains an empty array, the minMax(array:)
-function, as defined above, will trigger a runtime error when attempting
-to access array[0].
+// The minMax(array:) function above returns a tuple containing two Int values.
+// However, the function does not perform any safety checks on the array it is
+// passed. If the array argument contains an empty array, the minMax(array:)
+// function, as defined above, will trigger a runtime error when attempting
+// to access array[0].
 
-To handle an empty array safely, write the minMax(array:) function with an optional
-tuple return type and return a value of nil when the array is empty:
+// To handle an empty array safely, write the minMax(array:) function with an optional
+// tuple return type and return a value of nil when the array is empty:
 
-func minMax(array: [Int]) -> (min: Int, max: Int)? {
+func minMax2(array: [Int]) -> (min: Int, max: Int)? {
   if array.isEmpty { return nil }
   var currentMin = array[0]
   var currentMax = array[0]
@@ -821,18 +831,17 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? {
   return (currentMin, currentMax)
 }
 
-You can use optional binding to check whether this version of the minMax(array:)
-function returns an actual tuple value or nil:
+// You can use optional binding to check whether this version of the minMax(array:)
+// function returns an actual tuple value or nil:
 
-if let bounds = minMax(array: [8, -6, 2, 109, 3, 71]) {
+if let bounds = minMax2(array: [8, -6, 2, 109, 3, 71]) {
   print("min is \(bounds.min) and max is \(bounds.max)")
 }
 // Prints "min is -6 and max is 109"
 
 // -----------------------------------------------------------------------------
 
-Function Argument Labels and Parameter Names
-
+// Function Argument Labels and Parameter Names
 
 func someFunction(firstParameterName: Int, secondParameterName: Int) {
   // In the function body, firstParameterName and secondParameterName
@@ -840,34 +849,40 @@ func someFunction(firstParameterName: Int, secondParameterName: Int) {
 }
 someFunction(firstParameterName: 1, secondParameterName: 2)
 
-All parameters must have unique names. Although it’s possible for multiple
-parameters to have the same argument label, unique argument labels help make
-your code more readable.
+// All parameters must have unique names. Although it’s possible for multiple
+// parameters to have the same argument label, unique argument labels help make
+// your code more readable.
+
+
 
 // -----------------------------------------------------------------------------
 
-Specifying Argument Labels
+// Specifying Argument Labels
 
-You write an argument label before the parameter name, separated by a space:
+// You write an argument label before the parameter name, separated by a space:
 
 func someFunction(argumentLabel parameterName: Int) {
-    // In the function body, parameterName refers to the argument value
-    // for that parameter.
+  // In the function body, parameterName refers to the argument value
+  // for that parameter.
 }
-Here’s a variation of the greet(person:) function that takes a person’s name and hometown and returns a greeting:
+
+// Here’s a variation of the greet(person:) function that takes a person’s name and hometown and returns a greeting:
 
 func greet(person: String, from hometown: String) -> String {
-    return "Hello \(person)!  Glad you could visit from \(hometown)."
+  return "Hello \(person)!  Glad you could visit from \(hometown)."
 }
 print(greet(person: "Bill", from: "Cupertino"))
 // Prints "Hello Bill!  Glad you could visit from Cupertino."
-The use of argument labels can allow a function to be called in an expressive, sentence-like manner, while still providing a function body that is readable and clear in intent.
+
+// The use of argument labels can allow a function to be called in an expressive, sentence-like manner, while still providing a function body that is readable and clear in intent.
+
+
 
 // -----------------------------------------------------------------------------
 
-Omitting Argument Labels
+// Omitting Argument Labels
 
-If you don’t want an argument label for a parameter, write an underscore (_) instead of an explicit argument label for that parameter.
+// If you don’t want an argument label for a parameter, write an underscore (_) instead of an explicit argument label for that parameter.
 
 func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
   // In the function body, firstParameterName and secondParameterName
@@ -875,13 +890,15 @@ func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
 }
 someFunction(1, secondParameterName: 2)
 
-If a parameter has an argument label, the argument must be labeled when you call the function.
+// If a parameter has an argument label, the argument must be labeled when you call the function.
+
+
 
 // -----------------------------------------------------------------------------
 
-Default Parameter Values
+// Default Parameter Values
 
-You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
+// You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
 
 func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) {
   // If you omit the second argument when calling this function, then
@@ -890,17 +907,19 @@ func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) 
 someFunction(parameterWithoutDefault: 3, parameterWithDefault: 6) // parameterWithDefault is 6
 someFunction(parameterWithoutDefault: 4) // parameterWithDefault is 12
 
-Place parameters that have don’t default values at the beginning of a function’s parameter list, before the parameters that have default values. Parameters that don’t have default values are usually more important to the function’s meaning—writing them first makes it easier to recognize that the same function is being called, regardless of whether any default parameters are omitted.
+// Place parameters that have don’t default values at the beginning of a function’s parameter list, before the parameters that have default values. Parameters that don’t have default values are usually more important to the function’s meaning—writing them first makes it easier to recognize that the same function is being called, regardless of whether any default parameters are omitted.
+
+
 
 // -----------------------------------------------------------------------------
 
-Variadic Parameters
-
-A variadic parameter accepts zero or more values of a specified type. You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called. Write variadic parameters by inserting three period characters (...) after the parameter’s type name.
-
-The values passed to a variadic parameter are made available within the function’s body as an array of the appropriate type. For example, a variadic parameter with a name of numbers and a type of Double... is made available within the function’s body as a constant array called numbers of type [Double].
-
-The example below calculates the arithmetic mean (also known as the average) for a list of numbers of any length:
+// Variadic Parameters
+//
+// A variadic parameter accepts zero or more values of a specified type. You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called. Write variadic parameters by inserting three period characters (...) after the parameter’s type name.
+//
+// The values passed to a variadic parameter are made available within the function’s body as an array of the appropriate type. For example, a variadic parameter with a name of numbers and a type of Double... is made available within the function’s body as a constant array called numbers of type [Double].
+//
+// The example below calculates the arithmetic mean (also known as the average) for a list of numbers of any length:
 
 func arithmeticMean(_ numbers: Double...) -> Double {
   var total: Double = 0
@@ -913,25 +932,27 @@ arithmeticMean(1, 2, 3, 4, 5)
 // returns 3.0, which is the arithmetic mean of these five numbers
 arithmeticMean(3, 8.25, 18.75)
 // returns 10.0, which is the arithmetic mean of these three numbers
-NOTE
 
-A function may have at most one variadic parameter.
+// NOTE
+
+// A function may have at most one variadic parameter.
+
 
 // -----------------------------------------------------------------------------
 
-In-Out Parameters
-
-Function parameters are constants by default. Trying to change the value of a function parameter from within the body of that function results in a compile-time error. This means that you can’t change the value of a parameter by mistake. If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an in-out parameter instead.
-
-You write an in-out parameter by placing the inout keyword right before a parameter’s type. An in-out parameter has a value that is passed in to the function, is modified by the function, and is passed back out of the function to replace the original value. For a detailed discussion of the behavior of in-out parameters and associated compiler optimizations, see In-Out Parameters.
-
-You can only pass a variable as the argument for an in-out parameter. You cannot pass a constant or a literal value as the argument, because constants and literals cannot be modified. You place an ampersand (&) directly before a variable’s name when you pass it as an argument to an in-out parameter, to indicate that it can be modified by the function.
-
-NOTE
-
-In-out parameters cannot have default values, and variadic parameters cannot be marked as inout.
-
-Here’s an example of a function called swapTwoInts(_:_:), which has two in-out integer parameters called a and b:
+// In-Out Parameters
+//
+// Function parameters are constants by default. Trying to change the value of a function parameter from within the body of that function results in a compile-time error. This means that you can’t change the value of a parameter by mistake. If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an in-out parameter instead.
+//
+// You write an in-out parameter by placing the inout keyword right before a parameter’s type. An in-out parameter has a value that is passed in to the function, is modified by the function, and is passed back out of the function to replace the original value. For a detailed discussion of the behavior of in-out parameters and associated compiler optimizations, see In-Out Parameters.
+//
+// You can only pass a variable as the argument for an in-out parameter. You cannot pass a constant or a literal value as the argument, because constants and literals cannot be modified. You place an ampersand (&) directly before a variable’s name when you pass it as an argument to an in-out parameter, to indicate that it can be modified by the function.
+//
+// NOTE
+//
+// In-out parameters cannot have default values, and variadic parameters cannot be marked as inout.
+//
+// Here’s an example of a function called swapTwoInts(_:_:), which has two in-out integer parameters called a and b:
 
 func swapTwoInts(_ a: inout Int, _ b: inout Int) {
   let temporaryA = a
@@ -939,28 +960,30 @@ func swapTwoInts(_ a: inout Int, _ b: inout Int) {
   b = temporaryA
 }
 
-The swapTwoInts(_:_:) function simply swaps the value of b into a, and the value of a into b. The function performs this swap by storing the value of a in a temporary constant called temporaryA, assigning the value of b to a, and then assigning temporaryA to b.
-
-You can call the swapTwoInts(_:_:) function with two variables of type Int to swap their values. Note that the names of someInt and anotherInt are prefixed with an ampersand when they are passed to the swapTwoInts(_:_:) function:
+// The swapTwoInts(_:_:) function simply swaps the value of b into a, and the value of a into b. The function performs this swap by storing the value of a in a temporary constant called temporaryA, assigning the value of b to a, and then assigning temporaryA to b.
+//
+// You can call the swapTwoInts(_:_:) function with two variables of type Int to swap their values. Note that the names of someInt and anotherInt are prefixed with an ampersand when they are passed to the swapTwoInts(_:_:) function:
 
 var someInt = 3
 var anotherInt = 107
 swapTwoInts(&someInt, &anotherInt)
 print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
 // Prints "someInt is now 107, and anotherInt is now 3"
-The example above shows that the original values of someInt and anotherInt are modified by the swapTwoInts(_:_:) function, even though they were originally defined outside of the function.
 
-NOTE
+// The example above shows that the original values of someInt and anotherInt are modified by the swapTwoInts(_:_:) function, even though they were originally defined outside of the function.
+//
+// NOTE
+//
+// In-out parameters are not the same as returning a value from a function. The swapTwoInts example above does not define a return type or return a value, but it still modifies the values of someInt and anotherInt. In-out parameters are an alternative way for a function to have an effect outside of the scope of its function body.
 
-In-out parameters are not the same as returning a value from a function. The swapTwoInts example above does not define a return type or return a value, but it still modifies the values of someInt and anotherInt. In-out parameters are an alternative way for a function to have an effect outside of the scope of its function body.
 
 // -----------------------------------------------------------------------------
 
-Function Types
-
-Every function has a specific function type, made up of the parameter types and the return type of the function.
-
-For example:
+// Function Types
+//
+// Every function has a specific function type, made up of the parameter types and the return type of the function.
+//
+// For example:
 
 func addTwoInts(_ a: Int, _ b: Int) -> Int {
   return a + b
@@ -969,57 +992,59 @@ func multiplyTwoInts(_ a: Int, _ b: Int) -> Int {
   return a * b
 }
 
-This example defines two simple mathematical functions called addTwoInts and multiplyTwoInts. These functions each take two Int values, and return an Int value, which is the result of performing an appropriate mathematical operation.
-
-The type of both of these functions is (Int, Int) -> Int. This can be read as:
-
-“A function type that has two parameters, both of type Int, and that returns a value of type Int.”
-
-Here’s another example, for a function with no parameters or return value:
+// This example defines two simple mathematical functions called addTwoInts and multiplyTwoInts. These functions each take two Int values, and return an Int value, which is the result of performing an appropriate mathematical operation.
+//
+// The type of both of these functions is (Int, Int) -> Int. This can be read as:
+//
+// “A function type that has two parameters, both of type Int, and that returns a value of type Int.”
+//
+// Here’s another example, for a function with no parameters or return value:
 
 func printHelloWorld() {
   print("hello, world")
 }
 
-The type of this function is () -> Void, or “a function that has no parameters, and returns Void.”
+// The type of this function is () -> Void, or “a function that has no parameters, and returns Void.”
+
+
 
 // -----------------------------------------------------------------------------
 
-Using Function Types
-
-You use function types just like any other types in Swift. For example, you can define a constant or variable to be of a function type and assign an appropriate function to that variable:
+// Using Function Types
+//
+// You use function types just like any other types in Swift. For example, you can define a constant or variable to be of a function type and assign an appropriate function to that variable:
 
 var mathFunction: (Int, Int) -> Int = addTwoInts
 
-This can be read as:
-
-“Define a variable called mathFunction, which has a type of ‘a function that takes two Int values, and returns an Int value.’ Set this new variable to refer to the function called addTwoInts.”
-
-The addTwoInts(_:_:) function has the same type as the mathFunction variable, and so this assignment is allowed by Swift’s type-checker.
-
-You can now call the assigned function with the name mathFunction:
+// This can be read as:
+//
+// “Define a variable called mathFunction, which has a type of ‘a function that takes two Int values, and returns an Int value.’ Set this new variable to refer to the function called addTwoInts.”
+//
+// The addTwoInts(_:_:) function has the same type as the mathFunction variable, and so this assignment is allowed by Swift’s type-checker.
+//
+// You can now call the assigned function with the name mathFunction:
 
 print("Result: \(mathFunction(2, 3))")
 // Prints "Result: 5"
 
-A different function with the same matching type can be assigned to the same variable, in the same way as for non-function types:
+// A different function with the same matching type can be assigned to the same variable, in the same way as for non-function types:
 
 mathFunction = multiplyTwoInts
 print("Result: \(mathFunction(2, 3))")
 // Prints "Result: 6"
 
-As with any other type, you can leave it to Swift to infer the function type when you assign a function to a constant or variable:
+// As with any other type, you can leave it to Swift to infer the function type when you assign a function to a constant or variable:
 
 let anotherMathFunction = addTwoInts
 // anotherMathFunction is inferred to be of type (Int, Int) -> Int
 
 // -----------------------------------------------------------------------------
 
-Function Types as Parameter Types
-
-You can use a function type such as (Int, Int) -> Int as a parameter type for another function. This enables you to leave some aspects of a function’s implementation for the function’s caller to provide when the function is called.
-
-Here’s an example to print the results of the math functions from above:
+// Function Types as Parameter Types
+//
+// You can use a function type such as (Int, Int) -> Int as a parameter type for another function. This enables you to leave some aspects of a function’s implementation for the function’s caller to provide when the function is called.
+//
+// Here’s an example to print the results of the math functions from above:
 
 func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
   print("Result: \(mathFunction(a, b))")
@@ -1027,19 +1052,20 @@ func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
 printMathResult(addTwoInts, 3, 5)
 // Prints "Result: 8"
 
-This example defines a function called printMathResult(_:_:_:), which has three parameters. The first parameter is called mathFunction, and is of type (Int, Int) -> Int. You can pass any function of that type as the argument for this first parameter. The second and third parameters are called a and b, and are both of type Int. These are used as the two input values for the provided math function.
+// This example defines a function called printMathResult(_:_:_:), which has three parameters. The first parameter is called mathFunction, and is of type (Int, Int) -> Int. You can pass any function of that type as the argument for this first parameter. The second and third parameters are called a and b, and are both of type Int. These are used as the two input values for the provided math function.
+//
+// When printMathResult(_:_:_:) is called, it is passed the addTwoInts(_:_:) function, and the integer values 3 and 5. It calls the provided function with the values 3 and 5, and prints the result of 8.
+//
+// The role of printMathResult(_:_:_:) is to print the result of a call to a math function of an appropriate type. It doesn’t matter what that function’s implementation actually does—it matters only that the function is of the correct type. This enables printMathResult(_:_:_:) to hand off some of its functionality to the caller of the function in a type-safe way.
 
-When printMathResult(_:_:_:) is called, it is passed the addTwoInts(_:_:) function, and the integer values 3 and 5. It calls the provided function with the values 3 and 5, and prints the result of 8.
-
-The role of printMathResult(_:_:_:) is to print the result of a call to a math function of an appropriate type. It doesn’t matter what that function’s implementation actually does—it matters only that the function is of the correct type. This enables printMathResult(_:_:_:) to hand off some of its functionality to the caller of the function in a type-safe way.
 
 // -----------------------------------------------------------------------------
 
-Function Types as Return Types
-
-You can use a function type as the return type of another function. You do this by writing a complete function type immediately after the return arrow (->) of the returning function.
-
-The next example defines two simple functions called stepForward(_:) and stepBackward(_:). The stepForward(_:) function returns a value one more than its input value, and the stepBackward(_:) function returns a value one less than its input value. Both functions have a type of (Int) -> Int:
+// Function Types as Return Types
+//
+// You can use a function type as the return type of another function. You do this by writing a complete function type immediately after the return arrow (->) of the returning function.
+//
+// The next example defines two simple functions called stepForward(_:) and stepBackward(_:). The stepForward(_:) function returns a value one more than its input value, and the stepBackward(_:) function returns a value one less than its input value. Both functions have a type of (Int) -> Int:
 
 func stepForward(_ input: Int) -> Int {
   return input + 1
@@ -1048,20 +1074,21 @@ func stepBackward(_ input: Int) -> Int {
   return input - 1
 }
 
-Here’s a function called chooseStepFunction(backward:), whose return type is (Int) -> Int. The chooseStepFunction(backward:) function returns the stepForward(_:) function or the stepBackward(_:) function based on a Boolean parameter called backward:
+// Here’s a function called chooseStepFunction(backward:), whose return type is (Int) -> Int. The chooseStepFunction(backward:) function returns the stepForward(_:) function or the stepBackward(_:) function based on a Boolean parameter called backward:
 
 func chooseStepFunction(backward: Bool) -> (Int) -> Int {
   return backward ? stepBackward : stepForward
 }
 
-You can now use chooseStepFunction(backward:) to obtain a function that will step in one direction or the other:
+// You can now use chooseStepFunction(backward:) to obtain a function that will step in one direction or the other:
 
 var currentValue = 3
 let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
 // moveNearerToZero now refers to the stepBackward() function
-The preceding example determines whether a positive or negative step is needed to move a variable called currentValue progressively closer to zero. currentValue has an initial value of 3, which means that currentValue > 0 returns true, causing chooseStepFunction(backward:) to return the stepBackward(_:) function. A reference to the returned function is stored in a constant called moveNearerToZero.
 
-Now that moveNearerToZero refers to the correct function, it can be used to count to zero:
+// The preceding example determines whether a positive or negative step is needed to move a variable called currentValue progressively closer to zero. currentValue has an initial value of 3, which means that currentValue > 0 returns true, causing chooseStepFunction(backward:) to return the stepBackward(_:) function. A reference to the returned function is stored in a constant called moveNearerToZero.
+//
+// Now that moveNearerToZero refers to the correct function, it can be used to count to zero:
 
 print("Counting to zero:")
 // Counting to zero:
@@ -1075,27 +1102,29 @@ print("zero!")
 // 1...
 // zero!
 
+
+
 // -----------------------------------------------------------------------------
 
-Nested Functions
+// Nested Functions
+//
+// All of the functions you have encountered so far in this chapter have been examples of global functions, which are defined at a global scope. You can also define functions inside the bodies of other functions, known as nested functions.
+//
+// Nested functions are hidden from the outside world by default, but can still be called and used by their enclosing function. An enclosing function can also return one of its nested functions to allow the nested function to be used in another scope.
+//
+// You can rewrite the chooseStepFunction(backward:) example above to use and return nested functions:
 
-All of the functions you have encountered so far in this chapter have been examples of global functions, which are defined at a global scope. You can also define functions inside the bodies of other functions, known as nested functions.
-
-Nested functions are hidden from the outside world by default, but can still be called and used by their enclosing function. An enclosing function can also return one of its nested functions to allow the nested function to be used in another scope.
-
-You can rewrite the chooseStepFunction(backward:) example above to use and return nested functions:
-
-func chooseStepFunction(backward: Bool) -> (Int) -> Int {
+func chooseStepFunction2(backward: Bool) -> (Int) -> Int {
   func stepForward(input: Int) -> Int { return input + 1 }
   func stepBackward(input: Int) -> Int { return input - 1 }
   return backward ? stepBackward : stepForward
 }
-var currentValue = -4
-let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
-// moveNearerToZero now refers to the nested stepForward() function
-while currentValue != 0 {
-  print("\(currentValue)... ")
-  currentValue = moveNearerToZero(currentValue)
+var currentValue2 = -4
+let moveNearerToZero2 = chooseStepFunction2(backward: currentValue2 > 0)
+// moveNearerToZero2 now refers to the nested stepForward() function
+while currentValue2 != 0 {
+  print("\(currentValue2)... ")
+  currentValue2 = moveNearerToZero2(currentValue2)
 }
 print("zero!")
 // -4...
@@ -1104,9 +1133,6 @@ print("zero!")
 // -1...
 // zero!
 
-*/
-
-*/
 
 
 // =============================================================================

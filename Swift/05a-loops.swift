@@ -159,10 +159,6 @@ for case let number? in arrayOfOptionalInts {
 
 
 
-
-
-
-
 let optionalInt:[Int]? = [1, 2, 3]
 
 for i in optionalInt! { print(i) }
@@ -170,15 +166,6 @@ for i in optionalInt! { print(i) }
 for i in optionalInt ?? [] { print(i) }
 
 for i in optionalInt as [Int]! { print(i) }
-
-
-
-
-
-
-
-
-
 
 
 
