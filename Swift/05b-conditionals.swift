@@ -1,9 +1,8 @@
 // -----------------------------------------------------------------------------
+//  Condition - An expression that evaluates to true or false.
 //  Branch - A set of statements that may be conditionally executed.
 //  Conditional statement - A non-looping statement that conditionally redirects
 //                          execution through one of a given set of branches.
-// -----------------------------------------------------------------------------
-
 // -----------------------------------------------------------------------------
 //  `if` statement - The conditional statement that has one or two branches.
 // -----------------------------------------------------------------------------
@@ -13,8 +12,7 @@
 
 var feelsLike = "warm"
 var temperatureInFahrenheit = 30
-var condition = temperatureInFahrenheit <= 32
-if condition {
+if temperatureInFahrenheit <= 32 {
   feelsLike = "cold"
 }
 assert(feelsLike == "cold")
@@ -50,7 +48,7 @@ assert(feelsLike == "hot")
 // -----------------------------------------------------------------------------
 
 // The final else clause is optional and can be excluded if the set of
-// conditions does not need to be complete.
+// conditions doesn't need to be complete.
 
 feelsLike = "warm"
 temperatureInFahrenheit = 72
@@ -63,8 +61,8 @@ assert(feelsLike == "warm")
 
 // -----------------------------------------------------------------------------
 
-// The ternary conditional operator (`?:`) is shorthand for the
-// `if` statement with its else clause.
+// The ternary conditional operator (`?:`) is shorthand for the `if` statement
+// with its else clause.
 
 var barOrBaz = ""
 condition = true
@@ -80,8 +78,6 @@ if condition {
   barOrBaz = "baz"
 }
 assert(barOrBaz == "bar")
-
-// -----------------------------------------------------------------------------
 
 // A slightly more involved example.
 let coins = 10
@@ -115,19 +111,18 @@ if maybeTwo != nil {
 }
 
 // -----------------------------------------------------------------------------
-//  Optional binding - The act of checking whether an optional contains a value,
-//                     and if so, making the value available as a temporary
-//                     constant or variable.
+//  Optional binding - The assignment of an optional's underlying value, if it
+//                     has one, to a temporary constant/variable.
 // -----------------------------------------------------------------------------
 
-// An `if` statement can use optional binding.  Constants and variables created
-// in this way are available only within the `if` statement's branch.
+// An `if` statement can use optional binding.  Constants/variables created in
+// this way are available only within the `if` statement's branch.
 
 if let number = maybeTwo {
   assert(number == 2)
 }
 
-// An optionally bound constant or variable is not available in an else clause.
+// An optionally bound constant/variable is not available in an else clause.
 
 if let number = maybeTwo {
   assert(number == 2)
@@ -141,8 +136,7 @@ if let number = maybeTwo {
 
 // -----------------------------------------------------------------------------
 
-// An optionally bound variable can be manipulated within an `if`
-// statement's branch.
+// An optionally bound variable can change within an `if` statement's branch.
 
 if var number = maybeTwo {
   assert(number == 2)
@@ -154,8 +148,8 @@ if var number = maybeTwo {
 //  Scope - The area of a program where usage of a named code element is valid.
 // -----------------------------------------------------------------------------
 
-// An optionally bound constant or variable is in a different scope than
-// another constant or variable having the same name in a parent scope.
+// An optionally bound constant/variable is in a different scope than another
+// constant/variable having the same name in a parent scope.
 
 var actualNumber = 50
 if let actualNumber = maybeTwo {
@@ -165,10 +159,9 @@ assert(actualNumber == 50)
 
 // -----------------------------------------------------------------------------
 
-// An `if` statement can include multiple optional bindings and Boolean
-// conditions.  If any of the values in the optional bindings are
-// nil or any Boolean condition evaluates to false, the whole `if`
-// statement's condition is considered to be false.
+// An `if` statement can have multiple optional bindings and conditions.  If any
+// of the values in the optional bindings are nil or any condition evaluates to
+// false, the whole `if` statement's condition is considered to be false.
 
 // This `if` statement "pyramid of doom"...
 if let a = Int("4") {
@@ -327,16 +320,16 @@ default:
 //  No Implicit Fallthrough
 // -----------------------------------------------------------------------------
 
-// `switch` statements in Swift do not fall through the bottom of each case and
+// A `switch` statements Swift does not fall through the bottom of each case and
 // into the next one by default.  Instead, the entire `switch` statement
 // finishes its execution as soon as the first matching `switch` case is
 // completed, without requiring an explicit `break` statement.
 
 // NOTE
 //
-// Although `break` is not required in Swift, you can use a `break` statement to
-// match and ignore a particular case or to break out of a matched case before
-// that case has completed its execution.
+// Although `break` is not required in Swift, you can use it to match and ignore
+// a particular case or to break out of a matched case before that case has
+// completed its execution.
 //
 // The body of each case must contain at least one executable statement. It is not
 // valid to write the following code, because the first case is empty:
@@ -433,13 +426,7 @@ default:
 }
 // Prints "(1, 1) is inside the box"
 
-// image: ../Art/coordinateGraphSimple_2x.png
-//
-// The `switch` statement determines whether the point is at the origin (0, 0),
-// on the red x-axis, on the orange y-axis, inside the blue 4-by-4 box centered
-// on the origin, or outside of the box.
-//
-// Unlike C, Swift allows multiple switch cases to consider the same value or values.
+// Swift allows multiple switch cases to consider the same value or values.
 // In fact, the point (0, 0) could match all four of the cases in this example.
 // However, if multiple matches are possible, the first matching case is always
 // used. The point (0, 0) would match case (0, 0) first, and so all other matching
@@ -464,11 +451,6 @@ case let (x, y):
 }
 // Prints "on the x-axis with an x value of 2"
 
-// image: ../Art/coordinateGraphMedium_2x.png
-//
-// The switch statement determines whether the point is on the red x-axis, on the
-// orange y-axis, or elsewhere (on neither axis).
-//
 // The three switch cases declare placeholder constants x and y, which temporarily
 // take on one or both tuple values from anotherPoint. The first case, case (let x, 0),
 // matches any point with a y value of 0 and assigns the point’s x value to the temporary
@@ -619,22 +601,18 @@ print("There are \(naturalCount2) \(countedThings2).")
 
 
 // -----------------------------------------------------------------------------
-//  Control Transfer Statements
+//  Control transfer statement - A statement that changes the order in which
+//                               your code is executed, by transferring
+//                               control from one piece of code to
+//                               another.
 // -----------------------------------------------------------------------------
 
-// Control transfer statements change the order in which your code is executed,
-// by transferring control from one piece of code to another.  Swift has five
-// control transfer statements:
-
-// continue
-// break
-// fallthrough
-// return
-// throw
-
-// The continue, break, and fallthrough statements are described below.  The return
-// statement is described in Functions, and the throw statement is described in
-// Propagating Errors Using Throwing Functions.
+// Swift has five control transfer statements:
+// - continue
+// - break
+// - fallthrough
+// - return (described in "Functions")
+// - throw (described in "Propagating Errors Using Throwing Functions")
 
 // -----------------------------------------------------------------------------
 
@@ -655,8 +633,7 @@ for character in puzzleInput.characters {
   }
 }
 
-print(puzzleOutput)
-// Prints "grtmndsthnklk"
+assert(puzzleOutput == "grtmndsthnklk")
 
 // -----------------------------------------------------------------------------
 //  `break` statement - The statement that ends execution of an entire
@@ -793,7 +770,7 @@ print(description)
 // this syntax for a while loop, although the principle is the same for all
 // loops and switch statements:
 
-// label name: while condition {
+// label_name: while condition {
 //   statements
 // }
 
@@ -821,10 +798,10 @@ var square = 0
 var diceRoll = 0
 
 // This version of the game uses a while loop and a switch statement to implement
-// the game’s logic.  The while loop has a statement label called gameLoop to
+// the game's logic.  The while loop has a statement label called gameLoop to
 // indicate that it is the main game loop for the Snakes and Ladders game.
 //
-// The while loop’s condition is while square != finalSquare, to reflect that you
+// The while loop's condition is while square != finalSquare, to reflect that you
 // must land exactly on square 25.
 
 gameLoop: while square != finalSquare {
@@ -871,8 +848,8 @@ print("Game over!")
 // It is not strictly necessary to use the gameLoop label when calling continue
 // gameLoop to jump to the next iteration of the loop. There is only one loop in
 // the game, and therefore no ambiguity as to which loop the continue statement
-// will affect. However, there is no harm in using the gameLoop label with the
-// continue statement. Doing so is consistent with the label’s use alongside the
+// will affect.  However, there is no harm in using the gameLoop label with the
+// continue statement.  Doing so is consistent with the label’s use alongside the
 // break statement and helps make the game’s logic clearer to read and understand.
 
 

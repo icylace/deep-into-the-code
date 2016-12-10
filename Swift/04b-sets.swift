@@ -29,6 +29,10 @@
 //
 // You can use your own custom types as set value types or dictionary key types by
 // making them conform to the Hashable protocol from Swift's standard library.
+//
+// See:
+// https://developer.apple.com/reference/swift/hashable
+
 // Types that conform to the Hashable protocol must provide a gettable Int property
 // called hashValue.  The value returned by a type's hashValue property is not
 // required to be the same across different executions of the same program,
@@ -83,35 +87,17 @@ letters = []
 //
 // You can also initialize a set with an array literal, as a shorthand way to write
 // one or more values as a set collection.
-//
-// The example below creates a set called favoriteGenres to store String values:
 
+// This creates a set called `favoriteGenres` to store String values and initializes it
 var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 // favoriteGenres has been initialized with three initial items
 
-// The favoriteGenres variable is declared as “a set of String values”,
-// written as Set<String>. Because this particular set has specified a
-// value type of String, it is only allowed to store String values.
-// Here, the favoriteGenres set is initialized with three String
-// values ("Rock", "Classical", and "Hip hop"), written within
-// an array literal.
-//
-// NOTE
-//
-// The favoriteGenres set is declared as a variable (with the var introducer) and
-// not a constant (with the let introducer) because items are added and removed
-// in the examples below.
-//
-// A set type cannot be inferred from an array literal alone, so the type Set must
-// be explicitly declared. However, because of Swift’s type inference, you don’t
-// have to write the type of the set if you’re initializing it with an array
-// literal containing values of the same type. The initialization of
-// favoriteGenres could have been written in a shorter form instead:
+// A set type cannot be inferred from an array literal alone, so the type `Set`
+// must be explicitly declared.  However, because of type inference you don't
+// have to write the type of the set if you're initializing it with an array
+// literal containing values of the same type.
 
 var favoriteGenres2: Set = ["Rock", "Classical", "Hip hop"]
-
-// Because all values in the array literal are of the same type, Swift can infer
-// that Set<String> is the correct type to use for the favoriteGenres variable.
 
 
 
@@ -125,23 +111,17 @@ var favoriteGenres2: Set = ["Rock", "Classical", "Hip hop"]
 //
 // To find out the number of items in a set, check its read-only count property:
 
-print("I have \(favoriteGenres.count) favorite music genres.")
-// Prints "I have 3 favorite music genres."
+assert(favoriteGenres.count == 3)
 
-// Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
+// The Boolean `isEmpty` property is a shortcut for checking whether the `count`
+// property is equal to 0.
 
-if favoriteGenres.isEmpty {
-  print("As far as music goes, I'm not picky.")
-} else {
-  print("I have particular music preferences.")
-}
-// Prints "I have particular music preferences."
+assert(favoriteGenres.isEmpty == false)
 
 // You can add a new item into a set by calling the set’s insert(_:) method:
 
 favoriteGenres.insert("Jazz")
 // favoriteGenres now contains 4 items
-
 
 // You can remove an item from a set by calling the set’s remove(_:) method, which
 // removes the item if it’s a member of the set, and returns the removed value,
@@ -149,11 +129,10 @@ favoriteGenres.insert("Jazz")
 // set can be removed with its removeAll() method.
 
 if let removedGenre = favoriteGenres.remove("Rock") {
-  print("\(removedGenre)? I'm over it.")
+  assert(removedGenre == "Rock")
 } else {
   print("I never much cared for that.")
 }
-// Prints "Rock? I'm over it."
 
 // To check whether a set contains a particular item, use the contains(_:) method.
 
@@ -202,9 +181,10 @@ for genre in favoriteGenres.sorted() {
 
 // Performing Set Operations
 //
-// You can efficiently perform fundamental set operations, such as combining two
-// sets together, determining which values two sets have in common, or determining
-// whether two sets contain all, some, or none of the same values.
+// You can efficiently perform fundamental set operations, such as combining
+// two sets together, determining which values two sets have in common, or
+// determining whether two sets contain all, some, or none of the same
+// values.
 
 // -----------------------------------------------------------------------------
 

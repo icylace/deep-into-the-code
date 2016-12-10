@@ -104,31 +104,29 @@ let someVideoMode = VideoMode()
 
 // Accessing Properties
 //
-// You can access the properties of an instance using dot syntax. In dot syntax, you write the property name immediately after the instance name, separated by a period (.), without any spaces:
+// You can access the properties of an instance using dot syntax.
 
-print("The width of someResolution is \(someResolution.width)")
-// Prints "The width of someResolution is 0"
+assert(someResolution.width == 0)
 
-// In this example, someResolution.width refers to the width property of someResolution, and returns its default initial value of 0.
+// In this example, someResolution.width refers to the width property of
+// someResolution, and returns its default initial value of 0.
 //
 // You can drill down into sub-properties, such as the width property in the resolution property of a VideoMode:
 
-print("The width of someVideoMode is \(someVideoMode.resolution.width)")
-// Prints "The width of someVideoMode is 0"
+assert(someVideoMode.resolution.width == 0)
 
 // You can also use dot syntax to assign a new value to a variable property:
 
 someVideoMode.resolution.width = 1280
-print("The width of someVideoMode is now \(someVideoMode.resolution.width)")
-// Prints "The width of someVideoMode is now 1280"
+
+assert(someVideoMode.resolution.width == 1280)
 
 // NOTE
 //
-// Unlike Objective-C, Swift enables you to set sub-properties of a structure property directly. In the last example above, the width property of the resolution property of someVideoMode is set directly, without your needing to set the entire resolution property to a new value.
-
-
-
-
+// Unlike Objective-C, Swift enables you to set sub-properties of a structure
+// property directly.  In the last example above, the width property of the
+// resolution property of someVideoMode is set directly, without your
+// needing to set the entire resolution property to a new value.
 
 
 
@@ -141,11 +139,16 @@ print("The width of someVideoMode is now \(someVideoMode.resolution.width)")
 
 // Memberwise Initializers for Structure Types
 //
-// All structures have an automatically-generated memberwise initializer, which you can use to initialize the member properties of new structure instances. Initial values for the properties of the new instance can be passed to the memberwise initializer by name:
+// All structures have an automatically-generated memberwise initializer, which
+// you can use to initialize the member properties of new structure instances.
+// Initial values for the properties of the new instance can be passed to the
+// memberwise initializer by name:
 
 let vga = Resolution(width: 640, height: 480)
 
-// Unlike structures, class instances do not receive a default memberwise initializer. Initializers are described in more detail in Initialization.
+// Unlike structures, class instances do not receive a default memberwise
+// initializer.  Initializers are described in more detail in
+// Initialization.
 
 
 
@@ -159,9 +162,14 @@ let vga = Resolution(width: 640, height: 480)
 //  Structures and Enumerations Are Value Types
 // -----------------------------------------------------------------------------
 
-// A value type is a type whose value is copied when it is assigned to a variable or constant, or when it is passed to a function.
+// A value type is a type whose value is copied when it is assigned to a
+// variable or constant, or when it is passed to a function.
 //
-// You’ve actually been using value types extensively throughout the previous chapters. In fact, all of the basic types in Swift—integers, floating-point numbers, Booleans, strings, arrays and dictionaries—are value types, and are implemented as structures behind the scenes.
+// You've actually been using value types extensively throughout the previous
+// chapters.  In fact, all of the basic types in Swift—integers,
+// floating-point numbers, Booleans, strings, arrays and
+// dictionaries—are value types, and are implemented as
+// structures behind the scenes.
 //
 // All structures and enumerations are value types in Swift. This means that any structure and enumeration instances you create—and any value types they have as properties—are always copied when they are passed around in your code.
 //

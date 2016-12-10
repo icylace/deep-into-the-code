@@ -1,9 +1,18 @@
 // -----------------------------------------------------------------------------
-//  Subscript - A shortcut for accessing properties in a type.
+//  Subscript - A shortcut for instance access with array-like bracket notation.
 // -----------------------------------------------------------------------------
 
-// Subscripts can be used to set and retrieve values by index without
-// needing separate methods for setting and retrieval.
+// A subscript is typically used as a shortcut for accessing member elements
+// of collection-type data like arrays.  Though, it can be used in whatever
+// way suits its context.
+
+// A subscript...
+// ...can take any number of input parameters of any type combination.
+// ...can return any type.
+// (?)...can use variable parameters.
+// ...can use variadic parameters.
+// ...cannot use in-out parameters.
+// ...cannot provide default parameter values.
 
 // TODO
 
@@ -41,11 +50,19 @@ struct Bar {
 let bar = Bar()
 assert(bar[8] == 1)
 
+struct Baz {
+  var x = 1
+  subscript(index: Int) -> Int {
+    get {
+      return x
+    }
+  }
+}
+
+let baz = Baz()
+assert(baz[8] == 1)
+
 // -----------------------------------------------------------------------------
-
-
-
-
 
 
 
@@ -67,16 +84,16 @@ enum Baz {
 
 
 
-// You can define multiple subscripts for a single type, and the appropriate
+// Multiple subscripts can be defined for a single type, and the appropriate
 // subscript overload to use is selected based on the type of index value
-// you pass to the subscript.
+// passed to the subscript.
 
 class DailyMeal {
   enum MealTime {
     case Breakfast, Lunch, Dinner
   }
 
-  var meals: [MealTime : String] = [:]
+  var meals: [MealTime: String] = [:]
 
   subscript(requestedMeal: MealTime) -> String {
     get {
@@ -86,7 +103,6 @@ class DailyMeal {
         return "Ramen"
       }
     }
-
     set(newMealName) {
       meals[requestedMeal] = newMealName
     }
@@ -123,46 +139,31 @@ enum Foobar {
 
 
 
-enum Baz {
+enum Bazz: Int {
   case x
-  subscript(index: Baz) -> Int {
-    return 0
+  subscript(index: Bazz) -> Int {
+    return index.rawValue
   }
 }
 
-let baz = Baz.x
-let qux = baz[.x]
+let bazz = Bazz.x
+let quux = bazz[.x]
 
 
 
-// A class or structure can provide as many subscript implementations as it
-// needs, and the appropriate subscript to be used will be inferred based
-// on the types of the value or values that are contained within the
-// subscript brackets at the point that the subscript is used.
-// This is known as subscript overloading.
+
 
 // -----------------------------------------------------------------------------
-//  Subscript Usage
+//  Subscript overloading - The choosing of a subscript implementation provided
+//                          by a type based on the types of values passed
+//                          to the subscript brackets.
 // -----------------------------------------------------------------------------
 
-// The exact meaning of "subscript" depends on the context in which it is used.
-// Subscripts are typically used as a shortcut for accessing the member
-// elements in a collection, list, or sequence.  You are free to implement
-// subscripts in the most appropriate way for your particular class or
-// structure's functionality.
+
+
 
 // -----------------------------------------------------------------------------
-//  Subscript Options
-// -----------------------------------------------------------------------------
 
-// Subscripts can take any number of input parameters, and these input
-// parameters can be of any type.  Subscripts can also return any type.
-// Subscripts can use variable parameters and variadic parameters, but
-// cannot use in-out parameters or provide default parameter values.
-
-// Subscripts are not limited to a single dimension, and you can
-// define subscripts with multiple input parameters to suit your
-// custom type's needs.
 
 struct Matrix {
   let rows: Int, columns: Int

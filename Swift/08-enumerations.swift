@@ -109,8 +109,8 @@ default:
 // This enables you to store additional custom information along with the case value,
 // and permits this information to vary each time you use that case in your code.
 //
-// You can define Swift enumerations to store associated values of any given type,
-// and the value types can be different for each case of the enumeration if needed.
+// Enumerations can be defined to store associated values of any given type, and
+// the value types can be different for each case of the enumeration if needed.
 // Enumerations similar to these are known as discriminated unions, tagged unions,
 // or variants in other programming languages.
 //
@@ -132,18 +132,13 @@ default:
 // barcodes as a tuple of four integers, and QR code barcodes as a string of any
 // length.
 
-// In Swift, an enumeration to define product barcodes of either type might look
-// like this:
-
-// Define an enumeration type called `Barcode`, which can take either a value of
-// `upc` with an associated value of type `(Int, Int, Int, Int)`, or a value of
-// `qrCode` with an associated value of type `String`.
+// This defines an enumeration type called `Barcode`, which can take either a
+// value of `upc` with an associated value of type `(Int, Int, Int, Int)`, or
+// a value of `qrCode` with an associated value of type `String`.
 enum Barcode {
   case upc(Int, Int, Int, Int)
   case qrCode(String)
 }
-
-
 // This definition does not provide any actual Int or String values—it just defines
 // the type of associated values that Barcode constants and variables can store when
 // they are equal to Barcode.upc or Barcode.qrCode.

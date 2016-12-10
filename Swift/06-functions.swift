@@ -1,31 +1,71 @@
+// TODO
+
+// functions
+// - 0 parameters, no return, no body
+// - calling functions
+// - 0 parameters, no return
+// - 0 parameters, no return, explicit return type Void
+// - 1 parameter, no return
+// - 2 parameters, no return
+// - 1 parameter, custom argument label, no return
+// - 1 parameter, no argument label, no return
+// - 1 parameter, default value, no return
+// - 1 parameter, variadic, no return
+// - 1 parameter, inout, no return
+// - 0 parameters, with return
+// - 1 parameter, with return
+// - 2 parameters, with return
+// - using tuples to emulate multiple return values
+// - multiple parameters, with all function definition features
+// - argument order as it relates to parameter order
+// - function type
+// - calling functions from within other functions
+// - ignoring return value
+// - nested functions
+// - functions with similar names
+// - higher-order functions
+// - assign functions to constants/variables
+
+
+
+
+
 // -----------------------------------------------------------------------------
 //  Function name - An identifier given to a function.
 //  Function - A self-contained chunk of code that performs a specific task.
 //  Call - The act of executing a function with any arguments needed.
 // -----------------------------------------------------------------------------
 
+// A function in its simplest form is pretty useless.
+
+func f0() {}
+
+// This function call ends up doing nothing.
+f0()
+
+assert(type(of: f0()) == Void.self)
+
+// -----------------------------------------------------------------------------
+
+func f1() -> Void {}
+
+assert(type(of: f0()) == type(of: f1()))
+
+// -----------------------------------------------------------------------------
+
 // A function isn't required to define input parameters.
 
-func f0() {
+func f00() {
   print("Captain Falcon")
 }
 
 // A function's name is used to "call" the function to perform its task.
 
-f0()
+f00()
 // Output:
 // Captain Falcon
 
-// -----------------------------------------------------------------------------
 
-// A function in its simplest form is pretty useless.
-
-func f1() {}
-
-// This function call ends up doing nothing.
-f1()
-
-assert(type(of: f1()) == Void.self)
 
 // -----------------------------------------------------------------------------
 //  Parameter - A constant that represents an input to a function.
@@ -192,20 +232,6 @@ assert(result9 == 8)
 
 // TODO
 
-// no parameters, no return
-
-// 1 parameter
-// 1 parameter: external names
-// 1 parameter: default value
-// 1 parameter: variadic
-// 1 parameter: in-out
-
-// no parameters, with return
-
-// function name: functions with similar names
-// function calls within functions
-// nested functions
-// higher-order functions
 
 
 
@@ -368,15 +394,6 @@ let r12 = f12(2, 3)
 let r13 = f13(2, 3)
 assert(r12 == 5)
 assert(r13 == 5)
-
-
-
-
-
-
-
-
-
 
 
 
@@ -640,13 +657,6 @@ if let info = findMaxAndSize2(xs: [8, -6, 2, 109, 3, 71]) {
 
 
 
-
-
-
-
-
-
-
 // -----------------------------------------------------------------------------
 //  Nested Functions
 // -----------------------------------------------------------------------------
@@ -746,14 +756,14 @@ printWithoutCounting(string: "hello, world")
 
 // -----------------------------------------------------------------------------
 
-// Functions with Multiple Return Values
-
 // You can use a tuple type as the return type for a function to return multiple
-// values as part of one compound return value.
+// values as part of one compound return value.  The tuple that such a function
+// returns doesn't need to have its members named because because their names
+// are already given in the function's return type.
 
-// The example below defines a function called minMax(array:), which finds the
-// smallest and largest numbers in an array of Int values:
-
+// This function finds the smallest and largest numbers in an `Int` array and
+// returns a tuple containing them.  These values are labeled `min` and `max`
+// so that they can be accessed by name when querying the return value.
 func minMax(array: [Int]) -> (min: Int, max: Int) {
   var currentMin = array[0]
   var currentMax = array[0]
@@ -767,30 +777,9 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
   return (currentMin, currentMax)
 }
 
-// The minMax(array:) function returns a tuple containing two Int values. These
-// values are labeled min and max so that they can be accessed by name when
-// querying the function’s return value.
-
-// The body of the minMax(array:) function starts by setting two working variables
-// called currentMin and currentMax to the value of the first integer in the array.
-// The function then iterates over the remaining values in the array and checks each
-// value to see if it is smaller or larger than the values of currentMin and currentMax
-// respectively. Finally, the overall minimum and maximum values are returned as a
-// tuple of two Int values.
-
-// Because the tuple’s member values are named as part of the function’s return type,
-// they can be accessed with dot syntax to retrieve the minimum and maximum found values:
-
 let bounds = minMax(array: [8, -6, 2, 109, 3, 71])
-print("min is \(bounds.min) and max is \(bounds.max)")
-// Prints "min is -6 and max is 109"
-
-// Note that the tuple’s members do not need to be named at the point that the tuple
-// is returned from the function, because their names are already specified as part
-// of the function’s return type.
-
-
-
+assert(bounds.min == -6)
+assert(bounds.max == 109)
 
 // -----------------------------------------------------------------------------
 
@@ -798,7 +787,7 @@ print("min is \(bounds.min) and max is \(bounds.max)")
 
 // If the tuple type to be returned from a function has the potential to have “no value”
 // for the entire tuple, you can use an optional tuple return type to reflect the fact
-// that the entire tuple can be nil. You write an optional tuple return type by placing
+// that the entire tuple can be nil.  You write an optional tuple return type by placing
 // a question mark after the tuple type’s closing parenthesis, such as (Int, Int)? or
 // (String, Int, Bool)?.
 
@@ -1070,6 +1059,7 @@ printMathResult(addTwoInts, 3, 5)
 func stepForward(_ input: Int) -> Int {
   return input + 1
 }
+
 func stepBackward(_ input: Int) -> Int {
   return input - 1
 }
@@ -1090,10 +1080,8 @@ let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
 //
 // Now that moveNearerToZero refers to the correct function, it can be used to count to zero:
 
-print("Counting to zero:")
-// Counting to zero:
 while currentValue != 0 {
-  print("\(currentValue)... ")
+  print("\(currentValue)...")
   currentValue = moveNearerToZero(currentValue)
 }
 print("zero!")
@@ -1105,14 +1093,17 @@ print("zero!")
 
 
 // -----------------------------------------------------------------------------
+//  Global function - A function defined at a global scope.
+//  Nested function - A function defined inside another function.
+// -----------------------------------------------------------------------------
 
-// Nested Functions
-//
-// All of the functions you have encountered so far in this chapter have been examples of global functions, which are defined at a global scope. You can also define functions inside the bodies of other functions, known as nested functions.
-//
-// Nested functions are hidden from the outside world by default, but can still be called and used by their enclosing function. An enclosing function can also return one of its nested functions to allow the nested function to be used in another scope.
-//
-// You can rewrite the chooseStepFunction(backward:) example above to use and return nested functions:
+// Nested functions are hidden from the outside world by default, but can still
+// be called and used by their enclosing function. An enclosing function can
+// also return one of its nested functions to allow the nested function to
+// be used in another scope.
+
+// You can rewrite the `chooseStepFunction(backward:)` example above to use and
+// return nested functions:
 
 func chooseStepFunction2(backward: Bool) -> (Int) -> Int {
   func stepForward(input: Int) -> Int { return input + 1 }

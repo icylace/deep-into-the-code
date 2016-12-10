@@ -158,11 +158,14 @@ for item in library {
 // Song: The One And Only, by Chesney Hawkes
 // Song: Never Gonna Give You Up, by Rick Astley
 
-The example starts by trying to downcast the current item as a Movie. Because item is a
-MediaItem instance, it’s possible that it might be a Movie; equally, it’s also possible
-that it might be a Song, or even just a base MediaItem. Because of this uncertainty, the as?
-form of the type cast operator returns an optional value when attempting to downcast to a
-subclass type. The result of item as? Movie is of type Movie?, or “optional Movie”.
+// The example starts by trying to downcast the current item as a Movie.
+// Because item is a MediaItem instance, it’s possible that it might be
+// a Movie; equally, it's also possible that it might be a Song, or
+// even just a base MediaItem. Because of this uncertainty, the
+// `as?` form of the type cast operator returns an optional
+// value when attempting to downcast to a subclass type.
+// The result of item as? Movie is of type Movie?, or
+// "optional Movie".
 
 Downcasting to Movie fails when applied to the Song instances in the library array. To cope with this, the example above uses optional binding to check whether the optional Movie actually contains a value (that is, to find out whether the downcast succeeded.) This optional binding is written “if let movie = item as? Movie”, which can be read as:
 
@@ -186,8 +189,8 @@ Use Any and AnyObject only when you explicitly need the behavior and capabilitie
 they provide. It is always better to be specific about the types you expect to
 work with in your code.
 
-Here's an example of using Any to work with a mix of different types, including
-function types and non-class types. The example creates an array called things,
+Here's an example of using `Any` to work with a mix of different types, including
+function types and non-class types.  The example creates an array called things,
 which can store values of type Any:
 
 var things = [Any]()
