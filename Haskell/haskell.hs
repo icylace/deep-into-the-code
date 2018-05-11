@@ -111,30 +111,36 @@ d = double 3
 d' = 3 * 2
 -- Result will be `6`.
 
--- A function must first be applied to its arguments before it can be evaluated.
+-- A function must be applied to all of its arguments before being evaluated.
 
 -- Functions such as operators (e.g. arithmetic operators) that are written
 -- in infix notation appear between their arguments.
-e' = 3 * 2
-
-
--- Operators
-f'' = 10 / 4
+e = 10 / 4
 -- Result will be `2.5`.
 
+-- Parentheses lets us use operators in prefix notation.
+e' = (/) 10 4
+-- Result will be `2.5`.
 
--- There is a `div` function which accepts two arguments and does integer
--- division with them.  Like many other functions it is written in prefix
--- notation by default which means it appears before its arguments.
+-- A standard Haskell library, Prelude, provides a `div` function which accepts
+-- two arguments and does integer division with them.  Like other non-operator
+-- functions it is written in prefix notation by default which means it
+-- appears before its arguments.
 f = div 10 4
 -- Result will be `2`.
 
--- Backticks let us use normal functions in infix notation.
+-- Backticks lets us use non-operator functions in infix notation.
 f' = 10 `div` 4
+-- Result will be `2`.
 
+-- Though probably useless, a non-operator function can be wrapped in
+-- parentheses and still be used in prefix notation.
+f'' = (div) 10 4
+-- Result will be `2`.
 
-
-
+-- For those curious, the following constructions are not valid:
+-- f''' = (`div`) 10 4
+-- f'''' = 10 `(/)` 4
 
 -- Key Terms
 -- =========
@@ -153,6 +159,8 @@ f' = 10 `div` 4
 -- Syntactic sugar: Syntax designed to make expressions easier to work with.
 -- Prelude: A library of standard functions.
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 
 
