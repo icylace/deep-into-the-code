@@ -108,14 +108,17 @@ var airports2 = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 
 // Accessing and Modifying a Dictionary
 //
-// You access and modify a dictionary through its methods and properties, or by using subscript syntax.
+// You access and modify a dictionary through its methods and properties, or by
+// using subscript syntax.
 //
-// As with an array, you find out the number of items in a Dictionary by checking its read-only count property:
+// As with an array, you find out the number of items in a Dictionary by
+// checking its read-only count property:
 
 print("The airports dictionary contains \(airports.count) items.")
 // Prints "The airports dictionary contains 2 items."
 
-// Use the Boolean isEmpty property as a shortcut for checking whether the count property is equal to 0:
+// Use the Boolean isEmpty property as a shortcut for checking whether the count
+// property is equal to 0:
 
 if airports.isEmpty {
   print("The airports dictionary is empty.")
@@ -168,15 +171,23 @@ if let removedValue = airports.removeValue(forKey: "DUB") {
 }
 // Prints "The removed airport's name is Dublin Airport."
 
+// -----------------------------------------------------------------------------
+
 // Iterating Over a Dictionary
 
-// You can iterate over the key-value pairs in a dictionary with a for-in loop. Each item in the dictionary is returned as a (key, value) tuple, and you can decompose the tuple’s members into temporary constants or variables as part of the iteration:
+// You can iterate over the key-value pairs in a dictionary with a for-in loop.
+// Each item in the dictionary is returned as a (key, value) tuple, and you can
+// decompose the tuple's members into temporary constants or variables as part
+// of the iteration:
 
+let output = [String]()
 for (airportCode, airportName) in airports {
-  print("\(airportCode): \(airportName)")
+  output.append("\(airportCode): \(airportName)")
 }
-// YYZ: Toronto Pearson
-// LHR: London Heathrow
+assert(output == [
+  "YYZ: Toronto Pearson",
+  "LHR: London Heathrow",
+])
 
 // For more about the for-in loop, see For-In Loops.
 

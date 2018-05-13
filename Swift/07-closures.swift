@@ -73,9 +73,16 @@ assert(reversedNames == ["Ewa", "Daniella", "Chris", "Barry", "Alex"])
 
 
 // If the first string (s1) is greater than the second string (s2), the
-// backward(_:_:) function will return true, indicating that s1 should appear before s2 in the sorted array. For characters in strings, “greater than” means “appears later in the alphabet than”. This means that the letter "B" is “greater than” the letter "A", and the string "Tom" is greater than the string "Tim". This gives a reverse alphabetical sort, with "Barry" being placed before "Alex", and so on.
+// backward(_:_:) function will return true, indicating that s1 should appear
+// before s2 in the sorted array. For characters in strings, “greater than”
+// means “appears later in the alphabet than”. This means that the letter "B"
+// is “greater than” the letter "A", and the string "Tom" is greater than the
+// string "Tim". This gives a reverse alphabetical sort, with "Barry" being
+// placed before "Alex", and so on.
 
-// However, this is a rather long-winded way to write what is essentially a single-expression function (a > b). In this example, it would be preferable to write the sorting closure inline, using closure expression syntax.
+// However, this is a rather long-winded way to write what is essentially a
+// single-expression function (a > b). In this example, it would be preferable
+// to write the sorting closure inline, using closure expression syntax.
 
 // -----------------------------------------------------------------------------
 
@@ -91,29 +98,49 @@ assert(reversedNames == ["Ewa", "Daniella", "Chris", "Barry", "Alex"])
 
 */
 
-// The parameters in closure expression syntax can be in-out parameters, but they can’t have a default value. Variadic parameters can be used if you name the variadic parameter. Tuples can also be used as parameter types and return types.
+// The parameters in closure expression syntax can be in-out parameters, but
+// they can't have a default value.  Variadic parameters can be used if you
+// name the variadic parameter.  Tuples can also be used as parameter types
+// and return types.
 
-// The example below shows a closure expression version of the backward(_:_:) function from earlier:
+// The example below shows a closure expression version of the backward(_:_:)
+// function from earlier:
 
 reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
   return s1 > s2
 })
 
-// Note that the declaration of parameters and return type for this inline closure is identical to the declaration from the backward(_:_:) function. In both cases, it is written as (s1: String, s2: String) -> Bool. However, for the inline closure expression, the parameters and return type are written inside the curly braces, not outside of them.
+// Note that the declaration of parameters and return type for this inline
+// closure is identical to the declaration from the backward(_:_:) function.
+// In both cases, it is written as (s1: String, s2: String) -> Bool.  However,
+// for the inline closure expression, the parameters and return type are
+// written inside the curly braces, not outside of them.
 
-// The start of the closure’s body is introduced by the in keyword. This keyword indicates that the definition of the closure’s parameters and return type has finished, and the body of the closure is about to begin.
+// The start of the closure's body is introduced by the in keyword.  This
+// keyword indicates that the definition of the closure’s parameters and
+// return type has finished, and the body of the closure is about to begin.
 
 // Because the body of the closure is so short, it can even be written on a single line:
 
 reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in return s1 > s2 } )
 
-// This illustrates that the overall call to the sorted(by:) method has remained the same. A pair of parentheses still wrap the entire argument for the method. However, that argument is now an inline closure.
+// This illustrates that the overall call to the sorted(by:) method has remained
+// the same.  A pair of parentheses still wrap the entire argument for the
+// method.  However, that argument is now an inline closure.
 
 // -----------------------------------------------------------------------------
 
 // Inferring Type From Context
 
-// Because the sorting closure is passed as an argument to a method, Swift can infer the types of its parameters and the type of the value it returns. The sorted(by:) method is being called on an array of strings, so its argument must be a function of type (String, String) -> Bool. This means that the (String, String) and Bool types do not need to be written as part of the closure expression’s definition. Because all of the types can be inferred, the return arrow (->) and the parentheses around the names of the parameters can also be omitted:
+// Because the sorting closure is passed as an argument to a method, Swift can
+// infer the types of its parameters and the type of the value it returns.
+// The sorted(by:) method is being called on an array of strings, so its
+// argument must be a function of type (String, String) -> Bool.  This
+// means that the (String, String) and Bool types do not need to be
+// written as part of the closure expression’s definition.  Because
+// all of the types can be inferred, the return arrow (->) and the
+// parentheses around the names of the parameters can also be
+// omitted:
 
 reversedNames = names.sorted(by: { s1, s2 in return s1 > s2 } )
 

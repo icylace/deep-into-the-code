@@ -188,13 +188,11 @@ cinema.width = 2048
 
 // Checking the width property of cinema shows that it has indeed changed to be 2048:
 
-print("cinema is now \(cinema.width) pixels wide")
-// Prints "cinema is now 2048 pixels wide"
+assert(cinema.width == 2048)
 
 // However, the width property of the original hd instance still has the old value of 1920:
 
-print("hd is still \(hd.width) pixels wide")
-// Prints "hd is still 1920 pixels wide"
+assert(hd.width == 1920)
 
 // When cinema was given the current value of hd, the values stored in hd were copied into the new cinema instance. The end result is two completely separate instances, which just happened to contain the same numeric values. Because they are separate instances, setting the width of cinema to 2048 doesn’t affect the width stored in hd.
 
@@ -207,7 +205,7 @@ var currentDirection = CompassPoint.west
 let rememberedDirection = currentDirection
 currentDirection = .east
 if rememberedDirection == .west {
-    print("The remembered direction is still .west")
+  print("The remembered direction is still .west")
 }
 // Prints "The remembered direction is still .west"
 
@@ -253,8 +251,7 @@ alsoTenEighty.frameRate = 30.0
 // Checking the frameRate property of tenEighty shows that it correctly reports
 // the new frame rate of 30.0 from the underlying VideoMode instance:
 
-print("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
-// Prints "The frameRate property of tenEighty is now 30.0"
+assert(tenEighty.frameRate == 30.0)
 
 // Note that tenEighty and alsoTenEighty are declared as constants, rather
 // than variables. However, you can still change tenEighty.frameRate and
@@ -264,10 +261,6 @@ print("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 // they both refer to a VideoMode instance behind the scenes. It is the frameRate
 // property of the underlying VideoMode that is changed, not the values of the
 // constant references to that VideoMode.
-
-
-
-
 
 
 

@@ -203,14 +203,10 @@ let oddDigits: Set = [1, 3, 5, 7, 9]
 let evenDigits: Set = [0, 2, 4, 6, 8]
 let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
 
-oddDigits.union(evenDigits).sorted()
-// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-oddDigits.intersection(evenDigits).sorted()
-// []
-oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
-// [1, 9]
-oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
-// [1, 2, 9]
+assert(oddDigits.union(evenDigits).sorted() == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+assert(oddDigits.intersection(evenDigits).sorted() == [])
+assert(oddDigits.subtracting(singleDigitPrimeNumbers).sorted() == [1, 9])
+assert(oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted() == [1, 2, 9])
 
 
 
@@ -223,25 +219,30 @@ oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
 // a contains all elements in b. Conversely, set b is a subset of set a, because
 // all elements in b are also contained by a. Set b and set c are disjoint with
 // one another, because they share no elements in common.
-//
-// image: ../Art/setEulerDiagram_2x.png
-//
-// Use the “is equal” operator (==) to determine whether two sets contain all of the same values.
-// Use the isSubset(of:) method to determine whether all of the values of a set are contained in the specified set.
-// Use the isSuperset(of:) method to determine whether a set contains all of the values in a specified set.
-// Use the isStrictSubset(of:) or isStrictSuperset(of:) methods to determine whether a set is a subset or superset, but not equal to, a specified set.
-// Use the isDisjoint(with:) method to determine whether two sets have any values in common.
+
+
 
 let houseAnimals: Set = ["🐶", "🐱"]
+let apartmentAnimals: Set = ["🐱", "🐶"]
 let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
 let cityAnimals: Set = ["🐦", "🐭"]
 
-houseAnimals.isSubset(of: farmAnimals)
-// true
-farmAnimals.isSuperset(of: houseAnimals)
-// true
-farmAnimals.isDisjoint(with: cityAnimals)
-// true
+// The "is equal" operator (`==`) checks if two sets have all the same values.
+assert(houseAnimals == apartmentAnimals)
+
+// The `isSubset(of:)` method checks if the values of a set are contained in a
+// given set.
+assert(houseAnimals.isSubset(of: farmAnimals) == true)
+
+// Use the isStrictSubset(of:) or isStrictSuperset(of:) methods to determine
+// whether a set is a subset or superset, but not equal to, a specified set.
+
+// The `isSuperset(of:)` method checks if a set contains all the values in a
+// given set.
+assert(farmAnimals.isSuperset(of: houseAnimals) == true)
+
+// The `isDisjoint(with:)` method checks whether two sets have common values.
+assert(farmAnimals.isDisjoint(with: cityAnimals) == true)
 
 
 

@@ -1,11 +1,10 @@
 // -----------------------------------------------------------------------------
-//  Generic code - Code that works with multiple types, subject to any
-//                 given requirements.
+//  Generic code - Code that works with multiple types, subject to requirements.
+//  Generic function - A function written with generic code.
 // -----------------------------------------------------------------------------
 
-// TODO
 
-/*
+// TODO
 
 // Generic code enables you to write flexible, reusable functions and types.
 // You can write code that avoids duplication and expresses its intent in a
@@ -63,10 +62,6 @@ func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
 // the same type, it would not be possible to swap their values.
 
 
-// -----------------------------------------------------------------------------
-//  Generic function - A function written with generic code.
-// -----------------------------------------------------------------------------
-
 func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
   let temporaryA = a
   a = b
@@ -77,6 +72,8 @@ func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
 // `swapTwoInts(_:_:)`.  However, the first line of
 // `swapTwoValues(_:_:)` is slightly different from
 // `swapTwoInts(_:_:)`.
+
+/*
 
 func swapTwoInts(_ a: inout Int, _ b: inout Int)
 func swapTwoValues<T>(_ a: inout T, _ b: inout T)
@@ -169,11 +166,16 @@ struct IntStack {
   }
 }
 
-This structure uses an Array property called items to store the values in the stack. Stack provides two methods, push and pop, to push and pop values on and off the stack. These methods are marked as mutating, because they need to modify (or mutate) the structure’s items array.
+This structure uses an Array property called items to store the values in the
+stack.  Stack provides two methods, push and pop, to push and pop values on
+and off the stack.  These methods are marked as mutating, because they need
+to modify (or mutate) the structure’s items array.
 
-The IntStack type shown above can only be used with Int values, however. It would be much more useful to define a generic Stack class, that can manage a stack of any type of value.
+The IntStack type shown above can only be used with Int values, however.  It
+would be much more useful to define a generic Stack class, that can manage a
+stack of any type of value.
 
-Here’s a generic version of the same code:
+Here's a generic version of the same code:
 
 struct Stack<Element> {
   var items = [Element]()
@@ -185,16 +187,26 @@ struct Stack<Element> {
   }
 }
 
-Note how the generic version of Stack is essentially the same as the non-generic version, but with a type parameter called Element instead of an actual type of Int. This type parameter is written within a pair of angle brackets (<Element>) immediately after the structure’s name.
+Note how the generic version of Stack is essentially the same as the non-generic
+version, but with a type parameter called Element instead of an actual type of
+Int. This type parameter is written within a pair of angle brackets (<Element>)
+immediately after the structure’s name.
 
-Element defines a placeholder name for “some type Element” to be provided later on. This future type can be referred to as “Element” anywhere within the structure’s definition. In this case, Element is used as a placeholder in three places:
+Element defines a placeholder name for “some type Element” to be provided later
+on.  This future type can be referred to as “Element” anywhere within the
+structure's definition. In this case, Element is used as a placeholder in
+three places:
 
-To create a property called items, which is initialized with an empty array of values of type Element
-To specify that the push(_:) method has a single parameter called item, which must be of type Element
-To specify that the value returned by the pop() method will be a value of type Element
-Because it is a generic type, Stack can be used to create a stack of any valid type in Swift, in a similar manner to Array and Dictionary.
+To create a property called items, which is initialized with an empty array of
+values of type Element To specify that the push(_:) method has a single parameter
+called item, which must be of type Element To specify that the value returned by
+the pop() method will be a value of type Element Because it is a generic type,
+Stack can be used to create a stack of any valid type in Swift, in a similar
+manner to Array and Dictionary.
 
-You create a new Stack instance by writing the type to be stored in the stack within angle brackets. For example, to create a new stack of strings, you write Stack<String>():
+You create a new Stack instance by writing the type to be stored in the stack
+within angle brackets. For example, to create a new stack of strings, you write
+Stack<String>():
 
 var stackOfStrings = Stack<String>()
 stackOfStrings.push("uno")
@@ -220,9 +232,15 @@ image: ../Art/stackPoppedOneString_2x.png
 //  Extending a Generic Type
 // -----------------------------------------------------------------------------
 
-When you extend a generic type, you do not provide a type parameter list as part of the extension’s definition. Instead, the type parameter list from the original type definition is available within the body of the extension, and the original type parameter names are used to refer to the type parameters from the original definition.
+When you extend a generic type, you do not provide a type parameter list as part
+of the extension’s definition. Instead, the type parameter list from the original
+type definition is available within the body of the extension, and the original
+type parameter names are used to refer to the type parameters from the original
+definition.
 
-The following example extends the generic Stack type to add a read-only computed property called topItem, which returns the top item on the stack without popping it from the stack:
+The following example extends the generic Stack type to add a read-only computed
+property called topItem, which returns the top item on the stack without popping
+it from the stack:
 
 extension Stack {
   var topItem: Element? {
@@ -230,14 +248,19 @@ extension Stack {
   }
 }
 
-The topItem property returns an optional value of type Element. If the stack is empty, topItem returns nil; if the stack is not empty, topItem returns the final item in the items array.
+The topItem property returns an optional value of type Element. If the stack is
+empty, topItem returns nil; if the stack is not empty, topItem returns the final
+item in the items array.
 
-Note that this extension does not define a type parameter list. Instead, the Stack type’s existing type parameter name, Element, is used within the extension to indicate the optional type of the topItem computed property.
+Note that this extension does not define a type parameter list. Instead, the
+Stack type’s existing type parameter name, Element, is used within the extension
+to indicate the optional type of the topItem computed property.
 
-The topItem computed property can now be used with any Stack instance to access and query its top item without removing it:
+The topItem computed property can now be used with any Stack instance to access
+and query its top item without removing it:
 
 if let topItem = stackOfStrings.topItem {
-    print("The top item on the stack is \(topItem).")
+  print("The top item on the stack is \(topItem).")
 }
 // Prints "The top item on the stack is tres."
 
@@ -269,7 +292,7 @@ String, Int, Double, and Bool) are hashable by
 default.
 
 You can define your own type constraints when creating custom generic types, and
-these constraints provide much of the power of generic programming. Abstract
+these constraints provide much of the power of generic programming.  Abstract
 concepts like Hashable characterize types in terms of their conceptual
 characteristics, rather than their explicit type.
 
@@ -467,25 +490,48 @@ This time, the type parameter Element is used as the type of the append(_:) meth
 
 Extending an Existing Type to Specify an Associated Type
 
-You can extend an existing type to add conformance to a protocol, as described in Adding Protocol Conformance with an Extension. This includes a protocol with an associated type.
+You can extend an existing type to add conformance to a protocol, as described
+in Adding Protocol Conformance with an Extension. This includes a protocol with
+an associated type.
 
-Swift’s Array type already provides an append(_:) method, a count property, and a subscript with an Int index to retrieve its elements. These three capabilities match the requirements of the Container protocol. This means that you can extend Array to conform to the Container protocol simply by declaring that Array adopts the protocol. You do this with an empty extension, as described in Declaring Protocol Adoption with an Extension:
+Swift’s Array type already provides an append(_:) method, a count property,
+and a subscript with an Int index to retrieve its elements. These three
+capabilities match the requirements of the Container protocol. This means
+that you can extend Array to conform to the Container protocol simply by
+declaring that Array adopts the protocol. You do this with an empty
+extension, as described in Declaring Protocol Adoption with an Extension:
 
 extension Array: Container {}
 
-Array’s existing append(_:) method and subscript enable Swift to infer the appropriate type to use for ItemType, just as for the generic Stack type above. After defining this extension, you can use any Array as a Container.
+Array’s existing append(_:) method and subscript enable Swift to infer the
+appropriate type to use for ItemType, just as for the generic Stack type
+above. After defining this extension, you can use any Array as a Container.
 
 // -----------------------------------------------------------------------------
 //  Generic Where Clauses
 // -----------------------------------------------------------------------------
 
-Type constraints, as described in Type Constraints, enable you to define requirements on the type parameters associated with a generic function or type.
+Type constraints, as described in Type Constraints, enable you to define
+requirements on the type parameters associated with a generic function or type.
 
-It can also be useful to define requirements for associated types. You do this by defining a generic where clause. A generic where clause enables you to require that an associated type must conform to a certain protocol, or that certain type parameters and associated types must be the same. A generic where clause starts with the where keyword, followed by constraints for associated types or equality relationships between types and associated types. You write a generic where clause right before the opening curly brace of a type or function’s body.
+It can also be useful to define requirements for associated types. You do this
+by defining a generic where clause. A generic where clause enables you to
+require that an associated type must conform to a certain protocol, or that
+certain type parameters and associated types must be the same. A generic where
+clause starts with the where keyword, followed by constraints for associated
+types or equality relationships between types and associated types. You write
+a generic where clause right before the opening curly brace of a type or
+function’s body.
 
-The example below defines a generic function called allItemsMatch, which checks to see if two Container instances contain the same items in the same order. The function returns a Boolean value of true if all items match and a value of false if they do not.
+The example below defines a generic function called allItemsMatch, which checks
+to see if two Container instances contain the same items in the same order. The
+function returns a Boolean value of true if all items match and a value of
+false if they do not.
 
-The two containers to be checked do not have to be the same type of container (although they can be), but they do have to hold the same type of items. This requirement is expressed through a combination of type constraints and a generic where clause:
+The two containers to be checked do not have to be the same type of container
+(although they can be), but they do have to hold the same type of items. This
+requirement is expressed through a combination of type constraints and a
+generic where clause:
 
 func allItemsMatch<C1: Container, C2: Container>
      (_ someContainer: C1, _ anotherContainer: C2) -> Bool
@@ -507,33 +553,36 @@ func allItemsMatch<C1: Container, C2: Container>
   return true
 }
 
-This function takes two arguments called someContainer and anotherContainer. The someContainer argument is of type C1, and the anotherContainer argument is of type C2. Both C1 and C2 are type parameters for two container types to be determined when the function is called.
-
-The following requirements are placed on the function’s two type parameters:
-
-C1 must conform to the Container protocol (written as C1: Container).
-C2 must also conform to the Container protocol (written as C2: Container).
-The ItemType for C1 must be the same as the ItemType for C2 (written as C1.ItemType == C2.ItemType).
-The ItemType for C1 must conform to the Equatable protocol (written as C1.ItemType: Equatable).
-The first and second requirements are defined in the function’s type parameter list, and the third and fourth requirements are defined in the function’s generic where clause.
-
-These requirements mean:
-
-someContainer is a container of type C1.
-anotherContainer is a container of type C2.
-someContainer and anotherContainer contain the same type of items.
-The items in someContainer can be checked with the not equal operator (!=) to see if they are different from each other.
-The third and fourth requirements combine to mean that the items in anotherContainer can also be checked with the != operator, because they are exactly the same type as the items in someContainer.
-
-These requirements enable the allItemsMatch(_:_:) function to compare the two containers, even if they are of a different container type.
-
-The allItemsMatch(_:_:) function starts by checking that both containers contain the same number of items. If they contain a different number of items, there is no way that they can match, and the function returns false.
-
-After making this check, the function iterates over all of the items in someContainer with a for-in loop and the half-open range operator (..<). For each item, the function checks whether the item from someContainer is not equal to the corresponding item in anotherContainer. If the two items are not equal, then the two containers do not match, and the function returns false.
-
-If the loop finishes without finding a mismatch, the two containers match, and the function returns true.
-
-Here’s how the allItemsMatch(_:_:) function looks in action:
+// This function takes two arguments called someContainer and anotherContainer.
+// The someContainer argument is of type C1, and the anotherContainer argument
+// is of type C2. Both C1 and C2 are type parameters for two container types
+// to be determined when the function is called.
+//
+// The following requirements are placed on the function’s two type parameters:
+//
+// C1 must conform to the Container protocol (written as C1: Container).
+// C2 must also conform to the Container protocol (written as C2: Container).
+// The ItemType for C1 must be the same as the ItemType for C2 (written as C1.ItemType == C2.ItemType).
+// The ItemType for C1 must conform to the Equatable protocol (written as C1.ItemType: Equatable).
+// The first and second requirements are defined in the function’s type parameter list, and the third and fourth requirements are defined in the function’s generic where clause.
+//
+// These requirements mean:
+//
+// someContainer is a container of type C1.
+// anotherContainer is a container of type C2.
+// someContainer and anotherContainer contain the same type of items.
+// The items in someContainer can be checked with the not equal operator (!=) to see if they are different from each other.
+// The third and fourth requirements combine to mean that the items in anotherContainer can also be checked with the != operator, because they are exactly the same type as the items in someContainer.
+//
+// These requirements enable the allItemsMatch(_:_:) function to compare the two containers, even if they are of a different container type.
+//
+// The allItemsMatch(_:_:) function starts by checking that both containers contain the same number of items. If they contain a different number of items, there is no way that they can match, and the function returns false.
+//
+// After making this check, the function iterates over all of the items in someContainer with a for-in loop and the half-open range operator (..<). For each item, the function checks whether the item from someContainer is not equal to the corresponding item in anotherContainer. If the two items are not equal, then the two containers do not match, and the function returns false.
+//
+// If the loop finishes without finding a mismatch, the two containers match, and the function returns true.
+//
+// Here’s how the allItemsMatch(_:_:) function looks in action:
 
 var stackOfStrings = Stack<String>()
 stackOfStrings.push("uno")
@@ -549,9 +598,20 @@ if allItemsMatch(stackOfStrings, arrayOfStrings) {
 }
 // Prints "All items match."
 
-The example above creates a Stack instance to store String values, and pushes three strings onto the stack. The example also creates an Array instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the Container protocol, and both contain the same type of values. You can therefore call the allItemsMatch(_:_:) function with these two containers as its arguments. In the example above, the allItemsMatch(_:_:) function correctly reports that all of the items in the two containers match.
+// The example above creates a Stack instance to store String values, and pushes
+// three strings onto the stack. The example also creates an Array instance
+// initialized with an array literal containing the same three strings as
+// the stack. Even though the stack and the array are of a different
+// type, they both conform to the Container protocol, and both
+// contain the same type of values. You can therefore call the
+// allItemsMatch(_:_:) function with these two containers
+// as its arguments. In the example above, the
+// allItemsMatch(_:_:) function correctly
+// reports that all of the items in the
+// two containers match.
 
 */
+
 
 
 // =============================================================================

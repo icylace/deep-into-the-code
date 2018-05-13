@@ -1,31 +1,35 @@
 // TODO
 
-// functions
-// - 0 parameters, no return, no body
-// - calling functions
-// - 0 parameters, no return
-// - 0 parameters, no return, explicit return type Void
-// - 1 parameter, no return
-// - 2 parameters, no return
-// - 1 parameter, custom argument label, no return
-// - 1 parameter, no argument label, no return
-// - 1 parameter, default value, no return
-// - 1 parameter, variadic, no return
-// - 1 parameter, inout, no return
-// - 0 parameters, with return
-// - 1 parameter, with return
-// - 2 parameters, with return
-// - using tuples to emulate multiple return values
-// - multiple parameters, with all function definition features
-// - argument order as it relates to parameter order
-// - function type
-// - calling functions from within other functions
-// - ignoring return value
-// - nested functions
-// - functions with similar names
-// - higher-order functions
-// - assign functions to constants/variables
 
+// =============================================================================
+//  Functions
+//
+//  Topics:
+//  - 0 parameters, no return, no body
+//  - calling functions
+//  - 0 parameters, no return
+//  - 0 parameters, no return, explicit return type Void
+//  - 1 parameter, no return
+//  - 2 parameters, no return
+//  - 1 parameter, custom argument label, no return
+//  - 1 parameter, no argument label, no return
+//  - 1 parameter, default value, no return
+//  - 1 parameter, variadic, no return
+//  - 1 parameter, inout, no return
+//  - 0 parameters, with return
+//  - 1 parameter, with return
+//  - 2 parameters, with return
+//  - using tuples to emulate multiple return values
+//  - multiple parameters, with all function definition features
+//  - argument order as it relates to parameter order
+//  - function type
+//  - calling functions from within other functions
+//  - ignoring return value
+//  - nested functions
+//  - functions with similar names
+//  - higher-order functions
+//  - assign functions to constants/variables
+// =============================================================================
 
 
 

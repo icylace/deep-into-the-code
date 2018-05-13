@@ -6,6 +6,10 @@
 
 // TODO
 
+// TODO
+// Incorporate what's useful from:
+// https://appventure.me/2015/10/17/advanced-practical-enum-examples/
+
 // Enumerations do not have to provide a value for each case of the enumeration.
 
 // A raw value can be a string, a character, or a value of any integer or
@@ -132,45 +136,41 @@ default:
 // barcodes as a tuple of four integers, and QR code barcodes as a string of any
 // length.
 
-// This defines an enumeration type called `Barcode`, which can take either a
-// value of `upc` with an associated value of type `(Int, Int, Int, Int)`, or
-// a value of `qrCode` with an associated value of type `String`.
 enum Barcode {
   case upc(Int, Int, Int, Int)
   case qrCode(String)
 }
-// This definition does not provide any actual Int or String values—it just defines
-// the type of associated values that Barcode constants and variables can store when
-// they are equal to Barcode.upc or Barcode.qrCode.
-
-// New barcodes can then be created using either type:
+assert(type(of: Barcode.upc) == (((Int, Int, Int, Int)) -> Barcode).self)
+assert(type(of: Barcode.qrCode) == ((String) -> Barcode).self)
 
 var productBarcode = Barcode.upc(8, 85909, 51226, 3)
+assert(type(of: productBarcode) == Barcode.self)
 
 // This example creates a new variable called productBarcode and assigns it a value
 // of Barcode.upc with an associated tuple value of (8, 85909, 51226, 3).
 
 // The same product can be assigned a different type of barcode:
 
+// This replaces the original `Barcode.upc` and its integer values with the new
+// `Barcode.qrCode` and its string value.
 productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
 
-// At this point, the original Barcode.upc and its integer values are replaced by
-// the new Barcode.qrCode and its string value. Constants and variables of type
-// Barcode can store either a .upc or a .qrCode (together with their associated
-// values), but they can only store one of them at any given time.
+// The different barcode types can be checked using a `switch` statement, as
+// before.  This time, however, the associated values can be extracted as
+// part of the `switch` statement. You extract each associated value as a
+// constant (with the let prefix) or a variable (with the var prefix) for
+// use within the `switch` cases body:
 
-// The different barcode types can be checked using a switch statement, as before.
-// This time, however, the associated values can be extracted as part of the switch
-// statement. You extract each associated value as a constant (with the let prefix)
-// or a variable (with the var prefix) for use within the switch case’s body:
-
+let output0: String
 switch productBarcode {
 case .upc(let numberSystem, let manufacturer, let product, let check):
-  print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
+  output0 = "UPC: \(numberSystem), \(manufacturer), \(product), \(check)."
 case .qrCode(let productCode):
-  print("QR code: \(productCode).")
+  output0 = "QR code: \(productCode)."
 }
-// Prints "QR code: ABCDEFGHIJKLMNOP."
+assert(output0 == "QR code: ABCDEFGHIJKLMNOP.")
+
+// -----------------------------------------------------------------------------
 
 // If all of the associated values for an enumeration case are extracted as
 // constants, or if all are extracted as variables, you can place a single
@@ -190,13 +190,12 @@ case let .qrCode(productCode):
 
 
 // -----------------------------------------------------------------------------
-//  Raw Values
+//  Raw value - The default value of an enumeration case.
 // -----------------------------------------------------------------------------
 
-// The barcode example in Associated Values shows how cases of an enumeration can
-// declare that they store associated values of different types. As an alternative
-// to associated values, enumeration cases can come prepopulated with default
-// values (called raw values), which are all of the same type.
+// Raw values...
+// ...act as alternatives to associated values.
+// ...must all be of the same type within their enumeration.
 
 enum ASCIIControlCharacter: Character {
   case tab = "\t"
@@ -204,8 +203,9 @@ enum ASCIIControlCharacter: Character {
   case carriageReturn = "\r"
 }
 
-// Raw values can be strings, characters, or any of the integer or floating-point
-// number types.  Each raw value must be unique within its enumeration declaration.
+// Raw values can be strings, characters, or any of the integer or
+// floating-point number types.  Each raw value must be unique
+// within its enumeration declaration.
 
 // Raw values are not the same as associated values.
 
@@ -213,14 +213,14 @@ enum ASCIIControlCharacter: Character {
 // ...is set to a prepopulated value when you first define the enumeration.
 // ...for a particular enumeration case is always the same.
 
-// Associated values are set when you create a new constant or variable based on
+// Associated values are set when you create a new constant/variable based on
 // one of the enumeration's cases, and can be different each time you do so.
 
 
 
 // -----------------------------------------------------------------------------
 
-// Implicitly Assigned Raw Values
+// Implicitly assigned raw values - A raw value that is automatically asiigned
 
 // When you’re working with enumerations that store integer or string raw values,
 // you don’t have to explicitly assign a raw value for each case. When you don’t,

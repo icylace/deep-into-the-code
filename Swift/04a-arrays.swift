@@ -24,6 +24,7 @@
 
 // TODO
 
+// - be sure to note that arrays can have trailing commas
 
 
 // var c: [[[[[[Int]]]]]] = [[2]]

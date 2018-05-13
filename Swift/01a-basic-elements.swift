@@ -1,7 +1,7 @@
 // This is a single-line comment.
 
 // -----------------------------------------------------------------------------
-//  Comment - Text meant to be read by developers and ignored by the compiler.
+//  Comment - Text meant to be read by humans and ignored by the compiler.
 //  Single-line comment - A comment that cannot be on more than one line.
 //  Block comment - A comment that can be on more than one consecutive lines.
 // -----------------------------------------------------------------------------
@@ -20,17 +20,9 @@ multiple lines. */
 would *//* want
 to do that. */
 
-/**
- * Block comments that span multiple lines
- * are usually formatted a bit better.
- */
-
-/**
- * Also, block comments...
- *
- * /* ...may be nested. */
- *
- */
+/* Also, block comments...
+  /* ...may be nested. */
+*/
 
       // Single-line comments don't need to start at the beginning of the line.
 
@@ -128,8 +120,8 @@ let answer3: Int = 42
 //  Type inference - The behavior that determines type given the values in use.
 // -----------------------------------------------------------------------------
 
-// If there's no explicit type annotation the type of the constant or variable
-// is inferred from its initial assigned value.
+// If there's no explicit type annotation the type of the constant/variable is
+// inferred from its initial assigned value.
 
 var answer4 = 42
 // `answer4` is inferred to be of type `Int`.
@@ -241,7 +233,7 @@ var ```v15``` = 143
 
 // -----------------------------------------------------------------------------
 
-// You can print the current value of a constant or variable with the
+// You can print the current value of a constant/variable with the
 // `print(_:separator:terminator:)` global function:
 // https://developer.apple.com/reference/swift/1541053-print
 

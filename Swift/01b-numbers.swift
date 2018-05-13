@@ -78,19 +78,24 @@ assert(pi == pi2)
 //  Numeric literal - A literal value that represents a number.
 // -----------------------------------------------------------------------------
 
-// An integer literal can be represented in...
-var l = 17                  // ...decimal notation.
-assert(l == 0b10001)        // ...binary notation.
-assert(l == 0o21)           // ...octal notation.
-assert(l == 0x11)           // ...hexadecimal notation.
+// An integer literal can be represented in decimal, binary, octal,
+// or hexadecimal notation.
+
+var l = 17
+assert(l == 0b10001)
+assert(l == 0o21)
+assert(l == 0x11)
 
 // -----------------------------------------------------------------------------
 
 // A floating-point literal...
-                          // ...cannot have its decimal point be its first
-                          //    or last character.
-var n = 3.0               // ...can be represented in decimal notation.
-assert(n == 0x3p0)        // ...can be represented in hexadecimal notation.
+// ...cannot have its decimal point be its first
+//    or last character.
+// ...can be represented in decimal notation.
+// ...can be represented in hexadecimal notation.
+
+var n = 3.0
+assert(n == 0x3p0)
 
 // Decimal floats can have an exponent.  For those with an exponent of x,
 // the base number is multiplied by 10^x (10 raised to the x power).
@@ -126,10 +131,8 @@ assert(n == 0xC.3p0)
 
 // -----------------------------------------------------------------------------
 
-// Numeric literals can contain extra formatting to make them easier to read.
-// Both integers and floats can be padded with extra zeros and can contain
-// underscores.  Neither type of formatting affects the underlying value
-// of the literal.
+// A numeric literal can contain extra formatting that make it easier to read
+// while retaining its underlying value.
 
 assert(10_.0                    == 10.0)
 assert(000123.456               == 123.456)
@@ -160,14 +163,10 @@ n = 0x_FEED.FACE___p1_
 //                            value into another numeric type.
 // -----------------------------------------------------------------------------
 
-// The range of numbers that can be stored in an integer constant or
-// variable is different for each numeric type.  A number that will
-// not fit into a constant or variable of a sized integer type is
-// flagged as a compile-time error.
-
-// `UInt8` cannot store negative numbers.
-
-// `Int8` cannot store a number larger than its maximum value.
+// The range of numbers that can be stored in an integer constant/variable
+// is different for each numeric type.  A number that will not fit into
+// a constant/variable of a sized integer type is flagged as a
+// compile-time error.
 
 // Uncommenting this leads to a compile-time error:
 /*
@@ -184,14 +183,13 @@ let tooBig: Int8 = Int8.max + 1
 // prevents hidden conversion errors and helps make type conversion
 // intentions explicit.
 
-let twoK: UInt16 = 2_000
-let one: UInt8 = 1
-
 // To convert one specific number type to another, you initialize a new number
 // of the desired type with the existing value.
 
 // The conversion here is possible because `UInt16` has an initializer that
 // accepts a `Uint8` value.
+let one: UInt8 = 1
+let twoK: UInt16 = 2_000
 let twoKAndOne = twoK + UInt16(one)
 assert(type(of: twoKAndOne) == UInt16.self)
 assert(twoKAndOne == 2001)

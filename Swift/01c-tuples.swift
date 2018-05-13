@@ -74,6 +74,7 @@ assert(httpRedirect.description == "Moved Permanently")
 // over the element labels for tuple values used with it.
 
 let t1: (Int, Int, String) = (foo: 2, bar: 3, baz: "6")
+
 // Uncommenting this leads to a compile-time error:
 /*
 assert(t1.foo == 2)
@@ -93,6 +94,7 @@ assert(t3.baz == "6")
 
 let t4: (foo: Int, Int, String) = (foo: 2, bar: 3, baz: "6")
 assert(t4.foo == 2)
+
 // Uncommenting this leads to a compile-time error:
 /*
 assert(t4.bar == 3)
