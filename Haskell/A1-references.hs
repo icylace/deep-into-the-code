@@ -1,0 +1,11 @@
+-- References:
+-- ===========
+--
+-- Haskell programming language
+-- https://www.haskell.org/
+--
+-- Haskell Programming from First Principles
+-- http://haskellbook.com/
+--
+-- The Haskell Programming Language wiki
+-- https://wiki.haskell.org/Haskell
