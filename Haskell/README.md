@@ -4,9 +4,7 @@ My Haskell notes comprise of several source code files. I've written them this w
 
 `haskell.hs` may be run or compiled from the terminal while the numbered files are intended to be loaded from within the GHCi REPL environment.
 
-My current preferred way to install Haskell on macOS is by using [Homebrew](https://brew.sh) to install [The Haskell Tool Stack](https://haskellstack.org/).
-
-If you're on a Mac, go to your terminal and run the following installation command.
+My current preferred way to install Haskell on macOS is by using [Homebrew](https://brew.sh) to install [The Haskell Tool Stack](https://haskellstack.org/). If you're on a Mac, go to your terminal and run the following installation command.
 
 ```shell
 brew install haskell-stack
@@ -18,13 +16,9 @@ After the installation completes, make sure you're within the directory of your 
 stack runghc haskell
 ```
 
-to compile-on-the-fly and execute the `haskell.hs` file.
+to compile-on-the-fly and execute the `haskell.hs` file. If successful, it should result in the simple output of `Hello world!`.
 
-If successful, it should result in the simple outyput of `Hello world!`.
-
-The other files are not meant to be run directly. Instead, they're intended to be loaded from within the GHCi REPL environment.
-
-While remaining in the same directory, open up GHCi by running:
+The other files are not meant to be run directly. Instead, they're intended to be loaded from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running:
 
 ```shell
 stack ghci
