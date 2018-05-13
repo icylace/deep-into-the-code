@@ -1,31 +1,16 @@
-
-
-
-
--- The function `foo`
-foo x =
-  let y = x * 2
-      z = x ^ 2
-  in 2 * y * z
-
-
-
+-- The application operator, `$`, lets us apply functions to arguments with
+-- potentially fewer parentheses than normal function application.
+_ = 2 * (3 + 5)
+_ = (2 *) (3 + 5)
+_ = (2 *) $ (3 + 5)
+_ = (2 *) $ 3 + 5
+-- All four results will be `16`.
 
 
 
 
 
 
-
-
-
-
--- Key Terms
--- =========
--- Currying: Applying a series of nested functions to a series of arguments.
--- Partial application: The fixing of arguments to a function to produce
---     another function that takes the remaining unfixed paramters.
--- Syntactic sugar: Syntax designed to make expressions easier to work with.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -42,10 +27,12 @@ foo x =
 
 
 
---  Type - The kind of data that can be processed.
+-- Type - The kind of data that can be processed.
 
 
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 
 -- A Haskell source code file has the `.hs` extension.
