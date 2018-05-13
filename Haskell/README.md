@@ -18,13 +18,13 @@ stack runghc haskell
 
 to compile-on-the-fly and execute the `haskell.hs` file. If successful, it should result in the simple output of `Hello world!`.
 
-The other files are not meant to be run directly. Instead, they're intended to be loaded from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running:
+The other files are not meant to be run directly. Instead, they're intended to be loaded from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running
 
 ```shell
 stack ghci
 ```
 
-Then use GHCi's load command, `:l` (short for `:load`), to load a file into the REPL:
+then use GHCi's load command, `:l` (short for `:load`), to load a file into the REPL:
 
 ```shell
 :l 01-comments
