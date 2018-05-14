@@ -39,7 +39,7 @@ b = 1 + 2
 -- Normal form: The most simplified, or irreducible, state of an expression.
 -- Value: An expression in normal form.
 -- Variable: A placeholder for an expression.
--- Declaration: A top-level assignment that binds a variable to an expression.
+-- Declaration: An assignment that binds a variable to an expression.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

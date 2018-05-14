@@ -1,5 +1,5 @@
--- We already know that the `div` function does integer division.  A similar
--- function, `quot`, behaves almost the same way.
+-- The functions `div` and `quot` both do integer division and behave
+-- almost the same way.
 
 _ = div 1 1
 _ = quot 1 1
@@ -61,10 +61,6 @@ _ = -100
 
 -- We need parentheses to make it work.
 _ = 9 + (-100)
--- Result will be `-91`.
-
--- A space between the negation operator and its operand is optional.
-_ = 9 + (- 100)
 -- Result will be `-91`.
 
 -- The negation operator is also syntactic sugar for the `negate` function.

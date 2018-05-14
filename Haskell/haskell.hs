@@ -1,10 +1,4 @@
--- The application operator, `$`, lets us apply functions to arguments with
--- potentially fewer parentheses than normal function application.
-_ = 2 * (3 + 5)
-_ = (2 *) (3 + 5)
-_ = (2 *) $ (3 + 5)
-_ = (2 *) $ 3 + 5
--- All four results will be `16`.
+-- TODO:
 
 
 

@@ -14,8 +14,16 @@ foo x =
 -- with spacing.
 foo' x y = div x y
 
--- All declarations in the same source code file must begin at the same column.
--- This column is determined by where the first declaration begins on its line.
+-- However, spaces around operators are optional.
+_ = 2 ^ 9
+_ = 2^ 9
+_ = 2 ^9
+_ = 2^9
+-- All four results will be `512`.
+
+-- All top-level declarations in the same source code file must begin at the
+-- same column.  This column is determined by where the first declaration
+-- begins on its line.
 
 -- It is good practice to not have any whitespace precede declarations.
 

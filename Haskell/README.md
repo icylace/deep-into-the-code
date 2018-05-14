@@ -27,10 +27,10 @@ stack ghci
 then use GHCi's load command, `:l` (short for `:load`), to load a file into the REPL:
 
 ```shell
-:l 01-comments
+:l 001-comments
 ```
 
-The preceding example loads the `01-comments.hs` file. If there were any compile-time errors, GHCi will show them.
+The preceding example loads the `001-comments.hs` file. If there were any compile-time errors, GHCi will show them.
 
 I would need to include a `main` function in every file to make them directly runnable but I didn't want to add that extra "noise" to them.
 
