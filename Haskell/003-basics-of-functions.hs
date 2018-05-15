@@ -5,21 +5,23 @@ double x = x * 2
 
 -- Function names begin with a lowercase letter.
 
--- `double` is a pure function which means it will produce the same output
--- when applied to the same input.
+-- Most functions in Haskell are pure, meaning they will produce the same
+-- output when applied to the same input.
 _ = double 3
 -- Result will be `6`.
 
--- An application of a pure function can be replaced by the function's
--- definition and still get the same result.
+-- An application of a pure function can be replaced by the function's body
+-- and still get the same result.
 _ = 3 * 2
 -- Result will be `6`.
+
+-- Functions that are not pure are covered later.
 
 -- Key Terms
 -- =========
 -- Function: An expression that accepts an argument and returns a result.
 -- Function application: The giving of an argument to a function for evaluation.
--- Argument: An expression used as input to an applied function.
+-- Argument: An input value to the function applied to it.
 -- Parameter (formal parameter): A variable for an argument to a function.
 -- Function name: The term for a named function to use during application.
 -- Function body: The part of the function which gets evaluated.

@@ -1,7 +1,8 @@
 -- Functions that are written between their arguments (e.g. arithmetic
--- operators) are said to be written in infix notation.  Functions
--- written this way by default are called operators and their
--- arguments are called operands.
+-- operators) are said to be written in infix notation.
+
+-- Operators are functions with non-alphanumeric names and are written
+-- in infix notation by default.  Their arguments are called operands.
 _ = 10 / 4
 -- Result will be `2.5`.
 
