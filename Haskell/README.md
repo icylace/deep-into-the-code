@@ -2,7 +2,7 @@
 
 My Haskell notes comprise of several source code files. I've written them this way to verify the correctness of the syntax of my notes.
 
-`haskell.hs` may be run or compiled from the terminal while the numbered files are intended to be loaded from within the GHCi REPL environment.
+For instance, `haskell.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
 
 My current preferred way to install Haskell on macOS is by using [Homebrew](https://brew.sh) to install [The Haskell Tool Stack](https://haskellstack.org/). If you're on a Mac, go to your terminal and run the following installation command.
 
@@ -16,9 +16,9 @@ After the installation completes, make sure you're within the directory of your 
 stack runghc haskell
 ```
 
-to compile-on-the-fly and execute the `haskell.hs` file. If successful, it should result in the simple output of `Hello world!`.
+to compile-on-the-fly and execute the `haskell.hs` file. If successful, it should result in the simple output of `Hello world!`. Otherwise, compiler errors will be shown.
 
-The other files are not meant to be run directly. Instead, they're intended to be loaded from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running
+Another way is to load the source code from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running
 
 ```shell
 stack ghci
@@ -27,11 +27,7 @@ stack ghci
 then use GHCi's load command, `:l` (short for `:load`), to load a file into the REPL:
 
 ```shell
-:l 001-comments
+:l haskell
 ```
 
-The preceding example loads the `001-comments.hs` file. If there were any compile-time errors, GHCi will show them.
-
-I would need to include a `main` function in every file to make them directly runnable but I didn't want to add that extra "noise" to them.
-
-Perhaps I'll find a better way when I get better at Haskell.
+The preceding example loads the `haskell.hs` file. If there were any compile-time errors, GHCi will show them.

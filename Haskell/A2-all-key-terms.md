@@ -13,8 +13,9 @@
 * Evaluation (reduction): The process of simplifying an expression.
 * Normal form: The most simplified, or irreducible, state of an expression.
 * Value: An expression in normal form.
-* Variable: A placeholder for an expression.
-* Declaration: An assignment that binds a variable to an expression.
+* Bind: To assign a name to an expression.
+* Variable: A placeholder for a bound expression.
+* Declaration: A binding.
 
 * Nested expression: An expression embedded within another expression.
 * Weak head normal form: A reduced state of an expression.
@@ -54,12 +55,12 @@
 * Syntax: The grammar and structure of the text used to express programs.
 * Syntactic sugar: Syntax designed to make code easier to read and write.
 
-## 006. `let` and `where`
+## 006. Significant Whitespace
+
+* Significant whitespace: Whitespace that helps determine meaning of code.
+
+## 007. `let` and `where`
 
 * Keyword: A term used as a programming language construct.
 * Let expression: An expression with declarations introduced into it.
 * Scope: The area of a program where a binding of a variable applies.
-
-## 007. Significant Whitespace
-
-* Significant whitespace: Whitespace that helps determine meaning of code.

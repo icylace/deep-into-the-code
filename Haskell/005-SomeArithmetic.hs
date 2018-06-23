@@ -1,3 +1,5 @@
+module SomeArithmetic where
+
 -- The functions `div` and `quot` both do integer division and behave
 -- almost the same way.
 
@@ -50,6 +52,7 @@ _ = mod (-5) (-2)
 -- -----------------------------------------------------------------------------
 
 -- The negation operator is unary because it has just one operand.
+
 _ = -100
 
 -- Notice how it doesn't need a space between itself and its operand.
@@ -60,6 +63,7 @@ _ = -100
 --
 
 -- We need parentheses to make it work.
+
 _ = 9 + (-100)
 -- Result will be `-91`.
 
@@ -75,3 +79,9 @@ _ = 9 + (negate 100)
 -- Unary operator: An operator that applies to a single operand.
 -- Syntax: The grammar and structure of the text used to express programs.
 -- Syntactic sugar: Syntax designed to make code easier to read and write.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+main :: IO ()
+main = print ()

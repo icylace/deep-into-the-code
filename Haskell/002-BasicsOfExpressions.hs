@@ -1,20 +1,25 @@
--- Here is a declaration that assigns the variable `a` to the expression `1`.
+module BasicsOfExpressions where
+
+-- Here is a declaration for a variable identified as `a` with expression `1`.
+
 a = 1
 
-a1 = 1         -- Single-line comments can be placed after expressions.
+a1 = 1        -- Single-line comments can be placed after expressions.
 a2 = 1        {- Block comments can also be placed after expressions. -}
 
 a3 {- However, unlike single-line comments, -} = 0
 a4 = {- block comments can be placed in weird places! -} 0
 
--- Variable names can contain letters, numbers, underscores, and apostrophes but they must
--- always start with a lowercase letter.
+-- Variable names can contain letters, numbers, underscores, and apostrophes
+-- but they must always start with a lowercase letter or an underscore.
+
 a5' = 1
 a'5' = 1
 a_5 = 1
 a_5' = 1
 a_'5' = 1
 a5'' = 1
+aB'C = 1
 
 -- A variable can be evaluated later on by referencing its name.
 
@@ -26,26 +31,44 @@ a5'' = 1
 -- and has the value `1`.
 
 -- This declaration assigns the variable `b` to the expression `1 + 2`.
+
 b = 1 + 2
 
 -- Evaluating `b` will result in `3` which means `b` was a reducible expression
 -- (a.k.a. redex).
+
+-- Expressions
+
+
+
+c = 3 + 4
+-- Result will be `7`.
+
+d = c + 5
+-- Result will be `12`.
+
+
+
 
 -- Key Terms
 -- =========
 -- Expression: A combination of terms able to be evaluated together.
 -- Reducible expression (redex): An expression that can be further simplified.
 -- Evaluation (reduction): The process of simplifying an expression.
--- Normal form: The most simplified, or irreducible, state of an expression.
+-- Normal form: The most simplified, or irreducible, form of an expression.
 -- Value: An expression in normal form.
--- Variable: A placeholder for an expression.
--- Declaration: An assignment that binds a variable to an expression.
+-- Identifier: A name that references an expression.
+-- Bind: To assign an identifier to an expression.
+-- Binding: An identified expression.
+-- Variable: A simple binding.
+-- Declaration: A binding.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- An underscore may be used to indicate that we do not wish to save the result
--- of evaluating an expression.
+-- An underscore may be used to indicate that we do not wish to save an
+-- expression for further evaluation.
+
 _ = 2 + 3
 
 -- It's rare that this would be a good idea.  That said, these notes about
@@ -55,20 +78,24 @@ _ = 2 + 3
 -- -----------------------------------------------------------------------------
 
 -- Arithmetic expressions follow the order of operations.
+
 _ = 1 + 2 * 3
 -- Result will be `7`.
 
 -- Parentheses may be used to nest expressions within other expressions.
 -- Nested expressions are evaluated first.
+
 _ = (1 + 2) * 3
 -- Result will be `9`.
 
 -- Nested expressions at the same level of nesting are evaluated from
 -- left to right.
+
 _ = (1 + 2) * (3 + 4) * (5 + 6)
 -- Result will be `231`.
 
 -- Nesting is unlimited.
+
 _ = ((1 + 2) * 3) + 4 * (5 + 6)
 -- Result will be `53`.
 
@@ -84,3 +111,9 @@ _ = ((1 + 2) * 3) + 4 * (5 + 6)
 -- Nested expression: An expression embedded within another expression.
 -- Weak head normal form: A reduced state of an expression.
 -- Lazy evaluation: The delaying of evaluation until forced to do it.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+main :: IO ()
+main = print ()

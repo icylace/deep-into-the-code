@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 -- TODO:
 
 
@@ -10,6 +18,15 @@
 -- -----------------------------------------------------------------------------
 
 
+-- Key Terms
+-- =========
+-- Module: A group of top-level declarations that may be exported elsewhere.
+-- Top-level binding: A binding scoped to a module and not nested.
+-- Top-level declaration: A top-level binding.
+-- Local binding: A binding nested and scoped within another expression.
+-- Local declaration: A local binding.
+
+-- Data structure: An organizing of data for convenient and/or efficient access.
 
 
 
@@ -21,7 +38,7 @@
 
 
 
--- Type - The kind of data that can be processed.
+
 
 
 -- -----------------------------------------------------------------------------
@@ -30,7 +47,7 @@
 
 
 f = (+ 2)
-f x = (+ 2) x
+f' x = (+ 2) x
 
 
 
