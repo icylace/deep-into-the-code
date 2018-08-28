@@ -48,13 +48,6 @@ _ = concat ["Hello", " ", "world!"]
 _ = concat ["Hello", "", " ", "", "world!"]
 -- All five results will be `"Hello World!"`.
 
--- Key Terms
--- =========
--- Character: A unit of text.
--- String: A sequence of characters.
--- Empty string: A string with no characters.
--- Concatenation: The joining together of sequences of values.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -187,24 +180,6 @@ _ = "Hello" !! 4
 --     "" !! 0
 --
 
-
-
-
-
-
-
--- Key Terms
--- =========
--- Partial function:
--- Total function:
--- Unsafe function:
--- Error:
--- Exception:
--- List: An ordered collection of similarly typed elements.
--- Head: The first element of a list.
--- Tail: The non-head elements of a list.
-
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -226,7 +201,24 @@ main = do
 -- `do` notation was used to make using a sequence of print-related
 -- functions more convenient.
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- Key Terms
 -- =========
+-- Character: A unit of text.
+-- String: A sequence of characters.
+-- Empty string: A string with no characters.
+-- Concatenation: The joining together of sequences of values.
+
+-- Partial function:
+-- Total function:
+-- Unsafe function:
+-- Error:
+-- Exception:
+-- List: An ordered collection of similarly typed elements.
+-- Head: The first element of a list.
+-- Tail: The non-head elements of a list.
+
 -- `do` notation: Syntatic sugar for sequencing function evaluations.
 -- I/O (IO): Input/output.

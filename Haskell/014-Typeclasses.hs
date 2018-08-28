@@ -1,13 +1,15 @@
-module PatternMatching where
+module Typeclasses where
 
-fst' :: (a, b) -> a
-fst' (a, _) = a
 
-snd' :: (a, b) -> b
-snd' (_, b) = b
 
-tup :: (Integer, [a]) -> (Integer, [a]) -> (Integer, [a])
-tup (a, b) (c, d) = ((a + c), (b ++ d))
+
+
+-- The `Eq` typeclass provides instances for determining equality of values.
+
+
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -20,4 +22,3 @@ main = print ()
 
 -- Key Terms
 -- =========
--- Pattern matching: Identifying arguments that follow a given pattern.

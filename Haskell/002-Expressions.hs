@@ -1,4 +1,4 @@
-module BasicsOfExpressions where
+module Expressions where
 
 -- Here is a declaration for a variable identified as `a` with expression `1`.
 
@@ -37,31 +37,11 @@ b = 1 + 2
 -- Evaluating `b` will result in `3` which means `b` was a reducible expression
 -- (a.k.a. redex).
 
--- Expressions
-
-
-
 c = 3 + 4
 -- Result will be `7`.
 
 d = c + 5
 -- Result will be `12`.
-
-
-
-
--- Key Terms
--- =========
--- Expression: A combination of terms able to be evaluated together.
--- Reducible expression (redex): An expression that can be further simplified.
--- Evaluation (reduction): The process of simplifying an expression.
--- Normal form: The most simplified, or irreducible, form of an expression.
--- Value: An expression in normal form.
--- Identifier: A name that references an expression.
--- Bind: To assign an identifier to an expression.
--- Binding: An identified expression.
--- Variable: A simple binding.
--- Declaration: A binding.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -71,8 +51,7 @@ d = c + 5
 
 _ = 2 + 3
 
--- It's rare that this would be a good idea.  That said, these notes about
--- Haskell uses this trick a lot.
+-- This is normally useless but these notes about Haskell uses this trick a lot.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -103,17 +82,32 @@ _ = ((1 + 2) * 3) + 4 * (5 + 6)
 -- By default it gets evaluated to weak head normal form, which is just a
 -- more simplified version of the expression.
 
--- An expression is not evaluated until it is forced to be by other expressions
--- that refer to it.  This is called lazy evaluation.
-
--- Key Terms
--- =========
--- Nested expression: An expression embedded within another expression.
--- Weak head normal form: A reduced state of an expression.
--- Lazy evaluation: The delaying of evaluation until forced to do it.
+-- An expression is not evaluated until it is forced to be by other
+-- expressions that refer to it.  This is called lazy evaluation.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Expression: A combination of terms able to be evaluated together.
+-- Nested expression: An expression embedded within another expression.
+-- Reducible expression (redex): An expression that can be further simplified.
+-- Weak head normal form: A reduced state of an expression.
+-- Normal form: The most simplified, or irreducible, form of an expression.
+-- Value: An expression in normal form.
+
+-- Evaluation (reduction): The process of simplifying an expression.
+-- Lazy evaluation: The delaying of evaluation until forced to do it.
+
+-- Identifier: A name that references an expression.
+-- Bind: To assign an identifier to an expression.
+-- Binding: An identified expression.
+-- Variable: A simple binding.
+-- Declaration: A binding.

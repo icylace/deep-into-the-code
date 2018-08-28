@@ -35,12 +35,15 @@ foo x = 1 + (x * 2) + (x * 3)
 
 -- Improper spacing will lead to errors.
 
--- Key Terms
--- =========
--- Significant whitespace: Whitespace that helps determine meaning of code.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Significant whitespace: Whitespace that helps determine meaning of code.

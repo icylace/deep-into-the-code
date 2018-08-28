@@ -31,3 +31,7 @@ then use GHCi's load command, `:l` (short for `:load`), to load a file into the 
 ```
 
 The preceding example loads the `haskell.hs` file. If there were any compile-time errors, GHCi will show them.
+
+## Other Resources
+
+- [Structuring your first Haskell project with Stack](http://sakshamsharma.com/2018/03/haskell-proj-struct/index.html)

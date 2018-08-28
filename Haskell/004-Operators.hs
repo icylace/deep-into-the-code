@@ -1,4 +1,4 @@
-module BasicsOfOperators where
+module Operators where
 
 -- Functions that are written between their arguments (e.g. arithmetic
 -- operators) are said to be written in infix notation.
@@ -42,23 +42,23 @@ _ = 10 `div` 4 `div` 25
 -- parentheses and still be used in prefix notation.
 
 _ = (div) 10 4
--- Result will be `2`.
+_ = ((div) 10) 4
+-- Both results will be `2`.
 
--- For those curious, the following constructions are invalid:
+-- Backticks also allow sectioning to be used.
+-- More details on sectioning later.
+
+_ = (10 `div`) 4
+_ = (`div` 4) 10
+-- Both results will be `2`.
+
+-- The following constructions are invalid:
 --
 --     (`div`) 10 4
---
+--     10 (`div`) 4
+--     `(/)` 10 4
 --     10 `(/)` 4
 --
-
--- Key Terms
--- =========
--- Prefix notation: The placement of a function before its arguments.
--- Infix notation: The placement of a function between its arguments.
--- Operator: A function with a non-alphanumeric name and infix by default.
--- Operand: An argument to an operator.
--- Binary operator: An operator that applies to a couple operands.
--- Prelude: A library of standard functions.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -109,11 +109,6 @@ _ = 2 ^ (3 ^ 4)
 _ = (2 ^ 3) ^ 4
 -- Result will be `4096`.
 
--- Key Terms
--- =========
--- Associativity: The way operators are grouped in the absence of parentheses.
--- Precedence: The order that similarly-grouped operators are parsed.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -155,11 +150,6 @@ _ = timesFive 2
 _ = (subtract 2) 1
 -- Result will be `-1`.
 
--- Key Terms
--- =========
--- Section: A partial application of an infix function.
--- Sectioning: Partially applying an infix function.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -193,3 +183,21 @@ _ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Prefix notation: The placement of a function before its arguments.
+-- Infix notation: The placement of a function between its arguments.
+-- Operator: A function with a non-alphanumeric name and infix by default.
+-- Operand: An argument to an operator.
+-- Binary operator: An operator that applies to a couple operands.
+-- Prelude: A library of standard functions.
+
+-- Associativity: The way operators are grouped in the absence of parentheses.
+-- Precedence: The order that similarly-grouped operators are parsed.
+
+-- Section: A partial application of an infix function.
+-- Sectioning: Partially applying an infix function.

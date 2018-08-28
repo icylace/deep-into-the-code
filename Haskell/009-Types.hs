@@ -1,6 +1,6 @@
-module BasicsOfTypes where
+module Types where
 
--- We import concrete integer types to be used later.
+-- We import concrete integer types to use later.
 
 import GHC.Int
 
@@ -60,6 +60,17 @@ hi = "Hi!"
 
 
 
+-- A type alias is an alternative name for a preexisting type that usually
+-- communicates something more specific or more briefly.
+
+type Name = String
+
+
+
+
+
+
+
 
 
 
@@ -90,8 +101,17 @@ _ = [1] ++ [2]
 
 
 
+-- A function is polymorphic when its type signature has variables that can
+-- represent more than one type.
 
--- Type constructor: The name of a type which is used in type signatures.
+
+
+
+
+
+
+
+
 
 
 
@@ -106,12 +126,21 @@ _ = not False
 _ = not True
 -- Result will be `False`.
 
--- This data declaration is similar to the Boolean type that comes with Haskell.
--- `MyBool` is the type constructor, the name of the type.  `False` and `True`
--- are data constructors which are values of the type.  The pipe symbol,
--- `|`, denotes a sum type which is a type composed of distinct values.
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- The following data declaration is similar to the Boolean type that comes
+-- with Haskell.  `MyBool` is the type constructor, the name of the type.
+-- `MyFalse` and `MyTrue` are data constructors which create values of
+-- the type.  The pipe symbol, `|`, denotes a sum type which is a
+-- type composed of distinct values.
 
 data MyBool = MyFalse | MyTrue
+
+-- A data declaration always creates a new type constructor but may or may not
+-- create a new data constructor.
+
+
 
 -- A function can behave differently depending upon the particular value,
 -- or pattern, it is applied to.  This pairing of particular values with
@@ -126,6 +155,31 @@ _ = yesNo MyTrue
 
 _ = yesNo MyFalse
 -- Result will be `"No"`.
+
+
+
+-- Data contructors are functions that create values of a certain type.
+data Pet = Cat String | DogWithAge String Integer
+
+_ = Cat "Foo"
+-- Result will be `Cat "Foo"`.
+-- The type of `Cat` is `String -> Pet`.
+
+_ = DogWithAge "Bar" 2
+-- Result will be `DogWithAge "Bar" 2`.
+-- The type of `DogWithAge` is `String -> Integer -> Pet`.
+
+
+
+
+-- Data constructors which take no arguments are nullary and they represent
+-- constant values.
+
+data OnlyMe
+
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 -- A function can pattern match on a "don't care" parameter (represented by `_`)
 -- which will match on anything.
@@ -170,6 +224,32 @@ _ = 1 :: Double
 
 
 
+
+
+
+-- Declaring type signatures for expressions are optional because Haskell has
+-- type inference which is an algorithm for determining an expression's type.
+
+-- Haskell will infer the most generally applicable type that is still correct.
+
+hi x = "hi " ++ x
+-- The function `hi` has the type `[Char] -> [Char]`.'
+
+smoosh x y = x ++ y
+-- The function `smoosh` has the type `[a] -> [a] -> [a]`.'
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- A type variable is a placeholder for a type.
 
 
@@ -192,6 +272,84 @@ _ = 1 :: Double
 
 -- A type that implements a typeclass is said to have an instance of
 -- the typeclass.
+
+-- A type with an instance of a typeclass can use its values with the functions
+-- defined for that typeclass.
+
+
+
+
+
+
+
+-- Term level is where values live and code execution happens.
+
+-- Type level is where types live and static analysis and program
+-- verification happens.
+
+
+
+
+
+
+
+
+
+
+
+
+-- Haskell conventions for variables (according to section 4.11
+-- of "Haskell Programming from First Principles"):
+--
+-- Type variables generally start at `a` and each additional type variable is
+-- assigned the next available letter of the alphabet.
+--
+-- Type variables may also be numbered (e.g. `a1`).
+--
+-- Variables that represent functions typically start at `f` with each
+-- additional function variable being assigned the next available
+-- letter of the alphabet.
+--
+-- Function variables may also be numbered (e.g. `f1`).
+--
+-- Function variables may also be decorated with apostrophes (e.g. `f'`,
+-- pronounced "eff-prime").  "Prime" functions are typically closely
+-- related in some way to their "non-prime" counterparts.
+--
+-- Function variables may also be named in a more descriptive way depending
+-- on the context.
+--
+-- Variables in smaller programs are often single-lettered.
+--
+-- Variables in larger programs are often more self-descriptive.
+--
+-- Variables in domain-specific code should use domain-specific names.
+--
+-- Function arguments typically start at `x` and may be numbered (e.g. `x1`).
+--
+-- Other single-letter variable names may be chosen when they serve mnemonic
+-- role (e.g. `r` for circle radius).
+--
+-- Names of lists are pluralized (e.g. a list whose items are `x` would
+-- be named `xs`).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -238,6 +396,41 @@ _ = 4 / 2
 
 
 
+-- A type signature can make use of multiple typeclass constraints.
+foo1 :: (Num a, Num b) => a -> b -> b
+foo2 :: (Num a, Num a) => a -> a -> a
+
+
+
+
+
+
+
+-- Parametric polymorphism is when a type variable is not contrained by
+-- a typeclass.
+
+-- `id` is a parametric polymorphic function having the type `a -> a`.
+-- It returns its argument.
+
+_ = id 3
+-- Result will be `3`.
+
+_ = id "Hi"
+-- Result will be `"Hi"`.
+
+_ = id True
+-- Result will be `True`.
+
+_ = (id head) [1, 2]
+-- Result will be `1`.
+
+
+
+
+
+
+
+
 
 
 
@@ -260,36 +453,60 @@ _ = 4 / 2
 
 
 
+-- In Haskell it is impossible to create untyped data.  Aside from some
+-- syntactic sugar for things like numbers or functions, everything
+-- originates in a data constructor from some type definition.
 
 
 
 
--- Key Terms
--- =========
--- Type (datatype): A classification of values that share something in common.
--- Type alias: An alternative name for a preexisting type.
--- Type signature: The definition of types used by an expression.
--- Type variable: A placeholder for a type.
--- Type constructor: A function that accepts a type and returns a type.
--- Data constructor: A value that inhabits the type it is defined in.
--- Data declaration: A declaration that defines a type.
 
--- Sum type: A type composed of distinct values.
 
--- Type level: The areas of a program that relate to type signatures.
--- Term level: The areas of a program that relate to values.
--- Type inference: The automatic detection of a value's type.
--- Typeclass: A set of functions that can be shared across sets of types.
--- Typeclass constraint: A type variable for a type implementing a typeclass.
--- Polymorphism: The usage of an function across different sets of types.
--- Superclass: A typeclass required by another typeclass.
 
--- Typeclass instance (instance): An implementation of a typeclass for a type.
 
--- Pattern: Syntax that matches against particular values.
--- Pattern matching: Pairing specific function behavior with specific patterns.
 
--- Concrete type: A type whose name references how its values are stored.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Numbers in and of themselves don't have a concrete type.
+--
+-- Prelude> :t 13
+-- 13 :: Num a => a
+--
+-- Prelude> :t 13.0
+-- 13.0 :: Fractional a => a
+
+-- A concrete type can be chosen by declaring it.
+let x = 13 :: Integer
+-- `x` has the type `Integer`.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -352,8 +569,12 @@ _ = 34.56 / 123.345 :: Rational
 
 -- These numeric types have instances of the `Num` typeclass.
 
--- A typeclass is a way of adding functionality to types that is reusable across
--- any type that has an instance of that typeclass.
+-- A typeclass is a way of defining values and functions that are reusable
+-- across any type that has an instance of that typeclass.
+
+-- In Haskell, typeclasses are unique pairings of class and concrete instance.
+-- For example, if a given type has an instance of `Num` then it has only one
+-- instance of `Num`.
 
 -- The `Num` typeclass provides common numerical operators like `+`, `-`, and
 -- `*`, as well as a few other functions.
@@ -452,32 +673,61 @@ _ = maxBound :: ()
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
+main :: IO ()
+main = print ()
 
-
-
-
-
-
-
-
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 -- Key Terms
 -- =========
+-- Type (datatype): A classification of values that share something in common.
+-- Type alias: An alternative name for a preexisting type.
+-- Type signature: The definition of types used by an expression.
+-- Type variable: A placeholder for a type.
+-- Type constructor: A function that returns a type and also may accept a type.
+-- Data constructor: A function that creates values of a certain type.
+-- Data declaration: A declaration that defines a new datatype.
+
+-- Sum type: A type composed of distinct values.
+
+-- Nullary: Taking no arguments.
+
+-- Type constructor: The name of a type which is used in type signatures.
+
+-- Type level: The areas of a program that relate to type signatures.
+-- Term level: The areas of a program that relate to values.
+-- Type inference: The automatic detection of a value's type.
+-- Typeclass: A set of functions that can be shared across sets of types.
+-- Typeclass constraint: A type variable for a type implementing a typeclass.
+-- Polymorphism: The usage of functions across different sets of types.
+-- Superclass: A typeclass required by another typeclass.
+-- Subclass: A typeclass that requires another typeclass.
+
+-- Polymorphism: Type variables referring to possibly multiple concrete types.
+-- Parametric polymorphism: Polymorphism over any type.
+-- Constrained (ad-hoc, bounded) polymorphism: Polymorphism over certain types.
+
+-- Typecheck: To validate types at compile-time.
+
+-- Principal type: In Haskell, the most generic type which still typechecks.
+
+
+-- Parametricity: Uniform function behavior relative to parametric arguments.
+
+-- Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
+
+-- Typeclass instance (instance): An implementation of a typeclass for a type.
+
+-- Pattern: Syntax that matches against particular values.
+-- Pattern matching: Pairing specific function behavior with specific patterns.
+
+-- Concrete type: A type whose name references how its values are stored.
+-- Monomorphic restriction: Top-level bindings have concrete type when possible.
+
+-- Static typing: The checking of types at compile time.
+
+-- Actual type: The type actually provided in the code.
+-- Expected type: The type the compiler expected to be given in the code.
+
 -- Library: A collection of functions related in some way.
-
-
-
-
-
-
-
-
-
-
-
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()

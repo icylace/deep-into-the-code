@@ -39,12 +39,6 @@ upOneAndSome' n m = n + one + some where one = 1; some = m
 _ = upOneAndSome' 3 9
 -- Result will be `13`.
 
--- Key Terms
--- =========
--- Keyword: A term used as a programming language construct.
--- Let expression: An expression with declarations introduced into it.
--- Scope (visibility): Area of a program where a binding of a variable applies.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -68,3 +62,12 @@ _ = upOne''' 23
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Keyword: A term used as a programming language construct.
+-- Let expression: An expression with declarations introduced into it.
+-- Scope (visibility): Area of a program where a variable's binding applies.

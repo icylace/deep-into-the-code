@@ -1,4 +1,4 @@
-module SomeArithmetic where
+module Arithmetic where
 
 -- The functions `div` and `quot` both do integer division and behave
 -- almost the same way.
@@ -74,14 +74,17 @@ _ = 9 + (-100)
 _ = 9 + (negate 100)
 -- Result will be `-91`.
 
--- Key Terms
--- =========
--- Unary operator: An operator that applies to a single operand.
--- Syntax: The grammar and structure of the text used to express programs.
--- Syntactic sugar: Syntax designed to make code easier to read and write.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Unary operator: An operator that applies to a single operand.
+-- Syntax: The grammar and structure of the text used to express programs.
+-- Syntactic sugar: Syntax designed to make code easier to read and write.

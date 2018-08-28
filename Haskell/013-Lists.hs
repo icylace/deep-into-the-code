@@ -1,13 +1,22 @@
-module PatternMatching where
+module Lists where
 
-fst' :: (a, b) -> a
-fst' (a, _) = a
 
-snd' :: (a, b) -> b
-snd' (_, b) = b
 
-tup :: (Integer, [a]) -> (Integer, [a]) -> (Integer, [a])
-tup (a, b) (c, d) = ((a + c), (b ++ d))
+
+-- A range of values can be created with some shorthand notation.
+
+_ = [0..5]
+-- Result will be `[0, 1, 2, 3, 4, 5]`.
+
+_ = ['a'..'z']
+-- Result will be `"abcdefghijklmnopqrstuvwxyz"`.
+
+
+
+
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -20,4 +29,3 @@ main = print ()
 
 -- Key Terms
 -- =========
--- Pattern matching: Identifying arguments that follow a given pattern.

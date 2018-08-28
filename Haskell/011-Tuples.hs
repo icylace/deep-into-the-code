@@ -3,14 +3,17 @@ module Tuples where
 -- The `Data.Tuple` provides the `swap` function.
 import Data.Tuple
 
--- A tuple is a type whose values are groups of a certain fixed-size
--- that contain other values having the same or different types.
+-- A tuple is a grouping of fixed-size for values having either the same types
+-- or different types.
 
 _ = (,,,) 8 "Hello" "World" 'c'
 _ = (8, "Hello", "World", 'c')
 -- Both results will be `(8,"Hello","World",'c')`.
 
--- A triple is a tuple containing three other values.
+-- The number of values contained within a tuple is called its arity.
+-- The arity of the previous tuple is 4.
+
+-- A triple is a tuple containing three values.  Therefore its arity is 3.
 
 _ = (,,) 8 "Hello" "World"
 _ = (8, "Hello", "World")
@@ -19,7 +22,7 @@ _ = (8, "Hello", "World")
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- A pair is a tuple containing a couple other values.
+-- A pair is a tuple containing a couple values.  Its arity is 2.
 
 _ = (,) 8 10
 _ = (8, 10)
@@ -56,33 +59,77 @@ _ = swap $ swap (8, "Hello")
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- A tuple must contain more than a single value.  Attempting to use a tuple
--- without values or with only a single value will cause an error.
+-- In Haskell, a tuple cannot contain just a single value.
+
+-- Attempting to define a single-element tuple ends up being interpreted
+-- as a nested expression.
+
+_ = (3)
+-- Result will be `3`.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- A special tuple that contains no values is called unit.
+
+_ = ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Tuples can be partially applied.
+
+withFirstCouple = (,,,) 8 "Hello"
+_ = withFirstCouple 'B' 3.0
+-- Result will be `(8,"Hello",'B',3.0)`.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Tuples can be compared on an element-by-element basis.
+
+_ = (8, "Hello") == (8, "Hello")
+-- Result will be `True`.
+
+_ = (8, "Hello") == (8, "World")
+-- Result will be `False`.
+
+_ = (8, "Hello") < (8, "World")
+-- Result will be `True`.
+
+_ = (9, "Hello") < (8, "World")
+-- Result will be `False`.
+
+-- Tuples that are be compared with each other must have the same arity, types,
+-- and order of those types.  Otherwise an error will occur.
 --
---     (,)
---     (,) 8
---
+--     (8, "Hello") == ("Hello", 8)
+--     (8, "Hello") == (8, 3.0)
+--     (8, "Hello") == ('B', "World")
+--     (8, "Hello") == ('B', 3.0)
+--     (8, "Hello") == (8, "Hello", 'B')
 
--- Larger tuples are less efficient than smaller ones.
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
-
-
-
-
-
--- Key Terms
--- =========
--- Product type: A type that is a conjunction of two or more constituent types.
--- Tuple: A product type whose values are fixed groups of other values.
--- Arity: The number of values contained within a tuple.
--- Pair (two-tuple): A tuple whose values contain two other values.
--- Triple (three-tuple): A tuple whose values contain three other values.
-
-
-
+-- There is no limit for how big a tuple's arity can be but very large tuples
+-- are not well supported and they're also less efficient than smaller ones.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Product type: A type that is a conjunction of two or more constituent types.
+-- Tuple: A fixed-length ordered grouping of values.
+-- Tuple type: A product type whose values are tuples.
+-- Arity: The number of values contained within a tuple.
+-- Triple (three-tuple): A tuple whose values contain three other values.
+-- Pair (two-tuple): A tuple whose values contain two other values.
+-- Unit (empty tuple): A tuple that contains no values.

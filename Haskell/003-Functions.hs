@@ -1,4 +1,4 @@
-module BasicsOfFunctions where
+module Functions where
 
 -- Here we declare a function named `double` that accepts a formal parameter
 -- named `x` which gets used in the body of the function to calculate the
@@ -22,18 +22,6 @@ _ = 3 * 2
 
 -- Functions that are not pure are covered later.
 
--- Key Terms
--- =========
--- Argument: An input value to the function applied to it.
--- Parameter (formal parameter): A variable for an argument to a function.
--- Function: An expression that accepts an argument and returns a result.
--- Function application: The giving of an argument to a function for evaluation.
--- Named function: A bound function.
--- Function name: The identifier for a function to use during application.
--- Function body: The part of the function which gets evaluated.
--- Return value: The result of a function evaluation.
--- Pure function: A function producing the same output given the same input.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -49,9 +37,9 @@ _ = addAndMultiply 4 5
 -- Result will be `49`.
 
 -- However, technically speaking, all functions in Haskell have precisely one
--- parameter.  So, the above expression is actually applying a series of
--- nested functions to a series of arguments to those functions.
--- This process is known as currying.
+-- parameter and always return a value.  So, the above expression is actually
+-- applying a series of nested functions to a series of arguments to those
+-- functions.  This process is known as currying.
 
 -- We can partially apply our declared function to access the implied nested
 -- function within it.
@@ -84,13 +72,30 @@ _ = (((addAndMultiplyMore 2) 5) 8) 11
 _ = (((addAndMultiplyMore 2) 5) 8) 11
 -- All nine results will be `97`.
 
--- Key Terms
--- =========
--- Currying: Applying nested functions to a series of corresponding arguments.
--- Partial application: Currying some arguments to get a function for the rest.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 main :: IO ()
 main = print ()
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Function: An expression that accepts an argument and returns a result.
+-- Argument: An input value to the function applied to it.
+-- Parameter (formal parameter): A variable for an argument to a function.
+-- Return value: The result of a function evaluation.
+
+-- Function application: The giving of an argument to a function for evaluation.
+-- Function body: The part of the function which gets evaluated.
+
+-- Named function: A bound function.
+-- Function name: The identifier for a function to use during application.
+
+-- Pure function: A function producing the same output given the same input.
+-- Currying: Applying nested functions to a series of corresponding arguments.
+-- Partial application: Fixing some arguments to get a function for the rest.
+
+-- Partial function: A function not having results for all possible inputs.

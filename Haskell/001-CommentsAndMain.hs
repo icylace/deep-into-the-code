@@ -22,12 +22,6 @@ to do that. -}
 
       {- Neither do block comments. -}
 
--- Key Terms
--- =========
--- Comment: Text meant to be read by humans and ignored by the compiler.
--- Single-line comment: A comment that cannot be on more than one line.
--- Block comment: A comment that can extend to multiple consecutive lines.
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -44,7 +38,7 @@ main = print ()
 -- an executable binary file before being run.  Executing the following on
 -- thecommand line:
 --
---     stack runghc 001-comments-and-main
+--     stack runghc 001-CommentsAndMain
 --
 -- If there were any compile-time errors while attempting to run, GHC will
 -- show them.
@@ -56,10 +50,17 @@ main = print ()
 --
 -- then use GHCi's load command, `:l` (short for `:load`):
 --
---     :l 001-comments-and-main
+--     :l 001-CommentsAndMain
 --
 -- If there were any compile-time errors while loading, GHCi will show them.
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- Key Terms
 -- =========
+-- Comment: Text meant to be read by humans and ignored by the compiler.
+-- Single-line comment: A comment that occupies one line.
+-- Block comment: A comment that occupies one or more consecutive lines.
+
 -- Entry point: Place where the operating system transfers control to a program.
