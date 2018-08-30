@@ -1,4 +1,4 @@
-module O12_PatternMatching where
+module O11_PatternMatching where
 
 fst' :: (a, b) -> a
 fst' (a, _) = a

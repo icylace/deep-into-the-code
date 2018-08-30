@@ -1,4 +1,4 @@
-module O09_Types where
+module O08_Types where
 
 -- We import concrete integer types to use later.
 

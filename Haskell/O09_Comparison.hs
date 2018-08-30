@@ -1,4 +1,4 @@
-module O10_Comparison where
+module O09_Comparison where
 
 x :: Integer
 x = 9

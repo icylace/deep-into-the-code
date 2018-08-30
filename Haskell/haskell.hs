@@ -31,19 +31,19 @@ to do that. -}
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
-import O02_Expressions
-import O03_Functions
-import O04_Operators
-import O05_Arithmetic
-import O06_SignificantWhitespace
-import O07_LetAndWhere
-import O08_Strings
-import O09_Types
-import O10_Comparison
-import O11_Tuples
-import O12_PatternMatching
-import O13_Lists
-import O14_Typeclasses
+import O01_Expressions
+import O02_Functions
+import O03_Operators
+import O04_Arithmetic
+import O05_SignificantWhitespace
+import O06_LetAndWhere
+import O07_Strings
+import O08_Types
+import O09_Comparison
+import O10_Tuples
+import O11_PatternMatching
+import O12_Lists
+import O13_Typeclasses
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.

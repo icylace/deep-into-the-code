@@ -1,4 +1,4 @@
-module O04_Operators where
+module O03_Operators where
 
 -- Functions that are written between their arguments (e.g. arithmetic
 -- operators) are said to be written in infix notation.

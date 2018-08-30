@@ -1,4 +1,4 @@
-module O02_Expressions where
+module O01_Expressions where
 
 -- Here is a declaration for a variable identified as `a` with expression `1`.
 
