@@ -1,4 +1,4 @@
-module Operators where
+module O04_Operators where
 
 -- Functions that are written between their arguments (e.g. arithmetic
 -- operators) are said to be written in infix notation.
@@ -177,12 +177,6 @@ _ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1
 
 -- Running `:i $` in GHCi will show that the application operator is a right
 -- associative infix operator with a precedence level of 0.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

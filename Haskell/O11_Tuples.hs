@@ -1,4 +1,4 @@
-module Tuples where
+module O11_Tuples where
 
 -- The `Data.Tuple` provides the `swap` function.
 import Data.Tuple
@@ -114,12 +114,6 @@ _ = (9, "Hello") < (8, "World")
 
 -- There is no limit for how big a tuple's arity can be but very large tuples
 -- are not well supported and they're also less efficient than smaller ones.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

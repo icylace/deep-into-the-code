@@ -1,4 +1,4 @@
-module LetAndWhere where
+module O07_LetAndWhere where
 
 -- A let expression is an expression that has declarations introduced into it.
 -- Declarations created in this way are able to be referenced only within the
@@ -56,12 +56,6 @@ upOne''' n = n + one
         one = 1
 _ = upOne''' 23
 -- Result will be `24`.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

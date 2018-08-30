@@ -1,4 +1,4 @@
-module Types where
+module O09_Types where
 
 -- We import concrete integer types to use later.
 
@@ -175,7 +175,15 @@ _ = DogWithAge "Bar" 2
 -- Data constructors which take no arguments are nullary and they represent
 -- constant values.
 
-data OnlyMe
+data OnlyMe = OnlyMe
+
+
+
+
+-- Data types that don't have data constructors are only useful
+-- in type signatures.
+
+data NotHere
 
 
 -- -----------------------------------------------------------------------------
@@ -232,8 +240,8 @@ _ = 1 :: Double
 
 -- Haskell will infer the most generally applicable type that is still correct.
 
-hi x = "hi " ++ x
--- The function `hi` has the type `[Char] -> [Char]`.'
+hey x = "hey " ++ x
+-- The function `hey` has the type `[Char] -> [Char]`.'
 
 smoosh x y = x ++ y
 -- The function `smoosh` has the type `[a] -> [a] -> [a]`.'
@@ -397,8 +405,12 @@ _ = 4 / 2
 
 
 -- A type signature can make use of multiple typeclass constraints.
+
 foo1 :: (Num a, Num b) => a -> b -> b
+foo1 = undefined
+
 foo2 :: (Num a, Num a) => a -> a -> a
+foo2 = undefined
 
 
 
@@ -496,8 +508,8 @@ _ = (id head) [1, 2]
 -- 13.0 :: Fractional a => a
 
 -- A concrete type can be chosen by declaring it.
-let x = 13 :: Integer
--- `x` has the type `Integer`.
+
+_ = 13 :: Integer
 
 
 
@@ -669,12 +681,6 @@ _ = minBound :: ()
 
 _ = maxBound :: ()
 -- Result will be `()`.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

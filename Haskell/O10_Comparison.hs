@@ -1,4 +1,4 @@
-module Comparison where
+module O10_Comparison where
 
 x :: Integer
 x = 9
@@ -186,9 +186,3 @@ _ = if False then "Yes" else "No"
 --
 --     if True then "Yes" else 0
 --
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()

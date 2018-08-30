@@ -1,6 +1,99 @@
+-- This is a single-line comment.
+
+-- Comments let you put helpful commentary with your code.
+
+{- Block comments are
+usually seen spanning
+multiple lines. -}
+
+{- Block comments can be used like single-line comments. -}
+
+{- Block comments can be -}  {- placed next to each other. -}
+
+{- Not that you
+would -}{- want
+to do that. -}
+
+{- Also, block comments...
+  {- ...may be nested. -}
+-}
+
+      -- Single-line comments don't need to start at the beginning of the line.
+
+      {- Neither do block comments. -}
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- This file you're reading right now is a Haskell source code file because
+-- it has the `.hs` file extension and contains Haskell code.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+import O02_Expressions
+import O03_Functions
+import O04_Operators
+import O05_Arithmetic
+import O06_SignificantWhitespace
+import O07_LetAndWhere
+import O08_Strings
+import O09_Types
+import O10_Comparison
+import O11_Tuples
+import O12_PatternMatching
+import O13_Lists
+import O14_Typeclasses
+
+-- Any Haskell source code file that is meant to be run directly must have the
+-- entry point `main` defined.  `main` will be explained in more detail later.
+
+main :: IO ()
+main = print ()
+
+-- To run the code in this file, the source code must first be compiled into
+-- an executable binary file before being run.  Executing the following on
+-- thecommand line:
+--
+--     stack runghc haskell
+--
+-- If there were any compile-time errors while attempting to run, GHC will
+-- show them.
+
+-- Another way is to load the code from within the GHCi REPL environment.
+-- While remaining in the same directory, open up GHCi by running
+--
+--     stack ghci
+--
+-- then use GHCi's load command, `:l` (short for `:load`):
+--
+--     :l haskell
+--
+-- If there were any compile-time errors while loading, GHCi will show them.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Key Terms
+-- =========
+-- Comment: Text meant to be read by humans and ignored by the compiler.
+-- Single-line comment: A comment that occupies one line.
+-- Block comment: A comment that occupies one or more consecutive lines.
+
+-- Entry point: Place where the operating system transfers control to a program.
 
 
 
+
+
+
+
+
+
+
+
+
+{-
 
 
 
@@ -140,26 +233,33 @@ x = undefined
 -- The type of `f x` is `Char -> Char -> Char`
 
 
-let g :: a -> b -> c -> b ; g = undefined
+g :: a -> b -> c -> b
+g = undefined
+
 _ = g 0 'c' "woot"
 -- Type is `Char`.
 
-let h :: (Num a, Num b) => a -> b -> b ; h = undefined
+h :: (Num a, Num b) => a -> b -> b
+h = undefined
+
 _ = h 1.0 2
 -- Type is `Num b => b`.
 
-let h :: (Num a, Num b) => a -> b -> b ; h = undefined
 _ = h 1 (5.5 :: Double)
 -- Type is `Double`.
 
-let jackal :: (Ord a, Eq b) => a -> b -> a ; jackal = undefined
+jackal :: (Ord a, Eq b) => a -> b -> a
+jackal = undefined
+
 _ = jackal "keyboard" "has the word jackal in it"
 -- Type is `[Char]`.
 
 _ = jackal "keyboard"
 -- Type is `Eq b => b -> [Char]`.
 
-let kessel :: (Ord a, Num b) => a -> b -> a ; kessel = undefined
+kessel :: (Ord a, Num b) => a -> b -> a
+kessel = undefined
+
 _ = kessel 1 2
 -- Type is `(Num a, Ord a) => a`.
 
@@ -372,11 +472,15 @@ sayHello :: String -> IO ()
 sayHello x = putStrLn ("Hello, " ++ x ++ "!")
 
 
+-- main :: IO ()
+-- main = putStrLn "Hello world!"
+
+
+-}
 
 
 
-main :: IO ()
-main = putStrLn "Hello world!"
+
 
 
 
@@ -417,3 +521,7 @@ main = putStrLn "Hello world!"
 -- Directive: An instruction to the compiler.
 
 -- Typeclass deriving: The automatic creation of instances for new datatypes.
+
+
+
+

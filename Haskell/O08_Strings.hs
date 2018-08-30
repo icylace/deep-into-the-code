@@ -1,4 +1,4 @@
-module Strings where
+module O08_Strings where
 
 -- A character represents a unit of text.
 
@@ -186,8 +186,8 @@ _ = "Hello" !! 4
 -- To print strings to the screen, we need to make use of our special `main`
 -- function which lets us conduct I/O (input/output) operations.
 
-main :: IO ()
-main = do
+printStrings :: IO ()
+printStrings = do
 
   print "Hello world!"
   -- Result will be the display of `"Hello world!"`.

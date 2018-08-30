@@ -1,4 +1,4 @@
-module Functions where
+module O03_Functions where
 
 -- Here we declare a function named `double` that accepts a formal parameter
 -- named `x` which gets used in the body of the function to calculate the
@@ -75,8 +75,19 @@ _ = (((addAndMultiplyMore 2) 5) 8) 11
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
-main :: IO ()
-main = print ()
+-- A partial function is a function that doesn't handle all possible cases.
+
+foo 1 = 10
+foo 2 = 99
+
+_ = foo 1
+-- Result will be `10`.
+
+_ = foo 2
+-- Result will be `99`.
+
+_ = foo 3
+-- Result will be a runtime exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -98,4 +109,4 @@ main = print ()
 -- Currying: Applying nested functions to a series of corresponding arguments.
 -- Partial application: Fixing some arguments to get a function for the rest.
 
--- Partial function: A function not having results for all possible inputs.
+-- Partial function: A function that does not handle all possible inputs.

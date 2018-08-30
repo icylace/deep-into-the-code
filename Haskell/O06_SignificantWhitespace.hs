@@ -1,4 +1,4 @@
-module SignificantWhitespace where
+module O06_SignificantWhitespace where
 
 -- Indentation helps determine the meaning of code.
 
@@ -34,12 +34,6 @@ foo x = 1 + (x * 2) + (x * 3)
 -- It is good practice to not have any whitespace precede declarations.
 
 -- Improper spacing will lead to errors.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
-main :: IO ()
-main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
