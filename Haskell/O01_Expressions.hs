@@ -38,10 +38,10 @@ b = 1 + 2
 -- (a.k.a. redex).
 
 c = 3 + 4
--- Result will be `7`.
+-- Result is `7`.
 
 d = c + 5
--- Result will be `12`.
+-- Result is `12`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -59,24 +59,24 @@ _ = 2 + 3
 -- Arithmetic expressions follow the order of operations.
 
 _ = 1 + 2 * 3
--- Result will be `7`.
+-- Result is `7`.
 
 -- Parentheses may be used to nest expressions within other expressions.
 -- Nested expressions are evaluated first.
 
 _ = (1 + 2) * 3
--- Result will be `9`.
+-- Result is `9`.
 
 -- Nested expressions at the same level of nesting are evaluated from
 -- left to right.
 
 _ = (1 + 2) * (3 + 4) * (5 + 6)
--- Result will be `231`.
+-- Result is `231`.
 
 -- Nesting is unlimited.
 
 _ = ((1 + 2) * 3) + 4 * (5 + 6)
--- Result will be `53`.
+-- Result is `53`.
 
 -- An expression will not necessarily be reduced to a value when evaluated.
 -- By default it gets evaluated to weak head normal form, which is just a
@@ -84,12 +84,6 @@ _ = ((1 + 2) * 3) + 4 * (5 + 6)
 
 -- An expression is not evaluated until it is forced to be by other
 -- expressions that refer to it.  This is called lazy evaluation.
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
--- main :: IO ()
--- main = print ()
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

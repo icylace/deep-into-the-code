@@ -93,7 +93,6 @@ main = print ()
 
 
 
-{-
 
 
 
@@ -139,12 +138,32 @@ main = print ()
 
 
 
+
+-- `undefined` is a special value that can be used to allow compilation
+-- to happen for code that is not yet implemented.  If "undefined" code
+-- is evaluated, an exception will be thrown.  However, due to lazy
+-- evaluation, such code can coexist with other code that works
+-- and operates normally.
+
+x = undefined
+-- `x` is now undefined.
+
+-- "undefined" code can be typechecked.
+
+
+
+
+
+
+
 -- Since `->` is right-associative, currying is available by default,
 -- and function type signatures are implicitly parenthesized.
 
 f1 :: a -> a -> a
+f1 = undefined
 
 f2 :: a -> (a -> a)
+f2 = undefined
 
 -- `f1` and `f2` have the same types.
 
@@ -167,7 +186,7 @@ first = curry fst
 _ = fst (2, 3)
 _ = first 2 3
 _ = (first 2) 3
--- All results will be `2`.
+-- All results are `2`.
 
 
 
@@ -182,7 +201,7 @@ addUsingPair = uncurry (+)
 _ = 2 + 3
 _ = (+) 2 3
 _ = addUsingPair (2, 3)
--- All results will be `5`.
+-- All results are `5`.
 
 
 
@@ -197,11 +216,11 @@ uncurriedStyle (x, y) = x + y
 anonymousStyle = \x y -> x + y
 nestedAnonymousStyle = \x -> \y -> x + y
 
-curriedStyle 2 3
-uncurriedStyle (2, 3)
-anonymousStyle 2 3
-nestedAnonymousStyle 2 3
--- All results will be `5`.
+_ = curriedStyle 2 3
+_ = uncurriedStyle (2, 3)
+_ = anonymousStyle 2 3
+_ = nestedAnonymousStyle 2 3
+-- All results are `5`.
 
 
 
@@ -213,22 +232,12 @@ nestedAnonymousStyle 2 3
 
 
 
--- `undefined` is a special value that can be used to allow compilation
--- to happen for code that is not yet implemented.  If "undefined" code
--- is evaluated, an exception will be thrown.  However, due to lazy
--- evaluation, such code can coexist with other code that works
--- and operates normally.
-
-x = undefined
--- `x` is now undefined.
-
--- The type of "undefined" code can be checked.
 
 f :: a -> a -> a -> a
 f = undefined
 
-x :: Char
-x = undefined
+y :: Char
+y = undefined
 
 -- The type of `f x` is `Char -> Char -> Char`
 
@@ -248,14 +257,19 @@ _ = h 1.0 2
 _ = h 1 (5.5 :: Double)
 -- Type is `Double`.
 
+
 jackal :: (Ord a, Eq b) => a -> b -> a
 jackal = undefined
+
 
 _ = jackal "keyboard" "has the word jackal in it"
 -- Type is `[Char]`.
 
+{-
+
 _ = jackal "keyboard"
 -- Type is `Eq b => b -> [Char]`.
+
 
 kessel :: (Ord a, Num b) => a -> b -> a
 kessel = undefined

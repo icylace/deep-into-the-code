@@ -3,12 +3,12 @@ module O07_Strings where
 -- A character represents a unit of text.
 
 _ = 'A'
--- Result will be `'A'`.
+-- Result is `'A'`.
 
 -- A list of characters represents a sequence of text.
 
 _ = ['A', 'B']
--- Result will be `"AB"`.
+-- Result is `"AB"`.
 
 -- Lists will be explored in detail later on.
 
@@ -16,12 +16,12 @@ _ = ['A', 'B']
 -- Strings are denoted by surrounding double quotes.
 
 _ = "AB"
--- Result will be `"AB"`.
+-- Result is `"AB"`.
 
 -- An empty string has no characters and corresponds to the empty list, `[]`.
 
 _ = ""
--- Result will be `""`.
+-- Result is `""`.
 
 -- Strings can be concatenated, which means to join together.
 
@@ -29,15 +29,15 @@ _ = ""
 
 _ = "Hello" ++ "world!"
 _ = "Hello" ++ "world!" ++ ""
--- Both results will be `"Helloworld!"`.
+-- Both results are `"Helloworld!"`.
 
 _ = "Hello" ++ " world!"
 _ = "Hello " ++ "world!"
 _ = "Hello" ++ "" ++ " " ++ "" ++ "world!"
--- All three results will be `"Hello world!"`.
+-- All three results are `"Hello world!"`.
 
 _ = "Hello " ++ " world!"
--- Result will be `"Hello  World!"`.
+-- Result is `"Hello  World!"`.
 
 -- Another way to concatenate strings is to use the `concat` function.
 
@@ -46,7 +46,7 @@ _ = concat ["Hello", " world!"]
 _ = concat ["Hello ", "world!"]
 _ = concat ["Hello", " ", "world!"]
 _ = concat ["Hello", "", " ", "", "world!"]
--- All five results will be `"Hello World!"`.
+-- All five results are `"Hello World!"`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -62,25 +62,25 @@ _ = 'H' : "ello"
 _ = 'H' : 'e' : "llo"
 _ = 'H' : 'e' : 'l' : 'l' : 'o' : ""
 _ = 'H' : 'e' : 'l' : 'l' : 'o' : []
--- All four results will be `"Hello"`.
+-- All four results are `"Hello"`.
 
 _ = "H" : ["ello"]
--- Result will be `["H", "ello"]`.
+-- Result is `["H", "ello"]`.
 
 _ = "He" : ["llo"]
--- Result will be `["He", "llo"]`.
+-- Result is `["He", "llo"]`.
 
 -- The `head` function returns the head (the first element) of a list.
 
 _ = head "Hello"
 _ = head "H"
--- Both results will be `'H'`.
+-- Both results are `'H'`.
 
 _ = head ["H", "ello"]
--- Result will be `"H"`.
+-- Result is `"H"`.
 
 _ = head ["He", "llo"]
--- Result will be `"He"`.
+-- Result is `"He"`.
 
 -- Attempting to use an empty string or more generally an empty list with
 -- `head` will cause an exception.
@@ -93,16 +93,16 @@ _ = head ["He", "llo"]
 -- of a given list.
 
 _ = tail "Hello"
--- Result will be `"ello"`.
+-- Result is `"ello"`.
 
 _ = tail ["H", "ello"]
--- Result will be `["ello"]`.
+-- Result is `["ello"]`.
 
 _ = tail "ab"
--- Result will be `"b"`.
+-- Result is `"b"`.
 
 _ = tail "a"
--- Result will be `""`.
+-- Result is `""`.
 
 -- Attempting to use an empty string or more generally an empty list with
 -- `tail` will cause an exception.
@@ -115,18 +115,18 @@ _ = tail "a"
 -- from the beginning of a given list.
 
 _ = take 0 "Hello"
--- Result will be `""`.
+-- Result is `""`.
 
 _ = take 1 "Hello"
--- Result will be `"H"`.
+-- Result is `"H"`.
 
 _ = take 10 "Hello"
--- Result will be `"Hello"`.
+-- Result is `"Hello"`.
 
 _ = take 0 ""
 _ = take 1 ""
 _ = take 10 ""
--- All three results will be `""`.
+-- All three results are `""`.
 
 -- Attempting to use a negative number with `take` will cause an error.
 --
@@ -137,18 +137,18 @@ _ = take 10 ""
 -- number of elements has been ignored from a given list.
 
 _ = drop 0 "Hello"
--- Result will be `"Hello"`.
+-- Result is `"Hello"`.
 
 _ = drop 1 "Hello"
--- Result will be `"ello"`.
+-- Result is `"ello"`.
 
 _ = drop 10 "Hello"
--- Result will be `""`.
+-- Result is `""`.
 
 _ = drop 0 ""
 _ = drop 1 ""
 _ = drop 10 ""
--- All three results will be `""`.
+-- All three results are `""`.
 
 -- Attempting to use a negative number with `drop` will cause an error.
 --
@@ -159,13 +159,13 @@ _ = drop 10 ""
 -- specified position in a list.
 
 _ = "Hello" !! 0
--- Result will be `'H'`.
+-- Result is `'H'`.
 
 _ = "Hello" !! 3
--- Result will be `'l'`.
+-- Result is `'l'`.
 
 _ = "Hello" !! 4
--- Result will be `'o'`.
+-- Result is `'o'`.
 
 -- Attempting to use a negative index position with the subscript operator
 -- will cause an error.

@@ -6,70 +6,70 @@ x = 9
 -- The equality operator, `==`, checks if a couple expressions are equal.
 
 _ = x == 5
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x == 9
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x == 10
--- Result will be `False`.
+-- Result is `False`.
 
 -- The inequality operator, `/=`, checks if a couple expressions are not equal.
 
 _ = x /= 5
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x /= 9
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x /= 10
--- Result will be `True`.
+-- Result is `True`.
 
 -- The less-than operator, `<`, checks if an expression is lesser than another.
 
 _ = x < 5
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x < 9
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x < 10
--- Result will be `True`.
+-- Result is `True`.
 
 -- The less-than-or-equal-to operator, `<=`, checks if an expression is
 -- lesser than or equal to another.
 
 _ = x <= 5
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x <= 9
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x <= 10
--- Result will be `True`.
+-- Result is `True`.
 
 -- The greater-than operator, `>`, checks if an expression is greater than another.
 
 _ = x > 5
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x > 9
--- Result will be `False`.
+-- Result is `False`.
 
 _ = x > 10
--- Result will be `False`.
+-- Result is `False`.
 
 -- The greater-than-or-equal-to operator, `>=`, checks if an expression is
 -- greater than or equal to another.
 
 _ = x >= 5
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x >= 9
--- Result will be `True`.
+-- Result is `True`.
 
 _ = x >= 10
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -97,40 +97,40 @@ _ = x >= 10
 -- Other types can be compared as well.
 
 _ = 'a' == 'a'
--- Result will be `True`.
+-- Result is `True`.
 
 _ = 'a' == 'b'
--- Result will be `False`.
+-- Result is `False`.
 
 _ = 'a' < 'b'
--- Result will be `True`.
+-- Result is `True`.
 
 _ = 'a' > 'b'
--- Result will be `False`.
+-- Result is `False`.
 
 _ = 'a' == 'A'
--- Result will be `False`.
+-- Result is `False`.
 
 _ = "Hello" == "Hello"
--- Result will be `True`.
+-- Result is `True`.
 
 _ = "Hello" == "hello"
--- Result will be `False`.
+-- Result is `False`.
 
 _ = "Hello" == "World"
--- Result will be `False`.
+-- Result is `False`.
 
 _ = "Hello" < "hello"
--- Result will be `True`.
+-- Result is `True`.
 
 _ = "Hello" > "hello"
--- Result will be `False`.
+-- Result is `False`.
 
 _ = "Hello" < "World"
--- Result will be `True`.
+-- Result is `True`.
 
 _ = "Hello" > "World"
--- Result will be `False`.
+-- Result is `False`.
 
 -- Attempting to compare values having different types will cause an error.
 --
@@ -144,25 +144,25 @@ _ = "Hello" > "World"
 -- operands are `True`.
 
 _ = True && True
--- Result will be `True`.
+-- Result is `True`.
 
 _ = not (True && True)
--- Result will be `False`.
+-- Result is `False`.
 
 _ = (8 > 4) && (4 > 5)
--- Result will be `False`.
+-- Result is `False`.
 
 -- The boolean disjunction, or logical OR, operator `||` returns `True` if
 -- either operands are `True`.
 
 _ = False || True
--- Result will be `True`.
+-- Result is `True`.
 
 _ = (8 > 4) || (4 > 5)
--- Result will be `True`.
+-- Result is `True`.
 
 _ = not ((8 > 4) || (4 > 5))
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -171,10 +171,10 @@ _ = not ((8 > 4) || (4 > 5))
 -- boolean condition.
 
 _ = if True then "Yes" else "No"
--- Result will be `"Yes"`.
+-- Result is `"Yes"`.
 
 _ = if False then "Yes" else "No"
--- Result will be `"No"`.
+-- Result is `"No"`.
 
 -- If the conditional is not a boolean, an error will occur.
 --

@@ -8,7 +8,7 @@ import Data.Tuple
 
 _ = (,,,) 8 "Hello" "World" 'c'
 _ = (8, "Hello", "World", 'c')
--- Both results will be `(8,"Hello","World",'c')`.
+-- Both results are `(8,"Hello","World",'c')`.
 
 -- The number of values contained within a tuple is called its arity.
 -- The arity of the previous tuple is 4.
@@ -17,7 +17,7 @@ _ = (8, "Hello", "World", 'c')
 
 _ = (,,) 8 "Hello" "World"
 _ = (8, "Hello", "World")
--- Both results will be `(8,"Hello","World")`.
+-- Both results are `(8,"Hello","World")`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -26,35 +26,35 @@ _ = (8, "Hello", "World")
 
 _ = (,) 8 10
 _ = (8, 10)
--- Both results will be `(8,10)`.
+-- Both results are `(8,10)`.
 
 _ = (,) 8 "Hello"
 _ = (8, "Hello")
--- Both results will be `(8,"Hello")`.
+-- Both results are `(8,"Hello")`.
 
 -- The `fst` function gets the left value of a pair.
 
 _ = fst (8, "Hello")
--- Result will be `8`.
+-- Result is `8`.
 
 _ = 1 + fst (8, "Hello")
--- Result will be `9`.
+-- Result is `9`.
 
 -- The `snd` function gets the right value of a pair.
 
 _ = snd (8, "Hello")
--- Result will be `"Hello"`.
+-- Result is `"Hello"`.
 
 _ = snd (8, "Hello") ++ " World"
--- Result will be `"Hello World"`.
+-- Result is `"Hello World"`.
 
 -- The `swap` function exchanges the left and right values with each other.
 
 _ = swap (8, "Hello")
--- Result will be `("Hello",8)`.
+-- Result is `("Hello",8)`.
 
 _ = swap $ swap (8, "Hello")
--- Result will be `(8,"Hello")`.
+-- Result is `(8,"Hello")`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ _ = swap $ swap (8, "Hello")
 -- as a nested expression.
 
 _ = (3)
--- Result will be `3`.
+-- Result is `3`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -73,6 +73,7 @@ _ = (3)
 -- A special tuple that contains no values is called unit.
 
 _ = ()
+-- Result is `()`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -81,7 +82,7 @@ _ = ()
 
 withFirstCouple = (,,,) 8 "Hello"
 _ = withFirstCouple 'B' 3.0
--- Result will be `(8,"Hello",'B',3.0)`.
+-- Result is `(8,"Hello",'B',3.0)`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -89,16 +90,16 @@ _ = withFirstCouple 'B' 3.0
 -- Tuples can be compared on an element-by-element basis.
 
 _ = (8, "Hello") == (8, "Hello")
--- Result will be `True`.
+-- Result is `True`.
 
 _ = (8, "Hello") == (8, "World")
--- Result will be `False`.
+-- Result is `False`.
 
 _ = (8, "Hello") < (8, "World")
--- Result will be `True`.
+-- Result is `True`.
 
 _ = (9, "Hello") < (8, "World")
--- Result will be `False`.
+-- Result is `False`.
 
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.  Otherwise an error will occur.

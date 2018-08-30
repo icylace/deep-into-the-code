@@ -80,10 +80,10 @@ _ = ['a'] ++ ['b']
 _ = ['a'] ++ "b"
 _ = "a" ++ ['b']
 _ = "a" ++ "b"
--- All four results will be `ab`.
+-- All four results are `ab`.
 
 _ = [1] ++ [2]
--- Result will be `[1, 2]`.
+-- Result is `[1, 2]`.
 
 -- Attempting to concatenate lists of different types will cause an error.
 --
@@ -121,10 +121,10 @@ _ = [1] ++ [2]
 -- The function `not` takes a `Bool` value and returns the other `Bool` value.
 
 _ = not False
--- Result will be `True`.
+-- Result is `True`.
 
 _ = not True
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -151,10 +151,10 @@ yesNo MyTrue  = "Yes"
 yesNo MyFalse = "No"
 
 _ = yesNo MyTrue
--- Result will be `"Yes"`.
+-- Result is `"Yes"`.
 
 _ = yesNo MyFalse
--- Result will be `"No"`.
+-- Result is `"No"`.
 
 
 
@@ -162,11 +162,11 @@ _ = yesNo MyFalse
 data Pet = Cat String | DogWithAge String Integer
 
 _ = Cat "Foo"
--- Result will be `Cat "Foo"`.
+-- Result is `Cat "Foo"`.
 -- The type of `Cat` is `String -> Pet`.
 
 _ = DogWithAge "Bar" 2
--- Result will be `DogWithAge "Bar" 2`.
+-- Result is `DogWithAge "Bar" 2`.
 -- The type of `DogWithAge` is `String -> Integer -> Pet`.
 
 
@@ -198,15 +198,15 @@ sillyIncrease 10 = 2
 sillyIncrease _  = 3
 
 _ = sillyIncrease 8
--- Result will be `1`.
+-- Result is `1`.
 
 _ = sillyIncrease 10
--- Result will be `2`.
+-- Result is `2`.
 
 _ = sillyIncrease 1
 _ = sillyIncrease 2
 _ = sillyIncrease 9
--- All three results will be `3`.
+-- All three results are `3`.
 
 
 
@@ -218,10 +218,10 @@ _ = sillyIncrease 9
 -- type explicitly given.
 
 _ = 1
--- Result will be `1`.
+-- Result is `1`.
 
 _ = 1 :: Double
--- Result will be `1.0`.
+-- Result is `1.0`.
 
 
 
@@ -385,7 +385,7 @@ smoosh x y = x ++ y
 -- that is fractional.
 
 _ = 4 / 2
--- Result will be: 2.0
+-- Result is `2.0`.
 
 -- Values of the type `Fractional a => a` default to the `Double` type.
 
@@ -425,16 +425,16 @@ foo2 = undefined
 -- It returns its argument.
 
 _ = id 3
--- Result will be `3`.
+-- Result is `3`.
 
 _ = id "Hi"
--- Result will be `"Hi"`.
+-- Result is `"Hi"`.
 
 _ = id True
--- Result will be `True`.
+-- Result is `True`.
 
 _ = (id head) [1, 2]
--- Result will be `1`.
+-- Result is `1`.
 
 
 
@@ -558,13 +558,13 @@ _ = 13 :: Integer
 -- a couple integers.
 
 _ = 1 / 2 :: Rational
--- Result will be `1 % 2`.
+-- Result is `1 % 2`.
 
 _ = 1.5 / 2.5 :: Rational
--- Result will be `3 % 5`.
+-- Result is `3 % 5`.
 
 _ = 34.56 / 123.345 :: Rational
--- Result will be `768 % 2741`.
+-- Result is `768 % 2741`.
 
 -- The `Scientific` type has arbitrary-precision and represents a number in
 -- scientific notation.  It stores the coefficient as an `Integer` and the
@@ -607,23 +607,26 @@ _ = 34.56 / 123.345 :: Rational
 -- to represent its values.
 
 _ = 127 :: Int8
--- Result will be `127`.
+-- Result is `127`.
 
--- Out-of-bound numbers will be "looped" until it falls within the `Int8` range.
+-- Out-of-bound numbers will be "looped" until it falls within range.
 
 _ = (127 + 10) :: Int8
 _ = (127 :: Int8) + 10
 _ = 127 + (10 :: Int8)
--- All three results will be `-119`.
+_ = (127 :: Int8) + (10 :: Int8)
+-- All four results are `-119`.
 
--- A warning will be given for values that are outside the range of `Int8`.
+-- A warning will be given for values that are out of range.
 
 _ = 100000 :: Int8
--- Result will be a warning and `-96`.
+-- Result is `-96` with a warning.
 
 _ = -100000 :: Int8
--- Result will be a warning and `96`.
+-- Result is `96` with a warning.
 
+
+-- TODO: explain why for the following
 -- Usually, `Integer` is preferred over other integral types.
 
 -- -----------------------------------------------------------------------------
@@ -633,54 +636,54 @@ _ = -100000 :: Int8
 -- limit values of types.
 
 _ = minBound :: Int8
--- Result will be `-128`.
+-- Result is `-128`.
 
 _ = maxBound :: Int8
--- Result will be `127`.
+-- Result is `127`.
 
 _ = minBound :: Int16
--- Result will be `-32768`.
+-- Result is `-32768`.
 
 _ = maxBound :: Int16
--- Result will be `32767`.
+-- Result is `32767`.
 
 _ = minBound :: Int32
--- Result will be `-2147483648`.
+-- Result is `-2147483648`.
 
 _ = maxBound :: Int32
--- Result will be `2147483647`.
+-- Result is `2147483647`.
 
 _ = minBound :: Int64
--- Result will be `-9223372036854775808`.
+-- Result is `-9223372036854775808`.
 
 _ = maxBound :: Int64
--- Result will be `9223372036854775807`.
+-- Result is `9223372036854775807`.
 
 _ = minBound :: Int
--- Result will be `-9223372036854775808`.
+-- Result is `-9223372036854775808`.
 
 _ = maxBound :: Int
--- Result will be `9223372036854775807`.
+-- Result is `9223372036854775807`.
 
 -- Non-numeric types can also define minimum and maximum bounds.
 
 _ = minBound :: Bool
--- Result will be `False`.
+-- Result is `False`.
 
 _ = maxBound :: Bool
--- Result will be `True`.
+-- Result is `True`.
 
 _ = minBound :: Char
--- Result will be `'\NUL'`.
+-- Result is `'\NUL'`.
 
 _ = maxBound :: Char
--- Result will be `'\1114111'`.
+-- Result is `'\1114111'`.
 
 _ = minBound :: ()
--- Result will be `()`.
+-- Result is `()`.
 
 _ = maxBound :: ()
--- Result will be `()`.
+-- Result is `()`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

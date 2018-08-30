@@ -12,13 +12,13 @@ double x = x * 2
 -- output when applied to the same input.
 
 _ = double 3
--- Result will be `6`.
+-- Result is `6`.
 
 -- An application of a pure function can be replaced by the function's body
 -- and still get the same result.
 
 _ = 3 * 2
--- Result will be `6`.
+-- Result is `6`.
 
 -- Functions that are not pure are covered later.
 
@@ -34,7 +34,7 @@ addAndMultiply x y = x + y * (x + y)
 -- and indeed can be used that way.
 
 _ = addAndMultiply 4 5
--- Result will be `49`.
+-- Result is `49`.
 
 -- However, technically speaking, all functions in Haskell have precisely one
 -- parameter and always return a value.  So, the above expression is actually
@@ -45,17 +45,17 @@ _ = addAndMultiply 4 5
 -- function within it.
 
 c = addAndMultiply 4
--- Result will be a function similar to `addAndMultiply` but lacking the `x`
+-- Result is a function similar to `addAndMultiply` but lacking the `x`
 -- parameter and having the value `4` exist where instances of the `x`
 -- parameter originally were.
 
 _ = c 5
--- Result will be `49`.
+-- Result is `49`.
 
 -- As with any other function application, `c` can be replaced by its body.
 
 _ = (addAndMultiply 4) 5
--- Result will be `49`.
+-- Result is `49`.
 
 -- Functions appearing to have multiple parameters can be "broken up"
 -- due to currying.
@@ -70,7 +70,7 @@ _ = ((addAndMultiplyMore 2) 5 8) 11
 _ = ((addAndMultiplyMore 2 5) 8) 11
 _ = (((addAndMultiplyMore 2) 5) 8) 11
 _ = (((addAndMultiplyMore 2) 5) 8) 11
--- All nine results will be `97`.
+-- All nine results are `97`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -81,13 +81,13 @@ foo 1 = 10
 foo 2 = 99
 
 _ = foo 1
--- Result will be `10`.
+-- Result is `10`.
 
 _ = foo 2
--- Result will be `99`.
+-- Result is `99`.
 
 _ = foo 3
--- Result will be a runtime exception.
+-- Result is a runtime exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

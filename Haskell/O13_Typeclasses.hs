@@ -27,12 +27,12 @@ instance Eq Me' where
   Me' == Me' = True
 
 _ = Me' == Me'
--- Result will be `True`.
+-- Result is `True`.
 
 -- When only equality is defined, inequality is automatically derived.
 
 _ = Me' /= Me'
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -43,12 +43,12 @@ instance Eq Me2 where
   Me2 /= Me2 = True
 
 _ = Me2 /= Me2
--- Result will be `True`.
+-- Result is `True`.
 
 -- When only inequality is defined, equality is automatically derived.
 
 _ = Me2 == Me2
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -63,7 +63,7 @@ instance Eq Me3 where
 
 _ = Me3 == Me3
 _ = Me3 /= Me3
--- Both results will be `True`.
+-- Both results are `True`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -76,7 +76,7 @@ instance Eq Me4 where
 
 _ = Me4 == Me4
 _ = Me4 /= Me4
--- Both results will be `False`.
+-- Both results are `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -108,13 +108,13 @@ instance Eq Date where
     weekday == weekday' && dayOfMonth == dayOfMonth'
 
 _ = Date Thursday 10 == Date Thursday 10
--- Result will be `True`.
+-- Result is `True`.
 
 _ = Date Thursday 10 == Date Thursday 11
--- Result will be `False`.
+-- Result is `False`.
 
 _ = Date Thursday 10 == Date Wednesday 10
--- Result will be `False`.
+-- Result is `False`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -125,10 +125,10 @@ _ = Date Thursday 10 == Date Wednesday 10
 data I = I deriving Eq
 
 _ = I == I
--- Result will be `True`.
+-- Result is `True`.
 
 _ = I /= I
--- Result will be `False`.
+-- Result is `False`.
 
 -- The common typeclasses that can be derived are `Eq`, `Ord`, `Enum`,
 -- `Bounded`, `Read`, and `Show`.

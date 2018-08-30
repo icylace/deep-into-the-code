@@ -13,11 +13,11 @@ _ = 2 ^ 9
 _ = 2^ 9
 _ = 2 ^9
 _ = 2^9
--- All four results will be `512`.
+-- All four results are `512`.
 
 _ = -3
 _ = - 3
--- Both results will be `-3`.
+-- Both results are `-3`.
 
 -- Expressions can get large enough to merit spanning it across multiple lines
 -- to maintain readbility.  Lines that are continuations of an expression
