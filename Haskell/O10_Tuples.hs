@@ -6,55 +6,42 @@ import Data.Tuple
 -- A tuple is a grouping of fixed-size for values having either the same types
 -- or different types.
 
-_ = (,,,) 8 "Hello" "World" 'c'
-_ = (8, "Hello", "World", 'c')
--- Both results are `(8,"Hello","World",'c')`.
+_ = (,,,) 8 "Hello" "World" 'c'   -- `(8,"Hello","World",'c')`
+_ = (8, "Hello", "World", 'c')    -- `(8,"Hello","World",'c')`
 
 -- The number of values contained within a tuple is called its arity.
 -- The arity of the previous tuple is 4.
 
 -- A triple is a tuple containing three values.  Therefore its arity is 3.
 
-_ = (,,) 8 "Hello" "World"
-_ = (8, "Hello", "World")
--- Both results are `(8,"Hello","World")`.
+_ = (,,) 8 "Hello" "World"    -- `(8,"Hello","World")`
+_ = (8, "Hello", "World")     -- `(8,"Hello","World")`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- A pair is a tuple containing a couple values.  Its arity is 2.
 
-_ = (,) 8 10
-_ = (8, 10)
--- Both results are `(8,10)`.
+_ = (,) 8 10    -- `(8,10)`
+_ = (8, 10)     -- `(8,10)`
 
-_ = (,) 8 "Hello"
-_ = (8, "Hello")
--- Both results are `(8,"Hello")`.
+_ = (,) 8 "Hello"   -- `(8,"Hello")`
+_ = (8, "Hello")    -- `(8,"Hello")`
 
 -- The `fst` function gets the left value of a pair.
 
-_ = fst (8, "Hello")
--- Result is `8`.
-
-_ = 1 + fst (8, "Hello")
--- Result is `9`.
+_ = fst (8, "Hello")        -- `8`
+_ = 1 + fst (8, "Hello")    -- `9`
 
 -- The `snd` function gets the right value of a pair.
 
-_ = snd (8, "Hello")
--- Result is `"Hello"`.
-
-_ = snd (8, "Hello") ++ " World"
--- Result is `"Hello World"`.
+_ = snd (8, "Hello")                -- `"Hello"`
+_ = snd (8, "Hello") ++ " World"    -- `"Hello World"`
 
 -- The `swap` function exchanges the left and right values with each other.
 
-_ = swap (8, "Hello")
--- Result is `("Hello",8)`.
-
-_ = swap $ swap (8, "Hello")
--- Result is `(8,"Hello")`.
+_ = swap (8, "Hello")           -- `("Hello",8)`
+_ = swap $ swap (8, "Hello")    -- `(8,"Hello")`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -64,16 +51,14 @@ _ = swap $ swap (8, "Hello")
 -- Attempting to define a single-element tuple ends up being interpreted
 -- as a nested expression.
 
-_ = (3)
--- Result is `3`.
+_ = (3)   -- `3`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- A special tuple that contains no values is called unit.
 
-_ = ()
--- Result is `()`.
+_ = ()    -- `()`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -81,25 +66,17 @@ _ = ()
 -- Tuples can be partially applied.
 
 withFirstCouple = (,,,) 8 "Hello"
-_ = withFirstCouple 'B' 3.0
--- Result is `(8,"Hello",'B',3.0)`.
+_ = withFirstCouple 'B' 3.0   -- `(8,"Hello",'B',3.0)`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- Tuples can be compared on an element-by-element basis.
 
-_ = (8, "Hello") == (8, "Hello")
--- Result is `True`.
-
-_ = (8, "Hello") == (8, "World")
--- Result is `False`.
-
-_ = (8, "Hello") < (8, "World")
--- Result is `True`.
-
-_ = (9, "Hello") < (8, "World")
--- Result is `False`.
+_ = (8, "Hello") == (8, "Hello")    -- `True`
+_ = (8, "Hello") == (8, "World")    -- `False`
+_ = (8, "Hello") < (8, "World")     -- `True`
+_ = (9, "Hello") < (8, "World")     -- `False`
 
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.  Otherwise an error will occur.

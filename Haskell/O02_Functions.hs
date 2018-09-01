@@ -11,14 +11,12 @@ double x = x * 2
 -- Most functions in Haskell are pure, meaning they will produce the same
 -- output when applied to the same input.
 
-_ = double 3
--- Result is `6`.
+_ = double 3    -- `6`
 
 -- An application of a pure function can be replaced by the function's body
 -- and still get the same result.
 
-_ = 3 * 2
--- Result is `6`.
+_ = 3 * 2   -- `6`
 
 -- Functions that are not pure are covered later.
 
@@ -33,8 +31,7 @@ addAndMultiply x y = x + y * (x + y)
 -- `addAndMultiply` has the appearance of a function that accepts two arguments,
 -- and indeed can be used that way.
 
-_ = addAndMultiply 4 5
--- Result is `49`.
+_ = addAndMultiply 4 5    -- `49`
 
 -- However, technically speaking, all functions in Haskell have precisely one
 -- parameter and always return a value.  So, the above expression is actually
@@ -49,28 +46,25 @@ c = addAndMultiply 4
 -- parameter and having the value `4` exist where instances of the `x`
 -- parameter originally were.
 
-_ = c 5
--- Result is `49`.
+_ = c 5   -- `49`
 
 -- As with any other function application, `c` can be replaced by its body.
 
-_ = (addAndMultiply 4) 5
--- Result is `49`.
+_ = (addAndMultiply 4) 5    -- `49`
 
 -- Functions appearing to have multiple parameters can be "broken up"
 -- due to currying.
 
 addAndMultiplyMore x y z1 z2 = x + y * (z1 + z2)
-_ = addAndMultiplyMore 2 5 8 11
-_ = (addAndMultiplyMore 2) 5 8 11
-_ = (addAndMultiplyMore 2 5) 8 11
-_ = ((addAndMultiplyMore 2) 5) 8 11
-_ = (addAndMultiplyMore 2 5 8) 11
-_ = ((addAndMultiplyMore 2) 5 8) 11
-_ = ((addAndMultiplyMore 2 5) 8) 11
-_ = (((addAndMultiplyMore 2) 5) 8) 11
-_ = (((addAndMultiplyMore 2) 5) 8) 11
--- All nine results are `97`.
+_ = addAndMultiplyMore 2 5 8 11         -- `97`
+_ = (addAndMultiplyMore 2) 5 8 11       -- `97`
+_ = (addAndMultiplyMore 2 5) 8 11       -- `97`
+_ = ((addAndMultiplyMore 2) 5) 8 11     -- `97`
+_ = (addAndMultiplyMore 2 5 8) 11       -- `97`
+_ = ((addAndMultiplyMore 2) 5 8) 11     -- `97`
+_ = ((addAndMultiplyMore 2 5) 8) 11     -- `97`
+_ = (((addAndMultiplyMore 2) 5) 8) 11   -- `97`
+_ = (((addAndMultiplyMore 2) 5) 8) 11   -- `97`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -80,14 +74,9 @@ _ = (((addAndMultiplyMore 2) 5) 8) 11
 foo 1 = 10
 foo 2 = 99
 
-_ = foo 1
--- Result is `10`.
-
-_ = foo 2
--- Result is `99`.
-
-_ = foo 3
--- Result is a runtime exception.
+_ = foo 1   -- `10`
+_ = foo 2   -- `99`
+_ = foo 3   -- Result is a runtime exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

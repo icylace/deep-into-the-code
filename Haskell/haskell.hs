@@ -2,31 +2,25 @@
 
 -- Comments let you put helpful commentary with your code.
 
-{- Block comments are
+{- Nested comments are
 usually seen spanning
 multiple lines. -}
 
-{- Block comments can be used like single-line comments. -}
+{- Nested comments can be used like single-line comments. -}
 
-{- Block comments can be -}  {- placed next to each other. -}
+{- Nested comments can be -}  {- placed next to each other. -}
 
 {- Not that you
 would -}{- want
 to do that. -}
 
-{- Also, block comments...
-  {- ...may be nested. -}
+{- Also, nested comments...
+  {- ...may be nested, of course. -}
 -}
 
       -- Single-line comments don't need to start at the beginning of the line.
 
-      {- Neither do block comments. -}
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
--- This file you're reading right now is a Haskell source code file because
--- it has the `.hs` file extension and contains Haskell code.
+      {- Neither do nested comments. -}
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -44,6 +38,9 @@ import O10_Tuples
 import O11_PatternMatching
 import O12_Lists
 import O13_Typeclasses
+
+-- This file you're reading right now is a Haskell source code file because
+-- it has the `.hs` file extension and contains Haskell code.
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.

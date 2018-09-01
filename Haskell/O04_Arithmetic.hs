@@ -3,18 +3,14 @@ module O04_Arithmetic where
 -- The functions `div` and `quot` both do integer division and behave
 -- almost the same way.
 
-_ = div 1 1
-_ = quot 1 1
--- Both results are `1`.
+_ = div 1 1     -- `1`
+_ = quot 1 1    -- `1`
 
 -- The difference being that `div` rounds toward negative infinity while
 -- `quot` rounds toward zero.
 
-_ = div 20 (-6)
--- Result is `-4`.
-
-_ = quot 20 (-6)
--- Result is `-3`.
+_ = div 20 (-6)     -- `-4`
+_ = quot 20 (-6)    -- `-3`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -22,31 +18,20 @@ _ = quot 20 (-6)
 -- The `rem` (remainder) function returns the remainder of a division.
 -- The `mod` (modulo) function does the same but for modular division.
 
-_ = rem 15 12
-_ = mod 15 12
--- Both results are `3`.
+_ = rem 15 12   -- `3`
+_ = mod 15 12   -- `3`
 
 -- In Haskell, if one or both of the arguments are negative, `rem` will have
 -- a result with the same sign as the dividend, while `mod` will have a
 -- result with the same sign as the divisor.
 
-_ = rem (-5) 2
--- Result is `-1`.
+_ = rem (-5) 2      -- `-1`
+_ = rem 5 (-2)      -- `1`
+_ = rem (-5) (-2)   -- `-1`
 
-_ = rem 5 (-2)
--- Result is `1`.
-
-_ = rem (-5) (-2)
--- Result is `-1`.
-
-_ = mod (-5) 2
--- Result is `1`.
-
-_ = mod 5 (-2)
--- Result is `-1`.
-
-_ = mod (-5) (-2)
--- Result is `-1`.
+_ = mod (-5) 2      -- `1`
+_ = mod 5 (-2)      -- `-1`
+_ = mod (-5) (-2)   -- `-1`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -64,15 +49,13 @@ _ = -100
 
 -- We need parentheses to make it work.
 
-_ = 9 + (-100)
--- Result is `-91`.
+_ = 9 + (-100)    -- `-91`
 
 -- The negation operator is also syntactic sugar for the `negate` function.
 -- Syntactic sugar is "sweet" shorthand syntax designed to make typing and
 -- reading code easier.
 
-_ = 9 + (negate 100)
--- Result is `-91`.
+_ = 9 + negate 100    -- `-91`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

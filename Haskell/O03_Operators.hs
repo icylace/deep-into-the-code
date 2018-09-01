@@ -7,50 +7,42 @@ module O03_Operators where
 -- in infix notation by default.  Their arguments are called operands.
 -- Most operators are binary meaning they apply to a couple arguments.
 
-_ = 10 / 4
--- Result is `2.5`.
+_ = 10 / 4    -- `2.5`
 
 -- Parentheses lets us use operators in prefix notation.
 
-_ = (/) 10 4
--- Result is `2.5`.
+_ = (/) 10 4    -- `2.5`
 
 -- A standard Haskell library, Prelude, provides a `div` function which accepts
 -- two arguments and does integer division with them.  Like other non-operator
 -- functions it is written in prefix notation by default which means it
 -- appears before its arguments.
 
-_ = div 10 4
--- Result is `2`.
+_ = div 10 4    -- `2`
 
 -- Backticks lets us use most prefix functions in infix notation.
 
-_ = 10 `div` 4
--- Result is `2`.
+_ = 10 `div` 4    -- `2`
 
 -- We can influence the readability of an expression by switching notations.
 
-_ = (/) ((/) 10 4) 25
-_ = 10 / 4 / 25
--- Both results are `0.1`.
+_ = (/) ((/) 10 4) 25   -- `0.1`
+_ = 10 / 4 / 25         -- `0.1`
 
-_ = div (div 10 4) 25
-_ = 10 `div` 4 `div` 25
--- Both results are `0`.
+_ = div (div 10 4) 25     -- `0`
+_ = 10 `div` 4 `div` 25   -- `0`
 
 -- Though probably useless, a non-operator function can be wrapped in
 -- parentheses and still be used in prefix notation.
 
-_ = (div) 10 4
-_ = ((div) 10) 4
--- Both results are `2`.
+_ = (div) 10 4      -- `2`
+_ = ((div) 10) 4    -- `2`
 
 -- Backticks also allow sectioning to be used.
 -- More details on sectioning later.
 
-_ = (10 `div`) 4
-_ = (`div` 4) 10
--- Both results are `2`.
+_ = (10 `div`) 4    -- `2`
+_ = (`div` 4) 10    -- `2`
 
 -- The following constructions are invalid:
 --
@@ -87,27 +79,22 @@ _ = (`div` 4) 10
 
 -- These two variables are evaluated equivalently due to left associativity.
 
-_ = 2 - 3 + 4
-_ = (2 - 3) + 4
--- Both results are `3`.
+_ = 2 - 3 + 4     -- `3`
+_ = (2 - 3) + 4   -- `3`
 
 -- Contrast this with a similar expression that uses the parentheses to
 -- simulate right associativity.
 
-_ = 2 - (3 + 4)
--- Result is `-5`.
+_ = 2 - (3 + 4)   -- `-5`
 
 -- The exponentation operator has right associativity and an even higher
 -- precedence with `infixr 8 ^`.
 
 -- The next two variables are evaluated equivalently due to right associativity.
 
-_ = 2 ^ 3 ^ 4
-_ = 2 ^ (3 ^ 4)
--- Both results are `2417851639229258349412352`.
-
-_ = (2 ^ 3) ^ 4
--- Result is `4096`.
+_ = 2 ^ 3 ^ 4     -- `2417851639229258349412352`
+_ = 2 ^ (3 ^ 4)   -- `2417851639229258349412352`
+_ = (2 ^ 3) ^ 4   -- `4096`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -129,12 +116,11 @@ timesFive = (* 5)
 -- A partially applied operator is called a section and the act of creating a
 -- section is called sectioning.
 
-_ = 2 * 5
-_ = (2 *) 5
-_ = timesTwo 5
-_ = (* 5) 2
-_ = timesFive 2
--- All five results are `10`.
+_ = 2 * 5         -- `10`
+_ = (2 *) 5       -- `10`
+_ = timesTwo 5    -- `10`
+_ = (* 5) 2       -- `10`
+_ = timesFive 2   -- `10`
 
 -- Notice that `2 (* 5)` was not included in the previous list.  This is because
 -- `2` would have been in the spot where a function or a function name should be
@@ -147,8 +133,7 @@ _ = timesFive 2
 -- when `-` is applied to a single argument.  The fix is to use another
 -- function from the standard Prelude library named `subtract`.
 
-_ = (subtract 2) 1
--- Result is `-1`.
+_ = (subtract 2) 1    -- `-1`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -156,17 +141,15 @@ _ = (subtract 2) 1
 -- The application operator, `$`, allows everything to its right to be evaluated
 -- first and can be used to delay function application.
 
-_ = 2 * (3 + 5)
-_ = (2 *) (3 + 5)
-_ = (2 *) $ (3 + 5)
-_ = (2 *) $ 3 + 5
--- All four results are `16`.
+_ = 2 * (3 + 5)       -- `16`
+_ = (2 *) (3 + 5)     -- `16`
+_ = (2 *) $ (3 + 5)   -- `16`
+_ = (2 *) $ 3 + 5     -- `16`
 
 -- Contrast the previous with the following which uses neither parentheses nor
 -- the application operator.
 
-_ = (2 *) 3 + 5
--- Result is `11`.
+_ = (2 *) 3 + 5   -- `11`
 
 -- The application operator can be used to reduce the number of parentheses
 -- required for a given expression.

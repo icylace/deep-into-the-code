@@ -4,8 +4,8 @@ module O01_Expressions where
 
 a = 1
 
-a1 = 1        -- Single-line comments can be placed after expressions.
-a2 = 1        {- Block comments can also be placed after expressions. -}
+a1 = 1    -- Single-line comments can be placed after expressions.
+a2 = 1    {- Block comments can also be placed after expressions. -}
 
 a3 {- However, unlike single-line comments, -} = 0
 a4 = {- block comments can be placed in weird places! -} 0
@@ -37,11 +37,8 @@ b = 1 + 2
 -- Evaluating `b` will result in `3` which means `b` was a reducible expression
 -- (a.k.a. redex).
 
-c = 3 + 4
--- Result is `7`.
-
-d = c + 5
--- Result is `12`.
+c = 3 + 4   -- `7`
+d = c + 5   -- `12`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -58,25 +55,22 @@ _ = 2 + 3
 
 -- Arithmetic expressions follow the order of operations.
 
-_ = 1 + 2 * 3
--- Result is `7`.
+_ = 1 + 2 * 3   -- `7`
 
 -- Parentheses may be used to nest expressions within other expressions.
 -- Nested expressions are evaluated first.
 
-_ = (1 + 2) * 3
--- Result is `9`.
+_ = (1 + 2) * 3   -- `9`
 
 -- Nested expressions at the same level of nesting are evaluated from
 -- left to right.
 
-_ = (1 + 2) * (3 + 4) * (5 + 6)
--- Result is `231`.
+_ = (1 + 2) * (3 + 4) * (5 + 6)   -- `231`
 
 -- Nesting is unlimited.
 
-_ = ((1 + 2) * 3) + 4 * (5 + 6)
--- Result is `53`.
+_ = ((1 + 2) * 3) + 4 * (5 + 6)   -- `53`
+_ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 
 -- An expression will not necessarily be reduced to a value when evaluated.
 -- By default it gets evaluated to weak head normal form, which is just a

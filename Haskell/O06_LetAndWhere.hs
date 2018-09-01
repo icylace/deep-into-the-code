@@ -9,35 +9,29 @@ module O06_LetAndWhere where
 -- finally followed by the rest of the expression.
 
 upOne n = let one = 1 in n + one
-_ = upOne 23
--- Result is `24`.
+_ = upOne 23    -- `24`
 
 -- The declarations introduced by `let` can be parameterized.
 
 upSome n m = let some = m in n + some
-_ = upSome 3 9
--- Result is `12`.
+_ = upSome 3 9    -- `12`
 
 -- Multiple declarations on the same line must be separated with semicolons.
 
 upOneAndSome n m = let one = 1; some = m in n + one + some
-_ = upOneAndSome 3 9
--- Result is `13`.
+_ = upOneAndSome 3 9    -- `13`
 
 -- The `where` keyword has a similar purpose and scoping effect as `let` but
 -- it instead defines declarations after its associated expression.
 
 upOne' n = n + one where one = 1
-_ = upOne' 23
--- Result is `24`.
+_ = upOne' 23   -- `24`
 
 upSome' n m = n + some where some = m
-_ = upSome' 3 9
--- Result is `12`.
+_ = upSome' 3 9   -- `12`
 
 upOneAndSome' n m = n + one + some where one = 1; some = m
-_ = upOneAndSome' 3 9
--- Result is `13`.
+_ = upOneAndSome' 3 9   -- `13`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -48,14 +42,12 @@ upOne'' n =
   let one :: Integer
       one = 1
   in n + one
-_ = upOne'' 23
--- Result is `24`.
+_ = upOne'' 23    -- `24`
 
 upOne''' n = n + one
   where one :: Integer
         one = 1
-_ = upOne''' 23
--- Result is `24`.
+_ = upOne''' 23   -- `24`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

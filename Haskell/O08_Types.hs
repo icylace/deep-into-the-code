@@ -7,6 +7,31 @@ import GHC.Int
 -- A type, or data type, is a classification of values.  Every value has an
 -- associated type.
 
+-- The compiler can determine the type for a value automatically through
+-- a process called type inference.
+
+x = 'b'
+-- `x` has the type `Char`.
+
+-- The value's type can be explicitly written which is good for maintainability.
+
+y :: Char
+y = 'b'
+-- `y` has the type `Char`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Haskell comes with several types.
 
 
@@ -74,30 +99,6 @@ type Name = String
 
 
 
--- Lists of the same type can be concatenated together.
-
-_ = ['a'] ++ ['b']
-_ = ['a'] ++ "b"
-_ = "a" ++ ['b']
-_ = "a" ++ "b"
--- All four results are `ab`.
-
-_ = [1] ++ [2]
--- Result is `[1, 2]`.
-
--- Attempting to concatenate lists of different types will cause an error.
---
---     ['a'] ++ [2]
---     "a" ++ [2]
---     [1] ++ ['b']
---     [1] ++ "b"
---
-
--- The append operator, `++`, is an example of a polymorphic function meaning
--- it can work with different types as long as those types are used with
--- it correctly.
-
-
 
 
 
@@ -120,11 +121,8 @@ _ = [1] ++ [2]
 
 -- The function `not` takes a `Bool` value and returns the other `Bool` value.
 
-_ = not False
--- Result is `True`.
-
-_ = not True
--- Result is `False`.
+_ = not False   -- `True`
+_ = not True    -- `False`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -150,24 +148,19 @@ yesNo :: MyBool -> String
 yesNo MyTrue  = "Yes"
 yesNo MyFalse = "No"
 
-_ = yesNo MyTrue
--- Result is `"Yes"`.
-
-_ = yesNo MyFalse
--- Result is `"No"`.
+_ = yesNo MyTrue    -- `"Yes"`
+_ = yesNo MyFalse   -- `"No"`
 
 
 
 -- Data contructors are functions that create values of a certain type.
 data Pet = Cat String | DogWithAge String Integer
 
-_ = Cat "Foo"
--- Result is `Cat "Foo"`.
--- The type of `Cat` is `String -> Pet`.
+_ = Cat "Foo"   -- `Cat "Foo"`
+-- `Cat` has the type `String -> Pet`.
 
-_ = DogWithAge "Bar" 2
--- Result is `DogWithAge "Bar" 2`.
--- The type of `DogWithAge` is `String -> Integer -> Pet`.
+_ = DogWithAge "Bar" 2    -- `DogWithAge "Bar" 2`
+-- `DogWithAge` has the type `String -> Integer -> Pet`.
 
 
 
@@ -197,16 +190,11 @@ sillyIncrease 8  = 1
 sillyIncrease 10 = 2
 sillyIncrease _  = 3
 
-_ = sillyIncrease 8
--- Result is `1`.
-
-_ = sillyIncrease 10
--- Result is `2`.
-
-_ = sillyIncrease 1
-_ = sillyIncrease 2
-_ = sillyIncrease 9
--- All three results are `3`.
+_ = sillyIncrease 8     -- `1`
+_ = sillyIncrease 10    -- `2`
+_ = sillyIncrease 1     -- `3`
+_ = sillyIncrease 2     -- `3`
+_ = sillyIncrease 9     -- `3`
 
 
 
@@ -217,11 +205,9 @@ _ = sillyIncrease 9
 -- Values that could have one type or another given its context can have their
 -- type explicitly given.
 
-_ = 1
--- Result is `1`.
+_ = 1   -- `1`
 
-_ = 1 :: Double
--- Result is `1.0`.
+_ = 1 :: Double   -- `1.0`
 
 
 
@@ -241,10 +227,10 @@ _ = 1 :: Double
 -- Haskell will infer the most generally applicable type that is still correct.
 
 hey x = "hey " ++ x
--- The function `hey` has the type `[Char] -> [Char]`.'
+-- `hey` has the type `[Char] -> [Char]`.
 
 smoosh x y = x ++ y
--- The function `smoosh` has the type `[a] -> [a] -> [a]`.'
+-- `smoosh` has the type `[a] -> [a] -> [a]`.
 
 
 
@@ -384,8 +370,7 @@ smoosh x y = x ++ y
 -- Using integer numbers with the division operator will result in a number
 -- that is fractional.
 
-_ = 4 / 2
--- Result is `2.0`.
+_ = 4 / 2   -- `2.0`
 
 -- Values of the type `Fractional a => a` default to the `Double` type.
 
@@ -424,17 +409,10 @@ foo2 = undefined
 -- `id` is a parametric polymorphic function having the type `a -> a`.
 -- It returns its argument.
 
-_ = id 3
--- Result is `3`.
-
-_ = id "Hi"
--- Result is `"Hi"`.
-
-_ = id True
--- Result is `True`.
-
-_ = (id head) [1, 2]
--- Result is `1`.
+_ = id 3                -- `3`
+_ = id "Hi"             -- `"Hi"`
+_ = id True             -- `True`
+_ = (id head) [1, 2]    -- `1`
 
 
 
@@ -557,14 +535,9 @@ _ = 13 :: Integer
 -- The `Rational` type has arbitrary-precision and represents a ratio between
 -- a couple integers.
 
-_ = 1 / 2 :: Rational
--- Result is `1 % 2`.
-
-_ = 1.5 / 2.5 :: Rational
--- Result is `3 % 5`.
-
-_ = 34.56 / 123.345 :: Rational
--- Result is `768 % 2741`.
+_ = 1 / 2 :: Rational             -- `1 % 2`
+_ = 1.5 / 2.5 :: Rational         -- `3 % 5`
+_ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
 
 -- The `Scientific` type has arbitrary-precision and represents a number in
 -- scientific notation.  It stores the coefficient as an `Integer` and the
@@ -606,24 +579,19 @@ _ = 34.56 / 123.345 :: Rational
 -- and 127 inclusively.  The "8" in `Int8` refers to the number of bits used
 -- to represent its values.
 
-_ = 127 :: Int8
--- Result is `127`.
+_ = 127 :: Int8   -- `127`
 
 -- Out-of-bound numbers will be "looped" until it falls within range.
 
-_ = (127 + 10) :: Int8
-_ = (127 :: Int8) + 10
-_ = 127 + (10 :: Int8)
-_ = (127 :: Int8) + (10 :: Int8)
--- All four results are `-119`.
+_ = (127 + 10) :: Int8              -- `-119`
+_ = (127 :: Int8) + 10              -- `-119`
+_ = 127 + (10 :: Int8)              -- `-119`
+_ = (127 :: Int8) + (10 :: Int8)    -- `-119`
 
 -- A warning will be given for values that are out of range.
 
-_ = 100000 :: Int8
--- Result is `-96` with a warning.
-
-_ = -100000 :: Int8
--- Result is `96` with a warning.
+_ = 100000 :: Int8    -- Result is `-96` with a warning.
+_ = -100000 :: Int8   -- Result is `96` with a warning.
 
 
 -- TODO: explain why for the following
@@ -635,55 +603,25 @@ _ = -100000 :: Int8
 -- The `Bounded` typeclass provides `maxBound` and `minBound` which show the
 -- limit values of types.
 
-_ = minBound :: Int8
--- Result is `-128`.
-
-_ = maxBound :: Int8
--- Result is `127`.
-
-_ = minBound :: Int16
--- Result is `-32768`.
-
-_ = maxBound :: Int16
--- Result is `32767`.
-
-_ = minBound :: Int32
--- Result is `-2147483648`.
-
-_ = maxBound :: Int32
--- Result is `2147483647`.
-
-_ = minBound :: Int64
--- Result is `-9223372036854775808`.
-
-_ = maxBound :: Int64
--- Result is `9223372036854775807`.
-
-_ = minBound :: Int
--- Result is `-9223372036854775808`.
-
-_ = maxBound :: Int
--- Result is `9223372036854775807`.
+_ = minBound :: Int8    -- `-128`
+_ = maxBound :: Int8    -- `127`
+_ = minBound :: Int16   -- `-32768`
+_ = maxBound :: Int16   -- `32767`
+_ = minBound :: Int32   -- `-2147483648`
+_ = maxBound :: Int32   -- `2147483647`
+_ = minBound :: Int64   -- `-9223372036854775808`
+_ = maxBound :: Int64   -- `9223372036854775807`
+_ = minBound :: Int     -- `-9223372036854775808`
+_ = maxBound :: Int     -- `9223372036854775807`
 
 -- Non-numeric types can also define minimum and maximum bounds.
 
-_ = minBound :: Bool
--- Result is `False`.
-
-_ = maxBound :: Bool
--- Result is `True`.
-
-_ = minBound :: Char
--- Result is `'\NUL'`.
-
-_ = maxBound :: Char
--- Result is `'\1114111'`.
-
-_ = minBound :: ()
--- Result is `()`.
-
-_ = maxBound :: ()
--- Result is `()`.
+_ = minBound :: Bool    -- `False`
+_ = maxBound :: Bool    -- `True`
+_ = minBound :: Char    -- `'\NUL'`
+_ = maxBound :: Char    -- `'\1114111'`
+_ = minBound :: ()      -- `()`
+_ = maxBound :: ()      -- `()`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

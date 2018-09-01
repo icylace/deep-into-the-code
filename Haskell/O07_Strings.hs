@@ -2,51 +2,43 @@ module O07_Strings where
 
 -- A character represents a unit of text.
 
-_ = 'A'
--- Result is `'A'`.
+_ = 'A'   -- `'A'`
 
 -- A list of characters represents a sequence of text.
 
-_ = ['A', 'B']
--- Result is `"AB"`.
+_ = ['A', 'B']    -- `"AB"`
 
 -- Lists will be explored in detail later on.
 
 -- A string value is syntactic sugar for a list of characters.
 -- Strings are denoted by surrounding double quotes.
 
-_ = "AB"
--- Result is `"AB"`.
+_ = "AB"    -- `"AB"`
 
 -- An empty string has no characters and corresponds to the empty list, `[]`.
 
-_ = ""
--- Result is `""`.
+_ = ""    -- `""`
 
 -- Strings can be concatenated, which means to join together.
 
 -- One way to do this is to use the append operator, `++`.
 
-_ = "Hello" ++ "world!"
-_ = "Hello" ++ "world!" ++ ""
--- Both results are `"Helloworld!"`.
+_ = "Hello" ++ "world!"         -- `"Helloworld!"`
+_ = "Hello" ++ "world!" ++ ""   -- `"Helloworld!"`
 
-_ = "Hello" ++ " world!"
-_ = "Hello " ++ "world!"
-_ = "Hello" ++ "" ++ " " ++ "" ++ "world!"
--- All three results are `"Hello world!"`.
+_ = "Hello" ++ " world!"                      -- `"Hello world!"`
+_ = "Hello " ++ "world!"                      -- `"Hello world!"`
+_ = "Hello" ++ "" ++ " " ++ "" ++ "world!"    -- `"Hello world!"`
 
-_ = "Hello " ++ " world!"
--- Result is `"Hello  World!"`.
+_ = "Hello " ++ " world!"   -- `"Hello  World!"`
 
 -- Another way to concatenate strings is to use the `concat` function.
 
-_ = concat ["Hello world!"]
-_ = concat ["Hello", " world!"]
-_ = concat ["Hello ", "world!"]
-_ = concat ["Hello", " ", "world!"]
-_ = concat ["Hello", "", " ", "", "world!"]
--- All five results are `"Hello World!"`.
+_ = concat ["Hello world!"]                   -- `"Hello World!"`
+_ = concat ["Hello", " world!"]               -- `"Hello World!"`
+_ = concat ["Hello ", "world!"]               -- `"Hello World!"`
+_ = concat ["Hello", " ", "world!"]           -- `"Hello World!"`
+_ = concat ["Hello", "", " ", "", "world!"]   -- `"Hello World!"`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -58,29 +50,19 @@ _ = concat ["Hello", "", " ", "", "world!"]
 -- The "cons" operator, `:`, builds a list.  (Sidenote: cons in this context
 -- might be short for construct but I'm not sure.)
 
-_ = 'H' : "ello"
-_ = 'H' : 'e' : "llo"
-_ = 'H' : 'e' : 'l' : 'l' : 'o' : ""
-_ = 'H' : 'e' : 'l' : 'l' : 'o' : []
--- All four results are `"Hello"`.
-
-_ = "H" : ["ello"]
--- Result is `["H", "ello"]`.
-
-_ = "He" : ["llo"]
--- Result is `["He", "llo"]`.
+_ = 'H' : "ello"                        -- `"Hello"`
+_ = 'H' : 'e' : "llo"                   -- `"Hello"`
+_ = 'H' : 'e' : 'l' : 'l' : 'o' : ""    -- `"Hello"`
+_ = 'H' : 'e' : 'l' : 'l' : 'o' : []    -- `"Hello"`
+_ = "H" : ["ello"]                      -- `["H", "ello"]`
+_ = "He" : ["llo"]                      -- `["He", "llo"]`
 
 -- The `head` function returns the head (the first element) of a list.
 
-_ = head "Hello"
-_ = head "H"
--- Both results are `'H'`.
-
-_ = head ["H", "ello"]
--- Result is `"H"`.
-
-_ = head ["He", "llo"]
--- Result is `"He"`.
+_ = head "Hello"          -- `'H'`
+_ = head "H"              -- `'H'`
+_ = head ["H", "ello"]    -- `"H"`
+_ = head ["He", "llo"]    -- `"He"`
 
 -- Attempting to use an empty string or more generally an empty list with
 -- `head` will cause an exception.
@@ -92,17 +74,10 @@ _ = head ["He", "llo"]
 -- The `tail` function returns a list containing the tail (non-head elements)
 -- of a given list.
 
-_ = tail "Hello"
--- Result is `"ello"`.
-
-_ = tail ["H", "ello"]
--- Result is `["ello"]`.
-
-_ = tail "ab"
--- Result is `"b"`.
-
-_ = tail "a"
--- Result is `""`.
+_ = tail "Hello"          -- `"ello"`
+_ = tail ["H", "ello"]    -- `["ello"]`
+_ = tail "ab"             -- `"b"`
+_ = tail "a"              -- `""`
 
 -- Attempting to use an empty string or more generally an empty list with
 -- `tail` will cause an exception.
@@ -114,19 +89,13 @@ _ = tail "a"
 -- The `take` function returns a list of the specified number of elements
 -- from the beginning of a given list.
 
-_ = take 0 "Hello"
--- Result is `""`.
+_ = take 0 "Hello"    -- `""`
+_ = take 1 "Hello"    -- `"H"`
+_ = take 10 "Hello"   -- `"Hello"`
 
-_ = take 1 "Hello"
--- Result is `"H"`.
-
-_ = take 10 "Hello"
--- Result is `"Hello"`.
-
-_ = take 0 ""
-_ = take 1 ""
-_ = take 10 ""
--- All three results are `""`.
+_ = take 0 ""     -- `""`
+_ = take 1 ""     -- `""`
+_ = take 10 ""    -- `""`
 
 -- Attempting to use a negative number with `take` will cause an error.
 --
@@ -136,19 +105,13 @@ _ = take 10 ""
 -- The `drop` function returns a list of elements remaining after a specified
 -- number of elements has been ignored from a given list.
 
-_ = drop 0 "Hello"
--- Result is `"Hello"`.
+_ = drop 0 "Hello"    -- `"Hello"`
+_ = drop 1 "Hello"    -- `"ello"`
+_ = drop 10 "Hello"   -- `""`
 
-_ = drop 1 "Hello"
--- Result is `"ello"`.
-
-_ = drop 10 "Hello"
--- Result is `""`.
-
-_ = drop 0 ""
-_ = drop 1 ""
-_ = drop 10 ""
--- All three results are `""`.
+_ = drop 0 ""     -- `""`
+_ = drop 1 ""     -- `""`
+_ = drop 10 ""    -- `""`
 
 -- Attempting to use a negative number with `drop` will cause an error.
 --
@@ -158,14 +121,11 @@ _ = drop 10 ""
 -- The list index (subscript) operator, `!!`, returns the element at the
 -- specified position in a list.
 
-_ = "Hello" !! 0
--- Result is `'H'`.
+_ = "Hello" !! 0    -- `'H'`
+_ = "Hello" !! 3    -- `'l'`
+_ = "Hello" !! 4    -- `'o'`
 
-_ = "Hello" !! 3
--- Result is `'l'`.
-
-_ = "Hello" !! 4
--- Result is `'o'`.
+-- `head` and `(!! 0)` behave the same way.
 
 -- Attempting to use a negative index position with the subscript operator
 -- will cause an error.
@@ -190,13 +150,13 @@ printStrings :: IO ()
 printStrings = do
 
   print "Hello world!"
-  -- Result will be the display of `"Hello world!"`.
+  -- Displays `"Hello world!"`.
 
   putStrLn "Hello world!"
-  -- Result will be the display of `Hello world!`.
+  -- Displays `Hello world!`.
 
   putStr "Hello world!"
-  -- Result will be the display of `Hello world!` without a carriage return.
+  -- Displays `Hello world!` without a carriage return.
 
 -- `do` notation was used to make using a sequence of print-related
 -- functions more convenient.
