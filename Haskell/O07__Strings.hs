@@ -1,4 +1,4 @@
-module O07_Strings where
+module O07__Strings where
 
 -- A character represents a unit of text.
 

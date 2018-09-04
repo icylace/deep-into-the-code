@@ -1,4 +1,4 @@
-module O10_Tuples where
+module O10__Tuples where
 
 -- The `Data.Tuple` provides the `swap` function.
 import Data.Tuple

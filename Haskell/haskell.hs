@@ -25,22 +25,25 @@ to do that. -}
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
-import O01_Expressions
-import O02_Functions
-import O03_Operators
-import O04_Arithmetic
-import O05_SignificantWhitespace
-import O06_LetAndWhere
-import O07_Strings
-import O08_Types
-import O09_Comparison
-import O10_Tuples
-import O11_PatternMatching
-import O12_Lists
-import O13_Typeclasses
-
 -- This file you're reading right now is a Haskell source code file because
 -- it has the `.hs` file extension and contains Haskell code.
+
+import O01__Expressions
+import O02__Functions
+import O03__Operators
+import O04__Arithmetic
+import O05__SignificantWhitespace
+import O06__LetAndWhere
+import O07__Strings
+import O08__Types
+import O09__Comparison
+import O10__Tuples
+import O11__PatternMatching
+import O12__Lists
+import O13__Typeclasses
+import O14__Equality
+import O15__Ordering
+import O16__Enumeration
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.
@@ -76,6 +79,7 @@ main = print ()
 -- Comment: Text meant to be read by humans and ignored by the compiler.
 -- Single-line comment: A comment that occupies one line.
 -- Block comment: A comment that occupies one or more consecutive lines.
+-- Nested comment: A block comment that can contain other block comments.
 
 -- Entry point: Place where the operating system transfers control to a program.
 
@@ -180,10 +184,9 @@ f2 = undefined
 
 first = curry fst
 
-_ = fst (2, 3)
-_ = first 2 3
-_ = (first 2) 3
--- All results are `2`.
+_ = fst (2, 3)    -- `2`
+_ = first 2 3     -- `2`
+_ = (first 2) 3   -- `2`
 
 
 
@@ -195,10 +198,9 @@ _ = (first 2) 3
 
 addUsingPair = uncurry (+)
 
-_ = 2 + 3
-_ = (+) 2 3
-_ = addUsingPair (2, 3)
--- All results are `5`.
+_ = 2 + 3                 -- `5`
+_ = (+) 2 3               -- `5`
+_ = addUsingPair (2, 3)   -- `5`
 
 
 
@@ -208,16 +210,15 @@ _ = addUsingPair (2, 3)
 
 
 
-curriedStyle x y = x + y
+curriedStyle x y      = x + y
 uncurriedStyle (x, y) = x + y
-anonymousStyle = \x y -> x + y
-nestedAnonymousStyle = \x -> \y -> x + y
+anonymousStyle        = \x y -> x + y
+nestedAnonymousStyle  = \x -> \y -> x + y
 
-_ = curriedStyle 2 3
-_ = uncurriedStyle (2, 3)
-_ = anonymousStyle 2 3
-_ = nestedAnonymousStyle 2 3
--- All results are `5`.
+_ = curriedStyle 2 3            -- `5`
+_ = uncurriedStyle (2, 3)       -- `5`
+_ = anonymousStyle 2 3          -- `5`
+_ = nestedAnonymousStyle 2 3    -- `5`
 
 
 
@@ -452,6 +453,39 @@ aggregate f =          (sum .) . map
 -- [1]: https://youtu.be/seVSlKazsNk?t=20m2s
 \x y z -> _
 \x -> (\y -> (\z -> _))
+
+
+
+
+
+
+
+
+functionH :: [a] -> a
+functionH (x:_) = x
+
+
+functionC :: Ord a => a -> a -> Bool
+functionC x y = x > y
+
+
+functionS :: (a, b) -> b
+functionS (x, y) = y
+
+
+
+
+
+myFunc :: (x -> y) -> (y -> z) -> c -> (a, x) -> (a, z)
+myFunc xToY yToZ _ (a, x) = undefined
+
+
+
+
+
+
+
+
 
 
 

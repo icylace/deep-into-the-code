@@ -1,4 +1,4 @@
-module O01_Expressions where
+module O01__Expressions where
 
 -- Here is a declaration for a variable identified as `a` with expression `1`.
 
@@ -48,7 +48,9 @@ d = c + 5   -- `12`
 
 _ = 2 + 3
 
--- This is normally useless but these notes about Haskell uses this trick a lot.
+-- This is normally useless but my notes about Haskell uses this trick a
+-- lot as a way for me to avoiding having to constantly come up with new
+-- variable names.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

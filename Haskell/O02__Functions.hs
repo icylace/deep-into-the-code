@@ -1,4 +1,4 @@
-module O02_Functions where
+module O02__Functions where
 
 -- Here we declare a function named `double` that accepts a formal parameter
 -- named `x` which gets used in the body of the function to calculate the

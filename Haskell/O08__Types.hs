@@ -1,4 +1,4 @@
-module O08_Types where
+module O08__Types where
 
 -- We import concrete integer types to use later.
 
@@ -668,6 +668,8 @@ _ = maxBound :: ()      -- `()`
 
 -- Pattern: Syntax that matches against particular values.
 -- Pattern matching: Pairing specific function behavior with specific patterns.
+
+-- Compound type: A type made out of basic types and other compound types.
 
 -- Concrete type: A type whose name references how its values are stored.
 -- Monomorphic restriction: Top-level bindings have concrete type when possible.

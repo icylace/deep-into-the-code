@@ -1,4 +1,4 @@
-module O04_Arithmetic where
+module O04__Arithmetic where
 
 -- The functions `div` and `quot` both do integer division and behave
 -- almost the same way.

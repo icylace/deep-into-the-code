@@ -32,6 +32,34 @@ then use GHCi's load command, `:l` (short for `:load`), to load a file into the 
 
 The preceding example loads the `haskell.hs` file. If there were any compile-time errors, GHCi will show them.
 
-## Other Resources
+## Resources
 
+### Tools
+
+- [The Glasgow Haskell Compiler](https://www.haskell.org/ghc/)
+
+#### Package Collections
+
+- [Hackage](https://hackage.haskell.org/)
+- [Stackage](https://www.stackage.org/)
+
+#### IDE Integration
+
+- [intero](https://github.com/commercialhaskell/intero)
+- [Haskero](https://marketplace.visualstudio.com/items?itemName=Vans.haskero)
+
+### Learning
+
+- [Haskell Programming from First Principles](http://haskellbook.com/)
 - [Structuring your first Haskell project with Stack](http://sakshamsharma.com/2018/03/haskell-proj-struct/index.html)
+
+### References
+
+- [Haskell 2010 Language Report](https://www.haskell.org/onlinereport/haskell2010/)
+- [Haskell](https://www.haskell.org/)
+- [Haskell (alternative)](https://haskell-lang.org/)
+- [Haskell (alternative) - Operator Glossary](https://haskell-lang.org/tutorial/operators)
+- [The Haskell Programming Language wiki](https://wiki.haskell.org/Haskell)
+- [The Haskell Programming Language wiki - Keywords](https://wiki.haskell.org/Keywords)
+- [A Guide to GHC's Extensions](https://limperg.de/ghc-extensions/)
+- [Haskell/GHC symbol search cheatsheet](https://github.com/takenobu-hs/haskell-symbol-search-cheatsheet)
