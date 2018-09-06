@@ -24,9 +24,10 @@ _ = x /= 9    -- `False`
 _ = x /= 10   -- `True`
 
 -- Attempting to compare values having different types will cause an error.
---
---     'a' == 8
---
+
+{-
+_ = 'a' == 8
+-}
 
 -- The `Eq` typeclass defines equality comparison.
 
@@ -204,21 +205,3 @@ _ = a == a    -- `True`
 _ = a == b    -- `False`
 _ = b == a    -- `False`
 _ = b == b    -- `True`
-
-
-
-
-
-
-
-
-
-
-
-
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
-
--- Key Terms
--- =========

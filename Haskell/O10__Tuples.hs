@@ -9,8 +9,8 @@ import Data.Tuple
 _ = (,,,) 8 "Hello" "World" 'c'   -- `(8,"Hello","World",'c')`
 _ = (8, "Hello", "World", 'c')    -- `(8,"Hello","World",'c')`
 
--- The number of values contained within a tuple is called its arity.
--- The arity of the previous tuple is 4.
+-- The number of values contained within a tuple is called its arity.  The arity
+-- of the previous tuple is 4.
 
 -- A triple is a tuple containing three values.  Therefore its arity is 3.
 
@@ -48,8 +48,8 @@ _ = swap $ swap (8, "Hello")    -- `(8,"Hello")`
 
 -- In Haskell, a tuple cannot contain just a single value.
 
--- Attempting to define a single-element tuple ends up being interpreted
--- as a nested expression.
+-- Attempting to define a single-element tuple ends up being interpreted as a
+-- nested expression.
 
 _ = (3)   -- `3`
 
@@ -80,12 +80,14 @@ _ = (9, "Hello") < (8, "World")     -- `False`
 
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.  Otherwise an error will occur.
---
---     (8, "Hello") == ("Hello", 8)
---     (8, "Hello") == (8, 3.0)
---     (8, "Hello") == ('B', "World")
---     (8, "Hello") == ('B', 3.0)
---     (8, "Hello") == (8, "Hello", 'B')
+
+{-
+_ = (8, "Hello") == ("Hello", 8)
+_ = (8, "Hello") == (8, 3.0)
+_ = (8, "Hello") == ('B', "World")
+_ = (8, "Hello") == ('B', 3.0)
+_ = (8, "Hello") == (8, "Hello", 'B')
+-}
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

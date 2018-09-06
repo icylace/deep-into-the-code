@@ -10,8 +10,8 @@ a2 = 1    {- Block comments can also be placed after expressions. -}
 a3 {- However, unlike single-line comments, -} = 0
 a4 = {- block comments can be placed in weird places! -} 0
 
--- Variable names can contain letters, numbers, underscores, and apostrophes
--- but they must always start with a lowercase letter or an underscore.
+-- Variable names can contain letters, numbers, underscores, and apostrophes but
+-- they must always start with a lowercase letter or an underscore.
 
 a5' = 1
 a'5' = 1
@@ -23,9 +23,9 @@ aB'C = 1
 
 -- A variable can be evaluated later on by referencing its name.
 
--- Evaluation is the process of simplifying an expression.  Expressions
--- that cannot be further simplified are in normal form and are usually
--- referred to as values.
+-- Evaluation is the process of simplifying an expression.  Expressions that
+-- cannot be further simplified are in normal form and are usually referred
+-- to as values.
 
 -- Evaluating `a` will result in `1` which means `a` was already in normal form
 -- and has the value `1`.
@@ -64,8 +64,8 @@ _ = 1 + 2 * 3   -- `7`
 
 _ = (1 + 2) * 3   -- `9`
 
--- Nested expressions at the same level of nesting are evaluated from
--- left to right.
+-- Nested expressions at the same level of nesting are evaluated from left
+-- to right.
 
 _ = (1 + 2) * (3 + 4) * (5 + 6)   -- `231`
 
@@ -78,8 +78,8 @@ _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 -- By default it gets evaluated to weak head normal form, which is just a
 -- more simplified version of the expression.
 
--- An expression is not evaluated until it is forced to be by other
--- expressions that refer to it.  This is called lazy evaluation.
+-- An expression is not evaluated until it is forced to be by other expressions
+-- that refer to it.  This is called lazy evaluation.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

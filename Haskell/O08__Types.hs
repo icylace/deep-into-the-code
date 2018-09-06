@@ -264,11 +264,14 @@ smoosh x y = x ++ y
 
 
 
--- A type that implements a typeclass is said to have an instance of
--- the typeclass.
+-- A type that implements a typeclass is said to have an instance of the
+-- typeclass.  This instance specifies the way that type uses the
+-- functions of the typeclass.
 
 -- A type with an instance of a typeclass can use its values with the functions
 -- defined for that typeclass.
+
+
 
 
 
@@ -510,8 +513,8 @@ _ = 13 :: Integer
 
 -- `Integral` types:
 
--- The `Int` type represents integers and is fixed-precision, meaning it has
--- a defined minimum and defined maximum.
+-- The `Int` type represents integers and is fixed-precision, meaning it has a
+-- defined minimum and defined maximum.
 
 -- The `Integer` type is similar to `Int` except that is is arbitrary-precision,
 -- meaning it does not have a fixed range.
@@ -521,10 +524,10 @@ _ = 13 :: Integer
 -- The `Float` type represents single-precision floating-point numbers and is
 -- best suited for graphics programming such as with OpenGL.
 
--- The `Double` type represents double-precision floating-point numbers.
--- It uses twice as many bits as `Float` to represent floating-point
--- numbers which grants it the ability to represent a wider range
--- of numbers than `Float`.
+-- The `Double` type represents double-precision floating-point numbers.  It
+-- uses twice as many bits as `Float` to represent floating-point numbers
+-- which grants it the ability to represent a wider range of numbers
+-- than `Float`.
 
 -- Fixed-point numbers have a specific maximum potential number of digits before
 -- and after the decimal point.  Floating-point numbers have a certain amount of
@@ -544,8 +547,8 @@ _ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
 -- exponent as an `Int`.  `Scientific` is more efficient than `Rational`
 -- and is available as a library.
 
--- Arbitrary precision number types can be used for calculations that
--- require a high degree of precision.
+-- Arbitrary precision number types can be used for calculations that require a
+-- high degree of precision.
 
 
 
@@ -575,9 +578,9 @@ _ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
 
 
 
--- The `Int8` concrete type can represent integers in the range between -128
--- and 127 inclusively.  The "8" in `Int8` refers to the number of bits used
--- to represent its values.
+-- The `Int8` concrete type can represent integers in the range between -128 and
+-- 127 inclusively.  The "8" in `Int8` refers to the number of bits used to
+-- represent its values.
 
 _ = 127 :: Int8   -- `127`
 
@@ -659,12 +662,10 @@ _ = maxBound :: ()      -- `()`
 
 -- Principal type: In Haskell, the most generic type which still typechecks.
 
+-- Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
+-- Typeclass instance (instance): An implementation of a typeclass for a type.
 
 -- Parametricity: Uniform function behavior relative to parametric arguments.
-
--- Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
-
--- Typeclass instance (instance): An implementation of a typeclass for a type.
 
 -- Pattern: Syntax that matches against particular values.
 -- Pattern matching: Pairing specific function behavior with specific patterns.

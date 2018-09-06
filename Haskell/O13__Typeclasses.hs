@@ -1,6 +1,6 @@
 module O13__Typeclasses where
 
-  -- New datatypes can be created using the `data` keyword.
+-- New datatypes can be created using the `data` keyword.
 
 data Me = Me
 
@@ -9,10 +9,11 @@ data Me = Me
 data Self = Myself
 
 -- Equality comparison with our custom `Me` and `Self` types won't work.
---
---     Me == Me
---     Myself == Myself
---
+
+{-
+_ = Me == Me
+_ = Myself == Myself
+-}
 
 
 
@@ -27,11 +28,33 @@ data Self = Myself
 
 
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 
+class Numberish a where
+  fromNumber :: Integer -> a
+  toNumber :: a -> Integer
 
+newtype Age = Age Integer deriving (Eq, Show)
 
+instance Numberish Age where
+  fromNumber n = Age n
+  toNumber (Age n) = n
 
+newtype Year = Year Integer deriving (Eq, Show)
+
+instance Numberish Year where
+  fromNumber n = Year n
+  toNumber (Year n) = n
+
+sumNumberish :: Numberish a => a -> a -> a
+sumNumberish a a' = fromNumber summed
+  where integerOfA = toNumber a
+        integerOfAPrime = toNumber a'
+        summed = integerOfA + integerOfAPrime
+
+_ = sumNumberish (Age 10) (Age 10)    -- `Age 20`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -50,33 +73,26 @@ _ = I /= I    -- `False`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Datatypes must have an instance of the `Show` typeclass to be printable.
-
-data You = You deriving Show
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
 
 
 
 
-
--- Polymorphic types can use constraints in their instance declarations
--- to require their concrete types to have instances as well.
+-- Polymorphic types can use constraints in their instance declarations to
+-- require their concrete types to have instances as well.
 
 data Identity a = Identity a
 
 instance Eq a => Eq (Identity a) where
   (==) (Identity v) (Identity v') = v == v'
 
--- Polymorphic types can use constraints in their instance declarations
--- to require their concrete types to have instances as well.
+-- Polymorphic types can use constraints in their instance declarations to
+-- require their concrete types to have instances as well.
 
 -- -----------------------------------------------------------------------------
 
--- It's possible to use a looser constraint to achieve the same thing.
--- In this case, the `Ord` typeclass can be used because it already
--- requires the use of `Eq`.
+-- It's possible to use a looser constraint to achieve the same thing.  In this
+-- case, the `Ord` typeclass can be used because it already requires the use
+-- of `Eq`.
 
 data Identity' a = Identity' a
 
@@ -107,10 +123,10 @@ check'' x y = x == y
 -- Some standard Haskell typeclasses have a default concrete type which gets
 -- used if the concrete type can't be determined when needed.
 
--- The division operator, `/`, is part of the `Fractional` typeclass and has
--- the type `Fractional a => a -> a -> a`.  `Fractional` defaults to the
--- concrete type `Double`.  An explicit type declaration can be used
--- to override the default.
+-- The division operator, `/`, is part of the `Fractional` typeclass and has the
+-- type `Fractional a => a -> a -> a`.  `Fractional` defaults to the concrete
+-- type `Double`.  An explicit type declaration can be used to override
+-- the default.
 
 _ = 1 / 2                         -- `0.5`
 _ = 1 / 2 :: Fractional a => a    -- `0.5`
@@ -135,11 +151,11 @@ _ = 1 / 2 :: Rational             -- `1 % 2`
 
 
 
--- Values having concrete type will necessarily concretize polymorphic
--- functions that are applied to them.
+-- Values having concrete type will necessarily concretize polymorphic functions
+-- that are applied to them.
 
--- The addition operator, `+`, from the `Num` typeclass has this type:
---     (+) :: Num a => a -> a -> a
+-- The addition operator, `+`, from the `Num` typeclass has the type
+-- `Num a => a -> a -> a`
 
 x = 10 :: Integer
 y = 5  :: Integer
@@ -179,3 +195,5 @@ _ = (x + y)   -- Has the type `Integer`.
 
 -- Key Terms
 -- =========
+
+-- Serialization: The process of converting data into a transmittable format.

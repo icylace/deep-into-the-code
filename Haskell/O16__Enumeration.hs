@@ -32,7 +32,7 @@ _ = succ maxBound :: Int    -- Result is an exception.
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- The `enumFromTo` function creates a list of sequential values within a range.
+-- `enumFromTo` creates a list of sequential values within a range.
 
 _ = enumFromTo 0 0        -- `[0]`
 _ = enumFromTo 3 8        -- `[3,4,5,6,7,8]`
@@ -47,9 +47,9 @@ _ = enumFromTo True  True     -- `[True]`
 
 -- -----------------------------------------------------------------------------
 
--- The `enumFromThenTo` function creates a list of values within a range by
--- first noting the gap between it's first couple arguments then using that
--- gap to fill in the rest of the range.
+-- `enumFromThenTo` creates a list of values within a range by first noting the
+-- gap between it's first couple arguments then using that gap to fill in the
+-- rest of the range.
 
 _ = enumFromThenTo 1 10 100       -- `[1,10,19,28,37,46,55,64,73,82,91,100]`
 _ = enumFromThenTo 0 10 100       -- `[0,10,20,30,40,50,60,70,80,90,100]`

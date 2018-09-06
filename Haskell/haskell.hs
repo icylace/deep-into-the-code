@@ -25,8 +25,8 @@ to do that. -}
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- This file you're reading right now is a Haskell source code file because
--- it has the `.hs` file extension and contains Haskell code.
+-- This file you're reading right now is a Haskell source code file because it
+-- has the `.hs` file extension and contains Haskell code.
 
 import O01__Expressions
 import O02__Functions
@@ -44,6 +44,8 @@ import O13__Typeclasses
 import O14__Equality
 import O15__Ordering
 import O16__Enumeration
+import O17__Showing
+import O18__Reading
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.
@@ -51,17 +53,17 @@ import O16__Enumeration
 main :: IO ()
 main = print ()
 
--- To run the code in this file, the source code must first be compiled into
--- an executable binary file before being run.  Executing the following on
--- thecommand line:
+-- To run the code in this file, the source code must first be compiled into an
+-- executable binary file before being run.  Executing the following on the
+-- command line:
 --
 --     stack runghc haskell
 --
 -- If there were any compile-time errors while attempting to run, GHC will
 -- show them.
 
--- Another way is to load the code from within the GHCi REPL environment.
--- While remaining in the same directory, open up GHCi by running
+-- Another way is to load the code from within the GHCi REPL environment.  While
+-- remaining in the same directory, open up GHCi by running
 --
 --     stack ghci
 --
@@ -104,8 +106,8 @@ main = print ()
 
 
 
--- The arrow, `->`, is the function type constructor.  It's like other
--- type constructors except that it takes arguments while having no
+-- The arrow, `->`, is the function type constructor.  It's like other type
+-- constructors except that it takes arguments while having no
 -- data constructors.
 
 -- The values of the function type are functions.
@@ -140,25 +142,18 @@ main = print ()
 
 
 
--- `undefined` is a special value that can be used to allow compilation
--- to happen for code that is not yet implemented.  If "undefined" code
--- is evaluated, an exception will be thrown.  However, due to lazy
--- evaluation, such code can coexist with other code that works
--- and operates normally.
+-- `undefined` is a special value that can be used to allow compilation to
+-- happen for code yet to be implemented.  Evaluating "undefined" code
+-- will throw an exception.  Thanks to lazy evaluation, such code can
+-- coexist with normal.
 
 x = undefined
 -- `x` is now undefined.
 
 -- "undefined" code can be typechecked.
 
-
-
-
-
-
-
--- Since `->` is right-associative, currying is available by default,
--- and function type signatures are implicitly parenthesized.
+-- Since `->` is right-associative, currying is available by default, and
+-- function type signatures are implicitly parenthesized.
 
 f1 :: a -> a -> a
 f1 = undefined
@@ -180,7 +175,7 @@ f2 = undefined
 
 
 
--- The `curry` function nests an unnested function.
+-- `curry` nests an unnested function.
 
 first = curry fst
 
@@ -194,7 +189,7 @@ _ = (first 2) 3   -- `2`
 
 
 
--- The `uncurry` function unnests a nested function.
+-- `uncurry` unnests a nested function.
 
 addUsingPair = uncurry (+)
 
@@ -237,7 +232,7 @@ f = undefined
 y :: Char
 y = undefined
 
--- The type of `f x` is `Char -> Char -> Char`
+-- The type of `f x` is `Char -> Char -> Char`.
 
 
 g :: a -> b -> c -> b
@@ -290,8 +285,8 @@ _ = kessel (1 :: Integer) 2
 
 
 
--- Polymorphic constants stay polymorphic until given a more specific type.
--- It will have to resolve to a concrete type in order to evaluate.
+-- Polymorphic constants stay polymorphic until given a more specific type.  It
+-- will have to resolve to a concrete type in order to evaluate.
 
 -- :t 10
 -- 10 :: Num p => p
@@ -312,11 +307,12 @@ n = 10 :: Float
 -- `n` has the type `Float`.
 
 -- A typeclass constraint cannot be explicitly declared.
---
---     n = 10 :: Fractional
---     n = 10 :: Fractional a
---     n = 10 :: (Fractional a)
---
+
+{-
+_ = n = 10 :: Fractional
+_ = n = 10 :: Fractional a
+_ = n = 10 :: (Fractional a)
+-}
 
 
 
@@ -337,11 +333,6 @@ n = 10 :: Float
 
 
 
-
-
-
--- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
 
 
 
@@ -529,6 +520,30 @@ sayHello x = putStrLn ("Hello, " ++ x ++ "!")
 
 
 
+xx :: String
+xx = undefined
+-- `xx` is a string value.
+
+yy :: IO String
+yy = undefined
+-- `yy` is a method which produces a string value by potentially
+-- performing side effects.
+
+
+
+
+
+
+
+
+
+
+
+
+-- A side effect is a potentially observable result apart from the value
+-- an expression evaluates to.
+
+
 
 
 
@@ -570,3 +585,4 @@ sayHello x = putStrLn ("Hello, " ++ x ++ "!")
 
 
 
+-- Side effect: A result apart from the value of an expression.

@@ -8,13 +8,13 @@ double x = x * 2
 
 -- Function names begin with a lowercase letter.
 
--- Most functions in Haskell are pure, meaning they will produce the same
+-- Most functions in Haskell are pure, meaning they will only produce the same
 -- output when applied to the same input.
 
 _ = double 3    -- `6`
 
--- An application of a pure function can be replaced by the function's body
--- and still get the same result.
+-- An application of a pure function can be replaced by the function's body and
+-- still get the same result.
 
 _ = 3 * 2   -- `6`
 
@@ -23,8 +23,8 @@ _ = 3 * 2   -- `6`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Here, the function `addAndMultiply` takes parameters `x` and `y`, and
--- returns the result of a calculation using them.
+-- Here, the function `addAndMultiply` takes parameters `x` and `y`, and returns
+-- the result of a calculation using them.
 
 addAndMultiply x y = x + y * (x + y)
 
@@ -52,8 +52,8 @@ _ = c 5   -- `49`
 
 _ = (addAndMultiply 4) 5    -- `49`
 
--- Functions appearing to have multiple parameters can be "broken up"
--- due to currying.
+-- Functions appearing to have multiple parameters can be partially applied due
+-- to currying.
 
 addAndMultiplyMore x y z1 z2 = x + y * (z1 + z2)
 _ = addAndMultiplyMore 2 5 8 11         -- `97`
@@ -69,7 +69,8 @@ _ = (((addAndMultiplyMore 2) 5) 8) 11   -- `97`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- A partial function is a function that doesn't handle all possible cases.
+-- A partial function (not to be confused with a partially applied function) is
+-- a function that doesn't handle all possible inputs.
 
 foo 1 = 10
 foo 2 = 99

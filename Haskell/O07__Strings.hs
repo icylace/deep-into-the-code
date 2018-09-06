@@ -10,8 +10,8 @@ _ = ['A', 'B']    -- `"AB"`
 
 -- Lists will be explored in detail later on.
 
--- A string value is syntactic sugar for a list of characters.
--- Strings are denoted by surrounding double quotes.
+-- A string value is syntactic sugar for a list of characters.  Strings are
+-- denoted by surrounding double quotes.
 
 _ = "AB"    -- `"AB"`
 
@@ -32,7 +32,7 @@ _ = "Hello" ++ "" ++ " " ++ "" ++ "world!"    -- `"Hello world!"`
 
 _ = "Hello " ++ " world!"   -- `"Hello  World!"`
 
--- Another way to concatenate strings is to use the `concat` function.
+-- Another way to concatenate strings is to use `concat`.
 
 _ = concat ["Hello world!"]                   -- `"Hello World!"`
 _ = concat ["Hello", " world!"]               -- `"Hello World!"`
@@ -57,7 +57,7 @@ _ = 'H' : 'e' : 'l' : 'l' : 'o' : []    -- `"Hello"`
 _ = "H" : ["ello"]                      -- `["H", "ello"]`
 _ = "He" : ["llo"]                      -- `["He", "llo"]`
 
--- The `head` function returns the head (the first element) of a list.
+-- `head` the head (the first element) of a list.
 
 _ = head "Hello"          -- `'H'`
 _ = head "H"              -- `'H'`
@@ -66,28 +66,29 @@ _ = head ["He", "llo"]    -- `"He"`
 
 -- Attempting to use an empty string or more generally an empty list with
 -- `head` will cause an exception.
---
---     head ""
---     head []
---
 
--- The `tail` function returns a list containing the tail (non-head elements)
--- of a given list.
+{-
+_ = head ""
+_ = head []
+-}
+
+-- `tail` returns a given list without its first element.
 
 _ = tail "Hello"          -- `"ello"`
 _ = tail ["H", "ello"]    -- `["ello"]`
 _ = tail "ab"             -- `"b"`
 _ = tail "a"              -- `""`
 
--- Attempting to use an empty string or more generally an empty list with
--- `tail` will cause an exception.
---
---     tail ""
---     tail []
---
+-- Attempting to use an empty string or more generally an empty list with `tail`
+-- will cause an exception.
 
--- The `take` function returns a list of the specified number of elements
--- from the beginning of a given list.
+{-
+_ = tail ""
+_ = tail []
+-}
+
+-- `take` returns the specified number of elements from the beginning of a
+-- given list.
 
 _ = take 0 "Hello"    -- `""`
 _ = take 1 "Hello"    -- `"H"`
@@ -98,9 +99,10 @@ _ = take 1 ""     -- `""`
 _ = take 10 ""    -- `""`
 
 -- Attempting to use a negative number with `take` will cause an error.
---
---     take -1 ""
---
+
+{-
+_ = take -1 ""
+-}
 
 -- The `drop` function returns a list of elements remaining after a specified
 -- number of elements has been ignored from a given list.
@@ -114,9 +116,10 @@ _ = drop 1 ""     -- `""`
 _ = drop 10 ""    -- `""`
 
 -- Attempting to use a negative number with `drop` will cause an error.
---
---     drop -1 ""
---
+
+{-
+_ = drop -1 ""
+-}
 
 -- The list index (subscript) operator, `!!`, returns the element at the
 -- specified position in a list.
@@ -127,18 +130,20 @@ _ = "Hello" !! 4    -- `'o'`
 
 -- `head` and `(!! 0)` behave the same way.
 
--- Attempting to use a negative index position with the subscript operator
--- will cause an error.
---
---     "Hello" !! -1
---
+-- Attempting to use a negative index position with the subscript operator will
+-- cause an error.
 
--- Attempting to use an out-of-bounds index position with the subscript
--- operator will cause an exception.
---
---     "Hello" !! 5
---     "" !! 0
---
+{-
+_ = "Hello" !! -1
+-}
+
+-- Attempting to use an out-of-bounds index position with the subscript operator
+-- will cause an exception.
+
+{-
+_ = "Hello" !! 5
+_ = "" !! 0
+-}
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -158,8 +163,8 @@ printStrings = do
   putStr "Hello world!"
   -- Displays `Hello world!` without a carriage return.
 
--- `do` notation was used to make using a sequence of print-related
--- functions more convenient.
+-- `do` notation was used to make using a sequence of print-related functions
+-- more convenient.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

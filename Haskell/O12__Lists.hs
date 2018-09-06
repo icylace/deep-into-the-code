@@ -25,15 +25,16 @@ _ = ["a"] ++ ["b"]    -- `["a","b"]`
 _ = [1] ++ [2]        -- `[1, 2]`
 
 -- Attempting to concatenate lists of different types will cause an error.
---
---     ['a'] ++ [2]
---     "a" ++ [2]
---     [1] ++ ['b']
---     [1] ++ "b"
---
 
--- The append operator, `++`, is an example of a polymorphic function meaning
--- it can work with different types as long as those types are used with
+{-
+_ = ['a'] ++ [2]
+_ = "a" ++ [2]
+_ = [1] ++ ['b']
+_ = [1] ++ "b"
+-}
+
+-- The append operator, `++`, is an example of a polymorphic function meaning it
+-- can work with different types as long as those types are used with
 -- it correctly.
 
 
