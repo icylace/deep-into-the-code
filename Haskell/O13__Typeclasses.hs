@@ -27,6 +27,11 @@ _ = Myself == Myself
 
 
 
+-- In Haskell, dispatching is specifying which typeclass instance to use for
+-- a function or value.
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -57,10 +62,109 @@ sumNumberish a a' = fromNumber summed
 _ = sumNumberish (Age 10) (Age 10)    -- `Age 20`
 
 -- -----------------------------------------------------------------------------
+
+-- `Numberish'` is a poorly conceived typeclass that demonstrates using type
+-- declaration for disambiguation.
+
+class Numberish' a where
+  fromNumber' :: Integer -> a
+  toNumber' :: a -> Integer
+  defaultNumber :: a
+
+instance Numberish' Age where
+  fromNumber' n = Age n
+  toNumber' (Age n) = n
+  defaultNumber = Age 65
+
+instance Numberish' Year where
+  fromNumber' n = Year n
+  toNumber' (Year n) = n
+  defaultNumber = Year 1988
+
+_ = defaultNumber :: Age    -- `Age 65`
+_ = defaultNumber :: Year   -- `Year 1988`
+
+-- `defaultNumber` on its own is too ambiguous to use without erroring.
+
+{-
+_ = defaultNumber
+-}
+
+-- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Certain typeclasses can have instances of them "derived".  A derived instance
--- is an automatically generated instance.
+-- Concrete types imply all the typeclasses they have instances of.
+
+-- Since `Int` has instances of `Num`, `Ord`, and `Eq`, the following will
+-- all typecheck.
+
+add_ :: Int -> Int -> Int
+add_ x y = x + y
+
+addWeird_ :: Int -> Int -> Int
+addWeird_ x y =
+  if x > 1
+  then x + y
+  else x
+
+check_ :: Int -> Int -> Bool
+check_ a a' = a == a'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- A type variable is a placeholder for a type.
+
+
+
+
+
+
+-- When a type implements a typeclass it must have a declaration for every
+-- function provided in the typeclass.
+
+
+
+
+
+
+
+-- A type that implements a typeclass is said to have an instance of the
+-- typeclass.  This instance specifies how the typeclass should work for
+-- the type.
+
+-- A type with an instance of a typeclass can use its values with the functions
+-- defined for that typeclass.
+
+
+
+
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Certain typeclasses can have instances of them conveniently "derived".
+-- Derived instances are automatically generated instances based solely
+-- on the defintion of a type.
 
 data I = I deriving Eq
 
@@ -196,4 +300,27 @@ _ = (x + y)   -- Has the type `Integer`.
 -- Key Terms
 -- =========
 
+-- Typeclass: A set of functions that can be shared across sets of types.
+-- Typeclass constraint: A type variable for a type implementing a typeclass.
+-- Superclass: A typeclass required by another typeclass.
+-- Subclass: A typeclass that requires another typeclass.
+-- Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
+-- Typeclass instance (instance): An implementation of a typeclass for a type.
+
+-- Derived instance: An instance generated based only on a datatype definition.
+
+-- Type variable: A placeholder for a type.
+
+-- Typeclass inheritance: When a typeclass has a superclass.
+
+-- Polymorphism: Type variables referring to possibly multiple concrete types.
+-- Polymorphism: The usage of functions across different sets of types.
+
+-- Parametric polymorphism: Polymorphism over any type.
+-- Constrained (ad-hoc, bounded) polymorphism: Polymorphism over certain types.
+-- Principal type: In Haskell, the most generic type which still typechecks.
+-- Parametricity: Uniform function behavior relative to parametric arguments.
+
 -- Serialization: The process of converting data into a transmittable format.
+-- Dispatch: In Haskell, to specify what instance to use for an expression.
+-- Effect: An observable action a program takes beyond computing a value.

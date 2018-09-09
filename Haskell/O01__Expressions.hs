@@ -4,11 +4,11 @@ module O01__Expressions where
 
 a = 1
 
-a1 = 1    -- Single-line comments can be placed after expressions.
-a2 = 1    {- Block comments can also be placed after expressions. -}
+b = 1   -- Single-line comments can be placed after expressions.
+c = 1   {- Block comments can also be placed after expressions. -}
 
-a3 {- However, unlike single-line comments, -} = 0
-a4 = {- block comments can be placed in weird places! -} 0
+d {- However, unlike single-line comments, -} = 0
+e = {- block comments can be placed in weird places! -} 0
 
 -- Variable names can contain letters, numbers, underscores, and apostrophes but
 -- they must always start with a lowercase letter or an underscore.
@@ -21,6 +21,18 @@ a_'5' = 1
 a5'' = 1
 aB'C = 1
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Variable names that end with an apostrophe is are pronounced with the word
+-- "prime" at the end of its name.
+
+a' = 1     -- This is pronounced "A-prime".
+a'' = 1    -- This is pronounced "A-double-prime".
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- A variable can be evaluated later on by referencing its name.
 
 -- Evaluation is the process of simplifying an expression.  Expressions that
@@ -30,15 +42,15 @@ aB'C = 1
 -- Evaluating `a` will result in `1` which means `a` was already in normal form
 -- and has the value `1`.
 
--- This declaration assigns the variable `b` to the expression `1 + 2`.
+-- This declaration assigns the variable `b2` to the expression `1 + 2`.
 
-b = 1 + 2
+b2 = 1 + 2
 
--- Evaluating `b` will result in `3` which means `b` was a reducible expression
--- (a.k.a. redex).
+-- Evaluating `b2` will result in `3` which means `b2` was a reducible
+-- expression (redex).
 
-c = 3 + 4   -- `7`
-d = c + 5   -- `12`
+c2 = 3 + 4    -- `7`
+d2 = c2 + 5   -- `12`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -48,9 +60,9 @@ d = c + 5   -- `12`
 
 _ = 2 + 3
 
--- This is normally useless but my notes about Haskell uses this trick a
--- lot as a way for me to avoiding having to constantly come up with new
--- variable names.
+-- My notes about Haskell uses this trick a lot as a way for me to avoiding
+-- having to constantly come up with new variable names when exploring
+-- Haskell's features.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -60,14 +72,16 @@ _ = 2 + 3
 _ = 1 + 2 * 3   -- `7`
 
 -- Parentheses may be used to nest expressions within other expressions.
--- Nested expressions are evaluated first.
+-- Nested expressions are evaluated before the expression they're
+-- nested within.
 
 _ = (1 + 2) * 3   -- `9`
 
 -- Nested expressions at the same level of nesting are evaluated from left
 -- to right.
 
-_ = (1 + 2) * (3 + 4) * (5 + 6)   -- `231`
+_ = (1 + 2) / (3 + 4) * (5 + 6)   -- `4.714285714285714`
+_ = (5 + 6) * (3 + 4) / (1 + 2)   -- `25.666666666666668`
 
 -- Nesting is unlimited.
 

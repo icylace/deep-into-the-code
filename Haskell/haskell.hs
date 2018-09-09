@@ -573,14 +573,12 @@ yy = undefined
 -- Curried function: A nested set of single-parameter functions.
 -- Uncurried function: In Haskell, a function taking a tuple of many arguments.
 
--- Higher-order function: A function that accepts and/or returns a function.
 
 
 
 
 -- Directive: An instruction to the compiler.
 
--- Typeclass deriving: The automatic creation of instances for new datatypes.
 
 
 

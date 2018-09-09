@@ -244,32 +244,6 @@ smoosh x y = x ++ y
 
 
 
--- A type variable is a placeholder for a type.
-
-
-
-
-
-
--- When a type implements a typeclass it must have a declaration for every
--- function provided in the typeclass.
-
-
-
-
-
-
-
-
-
-
-
--- A type that implements a typeclass is said to have an instance of the
--- typeclass.  This instance specifies the way that type uses the
--- functions of the typeclass.
-
--- A type with an instance of a typeclass can use its values with the functions
--- defined for that typeclass.
 
 
 
@@ -593,8 +567,8 @@ _ = (127 :: Int8) + (10 :: Int8)    -- `-119`
 
 -- A warning will be given for values that are out of range.
 
-_ = 100000 :: Int8    -- Result is `-96` with a warning.
-_ = -100000 :: Int8   -- Result is `96` with a warning.
+_ = 100000 :: Int8    -- Results in `-96` with a warning.
+_ = -100000 :: Int8   -- Results in `96` with a warning.
 
 
 -- TODO: explain why for the following
@@ -634,7 +608,6 @@ _ = maxBound :: ()      -- `()`
 -- Type (datatype): A classification of values that share something in common.
 -- Type alias: An alternative name for a preexisting type.
 -- Type signature: The definition of types used by an expression.
--- Type variable: A placeholder for a type.
 -- Type constructor: A function that returns a type and also may accept a type.
 -- Data constructor: A function that creates values of a certain type.
 -- Data declaration: A declaration that defines a new datatype.
@@ -645,27 +618,18 @@ _ = maxBound :: ()      -- `()`
 
 -- Type constructor: The name of a type which is used in type signatures.
 
+
 -- Type level: The areas of a program that relate to type signatures.
 -- Term level: The areas of a program that relate to values.
 -- Type inference: The automatic detection of a value's type.
--- Typeclass: A set of functions that can be shared across sets of types.
--- Typeclass constraint: A type variable for a type implementing a typeclass.
--- Polymorphism: The usage of functions across different sets of types.
--- Superclass: A typeclass required by another typeclass.
--- Subclass: A typeclass that requires another typeclass.
 
--- Polymorphism: Type variables referring to possibly multiple concrete types.
--- Parametric polymorphism: Polymorphism over any type.
--- Constrained (ad-hoc, bounded) polymorphism: Polymorphism over certain types.
+
+
 
 -- Typecheck: To validate types at compile-time.
 
--- Principal type: In Haskell, the most generic type which still typechecks.
 
--- Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
--- Typeclass instance (instance): An implementation of a typeclass for a type.
 
--- Parametricity: Uniform function behavior relative to parametric arguments.
 
 -- Pattern: Syntax that matches against particular values.
 -- Pattern matching: Pairing specific function behavior with specific patterns.

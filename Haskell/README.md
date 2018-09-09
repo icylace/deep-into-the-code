@@ -51,6 +51,7 @@ The preceding example loads the `haskell.hs` file. If there were any compile-tim
 ### Learning
 
 - [Haskell Programming from First Principles](http://haskellbook.com/)
+- [What I Wish I Knew When Learning Haskell](http://dev.stephendiehl.com/hask/)
 - [Structuring your first Haskell project with Stack](http://sakshamsharma.com/2018/03/haskell-proj-struct/index.html)
 
 ### References

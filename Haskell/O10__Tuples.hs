@@ -1,6 +1,7 @@
 module O10__Tuples where
 
--- The `Data.Tuple` provides the `swap` function.
+-- The `Data.Tuple` module provides the `swap` function.
+
 import Data.Tuple
 
 -- A tuple is a grouping of fixed-size for values having either the same types

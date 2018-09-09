@@ -8,6 +8,7 @@ module O17__Showing where
 -- transmission to some place like a file or database or over a network.
 
 data You = You deriving Show
+data Hoo = Hoo deriving (Show)
 
 -- `print` prints a printable value to the console and has the type
 -- `Show a => a -> IO ()`.

@@ -52,8 +52,46 @@ _ = upOne''' 23   -- `24`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
+-- A variable can be shadowed by another variable of the same name at an
+-- inner scope.  A reference to a variable will resolve to the variable
+-- declaration at the scoping level closest to that reference.
+
+-- Here, the `x` parameter is shadowed by the `x` `let`-binding.
+
+bindExp :: Integer -> String
+bindExp x =
+  let x = 10; y = 5 in
+    "the integer was: " ++ show x ++ " and y was: " ++ show y
+
+_ = bindExp 9001    -- `"the integer was: 10 and y was: 5"`
+
+-- -----------------------------------------------------------------------------
+
+-- This example shows how a function argument can shadow a top-level assignment.
+
+x = 5
+y = x + 5
+
+_ = y         -- `10`
+_ = y * 10    -- `100`
+
+z y = y * 10
+
+_ = x     -- `5`
+_ = y     -- `10`
+_ = z 9   -- `90`
+_ = z y   -- `100`
+
+-- The lexically innermost binding for a variable of a particular name always
+-- takes precedence.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- Key Terms
 -- =========
 -- Keyword: A term used as a programming language construct.
 -- Let expression: An expression with declarations introduced into it.
 -- Scope (visibility): Area of a program where a variable's binding applies.
+-- Lexical scoping: Scoping based on location in the code and lexical context.
+-- Shadowing: Variable references resolving to more inner variable declarations.

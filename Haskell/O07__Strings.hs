@@ -176,8 +176,6 @@ printStrings = do
 -- Empty string: A string with no characters.
 -- Concatenation: The joining together of sequences of values.
 
--- Partial function:
--- Total function:
 -- Unsafe function:
 -- Error:
 -- Exception:

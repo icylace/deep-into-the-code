@@ -55,24 +55,24 @@ _ = enumFromThenTo 1 10 100       -- `[1,10,19,28,37,46,55,64,73,82,91,100]`
 _ = enumFromThenTo 0 10 100       -- `[0,10,20,30,40,50,60,70,80,90,100]`
 _ = enumFromThenTo 0 10 77        -- `[0,10,20,30,40,50,60,70]`
 
-_ = enumFromThenTo 0 0 0    -- Result is an infinite list of `0`.
-_ = enumFromThenTo 0 0 1    -- Result is an infinite list of `0`.
+_ = enumFromThenTo 0 0 0    -- Results in an infinite list of `0`.
+_ = enumFromThenTo 0 0 1    -- Results in an infinite list of `0`.
 _ = enumFromThenTo 0 1 0    -- `[0]`
 _ = enumFromThenTo 0 1 1    -- `[0,1]`
 _ = enumFromThenTo 1 0 0    -- `[1,0]`
 _ = enumFromThenTo 1 0 1    -- `[1]`
 _ = enumFromThenTo 1 1 0    -- `[]`
-_ = enumFromThenTo 1 1 1    -- Result is an infinite list of `1`.
+_ = enumFromThenTo 1 1 1    -- Results in an infinite list of `1`.
 
-_ = enumFromThenTo 'a' 'a' 'a'    -- Result is an infinite list of `a`.
+_ = enumFromThenTo 'a' 'a' 'a'    -- Results in an infinite list of `a`.
 _ = enumFromThenTo 'a' 'c' 'z'    -- `"acegikmoqsuwy"`
 _ = enumFromThenTo 'b' 'a' 'f'    -- `""`
 
-_ = enumFromThenTo False False False    -- Result is an infinite list of `False`.
-_ = enumFromThenTo False False True     -- Result is an infinite list of `False`.
+_ = enumFromThenTo False False False    -- Results in an infinite list of `False`.
+_ = enumFromThenTo False False True     -- Results in an infinite list of `False`.
 _ = enumFromThenTo False True  False    -- `[False]`
 _ = enumFromThenTo False True  True     -- `[False,True]`
 _ = enumFromThenTo True  False False    -- `[True,False]`
 _ = enumFromThenTo True  False True     -- `[True]`
 _ = enumFromThenTo True  True  False    -- `[]`
-_ = enumFromThenTo True  True  True     -- Result is an infinite list of `True`.
+_ = enumFromThenTo True  True  True     -- Results in an infinite list of `True`.

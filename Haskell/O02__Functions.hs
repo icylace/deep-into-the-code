@@ -1,5 +1,12 @@
 module O02__Functions where
 
+-- A function is an instruction for producing an output from an input argument.
+
+-- Functions are applied to arguments which binds their parameters to values.
+
+-- The fully applied function with its arguments is then evaluated to produce
+-- the output or result.
+
 -- Here we declare a function named `double` that accepts a formal parameter
 -- named `x` which gets used in the body of the function to calculate the
 -- return value which in this case is the doubling of `x`.
@@ -19,6 +26,9 @@ _ = double 3    -- `6`
 _ = 3 * 2   -- `6`
 
 -- Functions that are not pure are covered later.
+
+-- When a function is applied to an argument, the value of the argument is
+-- bound, or unified, with the named parameter in our function definition.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -82,6 +92,56 @@ _ = foo 3   -- Result is a runtime exception.
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
+-- Functions without names are anonymous and they are expressed using lambda
+-- abstraction syntax.
+
+triple :: Integer -> Integer
+triple x = x * 3
+
+_ = triple 5    -- `15`
+
+_ = (\x -> x * 3) :: Integer -> Integer
+
+_ = (\x -> x * 3) 5   -- `15`
+
+-- Parentheses around an anonymous function are required if it gets applied to
+-- its argument direcly.
+
+{-
+_ = \x -> x * 3 5
+-}
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Equivalent function declarations can vary greatly with lambda syntax.
+
+f1 x y z = x * y * z
+f2 x y   = \z -> x * y * z
+f3 x     = \y z -> x * y * z
+f4 x     = \y -> \z -> x * y * z
+f5       = \x y z -> x * y * z
+f6       = \x y -> \z -> x * y * z
+f7       = \x -> \y z -> x * y * z
+f8       = \x -> \y -> \z -> x * y * z
+
+_ = f1 3 4 5    -- `60`
+_ = f2 3 4 5    -- `60`
+_ = f3 3 4 5    -- `60`
+_ = f4 3 4 5    -- `60`
+_ = f5 3 4 5    -- `60`
+_ = f6 3 4 5    -- `60`
+_ = f7 3 4 5    -- `60`
+_ = f8 3 4 5    -- `60`
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Anonymous functions are most useful as arguments to a high-order function.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- Key Terms
 -- =========
 -- Function: An expression that accepts an argument and returns a result.
@@ -99,4 +159,8 @@ _ = foo 3   -- Result is a runtime exception.
 -- Currying: Applying nested functions to a series of corresponding arguments.
 -- Partial application: Fixing some arguments to get a function for the rest.
 
--- Partial function: A function that does not handle all possible inputs.
+-- First-class value: A value that can be used as an argument to a function.
+
+-- Anonymous function: A function without a name, therefore unbound.
+
+-- Higher-order function: A function that accepts and/or returns a function.

@@ -5,7 +5,7 @@ module O05__SignificantWhitespace where
 -- Functions, parameters, and arguments must be separated from one another
 -- with spacing.
 
-foo' x y = div x y
+f' x y = div x y
 
 -- However, spaces around operators are optional.
 
@@ -20,9 +20,9 @@ _ = - 3     -- `-3`
 -- to maintain readbility.  Lines that are continuations of an expression
 -- should be indented under the beginning of that expression.
 
-foo x = 1 + (x * 2) + (x * 3)
-  + (x * 4) + (x * 5) + (x * 6)
-  + (x * 7) + (x * 8) + (x * 9)
+f x = 1 + (x * 2) + (x * 3)
+    + (x * 4) + (x * 5) + (x * 6)
+    + (x * 7) + (x * 8) + (x * 9)
 
 -- All top-level declarations in the same source code file must begin at the
 -- same column.  This column is determined by where the first declaration
