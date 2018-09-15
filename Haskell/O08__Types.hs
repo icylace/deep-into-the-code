@@ -119,10 +119,6 @@ type Name = String
 
 
 
--- The function `not` takes a `Bool` value and returns the other `Bool` value.
-
-_ = not False   -- `True`
-_ = not True    -- `False`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

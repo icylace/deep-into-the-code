@@ -102,3 +102,11 @@ _ = Hearts' < Spades'     -- `False`
 _ = Hearts' < Hearts'     -- `False`
 _ = Hearts' < Clubs'      -- `False`
 _ = Hearts' < Diamonds'   -- `False`
+
+-- -----------------------------------------------------------------------------
+
+-- data Ordering = LT | EQ | GT
+
+_ = compare 10 9    -- `GT`
+_ = compare 9 9     -- `EQ`
+_ = compare 9 10    -- `LT`

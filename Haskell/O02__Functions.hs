@@ -43,10 +43,9 @@ addAndMultiply x y = x + y * (x + y)
 
 _ = addAndMultiply 4 5    -- `49`
 
--- However, technically speaking, all functions in Haskell have precisely one
--- parameter and always return a value.  So, the above expression is actually
--- applying a series of nested functions to a series of arguments to those
--- functions.  This process is known as currying.
+-- However, all Haskell functions that appear to accept multiple values are
+-- really a series of nested functions that each accepts one value and
+-- returns one result.  Haskell functions are "curried" by default.
 
 -- We can partially apply our declared function to access the implied nested
 -- function within it.
@@ -135,9 +134,13 @@ _ = f7 3 4 5    -- `60`
 _ = f8 3 4 5    -- `60`
 
 -- -----------------------------------------------------------------------------
--- -----------------------------------------------------------------------------
 
 -- Anonymous functions are most useful as arguments to a high-order function.
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- point-free
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -157,10 +160,13 @@ _ = f8 3 4 5    -- `60`
 
 -- Pure function: A function producing the same output given the same input.
 -- Currying: Applying nested functions to a series of corresponding arguments.
--- Partial application: Fixing some arguments to get a function for the rest.
+-- Partial application: Passing some but not all arguments to a function.
 
 -- First-class value: A value that can be used as an argument to a function.
 
 -- Anonymous function: A function without a name, therefore unbound.
 
 -- Higher-order function: A function that accepts and/or returns a function.
+
+-- Point-free: A style of composing function without writing their parameters.
+-- Point: A function parameter.

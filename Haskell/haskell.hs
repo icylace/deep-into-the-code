@@ -36,7 +36,7 @@ import O05__SignificantWhitespace
 import O06__LetAndWhere
 import O07__Strings
 import O08__Types
-import O09__Comparison
+import O09__Branching
 import O10__Tuples
 import O11__PatternMatching
 import O12__Lists
@@ -258,6 +258,56 @@ jackal = undefined
 _ = jackal "keyboard" "has the word jackal in it"
 -- Type is `[Char]`.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add :: Int -> Int -> Int
+add x y = x + y
+
+addPF :: Int -> Int -> Int
+addPF = (+)
+
+addOne :: Int -> Int
+addOne = \x -> x + 1
+
+addOnePF :: Int -> Int
+addOnePF = (+ 1)
+
+_ = add 1 0                                           -- `1`
+_ = addOne 0                                          -- `1`
+_ = addOnePF 0                                        -- `1`
+_ = (addOne . addOne) 0                               -- `2`
+_ = (addOnePF . addOne) 0                             -- `2`
+_ = (addOne . addOnePF) 0                             -- `2`
+_ = (addOnePF . addOnePF) 0                           -- `2`
+_ = negate (addOne 0)                                 -- `-1`
+_ = (negate . addOne) 0                               -- `-1`
+_ = (addOne . addOne . addOne . negate . addOne) 0    -- `2`
+
+
+
+
+
+
+
+
+
+
+
+
+
 {-
 
 _ = jackal "keyboard"
@@ -281,6 +331,100 @@ _ = kessel (1 :: Integer) 2
 
 
 
+
+
+
+
+
+
+
+-- The composition operator, `.`, takes a couple functions and composes them to
+-- make a new function.
+
+-- Prelude> :i (.)
+-- (.) :: (b -> c) -> (a -> b) -> a -> c 	-- Defined in ‘GHC.Base’
+-- infixr 9 .
+
+f = negate . sum
+
+_ = f [1, 2, 3, 4, 5]   -- `-15`
+
+
+negate . sum $ [1, 2, 3, 4, 5]
+
+negate (sum [1, 2, 3, 4, 5])
+
+(negate . sum) [1, 2, 3, 4, 5]
+
+
+
+_ = take 5 . filter odd . enumFrom $ 3    -- `[3,5,7,9,11]`
+
+
+
+
+
+
+
+-- https://stackoverflow.com/a/13147064/1935675
+-- https://stackoverflow.com/a/2465059/1935675
+-- https://stackoverflow.com/a/1983310/1935675
+
+f x y
+(f x) y
+(x `f`) y
+(`f` y) x
+x `f` y
+
+f $ g x y
+f . g $ x y
+f . g x $ y
+
+f $ g $ h x
+(f . g . h) x
+f . g . h $ x
+
+f . g . h
+(f . g) . h
+f . (g . h)
+
+
+
+
+
+
+
+
+
+(f . g) x = f (g x)
+
+f . g = \x -> f (g x)
+
+f . g . h = \x -> f (g (h x))
+
+
+
+
+f = negate . sum
+
+_ = f [1, 2, 3, 4, 5]   --`15`
+
+
+
+
+
+
+
+f :: Int -> [Int] -> Int
+f z xs = foldr (+) z xs
+
+f' = foldr (+)
+_ = f' 0 [1..5]
+
+
+
+f = length . filter (== 'a')
+_ = f "abracadabra"
 
 
 
@@ -315,6 +459,45 @@ _ = n = 10 :: (Fractional a)
 -}
 
 
+
+
+-- -----------------------------------------------------------------------------
+
+-- `flip` will exchange the order of a two-parameter function's parameters.
+
+_ = (-) 10 1        -- `9`
+_ = flip (-) 10 1   -- `-9`
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+returnLast :: a -> b -> c -> d -> d
+returnLast _ _ _ d = d
+
+returnLast' :: a -> (b -> (c -> (d -> d)))
+returnLast' _ _ _ d = d
+
+returnBroke :: (((a -> b) -> c) -> d) -> d
+returnBroke _ _ _ d = d
+
+returnAfterApply :: (a -> b) -> a -> c -> b
+returnAfterApply f a c = f a
+
+
+
+
+
+
+
+
+"boobs" operator
+bird combinator
+
+(.:) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
+(.:) = (.) . (.)
 
 
 

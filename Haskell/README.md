@@ -4,10 +4,18 @@ My Haskell notes comprise of several source code files. I've written them this w
 
 For instance, `haskell.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
 
-My current preferred way to install Haskell on macOS is by using [Homebrew](https://brew.sh) to install [The Haskell Tool Stack](https://haskellstack.org/). If you're on a Mac, go to your terminal and run the following installation command.
+I use macOS, so my current preferred way to install Haskell by using [Nix](https://nixos.org/nix/) to install [The Haskell Tool Stack](https://haskellstack.org/).
+
+If you're on a Mac and you don't already have Nix, go to your terminal and run this installation command:
 
 ```shell
-brew install haskell-stack
+curl https://nixos.org/nix/install | sh
+```
+
+Now if you don't already have Stack installed, run this installation command:
+
+```shell
+nix-env --install --attr nixpkgs.stack
 ```
 
 After the installation completes, make sure you're within the directory of your local copy of my Haskell notes, and the run the command
@@ -64,3 +72,10 @@ The preceding example loads the `haskell.hs` file. If there were any compile-tim
 - [The Haskell Programming Language wiki - Keywords](https://wiki.haskell.org/Keywords)
 - [A Guide to GHC's Extensions](https://limperg.de/ghc-extensions/)
 - [Haskell/GHC symbol search cheatsheet](https://github.com/takenobu-hs/haskell-symbol-search-cheatsheet)
+
+# \_ Haskell resources
+
+- as-pattern: http://stackoverflow.com/a/1153485
+- GADTs: http://stackoverflow.com/a/8245394
+- lists, arrays, vectors, sequences: http://stackoverflow.com/a/9613203
+- names for operators: http://stackoverflow.com/a/7747115
