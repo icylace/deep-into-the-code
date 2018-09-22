@@ -11,9 +11,9 @@ _ = x < 5     -- `False`
 _ = x < 9     -- `False`
 _ = x < 10    -- `True`
 
-_ = 'a' < 'b'     -- `True`
-_ = "Hello" < "hello"     -- `True`
-_ = "Hello" < "World"     -- `True`
+_ = 'a' < 'b'           -- `True`
+_ = "Hello" < "hello"   -- `True`
+_ = "Hello" < "World"   -- `True`
 
 -- The less-than-or-equal-to operator, `<=`, checks if an expression is
 -- lesser than or equal to another.
@@ -31,9 +31,9 @@ _ = x > 5     -- `True`
 _ = x > 9     -- `False`
 _ = x > 10    -- `False`
 
-_ = 'a' > 'b'     -- `False`
-_ = "Hello" > "hello"     -- `False`
-_ = "Hello" > "World"     -- `False`
+_ = 'a' > 'b'           -- `False`
+_ = "Hello" > "hello"   -- `False`
+_ = "Hello" > "World"   -- `False`
 
 -- The greater-than-or-equal-to operator, `>=`, checks if an expression is
 -- greater than or equal to another.

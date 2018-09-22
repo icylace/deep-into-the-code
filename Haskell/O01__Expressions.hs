@@ -71,14 +71,13 @@ _ = 2 + 3
 
 _ = 1 + 2 * 3   -- `7`
 
--- Parentheses may be used to nest expressions within other expressions.
--- Nested expressions are evaluated before the expression they're
--- nested within.
+-- Parentheses may be used to nest expressions within other expressions.  Nested
+-- expressions are evaluated before the expression they're nested within.
 
 _ = (1 + 2) * 3   -- `9`
 
--- Nested expressions at the same level of nesting are evaluated from left
--- to right.
+-- Nested expressions at the same level of nesting are evaluated from left to
+-- right.
 
 _ = (1 + 2) / (3 + 4) * (5 + 6)   -- `4.714285714285714`
 _ = (5 + 6) * (3 + 4) / (1 + 2)   -- `25.666666666666668`
@@ -88,9 +87,13 @@ _ = (5 + 6) * (3 + 4) / (1 + 2)   -- `25.666666666666668`
 _ = ((1 + 2) * 3) + 4 * (5 + 6)   -- `53`
 _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 
--- An expression will not necessarily be reduced to a value when evaluated.
--- By default it gets evaluated to weak head normal form, which is just a
--- more simplified version of the expression.
+-- An expression will not necessarily be reduced to a value when evaluated.  By
+-- default it gets evaluated to weak head normal form, which is just a more
+-- simplified version of the expression that was evaluated as far as
+-- necessary to reach a data constructor.
+
+-- When an expression is in normal form it is also still in weak head normal
+-- form.  So, normal form is a subset of wek head normal form.
 
 -- An expression is not evaluated until it is forced to be by other expressions
 -- that refer to it.  This is called lazy evaluation.

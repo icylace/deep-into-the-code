@@ -32,7 +32,7 @@ import O01__Expressions
 import O02__Functions
 import O03__Operators
 import O04__Arithmetic
-import O05__SignificantWhitespace
+import O05__Whitespace
 import O06__LetAndWhere
 import O07__Strings
 import O08__Types
@@ -46,6 +46,9 @@ import O15__Ordering
 import O16__Enumeration
 import O17__Showing
 import O18__Reading
+import O19__Recursion
+import O20__Folding
+import O21__AlgebraicDatatypes
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.
@@ -142,6 +145,31 @@ main = print ()
 
 
 
+
+-- "Bottom" is an indication of a computation that does not result in a value.
+-- Computations that failed with an error or failed to terminate like an
+-- infinite loop are examples of bottom.
+
+-- If you apply this to any values,
+-- it'll recurse indefinitely.
+f x = f x
+
+-- It'll a'splode if you pass a False value
+dontDoThis :: Bool -> Int
+dontDoThis True = 1
+
+-- morally equivalent to
+definitelyDontDoThis :: Bool -> Int
+definitelyDontDoThis True = 1
+definitelyDontDoThis False = error "oops"
+
+
+
+
+
+
+
+
 -- `undefined` is a special value that can be used to allow compilation to
 -- happen for code yet to be implemented.  Evaluating "undefined" code
 -- will throw an exception.  Thanks to lazy evaluation, such code can
@@ -150,7 +178,9 @@ main = print ()
 x = undefined
 -- `x` is now undefined.
 
--- "undefined" code can be typechecked.
+-- `undefined` is another way of expressing bottom.
+
+-- Undefined code can still be typechecked.
 
 -- Since `->` is right-associative, currying is available by default, and
 -- function type signatures are implicitly parenthesized.
@@ -295,6 +325,79 @@ _ = (addOnePF . addOnePF) 0                           -- `2`
 _ = negate (addOne 0)                                 -- `-1`
 _ = (negate . addOne) 0                               -- `-1`
 _ = (addOne . addOne . addOne . negate . addOne) 0    -- `2`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- Anything in normal form is also in weak head normal form (WHNF).
+
+-- This is in normal form because it's fully reduced.
+
+_ = (1, 2)
+
+-- This is in WHNF because the outer expression, the tuple, is fully reduced
+-- but one of its subexpressions has an addition operator that hasn't been
+-- evaluated yet.
+
+_ = (1, 1 + 1)
+
+-- This function is in normal form because it must be applied to an argument in
+-- order to evaluate further.
+
+_ = \x -> x * 10
+
+-- This is neither normal form nor WHNF because the append operator is fully
+-- applied but not evaluated.
+
+_ = "Papu" ++ "chon"
+
+-- This is in WHNF because the outer expression, the tuple, is fully reduced
+-- but one of its subexpressions has an append operator that hasn't been
+-- evaluated yet.
+
+_ = (1, "Papu" ++ "chon")
+
+-- This list is in normal form because all its contained values are known.
+
+_ = [1, 2, 3]
+
+-- The following is an example of WHNF evaluation.  `myNum` is in WHNF because
+-- it's a list constructed by a range that will only evaluate as far as it has
+-- to.  `take 2` forces some evaluation of the range. `:sprint` displays what
+-- has been evaluated (the numbers) and what hasn't (the underscore).
+
+-- Prelude> let myNum :: [Int]; myNum = [1..10]
+--
+-- Prelude> :sprint myNum
+-- myNum = _
+--
+-- Prelude> take 2 myNum
+-- [1,2]
+--
+-- Prelude> :sprint myNum
+-- myNum = 1 : 2 : _
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 
@@ -615,7 +718,7 @@ aggregate f =           sum . map f
 aggregate f =       (.) sum (map f)
 aggregate f =       (.) sum $ map f
 aggregate f =       (.) sum . map $ f
-aggregate f = \f -> (.) sum . map $ f
+aggregate   = \f -> (.) sum . map $ f
 aggregate f =       (.) sum . map
 aggregate f =          (sum .) . map
 
@@ -735,6 +838,90 @@ yy = undefined
 
 
 
+-- The `Maybe` datatype is used to express the possible absence of a value.
+
+data Maybe a = Nothing | Just a
+-- This is already defined in the standard Prelude library but shown here for
+-- informational purposes.
+
+-- The `Nothing` value represents a safe way, without hitting bottom, to express
+-- that no valid value can be produced.
+
+-- The `Just a` value is used to hold valid data.
+
+f :: Bool -> Maybe Int
+f False = Just 0
+f _ = Nothing
+
+
+
+
+
+
+
+
+
+
+
+
+dividedBy :: Integral a => a -> a -> (a, a)
+dividedBy num denom = go num denom 0
+  where
+    go n d count
+      | n < d = (count, n)
+      | otherwise = go (n - d) d (count + 1)
+
+-- dividedBy 10 2
+
+-- -- first we'll do this the previous way,
+-- -- but we'll keep track of how many
+-- -- times we subtracted.
+-- 10 divided by 2 ==
+--   10 - 2, 8 (subtracted 1 time)
+--      - 2, 6 (subtracted 2 times)
+--      - 2, 4 (subtracted 3 times)
+--      - 2, 2 (subtracted 4 times)
+--      - 2, 0 (subtracted 5 times)
+
+-- dividedBy 10 2 =
+--   go 10 2 0
+--     | 10 < 2 = ...
+--     -- false, skip this branch
+--     | otherwise = go (10 - 2) 2 (0 + 1)
+--     -- otherwise is literally the value True
+--     -- so if first branch fails,
+--     -- this always succeeds
+--     go 8 2 1
+--     -- 8 isn't < 2, so the otherwise branch
+--     go (8 - 2) 2 (1 + 1)
+--     -- n == 6, d == 2, count == 2
+--     go 6 2 2
+--     go (6 - 2) 2 (2 + 1)
+--     -- 6 isn't < 2, so the otherwise branch
+--     -- n == 4, d == 2, count == 3
+
+--     go 4 2 3
+--     go (4 - 2) 2 (3 + 1)
+--     -- 4 isn't < 2, so the otherwise branch
+--     -- n == 2, d == 2, count == 4
+--     go 2 2 4
+--     go (2 - 2) 2 (4 + 1)
+--     -- 2 isn't < 2, so the otherwise branch
+--     -- n == 0, d == 2, count == 5
+--     go 0 2 5
+--     -- the n < d branch is finally evaluated
+--     -- because 0 < 2 is true
+--     -- n == 0, d == 2, count == 5
+--     | 0 < 2 = (5, 0)
+
+-- (5, 0)
+
+
+
+
+
+
+
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -757,12 +944,15 @@ yy = undefined
 -- Uncurried function: In Haskell, a function taking a tuple of many arguments.
 
 
+-- Bottom: An indication that a computation does not result in a value.
 
 
 
 -- Directive: An instruction to the compiler.
 
 
+
+-- Predicate: A function that evaluates to a boolean value.
 
 
 

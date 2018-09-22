@@ -3,9 +3,9 @@ module O03__Operators where
 -- Functions that are written between their arguments (e.g. arithmetic
 -- operators) are said to be written in infix notation.
 
--- Operators are functions with non-alphanumeric names and are written
--- in infix notation by default.  Their arguments are called operands.
--- Most operators are binary meaning they apply to a couple arguments.
+-- Operators are functions with non-alphanumeric names and are written in infix
+-- notation by default.  Their arguments are called operands.  Most operators
+-- are binary meaning they apply to a couple arguments.
 
 _ = 10 / 4    -- `2.5`
 
@@ -38,8 +38,7 @@ _ = 10 `div` 4 `div` 25   -- `0`
 _ = (div) 10 4      -- `2`
 _ = ((div) 10) 4    -- `2`
 
--- Backticks also allow sectioning to be used.
--- More details on sectioning later.
+-- Backticks also allow "sectioning" to be used.  More on that later.
 
 _ = (10 `div`) 4    -- `2`
 _ = (`div` 4) 10    -- `2`
@@ -58,8 +57,9 @@ _ = 10 `(/)` 4
 
 -- Infix operators have the properties of associativity and precedence.
 
--- Haskell's REPL (read-eval-print loop) environment, GHCi, has a `:i` (`:info`)
--- command that gives some information about functions.
+-- Haskell's REPL (read-eval-print loop) environment, GHCi, has an `:i`
+-- (short for `:info`) command that can give some information about
+-- types and expressions.
 
 -- Running this in GHCi will show information about the addition operator:
 --
@@ -114,8 +114,8 @@ timesFive = (* 5)
 -- the second operand parameter and having the value `5` exist where that second
 -- operand originally was.
 
--- A partially applied operator is called a section and the act of creating a
--- section is called sectioning.
+-- A partially applied operator is called a "section" and the act of creating a
+-- section is called "sectioning".
 
 _ = 2 * 5         -- `10`
 _ = (2 *) 5       -- `10`

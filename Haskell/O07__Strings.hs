@@ -47,8 +47,7 @@ _ = concat ["Hello", "", " ", "", "world!"]   -- `"Hello World!"`
 -- They work on lists generally.  Lists will be explored in more detail later
 -- on but let's look at some other list functions useful for strings.
 
--- The "cons" operator, `:`, builds a list.  (Sidenote: cons in this context
--- might be short for construct but I'm not sure.)
+-- The "cons" operator (short for "construct"), `:`, builds a list.
 
 _ = 'H' : "ello"                        -- `"Hello"`
 _ = 'H' : 'e' : "llo"                   -- `"Hello"`
@@ -87,8 +86,7 @@ _ = tail ""
 _ = tail []
 -}
 
--- `take` returns the specified number of elements from the beginning of a
--- given list.
+-- `take` returns a number of elements from the beginning of a given list.
 
 _ = take 0 "Hello"    -- `""`
 _ = take 1 "Hello"    -- `"H"`

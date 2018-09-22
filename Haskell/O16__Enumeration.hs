@@ -4,14 +4,14 @@ module O16__Enumeration where
 
 -- Enumerable values have known successors and predecessors.
 
-_ = succ 4      -- `5`
-_ = pred 4      -- `3`
+_ = succ 4        -- `5`
+_ = pred 4        -- `3`
 
-_ = succ 4.5    -- 5.5
-_ = pred 4.5    -- 3.5
+_ = succ 4.5      -- 5.5
+_ = pred 4.5      -- 3.5
 
-_ = succ 'd'    -- `e`
-_ = pred 'd'    -- `c`
+_ = succ 'd'      -- `e`
+_ = pred 'd'      -- `c`
 
 _ = succ False    -- `True`
 _ = pred True     -- `False`
@@ -20,10 +20,10 @@ _ = pred True     -- `False`
 
 -- An exception will be thrown if a successor predecessor doesn't exist.
 
-_ = succ True     -- Result is an exception.
-_ = pred False    -- Result is an exception.
+_ = succ True     -- Results in a thrown exception.
+_ = pred False    -- Results in a thrown exception.
 
-_ = pred minBound :: Int    -- Result is an exception.
+_ = pred minBound :: Int    -- Results in a thrown exception.
 _ = pred maxBound :: Int    -- `9223372036854775806`
 
 _ = succ minBound :: Int    -- `-9223372036854775807`
@@ -34,11 +34,11 @@ _ = succ maxBound :: Int    -- Result is an exception.
 
 -- `enumFromTo` creates a list of sequential values within a range.
 
-_ = enumFromTo 0 0        -- `[0]`
-_ = enumFromTo 3 8        -- `[3,4,5,6,7,8]`
+_ = enumFromTo 0 0            -- `[0]`
+_ = enumFromTo 3 8            -- `[3,4,5,6,7,8]`
 
-_ = enumFromTo 'a' 'a'    -- `"a"`
-_ = enumFromTo 'a' 'f'    -- `"abcdef"`
+_ = enumFromTo 'a' 'a'        -- `"a"`
+_ = enumFromTo 'a' 'f'        -- `"abcdef"`
 
 _ = enumFromTo False False    -- `[False]`
 _ = enumFromTo False True     -- `[False,True]`

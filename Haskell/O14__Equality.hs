@@ -168,7 +168,7 @@ data Tuple a b = Tuple a b
 instance (Eq a, Eq b) => Eq (Tuple a b) where
   (==) (Tuple x y) (Tuple x' y') = x == x' && y == y'
 
-_ = Tuple 1 2   == Tuple 1 2        -- `True`
+_ = Tuple 1 2   == Tuple 1 2      -- `True`
 _ = Tuple 1 'a' == Tuple 1 'a'    -- `True`
 _ = Tuple 'b' 3 == Tuple 'c' 3    -- `False`
 

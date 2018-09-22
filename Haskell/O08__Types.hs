@@ -7,8 +7,8 @@ import GHC.Int
 -- A type, or data type, is a classification of values.  Every value has an
 -- associated type.
 
--- The compiler can determine the type for a value automatically through
--- a process called type inference.
+-- The compiler can determine the type for a value automatically through a
+-- process called type inference.
 
 x = 'b'
 -- `x` has the type `Char`.
@@ -123,11 +123,11 @@ type Name = String
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- The following data declaration is similar to the Boolean type that comes
--- with Haskell.  `MyBool` is the type constructor, the name of the type.
--- `MyFalse` and `MyTrue` are data constructors which create values of
--- the type.  The pipe symbol, `|`, denotes a sum type which is a
--- type composed of distinct values.
+-- The following data declaration is similar to the Boolean type that comes with
+-- Haskell.  `MyBool` is the type constructor, the name of the type.  `MyFalse`
+-- and `MyTrue` are data constructors which create values of the type.  The
+-- pipe symbol, `|`, denotes a sum type which is a type composed of
+-- distinct values.
 
 data MyBool = MyFalse | MyTrue
 
@@ -136,8 +136,8 @@ data MyBool = MyFalse | MyTrue
 
 
 
--- A function can behave differently depending upon the particular value,
--- or pattern, it is applied to.  This pairing of particular values with
+-- A function can behave differently depending upon the particular value, or
+-- pattern, it is applied to.  This pairing of particular values with
 -- particular behaviors is known as pattern matching.
 
 yesNo :: MyBool -> String
@@ -249,9 +249,9 @@ smoosh x y = x ++ y
 
 
 
--- Term level is where values live and code execution happens.
+-- The term level is where values live and code execution happens.
 
--- Type level is where types live and static analysis and program
+-- The type level is where types live and static analysis and program
 -- verification happens.
 
 
@@ -265,8 +265,8 @@ smoosh x y = x ++ y
 
 
 
--- Haskell conventions for variables (according to section 4.11
--- of "Haskell Programming from First Principles"):
+-- Haskell conventions for variables (according to section 4.11 of "Haskell
+-- Programming from First Principles"):
 --
 -- Type variables generally start at `a` and each additional type variable is
 -- assigned the next available letter of the alphabet.
@@ -322,8 +322,8 @@ smoosh x y = x ++ y
 
 
 
--- A typeclass constraint consists of a type variable for a type which has
--- an instance of a given typeclass.
+-- A typeclass constraint consists of a type variable for a type which has an
+-- instance of a given typeclass.
 
 -- Running `:t (/)` in GHCi will show that the division operator has a typeclass
 -- constraint using the `Fractional` typeclass.
@@ -340,8 +340,8 @@ smoosh x y = x ++ y
 -- However, types implementing just `Num` but not also `Fractional` can use
 -- functions from `Num` but not `Fractional`.
 
--- Using integer numbers with the division operator will result in a number
--- that is fractional.
+-- Using integer numbers with the division operator will result in a number that
+-- is fractional.
 
 _ = 4 / 2   -- `2.0`
 
@@ -376,11 +376,11 @@ foo2 = undefined
 
 
 
--- Parametric polymorphism is when a type variable is not contrained by
--- a typeclass.
+-- Parametric polymorphism is when a type variable is not contrained by a
+-- typeclass.
 
--- `id` is a parametric polymorphic function having the type `a -> a`.
--- It returns its argument.
+-- `id` is a parametric polymorphic function having the type `a -> a` that
+-- returns its argument.
 
 _ = id 3                -- `3`
 _ = id "Hi"             -- `"Hi"`
@@ -608,9 +608,13 @@ _ = maxBound :: ()      -- `()`
 -- Data constructor: A function that creates values of a certain type.
 -- Data declaration: A declaration that defines a new datatype.
 
--- Sum type: A type composed of distinct values.
+-- Sum type: A type composed of values that are alternatives of one another.
+-- Product type: A type composed of multiple arguments.
+
 
 -- Nullary: Taking no arguments.
+
+
 
 -- Type constructor: The name of a type which is used in type signatures.
 

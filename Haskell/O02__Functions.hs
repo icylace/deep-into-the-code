@@ -47,6 +47,9 @@ _ = addAndMultiply 4 5    -- `49`
 -- really a series of nested functions that each accepts one value and
 -- returns one result.  Haskell functions are "curried" by default.
 
+-- Therefore, in Haskell any function that appears to take more than one
+-- argument is a higher-order function.
+
 -- We can partially apply our declared function to access the implied nested
 -- function within it.
 
@@ -135,12 +138,25 @@ _ = f8 3 4 5    -- `60`
 
 -- -----------------------------------------------------------------------------
 
--- Anonymous functions are most useful as arguments to a high-order function.
+-- Anonymous functions are most useful as arguments to a higher-order function.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- point-free
+-- "Point-free" style (a.k.a. tacit programming) is a way of declaring functions
+-- where the parameters of a function, the "points", are not explicitly used.
+
+-- not pointfree
+blah x = x
+addAndDrop x y = x + 1
+reverseMkTuple a b = (b, a)
+reverseTuple (a, b) = (b, a)
+
+-- pointfree versions of the above
+blah = id
+addAndDrop = const . (1 +)
+reverseMkTuple = flip (,)
+reverseTuple = uncurry (flip (,))
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -162,11 +178,13 @@ _ = f8 3 4 5    -- `60`
 -- Currying: Applying nested functions to a series of corresponding arguments.
 -- Partial application: Passing some but not all arguments to a function.
 
+-- Composition: Function application on result of another function application.
+
 -- First-class value: A value that can be used as an argument to a function.
 
 -- Anonymous function: A function without a name, therefore unbound.
 
 -- Higher-order function: A function that accepts and/or returns a function.
 
--- Point-free: A style of composing function without writing their parameters.
+-- Point-free: A style of function declaration without writing the parameters.
 -- Point: A function parameter.

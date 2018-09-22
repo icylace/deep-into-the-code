@@ -1,9 +1,9 @@
-module O05__SignificantWhitespace where
+module O05__Whitespace where
 
 -- Indentation helps determine the meaning of code.
 
--- Functions, parameters, and arguments must be separated from one another
--- with spacing.
+-- Functions, their parameters, and associated arguments must be separated from
+-- one another with spacing.
 
 f' x y = div x y
 

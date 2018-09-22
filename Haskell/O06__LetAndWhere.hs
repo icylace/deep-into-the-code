@@ -52,9 +52,10 @@ _ = upOne''' 23   -- `24`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- A variable can be shadowed by another variable of the same name at an
--- inner scope.  A reference to a variable will resolve to the variable
--- declaration at the scoping level closest to that reference.
+-- A variable can be shadowed by another variable of the same name at an inner
+-- scope.  A reference to a variable will resolve to the variable declaration
+-- either at the same scoping level or the next outer scope that's closest to
+-- that reference.
 
 -- Here, the `x` parameter is shadowed by the `x` `let`-binding.
 
