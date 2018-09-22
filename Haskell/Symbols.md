@@ -2,58 +2,58 @@
 
 ## General Notation
 
-| Symbol        | Context                  | Read as                                               |
-| ------------- | ------------------------ | ----------------------------------------------------- |
-| `_`           |                          | "whatever" / "anything" / "blank" / "wildcard"        |
-| `--`          |                          | "comment" / "note"                                    |
-| `->`          | case branch              | "then"                                                |
-| `,`           |                          | ""                                                    |
-| `;`           |                          | ""                                                    |
-| `!`           |                          | "strict"                                              |
-| `?`           | ImplicitParams extension | "implicit" / "dynamic" / "dynamically-bound variable" |
-| `.`           | numeric literal          | "point"                                               |
-| `'`           | identifier name          | "prime"                                               |
-| `''`          | identifier name          | "double prime"                                        |
-| `(`...`)`     | expression               | "" / "subexpression"                                  |
-| `{`...`}`     | expression               | "" / "explicit block"                                 |
-| `{-`...`-}`   |                          | "nested comment" / "block comment" / "note"           |
-| `{-#`...`#-}` |                          | "pragma"                                              |
-| `//`          | using Data.Array         | "update with"                                         |
-| `&&`          |                          | "and" / "logical and" / "boolean and"                 |
-| `#`           | using MagicHash          | "hash"                                                |
-| `=`           |                          | "equals" / "is" / "is set to" / "is defined as"       |
-| `||`          |                          | "or" / "logical or" / "boolean or"                    |
-| `~`           |                          | "lazy"                                                |
+| Symbol          | Context                  | Read as                                               |
+| --------------- | ------------------------ | ----------------------------------------------------- |
+| `_`             |                          | "whatever" / "anything" / "blank" / "wildcard"        |
+| `--`            |                          | "comment" / "note"                                    |
+| `->`            | case branch              | "then"                                                |
+| `,`             |                          | ""                                                    |
+| `;`             |                          | ""                                                    |
+| `!`             |                          | "strict"                                              |
+| `?`             | ImplicitParams extension | "implicit" / "dynamic" / "dynamically-bound variable" |
+| `.`             | numeric literal          | "point"                                               |
+| `'`             | identifier name          | "prime"                                               |
+| `''`            | identifier name          | "double prime"                                        |
+| `(` ... `)`     | expression               | "" / "subexpression"                                  |
+| `{` ... `}`     | expression               | "" / "explicit block"                                 |
+| `{-` ... `-}`   |                          | "nested comment" / "block comment" / "note"           |
+| `{-#` ... `#-}` |                          | "pragma"                                              |
+| `//`            | using Data.Array         | "update with"                                         |
+| `&&`            |                          | "and" / "logical and" / "boolean and"                 |
+| `#`             | using MagicHash          | "hash"                                                |
+| `=`             |                          | "equals" / "is" / "is set to" / "is defined as"       |
+| `||`            |                          | "or" / "logical or" / "boolean or"                    |
+| `~`             |                          | "lazy"                                                |
 
 ## Type Notation
 
-| Symbol    | Context          | Read as                                                   |
-| --------- | ---------------- | --------------------------------------------------------- |
-| `->`      | type signature   | "to"                                                      |
-| `::`      | kind signature   | "has kind" / "of kind" / "having kind" / "is a"           |
-| `::`      | type annotation  | "as type" / "as a" / "as an"                              |
-| `::`      | type signature   | "has type" / "of type" / "having type" / "is a" / "is an" |
-| `{`...`}` | data constructor | "record having"                                           |
-| `*`       | kind signature   | "star" / "boxed type"                                     |
-| `=>`      | type declaration | "in" / "implies" / "then"                                 |
-| `|`       | type declaration | "or"                                                      |
-| space     | type constructor | ""                                                        |
+| Symbol      | Context          | Read as                                                   |
+| ----------- | ---------------- | --------------------------------------------------------- |
+| `->`        | type signature   | "to"                                                      |
+| `::`        | kind signature   | "has kind" / "of kind" / "having kind" / "is a"           |
+| `::`        | type annotation  | "as type" / "as a" / "as an"                              |
+| `::`        | type signature   | "has type" / "of type" / "having type" / "is a" / "is an" |
+| `{` ... `}` | data constructor | "record having"                                           |
+| `*`         | kind signature   | "star" / "boxed type"                                     |
+| `=>`        | type declaration | "in" / "implies" / "then"                                 |
+| `|`         | type declaration | "or"                                                      |
+| space       | type constructor | ""                                                        |
 
 ## Function Notation
 
-| Symbol        | Context                  | Read as                                                     |
-| ------------- | ------------------------ | ----------------------------------------------------------- |
-| ` \``... `\`` |                          | "" / "inline"                                               |
-| `->`          |                          | "to"                                                        |
-| `.`           | expression               | "dot" / "compose" / "composed with"                         |
-| `(`...`)`     | prefix operator notation | ""                                                          |
-| `@`           | pattern match            | "as"                                                        |
-| `\\`          | function declaration     | "lambda"                                                    |
-| `&`           |                          | "then" / "piped to"                                         |
-| `=`           | function declaration     | "returns" / "equals" / "is" / "is set to" / "is defined as" |
-| `|`           | guard                    | "in the case of"                                            |
-| `$`           |                          | "of" / "applied to"                                         |
-| space         | function application     | "of" / "applied to"                                         |
+| Symbol              | Context                  | Read as                                                     |
+| ------------------- | ------------------------ | ----------------------------------------------------------- |
+| `` ` `` ... `` ` `` |                          | "" / "inline"                                               |
+| `->`                |                          | "to"                                                        |
+| `.`                 | expression               | "dot" / "compose" / "composed with"                         |
+| `(` ... `)`         | prefix operator notation | ""                                                          |
+| `@`                 | pattern match            | "as"                                                        |
+| `\`                 | function declaration     | "lambda"                                                    |
+| `&`                 |                          | "then" / "piped to"                                         |
+| `=`                 | function declaration     | "returns" / "equals" / "is" / "is set to" / "is defined as" |
+| `|`                 | guard                    | "in the case of"                                            |
+| `$`                 |                          | "of" / "applied to"                                         |
+| space               | function application     | "of" / "applied to"                                         |
 
 ## Arithmetic Notation
 
@@ -75,40 +75,40 @@
 | `'`    | character literal       | ""                |
 | `"`    | end of string literal   | ""                |
 | `"`    | start of string literal | "" / "the string" |
-| `\\`   | multiline string        | ""                |
+| `\`    | multiline string        | ""                |
 
 ## Comparison Notation
 
-| Symbol | Context | Read as                    |
-| ------ | ------- | -------------------------- |
-| `/=`   |         | "not equal to"             |
-| `<`    |         | "less than"                |
-| `<=`   |         | "less than or equal to"    |
-| `==`   |         | "equals" / "is equal to"   |
-| `>`    |         | "greater than"             |
-| `>=`   |         | "greater than or equal to" |
+| Symbol | Context | Read as                       |
+| ------ | ------- | ----------------------------- |
+| `/=`   |         | "is not equal to"             |
+| `<`    |         | "is less than"                |
+| `<=`   |         | "is less than or equal to"    |
+| `==`   |         | "equals" / "is equal to"      |
+| `>`    |         | "is greater than"             |
+| `>=`   |         | "is greater than or equal to" |
 
 ## List Notation
 
-| Symbol    | Context            | Read as              |
-| --------- | ------------------ | -------------------- |
-| `:`       |                    | "cons"               |
-| `!!`      |                    | "index" / "at index" |
-| `..`      | bounded range      | "to" / "up to"       |
-| `..`      | unbounded range    | "and so on" / "etc"  |
-| `[]`      |                    | "empty list"         |
-| `[`...`]` |                    | "list of"            |
-| `++`      |                    | "append" / "concat"  |
-| `|`       | list comprehension | "such that"          |
+| Symbol      | Context            | Read as              |
+| ----------- | ------------------ | -------------------- |
+| `:`         |                    | "cons"               |
+| `!!`        |                    | "index" / "at index" |
+| `..`        | bounded range      | "to" / "up to"       |
+| `..`        | unbounded range    | "and so on" / "etc"  |
+| `[]`        |                    | "empty list"         |
+| `[` ... `]` |                    | "list of"            |
+| `++`        |                    | "append" / "concat"  |
+| `|`         | list comprehension | "such that"          |
 
 ## Tuple Notation
 
-| Symbol    | Context | Read as                |
-| --------- | ------- | ---------------------- |
-| `()`      |         | "unit"                 |
-| `(,)`     |         | "pair" / "pair of"     |
-| `(,,)`    |         | "triple" / "triple of" |
-| `(`...`)` |         | "tuple" / "tuple of"   |
+| Symbol      | Context | Read as                |
+| ----------- | ------- | ---------------------- |
+| `()`        |         | "unit"                 |
+| `(,)`       |         | "pair" / "pair of"     |
+| `(,,)`      |         | "triple" / "triple of" |
+| `(` ... `)` |         | "tuple" / "tuple of"   |
 
 ## Functor Notation
 
@@ -168,21 +168,21 @@
 
 ## Module Notation
 
-| Symbol    | Context            | Read as           |
-| --------- | ------------------ | ----------------- |
-| `()`      | module declaration | "exports nothing" |
-| `(`...`)` | module declaration | "exports"         |
-| `(`...`)` | module importing   | "specifically"    |
+| Symbol      | Context            | Read as           |
+| ----------- | ------------------ | ----------------- |
+| `()`        | module declaration | "exports nothing" |
+| `(` ... `)` | module declaration | "exports"         |
+| `(` ... `)` | module importing   | "specifically"    |
 
 ## Template Haskell Notation
 
-| Symbol      | Context                          | Read as                         |
-| ----------- | -------------------------------- | ------------------------------- |
-| `[|`...`|]` |                                  | "quote"                         |
-| `<+>`       | using Language.Haskell.TH.PprLib | "beside" / "plus" / "mplus"     |
-| `<>`        | using Language.Haskell.TH.PprLib | "beside" / "append" / "mappend" |
-| `$+$`       | using Language.Haskell.TH.PprLib | "beside"                        |
-| `$$`        | using Language.Haskell.TH.PprLib | "beside"                        |
+| Symbol        | Context                          | Read as                         |
+| ------------- | -------------------------------- | ------------------------------- |
+| `[|` ... `|]` |                                  | "quote"                         |
+| `<+>`         | using Language.Haskell.TH.PprLib | "beside" / "plus" / "mplus"     |
+| `<>`          | using Language.Haskell.TH.PprLib | "beside" / "append" / "mappend" |
+| `$+$`         | using Language.Haskell.TH.PprLib | "beside"                        |
+| `$$`          | using Language.Haskell.TH.PprLib | "beside"                        |
 
 ## Bitwise Notation
 
@@ -223,16 +223,16 @@
 
 ## Parser Notation
 
-| Symbol | Context                               | Read as                                   |
-| ------ | ------------------------------------- | ----------------------------------------- |
-| `<?>`  | using Text.Parsec                     | "or" / "or if failed then"                |
-| `<|?>` | using Text.Parsec.Perm                | "add" / "add either...or"                 |
-| `<|>`  | using Text.Parsec                     | "or"                                      |
-| `<||>` | using Text.Parsec.Perm                | "add"                                     |
-| `<$?>` | using Text.Parsec.Perm                | "create with" / "either create with...or" |
-| `<$$>` | using Text.Parsec.Perm                | "create with"                             |
-| `<++`  | using Text.ParserCombinators.ReadP    | "or"                                      |
-| `<++`  | using Text.ParserCombinators.ReadPrec | "or"                                      |
+| Symbol | Context                               | Read as                                     |
+| ------ | ------------------------------------- | ------------------------------------------- |
+| `<?>`  | using Text.Parsec                     | "or" / "or if failed then"                  |
+| `<|?>` | using Text.Parsec.Perm                | "add" / "add either ... or"                 |
+| `<|>`  | using Text.Parsec                     | "or"                                        |
+| `<||>` | using Text.Parsec.Perm                | "add"                                       |
+| `<$?>` | using Text.Parsec.Perm                | "create with" / "either create with ... or" |
+| `<$$>` | using Text.Parsec.Perm                | "create with"                               |
+| `<++`  | using Text.ParserCombinators.ReadP    | "or"                                        |
+| `<++`  | using Text.ParserCombinators.ReadPrec | "or"                                        |
 
 ## Builder Notation
 
