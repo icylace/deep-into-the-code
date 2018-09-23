@@ -2,28 +2,26 @@
 
 ## General Notation
 
-| Symbol          | Context                  | Read as                                               |
-| --------------- | ------------------------ | ----------------------------------------------------- |
-| `_`             |                          | "whatever" / "anything" / "blank" / "wildcard"        |
-| `--`            |                          | "comment" / "note"                                    |
-| `->`            | case branch              | "then"                                                |
-| `,`             |                          | ""                                                    |
-| `;`             |                          | ""                                                    |
-| `!`             |                          | "strict"                                              |
-| `?`             | ImplicitParams extension | "implicit" / "dynamic" / "dynamically-bound variable" |
-| `.`             | numeric literal          | "point"                                               |
-| `'`             | identifier name          | "prime"                                               |
-| `''`            | identifier name          | "double prime"                                        |
-| `(` ... `)`     | expression               | "" / "subexpression"                                  |
-| `{` ... `}`     | expression               | "" / "explicit block"                                 |
-| `{-` ... `-}`   |                          | "nested comment" / "block comment" / "note"           |
-| `{-#` ... `#-}` |                          | "pragma"                                              |
-| `//`            | using Data.Array         | "update with"                                         |
-| `&&`            |                          | "and" / "logical and" / "boolean and"                 |
-| `#`             | using MagicHash          | "hash"                                                |
-| `=`             |                          | "equals" / "is" / "is set to" / "is defined as"       |
-| `||`            |                          | "or" / "logical or" / "boolean or"                    |
-| `~`             |                          | "lazy"                                                |
+| Symbol          | Context         | Read as                                         |
+| --------------- | --------------- | ----------------------------------------------- |
+| `_`             |                 | "whatever" / "anything" / "blank" / "wildcard"  |
+| `--`            |                 | "comment" / "note"                              |
+| `->`            | case branch     | "then"                                          |
+| `,`             |                 | ""                                              |
+| `;`             |                 | ""                                              |
+| `!`             |                 | "strict"                                        |
+| `.`             | numeric literal | "point"                                         |
+| `'`             | identifier name | "prime"                                         |
+| `''`            | identifier name | "double prime"                                  |
+| `(` ... `)`     | expression      | "" / "subexpression"                            |
+| `{` ... `}`     | expression      | "" / "explicit block"                           |
+| `{-` ... `-}`   |                 | "nested comment" / "block comment" / "note"     |
+| `{-#` ... `#-}` |                 | "pragma"                                        |
+| `//`            | Data.Array      | "update with"                                   |
+| `&&`            |                 | "and" / "logical and" / "boolean and"           |
+| `=`             |                 | "equals" / "is" / "is set to" / "is defined as" |
+| `\|\|`          |                 | "or" / "logical or" / "boolean or"              |
+| `~`             |                 | "lazy"                                          |
 
 ## Type Notation
 
@@ -36,7 +34,7 @@
 | `{` ... `}` | data constructor | "record having"                                           |
 | `*`         | kind signature   | "star" / "boxed type"                                     |
 | `=>`        | type declaration | "in" / "implies" / "then"                                 |
-| `|`         | type declaration | "or"                                                      |
+| `\|`        | type declaration | "or"                                                      |
 | space       | type constructor | ""                                                        |
 
 ## Function Notation
@@ -51,22 +49,22 @@
 | `\`                 | function declaration     | "lambda"                                                    |
 | `&`                 |                          | "then" / "piped to"                                         |
 | `=`                 | function declaration     | "returns" / "equals" / "is" / "is set to" / "is defined as" |
-| `|`                 | guard                    | "in the case of"                                            |
+| `\|`                | guard                    | "in the case of"                                            |
 | `$`                 |                          | "of" / "applied to"                                         |
 | space               | function application     | "of" / "applied to"                                         |
 
 ## Arithmetic Notation
 
-| Symbol | Context          | Read as           |
-| ------ | ---------------- | ----------------- |
-| `-`    |                  | "minus"           |
-| `-`    | negation         | "negative"        |
-| `*`    |                  | "times"           |
-| `/`    |                  | "divide"          |
-| `%`    | using Data.Ratio | "over"            |
-| `^`    |                  | "to the power of" |
-| `^^`   |                  | "to the power of" |
-| `+`    |                  | "plus"            |
+| Symbol | Context    | Read as              |
+| ------ | ---------- | -------------------- |
+| `-`    |            | "minus" / "subtract" |
+| `-`    | negation   | "negative"           |
+| `*`    |            | "times"              |
+| `/`    |            | "divide"             |
+| `%`    | Data.Ratio | "over"               |
+| `^`    |            | "to the power of"    |
+| `^^`   |            | "to the power of"    |
+| `+`    |            | "plus"               |
 
 ## Text Notation
 
@@ -99,7 +97,7 @@
 | `[]`        |                    | "empty list"         |
 | `[` ... `]` |                    | "list of"            |
 | `++`        |                    | "append" / "concat"  |
-| `|`         | list comprehension | "such that"          |
+| `\|`        | list comprehension | "such that"          |
 
 ## Tuple Notation
 
@@ -120,13 +118,13 @@
 
 ## Applicative Notation
 
-| Symbol | Context                   | Read as                       |
-| ------ | ------------------------- | ----------------------------- |
-| `*>`   | using Control.Applicative | "then"                        |
-| `<*`   | using Control.Applicative | "after" / "from"              |
-| `<**>` | using Control.Applicative | "ap" / "apply" / "applied to" |
-| `<*>`  | using Control.Applicative | "ap" / "apply" / "applied to" |
-| `<|>`  |                           | "or"                          |
+| Symbol | Context             | Read as                       |
+| ------ | ------------------- | ----------------------------- |
+| `*>`   | Control.Applicative | "then"                        |
+| `<*`   | Control.Applicative | "after" / "from"              |
+| `<**>` | Control.Applicative | "ap" / "apply" / "applied to" |
+| `<*>`  | Control.Applicative | "ap" / "apply" / "applied to" |
+| `<\|>` |                     | "or"                          |
 
 ## Monadic Notation
 
@@ -141,30 +139,30 @@
 
 ## Sequence Notation
 
-| Symbol | Context             | Read as                                |
-| ------ | ------------------- | -------------------------------------- |
-| `!?`   | using Data.Sequence | "lookup"                               |
-| `<|`   | using Data.Sequence | "prepend to"                           |
-| `><`   | using Data.Sequence | "concat" / "combine" / "combined with" |
-| `|>`   | using Data.Sequence | "append"                               |
+| Symbol | Context       | Read as                                |
+| ------ | ------------- | -------------------------------------- |
+| `!?`   | Data.Sequence | "lookup"                               |
+| `<\|`  | Data.Sequence | "prepend to"                           |
+| `><`   | Data.Sequence | "concat" / "combine" / "combined with" |
+| `\|>`  | Data.Sequence | "append"                               |
 
 ## Arrow Notation
 
-| Symbol | Context                | Read as                             |
-| ------ | ---------------------- | ----------------------------------- |
-| `-<`   |                        | "takes"                             |
-| `-<<`  |                        | "takes"                             |
-| `***`  | using Control.Arrow    | "split merge" / "split merge with"  |
-| `&&&`  | using Control.Arrow    | "fanout" / "fanout with"            |
-| `^<<`  | using Control.Arrow    | "precompose" / "precomposed with"   |
-| `^>>`  | using Control.Arrow    | "precomposed into"                  |
-| `+++`  | using Control.Arrow    | "split merge" / "split merge with"  |
-| `<+>`  | using Control.Arrow    | "plus" / "mplus"                    |
-| `<<^`  | using Control.Arrow    | "postcompose" / "postcomposed with" |
-| `<<<`  | using Control.Category | "compose" / "composed with"         |
-| `>>^`  | using Control.Arrow    | "postcomposed into"                 |
-| `>>>`  | using Control.Category | "into" / "composed into"            |
-| `|||`  | using Control.Arrow    | "fanin" / "fanin with"              |
+| Symbol   | Context          | Read as                             |
+| -------- | ---------------- | ----------------------------------- |
+| `-<`     |                  | "takes"                             |
+| `-<<`    |                  | "takes"                             |
+| `***`    | Control.Arrow    | "split merge" / "split merge with"  |
+| `&&&`    | Control.Arrow    | "fanout" / "fanout with"            |
+| `^<<`    | Control.Arrow    | "precompose" / "precomposed with"   |
+| `^>>`    | Control.Arrow    | "precomposed into"                  |
+| `+++`    | Control.Arrow    | "split merge" / "split merge with"  |
+| `<+>`    | Control.Arrow    | "plus" / "mplus"                    |
+| `<<^`    | Control.Arrow    | "postcompose" / "postcomposed with" |
+| `<<<`    | Control.Category | "compose" / "composed with"         |
+| `>>^`    | Control.Arrow    | "postcomposed into"                 |
+| `>>>`    | Control.Category | "into" / "composed into"            |
+| `\|\|\|` | Control.Arrow    | "fanin" / "fanin with"              |
 
 ## Module Notation
 
@@ -176,70 +174,77 @@
 
 ## Template Haskell Notation
 
-| Symbol        | Context                          | Read as                         |
-| ------------- | -------------------------------- | ------------------------------- |
-| `[|` ... `|]` |                                  | "quote"                         |
-| `<+>`         | using Language.Haskell.TH.PprLib | "beside" / "plus" / "mplus"     |
-| `<>`          | using Language.Haskell.TH.PprLib | "beside" / "append" / "mappend" |
-| `$+$`         | using Language.Haskell.TH.PprLib | "beside"                        |
-| `$$`          | using Language.Haskell.TH.PprLib | "beside"                        |
+| Symbol          | Context                    | Read as                         |
+| --------------- | -------------------------- | ------------------------------- |
+| `[\|` ... `\|]` |                            | "quote"                         |
+| `<+>`           | Language.Haskell.TH.PprLib | "beside" / "plus" / "mplus"     |
+| `<>`            | Language.Haskell.TH.PprLib | "beside" / "append" / "mappend" |
+| `$+$`           | Language.Haskell.TH.PprLib | "beside"                        |
+| `$$`            | Language.Haskell.TH.PprLib | "beside"                        |
 
 ## Bitwise Notation
 
-| Symbol | Context         | Read as               |
-| ------ | --------------- | --------------------- |
-| `.&.`  | using Data.Bits | "and" / "bitiwse and" |
-| `.|.`  | using Data.Bits | "or" / "bitiwse or"   |
+| Symbol  | Context   | Read as               |
+| ------- | --------- | --------------------- |
+| `.&.`   | Data.Bits | "and" / "bitiwse and" |
+| `.\|.`  | Data.Bits | "or" / "bitiwse or"   |
 
 ## Parallel Programming Notation
 
-| Symbol | Context                           | Read as                                                    |
-| ------ | --------------------------------- | ---------------------------------------------------------- |
-| `-|`   | using Control.Parallel.Strategies | "then" / "piped to" / "piped sequentially to"              |
-| `-||`  | using Control.Parallel.Strategies | "then" / "piped to" / "piped in parallel to"               |
-| `.|`   | using Control.Parallel.Strategies | "compose" / "composed with" / "composed sequentially with" |
-| `.||`  | using Control.Parallel.Strategies | "compose" / "composed with" / "composed in parallel with"  |
-| `>|`   | using Control.Parallel.Strategies | "deprecated of"                                            |
-| `>||`  | using Control.Parallel.Strategies | "deprecated of"                                            |
-| `$|`   | using Control.Parallel.Strategies | "of" / "applied to" / "applied sequentially to"            |
-| `$||`  | using Control.Parallel.Strategies | "of" / "applied to" / "applied in parallel to"             |
+| Symbol  | Context                     | Read as                                                    |
+| ------- | --------------------------- | ---------------------------------------------------------- |
+| `-\|`   | Control.Parallel.Strategies | "then" / "piped to" / "piped sequentially to"              |
+| `-\|\|` | Control.Parallel.Strategies | "then" / "piped to" / "piped in parallel to"               |
+| `.\|`   | Control.Parallel.Strategies | "compose" / "composed with" / "composed sequentially with" |
+| `.\|\|` | Control.Parallel.Strategies | "compose" / "composed with" / "composed in parallel with"  |
+| `>\|`   | Control.Parallel.Strategies | "deprecated of"                                            |
+| `>\|\|` | Control.Parallel.Strategies | "deprecated of"                                            |
+| `$\|`   | Control.Parallel.Strategies | "of" / "applied to" / "applied sequentially to"            |
+| `$\|\|` | Control.Parallel.Strategies | "of" / "applied to" / "applied in parallel to"             |
 
 ## File System Notation
 
-| Symbol | Context               | Read as                      |
-| ------ | --------------------- | ---------------------------- |
-| `-<.>` | using System.FilePath | "dot" / "with new extension" |
-| `<.>`  | using System.FilePath | "dot" / "with extension"     |
-| `</>`  | using System.FilePath | "slash" / "with path"        |
+| Symbol | Context         | Read as                      |
+| ------ | --------------- | ---------------------------- |
+| `-<.>` | System.FilePath | "dot" / "with new extension" |
+| `<.>`  | System.FilePath | "dot" / "with extension"     |
+| `</>`  | System.FilePath | "slash" / "with path"        |
 
 ## QuickCheck Notation
 
-| Symbol | Context | Read as                     |
-| ------ | ------- | --------------------------- |
-| `.&.`  |         | "fickle and"                |
-| `.&&.` |         | "and"                       |
-| `.||.` |         | "or"                        |
-| `><`   |         | "combine" / "combined with" |
+| Symbol   | Context | Read as                     |
+| -------- | ------- | --------------------------- |
+| `.&.`    |         | "fickle and"                |
+| `.&&.`   |         | "and"                       |
+| `.\|\|.` |         | "or"                        |
+| `><`     |         | "combine" / "combined with" |
 
 ## Parser Notation
 
-| Symbol | Context                               | Read as                                     |
-| ------ | ------------------------------------- | ------------------------------------------- |
-| `<?>`  | using Text.Parsec                     | "or" / "or if failed then"                  |
-| `<|?>` | using Text.Parsec.Perm                | "add" / "add either ... or"                 |
-| `<|>`  | using Text.Parsec                     | "or"                                        |
-| `<||>` | using Text.Parsec.Perm                | "add"                                       |
-| `<$?>` | using Text.Parsec.Perm                | "create with" / "either create with ... or" |
-| `<$$>` | using Text.Parsec.Perm                | "create with"                               |
-| `<++`  | using Text.ParserCombinators.ReadP    | "or"                                        |
-| `<++`  | using Text.ParserCombinators.ReadPrec | "or"                                        |
+| Symbol   | Context                         | Read as                                     |
+| -------- | ------------------------------- | ------------------------------------------- |
+| `<?>`    | Text.Parsec                     | "or" / "or if failed then"                  |
+| `<\|?>`  | Text.Parsec.Perm                | "add" / "add either ... or"                 |
+| `<\|>`   | Text.Parsec                     | "or"                                        |
+| `<\|\|>` | Text.Parsec.Perm                | "add"                                       |
+| `<$?>`   | Text.Parsec.Perm                | "create with" / "either create with ... or" |
+| `<$$>`   | Text.Parsec.Perm                | "create with"                               |
+| `<++`    | Text.ParserCombinators.ReadP    | "or"                                        |
+| `<++`    | Text.ParserCombinators.ReadPrec | "or"                                        |
 
 ## Builder Notation
 
-| Symbol | Context                            | Read as                      |
-| ------ | ---------------------------------- | ---------------------------- |
-| `>*<`  | using Data.ByteString.Builder.Prim | "combine" / "combined with"  |
-| `>$<`  | using Data.ByteString.Builder.Prim | "map" / "fmap" / "infix map" |
+| Symbol | Context                      | Read as                      |
+| ------ | ---------------------------- | ---------------------------- |
+| `>*<`  | Data.ByteString.Builder.Prim | "combine" / "combined with"  |
+| `>$<`  | Data.ByteString.Builder.Prim | "map" / "fmap" / "infix map" |
+
+## Language Extension Notation
+
+| Symbol | Context                  | Read as                                               |
+| ------ | ------------------------ | ----------------------------------------------------- |
+| `?`    | ImplicitParams extension | "implicit" / "dynamic" / "dynamically-bound variable" |
+| `#`    | MagicHash extension      | "hash"                                                |
 
 ## References
 
