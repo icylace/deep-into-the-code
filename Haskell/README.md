@@ -4,7 +4,7 @@ My Haskell notes comprise of several source code files. I've written them this w
 
 For instance, `haskell.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
 
-I use macOS, so my current preferred way to install Haskell by using [Nix](https://nixos.org/nix/) to install [The Haskell Tool Stack](https://haskellstack.org/).
+I use macOS and my current preferred way to install Haskell is by using [Nix](https://nixos.org/nix/) to install [The Haskell Tool Stack](https://haskellstack.org/).
 
 If you're on a Mac and you don't already have Nix, go to your terminal and run this installation command:
 
