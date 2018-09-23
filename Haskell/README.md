@@ -1,4 +1,4 @@
-# Deep Into the Code: Haskell
+# Deep Into the Code: Haskell (A WORK-IN-PROGRESS)
 
 My Haskell notes comprise of several source code files. I've written them this way to verify the correctness of the syntax of my notes.
 
