@@ -2,11 +2,15 @@
 
 -- Comments let you put helpful commentary with your code.
 
+--Not having a space leading the comment text works but looks awkward.
+
 {- Nested comments are
 usually seen spanning
 multiple lines. -}
 
 {- Nested comments can be used like single-line comments. -}
+
+{-Not having spaces surrounding nested comment text is works but is awkward.-}
 
 {- Nested comments can be -}  {- placed next to each other. -}
 
@@ -152,7 +156,7 @@ main = print ()
 
 -- If you apply this to any values,
 -- it'll recurse indefinitely.
-f x = f x
+indefinite x = indefinite x
 
 -- It'll a'splode if you pass a False value
 dontDoThis :: Bool -> Int
@@ -469,9 +473,9 @@ _ = take 5 . filter odd . enumFrom $ 3    -- `[3,5,7,9,11]`
 
 
 
--- https://stackoverflow.com/a/13147064/1935675
--- https://stackoverflow.com/a/2465059/1935675
--- https://stackoverflow.com/a/1983310/1935675
+-- https://stackoverflow.com/a/13147064
+-- https://stackoverflow.com/a/2465059
+-- https://stackoverflow.com/a/1983310
 
 f x y
 (f x) y
@@ -840,18 +844,18 @@ yy = undefined
 
 -- The `Maybe` datatype is used to express the possible absence of a value.
 
-data Maybe a = Nothing | Just a
--- This is already defined in the standard Prelude library but shown here for
--- informational purposes.
+-- `Maybe'` is defined similarly to `Maybe`.
+
+data Maybe' a = Nothing' | Just' a
 
 -- The `Nothing` value represents a safe way, without hitting bottom, to express
 -- that no valid value can be produced.
 
 -- The `Just a` value is used to hold valid data.
 
-f :: Bool -> Maybe Int
-f False = Just 0
-f _ = Nothing
+f3 :: Bool -> Maybe Int
+f3 False = Just 0
+f3 _     = Nothing
 
 
 
@@ -957,3 +961,8 @@ dividedBy num denom = go num denom 0
 
 
 -- Side effect: A result apart from the value of an expression.
+
+
+
+-- Hole:
+

@@ -67,13 +67,13 @@ myAbs x = if x < 0 then -x else x
 
 -- Guard syntax allows functions to behave differently depending on its input.
 
-myAbs :: Integer -> Integer
-myAbs x
+myAbs' :: Integer -> Integer
+myAbs' x
   | x < 0     = -x
   | otherwise = x
 
-_ = myAbs (-9)    -- `9`
-_ = myAbs 9       -- `9`
+_ = myAbs' (-9)    -- `9`
+_ = myAbs' 9       -- `9`
 
 -- The guard case expression between the pipe character and the equals sign must
 -- evaluate to a boolean value.
@@ -129,52 +129,52 @@ _ = dogYears' 5   -- `30`
 -- If less restrictive cases appear before more restrictive ones then they will
 -- prevent the less restrictive cases from being accessed.
 
-dogYears :: Integer -> Integer
-dogYears x
+dogYears2 :: Integer -> Integer
+dogYears2 x
   | x <= 4    = x * 8
   | x <= 0    = 0
   | x <= 1    = x * 15
   | x <= 2    = x * 12
   | otherwise = x * 6
 
-_ = dogYears 0    -- `0`
-_ = dogYears 1    -- `8`
-_ = dogYears 2    -- `16`
-_ = dogYears 3    -- `24`
-_ = dogYears 4    -- `32`
-_ = dogYears 5    -- `30`
+_ = dogYears2 0    -- `0`
+_ = dogYears2 1    -- `8`
+_ = dogYears2 2    -- `16`
+_ = dogYears2 3    -- `24`
+_ = dogYears2 4    -- `32`
+_ = dogYears2 5    -- `30`
 
 -- -----------------------------------------------------------------------------
 
 -- Guards can be placed next to the function that uses them.
 
-myAbs :: Integer -> Integer
-myAbs x | x < 0     = -x
+myAbs2 :: Integer -> Integer
+myAbs2 x | x < 0     = -x
         | otherwise = x
 
 -- Guards don't have to vertically align.
 
-myAbs' :: Integer -> Integer
-myAbs' x | x < 0 = -x
+myAbs2' :: Integer -> Integer
+myAbs2' x | x < 0 = -x
   | otherwise = x
 
-_ = myAbs (-9)    -- `9`
-_ = myAbs' (-9)   -- `9`
-_ = myAbs 9       -- `9`
-_ = myAbs' 9      -- `9`
+_ = myAbs2 (-9)    -- `9`
+_ = myAbs2' (-9)   -- `9`
+_ = myAbs2 9       -- `9`
+_ = myAbs2' 9      -- `9`
 
 -- -----------------------------------------------------------------------------
 
 -- The `otherwise` keyword represents the catch-all case in our guards and is
 -- basically syntactic sugar for `True`.
 
-myAbs :: Integer -> Integer
-myAbs x
+myAbs3 :: Integer -> Integer
+myAbs3 x
   | x < 0 = -x
   | True  = x
 
-_ = myAbs (-9)    -- `9`
-_ = myAbs 9       -- `9`
+_ = myAbs3 (-9)    -- `9`
+_ = myAbs3 9       -- `9`
 
 -- -----------------------------------------------------------------------------
 
@@ -204,28 +204,28 @@ _ = h3 9      -- `9`
 
 -- `otherwise` is not always necessary to guard all possible cases.
 
-myAbs :: Integer -> Integer
-myAbs x
+myAbs4 :: Integer -> Integer
+myAbs4 x
   | x < 0  = -x
   | x == 0 = x
   | x > 0  = x
 
-_ = myAbs (-9)    -- `9`
-_ = myAbs 0       -- `0`
-_ = myAbs 9       -- `9`
+_ = myAbs4 (-9)    -- `9`
+_ = myAbs4 0       -- `0`
+_ = myAbs4 9       -- `9`
 
 -- -----------------------------------------------------------------------------
 
 -- If all possible cases are not guarded, we have a partial function.
 
-myAbs :: Integer -> Integer
-myAbs x
+myAbs5 :: Integer -> Integer
+myAbs5 x
   | x < 0  = -x
   | x == 0 = x
 
-_ = myAbs (-9)    -- `9`
-_ = myAbs 0       -- `0`
-_ = myAbs 9       -- Results in a thrown exception.
+_ = myAbs5 (-9)    -- `9`
+_ = myAbs5 0       -- `0`
+_ = myAbs5 9       -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 
@@ -233,8 +233,8 @@ _ = myAbs 9       -- Results in a thrown exception.
 -- cause an error.
 
 {-
-myAbs :: Integer -> Integer
-myAbs x
+myAbs6 :: Integer -> Integer
+myAbs6 x
   | x < 0 = -x
   | _     = x
 -}

@@ -57,10 +57,10 @@ _ = f' 50    -- `False`
 g :: Integer -> Bool
 g 2 = True
 
-_ = g 1     -- Results in a thrown exception.
+_ = g 1     -- Throws an exception.
 _ = g 2     -- `True`
-_ = g 3     -- Results in a thrown exception.
-_ = g 50    -- Results in a thrown exception.
+_ = g 3     -- Throws an exception.
+_ = g 50    -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 
@@ -72,10 +72,10 @@ g' :: Integer -> Bool
 g' 2 = True
 g' _ = undefined
 
-_ = g' 1    -- Results in a thrown exception.
+_ = g' 1    -- Throws an exception.
 _ = g' 2    -- `True`
-_ = g' 3    -- Results in a thrown exception.
-_ = g' 50   -- Results in a thrown exception.
+_ = g' 3    -- Throws an exception.
+_ = g' 50   -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -206,15 +206,19 @@ sumToInt (ThirdPossible _)  = 2
 -- We can selectively ignore
 -- inhabitants of the sum
 
-sumToInt :: SumOfThree a b c -> Integer
-sumToInt (FirstPossible _) = 0
-sumToInt _                 = 1
+sumToInt' :: SumOfThree a b c -> Integer
+sumToInt' (FirstPossible _) = 0
+sumToInt' _                 = 1
 
 
 
 
 
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
+
+-- Pattern matching is strict by default.
 
 
 

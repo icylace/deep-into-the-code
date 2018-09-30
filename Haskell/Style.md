@@ -1,5 +1,11 @@
 # Haskell Style
 
+## Style Choices
+
+_f_ and _g_ are common names for nonspecific function values in Haskell.
+
+## References
+
 - [Category:Style](https://wiki.haskell.org/Category:Style)
 - [Programming guidelines](https://wiki.haskell.org/Programming_guidelines)
 - [Haskell Style Guide](https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md)

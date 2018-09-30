@@ -20,14 +20,14 @@ _ = pred True     -- `False`
 
 -- An exception will be thrown if a successor predecessor doesn't exist.
 
-_ = succ True     -- Results in a thrown exception.
-_ = pred False    -- Results in a thrown exception.
+_ = succ True     -- Throws an exception.
+_ = pred False    -- Throws an exception.
 
-_ = pred minBound :: Int    -- Results in a thrown exception.
+_ = pred minBound :: Int    -- Throws an exception.
 _ = pred maxBound :: Int    -- `9223372036854775806`
 
 _ = succ minBound :: Int    -- `-9223372036854775807`
-_ = succ maxBound :: Int    -- Result is an exception.
+_ = succ maxBound :: Int    -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

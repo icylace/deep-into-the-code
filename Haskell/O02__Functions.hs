@@ -89,7 +89,7 @@ foo 2 = 99
 
 _ = foo 1   -- `10`
 _ = foo 2   -- `99`
-_ = foo 3   -- Result is a runtime exception.
+_ = foo 3   -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -153,10 +153,10 @@ reverseMkTuple a b = (b, a)
 reverseTuple (a, b) = (b, a)
 
 -- pointfree versions of the above
-blah = id
-addAndDrop = const . (1 +)
-reverseMkTuple = flip (,)
-reverseTuple = uncurry (flip (,))
+blah' = id
+addAndDrop' = const . (1 +)
+reverseMkTuple' = flip (,)
+reverseTuple' = uncurry (flip (,))
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

@@ -63,12 +63,9 @@ _ = head "H"              -- `'H'`
 _ = head ["H", "ello"]    -- `"H"`
 _ = head ["He", "llo"]    -- `"He"`
 
--- Attempting to use an empty string or more generally an empty list with
--- `head` will cause an exception.
-
 {-
-_ = head ""
-_ = head []
+_ = head ""   -- Throws an exception.
+_ = head []   -- Throws an exception.
 -}
 
 -- `tail` returns a given list without its first element.
@@ -78,12 +75,9 @@ _ = tail ["H", "ello"]    -- `["ello"]`
 _ = tail "ab"             -- `"b"`
 _ = tail "a"              -- `""`
 
--- Attempting to use an empty string or more generally an empty list with `tail`
--- will cause an exception.
-
 {-
-_ = tail ""
-_ = tail []
+_ = tail ""   -- Throws an exception.
+_ = tail []   -- Throws an exception.
 -}
 
 -- `take` returns a number of elements from the beginning of a given list.
@@ -96,10 +90,8 @@ _ = take 0 ""     -- `""`
 _ = take 1 ""     -- `""`
 _ = take 10 ""    -- `""`
 
--- Attempting to use a negative number with `take` will cause an error.
-
 {-
-_ = take -1 ""
+_ = take -1 ""    -- Throws an exception.
 -}
 
 -- The `drop` function returns a list of elements remaining after a specified
@@ -113,34 +105,23 @@ _ = drop 0 ""     -- `""`
 _ = drop 1 ""     -- `""`
 _ = drop 10 ""    -- `""`
 
--- Attempting to use a negative number with `drop` will cause an error.
-
 {-
-_ = drop -1 ""
+_ = drop -1 ""    -- Throws an exception.
 -}
 
 -- The list index (subscript) operator, `!!`, returns the element at the
 -- specified position in a list.
 
+-- `head` and `(!! 0)` behave the same way.
+
 _ = "Hello" !! 0    -- `'H'`
 _ = "Hello" !! 3    -- `'l'`
 _ = "Hello" !! 4    -- `'o'`
 
--- `head` and `(!! 0)` behave the same way.
-
--- Attempting to use a negative index position with the subscript operator will
--- cause an error.
-
 {-
-_ = "Hello" !! -1
--}
-
--- Attempting to use an out-of-bounds index position with the subscript operator
--- will cause an exception.
-
-{-
-_ = "Hello" !! 5
-_ = "" !! 0
+_ = "Hello" !! -1   -- Throws an exception.
+_ = "Hello" !! 5    -- Throws an exception.
+_ = "" !! 0         -- Throws an exception.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -152,14 +133,9 @@ _ = "" !! 0
 printStrings :: IO ()
 printStrings = do
 
-  print "Hello world!"
-  -- Displays `"Hello world!"`.
-
-  putStrLn "Hello world!"
-  -- Displays `Hello world!`.
-
-  putStr "Hello world!"
-  -- Displays `Hello world!` without a carriage return.
+  print "Hello world!"      -- Displays `"Hello world!"`.
+  putStrLn "Hello world!"   -- Displays `Hello world!`.
+  putStr "Hello world!"     -- Displays `Hello world!` without a carriage return.
 
 -- `do` notation was used to make using a sequence of print-related functions
 -- more convenient.

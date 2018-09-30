@@ -1,4 +1,4 @@
-module O05__Whitespace where
+module O05__Whitespace () where
 
 -- Indentation helps determine the meaning of code.
 

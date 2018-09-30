@@ -608,8 +608,8 @@ _ = maxBound :: ()      -- `()`
 -- Data constructor: A function that creates values of a certain type.
 -- Data declaration: A declaration that defines a new datatype.
 
--- Sum type: A type composed of values that are alternatives of one another.
--- Product type: A type composed of multiple arguments.
+-- Sum type: A type where each value is from a specific type of a set of types.
+-- Product type: A type made of a set of types compounded over each other.
 
 
 -- Nullary: Taking no arguments.
