@@ -405,20 +405,30 @@ _ = [1, 2, 3]
 
 
 
+-- The fundamental way to think about evaluation in Haskell is as substitution.
 
 
 
 
 
 
+
+
+
+-- {-
 
 
 
 
 {-
 
+
 _ = jackal "keyboard"
 -- Type is `Eq b => b -> [Char]`.
+
+
+-}
+
 
 
 kessel :: (Ord a, Num b) => a -> b -> a
@@ -452,16 +462,19 @@ _ = kessel (1 :: Integer) 2
 -- (.) :: (b -> c) -> (a -> b) -> a -> c 	-- Defined in ‘GHC.Base’
 -- infixr 9 .
 
-f = negate . sum
+g1 = negate . sum
 
-_ = f [1, 2, 3, 4, 5]   -- `-15`
+_ = g1 [1, 2, 3, 4, 5]    -- `-15`
 
+{-
 
 negate . sum $ [1, 2, 3, 4, 5]
 
 negate (sum [1, 2, 3, 4, 5])
 
 (negate . sum) [1, 2, 3, 4, 5]
+
+-}
 
 
 
@@ -471,7 +484,7 @@ _ = take 5 . filter odd . enumFrom $ 3    -- `[3,5,7,9,11]`
 
 
 
-
+{-
 
 -- https://stackoverflow.com/a/13147064
 -- https://stackoverflow.com/a/2465059
@@ -517,21 +530,22 @@ f = negate . sum
 _ = f [1, 2, 3, 4, 5]   --`15`
 
 
+-}
 
 
 
 
 
-f :: Int -> [Int] -> Int
-f z xs = foldr (+) z xs
+g2 :: Int -> [Int] -> Int
+g2 z xs = foldr (+) z xs
 
-f' = foldr (+)
-_ = f' 0 [1..5]
+g2' = foldr (+)
+_ = g2' 0 [1..5]
 
 
 
-f = length . filter (== 'a')
-_ = f "abracadabra"
+g2'' = length . filter (== 'a')
+_ = g2'' "abracadabra"
 
 
 
@@ -575,6 +589,15 @@ _ = n = 10 :: (Fractional a)
 _ = (-) 10 1        -- `9`
 _ = flip (-) 10 1   -- `-9`
 
+{-
+_ = foldl (:) [] [1, 2, 3]    -- Results in a compiler error.
+-}
+_ = foldl (flip (:)) [] [1, 2, 3]   -- `[3,2,1]`
+-- ((([] (flip (:)) 1) (flip (:)) 2) (flip (:)) 3)
+-- (([1] (flip (:)) 2) (flip (:)) 3)
+-- ([2, 1] (flip (:)) 3)
+-- [3, 2, 1]
+
 -- -----------------------------------------------------------------------------
 
 
@@ -587,8 +610,10 @@ returnLast _ _ _ d = d
 returnLast' :: a -> (b -> (c -> (d -> d)))
 returnLast' _ _ _ d = d
 
+{-
 returnBroke :: (((a -> b) -> c) -> d) -> d
 returnBroke _ _ _ d = d
+-}
 
 returnAfterApply :: (a -> b) -> a -> c -> b
 returnAfterApply f a c = f a
@@ -598,7 +623,7 @@ returnAfterApply f a c = f a
 
 
 
-
+{-
 
 "boobs" operator
 bird combinator
@@ -607,6 +632,8 @@ bird combinator
 (.:) = (.) . (.)
 
 
+-}
+
 
 
 
@@ -624,6 +651,8 @@ bird combinator
 
 
 
+
+{-
 
 
 
@@ -683,12 +712,14 @@ something i b =
 
 
 
-
+-}
 
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
+
+{-
 
 
 f = (+ 2)
@@ -736,6 +767,9 @@ aggregate f =          (sum .) . map
 \x -> (\y -> (\z -> _))
 
 
+
+
+-}
 
 
 
@@ -802,7 +836,7 @@ sayHello x = putStrLn ("Hello, " ++ x ++ "!")
 -- main = putStrLn "Hello world!"
 
 
--}
+-- -}
 
 
 

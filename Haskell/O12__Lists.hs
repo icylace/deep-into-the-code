@@ -889,6 +889,18 @@ _ = myMinimum [1, 53, 9001, 10]   -- `1`
 
 
 
+-- -----------------------------------------------------------------------------
+
+
+-- `repeat` generates an infinite list of a given value.
+
+_ = repeat 1              -- Results in an infinite list of `1` continually repeated.
+_ = take 4 $ repeat 1     -- `[1,1,1,1]`
+_ = take 10 $ repeat 1    -- `[1,1,1,1,1,1,1,1,1,1]`
+_ = drop 10 $ repeat 1    -- Results in an infinite list of `1` continually repeated.
+
+
+
 
 
 

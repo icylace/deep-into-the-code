@@ -96,7 +96,7 @@
 | ----------- | ------------------ | ---------------------------- |
 | `:`         |                    | "cons"                       |
 | `!!`        |                    | "index" / "at index" / "sub" |
-| `..`        | bounded range      | "to" / "up to"               |
+| `..`        | bounded range      | "to" / "through" / "up to"   |
 | `..`        | unbounded range    | "and so on" / "etc"          |
 | `[]`        |                    | "empty list"                 |
 | `[` ... `]` |                    | "list of"                    |
