@@ -182,9 +182,9 @@ reverseTuple' = uncurry (flip (,))
 
 -- First-class value: A value that can be used as an argument to a function.
 
--- Anonymous function: A function without a name, therefore unbound.
+-- Anonymous function: Function without a name, therefore unbound.
 
--- Higher-order function: A function that accepts and/or returns a function.
+-- Higher-order function (HoF): Function that accepts and/or returns a function.
 
 -- Point-free: A style of function declaration without writing the parameters.
 -- Point: A function parameter.

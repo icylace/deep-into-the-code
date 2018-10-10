@@ -164,6 +164,26 @@ myScanl f q ls =
         x:xs -> myScanl f (f q x) xs)
 
 
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+fibs = 1 : scanl (+) 1 fibs   -- Results in an infinite list of the Fibonacci sequence.
+_ = take 10 fibs              -- `[1,1,2,3,5,8,13,21,34,55]`
+
+
+
+
+fac = scanl (*) 1 [1..]
+_ = take 10 fac
+
+
+
+
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
@@ -215,9 +235,177 @@ _ = foldr (:) [] (1 : 2 : 3 : []) == 1 : (2 : (3 : []))   -- `True`
 
 
 
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+-- Again, this type will be less
+-- reusable than the one in GHC 7.10
+-- and newer. Don't worry.
+
+-- direct recursion, not using (&&)
+myAnd :: [Bool] -> Bool
+myAnd []     = True
+myAnd (x:xs) = if x == False then False else myAnd xs
+
+-- direct recursion, using (&&)
+myAnd :: [Bool] -> Bool
+myAnd []     = True
+myAnd (x:xs) = x && myAnd xs
+
+-- fold, not point-free
+-- in the folding function
+myAnd :: [Bool] -> Bool
+myAnd = foldr (\a b -> if a == False then False else b) True
+
+-- fold, both myAnd and the folding
+-- function are point-free now
+myAnd :: [Bool] -> Bool
+myAnd = foldr (&&) True
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+myOr :: [Bool] -> Bool
+myOr = foldr (||) False
+
+_ = myOr [False, False, True, False, False]   -- `True`
+
+
+
+
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny f = foldr (\x acc -> acc || f x) False
+
+_ = myAny even [1, 3, 5]    -- `False`
+_ = myAny odd [1, 3, 5]     -- `True`
+
+
+
+
+
+
+
+myElem :: Eq a => a -> [a] -> Bool
+myElem x = foldr ((||) . (== x)) False
+
+_ = myElem 1 [1..10]    -- `True`
+_ = myElem 1 [2..10]    -- `False`
+
+myElem' :: Eq a => a -> [a] -> Bool
+myElem' x = any (== x)
+
+_ = myElem' 1 [1..10]   -- `True`
+_ = myElem' 1 [2..10]   -- `False`
+
+
+
+
+
+
+
+myReverse :: [a] -> [a]
+myReverse = foldl (flip (:)) []
+
+_ = myReverse "blah"    -- `"halb"`
+_ = myReverse [1..5]    -- `[5,4,3,2,1]`
+
+
+
+
+
+
+myMap :: (a -> b) -> [a] -> [b]
+myMap f = foldr (\x acc -> f x : acc) []
+
+_ = myMap (+ 1) [1, 2, 3]   -- `[2,3,4]`
+
+
+
+
+
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f = foldr (\x acc -> if f x then x : acc else acc) []
+
+_ = myFilter even [1..10]   -- `[2,4,6,8,10]`
+
+
+
+
+
+squish :: [[a]] -> [a]
+squish []     = []
+squish (x:xs) = x ++ squish xs
+
+_ = squish [[2, 3], [4], [5, 6, 7]]   -- `[2,3,4,5,6,7]`
+
+
+
+
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap _ []     = []
+squishMap f (x:xs) = f x ++ squishMap f xs
+
+_ = squishMap (\x -> [x, x]) [1, 2, 3]                -- `[1,1,2,2,3,3]`
+_ = squishMap (\x -> [1, x, 3]) [2]                   -- `[1,2,3]`
+_ = squishMap (\x -> "WO " ++ [x] ++ " OT ") "blah"   -- `"WO b OT WO l OT WO a OT WO h OT "`
+
+
+
+
+
+squishAgain :: [[a]] -> [a]
+squishAgain = squishMap id
+
+_ = squishAgain [[2, 3], [4], [5, 6, 7]]    -- `[2,3,4,5,6,7]`
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+myMaximumBy f xs = foldl (\acc y -> if f acc y == GT then acc else y) (head xs) xs
+
+_ = myMaximumBy (\_ _ -> GT) [1..10]    -- `1`
+_ = myMaximumBy (\_ _ -> LT) [1..10]    -- `10`
+_ = myMaximumBy compare [1..10]         -- `10`
+
+
+
+
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy f xs = foldl (\acc y -> if f acc y == LT then acc else y) (head xs) xs
+
+_ = myMinimumBy (\_ _ -> GT) [1..10]    -- `10`
+_ = myMinimumBy (\_ _ -> LT) [1..10]    -- `1`
+_ = myMinimumBy compare [1..10]         -- `1`
+
+
+
+
+
+
+
+
+
+
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- Key Terms
 -- =========
--- Tail call:
+-- Fold: A HoF that builds up the result of applying a given function to a list.
+-- Catamorphism: A generalization of folds to arbitrary datatypes.
+-- Tail call: A function application appearing at the end of another function.
+-- Tail recursion: A function whose tail call references it.
