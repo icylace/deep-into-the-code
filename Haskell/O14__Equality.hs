@@ -1,4 +1,4 @@
-module O14__Equality where
+module O14__Equality () where
 
 x :: Integer
 x = 9
@@ -23,9 +23,8 @@ _ = x /= 5    -- `True`
 _ = x /= 9    -- `False`
 _ = x /= 10   -- `True`
 
--- Attempting to compare values having different types will cause an error.
-
 {-
+-- Attempting to compare values having different types will cause an error.
 _ = 'a' == 8
 -}
 

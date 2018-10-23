@@ -1,4 +1,4 @@
-module O12__Lists where
+module O12__Lists () where
 
 -- We import character functions to use later.
 
@@ -32,13 +32,11 @@ _ = "a" ++ "b"        -- `"ab"`
 _ = ["a"] ++ ["b"]    -- `["a","b"]`
 _ = [1] ++ [2]        -- `[1, 2]`
 
--- Attempting to concatenate lists of different types will cause an error.
-
 {-
-_ = ['a'] ++ [2]
-_ = "a" ++ [2]
-_ = [1] ++ ['b']
-_ = [1] ++ "b"
+_ = ['a'] ++ [2]    -- Causes a compile-time error.
+_ = "a" ++ [2]      -- Causes a compile-time error.
+_ = [1] ++ ['b']    -- Causes a compile-time error.
+_ = [1] ++ "b"      -- Causes a compile-time error.
 -}
 
 -- The append operator, `++`, is an example of a polymorphic function meaning it

@@ -1,4 +1,4 @@
-module O04__Arithmetic where
+module O04__Arithmetic () where
 
 -- `div` and `quot` both do integer division and behave almost the same way.
 
@@ -39,10 +39,9 @@ _ = mod (-5) (-2)   -- `-1`
 _ = -100    -- `-100`
 _ = - 100   -- `-100`
 
--- Attempting to use a negative number directly will cause an error.
 
 {-
-_ = 9 + -100
+_ = 9 + -100    -- Causes a compile-time error.
 -}
 
 -- We need parentheses to make it work.

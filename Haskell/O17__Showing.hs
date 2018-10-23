@@ -1,4 +1,4 @@
-module O17__Showing where
+module O17__Showing () where
 
 -- The `Show` typeclass defines how data can be printable.
 

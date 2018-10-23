@@ -1,4 +1,4 @@
-module O08__Types where
+module O08__Types () where
 
 -- We import concrete integer types to use later.
 
@@ -133,6 +133,9 @@ data MyBool = MyFalse | MyTrue
 
 -- A data declaration always creates a new type constructor but may or may not
 -- create a new data constructor.
+
+-- `MyFalse` and `MyTrue` were data constructors that took no arguments, so they
+-- are called nullary constructors.
 
 
 
@@ -325,11 +328,10 @@ smoosh x y = x ++ y
 -- A typeclass constraint consists of a type variable for a type which has an
 -- instance of a given typeclass.
 
--- Running `:t (/)` in GHCi will show that the division operator has a typeclass
--- constraint using the `Fractional` typeclass.
---
---     (/) :: Fractional a => a -> a -> a
---
+{- GHCi ------------------------------------------------------------------------
+> :t (/)
+(/) :: Fractional a => a -> a -> a
+-------------------------------------------------------------------------------}
 
 -- `Fractional` requires types to already have an instance of the `Num`
 -- typeclass.  `Num` is a superclass of `Fractional`.
@@ -386,7 +388,10 @@ _ = id 3                -- `3`
 _ = id "Hi"             -- `"Hi"`
 _ = id True             -- `True`
 _ = (id head) [1, 2]    -- `1`
-
+_ = id id 3             -- `3`
+_ = id . id $ 3         -- `3`
+_ = id $ id $ 3         -- `3`
+_ = id $ id 3           -- `3`
 
 
 
@@ -399,11 +404,16 @@ _ = (id head) [1, 2]    -- `1`
 
 -- GHCi can give the type of a given value.
 
--- Running `:t True` in GHCi will result in `True :: Bool`.
+{- GHCi ------------------------------------------------------------------------
+> :t True
+True :: Bool
 
--- Running `:t 1.0` in GHCi will result in `1.0 :: Fractional p => p`.
+> :t 1.0
+1.0 :: Fractional p => p
 
--- Running `:t "Hello"` in GHCi will result in `"Hello" :: [Char]`.
+> :t "Hello"
+"Hello" :: [Char]
+-------------------------------------------------------------------------------}
 
 
 
@@ -451,12 +461,14 @@ _ = (id head) [1, 2]    -- `1`
 
 
 -- Numbers in and of themselves don't have a concrete type.
---
--- Prelude> :t 13
--- 13 :: Num a => a
---
--- Prelude> :t 13.0
--- 13.0 :: Fractional a => a
+
+{- GHCi ------------------------------------------------------------------------
+> :t 13
+13 :: Num p => p
+
+> :t 13.0
+13.0 :: Fractional p => p
+-------------------------------------------------------------------------------}
 
 -- A concrete type can be chosen by declaring it.
 
@@ -563,8 +575,13 @@ _ = (127 :: Int8) + (10 :: Int8)    -- `-119`
 
 -- A warning will be given for values that are out of range.
 
-_ = 100000 :: Int8    -- Results in `-96` with a warning.
+_ = 100000 :: Int8    -- `-96`
+-- Triggers a warning when the `-Woverflowed-literals` compiler option is used.
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals
+
 _ = -100000 :: Int8   -- Results in `96` with a warning.
+-- Triggers a warning when the `-Woverflowed-literals` compiler option is used.
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals
 
 
 -- TODO: explain why for the following
@@ -604,12 +621,25 @@ _ = maxBound :: ()      -- `()`
 -- Type (datatype): A classification of values that share something in common.
 -- Type alias: An alternative name for a preexisting type.
 -- Type signature: The definition of types used by an expression.
--- Type constructor: A function that returns a type and also may accept a type.
--- Data constructor: A function that creates values of a certain type.
+
+-- Constructor: A means, possibly parameterized, to create a type or a value.
+-- Constant: A constructor that is not parameterized.
+
+-- Type constructor: A constructor that creates a type.
+-- Concrete type: A type constructor that is not parameterized.
+-- Type constant: A concrete type that takes no arguments.
+
+-- Data constructor: A constructor that creates values of a certain type.
+-- Constant value: A data constructor that takes no arguments.
+
 -- Data declaration: A declaration that defines a new datatype.
 
 -- Sum type: A type where each value is from a specific type of a set of types.
+-- Sum type: A type having multiple data constructors inhabiting it.
+
 -- Product type: A type made of a set of types compounded over each other.
+
+-- Phantom type: A parameterized type that does not use all of its parameters.
 
 
 -- Nullary: Taking no arguments.
@@ -622,6 +652,10 @@ _ = maxBound :: ()      -- `()`
 -- Type level: The areas of a program that relate to type signatures.
 -- Term level: The areas of a program that relate to values.
 -- Type inference: The automatic detection of a value's type.
+
+
+
+-- Type argument:
 
 
 

@@ -1,4 +1,4 @@
-module O06__LetAndWhere where
+module O06__LetAndWhere () where
 
 -- A let expression is an expression that has declarations introduced into it.
 -- Declarations created in this way are able to be referenced only within the

@@ -3,11 +3,15 @@
 - [The Haskell Programming Language](https://wiki.haskell.org/Haskell)
 - [Haskell (www.haskell.org)](https://www.haskell.org/)
 - [Haskell (haskell-lang.org)](https://haskell-lang.org/)
-- [Hoogle](https://hoogle.haskell.org): A Haskell API search engine.
+- [Hoogle 4](https://www.haskell.org/hoogle/): A Haskell API search engine.
+- [Hoogle 5](https://hoogle.haskell.org): A Haskell API search engine for Stackage.
 - [Hackage](https://hackage.haskell.org/)
 - [Stackage](https://www.stackage.org/)
 - [The Glasgow Haskell Compiler](https://www.haskell.org/ghc/): The de facto open source compiler and interactive environment for Haskell.
 - [The Haskell Tool Stack](https://docs.haskellstack.org/en/stable/README/)
+- [The Haskell Cabal](https://www.haskell.org/cabal/)
+- [Cabal](https://wiki.haskell.org/Cabal)
+- [hpack: A modern format for Haskell packages](https://github.com/sol/hpack)
 
 ## Learning
 
@@ -19,6 +23,8 @@
 - [School of Haskell](https://www.schoolofhaskell.com/)
 - [Learning Haskell](http://learn.hfm.io/)
 - [Structuring your first Haskell project with Stack](https://sakshamsharma.com/2018/03/haskell-proj-struct/)
+- [Try Haskell](https://tryhaskell.org/)
+- [Type Classes](https://typeclasses.com/)
 
 ### Future Books
 
@@ -27,6 +33,10 @@
 [Haskell Almanac](https://lorepub.com/product/cookbook)
 
 ### Q & A
+
+- [What is the monomorphism restriction?](https://stackoverflow.com/q/32496864)
+
+  - [https://stackoverflow.com/a/32496865]
 
 - [What does the “@” symbol mean in reference to lists in Haskell?](https://stackoverflow.com/q/1153465)
 
@@ -54,9 +64,13 @@
 - [The Haskell Programming Language wiki - Keywords](https://wiki.haskell.org/Keywords)
 - [Haskell/GHC symbol search cheatsheet](https://github.com/takenobu-hs/haskell-symbol-search-cheatsheet)
 - [Glasgow Haskell Compiler User's Guide](http://mpickering.github.io/ghc-docs/build-html/users_guide/)
+- [Haskell Hierarchical Libraries](https://downloads.haskell.org/~ghc/latest/docs/html/libraries/index.html)
 - [A Guide to GHC's Extensions](https://limperg.de/ghc-extensions/)
+- [Welcome to the Cabal User Guide](https://www.haskell.org/cabal/users-guide/)
 - [The Haskell Cheatsheet](http://cheatsheet.codeslower.com/)
 - [base: Basic libraries](https://hackage.haskell.org/package/base)
+- [GHCanIUse](https://damianfral.github.io/ghcaniuse/)
+- [GHCi options](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html#ghci-options)
 
 ## Community
 
@@ -87,7 +101,22 @@
 - [Contemplating code](http://contemplatecode.blogspot.com)
 - [teideal glic deisbhéalach - Bryan O'Sullivan's blog](http://www.serpentine.com/blog/)
 
-## IDE Integration
+### Podcasts
+
+- [The Haskell Cast](http://www.haskellcast.com/)
+
+### Humor
+
+- [Haskell Ryan Gosling](https://haskellryangosling.tumblr.com/)
+
+## Tools
+
+- [Haddock](https://www.haskell.org/haddock/)
+  - [Welcome to Haddock’s documentation!](https://haskell-haddock.readthedocs.io/en/latest/)
+- [Hlint](https://github.com/ndmitchell/hlint)
+- [LiquidHaskell](https://ucsd-progsys.github.io/liquidhaskell-blog/)
+
+### IDE Integration
 
 - [intero](https://github.com/commercialhaskell/intero)
 - [Haskero](https://marketplace.visualstudio.com/items?itemName=Vans.haskero)

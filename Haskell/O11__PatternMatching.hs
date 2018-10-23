@@ -31,6 +31,8 @@ _ = f 50    -- `False`
 f' :: Integer -> Bool
 f' _ = False
 f' 2 = True
+-- Triggers a warning when the `-Woverlapping-patterns` compiler option is used.
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverlapping-patterns
 
 _ = f' 1     -- `False`
 _ = f' 2     -- `False`
@@ -248,6 +250,7 @@ tup (a, b) (c, d) = ((a + c), (b ++ d))
 
 -- A case expression is a way of varying function behavior for certain values.
 
+funcZ :: (Eq a, Num a) => a -> String
 funcZ x =
   case x + 1 == 1 of
     True -> "AWESOME"
@@ -258,11 +261,13 @@ _ = funcZ 1   -- `"wut"`
 
 -- -----------------------------------------------------------------------------
 
+pal :: Eq a => [a] -> String
 pal xs =
   case xs == reverse xs of
     True -> "yes"
     False -> "no"
 
+pal' :: Eq a => [a] -> String
 pal' xs =
   case y of
     True -> "yes"
@@ -273,9 +278,21 @@ pal' xs =
 
 -- A case expression that is not total.
 
+nums :: (Ord a, Num a, Num p) => a -> p
 nums x =
   case compare x 0 of
     LT -> -1
+    GT -> 1
+-- Triggers a warning when the `-Wincomplete-patterns` compiler option is used.
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wincomplete-patterns
+
+-- -----------------------------------------------------------------------------
+
+fn :: (Ord a, Num a, Num p) => a -> p
+fn x =
+  case compare x 0 of
+    LT -> -1
+    EQ -> 0
     GT -> 1
 
 -- -----------------------------------------------------------------------------
@@ -283,8 +300,7 @@ nums x =
 fn x =
   case compare x 0 of
     LT -> -1
-    EQ -> 0
-    GT -> 1
+    _  -> 2
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

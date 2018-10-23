@@ -1,4 +1,4 @@
-module O13__Typeclasses where
+module O13__Typeclasses () where
 
 -- New datatypes can be created using the `data` keyword.
 
@@ -8,11 +8,10 @@ data Me = Me
 
 data Self = Myself
 
--- Equality comparison with our custom `Me` and `Self` types won't work.
-
 {-
-_ = Me == Me
-_ = Myself == Myself
+-- Equality comparison with our custom `Me` and `Self` types won't work.
+_ = Me == Me            -- Causes a compile-time error.
+_ = Myself == Myself    -- Causes a compile-time error.
 -}
 
 
@@ -84,10 +83,9 @@ instance Numberish' Year where
 _ = defaultNumber :: Age    -- `Age 65`
 _ = defaultNumber :: Year   -- `Year 1988`
 
--- `defaultNumber` on its own is too ambiguous to use without erroring.
-
 {-
-_ = defaultNumber
+-- `defaultNumber` on its own is too ambiguous.
+_ = defaultNumber   -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------

@@ -1,0 +1,56 @@
+resolver: nightly-2018-10-19
+# resolver: lts-12.13
+# compiler: ghc-8.6.1
+
+packages:
+  - "."
+
+# extra-deps:
+#   # For using Hoogle.
+#   - storable-tuple-0.0.3.3
+#   # For using Hlint.
+#   - cpphs-1.20.8
+#   - polyparse-1.12
+
+# https://downloads.haskell.org/~ghc/master/users-guide/using-warnings.html
+# https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3
+
+ghc-options:
+  # Enable all warnings so we can disable the ones we don't want.
+  "$locals": -Weverything
+
+  # `missing-exported-signatures` turns off the stricter `-Wmissing-signatures`.
+  # https://ghc.haskell.org/trac/ghc/ticket/14794#ticket
+  "$locals": -Wno-missing-exported-signatures
+
+  # Explicit imports for every function (e.g. `$`) is too strict.
+  "$locals": -Wno-missing-import-lists
+
+  # When GHC can't specialize a polymorphic function.  No big deal and requires
+  # fixing underlying libraries to solve.  Though, perhaps useful under certain
+  # performance optimization scenarios.
+  "$locals": -Wno-all-missed-specialisations
+  "$locals": -Wno-missed-specialisations
+
+  # These are only useful if using Safe Haskell.
+  "$locals": -Wno-trustworthy-safe
+  "$locals": -Wno-safe
+  "$locals": -Wno-unsafe
+
+  # Warning for polymorphic local bindings; nothing wrong with those.
+  "$locals": -Wno-missing-local-signatures
+
+  # The monomorphism restriction adds confusion without being that impactful.
+  "$locals": -Wno-monomorphism-restriction
+
+  # Having the standard Prelude library implicitly available is convenient.
+  "$locals": -Wno-implicit-prelude
+
+  # `-Wtype-defaults` will complain about normal expressions like `5 + 5`.
+  "$locals": -Wno-type-defaults
+
+  # # Treat all warnings like fatal errors.
+  # "$locals": -Werror
+
+  "$locals": -Wno-unused-matches
+  "$locals": -Wno-unused-top-binds

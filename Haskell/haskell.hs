@@ -447,14 +447,6 @@ _ = kessel (1 :: Integer) 2
 
 
 
-
-
-
-
-
-
-
-
 -- The composition operator, `.`, takes a couple functions and composes them to
 -- make a new function.
 
@@ -590,7 +582,7 @@ _ = (-) 10 1        -- `9`
 _ = flip (-) 10 1   -- `-9`
 
 {-
-_ = foldl (:) [] [1, 2, 3]    -- Results in a compiler error.
+_ = foldl (:) [] [1, 2, 3]    -- Causes a compile-time error.
 -}
 _ = foldl (flip (:)) [] [1, 2, 3]   -- `[3,2,1]`
 -- ((([] (flip (:)) 1) (flip (:)) 2) (flip (:)) 3)
@@ -713,6 +705,43 @@ something i b =
 
 
 -}
+
+
+
+
+
+-- "The Not-A-Wat in Haskell"
+-- https://youtu.be/87re_yIQMDw
+
+_ = length (1, 2)           -- `1`
+_ = length Nothing          -- `0`
+_ = length $ Just Nothing   -- `0`
+_ = length $ Just ()        -- `1`
+
+_ = foldr (+) 0 (3, 99)    -- `99`
+
+_ = fmap show (1, 2)          -- `(1,"2")`
+_ = fmap show (False, 2)      -- `(False,"2")`
+_ = fmap show (True, True)    -- `(True,"True")`
+
+{-
+_ = foldr (+) 0 (3, "99")   -- Causes a compile-time error.
+_ = foldr (+) 0 (1, 2, 3)   -- Causes a compile-time error.
+-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
@@ -861,12 +890,208 @@ yy = undefined
 
 
 
+data GuessWhat = Chickenbutt deriving (Eq, Show)
+data Id a = MkId a deriving (Eq, Show)
+data Product a b = Product a b deriving (Eq, Show)
+data Sum a b = First a | Second b deriving (Eq, Show)
+data RecordProduct a b = RecordProduct { pfirst :: a , psecond :: b } deriving (Eq, Show)
+
+myRecord :: RecordProduct Integer Float
+myRecord = RecordProduct 42 0.00001
+
+myRecord' :: RecordProduct Integer Float
+myRecord' = RecordProduct { pfirst = 42, psecond = 0.00001 }
+
+-- With record syntax we can reorder field assignments without
+myRecord'' :: RecordProduct Integer Float
+myRecord'' = RecordProduct { psecond = 0.00001, pfirst = 42 }
+
+
+newtype NumCow = NumCow Int deriving (Eq, Show)
+newtype NumPig = NumPig Int deriving (Eq, Show)
+data Farmhouse = Farmhouse NumCow NumPig deriving (Eq, Show)
+type Farmhouse' = Product NumCow NumPig
+
+newtype NumSheep = NumSheep Int deriving (Eq, Show)
+data BigFarmhouse = BigFarmhouse NumCow NumPig NumSheep deriving (Eq, Show)
+type BigFarmhouse' = Product NumCow (Product NumPig NumSheep)
+
+type Name = String
+type Age = Int
+type LovesMud = Bool
+
+type PoundsOfWool = Int
+data CowInfo = CowInfo Name Age deriving (Eq, Show)
+data PigInfo = PigInfo Name Age LovesMud deriving (Eq, Show)
+data SheepInfo = SheepInfo Name Age PoundsOfWool deriving (Eq, Show)
+
+data Animal = Cow CowInfo | Pig PigInfo | Sheep SheepInfo deriving (Eq, Show)
+
+type Animal' = Sum CowInfo (Sum PigInfo SheepInfo)
+
+
+
+
+
+type Numba = Int
+a = 3 :: Int
+b = 3 :: Numba
+
+_ = a == b    -- `True`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data OperatingSystem = GnuPlusLinux
+                     | OpenBSDPlusNevermindJustBSDStill
+                     | Mac
+                     | Windows
+                     deriving (Eq, Show)
+
+data ProgLang = Haskell
+              | Agda
+              | Idris
+              | PureScript
+              deriving (Eq, Show)
+
+data Programmer = Programmer
+  { os :: OperatingSystem
+  , lang :: ProgLang
+  } deriving (Eq, Show)
+
+allOperatingSystems :: [OperatingSystem]
+allOperatingSystems =
+  [ GnuPlusLinux
+  , OpenBSDPlusNevermindJustBSDStill
+  , Mac
+  , Windows
+  ]
+
+allLanguages :: [ProgLang]
+allLanguages = [Haskell, Agda, Idris, PureScript]
+
+allProgrammers :: [Programmer]
+allProgrammers = [Programmer os lang | os <- allOperatingSystems, lang <- allLanguages]
+
+
+
+
+partialAf = Programmer { os = GnuPlusLinux }    -- Throws an exception.
+-- Triggers a warning when the `-Wmissing-fields` compiler option is used.
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-fields
+
+
+
+
+
+
+
+
+
+
+
+-- "Percolate values through your programs, not bottoms."
+-- - Haskell Programming from First Principles, Chapter 11, page 432 of "screen" version
+
+
+
+
+newtype Name = Name String deriving Show
+newtype Acres = Acres Int deriving Show
+
+data FarmerType = DairyFarmer | WheatFarmer | SoybeanFarmer deriving Show
+
+data Farmer = Farmer Name Acres FarmerType deriving Show
+
+isDairyFarmer :: Farmer -> Bool
+isDairyFarmer (Farmer _ _ DairyFarmer) = True
+isDairyFarmer _                        = False
+
+data FarmerRec = FarmerRec
+  { name :: Name
+  , acres :: Acres
+  , farmerType :: FarmerType
+  } deriving Show
+
+isDairyFarmerRec :: FarmerRec -> Bool
+isDairyFarmerRec farmer =
+  case farmerType farmer of
+    DairyFarmer -> True
+    _           -> False
+
+
+
+
+-- `Maybe` is the preferred over records as a way to express an "empty" value.
+-- A record's accessors won't work on types that wrap the record in a sum.
+
+data Automobile = Null | Car
+                          { make :: String
+                          , model :: String
+                          , year :: Integer
+                          }
+                  deriving (Eq, Show)
+
+_ = make Null   -- Throws an exception.
+
+-- Split out the record/product to avoid the runtime exception and let the
+-- compiler catch the error at compile time.
+
+data Car = Car
+  { make :: String
+  , model :: String
+  , year :: Integer
+  } deriving (Eq, Show)
+
+data Automobile = Null | Automobile Car deriving (Eq, Show)
+
+
+
+
+
+
+
+data Quantum = Yes | No | Both deriving (Eq, Show)
+
+-- 3 + 3
+quantSum1 :: Either Quantum Quantum
+
+-- 3 * 3
+quantProd1 :: (Quantum, Quantum)
+
+-- 3 ^ 3
+quantFlip1 :: Quantum -> Quantum
+
+
+
+
+
+
+
+
+
 
 
 
 -- A side effect is a potentially observable result apart from the value
 -- an expression evaluates to.
-
 
 
 
@@ -990,37 +1215,38 @@ _ = combo'' "pbtdkg" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit
 
 
 
-seekritFunc x = div (sum (map length (words x))) (length (words x))
-seekritFunc x = (fromIntegral $ sum $ map length $ words x) / (fromIntegral $ length $ words x)
 
 
 
 
 -- -----------------------------------------------------------------------------
 
+h2 = undefined
 
-f x y z = h (subFunction x y z)
+f6 x y z = h2 (subFunction x y z)
   where subFunction x y z = g x y z
 
 -- The above is not tail recursive, calls `h`, not itself.
 
-f x y z = h (f (x - 1) y z)
+f6 x y z = h2 (f6 (x - 1) y z)
 
 -- Still not tail recursive. `f` is invoked again but not in the tail call of `f`; it's an argument to the tail call, `h`:
 
-f x y z = f (x - 1) y z
+f6 x y z = f6 (x - 1) y z
 
 -- This is tail recursive. `f` is calling itself directly with no intermediaries.
 
-foldr f z []     = z
-foldr f z (x:xs) = f x (foldr f z xs)
+-- To avoid naming conflicts, well use the name `myFoldr` instead of `foldr`.
+myFoldr f z []     = z
+myFoldr f z (x:xs) = f x (myFoldr f z xs)
 
 -- Not tail recursive, we give up control to the combining function `f` before
 -- continuing through the list. `foldr`'s recursive calls will bounce between
 -- `foldr` and `f`.
 
-foldl f z []     = z
-foldl f z (x:xs) = foldl f (f z x) xs
+-- To avoid naming conflicts, well use the name `myFoldl` instead of `foldl`.
+myFoldl f z []     = z
+myFoldl f z (x:xs) = myFoldl f (f z x) xs
 
 -- Tail recursive. `foldl` invokes itself recursively. The combining function is
 -- only an argument to the recursive fold.
@@ -1070,3 +1296,7 @@ foldl f z (x:xs) = foldl f (f z x) xs
 
 -- Hole:
 
+
+-- Language extension: A compiler feature that goes beyond the Haskell standard.
+
+-- Pragma: A special compiler instruction embedded within source code.

@@ -1,4 +1,4 @@
-module O18__Reading where
+module O18__Reading () where
 
 -- The `Read` typeclass defines how strings can be parsed into data.
 

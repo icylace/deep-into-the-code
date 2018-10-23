@@ -1,4 +1,4 @@
-module O16__Enumeration where
+module O16__Enumeration () where
 
 -- The `Enum` typeclass defines enumeration.
 

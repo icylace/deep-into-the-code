@@ -1,4 +1,4 @@
-module O15__Ordering where
+module O15__Ordering () where
 
 -- The `Ord` typeclass defines order comparison.
 
@@ -73,9 +73,8 @@ _ = min 7 (min 8 9)                 -- `7`
 
 data Suit = Spades | Hearts | Clubs | Diamonds deriving (Eq, Ord)
 
--- Since `Ord` is dependent on `Eq`, trying to go without it is an error.
-
 {-
+-- Since `Ord` is dependent on `Eq`, trying to go without it is an error.
 data Suit = Spades | Hearts | Clubs | Diamonds deriving (Ord)
 -}
 

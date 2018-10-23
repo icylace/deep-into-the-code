@@ -1,4 +1,8 @@
-module O02__Functions where
+{-# OPTIONS -Wno-missing-signatures #-}
+{-# OPTIONS -Wno-type-defaults #-}
+{-# OPTIONS -Wno-unused-top-binds #-}
+
+module O02__Functions () where
 
 -- A function is an instruction for producing an output from an input argument.
 

@@ -1,4 +1,4 @@
-module O10__Tuples where
+module O10__Tuples () where
 
 -- The `Data.Tuple` module provides the `swap` function.
 
@@ -79,15 +79,14 @@ _ = (8, "Hello") == (8, "World")    -- `False`
 _ = (8, "Hello") < (8, "World")     -- `True`
 _ = (9, "Hello") < (8, "World")     -- `False`
 
--- Tuples that are be compared with each other must have the same arity, types,
--- and order of those types.  Otherwise an error will occur.
-
 {-
-_ = (8, "Hello") == ("Hello", 8)
-_ = (8, "Hello") == (8, 3.0)
-_ = (8, "Hello") == ('B', "World")
-_ = (8, "Hello") == ('B', 3.0)
-_ = (8, "Hello") == (8, "Hello", 'B')
+-- Tuples that are be compared with each other must have the same arity, types,
+-- and order of those types.
+_ = (8, "Hello") == ("Hello", 8)        -- Causes a compile-time error.
+_ = (8, "Hello") == (8, 3.0)            -- Causes a compile-time error.
+_ = (8, "Hello") == ('B', "World")      -- Causes a compile-time error.
+_ = (8, "Hello") == ('B', 3.0)          -- Causes a compile-time error.
+_ = (8, "Hello") == (8, "Hello", 'B')   -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------

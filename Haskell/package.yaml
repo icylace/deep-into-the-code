@@ -1,0 +1,6 @@
+name: deep-into-the-code-haskell
+synopsis: My notes on the Haskell language.
+
+library:
+  dependencies:
+    - base

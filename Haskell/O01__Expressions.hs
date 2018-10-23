@@ -1,4 +1,8 @@
-module O01__Expressions where
+{-# OPTIONS -Wno-missing-signatures #-}
+-- {-# OPTIONS -Wno-type-defaults #-}
+{-# OPTIONS -Wno-unused-top-binds #-}
+
+module O01__Expressions () where
 
 -- Here is a declaration for a variable identified as `a` with expression `1`.
 

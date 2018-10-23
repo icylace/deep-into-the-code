@@ -1,4 +1,4 @@
-module O20__Folding where
+module O20__Folding () where
 
 -- `foldr` folds over a list in a right-associative manner.
 
@@ -52,7 +52,6 @@ _ = foldr (\_ _ -> 9001) 0 [undefined, undefined]     -- `9001`
 
 {-
 _ = foldr (\_ _ -> 9001) 0 undefined    -- Throws an exception.
--- Results in a compiler error.
 -}
 
 
@@ -195,7 +194,7 @@ _ = foldr (:) [] [1..3]           -- `[1,2,3]`
 _ = foldl (flip (:)) [] [1..3]    -- `[3,2,1]`
 
 {-
-_ = foldl (:) [] [1..3]   -- Results in a compiler error.
+_ = foldl (:) [] [1..3]   -- Causes a compile-time error.
 -}
 
 
@@ -256,19 +255,19 @@ myAnd []     = True
 myAnd (x:xs) = if x == False then False else myAnd xs
 
 -- direct recursion, using (&&)
-myAnd :: [Bool] -> Bool
-myAnd []     = True
-myAnd (x:xs) = x && myAnd xs
+myAnd1 :: [Bool] -> Bool
+myAnd1 []     = True
+myAnd1 (x:xs) = x && myAnd1 xs
 
 -- fold, not point-free
 -- in the folding function
-myAnd :: [Bool] -> Bool
-myAnd = foldr (\a b -> if a == False then False else b) True
+myAnd2 :: [Bool] -> Bool
+myAnd2 = foldr (\a b -> if a == False then False else b) True
 
 -- fold, both myAnd and the folding
 -- function are point-free now
-myAnd :: [Bool] -> Bool
-myAnd = foldr (&&) True
+myAnd3 :: [Bool] -> Bool
+myAnd3 = foldr (&&) True
 
 
 -- -----------------------------------------------------------------------------
@@ -283,8 +282,8 @@ _ = myOr [False, False, True, False, False]   -- `True`
 
 
 
-myAny :: (a -> Bool) -> [a] -> Bool
-myAny f = foldr (\x acc -> acc || f x) False
+myAny' :: (a -> Bool) -> [a] -> Bool
+myAny' f = foldr (\x acc -> acc || f x) False
 
 _ = myAny even [1, 3, 5]    -- `False`
 _ = myAny odd [1, 3, 5]     -- `True`

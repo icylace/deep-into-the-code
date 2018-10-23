@@ -1,4 +1,4 @@
-module O19__Recursion where
+module O19__Recursion () where
 
 -- "Recursion" is defining a function in terms of itself via self-referential
 -- expressions.  Such functions are said to be "recursive".

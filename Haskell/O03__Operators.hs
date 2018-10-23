@@ -1,4 +1,4 @@
-module O03__Operators where
+module O03__Operators () where
 
 -- Functions that are written between their arguments (e.g. arithmetic
 -- operators) are said to be written in infix notation.
@@ -43,13 +43,11 @@ _ = ((div) 10) 4    -- `2`
 _ = (10 `div`) 4    -- `2`
 _ = (`div` 4) 10    -- `2`
 
--- The following constructions are invalid:
-
 {-
-_ = (`div`) 10 4
-_ = 10 (`div`) 4
-_ = `(/)` 10 4
-_ = 10 `(/)` 4
+_ = (`div`) 10 4    -- Causes a compile-time error.
+_ = 10 (`div`) 4    -- Causes a compile-time error.
+_ = `(/)` 10 4      -- Causes a compile-time error.
+_ = 10 `(/)` 4      -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -60,6 +58,26 @@ _ = 10 `(/)` 4
 -- Haskell's REPL (read-eval-print loop) environment, GHCi, has an `:i`
 -- (short for `:info`) command that can give some information about
 -- types and expressions.
+
+
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> :i +
+class Num a where
+  (+) :: a -> a -> a
+  ...
+  	-- Defined in ‘GHC.Num’
+infixl 6 +
+-------------------------------------------------------------------------------}
+
+
+
+
+
+
+
 
 -- Running this in GHCi will show information about the addition operator:
 --
@@ -172,7 +190,7 @@ _ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1
 -- Operator: A function with a non-alphanumeric name and infix by default.
 -- Operand: An argument to an operator.
 -- Binary operator: An operator that applies to a couple operands.
--- Prelude: A library of standard functions.
+-- Prelude: Haskell's standard library of functions.
 
 -- Associativity: The way operators are grouped in the absence of parentheses.
 -- Precedence: The order that similarly-grouped operators are parsed.

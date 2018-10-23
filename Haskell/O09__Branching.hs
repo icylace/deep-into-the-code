@@ -1,4 +1,4 @@
-module O09__Branching where
+module O09__Branching () where
 
 -- The function `not` takes a `Bool` value and returns the other `Bool` value.
 
@@ -47,16 +47,14 @@ _ = if True
     else "No"
 -- `"Yes"`
 
--- If the conditional is not a boolean, an error will occur.
-
 {-
-_ = if "A" then "Yes" else "No"
+-- The conditional must be a boolean.
+_ = if "A" then "Yes" else "No"   -- Causes a compile-time error.
 -}
 
+{-
 -- If the expression in the `then` branch has a different type than the
 -- expression in the `else` branch, an error will occur.
-
-{-
 _ = if True then "Yes" else 0
 -}
 
@@ -229,14 +227,12 @@ _ = myAbs5 9       -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 
--- Attemping to use the same catch-all case syntax from pattern matching will
--- cause an error.
-
 {-
+-- The catch-all case syntax from pattern matching cannot be used with guards.
 myAbs6 :: Integer -> Integer
 myAbs6 x
   | x < 0 = -x
-  | _     = x
+  | _     = x   -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------
