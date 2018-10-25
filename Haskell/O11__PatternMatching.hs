@@ -305,6 +305,126 @@ fn x =
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
+-- An "as-pattern" in Haskell is a way of referring to a value while
+-- simultaneously pattern matching on part of it.
+
+f :: Show a => (a, b) -> IO (a, b)
+f t@(a, _) = do
+  print a
+  return t
+
+-- -----------------------------------------------------------------------------
+
+doubleUp :: [a] -> [a]
+doubleUp []       = []
+doubleUp xs@(x:_) = x : xs
+
+_ = doubleUp []           -- `[]`
+_ = doubleUp [1]          -- `[1,1]`
+_ = doubleUp [1, 2]       -- `[1,1,2]`
+_ = doubleUp [1, 2, 3]    -- `[1,1,2,3]`
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+isSubseqOf :: (Eq a) => [a] -> [a] -> Bool
+isSubseqOf []     _        = True
+isSubseqOf _      []       = False
+isSubseqOf (x:xs) y@(_:ys) = elem x y && isSubseqOf xs ys
+
+_ = isSubseqOf "blah" "blahwoot"    -- `True`
+_ = isSubseqOf "blah" "wootblah"    -- `True`
+_ = isSubseqOf "blah" "wboloath"    -- `True`
+_ = isSubseqOf "blah" "wootbla"     -- `False`
+_ = isSubseqOf "blah" "halbwoot"    -- `False`
+_ = isSubseqOf "blah" "blawhoot"    -- `True`
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+import Data.Char (toUpper)
+
+capitalizeWords :: String -> [(String, String)]
+capitalizeWords x = zip ws $ map (\(c:cs) -> toUpper c : cs) ws
+  where ws = words x
+
+_ = capitalizeWords "hello world"   -- `[("hello","Hello"),("world","World")]`
+
+
+
+
+
+capitalizeWord :: String -> String
+capitalizeWord (x:xs) = toUpper x : xs
+
+_ = capitalizeWord "Chortle"    -- `"Chortle"`
+_ = capitalizeWord "chortle"    -- `"Chortle"`
+
+
+
+
+
+
+
+
+{- These work too.
+capitalizeParagraph :: String -> String
+capitalizeParagraph "" = ""
+capitalizeParagraph (c:cs) = toUpper c : go cs
+  where go (x:y:z:xs) =
+          if x == '.' && y == ' '
+          then x : y : toUpper z : go xs
+          else x : go (y : z : xs)
+        go xs = xs
+
+capitalizeParagraph :: String -> String
+capitalizeParagraph "" = ""
+capitalizeParagraph (c:cs) = toUpper c : go cs
+  where go (x:y:z:xs) =
+          if [x, y] == ". "
+          then x : y : toUpper z : go xs
+          else x : go (y : z : xs)
+        go xs = xs
+
+capitalizeParagraph :: String -> String
+capitalizeParagraph "" = ""
+capitalizeParagraph (c:cs) = toUpper c : go cs
+  where go ('.':' ':z:xs) = '.' : ' ' : toUpper z : go xs
+        go (x:xs) = x : go xs
+        go xs = xs
+-}
+
+
+
+capitalizeParagraph :: String -> String
+capitalizeParagraph "" = ""
+capitalizeParagraph (c:cs) = toUpper c : go cs
+  where go ('.':' ':z:xs) = ". " ++ toUpper z : go xs
+        go (x:xs) = x : go xs
+        go xs = xs
+
+_ = capitalizeParagraph "blah. woot ha."    -- `"Blah. Woot ha."`
+
+
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
 -- Key Terms
 -- =========
 -- Pattern matching: Identifying arguments that follow a given pattern.

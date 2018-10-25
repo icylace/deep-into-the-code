@@ -738,6 +738,25 @@ _ = foldr (+) 0 (1, 2, 3)   -- Causes a compile-time error.
 
 
 
+-- A constructor with an alphanumeric name is prefix by default.
+
+-- A constructor with a non-alphanumeric name is infix by default.
+
+
+
+
+
+-- A function with an alphanumeric name is prefix by default.
+
+-- A function with a non-alphanumeric name is infix by default.
+
+
+
+
+
+
+
+
 
 
 
@@ -1189,6 +1208,55 @@ dividedBy num denom = go num denom 0
 
 
 
+
+
+
+
+
+
+
+data Expr = Lit Integer | Add Expr Expr
+
+eval :: Expr -> Integer
+eval (Lit x) = x
+eval (Add x y) = eval x + eval y
+
+_ = eval (Add (Lit 1) (Lit 9001))   -- `9002`
+
+
+
+
+
+printExpr :: Expr -> String
+printExpr (Lit x) = show x
+printExpr (Add x y) = printExpr x ++ " + " ++ printExpr y
+
+_ = printExpr (Add (Lit 1) (Lit 9001))    -- `"1 + 9001"`
+
+a1 = Add (Lit 9001) (Lit 1)
+a2 = Add a1 (Lit 20001)
+a3 = Add (Lit 1) a2
+
+_ = printExpr a3    -- `"1 + 9001 + 1 + 20001"`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 stops = "pbtdkg"
 vowels = "aeiou"
 
@@ -1250,6 +1318,336 @@ myFoldl f z (x:xs) = myFoldl f (f z x) xs
 
 -- Tail recursive. `foldl` invokes itself recursively. The combining function is
 -- only an argument to the recursive fold.
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+-- Error handling.
+
+
+ifEvenAdd2 :: Integer -> Maybe Integer
+ifEvenAdd2 n = if even n then Just (n + 2) else Nothing
+
+
+
+
+-- A "smart constructor" creates only values that meet a certain criteria and
+-- signals when it can't.
+
+
+
+
+
+
+
+
+
+-- Pattern matching is a case expression, where the data constructor is the
+-- condition.  Case expressions and pattern matching will work without an
+-- `Eq` instance, but guards using `==` will not.
+
+
+
+
+
+
+
+
+-- Type constructors (that is, higher-kinded types) are types that take more
+-- types as arguments.
+
+-- The Haskell Report uses the term "type constant" to refer to types that take
+-- no arguments and are already types.
+
+-- In the Report, type constructor is used to refer to types which must have
+-- arguments applied to become a type.
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> :kind Int
+Int :: *
+
+> :k Bool
+Bool :: *
+
+> :k Char
+Char :: *
+-------------------------------------------------------------------------------}
+
+
+
+
+
+
+-- We use Left as our invalid or error constructor for a couple of reasons.  It
+-- is conventional to do so in Haskell, but that convention came about for a
+-- reason.  The reason has to do with the ordering of type arguments and
+-- application of functions.  Normally it is your error or invalid
+-- result that is going to cause a stop to whatever work is being
+-- done by your program.  Functor will not map over the left type
+-- argument because it has been applied away.  Since you normally
+-- want to apply functions and map over the case that doesn't
+-- stop your program (that is, not the error case), it has
+-- become convention that the Left of Either is used for
+-- whatever case is going to cause the work to stop.
+
+
+
+
+
+
+
+
+
+
+
+data Example a = Blah | RoofGoats | Woot a
+
+{- GHCi ------------------------------------------------------------------------
+> :k Example
+Example :: * -> *
+-------------------------------------------------------------------------------}
+
+
+
+
+
+
+
+
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> :k (,)
+(,) :: * -> * -> *
+
+> :k (Int, Int)
+(Int, Int) :: *
+-------------------------------------------------------------------------------}
+
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> :k Maybe
+Maybe :: * -> *
+
+> :k Maybe Int
+Maybe Int :: *
+
+> :k Either
+Either :: * -> * -> *
+
+> :k Either Int
+Either Int :: * -> *
+
+> :k Either Int String
+Either Int String :: *
+
+> :k Maybe Maybe
+<interactive>:1:7-11: error:
+    • Expecting one more argument to ‘Maybe’
+      Expected a type, but ‘Maybe’ has kind ‘* -> *’
+    • In the first argument of ‘Maybe’, namely ‘Maybe’
+      In the type ‘Maybe Maybe’
+
+> :k Maybe (Maybe Int)
+Maybe (Maybe Int) :: *
+-------------------------------------------------------------------------------}
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> :k []
+[] :: * -> *
+
+> :k [] Int
+[] Int :: *
+
+> :k [Int]
+[Int] :: *
+
+> :k Maybe []
+<interactive>:1:7-8: error:
+    • Expecting one more argument to ‘[]’
+      Expected a type, but ‘[]’ has kind ‘* -> *’
+    • In the first argument of ‘Maybe’, namely ‘[]’
+      In the type ‘Maybe []’
+
+> :k Maybe [Bool]
+Maybe [Bool] :: *
+-------------------------------------------------------------------------------}
+
+
+
+
+
+
+
+
+
+
+-- The kind `*` is the kind of all standard lifted types, while types that have
+-- the kind `#` are unlifted.
+
+-- A lifted type, which includes any datatype you could define yourself, is any
+-- that can be inhabited by "bottom".
+
+-- Unlifted types are any type which cannot be inhabited by bottom.
+
+-- Types of kind `#` are often native machine types and raw pointers.
+
+-- Newtypes are a special case in that they are kind `*`, but are unlifted
+-- because their representation is identical to that of the type they
+-- contain, so the newtype itself is not creating any new pointer
+-- beyond that of the type it contains.
+
+
+
+
+
+
+
+
+
+
+
+a = [] :: [Int]
+a = [] :: [] Int
+
+
+_ = [1..10 :: Int]
+_ = [1..10] :: [] Int
+_ = [1..10] :: [Int]
+
+
+
+
+{- GHCi ------------------------------------------------------------------------
+> data Trivial = Trivial
+
+> :k Trivial
+Trivial :: *
+
+> Trivial 1
+<interactive>:24:1-9: error:
+    • Couldn't match expected type ‘Integer -> t’
+                  with actual type ‘Trivial’
+    • The function ‘Trivial’ is applied to one argument,
+      but its type ‘Trivial’ has none
+      In the expression: Trivial 1
+      In an equation for ‘it’: it = Trivial 1
+    • Relevant bindings include it :: t (bound at <interactive>:24:1)
+
+> data Unary a = Unary a
+
+> :k Unary
+Unary :: * -> *
+
+> data Unary = Unary a deriving Show
+<interactive>:25:20: error: Not in scope: type variable ‘a’
+
+> data TwoArgs a b = TwoArgs a b
+
+> :k TwoArgs
+TwoArgs :: * -> * -> *
+
+> data ThreeArgs a b c = ThreeArgs a b c
+
+> :k ThreeArgs
+ThreeArgs :: * -> * -> * -> *
+-------------------------------------------------------------------------------}
+
+
+
+
+
+_ = fmap Just [1, 2, 3]   -- `[Just 1,Just 2,Just 3]`
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+notThe :: String -> Maybe String
+notThe "the" = Nothing
+notThe x     = Just x
+
+_ = notThe "the"            -- `Nothing`
+_ = notThe "blahtheblah"    -- `Just "blahtheblah"`
+_ = notThe "woot"           -- `Just "woot"`
+
+
+
+import Data.Maybe
+
+replaceThe :: String -> String
+replaceThe (x:y:z:xs) = fromMaybe "a" (notThe $ x:y:z:[]) ++ replaceThe xs
+replaceThe xs         = xs
+
+_ = replaceThe "the cow loves us"   -- `"a cow loves us"`
+
+
+
+
+
+
+
+
+countTheBeforeVowel :: String -> Integer
+countTheBeforeVowel (v:w:x:y:z:xs) =
+  if (v:w:x:y:[]) == "the " && elem z "aeiouy"
+  then (1 + countTheBeforeVowel xs)
+  else countTheBeforeVowel (w:x:y:z:xs)
+countTheBeforeVowel xs = 0
+
+_ = countTheBeforeVowel "the cow"         -- `0`
+_ = countTheBeforeVowel "the evil cow"    -- `1`
+
+
+
+
+
+
+
+
+
+countVowels :: String -> Integer
+countVowels = foldr (\x acc -> if elem x "aeiouy" then (acc + 1) else acc) 0
+
+_ = countVowels "the cow"       -- `2`
+_ = countVowels "Mikolajczak"   -- `4`
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

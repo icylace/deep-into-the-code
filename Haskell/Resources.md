@@ -98,7 +98,7 @@
 - [John A De Goes](http://degoes.net/)
 - [bitemyapp - Types & Functional Programming](http://bitemyapp.com/)
 - [Stephen Diehl](http://www.stephendiehl.com/posts.html)
-- [Contemplating code](http://contemplatecode.blogspot.com)
+- [Contemplating code](http://contemplatecode.blogspot.com/)
 - [teideal glic deisbhéalach - Bryan O'Sullivan's blog](http://www.serpentine.com/blog/)
 
 ### Podcasts
