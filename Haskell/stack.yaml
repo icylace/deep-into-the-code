@@ -67,9 +67,6 @@ packages:
 # https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3
 
 ghc-options:
-  # # Treat all warnings like fatal errors.
-  # "$targets": -Werror
-
   # -Wno-deprecated-flags
   # -Wno-duplicate-constraints
   # -Wno-incomplete-patterns

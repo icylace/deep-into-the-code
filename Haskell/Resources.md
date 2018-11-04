@@ -109,6 +109,7 @@
 
 - [Haskell CEO](https://twitter.com/HaskellCEO)
 - [Haskell Ryan Gosling](https://haskellryangosling.tumblr.com/)
+- [acme-missiles](http://hackage.haskell.org/package/acme-missiles)
 
 ## Tools
 
