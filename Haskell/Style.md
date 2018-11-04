@@ -59,3 +59,8 @@ A common Haskell idiom is to use a `go` helper function defined in a `where` cla
 - [Haskell: why the convention to name a helper function “go”?](https://stackoverflow.com/q/5844653)
 
   - [https://stackoverflow.com/a/5844850]
+
+
+
+
+- https://wiki.haskell.org/Import_modules_properly

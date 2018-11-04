@@ -107,6 +107,7 @@
 
 ### Humor
 
+- [Haskell CEO](https://twitter.com/HaskellCEO)
 - [Haskell Ryan Gosling](https://haskellryangosling.tumblr.com/)
 
 ## Tools
@@ -114,6 +115,7 @@
 - [Haddock](https://www.haskell.org/haddock/)
   - [Welcome to Haddock’s documentation!](https://haskell-haddock.readthedocs.io/en/latest/)
 - [Hlint](https://github.com/ndmitchell/hlint)
+- [hpack](https://github.com/sol/hpack)
 - [LiquidHaskell](https://ucsd-progsys.github.io/liquidhaskell-blog/)
 
 ### IDE Integration

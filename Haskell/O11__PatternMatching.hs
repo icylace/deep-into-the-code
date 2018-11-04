@@ -308,8 +308,8 @@ fn x =
 -- An "as-pattern" in Haskell is a way of referring to a value while
 -- simultaneously pattern matching on part of it.
 
-f :: Show a => (a, b) -> IO (a, b)
-f t@(a, _) = do
+f2 :: Show a => (a, b) -> IO (a, b)
+f2 t@(a, _) = do
   print a
   return t
 
@@ -349,6 +349,7 @@ _ = isSubseqOf "blah" "blawhoot"    -- `True`
 
 
 
+{-
 
 import Data.Char (toUpper)
 
@@ -369,6 +370,7 @@ _ = capitalizeWord "Chortle"    -- `"Chortle"`
 _ = capitalizeWord "chortle"    -- `"Chortle"`
 
 
+-}
 
 
 
@@ -400,7 +402,6 @@ capitalizeParagraph (c:cs) = toUpper c : go cs
   where go ('.':' ':z:xs) = '.' : ' ' : toUpper z : go xs
         go (x:xs) = x : go xs
         go xs = xs
--}
 
 
 
@@ -414,6 +415,7 @@ capitalizeParagraph (c:cs) = toUpper c : go cs
 _ = capitalizeParagraph "blah. woot ha."    -- `"Blah. Woot ha."`
 
 
+-}
 
 
 

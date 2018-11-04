@@ -1031,6 +1031,7 @@ partialAf = Programmer { os = GnuPlusLinux }    -- Throws an exception.
 
 
 
+{-
 
 newtype Name = Name String deriving Show
 newtype Acres = Acres Int deriving Show
@@ -1102,6 +1103,7 @@ quantFlip1 :: Quantum -> Quantum
 
 
 
+-}
 
 
 
@@ -1517,7 +1519,7 @@ Maybe [Bool] :: *
 
 
 
-
+{-
 
 
 
@@ -1529,6 +1531,8 @@ _ = [1..10 :: Int]
 _ = [1..10] :: [] Int
 _ = [1..10] :: [Int]
 
+
+-}
 
 
 
@@ -1598,6 +1602,8 @@ _ = notThe "woot"           -- `Just "woot"`
 
 
 
+{-
+
 import Data.Maybe
 
 replaceThe :: String -> String
@@ -1605,6 +1611,8 @@ replaceThe (x:y:z:xs) = fromMaybe "a" (notThe $ x:y:z:[]) ++ replaceThe xs
 replaceThe xs         = xs
 
 _ = replaceThe "the cow loves us"   -- `"a cow loves us"`
+
+-}
 
 
 
@@ -1642,6 +1650,21 @@ _ = countVowels "Mikolajczak"   -- `4`
 
 
 
+{-
+
+newtype Word' = Word' String deriving (Eq, Show)
+
+vowels = "aeiou"
+
+mkWord :: String -> Maybe Word'
+mkWord xs
+  | vowelCount > consonantCount = Nothing
+  | otherwise = Just $ Word' xs
+  where vowelCount     = length $ filter (\letter -> elem letter vowels) xs
+        consonantCount = length $ filter (\letter -> notElem letter vowels) xs
+
+
+-}
 
 
 
@@ -1650,6 +1673,337 @@ _ = countVowels "Mikolajczak"   -- `4`
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data Nat = Zero | Succ Nat deriving (Eq, Show)
+
+natToInteger :: Nat -> Integer
+natToInteger Zero     = 0
+natToInteger (Succ n) = 1 + natToInteger n
+
+_ = natToInteger Zero                 -- `0`
+_ = natToInteger (Succ Zero)          -- `1`
+_ = natToInteger (Succ (Succ Zero))   -- `2`
+
+integerToNat :: Integer -> Maybe Nat
+integerToNat x
+  | x < 0     = Nothing
+  | otherwise = Just $ snd $ go (x, Zero)
+  where go (0, nat) = (0, nat)
+        go (n, nat) = go (n - 1, Succ nat)
+
+_ = integerToNat 0      -- `Just Zero`
+_ = integerToNat 1      -- `Just (Succ Zero)`
+_ = integerToNat 2      -- `Just (Succ (Succ Zero))`
+_ = integerToNat (-1)   -- `Nothing`
+
+
+
+
+
+
+
+
+
+
+mayybee :: b -> (a -> b) -> Maybe a -> b
+mayybee z _ Nothing  = z
+mayybee _ f (Just x) = f x
+
+_ = mayybee 0 (+1) Nothing    -- `0`
+_ = mayybee 0 (+1) (Just 1)   -- `2`
+
+
+
+
+fromMaybe' :: a -> Maybe a -> a
+fromMaybe' x = mayybee x id
+
+_ = fromMaybe' 0 Nothing    -- `0`
+_ = fromMaybe' 0 (Just 1)   -- `1`
+
+
+
+
+
+
+
+fromMaybe :: a -> Maybe a -> a
+fromMaybe x Nothing  = x
+fromMaybe x (Just y) = y
+
+_ = fromMaybe 0 Nothing     -- `0`
+_ = fromMaybe 0 (Just 1)    -- `1`
+
+
+
+
+
+
+
+
+
+
+
+
+
+listToMaybe :: [a] -> Maybe a
+listToMaybe [] = Nothing
+listToMaybe xs = Just $ head xs
+
+_ = listToMaybe [1, 2, 3]   -- `Just 1`
+_ = listToMaybe []          -- `Nothing`
+
+
+
+
+
+
+maybeToList :: Maybe a -> [a]
+maybeToList Nothing  = []
+maybeToList (Just x) = [x]
+
+_ = maybeToList (Just 1)    -- `[1]`
+_ = maybeToList Nothing     -- `[]`
+
+
+
+
+
+catMaybes :: [Maybe a] -> [a]
+catMaybes []            = []
+catMaybes (Nothing:xs)  = catMaybes xs
+catMaybes ((Just x):xs) = x : catMaybes xs
+
+_ = catMaybes [Just 1, Nothing, Just 2]   -- `[1,2]`
+_ = catMaybes $ take 3 $ repeat Nothing   -- `[]`
+
+
+
+
+
+
+
+
+flipMaybe :: [Maybe a] -> Maybe [a]
+flipMaybe []            = Just []
+flipMaybe (Nothing:xs)  = Nothing
+flipMaybe ((Just x):xs) =
+  case flipMaybe xs of
+    Nothing -> Nothing
+    Just xs -> Just (x:xs)
+
+_ = flipMaybe [Just 1, Just 2, Just 3]    -- `Just [1,2,3]`
+_ = flipMaybe [Just 1, Nothing, Just 3]   -- `Nothing`
+
+
+
+
+
+
+
+
+
+
+
+
+lefts' :: [Either a b] -> [a]
+lefts' = foldr go []
+  where go (Left x)  acc = x : acc
+        go (Right _) acc = acc
+
+_ = lefts' [Left 1, Right 2, Left 3]    -- `[1,3]`
+
+
+
+rights' :: [Either a b] -> [b]
+rights' = foldr go []
+  where go (Left _)  acc = acc
+        go (Right x) acc = x : acc
+
+_ = rights' [Left 1, Right 2, Left 3]   -- `[2]`
+
+
+
+
+
+partitionEithers' :: [Either a b] -> ([a], [b])
+partitionEithers' xs = (lefts' xs, rights' xs)
+
+
+
+
+eitherMaybe' :: (b -> c) -> Either a b -> Maybe c
+eitherMaybe' _ (Left _)  = Nothing
+eitherMaybe' f (Right x) = Just $ f x
+
+
+
+
+either' :: (a -> c) -> (b -> c) -> Either a b -> c
+either' f _ (Left x)  = f x
+either' _ f (Right x) = f x
+
+
+{-
+
+
+eitherMaybe'' :: (b -> c) -> Either a b -> Maybe c
+eitherMaybe'' = either' (const Nothing)
+
+
+
+
+
+
+-- iterate is like a limited
+-- unfold that never ends
+> :t iterate
+iterate :: (a -> a) -> a -> [a]
+
+-}
+
+
+
+
+-- because it never ends, we must use
+-- take to get a finite list
+_ = take 10 $ iterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+
+
+
+{-
+
+-- unfoldr is more general
+> :t unfoldr
+unfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+
+
+
+
+
+import Data.List
+
+-- Using unfoldr to do
+-- the same thing as iterate
+_ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0   -- `[0,1,2,3,4,5,6,7,8,9]`
+
+
+
+-}
+
+
+
+
+
+
+
+
+myIterate :: (a -> a) -> a -> [a]
+myIterate f z = z : (myIterate f $ f z)
+
+_ = take 10 $ myIterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+
+
+myUnfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+myUnfoldr f z = go $ f z
+  where go Nothing       = []
+        go (Just (x, y)) = x : myUnfoldr f y
+
+
+betterIterate :: (a -> a) -> a -> [a]
+betterIterate f z = myUnfoldr (\x -> Just (x, f x)) z
+-- betterIterate f = myUnfoldr (\x -> Just (x, f x))
+-- betterIterate f = myUnfoldr $ \x -> Just (x, f x)
+
+_ = take 10 $ betterIterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+
+
+
+
+
+
+
+
+
+
+{-
+
+
+
+data BinaryTree a = Leaf
+                  | Node (BinaryTree a) a (BinaryTree a)
+                  deriving (Eq, Ord, Show)
+
+unfold :: (a -> Maybe (a, b, a)) -> a -> BinaryTree b
+unfold f z = go $ f z
+  where go Nothing          = Leaf
+        go (Just (x, y, z)) = Node (unfold f x) y (unfold f z)
+
+treeBuild :: Integer -> BinaryTree Integer
+treeBuild n = unfold (\x ->) Leaf
+  where go Leaf
+
+
+
+-}
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- https://wiki.haskell.org/Import_modules_properly
+
+-- import qualified Very.Special.Module as VSM
+-- import Another.Important.Module (printf, (<|>), )
+
+-- import Very.Special.Module
+-- import Another.Important.Module hiding (open, close, )
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+(.:) = (.) . (.)
+
+-- http://sleepomeno.github.io/blog/2014/08/14/Composing-two-argument-functions/
+-- f''' = return .: prompt
+-- f''' = (return .) . prompt
+-- f''' = \modules lineNumber -> return $ prompt modules lineNumber
+
+
+-- -----------------------------------------------------------------------------
+
+
+-- TODO: verify this:
+-- -- You can use the same alias acrross imports.
+-- import qualified Language.Haskell.HsColour           as HSC
+-- import qualified Language.Haskell.HsColour.Colourise as HSC
 
 
 
