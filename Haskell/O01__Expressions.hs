@@ -1,6 +1,6 @@
-{-# OPTIONS -Wno-missing-signatures #-}
--- {-# OPTIONS -Wno-type-defaults #-}
-{-# OPTIONS -Wno-unused-top-binds #-}
+-- {-# OPTIONS -Wno-missing-signatures #-}
+-- -- {-# OPTIONS -Wno-type-defaults #-}
+-- {-# OPTIONS -Wno-unused-top-binds #-}
 
 module O01__Expressions () where
 
@@ -107,6 +107,7 @@ _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 
 -- Key Terms
 -- =========
+
 -- Expression: A combination of terms able to be evaluated together.
 -- Nested expression: An expression embedded within another expression.
 -- Reducible expression (redex): An expression that can be further simplified.

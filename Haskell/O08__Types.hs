@@ -36,6 +36,7 @@ y = 'b'
 
 
 
+-- TODO: use the newer notation style for GHCi stuff here?
 
 -- The GHCi command `:t` (`:type`) displays the type of a value.
 
@@ -466,11 +467,6 @@ True :: Bool
 
 
 
-
-
-
-
-
 -- Numbers in and of themselves don't have a concrete type.
 
 {- GHCi ------------------------------------------------------------------------
@@ -629,6 +625,7 @@ _ = maxBound :: ()      -- `()`
 
 -- Key Terms
 -- =========
+
 -- Type (datatype): A classification of values that share something in common.
 -- Type alias: An alternative name for a preexisting type.
 -- Type signature: The definition of types used by an expression.

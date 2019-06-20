@@ -185,6 +185,7 @@ _ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1
 
 -- Key Terms
 -- =========
+
 -- Prefix notation: The placement of a function before its arguments.
 -- Infix notation: The placement of a function between its arguments.
 -- Operator: A function with a non-alphanumeric name and infix by default.

@@ -133,14 +133,14 @@
 
 ## Monadic Notation
 
-| Symbol | Context     | Read as                                   |
-| ------ | ----------- | ----------------------------------------- |
-| `<-`   | do-notation | "draws from" / "is drawn from" / "bind"   |
-| `<=<`  |             | "compose" / "composed with" / "left fish" |
-| `=<<`  |             | "bound by"                                |
-| `>=>`  |             | "then" / "piped to" / "right fish"        |
-| `>>`   |             | "then"                                    |
-| `>>=`  |             | "bind"                                    |
+| Symbol | Context     | Read as                                                     |
+| ------ | ----------- | ----------------------------------------------------------- |
+| `<-`   | do-notation | "is bound to" / "binds to" / "draws from" / "is drawn from" |
+| `<=<`  |             | "compose" / "composed with" / "left fish"                   |
+| `=<<`  |             | "bound by"                                                  |
+| `>=>`  |             | "then" / "piped to" / "right fish"                          |
+| `>>`   |             | "then"                                                      |
+| `>>=`  |             | "bind" / "binds"                                            |
 
 ## Sequence Notation
 

@@ -140,11 +140,15 @@ printStrings = do
 -- `do` notation was used to make using a sequence of print-related functions
 -- more convenient.
 
+-- We use `do` inside functions that return `IO` in order to sequence side
+-- effects in a convenient syntax.
+
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- Key Terms
 -- =========
+
 -- Character: A unit of text.
 -- String: A sequence of characters.
 -- Empty string: A string with no characters.

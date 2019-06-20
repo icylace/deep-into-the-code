@@ -15,8 +15,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-12.16
-# resolver: lts-12.14
+resolver: lts-12.18
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -64,22 +63,48 @@ packages:
 # compiler-check: newer-minor
 
 # https://downloads.haskell.org/~ghc/master/users-guide/using-warnings.html
-# https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3
 
 ghc-options:
   # -Wno-deprecated-flags
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wdeprecated-flags
+
   # -Wno-duplicate-constraints
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wduplicate-constraints
+
   # -Wno-incomplete-patterns
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wincomplete-patterns
+
   # -Wno-missing-export-lists
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-export-lists
+
   # -Wno-missing-fields
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-fields
+
   # -Wno-missing-home-modules
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-home-modules
+
   # -Wno-missing-signatures
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-signatures
+
   # -Wno-name-shadowing
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wname-shadowing
+
   # -Wno-overflowed-literals
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals
+
   # -Wno-overlapping-patterns
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverlapping-patterns
+
   # -Wno-redundant-constraints
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wredundant-constraints
+
   # -Wno-unused-imports
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wunused-imports
+
   # -Wno-unused-matches
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wunused-matches
+
   # -Wno-unused-top-binds
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wunused-top-binds
 
   "$targets": -Wno-deprecated-flags -Wno-duplicate-constraints -Wno-incomplete-patterns -Wno-missing-export-lists -Wno-missing-fields -Wno-missing-home-modules -Wno-missing-signatures -Wno-name-shadowing -Wno-overflowed-literals -Wno-overlapping-patterns -Wno-redundant-constraints -Wno-unused-imports -Wno-unused-matches -Wno-unused-top-binds

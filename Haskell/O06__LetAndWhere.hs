@@ -91,6 +91,7 @@ _ = z y   -- `100`
 
 -- Key Terms
 -- =========
+
 -- Keyword: A term used as a programming language construct.
 -- Let expression: An expression with declarations introduced into it.
 -- Scope (visibility): Area of a program where a variable's binding applies.

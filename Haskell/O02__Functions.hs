@@ -163,6 +163,7 @@ reverseTuple' = uncurry (flip (,))
 
 -- Key Terms
 -- =========
+
 -- Function: An expression that accepts an argument and returns a result.
 -- Argument: An input value to the function applied to it.
 -- Parameter (formal parameter): A variable for an argument to a function.
@@ -186,5 +187,5 @@ reverseTuple' = uncurry (flip (,))
 
 -- Higher-order function (HoF): Function that accepts and/or returns a function.
 
--- Point-free: A style of function declaration without writing the parameters.
+-- Point-free: A way of declaring functions without referencing parameters.
 -- Point: A function parameter.

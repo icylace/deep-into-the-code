@@ -484,13 +484,15 @@ data Expr = Number Int
 
 -- Key Terms
 -- =========
+
 -- Kind: The type of a type.
 -- Kind signature: The definition of kind used by a type-level expression.
+-- Higher-kinded type: A parameterized type constructor.
 -- Arity: The number of arguments a function or constructor takes.
 -- Nullary: What you call a function or constructor which takes no arguments.
 -- Unary: What you call a function or constructor which takes only one argument.
 -- Product: A constructor which takes more than one argument.
 -- Anonymous product: A product with no name.
--- Cardinality: In Haskell, the amount of possible values inhabiting a datatype.
+-- Cardinality: The amount of possible values inhabiting a datatype.
 -- Accessor: A function that just returns data from a data structure.
 -- Record: A product type that comes with accessors to fields within itself.

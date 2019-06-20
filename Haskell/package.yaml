@@ -4,5 +4,3 @@ synopsis: My notes on the Haskell language.
 library:
   dependencies:
     - base >= 4.7 && < 5
-    - hscolour
-    - pretty-show

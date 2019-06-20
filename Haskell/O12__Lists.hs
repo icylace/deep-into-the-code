@@ -351,11 +351,26 @@ _ = myFilter2 "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
 -- Bracket notation for lists is syntactic sugar.
 
 _ = [1, 2, 3, 4]                -- `[1,2,3,4]`
+_ = 1 : [2, 3, 4]               -- `[1,2,3,4]`
+_ = 1 : 2 : [3, 4]              -- `[1,2,3,4]`
+_ = 1 : 2 : 3 : [4]             -- `[1,2,3,4]`
 _ = 1 : 2 : 3 : 4 : []          -- `[1,2,3,4]`
 _ = 1 : (2 : (3 : (4 : [])))    -- `[1,2,3,4]`
 
 _ = [1, 2, 3] ++ [4]            -- `[1,2,3,4]`
 _ = 1 : 2 : 3 : [] ++ 4 : []    -- `[1,2,3,4]`
+
+
+
+_ = [[1, 2], [3, 4]]                    -- `[[1,2],[3,4]]`
+_ = [1, 2] : [3, 4] : []                -- `[[1,2],[3,4]]`
+_ = (1 : 2 : []) : (3 : 4 : []) : []    -- `[[1,2],[3,4]]`
+
+
+
+
+
+
 
 -- Range syntax, also syntactic sugar, can create a list of several values.
 
@@ -382,8 +397,14 @@ _ = enumFromThenTo 18 44 300    -- `[18,44,70,96,122,148,174,200,226,252,278]`
 
 
 
+
+
+
 _ = ['t'..'z']            -- `"tuvwxyz"`
 _ = enumFromTo 't' 'z'    -- `"tuvwxyz"`
+
+_ = ['a', 'c'..'z']                   -- "acegikmoqsuwy"
+_ = enumFromThenTo 'a' 'c' 'z'        -- "acegikmoqsuwy"
 
 
 
@@ -903,6 +924,16 @@ _ = drop 10 $ repeat 1    -- Results in an infinite list of `1` continually repe
 
 
 
+-- -----------------------------------------------------------------------------
+
+-- `cycle` generates an infinite list based off of a given list.
+
+_ = cycle [1, 2, 3, 4]    -- Results in an infinite list of `1`, `2`, `3`, and
+                          -- `4` continually repeated in that order.
+
+
+
+
 
 
 
@@ -912,6 +943,7 @@ _ = drop 10 $ repeat 1    -- Results in an infinite list of `1` continually repe
 
 -- Key Terms
 -- =========
+
 -- Cons: To create a list by prepending a value to the beginning of a list.
 -- Cons'ing: The performing of a cons.
 -- Cons cell: In Haskell, a data constructor product of a value and a list.

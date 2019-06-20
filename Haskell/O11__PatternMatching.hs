@@ -429,6 +429,7 @@ _ = capitalizeParagraph "blah. woot ha."    -- `"Blah. Woot ha."`
 
 -- Key Terms
 -- =========
+
 -- Pattern matching: Identifying arguments that follow a given pattern.
 -- Partial function: A function that does not handle all possible inputs.
 -- Total function: A function that does handle all possible inputs.

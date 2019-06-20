@@ -100,6 +100,7 @@ _ = (8, "Hello") == (8, "Hello", 'B')   -- Causes a compile-time error.
 
 -- Key Terms
 -- =========
+
 -- Product type: A type that is a conjunction of two or more constituent types.
 -- Tuple: A fixed-length ordered grouping of values.
 -- Tuple type: A product type whose values are tuples.

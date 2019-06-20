@@ -404,6 +404,7 @@ _ = myMinimumBy compare [1..10]         -- `1`
 
 -- Key Terms
 -- =========
+
 -- Fold: A HoF that builds up the result of applying a given function to a list.
 -- Catamorphism: A generalization of folds to arbitrary datatypes.
 -- Tail call: A function application appearing at the end of another function.

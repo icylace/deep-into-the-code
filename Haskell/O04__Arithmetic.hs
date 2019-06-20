@@ -36,8 +36,8 @@ _ = mod (-5) (-2)   -- `-1`
 
 -- The negation operator, `-`,  is unary because it has just one operand.
 
-_ = -100    -- `-100`
-_ = - 100   -- `-100`
+_ = -100     -- `-100`
+_ = - 100    -- `-100`
 
 
 {-
@@ -60,6 +60,7 @@ _ = 9 + negate 100    -- `-91`
 
 -- Key Terms
 -- =========
+
 -- Unary operator: An operator that applies to a single operand.
 -- Syntax: The grammar and structure of the text used to express programs.
 -- Syntactic sugar: Syntax designed to make code easier to read and write.
