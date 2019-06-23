@@ -494,8 +494,9 @@ _ = g2'' "abracadabra"
 
 
 
--- Polymorphic constants stay polymorphic until given a more specific type.  It
--- will have to resolve to a concrete type in order to evaluate.
+-- Polymorphic constant: A concrete data constructor that stays polymorphic
+-- until given a more specific type. It will have to resolve to a concrete
+-- type in order to evaluate.
 
 
 {- GHCi ------------------------------------------------------------------------
