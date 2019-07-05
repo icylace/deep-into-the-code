@@ -1,6 +1,8 @@
-name: deep-into-the-code-haskell
+name: haskell
 synopsis: My notes on the Haskell language.
 
-library:
-  dependencies:
-    - base >= 4.7 && < 5
+executables:
+  haskell:
+    main: Haskell.hs
+    source-dirs: [src]
+    dependencies: [base]
