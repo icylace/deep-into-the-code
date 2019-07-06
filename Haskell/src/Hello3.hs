@@ -1,4 +1,4 @@
--- This module exports specific declarations mentioned in its export list.
+-- A module exports specific declarations mentioned in its export list.
 module Hello3 (hello3) where
 
 hello3 :: String

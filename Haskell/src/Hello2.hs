@@ -1,4 +1,4 @@
--- This module has an empty export list which means it exports no declarations.
+-- A module that has an empty export list exports no declarations.
 module Hello2 () where
 
 hello2 :: String
