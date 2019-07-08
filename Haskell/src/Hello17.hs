@@ -1,4 +1,4 @@
-module Hello17 (Hello17(Bye17)) where
+module Hello17 (Hello17()) where
 
 data Hello17 = Hi17 | Bye17 deriving (Show)
 

@@ -58,11 +58,15 @@ import Hello16
 
 import Hello17
 
-import MoreModules.Hello18
+import Hello18
 
-import MoreModules.EvenMoreModules.Hello19
+import Hello19
 
-import qualified MoreModules.EvenMoreModules.Hello20
+import MoreModules.Hello20
+
+import MoreModules.EvenMoreModules.Hello21
+
+import qualified MoreModules.EvenMoreModules.Hello22
 
 -- Module names cannot contain periods.
 
@@ -145,19 +149,35 @@ talk = do
   putStrLn $ show $ Bye15
   -}
 
+  {-
+  -- `Hello16` exports the `Hello16` datatype without its data constructors.
   putStrLn $ show $ Hi16
   putStrLn $ show $ Bye16
+  -}
 
+  {-
+  -- `Hello17` exports `Hello17` datatype with empty list of data constructors.
+  putStrLn $ show $ Hi17
   putStrLn $ show $ Bye17
+  -}
 
-  putStrLn hello18
-  putStrLn goodbye18
+  {-
+  -- `Hello18` exports `Hello18` datatype with only `Bye18` data constructor.
+  putStrLn $ show $ Hi18
+  -}
+  putStrLn $ show $ Bye18
 
-  putStrLn hello19
-  putStrLn goodbye19
+  putStrLn $ show $ Hi19
+  putStrLn $ show $ Bye19
 
-  putStrLn MoreModules.EvenMoreModules.Hello20.hello20
-  putStrLn MoreModules.EvenMoreModules.Hello20.goodbye20
+  putStrLn hello20
+  putStrLn goodbye20
+
+  putStrLn hello21
+  putStrLn goodbye21
+
+  putStrLn MoreModules.EvenMoreModules.Hello22.hello22
+  putStrLn MoreModules.EvenMoreModules.Hello22.goodbye22
 
 {-
 -- Imports must appear before other types of code.

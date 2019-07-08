@@ -1,4 +1,4 @@
-module Hello16 (Hello16(..)) where
+module Hello16 (Hello16) where
 
 data Hello16 = Hi16 | Bye16 deriving (Show)
 
