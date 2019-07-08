@@ -1,12 +1,13 @@
 -- The module name and the filepath that contains it must match.
 module Modules where
 
--- By default an import brings into scope all exports from a given module.
+-- By default an import brings into scope all exports from a module.
 import Hello1
 
 -- Importing a module that has no exports does nothing.
 import Hello2
 
+-- We can only import what is exported by a module.
 import Hello3
 
 -- A qualified import requires the module name be prefixed to declarations when
@@ -42,9 +43,26 @@ import Hello11
 import qualified Hello11
 import qualified Hello11 as H11
 
-import MoreModules.Hello12
-import MoreModules.EvenMoreModules.Hello13
-import qualified MoreModules.EvenMoreModules.Hello14
+import Hello12 (hello12)
+import qualified Hello12 (goodbye12)
+
+import qualified Hello13 as H13 (hello13)
+
+-- Importing a datatype's data constructors can be done implicitly...
+import Hello14 (Hello14(..))
+
+-- ...or explicitly.
+import Hello15 (Hello15(Hi15))
+
+import Hello16
+
+import Hello17
+
+import MoreModules.Hello18
+
+import MoreModules.EvenMoreModules.Hello19
+
+import qualified MoreModules.EvenMoreModules.Hello20
 
 -- Module names cannot contain periods.
 
@@ -75,6 +93,12 @@ talk = do
 
   putStrLn Hello4.hello4
   putStrLn Hello4.goodbye4
+
+  {-
+  -- Since `Hello5` was given an alias its alias must used instead.
+  putStrLn Hello5.hello5
+  putStrLn Hello5.goodbye5
+  -}
 
   putStrLn H5.hello5
   putStrLn H5.goodbye5
@@ -107,13 +131,33 @@ talk = do
   putStrLn H11.goodbye11
 
   putStrLn hello12
-  putStrLn goodbye12
+  putStrLn Hello12.goodbye12
 
-  putStrLn hello13
-  putStrLn goodbye13
+  putStrLn H13.hello13
 
-  putStrLn MoreModules.EvenMoreModules.Hello14.hello14
-  putStrLn MoreModules.EvenMoreModules.Hello14.goodbye14
+  putStrLn $ show $ Hi14
+  putStrLn $ show $ Bye14
+
+  putStrLn $ show $ Hi15
+
+  {-
+  -- The import of the `Hello15` datatype only had the `Hi15` data constructor.
+  putStrLn $ show $ Bye15
+  -}
+
+  putStrLn $ show $ Hi16
+  putStrLn $ show $ Bye16
+
+  putStrLn $ show $ Bye17
+
+  putStrLn hello18
+  putStrLn goodbye18
+
+  putStrLn hello19
+  putStrLn goodbye19
+
+  putStrLn MoreModules.EvenMoreModules.Hello20.hello20
+  putStrLn MoreModules.EvenMoreModules.Hello20.goodbye20
 
 {-
 -- Imports must appear before other types of code.

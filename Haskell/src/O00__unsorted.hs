@@ -2,6 +2,8 @@
 
 module O00__unsorted () where
 
+import Data.List (intersperse)
+import Data.Maybe (isJust)
 
 
 
@@ -18,7 +20,7 @@ f = (+) 1
 g = (*) 10
 
 a = f . g
-b = f & g   -- Causes a compile-time error.
+b = f & g    -- Causes a compile-time error.
 
 _ = a 2
 _ = b 2
@@ -36,8 +38,7 @@ _ = b 2
 
 
 -- The arrow, `->`, is the function type constructor.  It's like other type
--- constructors except that it takes arguments while having no
--- data constructors.
+-- constructors but it takes arguments while having no data constructors.
 
 -- The values of the function type are functions.
 
@@ -348,6 +349,35 @@ _ = [1, 2, 3]
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
+
+
+
+
+
+_ = all even [2, 4, 6]    -- `True`
+_ = all even [2, 4, 7]    -- `False`
+
+_ = all isJust [Just 'd', Nothing, Just 'g']     -- `False`
+_ = all isJust [Just 'd', Just 'o', Just 'g']    -- `True`
+
+
+
+_ = intersperse ' ' "Blah"     -- `"B l a h"`
+_ = intersperse 0 [1, 1, 1]    -- `[1,0,1,0,1]`
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
@@ -713,7 +743,70 @@ _ = foldr (+) 0 (1, 2, 3)   -- Causes a compile-time error.
 
 
 
+-- "do syntax" is syntactic sugar used in functions that return monads to
+-- sequence operations in a convenient format.
 
+-- The do syntax specifically allows us to sequence monadic actions.
+
+-- It is not necessary, and considered bad style, to use `do` in single-line
+-- expressions.
+
+-- Similarly, it is unnecessary to use `do` with functions like `putStrLn` and
+-- `print` that already have the effects baked in.
+
+
+
+-- The main executable in a Haskell program must always have the type IO ().
+
+
+
+
+
+
+-- The `do` keyword introduces the do-block.
+concatUserInput = do
+  -- `x1` and `x2` are variables bound to user input.
+  x1 <- getLine
+  x2 <- getLine
+  -- `return` wraps its argument in the monadic structure.
+  return (x1 ++ x2)
+
+
+
+
+
+{-
+-- Doesn't work:
+twoo :: IO Bool
+twoo = do
+  c <- getChar
+  c' <- getChar
+  c == c'
+-}
+
+-- Works:
+twoo' :: IO Bool
+twoo' = do
+  c <- getChar
+  c' <- getChar
+  return (c == c')
+
+-- Overusing the `do`:
+twoo'' :: IO Bool
+twoo'' = do
+  c <- getChar
+  c' <- getChar
+  do return (c == c')
+
+
+
+main' :: IO ()
+main' = do
+  c <- getChar
+  c' <- getChar
+  if c == c'
+  then putStrLn "True"
+  else return ()
 
 
 
@@ -1287,15 +1380,16 @@ h2 = undefined
 f6 x y z = h2 (subFunction x y z)
   where subFunction x y z = g x y z
 
--- The above is not tail recursive, calls `h`, not itself.
+-- The above is not tail recursive, calls `h2`, not itself.
 
 f6 x y z = h2 (f6 (x - 1) y z)
 
--- Still not tail recursive. `f` is invoked again but not in the tail call of `f`; it's an argument to the tail call, `h`:
+-- Still not tail recursive. `f6` is invoked again but not in the tail call of
+-- `f6`; it's an argument to the tail call, `h2`:
 
 f6 x y z = f6 (x - 1) y z
 
--- This is tail recursive. `f` is calling itself directly with no intermediaries.
+-- This is tail recursive. `f6` is calling itself directly with no intermediaries.
 
 -- To avoid naming conflicts, well use the name `myFoldr` instead of `foldr`.
 myFoldr f z []     = z
@@ -1780,8 +1874,8 @@ catMaybes []            = []
 catMaybes (Nothing:xs)  = catMaybes xs
 catMaybes ((Just x):xs) = x : catMaybes xs
 
-_ = catMaybes [Just 1, Nothing, Just 2]   -- `[1,2]`
-_ = catMaybes $ take 3 $ repeat Nothing   -- `[]`
+_ = catMaybes [Just 1, Nothing, Just 2]    -- `[1,2]`
+_ = catMaybes $ take 3 $ repeat Nothing    -- `[]`
 
 
 
@@ -1798,8 +1892,8 @@ flipMaybe ((Just x):xs) =
     Nothing -> Nothing
     Just xs -> Just (x:xs)
 
-_ = flipMaybe [Just 1, Just 2, Just 3]    -- `Just [1,2,3]`
-_ = flipMaybe [Just 1, Nothing, Just 3]   -- `Nothing`
+_ = flipMaybe [Just 1, Just 2, Just 3]     -- `Just [1,2,3]`
+_ = flipMaybe [Just 1, Nothing, Just 3]    -- `Nothing`
 
 
 

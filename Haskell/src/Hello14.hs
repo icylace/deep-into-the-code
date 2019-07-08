@@ -1,4 +1,6 @@
-module MoreModules.EvenMoreModules.Hello14 where
+module Hello14 where
+
+data Hello14 = Hi14 | Bye14 deriving (Show)
 
 hello14 :: String
 hello14 = "hello 14"

@@ -11,6 +11,17 @@ import GHC.Int
 
 
 
+
+
+_ = [1..5] !! 4    -- `5`
+
+myList = [1..5]
+_ = myList !! (length myList - 1)    -- `5`
+
+
+
+
+
 -- A range of values can be created with some shorthand notation.
 
 _ = [0..5]        -- `[0, 1, 2, 3, 4, 5]`
@@ -318,6 +329,29 @@ _ = myFilter2 "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_ = elem 'a' "hello"    -- `False`
+_ = elem 3 [1..5]       -- `True`
 
 
 
