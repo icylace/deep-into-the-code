@@ -1,0 +1,8 @@
+name: haskell-modules
+synopsis: My notes on Haskell modules.
+
+executables:
+  haskell:
+    main: Main.hs
+    source-dirs: [src]
+    dependencies: [base]

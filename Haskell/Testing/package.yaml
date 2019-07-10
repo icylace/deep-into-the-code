@@ -1,0 +1,8 @@
+name: haskell-testing
+synopsis: My notes on Haskell testing.
+
+executables:
+  haskell:
+    main: Main.hs
+    source-dirs: [src]
+    dependencies: [base]

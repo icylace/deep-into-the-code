@@ -8,8 +8,8 @@ module O01__Expressions () where
 
 a = 1
 
-b = 1   -- Single-line comments can be placed after expressions.
-c = 1   {- Block comments can also be placed after expressions. -}
+b = 1    -- Single-line comments can be placed after expressions.
+c = 1    {- Block comments can also be placed after expressions. -}
 
 d {- However, unlike single-line comments, -} = 0
 e = {- block comments can be placed in weird places! -} 0
@@ -91,16 +91,16 @@ _ = (5 + 6) * (3 + 4) / (1 + 2)   -- `25.666666666666668`
 _ = ((1 + 2) * 3) + 4 * (5 + 6)   -- `53`
 _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 
--- An expression will not necessarily be reduced to a value when evaluated.  By
+-- An expression will not necessarily be reduced to a value when evaluated. By
 -- default it gets evaluated to weak head normal form, which is just a more
 -- simplified version of the expression that was evaluated as far as
 -- necessary to reach a data constructor.
 
 -- When an expression is in normal form it is also still in weak head normal
--- form.  So, normal form is a subset of wek head normal form.
+-- form. So, normal form is a subset of wek head normal form.
 
 -- An expression is not evaluated until it is forced to be by other expressions
--- that refer to it.  This is called lazy evaluation.
+-- that refer to it. This is called lazy evaluation.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

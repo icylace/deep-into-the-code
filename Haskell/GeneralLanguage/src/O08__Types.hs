@@ -4,7 +4,7 @@ module O08__Types () where
 
 import GHC.Int
 
--- A type, or data type, is a classification of values.  Every value has an
+-- A type, or data type, is a classification of values. Every value has an
 -- associated type.
 
 -- The compiler can determine the type for a value automatically through a
@@ -59,7 +59,7 @@ y = 'b'
 --     "Hi!" :: [Char]
 --
 -- This means that the sequence of characters `Hi!` has the type of list of
--- characters.  The brackets around `Char` is syntactic sugar for a list.
+-- characters. The brackets around `Char` is syntactic sugar for a list.
 
 -- `String` is a type alias, a convenient synonym, for a list of characters.
 

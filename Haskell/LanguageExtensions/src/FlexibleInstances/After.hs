@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleInstances #-}
 
-module LanguageExtensions.FlexibleInstances.After where
+module FlexibleInstances.After where
 
 class TooMany a where
   tooMany :: a -> Bool

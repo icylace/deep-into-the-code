@@ -55,16 +55,11 @@ import O19__Recursion
 import O20__Folding
 import O21__AlgebraicDatatypes
 
-import Modules
-
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined.  `main` will be explained in more detail later.
 
--- main :: IO ()
--- main = print ()
-
 main :: IO ()
-main = talk
+main = print ()
 
 -- To run the code in this file, the source code must first be compiled into an
 -- executable binary file before being run.  Executing the following on the

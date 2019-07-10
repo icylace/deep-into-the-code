@@ -1,6 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-module LanguageExtensions.GeneralisedNewtypeDeriving.After where
+module GeneralisedNewtypeDeriving.After where
 
 class TooMany a where
   tooMany :: a -> Bool

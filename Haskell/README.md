@@ -2,7 +2,7 @@
 
 My Haskell notes comprise of several source code files. I've written them this way to verify the correctness of the syntax of my notes.
 
-For instance, `haskell.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
+For instance, `GeneralLanguage/src/Main.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
 
 I use macOS and my current preferred way to install Haskell is by using [Nix](https://nixos.org/nix/) to install [The Haskell Tool Stack](https://haskellstack.org/).
 
@@ -24,7 +24,7 @@ After the installation completes, make sure you're within the directory of your 
 stack runghc haskell
 ```
 
-to compile-on-the-fly and execute the `haskell.hs` file. If successful, it should result in the simple output of `Hello world!`. Otherwise, compiler errors will be shown.
+to compile-on-the-fly and execute the `GeneralLanguage/src/Main.hs` file. If successful, it should result in the simple output of `Hello world!`. Otherwise, compiler errors will be shown.
 
 Another way is to load the source code from within the GHCi REPL environment. While remaining in the same directory, open up GHCi by running
 
@@ -38,7 +38,7 @@ then use GHCi's load command, `:l` (short for `:load`), to load a file into the 
 :l haskell
 ```
 
-The preceding example loads the `haskell.hs` file. If there were any compile-time errors, GHCi will show them.
+The preceding example loads the `GeneralLanguage/src/Main.hs` file. If there were any compile-time errors, GHCi will show them.
 
 ## Other Details
 

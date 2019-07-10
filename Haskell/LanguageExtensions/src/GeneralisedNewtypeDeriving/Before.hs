@@ -1,4 +1,4 @@
-module LanguageExtensions.GeneralisedNewtypeDeriving.Before where
+module GeneralisedNewtypeDeriving.Before where
 
 class TooMany a where
   tooMany :: a -> Bool

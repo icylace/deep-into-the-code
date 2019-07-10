@@ -1,5 +1,5 @@
 -- The module name and the filepath that contains it must match.
-module Modules where
+module Main where
 
 -- By default an import brings into scope all exports from a module.
 import Hello1
@@ -77,8 +77,8 @@ import qualified MoreModules.EvenMoreModules.Hello22
 -- declarations is irrelevant. An entity is in scope for the entire
 -- module if it is imported by any of the import declarations.
 
-talk :: IO ()
-talk = do
+main :: IO ()
+main = do
   putStrLn hello1
   putStrLn goodbye1
 

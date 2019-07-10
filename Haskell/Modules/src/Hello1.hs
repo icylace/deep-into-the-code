@@ -1,4 +1,4 @@
--- A module implicitly exports all top-level declarations.
+-- By default a module implicitly exports all top-level declarations.
 module Hello1 where
 
 hello1 :: String

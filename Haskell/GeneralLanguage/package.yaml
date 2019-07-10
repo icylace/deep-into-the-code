@@ -3,6 +3,6 @@ synopsis: My notes on the Haskell language.
 
 executables:
   haskell:
-    main: Haskell.hs
+    main: Main.hs
     source-dirs: [src]
     dependencies: [base]

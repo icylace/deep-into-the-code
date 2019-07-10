@@ -1062,32 +1062,29 @@ _ = a == b    -- `True`
 
 
 
-data OperatingSystem = GnuPlusLinux
-                     | OpenBSDPlusNevermindJustBSDStill
-                     | Mac
-                     | Windows
-                     deriving (Eq, Show)
+data OperatingSystem
+  = GnuPlusLinux
+  | FreeBSD
+  | Mac
+  | Windows
+  deriving (Eq, Show)
 
-data ProgLang = Haskell
-              | Agda
-              | Idris
-              | PureScript
-              deriving (Eq, Show)
+data ProgrammingLanguage
+  = Haskell
+  | Agda
+  | Idris
+  | PureScript
+  deriving (Eq, Show)
 
 data Programmer = Programmer
   { os :: OperatingSystem
-  , lang :: ProgLang
+  , lang :: ProgrammingLanguage
   } deriving (Eq, Show)
 
 allOperatingSystems :: [OperatingSystem]
-allOperatingSystems =
-  [ GnuPlusLinux
-  , OpenBSDPlusNevermindJustBSDStill
-  , Mac
-  , Windows
-  ]
+allOperatingSystems = [GnuPlusLinux, FreeBSD, Mac, Windows]
 
-allLanguages :: [ProgLang]
+allLanguages :: [ProgrammingLanguage]
 allLanguages = [Haskell, Agda, Idris, PureScript]
 
 allProgrammers :: [Programmer]
@@ -1361,8 +1358,8 @@ verbs = ["pit", "tab", "tag", "dab"]
 
 combo'' :: String -> String -> [String] -> [String] -> [(String, String, String)]
 combo'' stops vowels nouns verbs =
-  [ (x, y, z) | x <- words , y <- words , z <- words
-              , elem x nouns , elem y verbs , elem z nouns ]
+  [ (x, y, z) | x <- words, y <- words, z <- words
+              , elem x nouns, elem y verbs, elem z nouns ]
     where words = [[x, y, z] | x <- stops, y <- vowels, z <- stops]
 
 _ = combo'' "pbtdkg" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit","pat"),("pap","pit","pad"),("pap","pit","peg"),("pap","tab","pap"),("pap","tab","pat"),("pap","tab","pad"),("pap","tab","peg"),("pap","tag","pap"),("pap","tag","pat"),("pap","tag","pad"),("pap","tag","peg"),("pap","dab","pap"),("pap","dab","pat"),("pap","dab","pad"),("pap","dab","peg"),("pat","pit","pap"),("pat","pit","pat"),("pat","pit","pad"),("pat","pit","peg"),("pat","tab","pap"),("pat","tab","pat"),("pat","tab","pad"),("pat","tab","peg"),("pat","tag","pap"),("pat","tag","pat"),("pat","tag","pad"),("pat","tag","peg"),("pat","dab","pap"),("pat","dab","pat"),("pat","dab","pad"),("pat","dab","peg"),("pad","pit","pap"),("pad","pit","pat"),("pad","pit","pad"),("pad","pit","peg"),("pad","tab","pap"),("pad","tab","pat"),("pad","tab","pad"),("pad","tab","peg"),("pad","tag","pap"),("pad","tag","pat"),("pad","tag","pad"),("pad","tag","peg"),("pad","dab","pap"),("pad","dab","pat"),("pad","dab","pad"),("pad","dab","peg"),("peg","pit","pap"),("peg","pit","pat"),("peg","pit","pad"),("peg","pit","peg"),("peg","tab","pap"),("peg","tab","pat"),("peg","tab","pad"),("peg","tab","peg"),("peg","tag","pap"),("peg","tag","pat"),("peg","tag","pad"),("peg","tag","peg"),("peg","dab","pap"),("peg","dab","pat"),("peg","dab","pad"),("peg","dab","peg")]`
