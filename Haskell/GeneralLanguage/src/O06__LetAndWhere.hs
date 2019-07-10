@@ -25,13 +25,13 @@ _ = upOneAndSome 3 9    -- `13`
 -- it instead defines declarations after its associated expression.
 
 upOne' n = n + one where one = 1
-_ = upOne' 23   -- `24`
+_ = upOne' 23    -- `24`
 
 upSome' n m = n + some where some = m
-_ = upSome' 3 9   -- `12`
+_ = upSome' 3 9    -- `12`
 
 upOneAndSome' n m = n + one + some where one = 1; some = m
-_ = upOneAndSome' 3 9   -- `13`
+_ = upOneAndSome' 3 9    -- `13`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -47,15 +47,15 @@ _ = upOne'' 23    -- `24`
 upOne''' n = n + one
   where one :: Integer
         one = 1
-_ = upOne''' 23   -- `24`
+_ = upOne''' 23    -- `24`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- A variable can be shadowed by another variable of the same name at an inner
--- scope.  A reference to a variable will resolve to the variable declaration
--- either at the same scoping level or the next outer scope that's closest to
--- that reference.
+-- scope. A reference to a variable will resolve to the variable declaration
+-- either at the same scoping level or the next outer scope that's closest
+-- to that reference.
 
 -- Here, the `x` parameter is shadowed by the `x` `let`-binding.
 
@@ -78,10 +78,10 @@ _ = y * 10    -- `100`
 
 z y = y * 10
 
-_ = x     -- `5`
-_ = y     -- `10`
-_ = z 9   -- `90`
-_ = z y   -- `100`
+_ = x      -- `5`
+_ = y      -- `10`
+_ = z 9    -- `90`
+_ = z y    -- `100`
 
 -- The lexically innermost binding for a variable of a particular name always
 -- takes precedence.

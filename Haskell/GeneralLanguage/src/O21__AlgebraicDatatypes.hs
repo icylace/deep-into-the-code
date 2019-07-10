@@ -405,7 +405,7 @@ instance TooMany Goats where
 
 
 -- A product is a way to carry multiple values around in a single data
--- constructor.  Any data constructor with two or more type arguments
+-- constructor. Any data constructor with two or more type arguments
 -- is a product.
 
 

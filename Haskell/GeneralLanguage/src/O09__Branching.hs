@@ -2,8 +2,8 @@ module O09__Branching () where
 
 -- The function `not` takes a `Bool` value and returns the other `Bool` value.
 
-_ = not False   -- `True`
-_ = not True    -- `False`
+_ = not False    -- `True`
+_ = not True     -- `False`
 
 
 
@@ -30,8 +30,8 @@ _ = not ((8 > 4) || (4 > 5))    -- `False`
 -- An `if` expression determines what gets evaluated depending on a given
 -- boolean condition.
 
-_ = if True then "Yes" else "No"    -- `"Yes"`
-_ = if False then "Yes" else "No"   -- `"No"`
+_ = if True then "Yes" else "No"     -- `"Yes"`
+_ = if False then "Yes" else "No"    -- `"No"`
 
 -- `if` expressions can be multiline.
 
@@ -49,7 +49,7 @@ _ = if True
 
 {-
 -- The conditional must be a boolean.
-_ = if "A" then "Yes" else "No"   -- Causes a compile-time error.
+_ = if "A" then "Yes" else "No"    -- Causes a compile-time error.
 -}
 
 {-
@@ -77,9 +77,9 @@ _ = myAbs' 9       -- `9`
 -- evaluate to a boolean value.
 
 -- If a guard case evaluates to `True` the function will return the expression
--- the guard was associated to.  If not, the next guard will be considered.
--- Guards always evaluate sequentially, so they should be ordered from the
--- most restrictive case to the least restrictive case.
+-- the guard was associated to. If not, the next guard will be considered.
+-- Guards always evaluate sequentially, so they should be ordered from
+-- the most restrictive case to the least restrictive case.
 
 -- -----------------------------------------------------------------------------
 
@@ -115,12 +115,12 @@ dogYears' x
   | x <= 4    = x * 8
   | otherwise = x * 6
 
-_ = dogYears' 0   -- `0`
-_ = dogYears' 1   -- `15`
-_ = dogYears' 2   -- `24`
-_ = dogYears' 3   -- `24`
-_ = dogYears' 4   -- `32`
-_ = dogYears' 5   -- `30`
+_ = dogYears' 0    -- `0`
+_ = dogYears' 1    -- `15`
+_ = dogYears' 2    -- `24`
+_ = dogYears' 3    -- `24`
+_ = dogYears' 4    -- `32`
+_ = dogYears' 5    -- `30`
 
 -- -----------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ _ = dogYears2 5    -- `30`
 
 myAbs2 :: Integer -> Integer
 myAbs2 x | x < 0     = -x
-        | otherwise = x
+         | otherwise = x
 
 -- Guards don't have to vertically align.
 
@@ -156,10 +156,10 @@ myAbs2' :: Integer -> Integer
 myAbs2' x | x < 0 = -x
   | otherwise = x
 
-_ = myAbs2 (-9)    -- `9`
-_ = myAbs2' (-9)   -- `9`
-_ = myAbs2 9       -- `9`
-_ = myAbs2' 9      -- `9`
+_ = myAbs2 (-9)     -- `9`
+_ = myAbs2' (-9)    -- `9`
+_ = myAbs2 9        -- `9`
+_ = myAbs2' 9       -- `9`
 
 -- -----------------------------------------------------------------------------
 
@@ -191,12 +191,12 @@ h2 x | otherwise = x
 h3 :: Integer -> Integer
 h3 x = x
 
-_ = h1 (-9)   -- `-9`
-_ = h1 (-9)   -- `-9`
-_ = h2 (-9)   -- `-9`
-_ = h2 9      -- `9`
-_ = h3 9      -- `9`
-_ = h3 9      -- `9`
+_ = h1 (-9)    -- `-9`
+_ = h1 (-9)    -- `-9`
+_ = h2 (-9)    -- `-9`
+_ = h2 9       -- `9`
+_ = h3 9       -- `9`
+_ = h3 9       -- `9`
 
 -- -----------------------------------------------------------------------------
 
@@ -232,7 +232,7 @@ _ = myAbs5 9       -- Throws an exception.
 myAbs6 :: Integer -> Integer
 myAbs6 x
   | x < 0 = -x
-  | _     = x   -- Causes a compile-time error.
+  | _     = x    -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------

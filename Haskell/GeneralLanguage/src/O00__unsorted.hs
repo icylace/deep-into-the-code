@@ -166,9 +166,9 @@ f2 = undefined
 
 first = curry fst
 
-_ = fst (2, 3)    -- `2`
-_ = first 2 3     -- `2`
-_ = (first 2) 3   -- `2`
+_ = fst (2, 3)     -- `2`
+_ = first 2 3      -- `2`
+_ = (first 2) 3    -- `2`
 
 
 
@@ -700,10 +700,10 @@ something i b =
 -- "The Not-A-Wat in Haskell"
 -- https://youtu.be/87re_yIQMDw
 
-_ = length (1, 2)           -- `1`
-_ = length Nothing          -- `0`
-_ = length $ Just Nothing   -- `0`
-_ = length $ Just ()        -- `1`
+_ = length (1, 2)            -- `1`
+_ = length Nothing           -- `0`
+_ = length $ Just Nothing    -- `0`
+_ = length $ Just ()         -- `1`
 
 _ = foldr (+) 0 (3, 99)    -- `99`
 
@@ -712,8 +712,8 @@ _ = fmap show (False, 2)      -- `(False,"2")`
 _ = fmap show (True, True)    -- `(True,"True")`
 
 {-
-_ = foldr (+) 0 (3, "99")   -- Causes a compile-time error.
-_ = foldr (+) 0 (1, 2, 3)   -- Causes a compile-time error.
+_ = foldr (+) 0 (3, "99")    -- Causes a compile-time error.
+_ = foldr (+) 0 (1, 2, 3)    -- Causes a compile-time error.
 -}
 
 

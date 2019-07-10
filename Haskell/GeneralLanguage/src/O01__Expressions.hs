@@ -73,22 +73,22 @@ _ = 2 + 3
 
 -- Arithmetic expressions follow the order of operations.
 
-_ = 1 + 2 * 3   -- `7`
+_ = 1 + 2 * 3    -- `7`
 
 -- Parentheses may be used to nest expressions within other expressions.  Nested
 -- expressions are evaluated before the expression they're nested within.
 
-_ = (1 + 2) * 3   -- `9`
+_ = (1 + 2) * 3    -- `9`
 
 -- Nested expressions at the same level of nesting are evaluated from left to
 -- right.
 
-_ = (1 + 2) / (3 + 4) * (5 + 6)   -- `4.714285714285714`
-_ = (5 + 6) * (3 + 4) / (1 + 2)   -- `25.666666666666668`
+_ = (1 + 2) / (3 + 4) * (5 + 6)    -- `4.714285714285714`
+_ = (5 + 6) * (3 + 4) / (1 + 2)    -- `25.666666666666668`
 
 -- Nesting is unlimited.
 
-_ = ((1 + 2) * 3) + 4 * (5 + 6)   -- `53`
+_ = ((1 + 2) * 3) + 4 * (5 + 6)    -- `53`
 _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
 
 -- An expression will not necessarily be reduced to a value when evaluated. By

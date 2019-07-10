@@ -26,11 +26,11 @@ _ = 10 `div` 4    -- `2`
 
 -- We can influence the readability of an expression by switching notations.
 
-_ = (/) ((/) 10 4) 25   -- `0.1`
-_ = 10 / 4 / 25         -- `0.1`
+_ = (/) ((/) 10 4) 25    -- `0.1`
+_ = 10 / 4 / 25          -- `0.1`
 
-_ = div (div 10 4) 25     -- `0`
-_ = 10 `div` 4 `div` 25   -- `0`
+_ = div (div 10 4) 25      -- `0`
+_ = 10 `div` 4 `div` 25    -- `0`
 
 -- Though probably useless, a non-operator function can be wrapped in
 -- parentheses and still be used in prefix notation.

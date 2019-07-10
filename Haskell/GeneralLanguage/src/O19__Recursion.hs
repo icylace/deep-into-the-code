@@ -29,13 +29,13 @@ _ = brokenFact1 4
 -}
 
 -- A "base case" is an input case to a recursive function that does not apply
--- that function to further arguments.  It's used to prevent infinite loops.
+-- that function to further arguments. It's used to prevent infinite loops.
 
 factorial :: Integer -> Integer
 factorial 0 = 1
 factorial n = n * factorial (n - 1)
 
-_ = factorial 4   -- `24`
+_ = factorial 4    -- `24`
 
 -- factorial 4 =
 --   4 * factorial (4 - 1)

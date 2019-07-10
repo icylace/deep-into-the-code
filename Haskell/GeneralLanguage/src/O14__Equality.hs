@@ -5,9 +5,9 @@ x = 9
 
 -- The equality operator, `==`, checks if a couple expressions are equal.
 
-_ = x == 5    -- `False`
-_ = x == 9    -- `True`
-_ = x == 10   -- `False`
+_ = x == 5     -- `False`
+_ = x == 9     -- `True`
+_ = x == 10    -- `False`
 
 _ = 'a' == 'a'    -- `True`
 _ = 'a' == 'b'    -- `False`
@@ -19,9 +19,9 @@ _ = "Hello" == "World"    -- `False`
 
 -- The inequality operator, `/=`, checks if a couple expressions are not equal.
 
-_ = x /= 5    -- `True`
-_ = x /= 9    -- `False`
-_ = x /= 10   -- `True`
+_ = x /= 5     -- `True`
+_ = x /= 9     -- `False`
+_ = x /= 10    -- `True`
 
 {-
 -- Attempting to compare values having different types will cause an error.

@@ -56,13 +56,13 @@ import O20__Folding
 import O21__AlgebraicDatatypes
 
 -- Any Haskell source code file that is meant to be run directly must have the
--- entry point `main` defined.  `main` will be explained in more detail later.
+-- entry point `main` defined. `main` will be explained in more detail later.
 
 main :: IO ()
 main = print ()
 
 -- To run the code in this file, the source code must first be compiled into an
--- executable binary file before being run.  Executing the following on the
+-- executable binary file before being run. Executing the following on the
 -- command line:
 --
 -- ```shell
@@ -72,7 +72,7 @@ main = print ()
 -- If there were any compile-time errors while attempting to run, GHC will
 -- show them.
 
--- Another way is to load the code from within the GHCi REPL environment.  While
+-- Another way is to load the code from within the GHCi REPL environment. While
 -- remaining in the same directory, open up GHCi by running
 --
 -- ```shell

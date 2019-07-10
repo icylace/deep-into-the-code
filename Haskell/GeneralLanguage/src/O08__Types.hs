@@ -28,10 +28,6 @@ y = 'b'
 
 
 
-
-
-
-
 -- Haskell comes with several types.
 
 
@@ -125,8 +121,8 @@ type Name = String
 -- -----------------------------------------------------------------------------
 
 -- The following data declaration is similar to the Boolean type that comes with
--- Haskell.  `MyBool` is the type constructor, the name of the type.  `MyFalse`
--- and `MyTrue` are data constructors which create values of the type.  The
+-- Haskell. `MyBool` is the type constructor, the name of the type. `MyFalse`
+-- and `MyTrue` are data constructors which create values of the type. The
 -- pipe symbol, `|`, denotes a sum type which is a type composed of
 -- distinct values.
 
@@ -141,22 +137,22 @@ data MyBool = MyFalse | MyTrue
 
 
 -- A function can behave differently depending upon the particular value, or
--- pattern, it is applied to.  This pairing of particular values with
+-- pattern, it is applied to. This pairing of particular values with
 -- particular behaviors is known as pattern matching.
 
 yesNo :: MyBool -> String
 yesNo MyTrue  = "Yes"
 yesNo MyFalse = "No"
 
-_ = yesNo MyTrue    -- `"Yes"`
-_ = yesNo MyFalse   -- `"No"`
+_ = yesNo MyTrue     -- `"Yes"`
+_ = yesNo MyFalse    -- `"No"`
 
 
 
 -- Data contructors are functions that create values of a certain type.
 data Pet = Cat String | DogWithAge String Integer
 
-_ = Cat "Foo"   -- `Cat "Foo"`
+_ = Cat "Foo"    -- `Cat "Foo"`
 -- `Cat` has the type `String -> Pet`.
 
 _ = DogWithAge "Bar" 2    -- `DogWithAge "Bar" 2`
@@ -205,9 +201,9 @@ _ = sillyIncrease 9     -- `3`
 -- Values that could have one type or another given its context can have their
 -- type explicitly given.
 
-_ = 1   -- `1`
+_ = 1    -- `1`
 
-_ = 1 :: Double   -- `1.0`
+_ = 1 :: Double    -- `1.0`
 
 
 
@@ -284,7 +280,7 @@ smoosh x y = x ++ y
 -- Function variables may also be numbered (e.g. `f1`).
 --
 -- Function variables may also be decorated with apostrophes (e.g. `f'`,
--- pronounced "eff-prime").  "Prime" functions are typically closely
+-- pronounced "eff-prime"). "Prime" functions are typically closely
 -- related in some way to their "non-prime" counterparts.
 --
 -- Function variables may also be named in a more descriptive way depending
@@ -335,7 +331,7 @@ smoosh x y = x ++ y
 -------------------------------------------------------------------------------}
 
 -- `Fractional` requires types to already have an instance of the `Num`
--- typeclass.  `Num` is a superclass of `Fractional`.
+-- typeclass. `Num` is a superclass of `Fractional`.
 
 -- This means that types implementing `Fractional` can use functions from both
 -- `Fractional` and `Num`.
@@ -346,7 +342,7 @@ smoosh x y = x ++ y
 -- Using integer numbers with the division operator will result in a number that
 -- is fractional.
 
-_ = 4 / 2   -- `2.0`
+_ = 4 / 2    -- `2.0`
 
 -- Values of the type `Fractional a => a` default to the `Double` type.
 
@@ -427,9 +423,9 @@ True :: Bool
 
 
 
--- In Haskell it is impossible to create untyped data.  Aside from some
--- syntactic sugar for things like numbers or functions, everything
--- originates in a data constructor from some type definition.
+-- In Haskell it is impossible to create untyped data. Aside from some syntactic
+-- sugar for things like numbers or functions, everything originates in a data
+-- constructor from some type definition.
 
 
 
@@ -446,9 +442,9 @@ True :: Bool
 
 
 -- A datatype is how we declare and create data for our functions to receive as
--- inputs.  Datatype declarations begin with the keyword `data`.  A datatype is
--- made up of a type constructor and zero or more data constructors which each
--- have zero or more arguments.
+-- inputs. Datatype declarations begin with the keyword `data`. A datatype is
+-- made up of a type constructor and zero or more data constructors which
+-- each have zero or more arguments.
 
 
 
@@ -513,15 +509,15 @@ _ = 13 :: Integer
 -- The `Float` type represents single-precision floating-point numbers and is
 -- best suited for graphics programming such as with OpenGL.
 
--- The `Double` type represents double-precision floating-point numbers.  It
--- uses twice as many bits as `Float` to represent floating-point numbers
--- which grants it the ability to represent a wider range of numbers
+-- The `Double` type represents double-precision floating-point numbers. It uses
+-- twice as many bits as `Float` to represent floating-point numbers which
+-- grants it the ability to represent a wider range of numbers
 -- than `Float`.
 
 -- Fixed-point numbers have a specific maximum potential number of digits before
--- and after the decimal point.  Floating-point numbers have a certain amount of
+-- and after the decimal point. Floating-point numbers have a certain amount of
 -- flexibility in shifting the maximum potential digits before and after the
--- decimal point.  However, this flexibility comes at the cost of a certain
+-- decimal point. However, this flexibility comes at the cost of a certain
 -- degree of accuracy.
 
 -- The `Rational` type has arbitrary-precision and represents a ratio between
@@ -532,8 +528,8 @@ _ = 1.5 / 2.5 :: Rational         -- `3 % 5`
 _ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
 
 -- The `Scientific` type has arbitrary-precision and represents a number in
--- scientific notation.  It stores the coefficient as an `Integer` and the
--- exponent as an `Int`.  `Scientific` is more efficient than `Rational`
+-- scientific notation. It stores the coefficient as an `Integer` and the
+-- exponent as an `Int`. `Scientific` is more efficient than `Rational`
 -- and is available as a library.
 
 -- Arbitrary precision number types can be used for calculations that require a
@@ -568,10 +564,10 @@ _ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
 
 
 -- The `Int8` concrete type can represent integers in the range between -128 and
--- 127 inclusively.  The "8" in `Int8` refers to the number of bits used to
+-- 127 inclusively. The "8" in `Int8` refers to the number of bits used to
 -- represent its values.
 
-_ = 127 :: Int8   -- `127`
+_ = 127 :: Int8    -- `127`
 
 -- Out-of-bound numbers will be "looped" until it falls within range.
 
@@ -586,7 +582,7 @@ _ = 100000 :: Int8    -- `-96`
 -- Triggers a warning when the `-Woverflowed-literals` compiler option is used.
 -- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals
 
-_ = -100000 :: Int8   -- Results in `96` with a warning.
+_ = -100000 :: Int8    -- Results in `96` with a warning.
 -- Triggers a warning when the `-Woverflowed-literals` compiler option is used.
 -- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals
 
@@ -600,16 +596,16 @@ _ = -100000 :: Int8   -- Results in `96` with a warning.
 -- The `Bounded` typeclass provides `maxBound` and `minBound` which show the
 -- limit values of types.
 
-_ = minBound :: Int8    -- `-128`
-_ = maxBound :: Int8    -- `127`
-_ = minBound :: Int16   -- `-32768`
-_ = maxBound :: Int16   -- `32767`
-_ = minBound :: Int32   -- `-2147483648`
-_ = maxBound :: Int32   -- `2147483647`
-_ = minBound :: Int64   -- `-9223372036854775808`
-_ = maxBound :: Int64   -- `9223372036854775807`
-_ = minBound :: Int     -- `-9223372036854775808`
-_ = maxBound :: Int     -- `9223372036854775807`
+_ = minBound :: Int8     -- `-128`
+_ = maxBound :: Int8     -- `127`
+_ = minBound :: Int16    -- `-32768`
+_ = maxBound :: Int16    -- `32767`
+_ = minBound :: Int32    -- `-2147483648`
+_ = maxBound :: Int32    -- `2147483647`
+_ = minBound :: Int64    -- `-9223372036854775808`
+_ = maxBound :: Int64    -- `9223372036854775807`
+_ = minBound :: Int      -- `-9223372036854775808`
+_ = maxBound :: Int      -- `9223372036854775807`
 
 -- Non-numeric types can also define minimum and maximum bounds.
 

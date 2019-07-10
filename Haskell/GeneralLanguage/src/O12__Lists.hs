@@ -113,9 +113,9 @@ _ = [1, 2, 3]
 
 
 
--- `length` is strict in the spine but not the values.  `length [1, 2, 3]`
--- would force evaluation of the entire spine without accompanying
--- strictness in the values.
+-- `length` is strict in the spine but not the values. `length [1, 2, 3]` would
+-- force evaluation of the entire spine without accompanying strictness in
+-- the values.
 
 --   :
 --  / \
@@ -168,25 +168,18 @@ _ = mySum [1..5]    -- `15`
 
 -- -----------------------------------------------------------------------------
 
-_ = [x^y | x <- [1..5], y <- [2, undefined]]            -- Throws an exception.
-_ = take 1 $ [x^y | x <- [1..5], y <- [2, undefined]]   -- `[1]`
-_ = sum [1, undefined, 3]                               -- Throws an exception.
-_ = length [1, 2, undefined]                            -- `3`
-_ = length $ [1, 2, 3] ++ undefined                     -- Throws an exception.
-_ = take 1 $ filter even [1, 2, 3, undefined]           -- `[2]`
-_ = take 1 $ filter even [1, 3, undefined]              -- Throws an exception.
-_ = take 1 $ filter odd [1, 3, undefined]               -- `[1]`
-_ = take 2 $ filter odd [1, 3, undefined]               -- `[1,3]`
-_ = take 3 $ filter odd [1, 3, undefined]               -- Throws an exception.
+_ = [x^y | x <- [1..5], y <- [2, undefined]]             -- Throws an exception.
+_ = take 1 $ [x^y | x <- [1..5], y <- [2, undefined]]    -- `[1]`
+_ = sum [1, undefined, 3]                                -- Throws an exception.
+_ = length [1, 2, undefined]                             -- `3`
+_ = length $ [1, 2, 3] ++ undefined                      -- Throws an exception.
+_ = take 1 $ filter even [1, 2, 3, undefined]            -- `[2]`
+_ = take 1 $ filter even [1, 3, undefined]               -- Throws an exception.
+_ = take 1 $ filter odd [1, 3, undefined]                -- `[1]`
+_ = take 2 $ filter odd [1, 3, undefined]                -- `[1,3]`
+_ = take 3 $ filter odd [1, 3, undefined]                -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
-
-
-
-
-
-
-
 
 
 
@@ -198,21 +191,21 @@ _ = take 3 $ filter odd [1, 3, undefined]               -- Throws an exception.
 -- isn't a data constructor. It can't be in normal form if any part
 -- of the expression is unevaluated.
 
-_ = [1, 2, 3, 4, 5]   -- `[1,2,3,4,5]`
+_ = [1, 2, 3, 4, 5]    -- `[1,2,3,4,5]`
 -- Normal form and WHNF.
 
 {-
-_ = 1 : 2 : 3 : 4 : _   -- Throws an exception.
+_ = 1 : 2 : 3 : 4 : _    -- Throws an exception.
 -- WHNF.
 -}
 
-_ = enumFromTo 1 10   -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = enumFromTo 1 10    -- `[1,2,3,4,5,6,7,8,9,10]`
 -- Neither normal form nor WHNF.
 
 _ = length [1, 2, 3, 4, 5]    -- `5`
 -- Neither normal form nor WHNF.
 
-_ = sum (enumFromTo 1 10)   -- `55`
+_ = sum (enumFromTo 1 10)    -- `55`
 -- Neither normal form nor WHNF.
 
 _ = ['a'..'m'] ++ ['n'..'z']    -- `"abcdefghijklmnopqrstuvwxyz"`
@@ -238,9 +231,9 @@ _ = map id [1, 2, 3]          -- `[1,2,3]`
 
 -- `fmap` is similar to map but it can also apply to other types of data.
 
-_ = fmap (+ 1) [1, 2, 3, 4]   -- `[2,3,4,5]`
-_ = fmap (2 *) [1, 2, 3, 4]   -- `[2,4,6,8]`
-_ = fmap id [1, 2, 3]         -- `[1,2,3]`
+_ = fmap (+ 1) [1, 2, 3, 4]    -- `[2,3,4,5]`
+_ = fmap (2 *) [1, 2, 3, 4]    -- `[2,4,6,8]`
+_ = fmap id [1, 2, 3]          -- `[1,2,3]`
 
 -- -----------------------------------------------------------------------------
 
@@ -262,12 +255,12 @@ _ = map (\x -> if x == 3 then (-x) else x) [1..10]    -- `[1,2,-3,4,5,6,7,8,9,10
 
 -- `filter` gathers elements from a list that pass a given predicate.
 
-_ = filter even [1..10]                     -- `[2,4,6,8,10]`
-_ = filter (\x -> (rem x 2) == 0) [1..20]   -- `[2,4,6,8,10,12,14,16,18,20]`
+_ = filter even [1..10]                      -- `[2,4,6,8,10]`
+_ = filter (\x -> (rem x 2) == 0) [1..20]    -- `[2,4,6,8,10,12,14,16,18,20]`
 
-_ = filter (== 'a') "abracadabra"                 -- `"aaaaa"`
-_ = filter (\x -> elem x "aeiou") "abracadabra"   -- `"aaaaa"`
-_ = [x | x <- "abracadabra", elem x "aeiou"]      -- `"aaaaa"`
+_ = filter (== 'a') "abracadabra"                  -- `"aaaaa"`
+_ = filter (\x -> elem x "aeiou") "abracadabra"    -- `"aaaaa"`
+_ = [x | x <- "abracadabra", elem x "aeiou"]       -- `"aaaaa"`
 
 
 
@@ -292,7 +285,7 @@ myFilter xs = filter notArticle . go $ xs
                   . dropWhile (/= ' ') $ ys)
     notArticle x = x /= "the" && x /= "a" && x /= "an"
 
-_ = myFilter "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
+_ = myFilter "the brown dog was a goof"    -- `["brown","dog","was","goof"]`
 
 
 
@@ -312,7 +305,7 @@ _ = myFilter' "the brown dog was a goof"    -- `["brown","dog","was","goof"]`
 myFilter'' :: String -> [String]
 myFilter'' = filter (\x -> notElem x ["the", "a", "an"]) . words
 
-_ = myFilter'' "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
+_ = myFilter'' "the brown dog was a goof"    -- `["brown","dog","was","goof"]`
 
 
 
@@ -323,7 +316,7 @@ _ = myFilter'' "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
 myFilter2 :: String -> [String]
 myFilter2 = filter (flip notElem ["the", "a", "an"]) . words
 
-_ = myFilter2 "the brown dog was a goof"   -- `["brown","dog","was","goof"]`
+_ = myFilter2 "the brown dog was a goof"    -- `["brown","dog","was","goof"]`
 
 
 
@@ -408,8 +401,8 @@ _ = (1 : 2 : []) : (3 : 4 : []) : []    -- `[[1,2],[3,4]]`
 
 -- Range syntax, also syntactic sugar, can create a list of several values.
 
-_ = [1..10]           -- `[1,2,3,4,5,6,7,8,9,10]`
-_ = enumFromTo 1 10   -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = [1..10]            -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = enumFromTo 1 10    -- `[1,2,3,4,5,6,7,8,9,10]`
 
 
 _ = [1..4]      -- `[1,2,3,4]`
@@ -421,8 +414,8 @@ _ = [1 .. 4]    -- `[1,2,3,4]`
 
 
 
-_ = [1, 2..10]              -- `[1,2,3,4,5,6,7,8,9,10]`
-_ = enumFromThenTo 1 2 10   -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = [1, 2..10]               -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = enumFromThenTo 1 2 10    -- `[1,2,3,4,5,6,7,8,9,10]`
 
 
 _ = [18, 44..300]               -- `[18,44,70,96,122,148,174,200,226,252,278]`
@@ -458,15 +451,15 @@ _ = enumFromTo 3 3    -- `[3]`
 
 -- `take` returns a number of elements from the beginning of a given list.
 
-_ = take 7 ['a'..'z']   -- `"abcdefg"`
-_ = take 3 [1..10]      -- `[1,2,3]`
-_ = take 3 []           -- `[]`
+_ = take 7 ['a'..'z']    -- `"abcdefg"`
+_ = take 3 [1..10]       -- `[1,2,3]`
+_ = take 3 []            -- `[]`
 
-_ = enumFrom 10   -- Results in an infinite list of integers starting from 10.
+_ = enumFrom 10    -- Results in an infinite list of integers starting from 10.
 
 -- You can take from an infinite list to get a finite list.
 
-_ = take 10 $ enumFrom 10   -- `[10,11,12,13,14,15,16,17,18,19]`
+_ = take 10 $ enumFrom 10    -- `[10,11,12,13,14,15,16,17,18,19]`
 
 
 
@@ -476,10 +469,10 @@ _ = take 10 $ enumFrom 10   -- `[10,11,12,13,14,15,16,17,18,19]`
 -- The `drop` function returns a list of elements remaining after a specified
 -- number of elements has been ignored from a given list.
 
-_ = drop 5 [1..10]              -- `[6,7,8,9,10]`
-_ = drop 8 ['a'..'z']           -- `"ijklmnopqrstuvwxyz"`
-_ = drop 4 []                   -- `[]`
-_ = drop 2 $ enumFromTo 10 20   -- `[12,13,14,15,16,17,18,19,20]`
+_ = drop 5 [1..10]               -- `[6,7,8,9,10]`
+_ = drop 8 ['a'..'z']            -- `"ijklmnopqrstuvwxyz"`
+_ = drop 4 []                    -- `[]`
+_ = drop 2 $ enumFromTo 10 20    -- `[12,13,14,15,16,17,18,19,20]`
 
 
 
@@ -488,10 +481,10 @@ _ = drop 2 $ enumFromTo 10 20   -- `[12,13,14,15,16,17,18,19,20]`
 -- `splitAt` cuts a list into two parts at a specified element and makes a tuple
 -- of a couple lists.
 
-_ = splitAt 5 [1..10]             -- `([1,2,3,4,5],[6,7,8,9,10])`
-_ = splitAt 10 ['a'..'z']         -- `("abcdefghij","klmnopqrstuvwxyz")`
-_ = splitAt 5 []                  -- `([],[])`
-_ = splitAt 3 $ enumFromTo 5 15   -- `([5,6,7],[8,9,10,11,12,13,14,15])`
+_ = splitAt 5 [1..10]              -- `([1,2,3,4,5],[6,7,8,9,10])`
+_ = splitAt 10 ['a'..'z']          -- `("abcdefghij","klmnopqrstuvwxyz")`
+_ = splitAt 5 []                   -- `([],[])`
+_ = splitAt 3 $ enumFromTo 5 15    -- `([5,6,7],[8,9,10,11,12,13,14,15])`
 
 
 
@@ -501,10 +494,10 @@ _ = splitAt 3 $ enumFromTo 5 15   -- `([5,6,7],[8,9,10,11,12,13,14,15])`
 -- `takeWhile` takes list elements until an element fails its condition.
 -- takeWhile :: (a -> Bool) -> [a] -> [a]
 
-_ = takeWhile (< 3) [1..10]             -- `[1,2]`
-_ = takeWhile (< 8) $ enumFromTo 5 15   -- `[5,6,7]`
-_ = takeWhile (> 6) [1..10]             -- `[]`
-_ = takeWhile (== 'a') "abracadabra"    -- `"a"`
+_ = takeWhile (< 3) [1..10]              -- `[1,2]`
+_ = takeWhile (< 8) $ enumFromTo 5 15    -- `[5,6,7]`
+_ = takeWhile (> 6) [1..10]              -- `[]`
+_ = takeWhile (== 'a') "abracadabra"     -- `"a"`
 
 
 
@@ -515,10 +508,10 @@ _ = takeWhile (== 'a') "abracadabra"    -- `"a"`
 -- `dropWhile` ignores list elements until an element fails its condition.
 -- dropWhile :: (a -> Bool) -> [a] -> [a]
 
-_ = dropWhile (< 3) [1..10]             -- `[3,4,5,6,7,8,9,10]`
-_ = dropWhile (< 8) $ enumFromTo 5 15   -- `[8,9,10,11,12,13,14,15]`
-_ = dropWhile (> 6) [1..10]             -- `[1,2,3,4,5,6,7,8,9,10]`
-_ = dropWhile (== 'a') "abracadabra"    -- `"bracadabra"`
+_ = dropWhile (< 3) [1..10]              -- `[3,4,5,6,7,8,9,10]`
+_ = dropWhile (< 8) $ enumFromTo 5 15    -- `[8,9,10,11,12,13,14,15]`
+_ = dropWhile (> 6) [1..10]              -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = dropWhile (== 'a') "abracadabra"     -- `"bracadabra"`
 
 
 
@@ -592,7 +585,7 @@ _ = [(x, y) | x <- [1, 2, 3], y <- ['a', 'b']]
 mySqr :: [Integer]
 mySqr = [x^2 | x <- [1..10]]
 
-_ = [(x, y) | x <- mySqr, y <- [1..3], x < 4]   -- `[(1,1),(1,2),(1,3)]`
+_ = [(x, y) | x <- mySqr, y <- [1..3], x < 4]    -- `[(1,1),(1,2),(1,3)]`
 
 -- -----------------------------------------------------------------------------
 
@@ -677,7 +670,7 @@ _ = length [(x, y) | x <- mySquare, y <- myCube, x < 50, y < 50]
 -- A list generated from a range with no explicit upper bound can be thought of
 -- as an infinite list.
 
-_ = [1..]   -- Results in an infinite list of natural numbers.
+_ = [1..]    -- Results in an infinite list of natural numbers.
 
 -- Technically, however, a supposed infinite list is actually a list implicitly
 -- bounded by the maximum value of the list's contained enumerated type.
@@ -703,7 +696,7 @@ _ = [(maxBound :: Char)..]        -- `\1114111`
 
 -- `zip` takes a couple lists and zips them together.
 
-_ = zip [1, 2, 3] [4, 5, 6]   -- `[(1,4),(2,5),(3,6)]`
+_ = zip [1, 2, 3] [4, 5, 6]    -- `[(1,4),(2,5),(3,6)]`
 
 -- `zip` proceeds while both lists have values remaining to combine.
 
@@ -713,8 +706,8 @@ _ = zip [] [1, 2, 3]        -- `[]`
 
 -- `zip` can combine lists of different types.
 
-_ = zip ['a'] [1..10000000]   -- `[('a',1)]`
-_ = zip [1..100] ['a'..'c']   -- `[(1,'a'),(2,'b'),(3,'c')]`
+_ = zip ['a'] [1..10000000]    -- `[('a',1)]`
+_ = zip [1..100] ['a'..'c']    -- `[(1,'a'),(2,'b'),(3,'c')]`
 
 -- -----------------------------------------------------------------------------
 
@@ -724,7 +717,7 @@ _ = unzip [(1, 4), (2, 5), (3, 6)]    -- `([1,2,3],[4,5,6])`
 
 -- `unzip` can be used to recover lists as they were before being zipped.
 
-_ = unzip $ zip [1, 2, 3] [4, 5, 6]   -- `([1,2,3],[4,5,6])`
+_ = unzip $ zip [1, 2, 3] [4, 5, 6]    -- `([1,2,3],[4,5,6])`
 
 -- Recovering lists won't always completely work because of how `zip` works.
 
@@ -759,12 +752,12 @@ myZip []     _      = []
 myZip _      []     = []
 myZip (x:xs) (y:ys) = [(x, y)] ++ myZip xs ys
 
-_ = myZip [1, 2, 3] [4, 5, 6]   -- `[(1,4),(2,5),(3,6)]`
-_ = myZip [1, 2] [4, 5, 6]      -- `[(1,4),(2,5)]`
-_ = myZip [1, 2, 3] [4]         -- `[(1,4)]`
-_ = myZip [] [1, 2, 3]          -- `[]`
-_ = myZip ['a'] [1..10000000]   -- `[('a',1)]`
-_ = myZip [1..100] ['a'..'c']   -- `[(1,'a'),(2,'b'),(3,'c')]`
+_ = myZip [1, 2, 3] [4, 5, 6]    -- `[(1,4),(2,5),(3,6)]`
+_ = myZip [1, 2] [4, 5, 6]       -- `[(1,4),(2,5)]`
+_ = myZip [1, 2, 3] [4]          -- `[(1,4)]`
+_ = myZip [] [1, 2, 3]           -- `[]`
+_ = myZip ['a'] [1..10000000]    -- `[('a',1)]`
+_ = myZip [1..100] ['a'..'c']    -- `[(1,'a'),(2,'b'),(3,'c')]`
 
 -- -----------------------------------------------------------------------------
 
@@ -807,7 +800,7 @@ _ = myZip' [1..100] ['a'..'c']    -- `[(1,'a'),(2,'b'),(3,'c')]`
 capitalize :: String -> String
 capitalize (x:xs) = [toUpper x] ++ xs
 
-_ = capitalize "woot"   -- `"Woot"`
+_ = capitalize "woot"    -- `"Woot"`
 
 -- -----------------------------------------------------------------------------
 
@@ -858,8 +851,8 @@ _ = myElem 1 [2..10]    -- `False`
 myElem' :: Eq a => a -> [a] -> Bool
 myElem' x = any (== x)
 
-_ = myElem' 1 [1..10]   -- `True`
-_ = myElem' 1 [2..10]   -- `False`
+_ = myElem' 1 [1..10]    -- `True`
+_ = myElem' 1 [2..10]    -- `False`
 
 myReverse :: [a] -> [a]
 myReverse []     = []
@@ -881,8 +874,8 @@ squishMap :: (a -> [b]) -> [a] -> [b]
 squishMap f []     = []
 squishMap f (x:xs) = f x ++ squishMap f xs
 
-_ = squishMap (\x -> [1, x, 3]) [2]                   -- `[1,2,3]`
-_ = squishMap (\x -> "WO " ++ [x] ++ " HOO ") "123"   -- `"WO 1 HOO WO 2 HOO WO 3 HOO "`
+_ = squishMap (\x -> [1, x, 3]) [2]                    -- `[1,2,3]`
+_ = squishMap (\x -> "WO " ++ [x] ++ " HOO ") "123"    -- `"WO 1 HOO WO 2 HOO WO 3 HOO "`
 
 
 
@@ -891,7 +884,7 @@ _ = squishMap (\x -> "WO " ++ [x] ++ " HOO ") "123"   -- `"WO 1 HOO WO 2 HOO WO 
 squishAgain :: [[a]] -> [a]
 squishAgain = squishMap id
 
-_ = squishAgain [[5, 4], [3, 2], [1]]   -- `[5,4,3,2,1]`
+_ = squishAgain [[5, 4], [3, 2], [1]]    -- `[5,4,3,2,1]`
 
 
 
@@ -903,7 +896,7 @@ myMaximumBy _ [x]    = x
 myMaximumBy f (x:xs) = if f x curMax == GT then x else curMax
   where curMax = myMaximumBy f xs
 
-_ = myMaximumBy compare [1, 53, 9001, 10]   -- `9001`
+_ = myMaximumBy compare [1, 53, 9001, 10]    -- `9001`
 
 
 
@@ -916,7 +909,7 @@ myMinimumBy _ [x]    = x
 myMinimumBy f (x:xs) = if f x curMin == LT then x else curMin
   where curMin = myMinimumBy f xs
 
-_ = myMinimumBy compare [1, 53, 9001, 10]   -- `1`
+_ = myMinimumBy compare [1, 53, 9001, 10]    -- `1`
 
 
 
@@ -928,7 +921,7 @@ _ = myMinimumBy compare [1, 53, 9001, 10]   -- `1`
 myMaximum :: (Ord a) => [a] -> a
 myMaximum = myMaximumBy compare
 
-_ = myMaximum [1, 53, 9001, 10]   -- `9001`
+_ = myMaximum [1, 53, 9001, 10]    -- `9001`
 
 
 
@@ -939,7 +932,7 @@ _ = myMaximum [1, 53, 9001, 10]   -- `9001`
 myMinimum :: (Ord a) => [a] -> a
 myMinimum = myMinimumBy compare
 
-_ = myMinimum [1, 53, 9001, 10]   -- `1`
+_ = myMinimum [1, 53, 9001, 10]    -- `1`
 
 
 

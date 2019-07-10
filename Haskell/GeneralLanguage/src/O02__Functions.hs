@@ -23,7 +23,7 @@ _ = double 3    -- `6`
 -- An application of a pure function can be replaced by the function's body and
 -- still get the same result.
 
-_ = 3 * 2   -- `6`
+_ = 3 * 2    -- `6`
 
 -- Functions that are not pure are covered later.
 
@@ -58,7 +58,7 @@ c = addAndMultiply 4
 -- parameter and having the value `4` exist where instances of the `x`
 -- parameter originally were.
 
-_ = c 5   -- `49`
+_ = c 5    -- `49`
 
 -- As with any other function application, `c` can be replaced by its body.
 
@@ -94,9 +94,9 @@ _ = ((((plusTimes 2) 5) 8) 11)    -- `97`
 foo 1 = 10
 foo 2 = 99
 
-_ = foo 1   -- `10`
-_ = foo 2   -- `99`
-_ = foo 3   -- Throws an exception.
+_ = foo 1    -- `10`
+_ = foo 2    -- `99`
+_ = foo 3    -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -111,7 +111,7 @@ _ = triple 5    -- `15`
 
 _ = (\x -> x * 3) :: Integer -> Integer
 
-_ = (\x -> x * 3) 5   -- `15`
+_ = (\x -> x * 3) 5    -- `15`
 
 -- Parentheses around an anonymous function are required if it gets applied to
 -- its argument direcly.

@@ -16,20 +16,20 @@ _ = quot 20 (-6)    -- `-3`
 -- `rem` (remainder) returns the remainder of a division.
 -- `mod` (modulo) does the same but for modular division.
 
-_ = rem 15 12   -- `3`
-_ = mod 15 12   -- `3`
+_ = rem 15 12    -- `3`
+_ = mod 15 12    -- `3`
 
 -- In Haskell, if one or both of the arguments are negative, `rem` will have a
 -- result with the same sign as the dividend, while `mod` will have a result
 -- with the same sign as the divisor.
 
-_ = rem (-5) 2      -- `-1`
-_ = rem 5 (-2)      -- `1`
-_ = rem (-5) (-2)   -- `-1`
+_ = rem (-5) 2       -- `-1`
+_ = rem 5 (-2)       -- `1`
+_ = rem (-5) (-2)    -- `-1`
 
-_ = mod (-5) 2      -- `1`
-_ = mod 5 (-2)      -- `-1`
-_ = mod (-5) (-2)   -- `-1`
+_ = mod (-5) 2       -- `1`
+_ = mod 5 (-2)       -- `-1`
+_ = mod (-5) (-2)    -- `-1`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

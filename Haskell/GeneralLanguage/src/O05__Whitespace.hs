@@ -9,12 +9,12 @@ f' x y = div x y
 
 -- However, spaces around operators are optional.
 
-_ = 2 ^ 9   -- `512`
-_ = 2^ 9    -- `512`
-_ = 2 ^9    -- `512`
-_ = 2^9     -- `512`
-_ = -3      -- `-3`
-_ = - 3     -- `-3`
+_ = 2 ^ 9    -- `512`
+_ = 2^ 9     -- `512`
+_ = 2 ^9     -- `512`
+_ = 2^9      -- `512`
+_ = -3       -- `-3`
+_ = - 3      -- `-3`
 
 -- Expressions can get large enough to merit spanning it across multiple lines
 -- to maintain readbility.  Lines that are continuations of an expression

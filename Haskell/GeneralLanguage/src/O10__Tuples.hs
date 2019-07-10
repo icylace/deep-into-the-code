@@ -7,8 +7,8 @@ import Data.Tuple
 -- A tuple is a grouping of fixed-size for values having either the same types
 -- or different types.
 
-_ = (,,,) 8 "Hello" "World" 'c'   -- `(8,"Hello","World",'c')`
-_ = (8, "Hello", "World", 'c')    -- `(8,"Hello","World",'c')`
+_ = (,,,) 8 "Hello" "World" 'c'    -- `(8,"Hello","World",'c')`
+_ = (8, "Hello", "World", 'c')     -- `(8,"Hello","World",'c')`
 
 -- The number of values contained within a tuple is called its arity.  The arity
 -- of the previous tuple is 4.
@@ -26,8 +26,8 @@ _ = (8, "Hello", "World")     -- `(8,"Hello","World")`
 _ = (,) 8 10    -- `(8,10)`
 _ = (8, 10)     -- `(8,10)`
 
-_ = (,) 8 "Hello"   -- `(8,"Hello")`
-_ = (8, "Hello")    -- `(8,"Hello")`
+_ = (,) 8 "Hello"    -- `(8,"Hello")`
+_ = (8, "Hello")     -- `(8,"Hello")`
 
 -- The `fst` function gets the left value of a pair.
 
@@ -82,11 +82,11 @@ _ = (9, "Hello") < (8, "World")     -- `False`
 {-
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.
-_ = (8, "Hello") == ("Hello", 8)        -- Causes a compile-time error.
-_ = (8, "Hello") == (8, 3.0)            -- Causes a compile-time error.
-_ = (8, "Hello") == ('B', "World")      -- Causes a compile-time error.
-_ = (8, "Hello") == ('B', 3.0)          -- Causes a compile-time error.
-_ = (8, "Hello") == (8, "Hello", 'B')   -- Causes a compile-time error.
+_ = (8, "Hello") == ("Hello", 8)         -- Causes a compile-time error.
+_ = (8, "Hello") == (8, 3.0)             -- Causes a compile-time error.
+_ = (8, "Hello") == ('B', "World")       -- Causes a compile-time error.
+_ = (8, "Hello") == ('B', 3.0)           -- Causes a compile-time error.
+_ = (8, "Hello") == (8, "Hello", 'B')    -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------

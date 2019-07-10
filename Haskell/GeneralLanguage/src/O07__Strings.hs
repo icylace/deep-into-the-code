@@ -23,8 +23,8 @@ _ = ""    -- `""`
 
 -- One way to do this is to use the append operator, `++`.
 
-_ = "Hello" ++ "world!"         -- `"Helloworld!"`
-_ = "Hello" ++ "world!" ++ ""   -- `"Helloworld!"`
+_ = "Hello" ++ "world!"          -- `"Helloworld!"`
+_ = "Hello" ++ "world!" ++ ""    -- `"Helloworld!"`
 
 _ = "Hello" ++ " world!"                      -- `"Hello world!"`
 _ = "Hello " ++ "world!"                      -- `"Hello world!"`
@@ -34,11 +34,11 @@ _ = "Hello " ++ " world!"   -- `"Hello  World!"`
 
 -- Another way to concatenate strings is to use `concat`.
 
-_ = concat ["Hello world!"]                   -- `"Hello World!"`
-_ = concat ["Hello", " world!"]               -- `"Hello World!"`
-_ = concat ["Hello ", "world!"]               -- `"Hello World!"`
-_ = concat ["Hello", " ", "world!"]           -- `"Hello World!"`
-_ = concat ["Hello", "", " ", "", "world!"]   -- `"Hello World!"`
+_ = concat ["Hello world!"]                    -- `"Hello World!"`
+_ = concat ["Hello", " world!"]                -- `"Hello World!"`
+_ = concat ["Hello ", "world!"]                -- `"Hello World!"`
+_ = concat ["Hello", " ", "world!"]            -- `"Hello World!"`
+_ = concat ["Hello", "", " ", "", "world!"]    -- `"Hello World!"`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -76,15 +76,15 @@ _ = tail "ab"             -- `"b"`
 _ = tail "a"              -- `""`
 
 {-
-_ = tail ""   -- Throws an exception.
-_ = tail []   -- Throws an exception.
+_ = tail ""    -- Throws an exception.
+_ = tail []    -- Throws an exception.
 -}
 
 -- `take` returns a number of elements from the beginning of a given list.
 
-_ = take 0 "Hello"    -- `""`
-_ = take 1 "Hello"    -- `"H"`
-_ = take 10 "Hello"   -- `"Hello"`
+_ = take 0 "Hello"     -- `""`
+_ = take 1 "Hello"     -- `"H"`
+_ = take 10 "Hello"    -- `"Hello"`
 
 _ = take 0 ""     -- `""`
 _ = take 1 ""     -- `""`
@@ -97,9 +97,9 @@ _ = take -1 ""    -- Throws an exception.
 -- The `drop` function returns a list of elements remaining after a specified
 -- number of elements has been ignored from a given list.
 
-_ = drop 0 "Hello"    -- `"Hello"`
-_ = drop 1 "Hello"    -- `"ello"`
-_ = drop 10 "Hello"   -- `""`
+_ = drop 0 "Hello"     -- `"Hello"`
+_ = drop 1 "Hello"     -- `"ello"`
+_ = drop 10 "Hello"    -- `""`
 
 _ = drop 0 ""     -- `""`
 _ = drop 1 ""     -- `""`
@@ -119,9 +119,9 @@ _ = "Hello" !! 3    -- `'l'`
 _ = "Hello" !! 4    -- `'o'`
 
 {-
-_ = "Hello" !! -1   -- Throws an exception.
-_ = "Hello" !! 5    -- Throws an exception.
-_ = "" !! 0         -- Throws an exception.
+_ = "Hello" !! -1    -- Throws an exception.
+_ = "Hello" !! 5     -- Throws an exception.
+_ = "" !! 0          -- Throws an exception.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -133,9 +133,9 @@ _ = "" !! 0         -- Throws an exception.
 printStrings :: IO ()
 printStrings = do
 
-  print "Hello world!"      -- Displays `"Hello world!"`.
-  putStrLn "Hello world!"   -- Displays `Hello world!`.
-  putStr "Hello world!"     -- Displays `Hello world!` without a carriage return.
+  print "Hello world!"       -- Displays `"Hello world!"`.
+  putStrLn "Hello world!"    -- Displays `Hello world!`.
+  putStr "Hello world!"      -- Displays `Hello world!` without a carriage return.
 
 -- `do` notation was used to make using a sequence of print-related functions
 -- more convenient.

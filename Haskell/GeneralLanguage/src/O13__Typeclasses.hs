@@ -99,8 +99,8 @@ instance Numberish' Year where
   toNumber' (Year n) = n
   defaultNumber = Year 1988
 
-_ = defaultNumber :: Age    -- `Age 65`
-_ = defaultNumber :: Year   -- `Year 1988`
+_ = defaultNumber :: Age     -- `Age 65`
+_ = defaultNumber :: Year    -- `Year 1988`
 
 {-
 -- `defaultNumber` on its own is too ambiguous.

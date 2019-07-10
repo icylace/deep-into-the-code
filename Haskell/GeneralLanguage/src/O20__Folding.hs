@@ -44,11 +44,11 @@ _ = myAny even $ repeat 1   -- Results in an infinite loop.
 
 -- There can be a function that does not force evaluation of values or spines.
 
-_ = foldr (\_ _ -> 9001) 0 [1..5]                     -- `9001`
-_ = foldr (\_ _ -> 9001) 0 [1, 2, 3, undefined]       -- `9001`
-_ = foldr (\_ _ -> 9001) 0 $ [1, 2, 3] ++ undefined   -- `9001`
-_ = foldr (\_ _ -> 9001) 0 [1, undefined]             -- `9001`
-_ = foldr (\_ _ -> 9001) 0 [undefined, undefined]     -- `9001`
+_ = foldr (\_ _ -> 9001) 0 [1..5]                      -- `9001`
+_ = foldr (\_ _ -> 9001) 0 [1, 2, 3, undefined]        -- `9001`
+_ = foldr (\_ _ -> 9001) 0 $ [1, 2, 3] ++ undefined    -- `9001`
+_ = foldr (\_ _ -> 9001) 0 [1, undefined]              -- `9001`
+_ = foldr (\_ _ -> 9001) 0 [undefined, undefined]      -- `9001`
 
 {-
 _ = foldr (\_ _ -> 9001) 0 undefined    -- Throws an exception.
@@ -72,14 +72,14 @@ _ = foldr (flip const) 0 ([1..5] ++ undefined)    -- Throws an exception.
 _ = foldl const 0 ([1..5] ++ undefined)           -- Throws an exception.
 _ = foldl (flip const) 0 ([1..5] ++ undefined)    -- Throws an exception.
 
-_ = foldl (\_ _ -> 5) 0 ([1..5] ++ undefined)     -- Throws an exception.
-_ = foldl (\_ _ -> 5) 0 ([1..5] ++ [undefined])   -- `5`
+_ = foldl (\_ _ -> 5) 0 ([1..5] ++ undefined)      -- Throws an exception.
+_ = foldl (\_ _ -> 5) 0 ([1..5] ++ [undefined])    -- `5`
 
 
 -- -----------------------------------------------------------------------------
 
-_ = take 3 $ foldr (:) [] $ [1, 2, 3] ++ undefined          -- `[1,2,3]`
-_ = take 3 $ foldl (flip (:)) [] $ [1, 2, 3] ++ undefined   -- Throws an exception.
+_ = take 3 $ foldr (:) [] $ [1, 2, 3] ++ undefined           -- `[1,2,3]`
+_ = take 3 $ foldl (flip (:)) [] $ [1, 2, 3] ++ undefined    -- Throws an exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -90,9 +90,9 @@ f = (:)
 z = []
 xs = [1..10]
 
-_ = foldr f z xs                    -- `[1,2,3,4,5,6,7,8,9,10]`
-_ = foldl (flip f) z (reverse xs)   -- `[1,2,3,4,5,6,7,8,9,10]`
-_ = reverse $ foldl (flip f) z xs   -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = foldr f z xs                     -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = foldl (flip f) z (reverse xs)    -- `[1,2,3,4,5,6,7,8,9,10]`
+_ = reverse $ foldl (flip f) z xs    -- `[1,2,3,4,5,6,7,8,9,10]`
 
 
 
@@ -171,8 +171,8 @@ myScanl f q ls =
 -- -----------------------------------------------------------------------------
 
 
-fibs = 1 : scanl (+) 1 fibs   -- Results in an infinite list of the Fibonacci sequence.
-_ = take 10 fibs              -- `[1,1,2,3,5,8,13,21,34,55]`
+fibs = 1 : scanl (+) 1 fibs    -- Results in an infinite list of the Fibonacci sequence.
+_ = take 10 fibs               -- `[1,1,2,3,5,8,13,21,34,55]`
 
 
 
@@ -194,7 +194,7 @@ _ = foldr (:) [] [1..3]           -- `[1,2,3]`
 _ = foldl (flip (:)) [] [1..3]    -- `[3,2,1]`
 
 {-
-_ = foldl (:) [] [1..3]   -- Causes a compile-time error.
+_ = foldl (:) [] [1..3]    -- Causes a compile-time error.
 -}
 
 
@@ -204,11 +204,11 @@ _ = foldl (:) [] [1..3]   -- Causes a compile-time error.
 
 
 
-_ = foldr const 0 [1..5]          -- `1`
-_ = foldr (flip const) 0 [1..5]   -- `0`
+_ = foldr const 0 [1..5]           -- `1`
+_ = foldr (flip const) 0 [1..5]    -- `0`
 
-_ = foldl const 0 [1..5]          -- `0`
-_ = foldl (flip const) 0 [1..5]   -- `5`
+_ = foldl const 0 [1..5]           -- `0`
+_ = foldl (flip const) 0 [1..5]    -- `5`
 
 
 
@@ -227,9 +227,9 @@ _ = foldl (flip const) 0 [1..5]   -- `5`
 -- -----------------------------------------------------------------------------
 
 
-_ = foldr (:) [] (1 : 2 : 3 : [])                         -- `[1,2,3]`
-_ = 1 : (2 : (3 : []))                                    -- `[1,2,3]`
-_ = foldr (:) [] (1 : 2 : 3 : []) == 1 : (2 : (3 : []))   -- `True`
+_ = foldr (:) [] (1 : 2 : 3 : [])                          -- `[1,2,3]`
+_ = 1 : (2 : (3 : []))                                     -- `[1,2,3]`
+_ = foldr (:) [] (1 : 2 : 3 : []) == 1 : (2 : (3 : []))    -- `True`
 
 
 
@@ -277,7 +277,7 @@ myAnd3 = foldr (&&) True
 myOr :: [Bool] -> Bool
 myOr = foldr (||) False
 
-_ = myOr [False, False, True, False, False]   -- `True`
+_ = myOr [False, False, True, False, False]    -- `True`
 
 
 
