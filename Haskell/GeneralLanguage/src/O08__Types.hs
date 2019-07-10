@@ -523,9 +523,9 @@ _ = 13 :: Integer
 -- The `Rational` type has arbitrary-precision and represents a ratio between
 -- a couple integers.
 
-_ = 1 / 2 :: Rational             -- `1 % 2`
-_ = 1.5 / 2.5 :: Rational         -- `3 % 5`
-_ = 34.56 / 123.345 :: Rational   -- `768 % 2741`
+_ = 1 / 2 :: Rational              -- `1 % 2`
+_ = 1.5 / 2.5 :: Rational          -- `3 % 5`
+_ = 34.56 / 123.345 :: Rational    -- `768 % 2741`
 
 -- The `Scientific` type has arbitrary-precision and represents a number in
 -- scientific notation. It stores the coefficient as an `Integer` and the

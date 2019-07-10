@@ -18,9 +18,8 @@ _ = Myself == Myself    -- Causes a compile-time error.
 
 
 
--- Typeclass instances are unique to a given type.  Attempting to create
--- multiple instances of the same typeclass for the same type will
--- result in an error.
+-- Typeclass instances are unique to a given type. Attempting to create multiple
+-- instances of the same typeclass for the same type will result in an error.
 
 
 
@@ -104,7 +103,7 @@ _ = defaultNumber :: Year    -- `Year 1988`
 
 {-
 -- `defaultNumber` on its own is too ambiguous.
-_ = defaultNumber   -- Causes a compile-time error.
+_ = defaultNumber    -- Causes a compile-time error.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -159,7 +158,7 @@ check_ a a' = a == a'
 
 
 -- A type that implements a typeclass is said to have an instance of the
--- typeclass.  This instance specifies how the typeclass should work for
+-- typeclass. This instance specifies how the typeclass should work for
 -- the type.
 
 -- A type with an instance of a typeclass can use its values with the functions
@@ -211,7 +210,7 @@ instance Eq a => Eq (Identity a) where
 
 -- -----------------------------------------------------------------------------
 
--- It's possible to use a looser constraint to achieve the same thing.  In this
+-- It's possible to use a looser constraint to achieve the same thing. In this
 -- case, the `Ord` typeclass can be used because it already requires the use
 -- of `Eq`.
 
@@ -245,8 +244,8 @@ check'' x y = x == y
 -- used if the concrete type can't be determined when needed.
 
 -- The division operator, `/`, is part of the `Fractional` typeclass and has the
--- type `Fractional a => a -> a -> a`.  `Fractional` defaults to the concrete
--- type `Double`.  An explicit type declaration can be used to override
+-- type `Fractional a => a -> a -> a`. `Fractional` defaults to the concrete
+-- type `Double`. An explicit type declaration can be used to override
 -- the default.
 
 _ = 1 / 2                         -- `0.5`
@@ -281,9 +280,9 @@ _ = 1 / 2 :: Rational             -- `1 % 2`
 x = 10 :: Integer
 y = 5  :: Integer
 
-_ = (+)       -- Has the type `Num a => a -> a -> a`.
-_ = (x +)     -- Has the type `Integer -> Integer`.
-_ = (x + y)   -- Has the type `Integer`.
+_ = (+)        -- Has the type `Num a => a -> a -> a`.
+_ = (x +)      -- Has the type `Integer -> Integer`.
+_ = (x + y)    -- Has the type `Integer`.
 
 
 
@@ -293,8 +292,8 @@ _ = (x + y)   -- Has the type `Integer`.
 
 
 
--- Typeclass inheritance is only additive.  That is, a subclass cannot override
--- a superclass in any way.
+-- Typeclass inheritance is only additive. That is, a subclass cannot override a
+-- superclass in any way.
 
 
 

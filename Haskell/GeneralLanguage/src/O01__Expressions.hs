@@ -39,7 +39,7 @@ a'' = 1    -- This is pronounced "A-double-prime".
 
 -- A variable can be evaluated later on by referencing its name.
 
--- Evaluation is the process of simplifying an expression.  Expressions that
+-- Evaluation is the process of simplifying an expression. Expressions that
 -- cannot be further simplified are in normal form and are usually referred
 -- to as values.
 
@@ -53,8 +53,8 @@ b2 = 1 + 2
 -- Evaluating `b2` will result in `3` which means `b2` was a reducible
 -- expression (redex).
 
-c2 = 3 + 4    -- `7`
-d2 = c2 + 5   -- `12`
+c2 = 3 + 4     -- `7`
+d2 = c2 + 5    -- `12`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -75,7 +75,7 @@ _ = 2 + 3
 
 _ = 1 + 2 * 3    -- `7`
 
--- Parentheses may be used to nest expressions within other expressions.  Nested
+-- Parentheses may be used to nest expressions within other expressions. Nested
 -- expressions are evaluated before the expression they're nested within.
 
 _ = (1 + 2) * 3    -- `9`
@@ -89,7 +89,7 @@ _ = (5 + 6) * (3 + 4) / (1 + 2)    -- `25.666666666666668`
 -- Nesting is unlimited.
 
 _ = ((1 + 2) * 3) + 4 * (5 + 6)    -- `53`
-_ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)   -- `278`
+_ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)    -- `278`
 
 -- An expression will not necessarily be reduced to a value when evaluated. By
 -- default it gets evaluated to weak head normal form, which is just a more

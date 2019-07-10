@@ -17,7 +17,7 @@ _ = -3       -- `-3`
 _ = - 3      -- `-3`
 
 -- Expressions can get large enough to merit spanning it across multiple lines
--- to maintain readbility.  Lines that are continuations of an expression
+-- to maintain readbility. Lines that are continuations of an expression
 -- should be indented under the beginning of that expression.
 
 f x = 1 + (x * 2) + (x * 3)
@@ -25,7 +25,7 @@ f x = 1 + (x * 2) + (x * 3)
     + (x * 7) + (x * 8) + (x * 9)
 
 -- All top-level declarations in the same source code file must begin at the
--- same column.  This column is determined by where the first declaration
+-- same column. This column is determined by where the first declaration
 -- begins on its line.
 
 -- It is good practice to not have any whitespace precede declarations.

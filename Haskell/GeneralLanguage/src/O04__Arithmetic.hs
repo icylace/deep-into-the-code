@@ -34,7 +34,7 @@ _ = mod (-5) (-2)    -- `-1`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- The negation operator, `-`,  is unary because it has just one operand.
+-- The negation operator, `-`, is unary because it has just one operand.
 
 _ = -100     -- `-100`
 _ = - 100    -- `-100`

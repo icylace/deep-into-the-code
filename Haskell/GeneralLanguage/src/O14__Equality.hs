@@ -104,9 +104,9 @@ instance Eq Date where
   (==) (Date weekday dayOfMonth) (Date weekday' dayOfMonth') =
     weekday == weekday' && dayOfMonth == dayOfMonth'
 
-_ = Date Thursday 10 == Date Thursday 10    -- `True`
-_ = Date Thursday 10 == Date Thursday 11    -- `False`
-_ = Date Thursday 10 == Date Wednesday 10   -- `False`
+_ = Date Thursday 10 == Date Thursday 10     -- `True`
+_ = Date Thursday 10 == Date Thursday 11     -- `False`
+_ = Date Thursday 10 == Date Wednesday 10    -- `False`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

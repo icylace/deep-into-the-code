@@ -45,7 +45,7 @@ _ = addAndMultiply 4 5    -- `49`
 
 -- However, all Haskell functions that appear to accept multiple values are
 -- really a series of nested functions that each accepts one value and
--- returns one result.  Haskell functions are "curried" by default.
+-- returns one result. Haskell functions are "curried" by default.
 
 -- Therefore, in Haskell any function that appears to take more than one
 -- argument is a higher-order function.

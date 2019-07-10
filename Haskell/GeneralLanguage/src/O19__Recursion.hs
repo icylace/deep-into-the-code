@@ -1,7 +1,7 @@
 module O19__Recursion () where
 
 -- "Recursion" is defining a function in terms of itself via self-referential
--- expressions.  Such functions are said to be "recursive".
+-- expressions. Such functions are said to be "recursive".
 
 -- Recursion is useful for expressing indefinite or incremental computation.
 -- This avoids unnecessary repetition of code and allows the data being
@@ -58,7 +58,7 @@ fibonacci 0 = 0
 fibonacci 1 = 1
 fibonacci x = fibonacci (x - 1) + fibonacci (x - 2)
 
-_ = fibonacci 6   -- `8`
+_ = fibonacci 6    -- `8`
 
 -- fibonacci 6 = fibonacci 5 + fibonacci 4
 -- fibonacci 5 = fibonacci 4 + fibonacci 3

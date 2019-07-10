@@ -2,7 +2,7 @@ module O07__Strings () where
 
 -- A character represents a unit of text.
 
-_ = 'A'   -- `'A'`
+_ = 'A'    -- `'A'`
 
 -- A list of characters represents a sequence of text.
 
@@ -10,7 +10,7 @@ _ = ['A', 'B']    -- `"AB"`
 
 -- Lists will be explored in detail later on.
 
--- A string value is syntactic sugar for a list of characters.  Strings are
+-- A string value is syntactic sugar for a list of characters. Strings are
 -- denoted by surrounding double quotes.
 
 _ = "AB"    -- `"AB"`
@@ -30,7 +30,7 @@ _ = "Hello" ++ " world!"                      -- `"Hello world!"`
 _ = "Hello " ++ "world!"                      -- `"Hello world!"`
 _ = "Hello" ++ "" ++ " " ++ "" ++ "world!"    -- `"Hello world!"`
 
-_ = "Hello " ++ " world!"   -- `"Hello  World!"`
+_ = "Hello " ++ " world!"    -- `"Hello  World!"`
 
 -- Another way to concatenate strings is to use `concat`.
 
@@ -44,7 +44,7 @@ _ = concat ["Hello", "", " ", "", "world!"]    -- `"Hello World!"`
 -- -----------------------------------------------------------------------------
 
 -- The append operator and `concat` function are not string-specific functions.
--- They work on lists generally.  Lists will be explored in more detail later
+-- They work on lists generally. Lists will be explored in more detail later
 -- on but let's look at some other list functions useful for strings.
 
 -- The "cons" operator (short for "construct"), `:`, builds a list.
@@ -64,8 +64,8 @@ _ = head ["H", "ello"]    -- `"H"`
 _ = head ["He", "llo"]    -- `"He"`
 
 {-
-_ = head ""   -- Throws an exception.
-_ = head []   -- Throws an exception.
+_ = head ""    -- Throws an exception.
+_ = head []    -- Throws an exception.
 -}
 
 -- `tail` returns a given list without its first element.

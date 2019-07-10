@@ -10,10 +10,10 @@ import Data.Tuple
 _ = (,,,) 8 "Hello" "World" 'c'    -- `(8,"Hello","World",'c')`
 _ = (8, "Hello", "World", 'c')     -- `(8,"Hello","World",'c')`
 
--- The number of values contained within a tuple is called its arity.  The arity
+-- The number of values contained within a tuple is called its arity. The arity
 -- of the previous tuple is 4.
 
--- A triple is a tuple containing three values.  Therefore its arity is 3.
+-- A triple is a tuple containing three values. Therefore its arity is 3.
 
 _ = (,,) 8 "Hello" "World"    -- `(8,"Hello","World")`
 _ = (8, "Hello", "World")     -- `(8,"Hello","World")`
@@ -21,7 +21,7 @@ _ = (8, "Hello", "World")     -- `(8,"Hello","World")`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- A pair is a tuple containing a couple values.  Its arity is 2.
+-- A pair is a tuple containing a couple values. Its arity is 2.
 
 _ = (,) 8 10    -- `(8,10)`
 _ = (8, 10)     -- `(8,10)`

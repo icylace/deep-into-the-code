@@ -36,7 +36,7 @@ myAny f xs = foldr (\x b -> f x || b) False xs
 _ = myAny even [1..]    -- `True`
 
 {-
-_ = myAny even $ repeat 1   -- Results in an infinite loop.
+_ = myAny even $ repeat 1    -- Results in an infinite loop.
 -}
 
 
@@ -326,7 +326,7 @@ _ = myReverse [1..5]    -- `[5,4,3,2,1]`
 myMap :: (a -> b) -> [a] -> [b]
 myMap f = foldr (\x acc -> f x : acc) []
 
-_ = myMap (+ 1) [1, 2, 3]   -- `[2,3,4]`
+_ = myMap (+ 1) [1, 2, 3]    -- `[2,3,4]`
 
 
 
@@ -336,7 +336,7 @@ _ = myMap (+ 1) [1, 2, 3]   -- `[2,3,4]`
 myFilter :: (a -> Bool) -> [a] -> [a]
 myFilter f = foldr (\x acc -> if f x then x : acc else acc) []
 
-_ = myFilter even [1..10]   -- `[2,4,6,8,10]`
+_ = myFilter even [1..10]    -- `[2,4,6,8,10]`
 
 
 
@@ -355,9 +355,9 @@ squishMap :: (a -> [b]) -> [a] -> [b]
 squishMap _ []     = []
 squishMap f (x:xs) = f x ++ squishMap f xs
 
-_ = squishMap (\x -> [x, x]) [1, 2, 3]                -- `[1,1,2,2,3,3]`
-_ = squishMap (\x -> [1, x, 3]) [2]                   -- `[1,2,3]`
-_ = squishMap (\x -> "WO " ++ [x] ++ " OT ") "blah"   -- `"WO b OT WO l OT WO a OT WO h OT "`
+_ = squishMap (\x -> [x, x]) [1, 2, 3]                 -- `[1,1,2,2,3,3]`
+_ = squishMap (\x -> [1, x, 3]) [2]                    -- `[1,2,3]`
+_ = squishMap (\x -> "WO " ++ [x] ++ " OT ") "blah"    -- `"WO b OT WO l OT WO a OT WO h OT "`
 
 
 

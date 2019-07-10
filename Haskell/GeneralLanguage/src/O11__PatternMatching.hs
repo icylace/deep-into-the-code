@@ -8,8 +8,8 @@ module O11__PatternMatching () where
 
 -- Patterns are matched against values, or data constructors, not types.
 -- Matching a pattern may fail, procedding to the next available pattern
--- to match or succeed.  When a match succeeds, the variables exposed in
--- the pattern are bound.  Pattern matching proceeds from left to right
+-- to match or succeed. When a match succeeds, the variables exposed in
+-- the pattern are bound. Pattern matching proceeds from left to right
 -- and outside to inside.
 
 -- The underscore here represents a "catch-all" case that never fails to match.
@@ -84,16 +84,16 @@ _ = g' 50    -- Throws an exception.
 
 -- Patterns can also extract data out of matched arguments.
 
-data WherePenguinsLive =
-  Galapagos
+data WherePenguinsLive
+  = Galapagos
   | Antarctica
   | Australia
   | SouthAfrica
   | SouthAmerica
   deriving (Eq, Show)
 
-data Penguin =
-  Peng WherePenguinsLive
+data Penguin
+  = Peng WherePenguinsLive
   deriving (Eq, Show)
 
 isSouthAfrica' :: WherePenguinsLive -> Bool
@@ -256,8 +256,8 @@ funcZ x =
     True -> "AWESOME"
     False -> "wut"
 
-_ = funcZ 0   -- `"AWESOME"`
-_ = funcZ 1   -- `"wut"`
+_ = funcZ 0    -- `"AWESOME"`
+_ = funcZ 1    -- `"wut"`
 
 -- -----------------------------------------------------------------------------
 
@@ -357,7 +357,7 @@ capitalizeWords :: String -> [(String, String)]
 capitalizeWords x = zip ws $ map (\(c:cs) -> toUpper c : cs) ws
   where ws = words x
 
-_ = capitalizeWords "hello world"   -- `[("hello","Hello"),("world","World")]`
+_ = capitalizeWords "hello world"    -- `[("hello","Hello"),("world","World")]`
 
 
 
