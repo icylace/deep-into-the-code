@@ -1,5 +1,3 @@
-module Main where
-
 -- TODO:
 
 import FlexibleInstances.After

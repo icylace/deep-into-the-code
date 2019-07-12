@@ -47,10 +47,10 @@ _ = [1] ++ [2]        -- `[1,2]`
 _ = 1 : [2]           -- `[1,2]`
 
 {-
-_ = ['a'] ++ [2]    -- Causes a compile-time error.
-_ = "a" ++ [2]      -- Causes a compile-time error.
-_ = [1] ++ ['b']    -- Causes a compile-time error.
-_ = [1] ++ "b"      -- Causes a compile-time error.
+_ = ['a'] ++ [2]    -- Compilation error.
+_ = "a" ++ [2]      -- Compilation error.
+_ = [1] ++ ['b']    -- Compilation error.
+_ = [1] ++ "b"      -- Compilation error.
 -}
 
 -- The append operator, `++`, is an example of a polymorphic function meaning it
@@ -141,7 +141,7 @@ _ = length [1, undefined, 3]    -- `3`
 
 -- If the spine of a list has a bottom, `length` won't work.
 
-_ = length $ [1] ++ undefined ++ [3]    -- Throws an exception.
+_ = length $ [1] ++ undefined ++ [3]    -- Exception.
 
 
 -- -----------------------------------------------------------------------------
@@ -168,16 +168,16 @@ _ = mySum [1..5]    -- `15`
 
 -- -----------------------------------------------------------------------------
 
-_ = [x^y | x <- [1..5], y <- [2, undefined]]             -- Throws an exception.
+_ = [x^y | x <- [1..5], y <- [2, undefined]]             -- Exception.
 _ = take 1 $ [x^y | x <- [1..5], y <- [2, undefined]]    -- `[1]`
-_ = sum [1, undefined, 3]                                -- Throws an exception.
+_ = sum [1, undefined, 3]                                -- Exception.
 _ = length [1, 2, undefined]                             -- `3`
-_ = length $ [1, 2, 3] ++ undefined                      -- Throws an exception.
+_ = length $ [1, 2, 3] ++ undefined                      -- Exception.
 _ = take 1 $ filter even [1, 2, 3, undefined]            -- `[2]`
-_ = take 1 $ filter even [1, 3, undefined]               -- Throws an exception.
+_ = take 1 $ filter even [1, 3, undefined]               -- Exception.
 _ = take 1 $ filter odd [1, 3, undefined]                -- `[1]`
 _ = take 2 $ filter odd [1, 3, undefined]                -- `[1,3]`
-_ = take 3 $ filter odd [1, 3, undefined]                -- Throws an exception.
+_ = take 3 $ filter odd [1, 3, undefined]                -- Exception.
 
 -- -----------------------------------------------------------------------------
 
@@ -195,7 +195,7 @@ _ = [1, 2, 3, 4, 5]    -- `[1,2,3,4,5]`
 -- Normal form and WHNF.
 
 {-
-_ = 1 : 2 : 3 : 4 : _    -- Throws an exception.
+_ = 1 : 2 : 3 : 4 : _    -- Exception.
 -- WHNF.
 -}
 
@@ -212,7 +212,7 @@ _ = ['a'..'m'] ++ ['n'..'z']    -- `"abcdefghijklmnopqrstuvwxyz"`
 -- Neither normal form nor WHNF.
 
 {-
-_ = (_, 'b')    -- Throws an exception.
+_ = (_, 'b')    -- Exception.
 -- WHNF.
 -}
 
@@ -237,7 +237,7 @@ _ = fmap id [1, 2, 3]          -- `[1,2,3]`
 
 -- -----------------------------------------------------------------------------
 
-_ = map (+ 1) [1, 2, undefined]             -- Throws an exception.
+_ = map (+ 1) [1, 2, undefined]             -- Exception.
 _ = take 2 $ map (+ 1) [1, 2, undefined]    -- `[2,3]`
 
 -- -----------------------------------------------------------------------------
@@ -455,7 +455,7 @@ _ = take 7 ['a'..'z']    -- `"abcdefg"`
 _ = take 3 [1..10]       -- `[1,2,3]`
 _ = take 3 []            -- `[]`
 
-_ = enumFrom 10    -- Results in an infinite list of integers starting from 10.
+_ = enumFrom 10    -- Infinite list of integers starting from 10.
 
 -- You can take from an infinite list to get a finite list.
 
@@ -670,7 +670,7 @@ _ = length [(x, y) | x <- mySquare, y <- myCube, x < 50, y < 50]
 -- A list generated from a range with no explicit upper bound can be thought of
 -- as an infinite list.
 
-_ = [1..]    -- Results in an infinite list of natural numbers.
+_ = [1..]    -- Infinite list of natural numbers.
 
 -- Technically, however, a supposed infinite list is actually a list implicitly
 -- bounded by the maximum value of the list's contained enumerated type.
@@ -943,10 +943,10 @@ _ = myMinimum [1, 53, 9001, 10]    -- `1`
 
 -- `repeat` generates an infinite list of a given value.
 
-_ = repeat 1              -- Results in an infinite list of `1` continually repeated.
+_ = repeat 1              -- Infinite list of `1` continually repeated.
 _ = take 4 $ repeat 1     -- `[1,1,1,1]`
 _ = take 10 $ repeat 1    -- `[1,1,1,1,1,1,1,1,1,1]`
-_ = drop 10 $ repeat 1    -- Results in an infinite list of `1` continually repeated.
+_ = drop 10 $ repeat 1    -- Infinite list of `1` continually repeated.
 
 
 
@@ -955,7 +955,7 @@ _ = drop 10 $ repeat 1    -- Results in an infinite list of `1` continually repe
 
 -- `cycle` generates an infinite list based off of a given list.
 
-_ = cycle [1, 2, 3, 4]    -- Results in an infinite list of `1`, `2`, `3`, and
+_ = cycle [1, 2, 3, 4]    -- Infinite list of `1`, `2`, `3`, and
                           -- `4` continually repeated in that order.
 
 

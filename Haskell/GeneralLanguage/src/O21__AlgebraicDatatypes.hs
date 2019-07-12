@@ -45,11 +45,11 @@ x4 = Foo "hi"
 
 {-
 x4' :: Foo String
-x4' = Foo 10    -- Causes a compile-time error.
+x4' = Foo 10    -- Compilation error.
 -}
 
 {-
-data Baz = Baz a    -- Causes a compile-time error.
+data Baz = Baz a    -- Compilation error.
 -}
 
 
@@ -162,7 +162,7 @@ Either * :: * -> *
 > :k Either * *
 Either * * :: *
 
-> :k Int *    -- Causes a compile-time error.
+> :k Int *    -- Compilation error.
 -------------------------------------------------------------------------------}
 
 

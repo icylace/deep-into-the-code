@@ -10,8 +10,8 @@ data Self = Myself
 
 {-
 -- Equality comparison with our custom `Me` and `Self` types won't work.
-_ = Me == Me            -- Causes a compile-time error.
-_ = Myself == Myself    -- Causes a compile-time error.
+_ = Me == Me            -- Compilation error.
+_ = Myself == Myself    -- Compilation error.
 -}
 
 
@@ -103,7 +103,7 @@ _ = defaultNumber :: Year    -- `Year 1988`
 
 {-
 -- `defaultNumber` on its own is too ambiguous.
-_ = defaultNumber    -- Causes a compile-time error.
+_ = defaultNumber    -- Compilation error.
 -}
 
 -- -----------------------------------------------------------------------------

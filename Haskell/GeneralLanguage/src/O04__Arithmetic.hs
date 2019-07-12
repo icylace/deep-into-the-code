@@ -41,7 +41,7 @@ _ = - 100    -- `-100`
 
 
 {-
-_ = 9 + -100    -- Causes a compile-time error.
+_ = 9 + -100    -- Compilation error.
 -}
 
 -- We need parentheses to make it work.

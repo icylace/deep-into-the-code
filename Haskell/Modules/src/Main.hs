@@ -1,5 +1,7 @@
--- The module name and the filepath that contains it must match.
-module Main where
+-- TODO:
+-- show modules importing each other
+
+-- -----------------------------------------------------------------------------
 
 -- By default an import brings into scope all exports from a module.
 import Hello1
@@ -139,36 +141,36 @@ main = do
 
   putStrLn H13.hello13
 
-  putStrLn $ show $ Hi14
-  putStrLn $ show $ Bye14
+  putStrLn $ show Hi14
+  putStrLn $ show Bye14
 
-  putStrLn $ show $ Hi15
+  putStrLn $ show Hi15
 
   {-
   -- The import of the `Hello15` datatype only had the `Hi15` data constructor.
-  putStrLn $ show $ Bye15
+  putStrLn $ show Bye15
   -}
 
   {-
   -- `Hello16` exports the `Hello16` datatype without its data constructors.
-  putStrLn $ show $ Hi16
-  putStrLn $ show $ Bye16
+  putStrLn $ show Hi16
+  putStrLn $ show Bye16
   -}
 
   {-
   -- `Hello17` exports `Hello17` datatype with empty list of data constructors.
-  putStrLn $ show $ Hi17
-  putStrLn $ show $ Bye17
+  putStrLn $ show Hi17
+  putStrLn $ show Bye17
   -}
 
   {-
   -- `Hello18` exports `Hello18` datatype with only `Bye18` data constructor.
   putStrLn $ show $ Hi18
   -}
-  putStrLn $ show $ Bye18
+  putStrLn $ show Bye18
 
-  putStrLn $ show $ Hi19
-  putStrLn $ show $ Bye19
+  putStrLn $ show Hi19
+  putStrLn $ show Bye19
 
   putStrLn hello20
   putStrLn goodbye20
@@ -180,6 +182,6 @@ main = do
   putStrLn MoreModules.EvenMoreModules.Hello22.goodbye22
 
 {-
--- Imports must appear before other types of code.
+-- Imports must appear before any expressions.
 import Hello1
 -}

@@ -82,11 +82,11 @@ _ = (9, "Hello") < (8, "World")     -- `False`
 {-
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.
-_ = (8, "Hello") == ("Hello", 8)         -- Causes a compile-time error.
-_ = (8, "Hello") == (8, 3.0)             -- Causes a compile-time error.
-_ = (8, "Hello") == ('B', "World")       -- Causes a compile-time error.
-_ = (8, "Hello") == ('B', 3.0)           -- Causes a compile-time error.
-_ = (8, "Hello") == (8, "Hello", 'B')    -- Causes a compile-time error.
+_ = (8, "Hello") == ("Hello", 8)         -- Compilation error.
+_ = (8, "Hello") == (8, 3.0)             -- Compilation error.
+_ = (8, "Hello") == ('B', "World")       -- Compilation error.
+_ = (8, "Hello") == ('B', 3.0)           -- Compilation error.
+_ = (8, "Hello") == (8, "Hello", 'B')    -- Compilation error.
 -}
 
 -- -----------------------------------------------------------------------------

@@ -2,7 +2,7 @@ name: haskell-extensions
 synopsis: My notes on Haskell language extensions.
 
 executables:
-  haskell:
+  haskell-extensions:
     main: Main.hs
     source-dirs: [src]
     dependencies: [base]

@@ -49,7 +49,7 @@ _ = if True
 
 {-
 -- The conditional must be a boolean.
-_ = if "A" then "Yes" else "No"    -- Causes a compile-time error.
+_ = if "A" then "Yes" else "No"    -- Compilation error.
 -}
 
 {-
@@ -223,7 +223,7 @@ myAbs5 x
 
 _ = myAbs5 (-9)    -- `9`
 _ = myAbs5 0       -- `0`
-_ = myAbs5 9       -- Throws an exception.
+_ = myAbs5 9       -- Exception.
 
 -- -----------------------------------------------------------------------------
 
@@ -232,7 +232,7 @@ _ = myAbs5 9       -- Throws an exception.
 myAbs6 :: Integer -> Integer
 myAbs6 x
   | x < 0 = -x
-  | _     = x    -- Causes a compile-time error.
+  | _     = x    -- Compilation error.
 -}
 
 -- -----------------------------------------------------------------------------

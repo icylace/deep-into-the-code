@@ -11,12 +11,12 @@ _ = 1 + 2 + 3 + foldr (+) 0 []    -- `6`
 
 -- In the following, undefined is part of the values.
 
-_ = foldr (+) 0 [1, 2, 3, 4, undefined]                 -- Throws an exception.
+_ = foldr (+) 0 [1, 2, 3, 4, undefined]                 -- Exception.
 _ = foldr (+) 0 $ take 4 [1, 2, 3, 4, undefined]        -- `10`
 
 -- In the following, undefined is part of the spine.
 
-_ = foldr (+) 0 $ [1, 2, 3, 4] ++ undefined             -- Throws an exception.
+_ = foldr (+) 0 $ [1, 2, 3, 4] ++ undefined             -- Exception.
 _ = foldr (+) 0 $ take 4 $ [1, 2, 3, 4] ++ undefined    -- `10`
 
 -- -----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ _ = foldr (+) 0 $ take 4 $ [1, 2, 3, 4] ++ undefined    -- `10`
 -- `length` will always evaluate the spine but not the values.
 
 _ = length [1, 2, 3, 4, undefined]                    -- `5`
-_ = length ([1, 2, 3, 4] ++ undefined)                -- Throws an exception.
+_ = length ([1, 2, 3, 4] ++ undefined)                -- Exception.
 _ = length (take 4 ([1, 2, 3, 4] ++ undefined))       -- `4`
 _ = length $ take 2 $ take 4 $ [1, 2] ++ undefined    -- `2`
 
@@ -51,7 +51,7 @@ _ = foldr (\_ _ -> 9001) 0 [1, undefined]              -- `9001`
 _ = foldr (\_ _ -> 9001) 0 [undefined, undefined]      -- `9001`
 
 {-
-_ = foldr (\_ _ -> 9001) 0 undefined    -- Throws an exception.
+_ = foldr (\_ _ -> 9001) 0 undefined    -- Exception.
 -}
 
 
@@ -59,27 +59,27 @@ _ = foldr (\_ _ -> 9001) 0 undefined    -- Throws an exception.
 
 
 _ = const 1 undefined           -- `1`
-_ = (flip const) 1 undefined    -- Throws an exception.
+_ = (flip const) 1 undefined    -- Exception.
 _ = (flip const) undefined 1    -- `1`
 
 -- `foldr` recuses down the spine if it has to.
 
 _ = foldr const 0 ([1..5] ++ undefined)           -- `1`
-_ = foldr (flip const) 0 ([1..5] ++ undefined)    -- Throws an exception.
+_ = foldr (flip const) 0 ([1..5] ++ undefined)    -- Exception.
 
 -- `foldl` unconditionally evaluates the spine.
 
-_ = foldl const 0 ([1..5] ++ undefined)           -- Throws an exception.
-_ = foldl (flip const) 0 ([1..5] ++ undefined)    -- Throws an exception.
+_ = foldl const 0 ([1..5] ++ undefined)           -- Exception.
+_ = foldl (flip const) 0 ([1..5] ++ undefined)    -- Exception.
 
-_ = foldl (\_ _ -> 5) 0 ([1..5] ++ undefined)      -- Throws an exception.
+_ = foldl (\_ _ -> 5) 0 ([1..5] ++ undefined)      -- Exception.
 _ = foldl (\_ _ -> 5) 0 ([1..5] ++ [undefined])    -- `5`
 
 
 -- -----------------------------------------------------------------------------
 
 _ = take 3 $ foldr (:) [] $ [1, 2, 3] ++ undefined           -- `[1,2,3]`
-_ = take 3 $ foldl (flip (:)) [] $ [1, 2, 3] ++ undefined    -- Throws an exception.
+_ = take 3 $ foldl (flip (:)) [] $ [1, 2, 3] ++ undefined    -- Exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -171,7 +171,7 @@ myScanl f q ls =
 -- -----------------------------------------------------------------------------
 
 
-fibs = 1 : scanl (+) 1 fibs    -- Results in an infinite list of the Fibonacci sequence.
+fibs = 1 : scanl (+) 1 fibs    -- Infinite list of the Fibonacci sequence.
 _ = take 10 fibs               -- `[1,1,2,3,5,8,13,21,34,55]`
 
 
@@ -194,7 +194,7 @@ _ = foldr (:) [] [1..3]           -- `[1,2,3]`
 _ = foldl (flip (:)) [] [1..3]    -- `[3,2,1]`
 
 {-
-_ = foldl (:) [] [1..3]    -- Causes a compile-time error.
+_ = foldl (:) [] [1..3]    -- Compilation error.
 -}
 
 

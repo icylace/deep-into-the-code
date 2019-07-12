@@ -20,7 +20,7 @@ f = (+) 1
 g = (*) 10
 
 a = f . g
-b = f & g    -- Causes a compile-time error.
+b = f & g    -- Compilation error.
 
 _ = a 2
 _ = b 2
@@ -37,7 +37,7 @@ _ = b 2
 
 
 
--- The arrow, `->`, is the function type constructor.  It's like other type
+-- The arrow, `->`, is the function type constructor. It's like other type
 -- constructors but it takes arguments while having no data constructors.
 
 -- The values of the function type are functions.
@@ -128,9 +128,9 @@ definitelyDontDoThis False = error "oops"
 
 
 -- `undefined` is a special value that can be used to allow compilation to
--- happen for code yet to be implemented.  Evaluating "undefined" code
--- will throw an exception.  Thanks to lazy evaluation, such code can
--- coexist with normal.
+-- happen for code yet to be implemented. Evaluating "undefined" code will
+-- throw an exception. Thanks to lazy evaluation, such code can coexist
+-- with normal code.
 
 x = undefined
 -- `x` is now undefined.
@@ -180,9 +180,9 @@ _ = (first 2) 3    -- `2`
 
 addUsingPair = uncurry (+)
 
-_ = 2 + 3                 -- `5`
-_ = (+) 2 3               -- `5`
-_ = addUsingPair (2, 3)   -- `5`
+_ = 2 + 3                  -- `5`
+_ = (+) 2 3                -- `5`
+_ = addUsingPair (2, 3)    -- `5`
 
 
 
@@ -331,10 +331,11 @@ _ = (1, "Papu" ++ "chon")
 
 _ = [1, 2, 3]
 
--- The following is an example of WHNF evaluation.  `myNum` is in WHNF because
--- it's a list constructed by a range that will only evaluate as far as it has
--- to.  `take 2` forces some evaluation of the range. `:sprint` displays what
--- has been evaluated (the numbers) and what hasn't (the underscore).
+-- The following is an example of WHNF evaluation. `myNum` is in WHNF because
+-- it's a list constructed by a range that will only evaluate as far as it
+-- has to. `take 2` forces some evaluation of the range. `:sprint`
+-- displays what has been evaluated (the numbers) and what hasn't
+-- (the underscore).
 
 -- Prelude> let myNum :: [Int]; myNum = [1..10]
 --
@@ -565,13 +566,13 @@ _ = n = 10 :: (Fractional a)
 
 -- `flip` will exchange the order of a two-parameter function's parameters.
 
-_ = (-) 10 1        -- `9`
-_ = flip (-) 10 1   -- `-9`
+_ = (-) 10 1         -- `9`
+_ = flip (-) 10 1    -- `-9`
 
 {-
-_ = foldl (:) [] [1, 2, 3]    -- Causes a compile-time error.
+_ = foldl (:) [] [1, 2, 3]    -- Compilation error.
 -}
-_ = foldl (flip (:)) [] [1, 2, 3]   -- `[3,2,1]`
+_ = foldl (flip (:)) [] [1, 2, 3]    -- `[3,2,1]`
 -- ((([] (flip (:)) 1) (flip (:)) 2) (flip (:)) 3)
 -- (([1] (flip (:)) 2) (flip (:)) 3)
 -- ([2, 1] (flip (:)) 3)
@@ -712,8 +713,8 @@ _ = fmap show (False, 2)      -- `(False,"2")`
 _ = fmap show (True, True)    -- `(True,"True")`
 
 {-
-_ = foldr (+) 0 (3, "99")    -- Causes a compile-time error.
-_ = foldr (+) 0 (1, 2, 3)    -- Causes a compile-time error.
+_ = foldr (+) 0 (3, "99")    -- Compilation error.
+_ = foldr (+) 0 (1, 2, 3)    -- Compilation error.
 -}
 
 
@@ -1093,7 +1094,7 @@ allProgrammers = [Programmer os lang | os <- allOperatingSystems, lang <- allLan
 
 
 
-partialAf = Programmer { os = GnuPlusLinux }    -- Throws an exception.
+partialAf = Programmer { os = GnuPlusLinux }    -- Exception.
 -- Triggers a warning when the `-Wmissing-fields` compiler option is used.
 -- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-fields
 
@@ -1150,7 +1151,7 @@ data Automobile = Null | Car
                           }
                   deriving (Eq, Show)
 
-_ = make Null   -- Throws an exception.
+_ = make Null    -- Exception.
 
 -- Split out the record/product to avoid the runtime exception and let the
 -- compiler catch the error at compile time.
@@ -1304,7 +1305,7 @@ eval :: Expr -> Integer
 eval (Lit x) = x
 eval (Add x y) = eval x + eval y
 
-_ = eval (Add (Lit 1) (Lit 9001))   -- `9002`
+_ = eval (Add (Lit 1) (Lit 9001))    -- `9002`
 
 
 
@@ -1340,18 +1341,18 @@ _ = printExpr a3    -- `"1 + 9001 + 1 + 20001"`
 
 
 
-stops = "pbtdkg"
-vowels = "aeiou"
+-- stops = "pbtdkg"
+-- vowels = "aeiou"
 
 combo :: String -> String -> [(Char, Char, Char)]
 combo stops vowels = [(x, y, z) | x <- stops, y <- vowels, z <- stops]
 
-_ = combo "pbtdkg" "aeiou"    -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','a','k'),('p','a','g'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','e','k'),('p','e','g'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','i','k'),('p','i','g'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','o','k'),('p','o','g'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d'),('p','u','k'),('p','u','g'),('b','a','p'),('b','a','b'),('b','a','t'),('b','a','d'),('b','a','k'),('b','a','g'),('b','e','p'),('b','e','b'),('b','e','t'),('b','e','d'),('b','e','k'),('b','e','g'),('b','i','p'),('b','i','b'),('b','i','t'),('b','i','d'),('b','i','k'),('b','i','g'),('b','o','p'),('b','o','b'),('b','o','t'),('b','o','d'),('b','o','k'),('b','o','g'),('b','u','p'),('b','u','b'),('b','u','t'),('b','u','d'),('b','u','k'),('b','u','g'),('t','a','p'),('t','a','b'),('t','a','t'),('t','a','d'),('t','a','k'),('t','a','g'),('t','e','p'),('t','e','b'),('t','e','t'),('t','e','d'),('t','e','k'),('t','e','g'),('t','i','p'),('t','i','b'),('t','i','t'),('t','i','d'),('t','i','k'),('t','i','g'),('t','o','p'),('t','o','b'),('t','o','t'),('t','o','d'),('t','o','k'),('t','o','g'),('t','u','p'),('t','u','b'),('t','u','t'),('t','u','d'),('t','u','k'),('t','u','g'),('d','a','p'),('d','a','b'),('d','a','t'),('d','a','d'),('d','a','k'),('d','a','g'),('d','e','p'),('d','e','b'),('d','e','t'),('d','e','d'),('d','e','k'),('d','e','g'),('d','i','p'),('d','i','b'),('d','i','t'),('d','i','d'),('d','i','k'),('d','i','g'),('d','o','p'),('d','o','b'),('d','o','t'),('d','o','d'),('d','o','k'),('d','o','g'),('d','u','p'),('d','u','b'),('d','u','t'),('d','u','d'),('d','u','k'),('d','u','g'),('k','a','p'),('k','a','b'),('k','a','t'),('k','a','d'),('k','a','k'),('k','a','g'),('k','e','p'),('k','e','b'),('k','e','t'),('k','e','d'),('k','e','k'),('k','e','g'),('k','i','p'),('k','i','b'),('k','i','t'),('k','i','d'),('k','i','k'),('k','i','g'),('k','o','p'),('k','o','b'),('k','o','t'),('k','o','d'),('k','o','k'),('k','o','g'),('k','u','p'),('k','u','b'),('k','u','t'),('k','u','d'),('k','u','k'),('k','u','g'),('g','a','p'),('g','a','b'),('g','a','t'),('g','a','d'),('g','a','k'),('g','a','g'),('g','e','p'),('g','e','b'),('g','e','t'),('g','e','d'),('g','e','k'),('g','e','g'),('g','i','p'),('g','i','b'),('g','i','t'),('g','i','d'),('g','i','k'),('g','i','g'),('g','o','p'),('g','o','b'),('g','o','t'),('g','o','d'),('g','o','k'),('g','o','g'),('g','u','p'),('g','u','b'),('g','u','t'),('g','u','d'),('g','u','k'),('g','u','g')]`
+_ = combo "pbtd" "aeiou"    -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d'),('b','a','p'),('b','a','b'),('b','a','t'),('b','a','d'),('b','e','p'),('b','e','b'),('b','e','t'),('b','e','d'),('b','i','p'),('b','i','b'),('b','i','t'),('b','i','d'),('b','o','p'),('b','o','b'),('b','o','t'),('b','o','d'),('b','u','p'),('b','u','b'),('b','u','t'),('b','u','d'),('t','a','p'),('t','a','b'),('t','a','t'),('t','a','d'),('t','e','p'),('t','e','b'),('t','e','t'),('t','e','d'),('t','i','p'),('t','i','b'),('t','i','t'),('t','i','d'),('t','o','p'),('t','o','b'),('t','o','t'),('t','o','d'),('t','u','p'),('t','u','b'),('t','u','t'),('t','u','d'),('d','a','p'),('d','a','b'),('d','a','t'),('d','a','d'),('d','e','p'),('d','e','b'),('d','e','t'),('d','e','d'),('d','i','p'),('d','i','b'),('d','i','t'),('d','i','d'),('d','o','p'),('d','o','b'),('d','o','t'),('d','o','d'),('d','u','p'),('d','u','b'),('d','u','t'),('d','u','d')]`
 
 combo' :: String -> String -> [(Char, Char, Char)]
 combo' stops vowels = [(x, y, z) | x <- stops, y <- vowels, z <- stops, x == 'p']
 
-_ = combo' "pbtdkg" "aeiou"   -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','a','k'),('p','a','g'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','e','k'),('p','e','g'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','i','k'),('p','i','g'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','o','k'),('p','o','g'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d'),('p','u','k'),('p','u','g')]`
+_ = combo' "pbtd" "aeiou"   -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d')]`
 
 nouns = ["pap", "pat", "pad", "peg"]
 verbs = ["pit", "tab", "tag", "dab"]
@@ -1362,7 +1363,7 @@ combo'' stops vowels nouns verbs =
               , elem x nouns, elem y verbs, elem z nouns ]
     where words = [[x, y, z] | x <- stops, y <- vowels, z <- stops]
 
-_ = combo'' "pbtdkg" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit","pat"),("pap","pit","pad"),("pap","pit","peg"),("pap","tab","pap"),("pap","tab","pat"),("pap","tab","pad"),("pap","tab","peg"),("pap","tag","pap"),("pap","tag","pat"),("pap","tag","pad"),("pap","tag","peg"),("pap","dab","pap"),("pap","dab","pat"),("pap","dab","pad"),("pap","dab","peg"),("pat","pit","pap"),("pat","pit","pat"),("pat","pit","pad"),("pat","pit","peg"),("pat","tab","pap"),("pat","tab","pat"),("pat","tab","pad"),("pat","tab","peg"),("pat","tag","pap"),("pat","tag","pat"),("pat","tag","pad"),("pat","tag","peg"),("pat","dab","pap"),("pat","dab","pat"),("pat","dab","pad"),("pat","dab","peg"),("pad","pit","pap"),("pad","pit","pat"),("pad","pit","pad"),("pad","pit","peg"),("pad","tab","pap"),("pad","tab","pat"),("pad","tab","pad"),("pad","tab","peg"),("pad","tag","pap"),("pad","tag","pat"),("pad","tag","pad"),("pad","tag","peg"),("pad","dab","pap"),("pad","dab","pat"),("pad","dab","pad"),("pad","dab","peg"),("peg","pit","pap"),("peg","pit","pat"),("peg","pit","pad"),("peg","pit","peg"),("peg","tab","pap"),("peg","tab","pat"),("peg","tab","pad"),("peg","tab","peg"),("peg","tag","pap"),("peg","tag","pat"),("peg","tag","pad"),("peg","tag","peg"),("peg","dab","pap"),("peg","dab","pat"),("peg","dab","pad"),("peg","dab","peg")]`
+_ = combo'' "pbtd" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit","pat"),("pap","pit","pad"),("pap","tab","pap"),("pap","tab","pat"),("pap","tab","pad"),("pap","dab","pap"),("pap","dab","pat"),("pap","dab","pad"),("pat","pit","pap"),("pat","pit","pat"),("pat","pit","pad"),("pat","tab","pap"),("pat","tab","pat"),("pat","tab","pad"),("pat","dab","pap"),("pat","dab","pat"),("pat","dab","pad"),("pad","pit","pap"),("pad","pit","pat"),("pad","pit","pad"),("pad","tab","pap"),("pad","tab","pat"),("pad","tab","pad"),("pad","dab","pap"),("pad","dab","pat"),("pad","dab","pad")]`
 
 
 
@@ -1434,7 +1435,7 @@ ifEvenAdd2 n = if even n then Just (n + 2) else Nothing
 
 
 -- Pattern matching is a case expression, where the data constructor is the
--- condition.  Case expressions and pattern matching will work without an
+-- condition. Case expressions and pattern matching will work without an
 -- `Eq` instance, but guards using `==` will not.
 
 
@@ -1471,13 +1472,13 @@ Char :: *
 
 
 
--- We use Left as our invalid or error constructor for a couple of reasons.  It
+-- We use Left as our invalid or error constructor for a couple of reasons. It
 -- is conventional to do so in Haskell, but that convention came about for a
--- reason.  The reason has to do with the ordering of type arguments and
--- application of functions.  Normally it is your error or invalid
+-- reason. The reason has to do with the ordering of type arguments and
+-- application of functions. Normally it is your error or invalid
 -- result that is going to cause a stop to whatever work is being
--- done by your program.  Functor will not map over the left type
--- argument because it has been applied away.  Since you normally
+-- done by your program. Functor will not map over the left type
+-- argument because it has been applied away. Since you normally
 -- want to apply functions and map over the case that doesn't
 -- stop your program (that is, not the error case), it has
 -- become convention that the Left of Either is used for
@@ -1657,7 +1658,7 @@ ThreeArgs :: * -> * -> * -> *
 
 
 
-_ = fmap Just [1, 2, 3]   -- `[Just 1,Just 2,Just 3]`
+_ = fmap Just [1, 2, 3]    -- `[Just 1,Just 2,Just 3]`
 
 
 
@@ -1692,7 +1693,7 @@ replaceThe :: String -> String
 replaceThe (x:y:z:xs) = fromMaybe "a" (notThe $ x:y:z:[]) ++ replaceThe xs
 replaceThe xs         = xs
 
-_ = replaceThe "the cow loves us"   -- `"a cow loves us"`
+_ = replaceThe "the cow loves us"    -- `"a cow loves us"`
 
 -}
 
@@ -1724,8 +1725,8 @@ _ = countTheBeforeVowel "the evil cow"    -- `1`
 countVowels :: String -> Integer
 countVowels = foldr (\x acc -> if elem x "aeiouy" then (acc + 1) else acc) 0
 
-_ = countVowels "the cow"       -- `2`
-_ = countVowels "Mikolajczak"   -- `4`
+_ = countVowels "the cow"        -- `2`
+_ = countVowels "Mikolajczak"    -- `4`
 
 
 
@@ -1777,9 +1778,9 @@ natToInteger :: Nat -> Integer
 natToInteger Zero     = 0
 natToInteger (Succ n) = 1 + natToInteger n
 
-_ = natToInteger Zero                 -- `0`
-_ = natToInteger (Succ Zero)          -- `1`
-_ = natToInteger (Succ (Succ Zero))   -- `2`
+_ = natToInteger Zero                  -- `0`
+_ = natToInteger (Succ Zero)           -- `1`
+_ = natToInteger (Succ (Succ Zero))    -- `2`
 
 integerToNat :: Integer -> Maybe Nat
 integerToNat x
@@ -1788,10 +1789,10 @@ integerToNat x
   where go (0, nat) = (0, nat)
         go (n, nat) = go (n - 1, Succ nat)
 
-_ = integerToNat 0      -- `Just Zero`
-_ = integerToNat 1      -- `Just (Succ Zero)`
-_ = integerToNat 2      -- `Just (Succ (Succ Zero))`
-_ = integerToNat (-1)   -- `Nothing`
+_ = integerToNat 0       -- `Just Zero`
+_ = integerToNat 1       -- `Just (Succ Zero)`
+_ = integerToNat 2       -- `Just (Succ (Succ Zero))`
+_ = integerToNat (-1)    -- `Nothing`
 
 
 
@@ -1806,8 +1807,8 @@ mayybee :: b -> (a -> b) -> Maybe a -> b
 mayybee z _ Nothing  = z
 mayybee _ f (Just x) = f x
 
-_ = mayybee 0 (+1) Nothing    -- `0`
-_ = mayybee 0 (+1) (Just 1)   -- `2`
+_ = mayybee 0 (+1) Nothing     -- `0`
+_ = mayybee 0 (+1) (Just 1)    -- `2`
 
 
 
@@ -1815,8 +1816,8 @@ _ = mayybee 0 (+1) (Just 1)   -- `2`
 fromMaybe' :: a -> Maybe a -> a
 fromMaybe' x = mayybee x id
 
-_ = fromMaybe' 0 Nothing    -- `0`
-_ = fromMaybe' 0 (Just 1)   -- `1`
+_ = fromMaybe' 0 Nothing     -- `0`
+_ = fromMaybe' 0 (Just 1)    -- `1`
 
 
 
@@ -1847,8 +1848,8 @@ listToMaybe :: [a] -> Maybe a
 listToMaybe [] = Nothing
 listToMaybe xs = Just $ head xs
 
-_ = listToMaybe [1, 2, 3]   -- `Just 1`
-_ = listToMaybe []          -- `Nothing`
+_ = listToMaybe [1, 2, 3]    -- `Just 1`
+_ = listToMaybe []           -- `Nothing`
 
 
 
@@ -1917,7 +1918,7 @@ rights' = foldr go []
   where go (Left _)  acc = acc
         go (Right x) acc = x : acc
 
-_ = rights' [Left 1, Right 2, Left 3]   -- `[2]`
+_ = rights' [Left 1, Right 2, Left 3]    -- `[2]`
 
 
 
@@ -1982,7 +1983,7 @@ import Data.List
 
 -- Using unfoldr to do
 -- the same thing as iterate
-_ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0   -- `[0,1,2,3,4,5,6,7,8,9]`
+_ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
 
 
 
@@ -2038,10 +2039,10 @@ unfold f z = go $ f z
 treeBuild :: Integer -> BinaryTree Integer
 treeBuild n = unfold (\x -> if x < n then Just (x + 1, x, x + 1) else Nothing) 0
 
-_ = treeBuild 0   -- `Leaf`
-_ = treeBuild 1   -- `Node Leaf 0 Leaf`
-_ = treeBuild 2   -- `Node (Node Leaf 1 Leaf) 0 (Node Leaf 1 Leaf)`
-_ = treeBuild 3   -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf))`
+_ = treeBuild 0    -- `Leaf`
+_ = treeBuild 1    -- `Node Leaf 0 Leaf`
+_ = treeBuild 2    -- `Node (Node Leaf 1 Leaf) 0 (Node Leaf 1 Leaf)`
+_ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf))`
 
 
 
@@ -2050,9 +2051,9 @@ _ = treeBuild 3   -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (Nod
 -- -----------------------------------------------------------------------------
 
 
--- Haskell programs are organized into modules.  Modules contain the datatypes,
+-- Haskell programs are organized into modules. Modules contain the datatypes,
 -- type synonyms, typeclasses, typeclass instances, and values you've defined
--- at the top level.  They offer a means to import other modules into the
+-- at the top level. They offer a means to import other modules into the
 -- scope of your program, and they also contain values that can be
 -- exported to other modules.
 

@@ -44,10 +44,10 @@ _ = (10 `div`) 4    -- `2`
 _ = (`div` 4) 10    -- `2`
 
 {-
-_ = (`div`) 10 4    -- Causes a compile-time error.
-_ = 10 (`div`) 4    -- Causes a compile-time error.
-_ = `(/)` 10 4      -- Causes a compile-time error.
-_ = 10 `(/)` 4      -- Causes a compile-time error.
+_ = (`div`) 10 4    -- Compilation error.
+_ = 10 (`div`) 4    -- Compilation error.
+_ = `(/)` 10 4      -- Compilation error.
+_ = 10 `(/)` 4      -- Compilation error.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -55,9 +55,9 @@ _ = 10 `(/)` 4      -- Causes a compile-time error.
 
 -- Infix operators have the properties of associativity and precedence.
 
--- Haskell's REPL (read-eval-print loop) environment, GHCi, has an `:i`
--- (short for `:info`) command that can give some information about
--- types and expressions.
+-- Haskell's REPL (read-eval-print loop) environment, GHCi, has an `:i` (short
+-- for `:info`) command that can give some information about types
+-- and expressions.
 
 
 
@@ -68,7 +68,7 @@ _ = 10 `(/)` 4      -- Causes a compile-time error.
 class Num a where
   (+) :: a -> a -> a
   ...
-  	-- Defined in ‘GHC.Num’
+        -- Defined in ‘GHC.Num’
 infixl 6 +
 -------------------------------------------------------------------------------}
 

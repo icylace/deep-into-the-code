@@ -1,3 +1,4 @@
+-- The module name and the filepath that contains the module must match.
 -- By default a module implicitly exports all top-level declarations.
 module Hello1 where
 

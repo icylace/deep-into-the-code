@@ -75,7 +75,7 @@ data Suit = Spades | Hearts | Clubs | Diamonds deriving (Eq, Ord)
 
 {-
 -- `Ord` is dependent on `Eq`.
-data Suit = Spades | Hearts | Clubs | Diamonds deriving (Ord)    -- Causes a compile-time error.
+data Suit = Spades | Hearts | Clubs | Diamonds deriving (Ord)    -- Compilation error.
 -}
 
 -- Values to the left are considered to be less than values to the right.

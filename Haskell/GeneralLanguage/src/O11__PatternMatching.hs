@@ -59,10 +59,10 @@ _ = f' 50    -- `False`
 g :: Integer -> Bool
 g 2 = True
 
-_ = g 1     -- Throws an exception.
+_ = g 1     -- Exception.
 _ = g 2     -- `True`
-_ = g 3     -- Throws an exception.
-_ = g 50    -- Throws an exception.
+_ = g 3     -- Exception.
+_ = g 50    -- Exception.
 
 -- -----------------------------------------------------------------------------
 
@@ -74,10 +74,10 @@ g' :: Integer -> Bool
 g' 2 = True
 g' _ = undefined
 
-_ = g' 1     -- Throws an exception.
+_ = g' 1     -- Exception.
 _ = g' 2     -- `True`
-_ = g' 3     -- Throws an exception.
-_ = g' 50    -- Throws an exception.
+_ = g' 3     -- Exception.
+_ = g' 50    -- Exception.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

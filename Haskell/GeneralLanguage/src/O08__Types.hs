@@ -473,7 +473,7 @@ True :: Bool
 13.0 :: Fractional p => p
 -------------------------------------------------------------------------------}
 
--- A concrete type can be chosen by declaring it.
+-- A concrete type can be chosen by annotating it.
 
 _ = 13 :: Integer
 

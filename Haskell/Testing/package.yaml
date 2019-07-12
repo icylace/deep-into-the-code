@@ -2,7 +2,7 @@ name: haskell-testing
 synopsis: My notes on Haskell testing.
 
 executables:
-  haskell:
+  haskell-testing:
     main: Main.hs
     source-dirs: [src]
-    dependencies: [base]
+    dependencies: [base, hspec, QuickCheck]

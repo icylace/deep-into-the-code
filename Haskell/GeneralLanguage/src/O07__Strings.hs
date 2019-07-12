@@ -64,8 +64,8 @@ _ = head ["H", "ello"]    -- `"H"`
 _ = head ["He", "llo"]    -- `"He"`
 
 {-
-_ = head ""    -- Throws an exception.
-_ = head []    -- Throws an exception.
+_ = head ""    -- Exception.
+_ = head []    -- Exception.
 -}
 
 -- `tail` returns a given list without its first element.
@@ -76,8 +76,8 @@ _ = tail "ab"             -- `"b"`
 _ = tail "a"              -- `""`
 
 {-
-_ = tail ""    -- Throws an exception.
-_ = tail []    -- Throws an exception.
+_ = tail ""    -- Exception.
+_ = tail []    -- Exception.
 -}
 
 -- `take` returns a number of elements from the beginning of a given list.
@@ -91,7 +91,7 @@ _ = take 1 ""     -- `""`
 _ = take 10 ""    -- `""`
 
 {-
-_ = take -1 ""    -- Throws an exception.
+_ = take -1 ""    -- Exception.
 -}
 
 -- The `drop` function returns a list of elements remaining after a specified
@@ -106,7 +106,7 @@ _ = drop 1 ""     -- `""`
 _ = drop 10 ""    -- `""`
 
 {-
-_ = drop -1 ""    -- Throws an exception.
+_ = drop -1 ""    -- Exception.
 -}
 
 -- The list index (subscript) operator, `!!`, returns the element at the
@@ -119,9 +119,9 @@ _ = "Hello" !! 3    -- `'l'`
 _ = "Hello" !! 4    -- `'o'`
 
 {-
-_ = "Hello" !! -1    -- Throws an exception.
-_ = "Hello" !! 5     -- Throws an exception.
-_ = "" !! 0          -- Throws an exception.
+_ = "Hello" !! -1    -- Exception.
+_ = "Hello" !! 5     -- Exception.
+_ = "" !! 0          -- Exception.
 -}
 
 -- -----------------------------------------------------------------------------
