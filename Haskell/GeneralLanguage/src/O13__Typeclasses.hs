@@ -1,4 +1,4 @@
-module O13__Typeclasses () where
+module O13__TypeClasses () where
 
 -- New datatypes can be created using the `data` keyword.
 
@@ -10,22 +10,23 @@ data Self = Myself
 
 {-
 -- Equality comparison with our custom `Me` and `Self` types won't work.
-_ = Me == Me            -- Compilation error.
-_ = Myself == Myself    -- Compilation error.
+_ = Me == Me            -- Error.
+_ = Myself == Myself    -- Error.
 -}
 
 
 
 
 
--- Typeclass instances are unique to a given type. Attempting to create multiple
--- instances of the same typeclass for the same type will result in an error.
+-- Type class instances are unique to a given type. Attempting to create
+-- multiple instances of the same type class for the same type will
+-- result in an error.
 
 
 
 
 
--- In Haskell, dispatching is specifying which typeclass instance to use for
+-- In Haskell, dispatching is specifying which type class instance to use for
 -- a function or value.
 
 
@@ -38,12 +39,6 @@ _ = Myself == Myself    -- Compilation error.
 -- A datatype does not have to have any data constructors.
 
 data Void
-
-
-
-
-
-
 
 
 
@@ -80,7 +75,7 @@ _ = sumNumberish (Age 10) (Age 10)    -- `Age 20`
 
 -- -----------------------------------------------------------------------------
 
--- `Numberish'` is a poorly conceived typeclass that demonstrates using type
+-- `Numberish'` is a poorly conceived type class that demonstrates using type
 -- declaration for disambiguation.
 
 class Numberish' a where
@@ -103,13 +98,13 @@ _ = defaultNumber :: Year    -- `Year 1988`
 
 {-
 -- `defaultNumber` on its own is too ambiguous.
-_ = defaultNumber    -- Compilation error.
+_ = defaultNumber    -- Error.
 -}
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Concrete types imply all the typeclasses they have instances of.
+-- Concrete types imply all the type classes they have instances of.
 
 -- Since `Int` has instances of `Num`, `Ord`, and `Eq`, the following will
 -- all typecheck.
@@ -132,15 +127,6 @@ check_ a a' = a == a'
 
 
 
-
-
-
-
-
-
-
-
-
 -- A type variable is a placeholder for a type.
 
 
@@ -148,8 +134,8 @@ check_ a a' = a == a'
 
 
 
--- When a type implements a typeclass it must have a declaration for every
--- function provided in the typeclass.
+-- When a type implements a type class it must have a declaration for every
+-- function provided in the type class.
 
 
 
@@ -157,18 +143,11 @@ check_ a a' = a == a'
 
 
 
--- A type that implements a typeclass is said to have an instance of the
--- typeclass. This instance specifies how the typeclass should work for
--- the type.
+-- A type that implements a type class is said to have an instance of the type
+-- class. This instance specifies how the type class should work for the type.
 
--- A type with an instance of a typeclass can use its values with the functions
--- defined for that typeclass.
-
-
-
-
-
-
+-- A type with an instance of a type class can use its values with the functions
+-- defined for that type class.
 
 
 
@@ -178,7 +157,7 @@ check_ a a' = a == a'
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Certain typeclasses can have instances of them conveniently "derived".
+-- Certain type classes can have instances of them conveniently "derived".
 -- Derived instances are automatically generated instances based solely
 -- on the defintion of a type.
 
@@ -187,15 +166,11 @@ data I = I deriving Eq
 _ = I == I    -- `True`
 _ = I /= I    -- `False`
 
--- The common typeclasses that can be derived are `Eq`, `Ord`, `Enum`,
+-- The common type classes that can be derived are `Eq`, `Ord`, `Enum`,
 -- `Bounded`, `Read`, and `Show`.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
-
-
-
-
 
 -- Polymorphic types can use constraints in their instance declarations to
 -- require their concrete types to have instances as well.
@@ -211,7 +186,7 @@ instance Eq a => Eq (Identity a) where
 -- -----------------------------------------------------------------------------
 
 -- It's possible to use a looser constraint to achieve the same thing. In this
--- case, the `Ord` typeclass can be used because it already requires the use
+-- case, the `Ord` type class can be used because it already requires the use
 -- of `Eq`.
 
 data Identity' a = Identity' a
@@ -231,22 +206,16 @@ check' x y = x == y
 check'' :: Ord a => a -> a -> Bool
 check'' x y = x == y
 
-
-
-
-
-
-
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Some standard Haskell typeclasses have a default concrete type which gets
+-- Some standard Haskell type classes have a default concrete type which gets
 -- used if the concrete type can't be determined when needed.
 
--- The division operator, `/`, is part of the `Fractional` typeclass and has the
--- type `Fractional a => a -> a -> a`. `Fractional` defaults to the concrete
--- type `Double`. An explicit type declaration can be used to override
--- the default.
+-- The division operator, `/`, is part of the `Fractional` type class and has
+-- the type `Fractional a => a -> a -> a`. `Fractional` defaults to the
+-- concrete type `Double`. An explicit type declaration can be used
+-- to override the default.
 
 _ = 1 / 2                         -- `0.5`
 _ = 1 / 2 :: Fractional a => a    -- `0.5`
@@ -274,7 +243,7 @@ _ = 1 / 2 :: Rational             -- `1 % 2`
 -- Values having concrete type will necessarily concretize polymorphic functions
 -- that are applied to them.
 
--- The addition operator, `+`, from the `Num` typeclass has the type
+-- The addition operator, `+`, from the `Num` type class has the type
 -- `Num a => a -> a -> a`
 
 x = 10 :: Integer
@@ -288,23 +257,13 @@ _ = (x + y)    -- Has the type `Integer`.
 
 
 
+-- Type class inheritance is only additive. That is, a subclass cannot override
+-- a superclass in any way.
 
 
 
 
--- Typeclass inheritance is only additive. That is, a subclass cannot override a
--- superclass in any way.
-
-
-
-
-
-
-
-
-
-
--- A typeclass instance should be kept in the same file as the type that has it.
+-- A type class instance should be in the same file as the type that has it.
 
 
 
@@ -318,18 +277,18 @@ _ = (x + y)    -- Has the type `Integer`.
 Key Terms
 =========
 
-Typeclass: A set of functions that can be shared across sets of types.
-Typeclass constraint: A type variable for a type implementing a typeclass.
-Superclass: A typeclass required by another typeclass.
-Subclass: A typeclass that requires another typeclass.
-Typeclass arrow (`=>`): Syntax for defining a typeclass constraint.
-Typeclass instance (instance): An implementation of a typeclass for a type.
+Type class: A set of functions that can be shared across sets of types.
+Type class constraint: A type variable for a type implementing a type class.
+Superclass: A type class required by another type class.
+Subclass: A type class that requires another type class.
+Type class arrow (`=>`): Syntax for defining a type class constraint.
+Type class instance (instance): An implementation of a type class for a type.
 
 Derived instance: An instance generated based only on a datatype definition.
 
 Type variable: A placeholder for a type.
 
-Typeclass inheritance: When a typeclass has a superclass.
+Type class inheritance: When a type class has a superclass.
 
 Polymorphism: Type variables referring to possibly multiple concrete types.
 Polymorphism: The usage of functions across different sets of types.

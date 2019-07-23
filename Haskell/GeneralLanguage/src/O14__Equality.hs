@@ -24,13 +24,13 @@ _ = x /= 9     -- `False`
 _ = x /= 10    -- `True`
 
 {-
--- Attempting to compare values having different types will cause an error.
-_ = 'a' == 8
+-- Values of different types cannot be compared with each other.
+_ = 'a' == 8    -- Error.
 -}
 
--- The `Eq` typeclass defines equality comparison.
+-- The `Eq` type class defines equality comparison.
 
--- Datatypes must have an instance of the `Eq` typeclass for comparison to work.
+-- Datatypes must have an instance of the `Eq` type class to do comparison.
 
 data Me1 = Me1
 
@@ -178,7 +178,7 @@ data Which a = ThisOne a | ThatOne a
 instance Eq a => Eq (Which a) where
   (==) (ThisOne x) (ThisOne y) = x == y
   (==) (ThatOne x) (ThatOne y) = x == y
-  (==) _ _ = False
+  (==) _           _           = False
 
 _ = ThisOne 'a' == ThisOne 'a'    -- `True`
 _ = ThisOne 'a' == ThisOne 'b'    -- `False`

@@ -1,18 +1,19 @@
 module O11__PatternMatching () where
 
--- Pattern matching is a way of matching values against patterns and, where
--- appropriate, binding variables to successful matches.
-
 -- A pattern is a syntactic way of deconstructing product and sum types to get
 -- at their inhabitants.
 
--- Patterns are matched against values, or data constructors, not types.
--- Matching a pattern may fail, procedding to the next available pattern
--- to match or succeed. When a match succeeds, the variables exposed in
--- the pattern are bound. Pattern matching proceeds from left to right
--- and outside to inside.
+-- Pattern matching is a way of matching values against patterns and, where
+-- appropriate, binding variables to successful matches.
 
--- The underscore here represents a "catch-all" case that never fails to match.
+-- Patterns are matched against values, or data constructors, not types.
+
+-- If a match is successful, the variables exposed in the pattern are bound.
+-- If unsuccessful, the next available pattern is attempted to match.
+
+-- Pattern matching proceeds from left to right and outside to inside.
+
+-- The underscore pattern is a "catch-all" case that never fails to match.
 
 f :: Integer -> Bool
 f 2 = True
@@ -49,12 +50,13 @@ _ = f' 50    -- `False`
 -- A function will return "bottom", a non-value, when it's applied to an
 -- appropriately typed argument it doesn't know how to handle.
 
--- Evaluating a function applied to an unhandled argument throws an exception.
+-- Evaluating a function applied to an argument it doesn't handle will throw
+-- an exception.
 
 -- Functions of this sort are called partial functions and are also said to be
 -- incomplete pattern matches or non-exhaustive.
 
--- A partial function can implicitly not handle all cases.
+-- A partial function implicitly does not handle all cases.
 
 g :: Integer -> Bool
 g 2 = True
@@ -305,7 +307,7 @@ fn x =
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- An "as-pattern" in Haskell is a way of referring to a value while
+-- The "as-pattern" in Haskell is a way of referring to a value while
 -- simultaneously pattern matching on part of it.
 
 f2 :: Show a => (a, b) -> IO (a, b)
@@ -329,17 +331,17 @@ _ = doubleUp [1, 2, 3]    -- `[1,1,2,3]`
 
 
 
-isSubseqOf :: (Eq a) => [a] -> [a] -> Bool
-isSubseqOf []     _        = True
-isSubseqOf _      []       = False
-isSubseqOf (x:xs) y@(_:ys) = elem x y && isSubseqOf xs ys
+isSubsequenceOf :: (Eq a) => [a] -> [a] -> Bool
+isSubsequenceOf []     _        = True
+isSubsequenceOf _      []       = False
+isSubsequenceOf (x:xs) y@(_:ys) = elem x y && isSubsequenceOf xs ys
 
-_ = isSubseqOf "blah" "blahwoot"    -- `True`
-_ = isSubseqOf "blah" "wootblah"    -- `True`
-_ = isSubseqOf "blah" "wboloath"    -- `True`
-_ = isSubseqOf "blah" "wootbla"     -- `False`
-_ = isSubseqOf "blah" "halbwoot"    -- `False`
-_ = isSubseqOf "blah" "blawhoot"    -- `True`
+_ = isSubsequenceOf "blah" "blahwoot"    -- `True`
+_ = isSubsequenceOf "blah" "wootblah"    -- `True`
+_ = isSubsequenceOf "blah" "wboloath"    -- `True`
+_ = isSubsequenceOf "blah" "wootbla"     -- `False`
+_ = isSubsequenceOf "blah" "halbwoot"    -- `False`
+_ = isSubsequenceOf "blah" "blawhoot"    -- `True`
 
 
 
@@ -357,7 +359,7 @@ capitalizeWords :: String -> [(String, String)]
 capitalizeWords x = zip ws $ map (\(c:cs) -> toUpper c : cs) ws
   where ws = words x
 
-_ = capitalizeWords "hello world"    -- `[("hello","Hello"),("world","World")]`
+_ = capitalizeWords "hello world"    -- `[("hello", "Hello"), ("world", "World")]`
 
 
 

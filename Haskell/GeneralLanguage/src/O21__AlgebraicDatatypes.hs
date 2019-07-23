@@ -1,9 +1,5 @@
 module O21__AlgebraicDatatypes () where
 
-
-
-
-
 -- A data declaration relating a type constant with its sole constant value.
 
 data Trivial = Trivial'
@@ -45,23 +41,14 @@ x4 = Foo "hi"
 
 {-
 x4' :: Foo String
-x4' = Foo 10    -- Compilation error.
+x4' = Foo 10    -- Error.
 -}
 
 {-
-data Baz = Baz a    -- Compilation error.
+data Baz = Baz a    -- Error.
 -}
 
-
-
-
-
-
-
-
-
-
-
+-- -----------------------------------------------------------------------------
 
 
 data Price = Price Integer deriving (Eq, Show)
@@ -95,23 +82,18 @@ getManu _         = error "Nothing to do for a plane!"
 
 
 
-
-
-
-
-
-
-
 -- A "kind" is a type of a type.
 
 -- The kind of a concrete type is the primitive type `*`.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :kind Int
 Int :: *
 
 > :k Int
 Int :: *
+
 -------------------------------------------------------------------------------}
 
 -- The kind signature of `Int` is `*`.
@@ -123,6 +105,7 @@ Int :: *
 -- The kind of a parameterized type constructor is `* -> *`.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k Maybe
 Maybe :: * -> *
 
@@ -134,16 +117,20 @@ Maybe :: * -> *
 
 > :k (->) * *
 (->) * * :: *
+
 -------------------------------------------------------------------------------}
 
 -- The kind of the primitive type `*` is itself.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k *
 * :: *
+
 -------------------------------------------------------------------------------}
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k * -> *
 * -> * :: *
 
@@ -162,41 +149,36 @@ Either * :: * -> *
 > :k Either * *
 Either * * :: *
 
-> :k Int *    -- Compilation error.
+> :k Int *    -- Error.
+
 -------------------------------------------------------------------------------}
-
-
-
-
 
 data Doggies a = Husky a | Mastiff a deriving (Eq, Show)
 
 -- `Doggies` needs to be applied to become a concrete type.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k Doggies
 Doggies :: * -> *
+
 -------------------------------------------------------------------------------}
 
 -- `Husky` needs to be applied to become a concrete value.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :t Husky
 Husky :: a -> Doggies a
+
 -------------------------------------------------------------------------------}
 
-
-
-
-
-
 -- A higher-kinded type is a kind that must be applied before it can be a type.
-
-
 
 data Silly a b c d = MkSilly a b c d deriving Show
 
 {- GHCi ------------------------------------------------------------------------
+
 > :kind Silly
 Silly :: * -> * -> * -> * -> *
 
@@ -217,11 +199,8 @@ Silly Int String Bool String :: *
 
 > :kind (Int, String, Bool, String)
 (Int, String, Bool, String) :: *
+
 -------------------------------------------------------------------------------}
-
-
-
-
 
 
 
@@ -237,17 +216,9 @@ Silly Int String Bool String :: *
 
 
 
-
-
 -- Nullary data constructors, such as True and False, are constant values at the
 -- term level and, since they have no arguments, they can't construct or
 -- represent any data other than themselves.
-
-
-
-
-
-
 
 
 
@@ -264,29 +235,14 @@ data Example2 = Example2 Int String deriving (Eq, Show)
 
 
 
-
-
-
-
 -- A tuple is an example of an "anonymous product" in that it is a product value
 -- with no name.
-
-
-
-
-
 
 
 
 -- Datatypes that only contain a unary data constructor always have the same
 -- cardinality as the type they contain.  For cardinality, this means unary
 -- data constructors are the identity function.
-
-
-
-
-
-
 
 
 
@@ -299,9 +255,10 @@ data Example2 = Example2 Int String deriving (Eq, Show)
 
 
 
-data BinaryTree a = Leaf
-                  | Node (BinaryTree a) a (BinaryTree a)
-                  deriving (Eq, Ord, Show)
+data BinaryTree a
+  = Leaf
+  | Node (BinaryTree a) a (BinaryTree a)
+  deriving (Eq, Ord, Show)
 
 insert' :: Ord a => a -> BinaryTree a -> BinaryTree a
 insert' b Leaf = Node Leaf b Leaf
@@ -309,9 +266,6 @@ insert' b (Node left a right)
   | b == a = Node left a right
   | b < a  = Node (insert' b left) a right
   | b > a  = Node left a (insert' b right)
-
-
-
 
 mapTree :: (a -> b) -> BinaryTree a -> BinaryTree b
 mapTree _ Leaf = Leaf
@@ -327,28 +281,6 @@ mapExpected = Node (Node Leaf 4 Leaf) 2 (Node Leaf 5 Leaf)
 mapOkay = if mapTree (+1) testTree' == mapExpected
           then print "yup okay!"
           else error "test failed!"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -376,8 +308,8 @@ tooManyGoats (Goats n) = n > 42
 
 
 -- One key contrast between a `newtype` and a `type` alias is that you can
--- define typeclass instances for newtypes that differ from the instances
--- for their underlying type.  You can't do that for type synonyms.
+-- define type class instances for newtypes that differ from the instances
+-- for their underlying type. You can't do that for type synonyms.
 
 
 
@@ -397,8 +329,8 @@ instance TooMany Goats where
 
 
 -- A product type's cardinality is the product of the cardinalities of its
--- inhabitants.  Arithmetically, products are the result of
--- multiplication.  Where a sum type was expressing or, a
+-- inhabitants. Arithmetically, products are the result of
+-- multiplication. Where a sum type was expressing or, a
 -- product type expresses and.
 
 
@@ -460,11 +392,12 @@ data Author' = Fiction' AuthorName | Nonfiction' AuthorName deriving (Eq, Show)
 
 
 
-data Expr = Number Int
-          | Add Expr Expr
-          | Minus Expr
-          | Mult Expr Expr
-          | Divide Expr Expr
+data Expr
+  = Number Int
+  | Add Expr Expr
+  | Minus Expr
+  | Mult Expr Expr
+  | Divide Expr Expr
 
 
 

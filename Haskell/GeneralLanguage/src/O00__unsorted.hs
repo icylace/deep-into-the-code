@@ -3,6 +3,7 @@
 module O00__unsorted () where
 
 import Data.List (intersperse)
+import Data.List.NonEmpty (NonEmpty(..))
 import Data.Maybe (isJust)
 
 
@@ -20,7 +21,7 @@ f = (+) 1
 g = (*) 10
 
 a = f . g
-b = f & g    -- Compilation error.
+b = f & g    -- Error.
 
 _ = a 2
 _ = b 2
@@ -364,7 +365,7 @@ _ = all isJust [Just 'd', Just 'o', Just 'g']    -- `True`
 
 
 _ = intersperse ' ' "Blah"     -- `"B l a h"`
-_ = intersperse 0 [1, 1, 1]    -- `[1,0,1,0,1]`
+_ = intersperse 0 [1, 1, 1]    -- `[1, 0, 1, 0, 1]`
 
 
 
@@ -372,13 +373,6 @@ _ = intersperse 0 [1, 1, 1]    -- `[1,0,1,0,1]`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
-
-
-
-
-
-
-
 
 
 
@@ -434,26 +428,20 @@ _ = kessel (1 :: Integer) 2
 -- make a new function.
 
 -- Prelude> :i (.)
--- (.) :: (b -> c) -> (a -> b) -> a -> c 	-- Defined in ‘GHC.Base’
+-- (.) :: (b -> c) -> (a -> b) -> a -> c    -- Defined in 'GHC.Base'
 -- infixr 9 .
 
 g1 = negate . sum
 
 _ = g1 [1, 2, 3, 4, 5]    -- `-15`
 
-{-
-
-negate . sum $ [1, 2, 3, 4, 5]
-
-negate (sum [1, 2, 3, 4, 5])
-
-(negate . sum) [1, 2, 3, 4, 5]
-
--}
+_ = negate . sum $ [1, 2, 3, 4, 5]    -- `-15`
+_ = negate (sum [1, 2, 3, 4, 5])      -- `-15`
+_ = (negate . sum) [1, 2, 3, 4, 5]    -- `-15`
 
 
 
-_ = take 5 . filter odd . enumFrom $ 3    -- `[3,5,7,9,11]`
+_ = take 5 . filter odd . enumFrom $ 3    -- `[3, 5, 7, 9, 11]`
 
 
 
@@ -531,6 +519,7 @@ _ = g2'' "abracadabra"
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > :t 10
 10 :: Num p => p
 
@@ -542,6 +531,7 @@ _ = g2'' "abracadabra"
 
 > :t (10 + 9.8)
 (10 + 9.8) :: Fractional a => a
+
 -------------------------------------------------------------------------------}
 
 
@@ -551,7 +541,7 @@ _ = g2'' "abracadabra"
 n = 10 :: Float
 -- `n` has the type `Float`.
 
--- A typeclass constraint cannot be explicitly declared.
+-- A type class constraint cannot be explicitly declared.
 
 {-
 _ = n = 10 :: Fractional
@@ -570,9 +560,9 @@ _ = (-) 10 1         -- `9`
 _ = flip (-) 10 1    -- `-9`
 
 {-
-_ = foldl (:) [] [1, 2, 3]    -- Compilation error.
+_ = foldl (:) [] [1, 2, 3]    -- Error.
 -}
-_ = foldl (flip (:)) [] [1, 2, 3]    -- `[3,2,1]`
+_ = foldl (flip (:)) [] [1, 2, 3]    -- `[3, 2, 1]`
 -- ((([] (flip (:)) 1) (flip (:)) 2) (flip (:)) 3)
 -- (([1] (flip (:)) 2) (flip (:)) 3)
 -- ([2, 1] (flip (:)) 3)
@@ -713,8 +703,8 @@ _ = fmap show (False, 2)      -- `(False,"2")`
 _ = fmap show (True, True)    -- `(True,"True")`
 
 {-
-_ = foldr (+) 0 (3, "99")    -- Compilation error.
-_ = foldr (+) 0 (1, 2, 3)    -- Compilation error.
+_ = foldr (+) 0 (3, "99")    -- Error.
+_ = foldr (+) 0 (1, 2, 3)    -- Error.
 -}
 
 
@@ -769,7 +759,7 @@ concatUserInput = do
   -- `x1` and `x2` are variables bound to user input.
   x1 <- getLine
   x2 <- getLine
-  -- `return` wraps its argument in the monadic structure.
+  -- `return` wraps its argument in the monad.
   return (x1 ++ x2)
 
 
@@ -849,7 +839,7 @@ aggregate f xs = sum (map f xs)
 -- eta reduction example
 -- [1]: https://youtu.be/seVSlKazsNk?t=7m11s
 aggregate f =           sum . map f
-aggregate f =       (.) sum (map f)
+aggregate f =       (.) sum  (map f)
 aggregate f =       (.) sum $ map f
 aggregate f =       (.) sum . map $ f
 aggregate   = \f -> (.) sum . map $ f
@@ -908,6 +898,31 @@ myFunc xToY yToZ _ (a, x) = undefined
 
 
 
+
+-- data
+-- type
+-- newtype
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- from "Haskell 101"
 -- https://youtu.be/cTN1Qar4HSw?t=2097
 
@@ -928,10 +943,6 @@ myFunc xToY yToZ _ (a, x) = undefined
 --          show :: Stuff -> String
 -- length        ::          String -> Int
 -- length . show :: Stuff           -> Int
-
-
-
-
 
 
 
@@ -986,6 +997,25 @@ yy = undefined
 -- `yy` is a method which produces a string value by potentially
 -- performing side effects.
 
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- id == \x -> const x x
+
+_ = id 1                                                                -- `1`
+_ = id id 1                                                             -- `1`
+_ = id id id id id id id id id id id id id id id id id id id id id 1    -- `1`
+
+_ = const 1 $ 9                                                    -- `1`
+_ = const const const 1 $ 9                                        -- `1`
+_ = const const const const const const const const const 1 $ 9    -- `1`
+
+-- -----------------------------------------------------------------------------
 
 
 
@@ -1210,10 +1240,10 @@ quantFlip1 :: Quantum -> Quantum
 
 data Maybe' a = Nothing' | Just' a
 
--- The `Nothing` value represents a safe way, without hitting bottom, to express
--- that no valid value can be produced.
+-- `Nothing` represents a safe way, without hitting bottom, to express that no
+-- valid value can be produced.
 
--- The `Just a` value is used to hold valid data.
+-- `Just a` is used to hold valid data.
 
 f3 :: Bool -> Maybe Int
 f3 False = Just 0
@@ -1232,10 +1262,9 @@ f3 _     = Nothing
 
 dividedBy :: Integral a => a -> a -> (a, a)
 dividedBy num denom = go num denom 0
-  where
-    go n d count
-      | n < d = (count, n)
-      | otherwise = go (n - d) d (count + 1)
+  where go n d count
+          | n < d = (count, n)
+          | otherwise = go (n - d) d (count + 1)
 
 -- dividedBy 10 2
 
@@ -1327,7 +1356,15 @@ _ = printExpr a3    -- `"1 + 9001 + 1 + 20001"`
 
 
 
+-- -----------------------------------------------------------------------------
 
+_ = 1 :| [2, 3]    -- `1 :| [2,3]`
+-- it :: Num a => GHC.Base.NonEmpty a
+
+
+
+
+-- -----------------------------------------------------------------------------
 
 
 
@@ -1359,8 +1396,10 @@ verbs = ["pit", "tab", "tag", "dab"]
 
 combo'' :: String -> String -> [String] -> [String] -> [(String, String, String)]
 combo'' stops vowels nouns verbs =
-  [ (x, y, z) | x <- words, y <- words, z <- words
-              , elem x nouns, elem y verbs, elem z nouns ]
+  [ (x, y, z)
+  | x <- words, y <- words, z <- words
+  , elem x nouns, elem y verbs, elem z nouns
+  ]
     where words = [[x, y, z] | x <- stops, y <- vowels, z <- stops]
 
 _ = combo'' "pbtd" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit","pat"),("pap","pit","pad"),("pap","tab","pap"),("pap","tab","pat"),("pap","tab","pad"),("pap","dab","pap"),("pap","dab","pat"),("pap","dab","pad"),("pat","pit","pap"),("pat","pit","pat"),("pat","pit","pad"),("pat","tab","pap"),("pat","tab","pat"),("pat","tab","pad"),("pat","dab","pap"),("pat","dab","pat"),("pat","dab","pad"),("pad","pit","pap"),("pad","pit","pat"),("pad","pit","pad"),("pad","tab","pap"),("pad","tab","pat"),("pad","tab","pad"),("pad","dab","pap"),("pad","dab","pat"),("pad","dab","pad")]`
@@ -1379,12 +1418,10 @@ f6 x y z = h2 (subFunction x y z)
   where subFunction x y z = g x y z
 
 -- The above is not tail recursive, calls `h2`, not itself.
-
 f6 x y z = h2 (f6 (x - 1) y z)
 
 -- Still not tail recursive. `f6` is invoked again but not in the tail call of
 -- `f6`; it's an argument to the tail call, `h2`:
-
 f6 x y z = f6 (x - 1) y z
 
 -- This is tail recursive. `f6` is calling itself directly with no intermediaries.
@@ -1457,6 +1494,7 @@ ifEvenAdd2 n = if even n then Just (n + 2) else Nothing
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > :kind Int
 Int :: *
 
@@ -1465,6 +1503,7 @@ Bool :: *
 
 > :k Char
 Char :: *
+
 -------------------------------------------------------------------------------}
 
 
@@ -1497,8 +1536,10 @@ Char :: *
 data Example a = Blah | RoofGoats | Woot a
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k Example
 Example :: * -> *
+
 -------------------------------------------------------------------------------}
 
 
@@ -1512,17 +1553,20 @@ Example :: * -> *
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k (,)
 (,) :: * -> * -> *
 
 > :k (Int, Int)
 (Int, Int) :: *
+
 -------------------------------------------------------------------------------}
 
 
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k Maybe
 Maybe :: * -> *
 
@@ -1547,11 +1591,13 @@ Either Int String :: *
 
 > :k Maybe (Maybe Int)
 Maybe (Maybe Int) :: *
+
 -------------------------------------------------------------------------------}
 
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > :k []
 [] :: * -> *
 
@@ -1570,6 +1616,7 @@ Maybe (Maybe Int) :: *
 
 > :k Maybe [Bool]
 Maybe [Bool] :: *
+
 -------------------------------------------------------------------------------}
 
 
@@ -1620,6 +1667,7 @@ _ = [1..10] :: [Int]
 
 
 {- GHCi ------------------------------------------------------------------------
+
 > data Trivial = Trivial
 
 > :k Trivial
@@ -1652,13 +1700,14 @@ TwoArgs :: * -> * -> *
 
 > :k ThreeArgs
 ThreeArgs :: * -> * -> * -> *
+
 -------------------------------------------------------------------------------}
 
 
 
 
 
-_ = fmap Just [1, 2, 3]    -- `[Just 1,Just 2,Just 3]`
+_ = fmap Just [1, 2, 3]    -- `[Just 1, Just 2, Just 3]`
 
 
 
@@ -1745,7 +1794,6 @@ mkWord xs
   | otherwise = Just $ Word' xs
   where vowelCount     = length $ filter (\letter -> elem letter vowels) xs
         consonantCount = length $ filter (\letter -> notElem letter vowels) xs
-
 
 -}
 
@@ -1951,21 +1999,21 @@ eitherMaybe'' = either' (const Nothing)
 
 
 
-
+{- GHCi ------------------------------------------------------------------------
 
 -- iterate is like a limited
 -- unfold that never ends
 > :t iterate
 iterate :: (a -> a) -> a -> [a]
 
--}
+-------------------------------------------------------------------------------}
 
 
 
 
 -- because it never ends, we must use
 -- take to get a finite list
-_ = take 10 $ iterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+_ = take 10 $ iterate (+1) 0    -- `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
 
 
@@ -1983,7 +2031,7 @@ import Data.List
 
 -- Using unfoldr to do
 -- the same thing as iterate
-_ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+_ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0    -- `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
 
 
@@ -1999,7 +2047,7 @@ _ = take 10 $ unfoldr (\b -> Just (b, b + 1)) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
 myIterate :: (a -> a) -> a -> [a]
 myIterate f z = z : (myIterate f $ f z)
 
-_ = take 10 $ myIterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+_ = take 10 $ myIterate (+1) 0    -- `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
 
 myUnfoldr :: (b -> Maybe (a, b)) -> b -> [a]
@@ -2013,7 +2061,7 @@ betterIterate f z = myUnfoldr (\x -> Just (x, f x)) z
 -- betterIterate f = myUnfoldr (\x -> Just (x, f x))
 -- betterIterate f = myUnfoldr $ \x -> Just (x, f x)
 
-_ = take 10 $ betterIterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
+_ = take 10 $ betterIterate (+1) 0    -- `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
 
 
@@ -2027,9 +2075,10 @@ _ = take 10 $ betterIterate (+1) 0    -- `[0,1,2,3,4,5,6,7,8,9]`
 
 
 
-data BinaryTree a = Leaf
-                  | Node (BinaryTree a) a (BinaryTree a)
-                  deriving (Eq, Ord, Show)
+data BinaryTree a
+  = Leaf
+  | Node (BinaryTree a) a (BinaryTree a)
+  deriving (Eq, Ord, Show)
 
 unfold :: (a -> Maybe (a, b, a)) -> a -> BinaryTree b
 unfold f z = go $ f z
@@ -2052,10 +2101,10 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 
 
 -- Haskell programs are organized into modules. Modules contain the datatypes,
--- type synonyms, typeclasses, typeclass instances, and values you've defined
--- at the top level. They offer a means to import other modules into the
--- scope of your program, and they also contain values that can be
--- exported to other modules.
+-- type synonyms, type classes, type class instances, and values you've
+-- defined at the top level. They offer a means to import other modules
+-- into the scope of your program, and they also contain values that
+-- can be exported to other modules.
 
 
 
@@ -2075,10 +2124,6 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 
 
 
-
-
--- -----------------------------------------------------------------------------
-
 -- https://wiki.haskell.org/Import_modules_properly
 
 -- import qualified Very.Special.Module as VSM
@@ -2090,20 +2135,18 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 
 
 
--- -----------------------------------------------------------------------------
+{- GHCi ------------------------------------------------------------------------
 
-
-
-{-
-:t (.)
+> :t (.)
 (.) :: (b -> c) -> (a -> b) -> a -> c
 
-:t (.) . (.)
+> :t (.) . (.)
 (.) . (.) :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
 
-:t (.) . (.) . (.)
+> :t (.) . (.) . (.)
 (.) . (.) . (.) :: (b -> c) -> (a1 -> a2 -> a3 -> b) -> a1 -> a2 -> a3 -> c
--}
+
+-------------------------------------------------------------------------------}
 
 
 
@@ -2125,10 +2168,15 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 -- -----------------------------------------------------------------------------
 
 
--- TODO: verify this:
--- -- You can use the same alias acrross imports.
--- import qualified Language.Haskell.HsColour           as HSC
--- import qualified Language.Haskell.HsColour.Colourise as HSC
+
+
+-- Each argument (and result) in the type signature for a function must be a
+-- fully applied type. Each argument must have the kind `*`.
+
+-- Each argument and result of every function must be a type constant, not a
+-- type constructor.
+
+
 
 
 
@@ -2160,16 +2208,17 @@ Uncurried function: In Haskell, a function taking a tuple of many arguments.
 Bottom: An indication that a computation does not result in a value.
 
 
-
 Directive: An instruction to the compiler.
-
 
 
 Predicate: A function that evaluates to a boolean value.
 
 
-
 Side effect: A result apart from the value of an expression.
+
+
+
+Idempotence: A function property where result is fixed after one application.
 
 
 
@@ -2185,10 +2234,16 @@ Pragma: A special compiler instruction embedded within source code.
 Package: A program including all of its modules and dependencies.
 
 Dependency: An interlinked element of a program like libraries and tests.
-The Haskell Cabal (Cabal): A package manager for Haskell.
 Cabal: Common Architecture for Building Applications and Libraries
+The Haskell Cabal (Cabal): A package manager for Haskell.
 Stack: A project manager for Haskell.
 
 Haskeller: A Haskell programmer, especially one who is proficient.
+
+
+
+
+Unit testing: A method in which the smallest parts of an application are tested.
+Property testing: A method where a subset of an input space is validated.
 
 -}

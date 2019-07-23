@@ -64,9 +64,8 @@ d2 = c2 + 5    -- `12`
 
 _ = 2 + 3
 
--- My notes about Haskell uses this trick a lot as a way for me to avoiding
--- having to constantly come up with new variable names when exploring
--- Haskell's features.
+-- My notes about Haskell heavily uses this trick to minimize the worry about
+-- naming things when exploring the language while maintaining compilability.
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -88,7 +87,7 @@ _ = (5 + 6) * (3 + 4) / (1 + 2)    -- `25.666666666666668`
 
 -- Nesting is unlimited.
 
-_ = ((1 + 2) * 3) + 4 * (5 + 6)    -- `53`
+_ = ((1 + 2) * 3) + 4 * (5 + 6)                            -- `53`
 _ = ((1 + 2) * (3 * (8 + (2 * (5 + 4))))) + 4 * (5 + 6)    -- `278`
 
 -- An expression will not necessarily be reduced to a value when evaluated. By

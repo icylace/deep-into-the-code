@@ -1,23 +1,18 @@
 module O09__Branching () where
 
--- The function `not` takes a `Bool` value and returns the other `Bool` value.
+-- `not` takes a `Bool` value and returns the other `Bool` value.
 
 _ = not False    -- `True`
 _ = not True     -- `False`
 
-
-
-
-
-
--- The boolean conjunction, or logical AND, operator `&&` returns `True` if both
--- operands are `True`.
+-- The boolean conjunction (a.k.a. logical AND) operator, `&&`, returns `True`
+-- if both operands are `True`.
 
 _ = True && True          -- `True`
 _ = not (True && True)    -- `False`
 _ = (8 > 4) && (4 > 5)    -- `False`
 
--- The boolean disjunction, or logical OR, operator `||` returns `True` if
+-- The boolean disjunction (a.k.a logical OR) operator `||` returns `True` if
 -- either operands are `True`.
 
 _ = False || True               -- `True`
@@ -40,8 +35,6 @@ _ = if True
       else "No"
 -- `"Yes"`
 
--- `if` expressions can be multiline without indentation.
-
 _ = if True
     then "Yes"
     else "No"
@@ -49,13 +42,13 @@ _ = if True
 
 {-
 -- The conditional must be a boolean.
-_ = if "A" then "Yes" else "No"    -- Compilation error.
+_ = if "A" then "Yes" else "No"    -- Error.
 -}
 
 {-
--- If the expression in the `then` branch has a different type than the
--- expression in the `else` branch, an error will occur.
-_ = if True then "Yes" else 0
+-- If the expression in the `then` branch must have the same type as the
+-- expression in the `else` branch.
+_ = if True then "Yes" else 0    -- Error.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -232,7 +225,7 @@ _ = myAbs5 9       -- Exception.
 myAbs6 :: Integer -> Integer
 myAbs6 x
   | x < 0 = -x
-  | _     = x    -- Compilation error.
+  | _     = x    -- Error.
 -}
 
 -- -----------------------------------------------------------------------------

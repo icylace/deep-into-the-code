@@ -1,0 +1,8 @@
+name: haskell-quickcheck
+synopsis: My notes on Haskell testing with QuickCheck.
+
+executables:
+  haskell-quickcheck:
+    main: Main.hs
+    source-dirs: [src]
+    dependencies: [base, hspec, QuickCheck]

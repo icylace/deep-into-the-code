@@ -40,6 +40,6 @@ f x = 1 + (x * 2) + (x * 3)
 Key Terms
 =========
 
-Significant whitespace: Whitespace that helps determine the meaning of code.
+Significant whitespace: Whitespace that affects the meaning of code.
 
 -}

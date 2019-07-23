@@ -1,6 +1,6 @@
 module O15__Ordering () where
 
--- The `Ord` typeclass defines order comparison.
+-- The `Ord` type class defines order comparison.
 
 x :: Integer
 x = 9
@@ -57,25 +57,25 @@ _ = compare True True          -- `EQ`
 -- -----------------------------------------------------------------------------
 
 _ = max 7 8                -- `8`
-_ = max (3, 4) (2, 3)      -- `(3,4)`
+_ = max (3, 4) (2, 3)      -- `(3, 4)`
 _ = max "Julie" "Chris"    -- `"Julie"`
 _ = max 7 (max 8 9)        -- `9`
 
 _ = min 10 (-10)                     -- `-10`
-_ = min [2, 3, 4, 5] [3, 4, 5, 6]    -- `[2,3,4,5]`
+_ = min [2, 3, 4, 5] [3, 4, 5, 6]    -- `[2, 3, 4, 5]`
 _ = min 'f' 'd'                      -- `d`
 _ = min 7 (min 8 9)                  -- `7`
 
 -- -----------------------------------------------------------------------------
 
--- Deriving an instance for the `Ord` typeclass relies on the way the datatype
+-- Deriving an instance for the `Ord` type class relies on the way the datatype
 -- is defined to determine ordering.
 
 data Suit = Spades | Hearts | Clubs | Diamonds deriving (Eq, Ord)
 
 {-
 -- `Ord` is dependent on `Eq`.
-data Suit = Spades | Hearts | Clubs | Diamonds deriving (Ord)    -- Compilation error.
+data Suit = Spades | Hearts | Clubs | Diamonds deriving (Ord)    -- Error.
 -}
 
 -- Values to the left are considered to be less than values to the right.

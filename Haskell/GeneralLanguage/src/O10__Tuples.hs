@@ -1,48 +1,51 @@
 module O10__Tuples () where
 
 -- The `Data.Tuple` module provides the `swap` function.
-
-import Data.Tuple
+import Data.Tuple (swap)
 
 -- A tuple is a grouping of fixed-size for values having either the same types
 -- or different types.
 
-_ = (,,,) 8 "Hello" "World" 'c'    -- `(8,"Hello","World",'c')`
-_ = (8, "Hello", "World", 'c')     -- `(8,"Hello","World",'c')`
+-- The number of values contained within a tuple is called its arity.
 
--- The number of values contained within a tuple is called its arity. The arity
--- of the previous tuple is 4.
+_ = (,,,) 8 "Hello" "World" 'c'    -- `(8, "Hello", "World", 'c')`
 
--- A triple is a tuple containing three values. Therefore its arity is 3.
+-- A tuple can be in syntactic sugar style that may be more familiar.
 
-_ = (,,) 8 "Hello" "World"    -- `(8,"Hello","World")`
-_ = (8, "Hello", "World")     -- `(8,"Hello","World")`
+_ = (8, "Hello", "World", 'c')     -- `(8, "Hello", "World", 'c')`
+
+-- The arity of each of the previous tuples is 4.
+
+-- A triple is a tuple containing three values. Its arity is 3.
+
+_ = (,,) 8 "Hello" "World"    -- `(8, "Hello", "World")`
+_ = (8, "Hello", "World")     -- `(8, "Hello", "World")`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- A pair is a tuple containing a couple values. Its arity is 2.
 
-_ = (,) 8 10    -- `(8,10)`
-_ = (8, 10)     -- `(8,10)`
+_ = (,) 8 10    -- `(8, 10)`
+_ = (8, 10)     -- `(8, 10)`
 
-_ = (,) 8 "Hello"    -- `(8,"Hello")`
-_ = (8, "Hello")     -- `(8,"Hello")`
+_ = (,) 8 "Hello"    -- `(8, "Hello")`
+_ = (8, "Hello")     -- `(8, "Hello")`
 
--- The `fst` function gets the left value of a pair.
+-- `fst` gets the left value of a pair.
 
 _ = fst (8, "Hello")        -- `8`
 _ = 1 + fst (8, "Hello")    -- `9`
 
--- The `snd` function gets the right value of a pair.
+-- `snd` gets the right value of a pair.
 
 _ = snd (8, "Hello")                -- `"Hello"`
 _ = snd (8, "Hello") ++ " World"    -- `"Hello World"`
 
--- The `swap` function exchanges the left and right values with each other.
+-- `swap` exchanges the left and right values with each other.
 
-_ = swap (8, "Hello")           -- `("Hello",8)`
-_ = swap $ swap (8, "Hello")    -- `(8,"Hello")`
+_ = swap (8, "Hello")           -- `("Hello", 8)`
+_ = swap $ swap (8, "Hello")    -- `(8, "Hello")`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -66,13 +69,25 @@ _ = ()    -- `()`
 
 -- Tuples can be partially applied.
 
-withFirstCouple = (,,,) 8 "Hello"
-_ = withFirstCouple 'B' 3.0    -- `(8,"Hello",'B',3.0)`
+withACouple = (,,,) 8 "Hello"
+_ = withACouple 'B' 3.0    -- `(8, "Hello", 'B', 3.0)`
+
+{-
+-- The TupleSections language extensions is required to allow sugar syntax for
+-- tuples to be partially applied:
+-- https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#extension-TupleSections
+
+withAnotherCouple = (8, "Hello", )    -- Error.
+-}
+
+-- TODO:
+-- show how different parts of a tuple can be partially applied using TupleSections:
+-- https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/guide-to-ghc-extensions/basic-syntax-extensions#tuplesections
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- Tuples can be compared on an element-by-element basis.
+-- Tuples are compared on an element-by-element basis.
 
 _ = (8, "Hello") == (8, "Hello")    -- `True`
 _ = (8, "Hello") == (8, "World")    -- `False`
@@ -82,11 +97,11 @@ _ = (9, "Hello") < (8, "World")     -- `False`
 {-
 -- Tuples that are be compared with each other must have the same arity, types,
 -- and order of those types.
-_ = (8, "Hello") == ("Hello", 8)         -- Compilation error.
-_ = (8, "Hello") == (8, 3.0)             -- Compilation error.
-_ = (8, "Hello") == ('B', "World")       -- Compilation error.
-_ = (8, "Hello") == ('B', 3.0)           -- Compilation error.
-_ = (8, "Hello") == (8, "Hello", 'B')    -- Compilation error.
+_ = (8, "Hello") == ("Hello", 8)         -- Error.
+_ = (8, "Hello") == (8, 3.0)             -- Error.
+_ = (8, "Hello") == ('B', "World")       -- Error.
+_ = (8, "Hello") == ('B', 3.0)           -- Error.
+_ = (8, "Hello") == (8, "Hello", 'B')    -- Error.
 -}
 
 -- -----------------------------------------------------------------------------

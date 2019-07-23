@@ -1,0 +1,8 @@
+name: haskell-validity
+synopsis: My notes on Haskell testing with Validity.
+
+executables:
+  haskell-validity:
+    main: Main.hs
+    source-dirs: [src]
+    dependencies: [base, genvalidity, validity]

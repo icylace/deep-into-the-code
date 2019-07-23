@@ -1,7 +1,7 @@
 module O03__Operators () where
 
--- Functions that are written between their arguments (e.g. arithmetic
--- operators) are said to be written in infix notation.
+-- Functions appearing between their arguments (e.g. arithmetic operators) are
+-- said to be written in infix notation.
 
 -- Operators are functions with non-alphanumeric names and are written in infix
 -- notation by default. Their arguments are called operands. Most operators
@@ -20,7 +20,7 @@ _ = (/) 10 4    -- `2.5`
 
 _ = div 10 4    -- `2`
 
--- Backticks lets us use most prefix functions in infix notation.
+-- Backticks lets us use prefix functions in infix notation.
 
 _ = 10 `div` 4    -- `2`
 
@@ -44,10 +44,10 @@ _ = (10 `div`) 4    -- `2`
 _ = (`div` 4) 10    -- `2`
 
 {-
-_ = (`div`) 10 4    -- Compilation error.
-_ = 10 (`div`) 4    -- Compilation error.
-_ = `(/)` 10 4      -- Compilation error.
-_ = 10 `(/)` 4      -- Compilation error.
+_ = (`div`) 10 4    -- Error.
+_ = 10 (`div`) 4    -- Error.
+_ = `(/)` 10 4      -- Error.
+_ = 10 `(/)` 4      -- Error.
 -}
 
 -- -----------------------------------------------------------------------------
@@ -59,34 +59,17 @@ _ = 10 `(/)` 4      -- Compilation error.
 -- for `:info`) command that can give some information about types
 -- and expressions.
 
-
-
-
-
 {- GHCi ------------------------------------------------------------------------
+
 > :i +
 class Num a where
   (+) :: a -> a -> a
   ...
         -- Defined in ‘GHC.Num’
 infixl 6 +
+
 -------------------------------------------------------------------------------}
 
-
-
-
-
-
-
-
--- Running this in GHCi will show information about the addition operator:
---
---     :i +
---
--- The result will include:
---
---     infixl 6 +
---
 -- `infixl` means left associative infix operator. The `6` is the precedence
 -- level. Higher ones are applied first, on a scale from 0 to 9. The `+` is
 -- just the name of the operator.
@@ -101,15 +84,12 @@ infixl 6 +
 _ = 2 - 3 + 4      -- `3`
 _ = (2 - 3) + 4    -- `3`
 
--- Contrast this with a similar expression that uses the parentheses to
--- simulate right associativity.
+-- Parentheses can be used to simulate right associativity.
 
 _ = 2 - (3 + 4)   -- `-5`
 
 -- The exponentation operator has right associativity and an even higher
 -- precedence with `infixr 8 ^`.
-
--- The next two variables are evaluated equivalently due to right associativity.
 
 _ = 2 ^ 3 ^ 4      -- `2417851639229258349412352`
 _ = 2 ^ (3 ^ 4)    -- `2417851639229258349412352`
@@ -141,18 +121,21 @@ _ = timesTwo 5     -- `10`
 _ = (* 5) 2        -- `10`
 _ = timesFive 2    -- `10`
 
--- Notice that `2 (* 5)` was not included in the previous list. This is because
--- `2` would have been in the spot where a function or a function name should
--- be and an attempt would have been made to apply it to the argument
--- `(* 5)`. Since `2` is not a function this would cause an error.
+{-
+-- Here `2` is in the spot where a function or function name should be.
+_ = 2 (* 5)        -- Error.
+-}
 
+{-
 -- The negation and subtraction operators use the same symbol, `-`. This causes
--- an issue when trying to sectioning the second operand of subtraction. The
--- expression `(- 2) 1` will cause an error because negation will be used
--- when `-` is applied to a single argument. The fix is to use another
--- function from the standard Prelude library named `subtract`.
+-- an issue when trying to section the second operand of subtraction. Negation
+-- will be used when `-` is applied to a single argument. The fix is to use
+-- another function from the standard Prelude library named `subtract`.
+_ = (- 2) 1        -- Error.
+-}
 
 _ = (subtract 2) 1    -- `-1`
+_ = subtract 2 1      -- `-1`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -165,20 +148,12 @@ _ = (2 *) (3 + 5)      -- `16`
 _ = (2 *) $ (3 + 5)    -- `16`
 _ = (2 *) $ 3 + 5      -- `16`
 
--- Contrast the previous with the following which uses neither parentheses nor
--- the application operator.
-
 _ = (2 *) 3 + 5    -- `11`
 
--- The application operator can be used to reduce the number of parentheses
--- required for a given expression.
-
-_ = negate (negate (negate (negate (negate (negate (negate (negate 1)))))))
-_ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1
--- Both results are `1`.
-
--- Running `:i $` in GHCi will show that the application operator is a right
--- associative infix operator with a precedence level of 0.
+_ = negate (negate (negate (negate (negate (negate (negate (negate 1)))))))      -- `1`
+_ = (negate . negate . negate . negate . negate . negate . negate . negate) 1    -- `1`
+_ = negate . negate . negate . negate . negate . negate . negate . negate $ 1    -- `1`
+_ = negate $ negate $ negate $ negate $ negate $ negate $ negate $ negate 1      -- `1`
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

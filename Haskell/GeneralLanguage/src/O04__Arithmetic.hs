@@ -39,9 +39,8 @@ _ = mod (-5) (-2)    -- `-1`
 _ = -100     -- `-100`
 _ = - 100    -- `-100`
 
-
 {-
-_ = 9 + -100    -- Compilation error.
+_ = 9 + -100    -- Error.
 -}
 
 -- We need parentheses to make it work.

@@ -5,9 +5,9 @@ module O08__Types () where
 import GHC.Int
 
 -- A type, or data type, is a classification of values. Every value has an
--- associated type.
+-- associated type. That is, every value is a member of some type.
 
--- The compiler can determine the type for a value automatically through a
+-- The compiler can automatically determine the type for a value through a
 -- process called type inference.
 
 x = 'b'
@@ -32,43 +32,30 @@ y = 'b'
 
 
 
--- TODO: use the newer notation style for GHCi stuff here?
-
 -- The GHCi command `:t` (`:type`) displays the type of a value.
 
--- For example:
---
---     :t 'a'
---
--- The result will be:
---
---     'a' :: Char
---
--- This means that the single letter `a`, a character, has the type of `Char`.
+{- GHCi ------------------------------------------------------------------------
 
--- For example:
---
---     :t "Hi!"
---
--- The result will be:
---
---     "Hi!" :: [Char]
---
--- This means that the sequence of characters `Hi!` has the type of list of
--- characters. The brackets around `Char` is syntactic sugar for a list.
+> :type 'a'
+'a' :: Char
+
+> :t 'a'
+'a' :: Char
+
+> :t "Hi!"
+"Hi!" :: [Char]
+
+-------------------------------------------------------------------------------}
+
+-- The single letter `a`, a character, has the type of `Char`.
+
+-- The sequence of characters `Hi!` has the type of list of characters. The
+-- brackets around `Char` is syntactic sugar for a list.
 
 -- `String` is a type alias, a convenient synonym, for a list of characters.
 
-
-
-
-
 hi :: String
 hi = "Hi!"
-
-
-
-
 
 -- Explicitly writing out type signatures is optional because the Haskell
 -- compiler can automatically infer what a value's type will be.
@@ -76,11 +63,7 @@ hi = "Hi!"
 -- However, it is considered best-practice to use explicit type signatures
 -- especially for larger programs.
 
-
-
-
-
-
+-- -----------------------------------------------------------------------------
 
 -- A type alias is an alternative name for a preexisting type that usually
 -- communicates something more specific or more briefly.
@@ -94,21 +77,8 @@ type Name = String
 
 
 
-
-
-
-
-
 -- A function is polymorphic when its type signature has variables that can
 -- represent more than one type.
-
-
-
-
-
-
-
-
 
 
 
@@ -181,16 +151,16 @@ data NotHere
 -- A function can pattern match on a "don't care" parameter (represented by `_`)
 -- which will match on anything.
 
-sillyIncrease :: Int -> Int
-sillyIncrease 8  = 1
-sillyIncrease 10 = 2
-sillyIncrease _  = 3
+silly :: Int -> Int
+silly 8  = 1
+silly 10 = 2
+silly _  = 3
 
-_ = sillyIncrease 8     -- `1`
-_ = sillyIncrease 10    -- `2`
-_ = sillyIncrease 1     -- `3`
-_ = sillyIncrease 2     -- `3`
-_ = sillyIncrease 9     -- `3`
+_ = silly 8     -- `1`
+_ = silly 10    -- `2`
+_ = silly 1     -- `3`
+_ = silly 2     -- `3`
+_ = silly 9     -- `3`
 
 
 
@@ -199,16 +169,11 @@ _ = sillyIncrease 9     -- `3`
 
 
 -- Values that could have one type or another given its context can have their
--- type explicitly given.
+-- type explicitly given through a type annotation.
 
 _ = 1    -- `1`
 
 _ = 1 :: Double    -- `1.0`
-
-
-
-
-
 
 
 
@@ -227,13 +192,6 @@ hey x = "hey " ++ x
 
 smoosh x y = x ++ y
 -- `smoosh` has the type `[a] -> [a] -> [a]`.
-
-
-
-
-
-
-
 
 
 
@@ -311,27 +269,18 @@ smoosh x y = x ++ y
 
 
 
-
-
-
-
-
-
-
-
-
-
-
--- A typeclass constraint consists of a type variable for a type which has an
--- instance of a given typeclass.
+-- A type class constraint consists of a type variable for a type which has an
+-- instance of a given type class.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :t (/)
 (/) :: Fractional a => a -> a -> a
+
 -------------------------------------------------------------------------------}
 
--- `Fractional` requires types to already have an instance of the `Num`
--- typeclass. `Num` is a superclass of `Fractional`.
+-- `Fractional` requires types to already have an instance of the `Num` type
+-- class. `Num` is a superclass of `Fractional`.
 
 -- This means that types implementing `Fractional` can use functions from both
 -- `Fractional` and `Num`.
@@ -361,7 +310,7 @@ _ = 4 / 2    -- `2.0`
 
 
 
--- A type signature can make use of multiple typeclass constraints.
+-- A type signature can make use of multiple type class constraints.
 
 foo1 :: (Num a, Num b) => a -> b -> b
 foo1 = undefined
@@ -376,7 +325,7 @@ foo2 = undefined
 
 
 -- Parametric polymorphism is when a type variable is not contrained by a
--- typeclass.
+-- type class.
 
 -- `id` is a parametric polymorphic function having the type `a -> a` that
 -- returns its argument.
@@ -402,6 +351,7 @@ _ = id $ id 3           -- `3`
 -- GHCi can give the type of a given value.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :t True
 True :: Bool
 
@@ -410,10 +360,8 @@ True :: Bool
 
 > :t "Hello"
 "Hello" :: [Char]
+
 -------------------------------------------------------------------------------}
-
-
-
 
 
 
@@ -426,12 +374,6 @@ True :: Bool
 -- In Haskell it is impossible to create untyped data. Aside from some syntactic
 -- sugar for things like numbers or functions, everything originates in a data
 -- constructor from some type definition.
-
-
-
-
-
-
 
 
 
@@ -457,32 +399,21 @@ True :: Bool
 
 
 
-
-
-
-
-
-
 -- Numbers in and of themselves don't have a concrete type.
 
 {- GHCi ------------------------------------------------------------------------
+
 > :t 13
 13 :: Num p => p
 
 > :t 13.0
 13.0 :: Fractional p => p
+
 -------------------------------------------------------------------------------}
 
 -- A concrete type can be chosen by annotating it.
 
 _ = 13 :: Integer
-
-
-
-
-
-
-
 
 
 
@@ -540,16 +471,16 @@ _ = 34.56 / 123.345 :: Rational    -- `768 % 2741`
 
 
 
--- These numeric types have instances of the `Num` typeclass.
+-- These numeric types have instances of the `Num` type class.
 
--- A typeclass is a way of defining values and functions that are reusable
--- across any type that has an instance of that typeclass.
+-- A type class is a way of defining values and functions that are reusable
+-- across any type that has an instance of that type class.
 
--- In Haskell, typeclasses are unique pairings of class and concrete instance.
+-- In Haskell, type classes are unique pairings of class and concrete instance.
 -- For example, if a given type has an instance of `Num` then it has only one
 -- instance of `Num`.
 
--- The `Num` typeclass provides common numerical operators like `+`, `-`, and
+-- The `Num` type class provides common numerical operators like `+`, `-`, and
 -- `*`, as well as a few other functions.
 
 
@@ -593,7 +524,7 @@ _ = -100000 :: Int8    -- Results in `96` with a warning.
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- The `Bounded` typeclass provides `maxBound` and `minBound` which show the
+-- The `Bounded` type class provides `maxBound` and `minBound` which show the
 -- limit values of types.
 
 _ = minBound :: Int8     -- `-128`
@@ -615,6 +546,45 @@ _ = minBound :: Char    -- `'\NUL'`
 _ = maxBound :: Char    -- `'\1114111'`
 _ = minBound :: ()      -- `()`
 _ = maxBound :: ()      -- `()`
+
+-- -----------------------------------------------------------------------------
+
+-- A phantom type has a type argument that doesn't appear anywhere in its terms.
+
+-- TODO:
+-- show an example of a phantom type
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- Alphanumeric data constructors are written in prefix notation by default.
+
+data P = Prefix Int String
+
+-- Backticks can be used for infix notation instead.
+
+data P' = Int `Prefix'` String
+
+-- Nonalphanumeric data constructors are written in infix notation by default
+-- and are also prefixed with a colon.
+
+data Q = Int :|| String
+
+-- Parentheses can be used for prefix notation instead.
+
+data Q' = (:|||) Int String
+
+{-
+data R = Int :Infix String    -- Error.
+data S = :| Int String        -- Error.
+-}
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

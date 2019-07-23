@@ -125,6 +125,12 @@ _ = "" !! 0          -- Exception.
 -}
 
 -- -----------------------------------------------------------------------------
+
+_ = "ab" <> "cd"    -- "abcd"
+
+
+
+-- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
 -- To print strings to the screen, we need to make use of our special `main`
@@ -132,7 +138,6 @@ _ = "" !! 0          -- Exception.
 
 printStrings :: IO ()
 printStrings = do
-
   print "Hello world!"       -- Displays `"Hello world!"`.
   putStrLn "Hello world!"    -- Displays `Hello world!`.
   putStr "Hello world!"      -- Displays `Hello world!` without a carriage return.

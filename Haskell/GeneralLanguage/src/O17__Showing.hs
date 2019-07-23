@@ -1,6 +1,6 @@
 module O17__Showing () where
 
--- The `Show` typeclass defines how data can be printable.
+-- The `Show` type class defines how data can be printable.
 
 -- `Show` is only suitable for human readability and not serialization.
 

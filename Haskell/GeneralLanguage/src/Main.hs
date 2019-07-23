@@ -45,7 +45,7 @@ import O09__Branching
 import O10__Tuples
 import O11__PatternMatching
 import O12__Lists
-import O13__Typeclasses
+import O13__TypeClasses
 import O14__Equality
 import O15__Ordering
 import O16__Enumeration
@@ -54,6 +54,8 @@ import O18__Reading
 import O19__Recursion
 import O20__Folding
 import O21__AlgebraicDatatypes
+import O22__SemigroupAndMonoid
+import O23__Functor
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined. `main` will be explained in more detail later.
