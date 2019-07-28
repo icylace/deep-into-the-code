@@ -196,7 +196,9 @@ Anonymous function: Function without a name, therefore unbound.
 
 Higher-order function (HoF): Function that accepts and/or returns a function.
 
-Point-free: A way of declaring functions without referencing parameters.
+Eta reduction: A way of declaring functions without referencing parameters.
+Point-free: Another way of saying eta reduction.
 Point: A function parameter.
+
 
 -}

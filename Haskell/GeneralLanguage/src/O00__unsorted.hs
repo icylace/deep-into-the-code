@@ -1997,7 +1997,7 @@ eitherMaybe'' :: (b -> c) -> Either a b -> Maybe c
 eitherMaybe'' = either' (const Nothing)
 
 
-
+-}
 
 {- GHCi ------------------------------------------------------------------------
 

@@ -32,6 +32,8 @@ to do that. -}
 -- This file you're reading right now is a Haskell source code file because it
 -- has the `.hs` file extension and contains Haskell code.
 
+import Test.QuickCheck
+
 import O00__unsorted
 import O01__Expressions
 import O02__Functions
@@ -56,6 +58,7 @@ import O20__Folding
 import O21__AlgebraicDatatypes
 import O22__SemigroupAndMonoid
 import O23__Functor
+import O24__Applicative
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined. `main` will be explained in more detail later.

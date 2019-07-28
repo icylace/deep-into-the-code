@@ -11,6 +11,17 @@ import Data.Monoid
 
 -- The `Monoid` type class generalizes associativity and identity across types.
 
+-- This is only used for reference.
+class Semigroup' a where
+  (<>.) :: a -> a -> a
+
+-- This is only used for reference.
+class Semigroup' m => Monoid' m where
+  mempty' :: m
+  mappend' :: m -> m -> m
+  mconcat' :: [m] -> m
+  mconcat' = foldr mappend' mempty'
+
 -- `mappend` acts like `++`.
 
 _ = (++) [1, 2, 3] [4, 5, 6]       -- `[1, 2, 3, 4, 5, 6]`

@@ -249,9 +249,14 @@ _ = 1 / 2 :: Rational             -- `1 % 2`
 x = 10 :: Integer
 y = 5  :: Integer
 
-_ = (+)        -- Has the type `Num a => a -> a -> a`.
-_ = (x +)      -- Has the type `Integer -> Integer`.
-_ = (x + y)    -- Has the type `Integer`.
+_ = (+)
+-- Has the type `Num a => a -> a -> a`.
+
+_ = (x +)
+-- Has the type `Integer -> Integer`.
+
+_ = (x + y)
+-- Has the type `Integer`.
 
 
 
