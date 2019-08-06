@@ -9,6 +9,13 @@
 -- import qualified Language.Haskell.HsColour           as HSC
 -- import qualified Language.Haskell.HsColour.Colourise as HSC
 
+-- TODO: consider this:
+-- https://wiki.haskell.org/Import_modules_properly
+-- import qualified Very.Special.Module as VSM
+-- import Another.Important.Module (printf, (<|>), )
+-- import Very.Special.Module
+-- import Another.Important.Module hiding (open, close, )
+
 -- -----------------------------------------------------------------------------
 
 -- By default an import brings into scope all exports from a module.

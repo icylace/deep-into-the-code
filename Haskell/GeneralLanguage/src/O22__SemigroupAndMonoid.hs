@@ -11,11 +11,11 @@ import Data.Monoid
 
 -- The `Monoid` type class generalizes associativity and identity across types.
 
--- This is only used for reference.
+-- This is only here for reference.
 class Semigroup' a where
   (<>.) :: a -> a -> a
 
--- This is only used for reference.
+-- This is only here for reference.
 class Semigroup' m => Monoid' m where
   mempty' :: m
   mappend' :: m -> m -> m
@@ -65,6 +65,8 @@ _ = mappend (Sum 8) (Sum 9)    -- Sum {getSum = 17}
 _ = Sum 8 <> Sum 9             -- Sum {getSum = 17}
 
 _ = Sum 1 <> Sum 2 <> Sum 3    -- Sum {getSum = 6}
+
+_ = "H" <> "i"    -- `"Hi"`
 
 -- -----------------------------------------------------------------------------
 

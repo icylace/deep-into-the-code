@@ -168,7 +168,7 @@ List: An ordered collection of similarly typed elements.
 Head: The first element of a list.
 Tail: The non-head elements of a list.
 
-`do` notation: Syntatic sugar for sequencing function evaluations.
-I/O (IO): Input/output.
+I/O: Input/output.
+IO: A synonym for I/O.
 
 -}

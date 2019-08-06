@@ -5,4 +5,4 @@ executables:
   haskell:
     main: Main.hs
     source-dirs: [src]
-    dependencies: [base, QuickCheck]
+    dependencies: [base, checkers, containers, QuickCheck]

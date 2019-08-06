@@ -287,7 +287,8 @@ Type class constraint: A type variable for a type implementing a type class.
 Superclass: A type class required by another type class.
 Subclass: A type class that requires another type class.
 Type class arrow (`=>`): Syntax for defining a type class constraint.
-Type class instance (instance): An implementation of a type class for a type.
+Type class instance: An implementation of a type class for a type.
+Instance: A synonym for type class instance.
 
 Derived instance: An instance generated based only on a datatype definition.
 
@@ -295,11 +296,12 @@ Type variable: A placeholder for a type.
 
 Type class inheritance: When a type class has a superclass.
 
-Polymorphism: Type variables referring to possibly multiple concrete types.
 Polymorphism: The usage of functions across different sets of types.
-
 Parametric polymorphism: Polymorphism over any type.
-Constrained (ad-hoc, bounded) polymorphism: Polymorphism over certain types.
+Constrained polymorphism: Polymorphism over certain types.
+Ad-hoc polymorphism: A synonym for constrained polymorphism.
+Bounded polymorphism: A synonym for constrained polymorphism.
+
 Principal type: In Haskell, the most generic type which still typechecks.
 Parametricity: Uniform function behavior relative to parametric arguments.
 

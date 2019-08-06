@@ -31,8 +31,11 @@ aB'C = 1
 -- Variable names that end with an apostrophe is are pronounced with the word
 -- "prime" at the end of its name.
 
-a' = 1     -- This is pronounced "A-prime".
-a'' = 1    -- This is pronounced "A-double-prime".
+-- This is pronounced "A-prime".
+a' = 1
+
+-- This is pronounced "A-double-prime".
+a'' = 1
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
@@ -59,8 +62,7 @@ d2 = c2 + 5    -- `12`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
--- An underscore may be used to indicate that we do not wish to save an
--- expression for further evaluation.
+-- An underscore may be used to avoid the evaluation of an expression.
 
 _ = 2 + 3
 
@@ -111,13 +113,15 @@ Key Terms
 
 Expression: A combination of terms able to be evaluated together.
 Nested expression: An expression embedded within another expression.
-Reducible expression (redex): An expression that can be further simplified.
+Reducible expression: An expression that can be further simplified.
+Redex: An abbreviation of reducible expression.
 Weak head normal form: A reduced state of an expression.
 Normal form: The most simplified, or irreducible, form of an expression.
 Value: An expression in normal form.
 
-Evaluation (reduction): The process of simplifying an expression.
-Lazy evaluation: The delaying of evaluation until forced to do it.
+Evaluation: The process of simplifying an expression.
+Reduction: A synonym for evaluation.
+Lazy evaluation: The delaying of evaluation until when it's needed.
 
 Identifier: A name that references an expression.
 Bind: To assign an identifier to an expression.

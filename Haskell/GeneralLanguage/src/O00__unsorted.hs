@@ -1,10 +1,27 @@
 -- TODO:
 
-module O00__unsorted () where
+
+{-# LANGUAGE PartialTypeSignatures #-}
+
+
+
+
+module O00__unsorted where
 
 import Data.List (intersperse)
 import Data.List.NonEmpty (NonEmpty(..))
 import Data.Maybe (isJust)
+
+
+
+
+
+
+
+
+-- The main executable in a Haskell program must always have the type IO ().
+
+
 
 
 
@@ -133,8 +150,8 @@ definitelyDontDoThis False = error "oops"
 -- throw an exception. Thanks to lazy evaluation, such code can coexist
 -- with normal code.
 
-x = undefined
--- `x` is now undefined.
+xx = undefined
+-- `xx` is now undefined.
 
 -- `undefined` is another way of expressing bottom.
 
@@ -214,28 +231,28 @@ _ = nestedAnonymousStyle 2 3    -- `5`
 
 
 
-f :: a -> a -> a -> a
-f = undefined
+ff :: a -> a -> a -> a
+ff = undefined
 
-y :: Char
-y = undefined
+yy :: Char
+yy = undefined
 
--- The type of `f x` is `Char -> Char -> Char`.
+-- The type of `ff x` is `Char -> Char -> Char`.
 
 
-g :: a -> b -> c -> b
-g = undefined
+gg :: a -> b -> c -> b
+gg = undefined
 
-_ = g 0 'c' "woot"
+_ = gg 0 'c' "woot"
 -- Type is `Char`.
 
-h :: (Num a, Num b) => a -> b -> b
-h = undefined
+hh :: (Num a, Num b) => a -> b -> b
+hh = undefined
 
-_ = h 1.0 2
+_ = hh 1.0 2
 -- Type is `Num b => b`.
 
-_ = h 1 (5.5 :: Double)
+_ = hh 1 (5.5 :: Double)
 -- Type is `Double`.
 
 
@@ -271,7 +288,7 @@ addOne :: Int -> Int
 addOne = \x -> x + 1
 
 addOnePF :: Int -> Int
-addOnePF = (+ 1)
+addOnePF = (+1)
 
 _ = add 1 0                                           -- `1`
 _ = addOne 0                                          -- `1`
@@ -283,11 +300,6 @@ _ = (addOnePF . addOnePF) 0                           -- `2`
 _ = negate (addOne 0)                                 -- `-1`
 _ = (negate . addOne) 0                               -- `-1`
 _ = (addOne . addOne . addOne . negate . addOne) 0    -- `2`
-
-
-
-
-
 
 
 
@@ -335,8 +347,8 @@ _ = [1, 2, 3]
 -- The following is an example of WHNF evaluation. `myNum` is in WHNF because
 -- it's a list constructed by a range that will only evaluate as far as it
 -- has to. `take 2` forces some evaluation of the range. `:sprint`
--- displays what has been evaluated (the numbers) and what hasn't
--- (the underscore).
+-- displays what has been evaluated (the numbers) and what
+-- hasn't (the underscore).
 
 -- Prelude> let myNum :: [Int]; myNum = [1..10]
 --
@@ -378,13 +390,7 @@ _ = intersperse 0 [1, 1, 1]    -- `[1, 0, 1, 0, 1]`
 
 
 
-
-
-
-
 -- The fundamental way to think about evaluation in Haskell is as substitution.
-
-
 
 
 
@@ -399,26 +405,40 @@ _ = intersperse 0 [1, 1, 1]    -- `[1, 0, 1, 0, 1]`
 
 {-
 
-
 _ = jackal "keyboard"
 -- Type is `Eq b => b -> [Char]`.
-
 
 -}
 
 
 
+
+
+-- We can inspect the type of a function application even if the function
+-- is undefined.
+
+{- GHCi ------------------------------------------------------------------------
+
 kessel :: (Ord a, Num b) => a -> b -> a
 kessel = undefined
 
-_ = kessel 1 2
--- Type is `(Num a, Ord a) => a`.
+> :t kessel 1 2
+kessel 1 2 :: (Ord a, Num a) => a
 
-_ = kessel 1 (2 :: Integer)
--- Type is `(Num a, Ord a) => a`.
+> :t kessel 1 (2 :: Integer)
+kessel 1 (2 :: Integer) :: (Ord a, Num a) => a
 
-_ = kessel (1 :: Integer) 2
--- Type is `Integer`.
+> :t kessel (1 :: Integer) 2
+kessel (1 :: Integer) 2 :: Integer
+
+-------------------------------------------------------------------------------}
+
+
+
+
+
+
+
 
 
 
@@ -439,37 +459,42 @@ _ = negate . sum $ [1, 2, 3, 4, 5]    -- `-15`
 _ = negate (sum [1, 2, 3, 4, 5])      -- `-15`
 _ = (negate . sum) [1, 2, 3, 4, 5]    -- `-15`
 
-
-
 _ = take 5 . filter odd . enumFrom $ 3    -- `[3, 5, 7, 9, 11]`
 
 
 
 
 
-{-
 
 -- https://stackoverflow.com/a/13147064
 -- https://stackoverflow.com/a/2465059
 -- https://stackoverflow.com/a/1983310
 
-f x y
-(f x) y
-(x `f`) y
-(`f` y) x
-x `f` y
+f = (+)
+g = (*)
+h = (/)
+x = 5
+y = 7
 
-f $ g x y
-f . g $ x y
-f . g x $ y
+_ = f x y
+_ = (f x) y
+_ = (x `f`) y
+_ = (`f` y) x
+_ = x `f` y
 
-f $ g $ h x
-(f . g . h) x
-f . g . h $ x
+_ = f $ g x y
+-- _ = (f . g) x y
+-- _ = f (g x) y
+_ = f . g x $ y
+_ = (f . g x) y
 
-f . g . h
-(f . g) . h
-f . (g . h)
+-- _ = f $ g $ h x
+-- _ = (f . g . h) x
+-- _ = f . g . h $ x
+
+-- _ = f . g . h
+-- _ = (f . g) . h
+-- _ = f . (g . h)
 
 
 
@@ -477,6 +502,7 @@ f . (g . h)
 
 
 
+{-
 
 
 (f . g) x = f (g x)
@@ -499,16 +525,16 @@ _ = f [1, 2, 3, 4, 5]   --`15`
 
 
 
-g2 :: Int -> [Int] -> Int
-g2 z xs = foldr (+) z xs
+g2' :: Int -> [Int] -> Int
+g2' z xs = foldr (+) z xs
 
-g2' = foldr (+)
-_ = g2' 0 [1..5]
+g2'' = foldr (+)
+_ = g2'' 0 [1..5]
 
 
 
-g2'' = length . filter (== 'a')
-_ = g2'' "abracadabra"
+g2''' = length . filter (== 'a')
+_ = g2''' "abracadabra"
 
 
 
@@ -698,9 +724,9 @@ _ = length $ Just ()         -- `1`
 
 _ = foldr (+) 0 (3, 99)    -- `99`
 
-_ = fmap show (1, 2)          -- `(1,"2")`
-_ = fmap show (False, 2)      -- `(False,"2")`
-_ = fmap show (True, True)    -- `(True,"True")`
+_ = fmap show (1, 2)          -- `(1, "2")`
+_ = fmap show (False, 2)      -- `(False, "2")`
+_ = fmap show (True, True)    -- `(True, "True")`
 
 {-
 _ = foldr (+) 0 (3, "99")    -- Error.
@@ -732,72 +758,6 @@ _ = foldr (+) 0 (1, 2, 3)    -- Error.
 
 
 
-
-
--- "do syntax" is syntactic sugar used in functions that return monads to
--- sequence operations in a convenient format.
-
--- The do syntax specifically allows us to sequence monadic actions.
-
--- It is not necessary, and considered bad style, to use `do` in single-line
--- expressions.
-
--- Similarly, it is unnecessary to use `do` with functions like `putStrLn` and
--- `print` that already have the effects baked in.
-
-
-
--- The main executable in a Haskell program must always have the type IO ().
-
-
-
-
-
-
--- The `do` keyword introduces the do-block.
-concatUserInput = do
-  -- `x1` and `x2` are variables bound to user input.
-  x1 <- getLine
-  x2 <- getLine
-  -- `return` wraps its argument in the monad.
-  return (x1 ++ x2)
-
-
-
-
-
-{-
--- Doesn't work:
-twoo :: IO Bool
-twoo = do
-  c <- getChar
-  c' <- getChar
-  c == c'
--}
-
--- Works:
-twoo' :: IO Bool
-twoo' = do
-  c <- getChar
-  c' <- getChar
-  return (c == c')
-
--- Overusing the `do`:
-twoo'' :: IO Bool
-twoo'' = do
-  c <- getChar
-  c' <- getChar
-  do return (c == c')
-
-
-
-main' :: IO ()
-main' = do
-  c <- getChar
-  c' <- getChar
-  if c == c'
-  then putStrLn "True"
-  else return ()
 
 
 
@@ -988,12 +948,12 @@ sayHello x = putStrLn ("Hello, " ++ x ++ "!")
 
 
 
-xx :: String
-xx = undefined
+xx' :: String
+xx' = undefined
 -- `xx` is a string value.
 
-yy :: IO String
-yy = undefined
+yy' :: IO String
+yy' = undefined
 -- `yy` is a method which produces a string value by potentially
 -- performing side effects.
 
@@ -1378,18 +1338,17 @@ _ = 1 :| [2, 3]    -- `1 :| [2,3]`
 
 
 
--- stops = "pbtdkg"
--- vowels = "aeiou"
-
 combo :: String -> String -> [(Char, Char, Char)]
 combo stops vowels = [(x, y, z) | x <- stops, y <- vowels, z <- stops]
 
-_ = combo "pbtd" "aeiou"    -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d'),('b','a','p'),('b','a','b'),('b','a','t'),('b','a','d'),('b','e','p'),('b','e','b'),('b','e','t'),('b','e','d'),('b','i','p'),('b','i','b'),('b','i','t'),('b','i','d'),('b','o','p'),('b','o','b'),('b','o','t'),('b','o','d'),('b','u','p'),('b','u','b'),('b','u','t'),('b','u','d'),('t','a','p'),('t','a','b'),('t','a','t'),('t','a','d'),('t','e','p'),('t','e','b'),('t','e','t'),('t','e','d'),('t','i','p'),('t','i','b'),('t','i','t'),('t','i','d'),('t','o','p'),('t','o','b'),('t','o','t'),('t','o','d'),('t','u','p'),('t','u','b'),('t','u','t'),('t','u','d'),('d','a','p'),('d','a','b'),('d','a','t'),('d','a','d'),('d','e','p'),('d','e','b'),('d','e','t'),('d','e','d'),('d','i','p'),('d','i','b'),('d','i','t'),('d','i','d'),('d','o','p'),('d','o','b'),('d','o','t'),('d','o','d'),('d','u','p'),('d','u','b'),('d','u','t'),('d','u','d')]`
+_ = combo "pbt" "aeiou"    -- `[('p', 'a', 'p'), ('p', 'a', 'b'), ('p', 'a', 't'), ('p', 'e', 'p'), ('p', 'e', 'b'), ('p', 'e', 't'), ('p', 'i', 'p'), ('p', 'i', 'b'), ('p', 'i', 't'), ('p', 'o', 'p'), ('p', 'o', 'b'), ('p', 'o', 't'), ('p', 'u', 'p'), ('p', 'u', 'b'), ('p', 'u', 't'), ('b', 'a', 'p'), ('b', 'a', 'b'), ('b', 'a', 't'), ('b', 'e', 'p'), ('b', 'e', 'b'), ('b', 'e', 't'), ('b', 'i', 'p'), ('b', 'i', 'b'), ('b', 'i', 't'), ('b', 'o', 'p'), ('b', 'o', 'b'), ('b', 'o', 't'), ('b', 'u', 'p'), ('b', 'u', 'b'), ('b', 'u', 't'), ('t', 'a', 'p'), ('t', 'a', 'b'), ('t', 'a', 't'), ('t', 'e', 'p'), ('t', 'e', 'b'), ('t', 'e', 't'), ('t', 'i', 'p'), ('t', 'i', 'b'), ('t', 'i', 't'), ('t', 'o', 'p'), ('t', 'o', 'b'), ('t', 'o', 't'), ('t', 'u', 'p'), ('t', 'u', 'b'), ('t', 'u', 't')]`
+
 
 combo' :: String -> String -> [(Char, Char, Char)]
 combo' stops vowels = [(x, y, z) | x <- stops, y <- vowels, z <- stops, x == 'p']
 
-_ = combo' "pbtd" "aeiou"   -- `[('p','a','p'),('p','a','b'),('p','a','t'),('p','a','d'),('p','e','p'),('p','e','b'),('p','e','t'),('p','e','d'),('p','i','p'),('p','i','b'),('p','i','t'),('p','i','d'),('p','o','p'),('p','o','b'),('p','o','t'),('p','o','d'),('p','u','p'),('p','u','b'),('p','u','t'),('p','u','d')]`
+_ = combo' "pbt" "aeiou"    -- `[('p', 'a', 'p'), ('p', 'a', 'b'), ('p', 'a', 't'), ('p', 'e', 'p'), ('p', 'e', 'b'), ('p', 'e', 't'), ('p', 'i', 'p'), ('p', 'i', 'b'), ('p', 'i', 't'), ('p', 'o', 'p'), ('p', 'o', 'b'), ('p', 'o', 't'), ('p', 'u', 'p'), ('p', 'u', 'b'), ('p', 'u', 't')]`
+
 
 nouns = ["pap", "pat", "pad", "peg"]
 verbs = ["pit", "tab", "tag", "dab"]
@@ -1402,7 +1361,7 @@ combo'' stops vowels nouns verbs =
   ]
     where words = [[x, y, z] | x <- stops, y <- vowels, z <- stops]
 
-_ = combo'' "pbtd" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit","pat"),("pap","pit","pad"),("pap","tab","pap"),("pap","tab","pat"),("pap","tab","pad"),("pap","dab","pap"),("pap","dab","pat"),("pap","dab","pad"),("pat","pit","pap"),("pat","pit","pat"),("pat","pit","pad"),("pat","tab","pap"),("pat","tab","pat"),("pat","tab","pad"),("pat","dab","pap"),("pat","dab","pat"),("pat","dab","pad"),("pad","pit","pap"),("pad","pit","pat"),("pad","pit","pad"),("pad","tab","pap"),("pad","tab","pat"),("pad","tab","pad"),("pad","dab","pap"),("pad","dab","pat"),("pad","dab","pad")]`
+_ = combo'' "pbt" "aeiou" nouns verbs    -- `[("pap", "pit", "pap"), ("pap", "pit", "pat"), ("pap", "tab", "pap"), ("pap", "tab", "pat"), ("pat", "pit", "pap"), ("pat", "pit", "pat"), ("pat", "tab", "pap"), ("pat", "tab", "pat")]`
 
 
 
@@ -1413,9 +1372,10 @@ _ = combo'' "pbtd" "aeiou" nouns verbs    -- `[("pap","pit","pap"),("pap","pit",
 -- -----------------------------------------------------------------------------
 
 h2 = undefined
+g2 = undefined
 
 f6 x y z = h2 (subFunction x y z)
-  where subFunction x y z = g x y z
+  where subFunction x y z = g2 x y z
 
 -- The above is not tail recursive, calls `h2`, not itself.
 f6 x y z = h2 (f6 (x - 1) y z)
@@ -1810,16 +1770,6 @@ mkWord xs
 
 
 
-
-
-
-
-
-
-
-
-
-
 data Nat = Zero | Succ Nat deriving (Eq, Show)
 
 natToInteger :: Nat -> Integer
@@ -1938,7 +1888,7 @@ flipMaybe ((Just x):xs) =
     Nothing -> Nothing
     Just xs -> Just (x:xs)
 
-_ = flipMaybe [Just 1, Just 2, Just 3]     -- `Just [1,2,3]`
+_ = flipMaybe [Just 1, Just 2, Just 3]     -- `Just [1, 2, 3]`
 _ = flipMaybe [Just 1, Nothing, Just 3]    -- `Nothing`
 
 
@@ -2052,7 +2002,7 @@ _ = take 10 $ myIterate (+1) 0    -- `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
 myUnfoldr :: (b -> Maybe (a, b)) -> b -> [a]
 myUnfoldr f z = go $ f z
-  where go Nothing       = []
+  where go Nothing = []
         go (Just (x, y)) = x : myUnfoldr f y
 
 
@@ -2082,7 +2032,7 @@ data BinaryTree a
 
 unfold :: (a -> Maybe (a, b, a)) -> a -> BinaryTree b
 unfold f z = go $ f z
-  where go Nothing          = Leaf
+  where go Nothing = Leaf
         go (Just (x, y, z)) = Node (unfold f x) y (unfold f z)
 
 treeBuild :: Integer -> BinaryTree Integer
@@ -2092,6 +2042,51 @@ _ = treeBuild 0    -- `Leaf`
 _ = treeBuild 1    -- `Node Leaf 0 Leaf`
 _ = treeBuild 2    -- `Node (Node Leaf 1 Leaf) 0 (Node Leaf 1 Leaf)`
 _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf))`
+
+
+
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- Typed holes are useful for letting the compiler help us to fill in missing
+-- parts of our program.
+
+-- A hole is denoted by an underscore, `_`, on the term level.
+
+-- Holes will cause a compilation error but will also make the compiler list
+-- relevant variables in scope that could be used to fill in the hole.
+
+{-
+xx'' :: Int
+xx'' = _    -- Error.
+-}
+
+-- A related concept, the type wildcard, also denoted by `_`, is enabled by using
+-- the PartialTypeSignatures GHC extension.
+
+{-
+xx'' :: _
+xx'' = 2
+-}
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2124,13 +2119,6 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 
 
 
--- https://wiki.haskell.org/Import_modules_properly
-
--- import qualified Very.Special.Module as VSM
--- import Another.Important.Module (printf, (<|>), )
-
--- import Very.Special.Module
--- import Another.Important.Module hiding (open, close, )
 
 
 

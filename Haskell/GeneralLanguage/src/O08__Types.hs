@@ -594,7 +594,8 @@ data S = :| Int String        -- Error.
 Key Terms
 =========
 
-Type (datatype): A classification of values that share something in common.
+Type: A classification of values that share something in common.
+Datatype: A synonym for type.
 Type alias: An alternative name for a preexisting type.
 Type signature: The definition of types used by an expression.
 

@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE RankNTypes #-}
 
-module O23__Functor (functorTests) where
+module O23__Functor where
 
 import Test.QuickCheck
 
@@ -12,7 +12,7 @@ import Test.QuickCheck
 -- `Functor` is a type class for function application "over", or "through",
 -- some structure `f` that we want to ignore and leave untouched.
 
--- This is only used for reference.
+-- This is only here for reference.
 class Functor' f where
   fmap' :: (a -> b) -> f a -> f b
 
@@ -33,6 +33,15 @@ _ = (\x -> x > 3) <$> [1..6]          -- `[False, False, False, True, True, True
 _ = (+ 1) <$> (Just 1)                -- `Just 2`
 _ = (10 /) <$> (4, 5)                 -- `(4, 2.0)`
 _ = (++ " there") <$> (Right "Hi")    -- `Right "Hi there"`
+
+-- -----------------------------------------------------------------------------
+
+-- `<$` will set the contents of a functorial structure with a given value.
+
+_ = 5 <$ [1, 2, 3]     -- `[5, 5, 5]`
+_ = 5 <$ []            -- `[]`
+_ = "w" <$ Just "q"    -- `Just "w"`
+_ = "w" <$ Nothing     -- `Nothing`
 
 -- -----------------------------------------------------------------------------
 

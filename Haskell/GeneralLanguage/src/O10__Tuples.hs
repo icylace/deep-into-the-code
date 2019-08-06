@@ -122,8 +122,11 @@ Product type: A type that is a conjunction of two or more constituent types.
 Tuple: A fixed-length ordered grouping of values.
 Tuple type: A product type whose values are tuples.
 Arity: The number of values contained within a tuple.
-Triple (three-tuple): A tuple whose values contain three other values.
-Pair (two-tuple): A tuple whose values contain two other values.
-Unit (empty tuple): A tuple that contains no values.
+Three-tuple: A tuple whose values contain three other values.
+Triple: A synonym for three-tuple.
+Two-tuple: A tuple whose values contain two other values.
+Pair: A synonym for two-tuple.
+Empty tuple: A tuple that contains no values.
+Unit: A synonym for empty tuple.
 
 -}

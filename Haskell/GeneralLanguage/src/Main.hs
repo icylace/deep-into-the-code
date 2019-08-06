@@ -59,6 +59,7 @@ import O21__AlgebraicDatatypes
 import O22__SemigroupAndMonoid
 import O23__Functor
 import O24__Applicative
+import O25__Monad
 
 -- Any Haskell source code file that is meant to be run directly must have the
 -- entry point `main` defined. `main` will be explained in more detail later.

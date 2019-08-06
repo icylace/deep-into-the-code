@@ -131,7 +131,9 @@ _ = 2 (* 5)        -- Error.
 -- an issue when trying to section the second operand of subtraction. Negation
 -- will be used when `-` is applied to a single argument. The fix is to use
 -- another function from the standard Prelude library named `subtract`.
+
 _ = (- 2) 1        -- Error.
+
 -}
 
 _ = (subtract 2) 1    -- `-1`

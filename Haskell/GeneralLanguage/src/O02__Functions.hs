@@ -159,7 +159,7 @@ addAndDrop x y = x + 1
 reverseMkTuple a b = (b, a)
 reverseTuple (a, b) = (b, a)
 
--- pointfree versions of the above
+-- pointfree
 blah' = id
 addAndDrop' = const . (1 +)
 reverseMkTuple' = flip (,)
@@ -175,7 +175,9 @@ Key Terms
 
 Function: An expression that accepts an argument and returns a result.
 Argument: An input value to the function applied to it.
-Parameter (formal parameter): A variable for an argument to a function.
+Parameter: A variable for an argument to a function.
+Formal parameter: A synonym for parameter.
+Point: A synonym for parameter.
 Return value: The result of a function evaluation.
 
 Function application: The giving of an argument to a function for evaluation.
@@ -194,11 +196,11 @@ First-class value: A value that can be used as an argument to a function.
 
 Anonymous function: Function without a name, therefore unbound.
 
-Higher-order function (HoF): Function that accepts and/or returns a function.
+Higher-order function: Function that accepts and/or returns a function.
+HoF: An acronym for higher-order function.
 
 Eta reduction: A way of declaring functions without referencing parameters.
-Point-free: Another way of saying eta reduction.
-Point: A function parameter.
-
+Point-free style: A synonym for eta reduction.
+Tacit programming: A synonym for point-free style.
 
 -}
