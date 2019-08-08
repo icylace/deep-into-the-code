@@ -6,8 +6,9 @@
 
 
 
-module O00__unsorted where
+module O00__unsorted () where
 
+import Control.Monad
 import Data.List (intersperse)
 import Data.List.NonEmpty (NonEmpty(..))
 import Data.Maybe (isJust)
@@ -2051,6 +2052,48 @@ _ = treeBuild 3    -- `Node (Node (Node Leaf 2 Leaf) 1 (Node Leaf 2 Leaf)) 0 (No
 
 
 
+-- -----------------------------------------------------------------------------
+
+
+
+
+-- Basically the (<*) operator (like its sibling, (*>), and the monadic
+-- operator, >>) is useful when you're emitting effects. In this case,
+-- you’ve done something with effects and want to discard any value
+-- that resulted.
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- An unqualified and unspecific import should be avoided except in those cases
+-- where the provenance of the imported functions will be obvious, or when the
+-- import is a toolkit you must use all together.
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+_ = replicate 2 [1, 3]                   -- `[[1, 3], [1, 3]]`
+_ = replicateM 2 [1, 3]                  -- `[[1, 1], [1, 3], [3, 1], [3, 3]]`
+_ = Control.Monad.replicateM 2 [1, 3]    -- `[[1, 1], [1, 3], [3, 1], [3, 3]]`
+
+_ = replicate 0 [1, 3, 5]    -- `[]`
+_ = replicate 1 [1, 3, 5]    -- `[1, 3, 5]`
+_ = replicate 2 [1, 3, 5]    -- `[[1, 3, 5], [1, 3, 5]]`
+
+_ = replicateM 0 [1, 3, 5]    -- `[[]]`
+_ = replicateM 1 [1, 3, 5]    -- `[[1], [3], [5]]`
+_ = replicateM 2 [1, 3, 5]    -- `[[1, 1], [1, 3], [1, 5], [3, 1], [3, 3], [3, 5], [5, 1], [5, 3], [5, 5]]`
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
@@ -2163,6 +2206,29 @@ xx'' = 2
 
 -- Each argument and result of every function must be a type constant, not a
 -- type constructor.
+
+
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- Structure   | Primary Operation
+-- ----------- | -----------------
+-- Semigroup   | append
+-- Monoid      | append (identity-aware)
+-- Functor     | map
+-- Applicative | apply
+-- Monad       | concat
+-- Foldable    | (?) fold
+-- Traversable | (?) iterate
+
+
+
 
 
 

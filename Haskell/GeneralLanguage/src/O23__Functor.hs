@@ -3,6 +3,7 @@
 
 module O23__Functor where
 
+import Data.Time.Clock (NominalDiffTime, UTCTime, addUTCTime, getCurrentTime)
 import Test.QuickCheck
 
 -- A functor is a way to apply a function over or around some structure that we
@@ -700,6 +701,14 @@ instance Functor TalkToMe where
   fmap _ Halt        = Halt
   fmap f (Print x y) = Print x (f y)
   fmap f (Read g)    = Read (fmap f g)
+
+-- -----------------------------------------------------------------------------
+
+offsetCurrentTime :: NominalDiffTime -> IO UTCTime
+offsetCurrentTime offset = fmap (addUTCTime (offset * 24 * 3600)) $ getCurrentTime
+
+offsetCurrentTime' :: NominalDiffTime -> IO UTCTime
+offsetCurrentTime' offset = addUTCTime (offset * 24 * 3600) <$> getCurrentTime
 
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------

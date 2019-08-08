@@ -1,5 +1,7 @@
 module O22__SemigroupAndMonoid () where
 
+import qualified Data.Map as M
+
 import Data.Monoid
   ( Any(..)
   , All(..)
@@ -266,6 +268,39 @@ tryValidation = do
   print $ failure "woot" <> failure "blah"
   print $ success 1 <> success 2
   print $ failure "woot" <> success 2
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+f = const (Sum 1)
+g = const (Sum 2)
+
+_ = f 9001           -- `Sum { getSum = 1 }`
+_ = g 9001           -- `Sum { getSum = 2 }`
+_ = (f <> g) 9001    -- `Sum { getSum = 3 }`
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+
+
+
+
+
+a = M.fromList [('a', 1)]
+b = M.fromList [('b', 2)]
+
+_ = a <> b           -- `fromList [('a', 1), ('b', 2)]`
+_ = a `mappend` b    -- `fromList [('a', 1), ('b', 2)]`
+_ = mappend a b      -- `fromList [('a', 1), ('b', 2)]`
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-module O25__Monad where
+module O25__Monad () where
 
 import Control.Applicative (liftA2, liftA3, (*>))
 import Control.Monad (join, liftM2, liftM3, (>=>))
@@ -27,9 +27,16 @@ _ = [1..3] >>= return . (+1)    -- `[2, 3, 4]`
 
 -- -----------------------------------------------------------------------------
 
--- fmap ::     Functor f =>   (a -> b) -> f a        -> f b
--- <*>  :: Applicative f => f (a -> b) -> f a        -> f b
--- >>=  ::       Monad f => f a        -> (a -> f b) -> f b
+-- ($)   ::                    (a ->   b) ->   a ->   b
+-- fmap  ::     Functor f =>   (a ->   b) -> f a -> f b
+-- (<*>) :: Applicative f => f (a ->   b) -> f a -> f b
+-- (=<<) ::       Monad m =>   (a -> m b) -> m a -> m b
+
+-- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+
+-- ($>) ::     Functor f => f a ->   b -> f b
+-- (*>) :: Applicative f => f a -> f b -> f b
+-- (>>) ::       Monad m => m a -> m b -> m b
 
 andOne x = [x, 1]
 _ = andOne 10                         -- `[10, 1]`

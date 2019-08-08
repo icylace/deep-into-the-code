@@ -76,6 +76,12 @@ import qualified Hello12 (goodbye12)
 
 import qualified Hello13 as H13 (hello13)
 
+-- TODO: try out these:
+-- import HelloX as HX
+-- import HelloX as HX (helloX)
+-- import HelloX (helloX) as HX
+-- import qualified HelloX (helloX) as HX
+
 -- Importing a datatype's data constructors can be done implicitly...
 
 import Hello14 (Hello14(..))
