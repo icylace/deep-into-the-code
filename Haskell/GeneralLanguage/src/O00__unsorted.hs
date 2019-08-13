@@ -2224,7 +2224,7 @@ xx'' = 2
 -- Functor     | map
 -- Applicative | apply
 -- Monad       | concat
--- Foldable    | (?) fold
+-- Foldable    | fold
 -- Traversable | (?) iterate
 
 
