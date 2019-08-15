@@ -62,6 +62,8 @@ import O24__Applicative
 import O25__Monad
 import O26__Foldable
 import O27__Traversable
+import O28__Reader
+import O29__State
 import Examples.E01
 
 -- Any Haskell source code file that is meant to be run directly must have the

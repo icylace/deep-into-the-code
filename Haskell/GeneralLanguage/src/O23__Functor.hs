@@ -721,6 +721,7 @@ Key Terms
 Functor: A mapping between categories.
 Functor: A way to apply a function over a structure we want to preserve.
 Lift: To preserve a structure while applying a function over its values.
+Functorial context: The structure that a function is being lifted over.
 Natural transformation: A way of changing structure while preserving its values.
 
 Higher-kinded polymorphism: Polymorphism with types of a higher kind.

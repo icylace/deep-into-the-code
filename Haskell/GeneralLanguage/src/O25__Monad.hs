@@ -7,13 +7,14 @@ import Test.QuickCheck
 import Test.QuickCheck.Checkers
 import Test.QuickCheck.Classes
 
--- This is only here for reference.
-class Applicative m => Monad' m where
-  -- bind
-  (>>=.) :: m a -> (a -> m b) -> m b
-  -- sequence
-  (>>.) :: m a -> m b -> m b
-  return' :: a -> m a
+-- This is only here for reference.:
+--
+-- class Applicative m => Monad m where
+--   -- bind
+--   (>>=) :: m a -> (a -> m b) -> m b
+--   -- sequence
+--   (>>) :: m a -> m b -> m b
+--   return :: a -> m a
 
 -- fmap f xs == xs >>= return . f
 
@@ -49,7 +50,8 @@ _ = concat $ fmap andOne [4, 5, 6]    -- `[4, 1, 5, 1, 6, 1]`
 
 -- join :: Monad m => m (m a) -> m a
 
-_ = join [[1], [2, 3], [4, 5, 6]]    -- `[1, 2, 3, 4, 5, 6]`
+_ = concat [[1], [2, 3], [4, 5, 6]]    -- `[1, 2, 3, 4, 5, 6]`
+_ = join [[1], [2, 3], [4, 5, 6]]      -- `[1, 2, 3, 4, 5, 6]`
 
 -- It's by putting that `join` function together with the mapping function that
 -- we get "bind", also known as `>>=`.
@@ -695,14 +697,11 @@ flipType = flip meh id
 
 
 
-
-
 -- It is not necessary, and considered bad style, to use `do` in single-line
 -- expressions.
 
 -- Similarly, it is unnecessary to use `do` with functions like `putStrLn` and
 -- `print` that already have the effects baked in.
-
 
 
 

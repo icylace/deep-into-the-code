@@ -1,6 +1,4 @@
-{-# LANGUAGE FlexibleContexts #-}
-
-module O27__Traversable where
+module O27__Traversable () where
 
 -- `Traversable` allows you to transform elements inside the structure like
 -- a unctor, producing applicative effects along the way, and lift those
