@@ -2222,10 +2222,10 @@ xx'' = 2
 -- Semigroup   | append
 -- Monoid      | append (identity-aware)
 -- Functor     | map
--- Applicative | apply
--- Monad       | concat
--- Foldable    | fold
--- Traversable | (?) iterate
+-- Applicative | apply (wrapped function applied to wrapped value)
+-- Monad       | join (generalized concat)
+-- Foldable    | fold (summarizer)
+-- Traversable | traverse (structure swap)
 
 
 

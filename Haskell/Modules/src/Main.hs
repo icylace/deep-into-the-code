@@ -1,6 +1,7 @@
 -- TODO:
 -- show modules importing each other
 -- show exported functions being used
+-- show explicit data constructor importting
 -- show recommended style for long lists of exports
 -- talk about recommended compiler flags for enforcing export warnings
 

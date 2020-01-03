@@ -32,8 +32,6 @@ to do that. -}
 -- This file you're reading right now is a Haskell source code file because it
 -- has the `.hs` file extension and contains Haskell code.
 
-import Test.QuickCheck
-
 import O00__unsorted
 import O01__Expressions
 import O02__Functions

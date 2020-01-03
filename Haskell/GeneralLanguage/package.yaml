@@ -6,4 +6,4 @@ executables:
     main: Main.hs
     source-dirs: [src]
     dependencies:
-      [base, checkers, containers, QuickCheck, uuid, text, time, transformers]
+      [base, checkers, containers, random, QuickCheck, uuid, text, time, transformers]
