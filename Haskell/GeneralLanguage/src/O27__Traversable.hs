@@ -1,7 +1,7 @@
 module O27__Traversable () where
 
 -- `Traversable` allows you to transform elements inside the structure like
--- a unctor, producing applicative effects along the way, and lift those
+-- a functor, producing applicative effects along the way, and lift those
 -- potentially multiple instances of applicative structure outside of
 -- the traversable structure. It is commonly described as a way
 -- to traverse a data structure, mapping a function inside
@@ -445,7 +445,11 @@ testS = do
 
 -- -----------------------------------------------------------------------------
 
-data Tree a = Empty | Leaf a | Node (Tree a) a (Tree a) deriving (Eq, Show)
+data Tree a
+  = Empty
+  | Leaf a
+  | Node (Tree a) a (Tree a)
+  deriving (Eq, Show)
 
 instance Functor Tree where
   fmap _ Empty           = Empty

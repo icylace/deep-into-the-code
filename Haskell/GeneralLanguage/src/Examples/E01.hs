@@ -1,9 +1,11 @@
+{-# LANGUAGE ImportQualifiedPost #-}
+
 module Examples.E01 where
 
 import Data.Text (Text)
-import qualified Data.Text as T
-import qualified Data.UUID as UUID
-import qualified Data.UUID.V4 as UUIDv4
+import Data.Text qualified as T
+import Data.UUID qualified as UUID
+import Data.UUID.V4 qualified as UUIDv4
 
 textUUID :: IO Text
 textUUID = fmap (T.pack . UUID.toString) UUIDv4.nextRandom

@@ -349,6 +349,19 @@ _ = isSubsequenceOf "blah" "blawhoot"    -- `True`
 
 -- -----------------------------------------------------------------------------
 
+-- Pattern matching can be mixed with guards.
+
+get :: Maybe Int -> Int
+get Nothing = 0
+get x | Just y <- x = y
+
+
+
+
+
+
+
+
 
 
 {-

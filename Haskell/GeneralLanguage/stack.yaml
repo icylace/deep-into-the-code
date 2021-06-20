@@ -15,7 +15,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-15.1
+resolver: lts-18.0
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -74,6 +74,9 @@ ghc-options:
   # -Wno-incomplete-patterns
   # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wincomplete-patterns
 
+  # -Wno-missing-deriving-strategies
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-deriving-strategies
+
   # -Wno-missing-export-lists
   # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-export-lists
 
@@ -82,6 +85,9 @@ ghc-options:
 
   # -Wno-missing-home-modules
   # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-home-modules
+
+  # -Wno-missing-safe-haskell-mode
+  # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/safe_haskell.html?highlight=wno%20missing%20safe%20haskell%20mode#ghc-flag--Wmissing-safe-haskell-mode
 
   # -Wno-missing-signatures
   # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wmissing-signatures
@@ -107,4 +113,4 @@ ghc-options:
   # -Wno-unused-top-binds
   # https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html#ghc-flag--Wunused-top-binds
 
-  "$targets": -Wno-deprecated-flags -Wno-duplicate-constraints -Wno-incomplete-patterns -Wno-missing-export-lists -Wno-missing-fields -Wno-missing-home-modules -Wno-missing-signatures -Wno-name-shadowing -Wno-overflowed-literals -Wno-overlapping-patterns -Wno-redundant-constraints -Wno-unused-imports -Wno-unused-matches -Wno-unused-top-binds
+  "$targets": -Wno-deprecated-flags -Wno-duplicate-constraints -Wno-incomplete-patterns -Wno-missing-deriving-strategies -Wno-missing-export-lists -Wno-missing-fields -Wno-missing-home-modules -Wno-missing-safe-haskell-mode -Wno-missing-signatures -Wno-name-shadowing -Wno-overflowed-literals -Wno-overlapping-patterns -Wno-redundant-constraints -Wno-unused-imports -Wno-unused-matches -Wno-unused-top-binds

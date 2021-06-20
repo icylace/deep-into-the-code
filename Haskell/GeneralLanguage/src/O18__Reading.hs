@@ -10,6 +10,6 @@ _ = (read "1234567") :: Integer    -- `1234567`
 
 -- Not all string values can be successfully converted to the desired type.
 
-_ = read "BOOM" :: Integer    -- Exception.
+_ = read "BOOM" :: Integer         -- Exception.
 
 -- Therefore, `read` is a partial function.

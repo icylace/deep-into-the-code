@@ -1,3 +1,10 @@
+-- Resources:
+-- https://leanpub.com/purescript
+-- https://github.com/adkelley/javascript-to-purescript
+-- https://gitlab.com/schalmers/purescript-in-javascript
+
+
+
 -- Some content copied from [PureScript by Example](https://leanpub.com/purescript).
 
 module PureScript where

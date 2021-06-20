@@ -1,6 +1,19 @@
 -- TODO:
 
 
+-- https://youtu.be/fJRBeWwdby8?t=167
+
+
+-- Haskell is a pure functional programming language.
+-- Haskell is primarily immutable, so things cannot be changed once they're set.
+-- Haskell is lazy which means it only executes somewthing when it needs to.
+
+
+
+
+
+
+
 {-# LANGUAGE PartialTypeSignatures #-}
 
 
@@ -21,6 +34,27 @@ import Data.Maybe (isJust)
 
 
 -- The main executable in a Haskell program must always have the type IO ().
+
+
+
+
+
+
+
+-- -----------------------------------------------------------------------------
+
+-- TODO:
+
+-- -- https://youtu.be/fty9QL4aSRc?t=1143
+-- data E = forall a. MkE [a]
+
+-- lenE :: E -> Int
+-- lenE (MkE xs) = GHC.List.length xs
+
+-- -----------------------------------------------------------------------------
+
+
+
 
 
 

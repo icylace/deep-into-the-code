@@ -1,6 +1,6 @@
 module O22__SemigroupAndMonoid () where
 
-import qualified Data.Map as M
+import Data.Map qualified as M
 
 import Data.Monoid
   ( Any(..)

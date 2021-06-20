@@ -25,10 +25,10 @@ _ = foldr (+) 0 $ take 4 $ [1, 2, 3, 4] ++ undefined    -- `10`
 
 -- `length` will always evaluate the spine but not the values.
 
-_ = length [1, 2, 3, 4, undefined]                    -- `5`
-_ = length ([1, 2, 3, 4] ++ undefined)                -- Exception.
-_ = length (take 4 ([1, 2, 3, 4] ++ undefined))       -- `4`
-_ = length $ take 2 $ take 4 $ [1, 2] ++ undefined    -- `2`
+_ = length [1, 2, 3, 4, undefined]                      -- `5`
+_ = length ([1, 2, 3, 4] ++ undefined)                  -- Exception.
+_ = length (take 4 ([1, 2, 3, 4] ++ undefined))         -- `4`
+_ = length $ take 2 $ take 4 $ [1, 2] ++ undefined      -- `2`
 
 -- -----------------------------------------------------------------------------
 
@@ -66,13 +66,13 @@ _ = (flip const) undefined 1    -- `1`
 
 -- `foldr` recuses down the spine if it has to.
 
-_ = foldr const 0 ([1..5] ++ undefined)           -- `1`
-_ = foldr (flip const) 0 ([1..5] ++ undefined)    -- Exception.
+_ = foldr const 0 ([1..5] ++ undefined)            -- `1`
+_ = foldr (flip const) 0 ([1..5] ++ undefined)     -- Exception.
 
 -- `foldl` unconditionally evaluates the spine.
 
-_ = foldl const 0 ([1..5] ++ undefined)           -- Exception.
-_ = foldl (flip const) 0 ([1..5] ++ undefined)    -- Exception.
+_ = foldl const 0 ([1..5] ++ undefined)            -- Exception.
+_ = foldl (flip const) 0 ([1..5] ++ undefined)     -- Exception.
 
 _ = foldl (\_ _ -> 5) 0 ([1..5] ++ undefined)      -- Exception.
 _ = foldl (\_ _ -> 5) 0 ([1..5] ++ [undefined])    -- `5`

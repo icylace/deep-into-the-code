@@ -4,7 +4,7 @@ import Control.Applicative (ZipList, liftA2, liftA3)
 import Data.Char (toUpper)
 import Data.Functor.Identity (Identity(..))
 import Data.List (elemIndex)
-import qualified Data.Map as M (fromList, lookup)
+import Data.Map qualified as M (fromList, lookup)
 import Data.Monoid (All(..), Product(..), Sum(..))
 
 import Test.QuickCheck.Checkers (EqProp, (=-=), eq)
@@ -30,8 +30,8 @@ import Test.QuickCheck.Checkers (EqProp, (=-=), eq)
 
 -- Basically, an applicative is just a way of saying we mapped a function over
 -- some functorial `f` or it was already in `f` somehow and we hit a situation
--- where we want to map `f (a -> b)` not just `(a -> b)` over some `f a` to
--- get an `f b`.
+-- where we want to map `f (a -> b)` not just `(a -> b)` over some `f a`
+-- to get an `f b`.
 
 -- This is only here for reference.
 class Functor f => Applicative' f where

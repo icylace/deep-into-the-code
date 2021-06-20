@@ -7,9 +7,9 @@ x = 9
 
 -- The less-than operator, `<`, checks if an expression is lesser than another.
 
-_ = x < 5     -- `False`
-_ = x < 9     -- `False`
-_ = x < 10    -- `True`
+_ = x < 5                -- `False`
+_ = x < 9                -- `False`
+_ = x < 10               -- `True`
 
 _ = 'a' < 'b'            -- `True`
 _ = "Hello" < "hello"    -- `True`
@@ -27,9 +27,9 @@ _ = x <= 10    -- `True`
 -- The greater-than operator, `>`, checks if an expression is greater
 -- than another.
 
-_ = x > 5     -- `True`
-_ = x > 9     -- `False`
-_ = x > 10    -- `False`
+_ = x > 5                -- `True`
+_ = x > 9                -- `False`
+_ = x > 10               -- `False`
 
 _ = 'a' > 'b'            -- `False`
 _ = "Hello" > "hello"    -- `False`
@@ -56,10 +56,10 @@ _ = compare True True          -- `EQ`
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 
-_ = max 7 8                -- `8`
-_ = max (3, 4) (2, 3)      -- `(3, 4)`
-_ = max "Julie" "Chris"    -- `"Julie"`
-_ = max 7 (max 8 9)        -- `9`
+_ = max 7 8                          -- `8`
+_ = max (3, 4) (2, 3)                -- `(3, 4)`
+_ = max "Julie" "Chris"              -- `"Julie"`
+_ = max 7 (max 8 9)                  -- `9`
 
 _ = min 10 (-10)                     -- `-10`
 _ = min [2, 3, 4, 5] [3, 4, 5, 6]    -- `[2, 3, 4, 5]`
