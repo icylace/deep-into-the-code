@@ -154,7 +154,13 @@ TODO:
 
 **Suggested improvement:** "Beware this example may freeze your GHCi and not throw an exception should you attempt to try it."
 
+## Page 283, Paragraph 4
 
+**Content in question:** "that doesn't result in a bottom value."
+
+**Critique:** On page 271 "bottom" is defined as a non-value that denotes code that cannot return a value. On page 283, the same page as the content in question, "bottom" is defined as a term used to refer to computations that do not result in a value. Therefore, "bottom value" is an oxymoron.
+
+**Suggested improvement:** "that doesn't result in being an example of bottom."
 
 
 
@@ -170,48 +176,6 @@ TODO:
 
 
 
-
-
-## Page 283, Paragraph 5
-
-**Content in question:** "that doesn't result in a bottom value."
-
-**Critique:** On page 270 "bottom" is defined as a non-value that denotes code that cannot return a value. On page 283, the same page as the content in question, "bottom" is defined as a term used to refer to computations that do not result in a value. Therefore, "bottom value" is an oxymoron.
-
-**Suggested improvement:** "that didn't result in being an example of bottom."
-
-## Page 306, Last Paragraph
-
-**Content in question:** "Be aware that enumFromTo must have its first argument be lower than the second argument:"
-
-**Critique:** The first argument can be at least equal to the second argument to prevent an empty list result. For instance, `enumFromTo 3 3` evaluates to `[3]`.
-
-**Suggested improvement:** "Be aware that enumFromTo must have its first argument not be lower than the second argument:"
-
-## Page 307, Last Paragraph
-
-**Content in question:** "Replace the undefined, an value which results in an error when evaluated, with your own definition."
-
-**Critique:** Grammar. "an value" should be " a value".
-
-**Suggested improvement:** "Replace the undefined, a value which results in an error when evaluated, with your own definition."
-
-## Page 310, Second to Last Paragraph
-
-**Content in question:** "In the final example above, why does it only return a single a?"
-
-**Critique:** The line should be referring to the example that comes after it because the example that came before it only dealt with numbers.
-
-**Suggested improvement:** "In the final example below, why does it only return a single a?"
-
-## Page 311, Exercise 1
-
-**Content in question:** "wallfish" in the code example.
-
-**Critique:** Where does "wallfish" come from? Shouldn't that be "sheryl"?
-
-**Suggested improvement:** Replace "wallfish" with "sheryl".
-
 ## Page 316, Subsection "List comprehensions with Strings", Code Sample 1
 
 **Content in question:** "elem :: Eq a => a -> [a] -> Bool"
@@ -219,6 +183,21 @@ TODO:
 **Critique:** The footnote on this page references `Foldable` and how it's included in the type of `elem` even though the code sample does not reflect this. In GHCi 8.4.3 at least, `:t elem` yields `elem :: (Foldable t, Eq a) => a -> t a -> Bool`.
 
 **Suggested improvement:** "elem :: (Foldable t, Eq a) => a -> t a -> Bool".
+
+
+
+
+
+-------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 ## Page 322, Paragraph 4
 
