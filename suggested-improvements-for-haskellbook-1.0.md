@@ -473,7 +473,7 @@ page 582 speak for itself.
 
 **Content in question:** "It is to be hoped that `Semigroup` will be made a superclass of `Monoid` in an upcoming version of GHC."
 
-**Critique:** `Semigroup` is a superclass of `Monoid` since base-4.11.0.0. (Source: http://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Monoid.html#t:Monoid)
+**Critique:** `Semigroup` is a superclass of `Monoid` since base-4.11.0.0. Source: https://hackage.haskell.org/package/base-4.15.0.0/docs/Data-Monoid.html#t:Monoid
 
 **Suggested improvement:** Replace the sentence in question with "That is why `Semigroup` is a superclass of `Monoid`."
 
@@ -515,7 +515,7 @@ page 582 speak for itself.
 
 **Critique:** Online resources should have their links included.
 
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: http://www.haskellforall.com/2012/09/the-functor-design-pattern.html
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2012/09/the-functor-design-pattern.html
 
 ## Page 680, Code Example 1
 
@@ -605,7 +605,7 @@ TODO: **Suggested improvement:**
 
 **Critique:** Online resources should have their links included.
 
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: http://www.haskellforall.com/2014/10/how-to-desugar-haskell-code.html
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2014/10/how-to-desugar-haskell-code.html
 
 TODO: ## Page 780, REPL Example 2
 
@@ -629,7 +629,7 @@ TODO: **Suggested improvement:**
 
 TODO: add URL for post that was mentioned on page 777
 TODO: Aditya Bhargava's "Making A Website With Haskell"
-TODO: http://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
+TODO: https://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
 
 ## Page 795, Paragraph 1
 
@@ -723,7 +723,7 @@ TODO: minimum :: (Foldable t, Ord a) => t a -> a
 
 **Critique:** Online resources should have their links included.
 
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014/07/30/Foldable-and-Traversable/
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
 
 ## Page 823, Code Examples 1 and 2
 
