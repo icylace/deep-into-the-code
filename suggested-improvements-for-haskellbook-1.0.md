@@ -461,6 +461,38 @@ did you mean DataKinds?
 
 **Suggested improvement:** "Where we import the module name followed by parentheses, such as with `Control.Monad` or `Control.Monad.IO.Class`, we are saying we only want to import the functions or values listed within the parentheses."
 
+## Page 800, Code Example
+
+**Content in question:** "`[5]`"
+
+**Critique:** The blank line immediately above the "`[5]`" suggests that the "`[5]`" is associated with the line below it even though it's actually associated with the line above it.
+
+**Suggested improvement:** Remove the aforementioned blank line immediately above the "`[5]`".
+
+## Page 801, Code Example
+
+**Content in question:** "`[8]`"
+
+**Critique:** The blank line immediately above the "`[8]`" suggests that the "`[8]`" is associated with the line below it even though it's actually associated with the line above it.
+
+**Suggested improvement:** Remove the aforementioned blank line immediately above the "`[8]`".
+
+## Page 820, Section 20.7 "Follow-up resources", Item 1
+
+**Content in question:** The only listed resource.
+
+**Critique:** Online resources should have their links included.
+
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
+
+## Page 842, Section 21.13 "Follow-up resources"
+
+**Content in question:** "Jakub Arnold. _Foldable and Traversable._"
+
+**Critique:** Online resources should have their links included.
+
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
+
 
 
 
@@ -478,13 +510,14 @@ did you mean DataKinds?
 
 
 
-## Page 800, Code Example
 
-**Content in question:** `[5]`
+## Page 878, REPL Example
 
-**Critique:** The gap above the `[5]` is big enough to imply that the `[5]` is associated with the line below it, though it's really associated with the line above it.
+**Content in question:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg3)`
 
-**Suggested improvement:** Shorten the gap above the `[5]`.
+**Critique:** `sg3` is not mentioned anywhere. Perhaps `sg` was intended instead.
+
+**Suggested improvement:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg)`
 
 
 
@@ -559,22 +592,6 @@ TODO: **Critique:** consistency of URI and URL
 
 TODO: **Suggested improvement:**
 
-## Page 801, Code Example
-
-**Content in question:** `[8]`
-
-**Critique:** The gap above the `[8]` is big enough to imply that the `[8]` is associated with the line below it, though it's really associated with the line above it.
-
-**Suggested improvement:** Shorten the gap above the `[8]`.
-
-## Page 804, Section 19.8
-
-**Content in question:** The only listed resource.
-
-**Critique:** Online resources should have their links included.
-
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: http://www.serpentine.com/blog/2012/09/12/the-case-of-the-mysterious-explosion-in-space/
-
 TODO: ## Page 814
 
 TODO: **Content in question:**
@@ -621,30 +638,8 @@ TODO: **Suggested improvement:**
 TODO: maximum :: (Foldable t, Ord a) => t a -> a
 TODO: minimum :: (Foldable t, Ord a) => t a -> a
 
-## Page 820, Section 20.7
 
-**Content in question:** The only listed resource.
 
-**Critique:** Online resources should have their links included.
-
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
-
-## Page 823, Code Examples 1 and 2
-
-**Content in question:** In both code examples, `traverse :: Applicative f => (a -> f b) -> t a -> f (t b)`
-
-**Critique:** In the type of `traverse`, the `t` should have an instance of `Traversable`. On page 826, the type of `traverse` includes `Traversable`.
-
-**Suggested improvement:** In both code examples, `traverse :: (Traversable t, Applicative f) => (a -> f b) -> t a -> f (t b)`
-
-## Page 842, Section 21.13
-
-**Content in question:**
-"Foldable and Traversable; Jakub Arnold."
-
-**Critique:** Online resources should have their links included.
-
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
 
 TODO: ## Page 877, REPL Example 3
 
@@ -655,13 +650,6 @@ TODO: `random` has a different type now
 
 TODO: **Suggested improvement:**
 
-## Page 878, REPL Example
-
-**Content in question:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg3)`
-
-**Critique:** `sg3` is not mentioned anywhere. Perhaps `sg` was intended instead.
-
-**Suggested improvement:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg)`
 
 
 
@@ -723,3 +711,11 @@ the same cardinality as the type they contain."
 **Critique:** Maybe I missed it but I didn't notice any `z'` being an infinite list.
 
 **Suggested improvement:** Assuming I'm correct, remove the line.
+
+## Page 823, Code Examples 1 and 2
+
+**Content in question:** In both code examples, `traverse :: Applicative f => (a -> f b) -> t a -> f (t b)`
+
+**Critique:** In the type of `traverse`, the `t` should have an instance of `Traversable`. At the top of page 826, the type of `traverse` includes `Traversable`.
+
+**Suggested improvement:** In both code examples, `traverse :: (Applicative f, Traversable t) => (a -> f b) -> t a -> f (t b)`
