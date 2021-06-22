@@ -74,6 +74,14 @@ _Note:_ Page numbers used here are not PDF page numbers but the book page number
 
 **Suggested improvement:** Replace with "The append operator `++` is a concatenation function in Haskell,"
 
+## Page 89, Paragraph 4
+
+**Content in question:** "The whole thing is called a data declaration."
+
+**Critique:** The synonymous term "datatype declaration" is also used later in the book (e.g. Page 107, Section 4.7 "Tuples", Paragraph 2 as well as Page 120, Section 5.1 "Types", Paragraph 2). Explicitly establishing that "data declaration" and "datatype declaration" mean the same thing will save the reader from wondering if there's actually some subtle difference between them that they might be missing.
+
+**Suggested improvement:** "The whole thing is called a data declaration (a.k.a. datatype declaration)."
+
 ## Page 106, Code Example "greetIfCool1.hs"
 
 **Content in question:** `if cool` is followed by `then` on the next line.
@@ -116,7 +124,7 @@ investigation: does "type class-constrained polymorphic type variable" need its 
 
 **Suggested improvement:** "and then return a result that is also a function that needs to be applied to a second argument."
 
-## Page 141, Last Paragraph
+## Page 141, Last Paragraph on the Page
 
 **Content in question:** "That is, its parameters are polymorphic."
 
@@ -190,7 +198,7 @@ TODO:
 
 **Suggested improvement:** "`map` can only be used with lists."
 
-## Page 354, Code Sample 2 & 3
+## Page 354, Code Sample 1 & 2
 
 **Content in question:** From code sample 2, the line `["(",x,"+",y,")"]) "0" xs`. From code sample 3, the line `"(1+(2+(3+(4+(5+0)))))"`.
 
@@ -213,6 +221,14 @@ TODO:
 **Critique:** By that definition, the `3` in the function `\_ -> 3` is a tail call, which is incorrect. A tail call is a call to a function that happens as the last step of the function using that call.
 
 **Suggested improvement:** "A _tail call_ is a function application appearing at the end of a function."
+
+## Page 384, Section 10.12 "Follow-up resources", Item 1
+
+**Content in question:** "Antoni Diller. _Introduction to Haskell._"
+
+**Critique:** The link for this online resource should be updated.
+
+**Suggested improvement:** Use the HTTPS version of the link which at the time of writing this is: https://www.cantab.net/users/antoni.diller/haskell/haskell.html
 
 ## Page 401, Section 11.8 "What makes these datatypes algebraic?", Paragraph 5
 
@@ -264,14 +280,154 @@ TODO:
 
 **Suggested improvement:** Either be consistent about which command to use, or explain the distinction between both commands by the time the second command is used.
 
+## Page 498, Paragraph 1
 
+**Content in question:** "You can set your `Prelude` prompt permanently, if you wish, by changing it in your GHCi configuration file, but instructions for doing that are outside of the scope of the current chapter."
 
+**Critique:** Motivated readers should be pointed to where they can learn to edit their GHCi configuration.
 
+**Suggested improvement:** Add a footnote to the page, referred to from within the same paragraph as the content in question, which links to the part of GHCi's documentation that talks about managing its configuration: https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html#the-ghci-files
 
+## Page 509, Paragraph 1
 
+**Content in question:** "All modules listed below are part of the main `base` library that comes with your GHC install, unless otherwise noted."
 
+**Critique:** It seems the paragraph is referring to the code example directly preceding it. So, "below" should really say "above".
 
+**Suggested improvement:** "All modules listed above are part of the main `base` library that comes with your GHC install, unless otherwise noted."
 
+## Page 514, Code Example 2
+
+**Content in question:** "`l < maxWordLength`"
+
+**Critique:** The naming of the variable `maxWordLength` implies that I can choose to set `minWordLength` and `maxWordLength` to the same number in order to select words that are of a fixed length. For example, if I kept `minWordLength` as 5 but set `maxWordLength` also as 5 then I should get just a list of words that are 5 characters in length. The code in question prevents that intuition from being realized.
+
+**Suggested improvement:** `l <= maxWordLength`
+
+## Page 514, Paragraph 3
+
+**Content in question:** "We have to subtract one from the length of the word list in order to index it, because `length` starts counting from 1, but an index of the list starts from 0."
+
+**Critique:** `length` actually starts counting from 0 because `length []` gives back 0.
+
+**Suggested improvement:** "We have to subtract one from the length of the word list in order to index it, because that is the index position of the last item in the list."
+
+## Page 520, Item 7
+
+**Content in question:** "`guessChar` is the character that the player has guessed."
+
+**Critique:** Item 4 has a more accurate description of what `guessChar` is and that should be reflected here also.
+
+**Suggested improvement:** "`guessChar` is either the character the player has guessed correctly or a `Nothing` representing a character that has yet to be guessed correctly."
+
+## Page 566, Subsection "Using QuickCheck", Item 5, Code Example
+
+**Content in question:** "`-- quot rem`"
+
+**Critique:** This comment adds no useful information and shows what the code already expresses.
+
+**Suggested improvement:** Remove the comment in question.
+
+## Page 584, Code Example
+
+**Content in question:** "`mconcat = foldr mappend mempty`"
+
+**Critique:** `mconcat` is listed with the monoidal laws as if it's one of them
+which it's not. It's just a function with a convenient default implementation.
+
+**Suggested improvement:** Remove it. Let the mention of it at the beginning of
+page 585 speak for itself.
+
+## Page 596, Section 15.11 "Madness", Paragraph 1
+
+**Content in question:** "You may have seen mad libs before. The idea is to take a template of phrases, fill them in with blindly selected categories of words, and see if saying the final version is amusing."
+
+**Critique:** Mad Libs should be capitalized because it is a proper noun. Also, the word categories are not selected blindly but the words themselves are.
+
+**Suggested improvement:** "You may have seen Mad Libs before. The idea is to take a template of phrases, fill them in with blindly selected words from predetermined categories, and see if saying the final version is amusing."
+
+## Page 605, Subsection "NonEmpty, a useful datatype", Paragraph 4
+
+**Content in question:** "Since that data constructor is symbolic rather than alphanumeric, it can't be used as a prefix:"
+
+**Critique:** Prefix notation is possible with parentheses.
+
+**Suggested improvement:** "Since that data constructor is symbolic rather than alphanumeric, it can be used as a prefix only by encasing it within parentheses:
+
+data R' = (:!!:) Int String`"
+
+Also, remove "Using it as a prefix will cause a syntax error:
+
+`parse error on input ':!!:'`"
+
+## Page 606, Paragraph 1
+
+**Content in question:** "On the other hand, an alphanumeric data constructor can't be used as an infix:
+
+```
+data S = Int Prefix String
+```
+"
+
+**Critique:** Infix notation is possible with backticks.
+
+**Suggested improvement:** "On the other hand, an alphanumeric data constructor can be used as an infix only by encasing it within backticks:
+
+```
+data S = Int `Prefix` String
+```
+"
+
+Also, remove "It will cause another error:
+
+```
+Not in scope: type constructor
+  or class ‘Prefix’
+A data constructor of that name
+  is in scope;
+did you mean DataKinds?
+```
+"
+
+## Page 663, Code Example
+
+**Content in question:** `return (input ++ "and me too!")`
+
+**Critique:** Given the context of the surrounding sentences, it seems the intent is to be consistent with the preceding REPL example's `fmap (++ " and me too!") getLine`.
+
+**Suggested improvement:** `return (input ++ " and me too!")`
+
+## Page 673, Section 16.19 "Follow-up resources", Item 3
+
+**Content in question:** "Gabriel Gonzalez. _The functor design pattern._"
+
+**Critique:** Online resources should have their links included.
+
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2012/09/the-functor-design-pattern.html
+
+## Page 680, Code Example 1
+
+**Content in question:** `mappend :: f f f` and `$ :: (a -> b) a b`
+
+**Critique:** Despite having what I assume is an intentional similarity to the table of types given towards the end of page 679, the code in question should still be written with syntactical correctness in mind.
+
+**Suggested improvement:** Use `mappend :: f -> f -> f` and `$ :: (a -> b) -> a -> b` respectively.
+
+## Page 689, Paragraph 1
+
+**Content in question:** "Then, we use the tie-fighter to apply that to the second value,"
+
+**Critique:** "tie-fighter" should be spelled "TIE fighter" because TIE is an acronym for "twin ion engine". Source: https://starwars.fandom.com/wiki/TIE_Series#Technology
+
+**Suggested improvement:** "Then, we use the TIE fighter to apply that to the second value,"
+
+## Page 706, Code Example 1
+
+**Content in question:** `-- and we hit a situation where want to map`
+
+**Critique:** Grammar.
+
+**Suggested improvement:** `-- and we hit a situation where we want to map`
 
 
 
@@ -288,266 +444,21 @@ TODO:
 
 // TODO:
 
-## Page 89, Paragraph 4
 
-**Content in question:** "The whole thing is called a data declaration."
 
-**Critique:** The synonymous term "datatype declaration" is also used later in the book (e.g. page 120, paragraph 2). Explicitly establishing that "data declaration" and "datatype declaration" mean the same thing will save the reader from wondering if there's actually some subtle difference between them that they're missing.
+## Page 722, Paragraph 1
 
-**Suggested improvement:** "The whole thing is called a data declaration (or can also be called a datatype declaration)."
-
-## Page 190, Section "Ord instances", Paragraphs 2-3
-
-**Content in question:** The code example which defines the `DayOfWeek` datatype and its surrounding paragraphs.
-
-**Critique:** There's potential for confusion here. This section only directly mentions the `Eq` instance from a previous section, and not the original `DayOfWeek` declaration associated with that instance. However, the words "you should still have the Eq instance we wrote for this datatype in scope" implies that that original `DayOfWeek` declaration would also be in scope and that it can be superceded with the new `DayOfWeek` declaration this section offers, but actually attempting that results in a multiple declarations error.
-
-**Suggested improvement:** Replace the sentence right before the code example with "We'll modify our previously used DayOfWeek datatype to demonstrate". Update the code example to include `Eq` alongside `Ord` and `Show`. Reduce the paragraph following the code example so it reads as: "You can't have an Ord instance unless you also have an Eq instance, so the compiler will complain if you don't do one (not both) of those two things."
-
-## Page 302, Paragraph 3
-
-**Content in question:** "Be aware that enumFromTo must have its first argument be lower than the second argument:"
-
-**Critique:** The first argument can be equal to the second argument to prevent an empty list result. For example, `enumFromTo 3 3` evaluates to `[3]`. Also the use of the word "must" here is a bit disingenuous. I understand that the line "Otherwise you'll get an empty list." qualifies it but I believe it can be worded more precisely.
-
-**Suggested improvement:** Replace the content in question with: "When using enumFromTo, you'll likely want to have its first argument less than or equal to the second argument:" and replace the REPL example with:
-
-```haskell
-Prelude> enumFromTo 1 3
-[1,2,3]
-Prelude> enumFromTo 3 3
-[3]
-Prelude> enumFromTo 3 1
-[]
-```
-
-## Page 381, Section 10.12
-
-**Content in question:** "Antoni Diller. Introduction to Haskell."
-
-**Critique:** The relevant link for this online resource should be included.
-
-**Suggested improvement:** Provide a link to the course which, at the time of writing this, is https://www.cantab.net/users/antoni.diller/haskell/haskell.html
-
-## Page 401, Subsection "Unary constructors", Paragraph 2
-
-**Content in question:** "Datatypes that only contain a unary constructor always have
-the same cardinality as the type they contain."
-
-**Critique:** A couple things. First, consistency. The preceding paragraph uses the term "unary data constructor". Second and more importantly to avoid ambiguity, unary data constructors should be mentioned explicitly because unary type constructors exist, too. For example, `Maybe`. The Haskell wiki gives another example, `Tree` (source: https://wiki.haskell.org/Constructor#Type_constructor). On a sidenote, unary type constructors appear to not be acknowledged as such anywhere in the book. I think they should be to help the reader to the remember the distinction.
-
-**Suggested improvement:** "Datatypes that only contain a unary data constructor always have the same cardinality as the type they contain."
-
-
-
-
-
-
-
-
-
-
-## Page 495, Paragraph 6
-
-**Content in question:** "You can set your Prelude prompt permanently, if you wish, by changing it in your GHCi configuration file, but instructions for doing that are somewhat out of the scope of the current chapter."
-
-**Critique:** Motivated readers should be pointed to where they can learn to edit their GHCi configuration.
-
-**Suggested improvement:** Add a footnote to the page, referenced from the end of the content in question, which links to the part of GHCi's documentation that talks about managing its configuration: https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html#the-ghci-files
-
-## Page 506, Paragraph 1
-
-**Content in question:** "All modules listed below are part of the main _base_ library that comes with your GHC install unless otherwise noted."
-
-**Critique:** It seems the paragraph is referring to the code example directly preceding it. So, "below" should really say "above".
-
-**Suggested improvement:** "All modules listed above are part of the main _base_ library that comes with your GHC install unless otherwise noted."
-
-## Page 511, Code Example 2
-
-**Content in question:** `l < maxWordLength`
-
-**Critique:** The naming of the variable `maxWordLength` implies that I can choose to set `minWordLength` and `maxWordLength` to the same number in order to select words that are of a fixed length. For example, if I kept `minWordLength` as 5 but set `maxWordLength` also as 5 then I should get just a list of words that are 5 characters in length. The code in question prevents that intuition from being realized.
-
-**Suggested improvement:** `l <= maxWordLength`
-
-## Page 511, Paragraph 4
-
-**Content in question:** "We have to subtract one from the length of the word list in order to index it because `length` starts counting from 1 but an index of the list starts from 0."
-
-**Critique:** `length` actually starts counting from 0 because `length []` gives back 0.
-
-**Suggested improvement:** "We have to subtract one from the length of the word list in order to index it because that is the index position of the last item in the list."
-
-## Page 517, List Item 7
-
-**Content in question:** "`guessChar` is the character that the player has guessed."
-
-**Critique:** List item 4 has a more accurate description of what `guessChar` is and that should be reflected here also.
-
-**Suggested improvement:** "`guessChar` is either the character the player has guessed correctly or a `Nothing` representing a character that has yet to be guessed correctly."
-
-## Page 519, Code Example and Paragraph 2
-
-**Content in question:** From the code example: `if (length guessed) > 7 then`. From paragraph 2: "Notice the way it’s written says you lose and exits the game once you've guessed seven characters, even if the final (seventh) guess is the final letter to fill into the word."
-
-**Critique:** The code in question will trigger the game over message once the number of guesses is 8 or more. However, this conflicts with what the text in question states.
-
-**Suggested improvement:** Given that the 7-character limit is refenced multiple times in this chapter, the solution here would be to update the code in question to: `if (length guessed) >= 7 then`.
-
-## Page 524, List Item c
-
-**Content in question:** "”Yay!"
-
-**Critique:** A curly opening double quote should be used here.
-
-**Suggested improvement:** "“Yay!"
-
-## Page 563, List Item 5, Code Example
-
-**Content in question:** `-- quot rem`
-
-**Critique:** This comment adds no useful information and shows what the code already expresses.
-
-**Suggested improvement:** Remove the comment in question.
-
-## Page 570, Section 15.2, Paragraph 4
-
-**Content in question:** "In Haskell, these algebras can be implemented with type classes?; the type classes define the set of operations."
-
-**Critique:** The use of a question here makes the whole statement awkward because the section is about defining what an algebra is and what that means within Haskell. It is expository instead of inquisitive.
-
-**Suggested improvement:** "In Haskell, these algebras can be implemented with type classes. The type classes define the set of operations."
-
-## Page 574, Paragraph 1
-
-**Content in question:** "And if we look a possible definition of `Semigroup` and `Monoid` for lists, we can see how this all lines up:"
-
-**Critique:** Grammar. The beginning is missing a preposition.
-
-**Suggested improvement:** "And if we look at a possible definition of `Semigroup` and `Monoid` for lists, we can see how this all lines up:"
-
-## Page 581, Code Example
-
-**Content in question:** `mconcat = foldr mappend mempty`
-
-**Critique:** `mconcat` is listed with the monoidal laws as if it's one of them
-which it's not. It's just a function with a convenient default implementation.
-
-**Suggested improvement:** Remove it. Let the mention of it at the beginning of
-page 582 speak for itself.
-
-## Page 593, Section 15.11, Paragraph 1
-
-**Content in question:** "You may have seen mad libs before. The idea is to take a template of phrases, fill them in with blindly selected categories of words, and see if saying the final version is amusing."
-
-**Critique:** Mad Libs should be capitalized because it is a proper noun. Also, the word categories are not selected blindly but the words themselves are.
-
-**Suggested improvement:** "You may have seen Mad Libs before. The idea is to take a template of phrases, fill them in with blindly selected words from predetermined categories, and see if saying the final version is amusing."
-
-## Page 594, Section 15.12, Paragraph 2
-
-**Content in question:** "You can check the associativity of some simple arithemetic expressions..."
-
-**Critique:** "arithemetic" should be spelled "arithmetic".
-
-**Suggested improvement:** "You can check the associativity of some simple arithmetic expressions..."
-
-## Page 602, Paragraph 3
-
-**Content in question:** "Since that data constructor is symbolic rather than alphanumeric, it can't be used as a prefix:"
-
-**Critique:** Prefix notation is possible with parentheses: `data Q' = (:!!:) Int String`
-
-**Suggested improvement:** Mention this possibility.
-
-## Page 602, Paragraph 5
-
-**Content in question:** "On the other hand, an alphanumeric data constructor can't be used as an infix:"
-
-**Critique:** Infix notation is possible with backticks: "data P' = Int `Prefix` String"
-
-**Suggested improvement:** Mention this possibility.
-
-## Page 604, Section 15.14, PAragraph 4
-
-**Content in question:** "It is to be hoped that `Semigroup` will be made a superclass of `Monoid` in an upcoming version of GHC."
-
-**Critique:** `Semigroup` is a superclass of `Monoid` since base-4.11.0.0. Source: https://hackage.haskell.org/package/base-4.15.0.0/docs/Data-Monoid.html#t:Monoid
-
-**Suggested improvement:** Replace the sentence in question with "That is why `Semigroup` is a superclass of `Monoid`."
-
-## Page 611, Exercise 7
-
-**Content in question:** The hint text.
-
-**Critique:** The given hint should be shown after the code example to maintain consistency with other previously given exercises, specifically semigroup exercises 3, 9, and 10 which where given in the first part of section 15.15.
-
-**Suggested improvement:** Place the hint after the code example.
-
-## Page 614, Section 15.17
-
-**Content in question:** Both listed resources.
-
-**Critique:** As in previous chapters where online resources are listed, the ones here should include relevant URLs.
-
-**Suggested improvement:** For the first resource, include the URL: https://simple.wikipedia.org/wiki/Algebraic_structure. For the second resource, include the URL: http://blog.sigfpe.com/2009/01/haskell-monoids-and-their-uses.html.
-
-## Page 633, Code Example
-
-**Content in question:** `data CountingBad a =`
-
-**Critique:** The `data` keyword is for some reason linked to "news:data".
-
-**Suggested improvement:** Make `data` normal source code text by unlinking it.
-
-## Page 663, Code Example
-
-**Content in question:** `return (input ++ "and me too!")`
-
-**Critique:** Given the context of the surrounding sentences, it seems the intent is to be consistent with the preceding REPL example's `fmap (++ " and me too!") getLine`.
-
-**Suggested improvement:** `return (input ++ " and me too!")`
-
-## Page 673, Section 16.19
-
-**Content in question:** "Gabriel Gonzalez; The functor design pattern."
-
-**Critique:** Online resources should have their links included.
-
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2012/09/the-functor-design-pattern.html
-
-## Page 680, Code Example 1
-
-**Content in question:** `mappend :: f f f` and `$ :: (a -> b) a b`
-
-**Critique:** Despite having what I assume is an intentional similarity to the table of types given towards the end of page 679, the code in question should still be written with syntactical correctness in mind.
-
-**Suggested improvement:** Use `mappend :: f -> f -> f` and `$ :: (a -> b) -> a -> b` respectively.
-
-## Page 689, Paragraph 1
-
-**Content in question:** "Then we use the tie-fighter to apply that to the second value,..."
-
-**Critique:** "tie-fighter" should be spelled "TIE fighter" because TIE is an acronym for "twin ion engine" (source: https://starwars.fandom.com/wiki/TIE_Series).
-
-**Suggested improvement:** "Then we use the TIE fighter to apply that to the second value,..."
-
-## Page 706, Code Example 1
-
-**Content in question:** `-- and we hit a situation where want to map`
-
-**Critique:** Grammar.
-
-**Suggested improvement:** `-- and we hit a situation where we want to map`
-
-## Page 721, Paragraph 2
-
-**Content in question:** Note that the second `z'` was an infinite list.
+**Content in question:** "Note that the second `z'` was an infinite list."
 
 **Critique:** Maybe I missed it but I didn't notice any `z'` being an infinite list.
 
 **Suggested improvement:** Assuming I'm correct, remove the line.
+
+
+
+// -----------------------------------------------------------------------------
+
+
 
 TODO: ## Page 733
 
@@ -758,3 +669,56 @@ TODO: **Suggested improvement:**
 **Critique:** `sg3` is not mentioned anywhere. Perhaps `sg` was intended instead.
 
 **Suggested improvement:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg)`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+
+// TODO:
+
+## Page 192, Section "Ord instances", Paragraphs 2-3
+
+**Content in question:** The code example which defines the `DayOfWeek` datatype and its surrounding paragraphs.
+
+**Critique:** There's potential for confusion here. This section only directly mentions the `Eq` instance from a previous section, and not the original `DayOfWeek` declaration associated with that instance. However, the words "you should still have the Eq instance we wrote for this datatype in scope" implies that that original `DayOfWeek` declaration would also be in scope and that it can be superceded with the new `DayOfWeek` declaration this section offers, but actually attempting that results in a multiple declarations error.
+
+**Suggested improvement:** Replace the sentence right before the code example with "We'll modify our previously used DayOfWeek datatype to demonstrate". Update the code example to include `Eq` alongside `Ord` and `Show`. Reduce the paragraph following the code example so it reads as: "You can't have an Ord instance unless you also have an Eq instance, so the compiler will complain if you don't do one (not both) of those two things."
+
+## Page 302, Paragraph 3
+
+**Content in question:** "Be aware that enumFromTo must have its first argument be lower than the second argument:"
+
+**Critique:** The first argument can be equal to the second argument to prevent an empty list result. For example, `enumFromTo 3 3` evaluates to `[3]`. Also the use of the word "must" here is a bit disingenuous. I understand that the line "Otherwise you'll get an empty list." qualifies it but I believe it can be worded more precisely.
+
+**Suggested improvement:** Replace the content in question with: "When using enumFromTo, you'll likely want to have its first argument less than or equal to the second argument:" and replace the REPL example with:
+
+```haskell
+Prelude> enumFromTo 1 3
+[1,2,3]
+Prelude> enumFromTo 3 3
+[3]
+Prelude> enumFromTo 3 1
+[]
+```
+
+## Page 404, Subsection "Unary constructors", Paragraph 2
+
+**Content in question:** "Datatypes that only contain a unary constructor always have
+the same cardinality as the type they contain."
+
+**Critique:** A couple things. First, consistency. The preceding paragraph uses the term "unary data constructor". Second and more importantly to avoid ambiguity, unary data constructors should be mentioned explicitly because unary type constructors exist, too. For example, `Maybe`. The Haskell wiki gives another example, `Tree` (source: https://wiki.haskell.org/Constructor#Type_constructor). On a sidenote, unary type constructors appear to not be acknowledged as such anywhere in the book. I think they should be to help the reader to the remember the distinction.
+
+**Suggested improvement:** "Datatypes that only contain a unary data constructor always have the same cardinality as the type they contain."
