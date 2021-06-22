@@ -429,6 +429,38 @@ did you mean DataKinds?
 
 **Suggested improvement:** `-- and we hit a situation where we want to map`
 
+## Page 774, Section 18.9 "Follow-up resources", Item 3
+
+**Content in question:** "Gabriel Gonzalez. _How to desugar Haskell code._"
+
+**Critique:** Online resources should have their links included.
+
+**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2014/10/how-to-desugar-haskell-code.html
+
+## Page 746, Subsection "Using the Maybe Monad"
+
+**Content in question:** "You developed some intutions above for `do` syntax and the list `Monad`;"
+
+**Critique:** Spelling. "intutions" should be "intuitions".
+
+**Suggested improvement:** "You developed some intuitions above for `do` syntax and the list `Monad`;"
+
+## Page 756, Code Example 1
+
+**Content in question:** "`return :: Monad m => a -> m aq`"
+
+**Critique:** The `q` seems to be a typo.
+
+**Suggested improvement:** "`return :: Monad m => a -> m a`"
+
+## Page 795, Paragraph 1
+
+**Content in question:** "Where we import the module name followed by parentheses, such as with `replicateM` or `liftIO`, we are saying we only want to import the functions or values of those names and nothing else."
+
+**Critique:** The first part of the sentence is referring to module names but `replicateM` and `liftIO` are not module names.
+
+**Suggested improvement:** "Where we import the module name followed by parentheses, such as with `Control.Monad` or `Control.Monad.IO.Class`, we are saying we only want to import the functions or values listed within the parentheses."
+
 
 
 
@@ -446,13 +478,14 @@ did you mean DataKinds?
 
 
 
-## Page 722, Paragraph 1
+## Page 800, Code Example
 
-**Content in question:** "Note that the second `z'` was an infinite list."
+**Content in question:** `[5]`
 
-**Critique:** Maybe I missed it but I didn't notice any `z'` being an infinite list.
+**Critique:** The gap above the `[5]` is big enough to imply that the `[5]` is associated with the line below it, though it's really associated with the line above it.
 
-**Suggested improvement:** Assuming I'm correct, remove the line.
+**Suggested improvement:** Shorten the gap above the `[5]`.
+
 
 
 
@@ -494,30 +527,6 @@ TODO: **Critique:** operator should be in parenthesis
 
 TODO: **Suggested improvement:**
 
-## Page 746, Paragraph 3
-
-**Content in question:** "You developed some intutions above for `do` syntax and the list `Monad`;"
-
-**Critique:** Spelling. "intutions" should be "intuitions".
-
-**Suggested improvement:** "You developed some intuitions above for `do` syntax and the list `Monad`;"
-
-## Page 755, Code Example 2
-
-**Content in question:** `return :: Monad m => a -> m aq`
-
-**Critique:** The `q` seems to be a typo.
-
-**Suggested improvement:** `return :: Monad m => a -> m a`
-
-## Page 773, Section 18.9
-
-**Content in question:** "Gabriel Gonzalez; How to desugar Haskell code"
-
-**Critique:** Online resources should have their links included.
-
-**Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://www.haskellforall.com/2014/10/how-to-desugar-haskell-code.html
-
 TODO: ## Page 780, REPL Example 2
 
 TODO: **Content in question:**
@@ -542,14 +551,6 @@ TODO: add URL for post that was mentioned on page 777
 TODO: Aditya Bhargava's "Making A Website With Haskell"
 TODO: https://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
 
-## Page 795, Paragraph 1
-
-**Content in question:** "Where we import the module name followed by parentheses, such as with `replicateM` or `liftIO`, we are saying we only want to import the functions or values of that name and nothing else."
-
-**Critique:** The first part of the sentence is referring to module names but `replicateM` and `liftIO` are not module names.
-
-**Suggested improvement:** "Where we import the module name followed by parentheses, such as with `Control.Monad` or `Control.Monad.IO.Class`, we are saying we only want to import the functions or values listed within the parentheses."
-
 TODO: ## Page 796, Paragraphs 3 and 4
 
 TODO: **Content in question:**
@@ -557,14 +558,6 @@ TODO: **Content in question:**
 TODO: **Critique:** consistency of URI and URL
 
 TODO: **Suggested improvement:**
-
-## Page 800, Code Example
-
-**Content in question:** `[5]`
-
-**Critique:** The gap above the `[5]` is big enough to imply that the `[5]` is associated with the line below it, though it's really associated with the line above it.
-
-**Suggested improvement:** Shorten the gap above the `[5]`.
 
 ## Page 801, Code Example
 
@@ -722,3 +715,11 @@ the same cardinality as the type they contain."
 **Critique:** A couple things. First, consistency. The preceding paragraph uses the term "unary data constructor". Second and more importantly to avoid ambiguity, unary data constructors should be mentioned explicitly because unary type constructors exist, too. For example, `Maybe`. The Haskell wiki gives another example, `Tree` (source: https://wiki.haskell.org/Constructor#Type_constructor). On a sidenote, unary type constructors appear to not be acknowledged as such anywhere in the book. I think they should be to help the reader to the remember the distinction.
 
 **Suggested improvement:** "Datatypes that only contain a unary data constructor always have the same cardinality as the type they contain."
+
+## Page 722, Paragraph 1
+
+**Content in question:** "Note that the second `z'` was an infinite list."
+
+**Critique:** Maybe I missed it but I didn't notice any `z'` being an infinite list.
+
+**Suggested improvement:** Assuming I'm correct, remove the line.
