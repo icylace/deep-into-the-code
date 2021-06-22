@@ -493,170 +493,13 @@ did you mean DataKinds?
 
 **Suggested improvement:** Provide a link to the blog post which, at the time of writing this, is: https://blog.jakuba.net/2014-07-30-foldable-and-traversable/
 
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------------------------
-
-// TODO:
-
-
-
-
 ## Page 878, REPL Example
 
-**Content in question:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg3)`
+**Content in question:** "`Prelude| rx = random (snd sg3)`"
 
 **Critique:** `sg3` is not mentioned anywhere. Perhaps `sg` was intended instead.
 
-**Suggested improvement:** `Prelude> rx :: (Int, StdGen); rx = random (snd sg)`
-
-
-
-
-// -----------------------------------------------------------------------------
-
-
-
-TODO: ## Page 733
-
-TODO: **Content in question:**
-
-TODO: **Critique:** like on 732
-
-TODO: **Suggested improvement:**
-
-TODO: like on 722
-
-TODO: like on 725
-
-TODO: like on 726
-
-TODO: like on 727
-
-TODO: like on 744
-
-TODO: ## Page 738
-
-TODO: **Content in question:**
-
-TODO: **Critique:** syntax highlighting
-
-TODO: **Suggested improvement:**
-
-TODO: ## Page 740
-
-TODO: **Content in question:**
-
-TODO: **Critique:** operator should be in parenthesis
-
-TODO: **Suggested improvement:**
-
-TODO: ## Page 780, REPL Example 2
-
-TODO: **Content in question:**
-
-TODO: -- but note what happens here:
-TODO: Prelude> f <> g
-TODO: fromList [('a',1)]
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-
-TODO: ## Page 804
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-
-TODO: add URL for post that was mentioned on page 777
-TODO: Aditya Bhargava's "Making A Website With Haskell"
-TODO: https://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
-
-TODO: ## Page 796, Paragraphs 3 and 4
-
-TODO: **Content in question:**
-
-TODO: **Critique:** consistency of URI and URL
-
-TODO: **Suggested improvement:**
-
-TODO: ## Page 814
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-TODO: toList :: Foldable t => t a -> [a]
-
-TODO: ## Page 815
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-TODO: null :: Foldable t => t a -> Bool
-
-TODO: ## Page 815
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-TODO: length :: Foldable t => t a -> Int
-
-TODO: ## Page 816
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-TODO: elem :: (Foldable t, Eq a) => a -> t a -> Bool
-
-TODO: ## Page 817
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-
-TODO: **Suggested improvement:**
-TODO: maximum :: (Foldable t, Ord a) => t a -> a
-TODO: minimum :: (Foldable t, Ord a) => t a -> a
-
-
-
-
-TODO: ## Page 877, REPL Example 3
-
-TODO: **Content in question:**
-
-TODO: **Critique:**
-TODO: `random` has a different type now
-
-TODO: **Suggested improvement:**
-
-
-
-
-
-
-
-
+**Suggested improvement:** "`Prelude| rx = random (snd sg)`"
 
 
 
@@ -697,8 +540,7 @@ Prelude> enumFromTo 3 1
 
 ## Page 404, Subsection "Unary constructors", Paragraph 2
 
-**Content in question:** "Datatypes that only contain a unary constructor always have
-the same cardinality as the type they contain."
+**Content in question:** "Datatypes that only contain a unary constructor always have the same cardinality as the type they contain."
 
 **Critique:** A couple things. First, consistency. The preceding paragraph uses the term "unary data constructor". Second and more importantly to avoid ambiguity, unary data constructors should be mentioned explicitly because unary type constructors exist, too. For example, `Maybe`. The Haskell wiki gives another example, `Tree` (source: https://wiki.haskell.org/Constructor#Type_constructor). On a sidenote, unary type constructors appear to not be acknowledged as such anywhere in the book. I think they should be to help the reader to the remember the distinction.
 
@@ -712,6 +554,111 @@ the same cardinality as the type they contain."
 
 **Suggested improvement:** Assuming I'm correct, remove the line.
 
+## Page 733
+
+**Content in question:**
+
+**Critique:** like on 732
+
+**Suggested improvement:**
+
+like on 722
+like on 725
+like on 726
+like on 727
+like on 744
+
+## Page 738
+
+**Content in question:**
+
+**Critique:** syntax highlighting
+
+**Suggested improvement:**
+
+## Page 740
+
+**Content in question:**
+
+**Critique:** operator should be in parenthesis
+
+**Suggested improvement:**
+
+## Page 780, REPL Example 2
+
+**Content in question:**
+
+-- but note what happens here:
+Prelude> f <> g
+fromList [('a',1)]
+
+**Critique:**
+
+**Suggested improvement:**
+
+## Page 796, Paragraphs 3 and 4
+
+**Content in question:**
+
+**Critique:** consistency of URI and URL
+
+**Suggested improvement:**
+
+## Page 804
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:**
+
+add URL for post that was mentioned on page 777
+Aditya Bhargava's "Making A Website With Haskell"
+https://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
+
+## Page 814
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:**
+toList :: Foldable t => t a -> [a]
+
+## Page 815
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:** "`null :: Foldable t => t a -> Bool`"
+
+## Page 815
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:** "`length :: Foldable t => t a -> Int`"
+
+## Page 816
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:** "`elem :: (Foldable t, Eq a) => a -> t a -> Bool`"
+
+## Page 817
+
+**Content in question:**
+
+**Critique:**
+
+**Suggested improvement:**
+"`maximum :: (Foldable t, Ord a) => t a -> a
+minimum :: (Foldable t, Ord a) => t a -> a`"
+
 ## Page 823, Code Examples 1 and 2
 
 **Content in question:** In both code examples, `traverse :: Applicative f => (a -> f b) -> t a -> f (t b)`
@@ -719,3 +666,11 @@ the same cardinality as the type they contain."
 **Critique:** In the type of `traverse`, the `t` should have an instance of `Traversable`. At the top of page 826, the type of `traverse` includes `Traversable`.
 
 **Suggested improvement:** In both code examples, `traverse :: (Applicative f, Traversable t) => (a -> f b) -> t a -> f (t b)`
+
+## Page 877, REPL Example 3
+
+**Content in question:**
+
+**Critique:** `random` has a different type now
+
+**Suggested improvement:**
