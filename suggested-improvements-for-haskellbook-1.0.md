@@ -622,8 +622,7 @@ https://adit.io/posts/2013-04-15-making-a-website-with-haskell.html
 
 **Critique:**
 
-**Suggested improvement:**
-toList :: Foldable t => t a -> [a]
+**Suggested improvement:** "`toList :: Foldable t => t a -> [a]`"
 
 ## Page 815
 

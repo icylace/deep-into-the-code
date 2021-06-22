@@ -1,6 +1,6 @@
 # Deep Into the Code: Haskell (A WORK-IN-PROGRESS)
 
-My Haskell notes comprise of several source code files. I've written them this way to verify the correctness of the syntax of my notes.
+My Haskell notes are comprised of several source code files. I've written them this way to verify the correctness of the syntax of my notes.
 
 For instance, `GeneralLanguage/src/Main.hs` may be compiled and run from the command line or loaded and run from within the GHCi REPL environment.
 
